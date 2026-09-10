@@ -1,0 +1,64 @@
+{
+  "timestamp": "2026-09-08T22:15:00Z",
+  "axe1_quintessence": {
+    "status": "PASS",
+    "attractor_distance": 0.00028672058040922314,
+    "final_tau": "0.50029 + 0.86600 i",
+    "target_orbifold": "0.50000 + 0.86603 i",
+    "modulus_positivity_guaranteed": true
+  },
+  "axe2_symmetron": {
+    "status": "PASS",
+    "screening_factor": 0.00011811720750749558,
+    "cassini_bound_satisfied": true,
+    "phi_center_ratio": 1.9741863069299735e-14
+  },
+  "axe3_formal_proof": {
+    "status": "PASS",
+    "zero_sorry": true,
+    "theorems_verified_count": 9,
+    "proof_file": "proofs/TadpoleCancellation.lean"
+  },
+  "axe4_moonshine_voa": {
+    "status": "PASS",
+    "r_nl_exact": "77/60",
+    "conformal_ward_verified": true,
+    "clebsch_gordan_verified": true,
+    "lean_voa_verified": true,
+    "theorems_verified_count": 16
+  },
+  "axe5_nanograv": {
+    "status": "PASS",
+    "c4_c0_ratio": 16.07,
+    "max_deviation": 0.08035000000000003,
+    "is_hidden": true
+  },
+  "axe6_kummer_tda_langevin": {
+    "status": "PASS",
+    "symmetry_broken": true,
+    "final_string_count": 101,
+    "mapper_nodes": 186,
+    "mapper_edges": 528,
+    "mapper_1_cycles": 348,
+    "lean_certification_verified": true,
+    "tadpole_anomaly": 0,
+    "theorems_verified_count": 11
+  },
+  "observables": {
+    "w0": -0.9999963005031299,
+    "wa": -5.46990569108541e-06,
+    "delta_chi2_vs_lcdm": -0.0004271558779258555,
+    "ln_bayes_factor": 0.00021357793896292776
+  },
+  "cross_engine_consilience": {
+    "sundials_integrated": true,
+    "sundials_attractor_distance": 4.785859458723385e-09,
+    "independent_engines": [
+      "rusty-SUNDIALS (Rust BDF)",
+      "SciPy (Radau Stiff IVP)",
+      "Lean 4 (Kernel Verifier)",
+      "Rust Langevin SIMD",
+      "Python TDA Mapper"
+    ]
+  }
+}

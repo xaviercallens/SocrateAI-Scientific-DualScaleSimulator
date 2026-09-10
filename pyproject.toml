@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "leanflow"
+version = "2.0.0"
+description = "LeanFlow: Formal-methods-in-the-loop scientific computing and invariant-locked SciML for string theory & cosmology"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "LeanFlow Research Team"}
+]
+dependencies = [
+    "numpy>=1.22.0",
+    "scipy>=1.8.0",
+    "scikit-learn>=1.0.0",
+]
+
+[project.optional-dependencies]
+torch = ["torch>=2.0.0"]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["leanflow*"]

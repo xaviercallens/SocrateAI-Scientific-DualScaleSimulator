@@ -1,0 +1,32 @@
+{
+  "ks_quintic": {
+    "ks_id": "KS_Quintic_4D",
+    "num_vertices": 5,
+    "h11": 1,
+    "h21": 101,
+    "chi": -200,
+    "picard_number": 1,
+    "is_reflexive": true,
+    "tadpole_bound": 8.333333333333334
+  },
+  "ks_bicubic": {
+    "ks_id": "KS_Bicubic_4D",
+    "num_vertices": 5,
+    "h11": 2,
+    "h21": 83,
+    "chi": -162,
+    "picard_number": 2,
+    "is_reflexive": true,
+    "tadpole_bound": 6.75
+  },
+  "ks_k3_surface": {
+    "ks_id": "KS_K3_Orbifold",
+    "num_vertices": 4,
+    "h11": 20,
+    "h21": 0,
+    "chi": 40,
+    "picard_number": 20,
+    "is_reflexive": true,
+    "tadpole_bound": 1.6666666666666667
+  }
+}

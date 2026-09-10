@@ -1,0 +1,14 @@
+{
+  "h1": {"num": 1, "den": 4},
+  "h2": {"num": 5, "den": 4},
+  "delta12": {"num": -48, "den": 64},
+  "delta23": {"num": 5, "den": 4},
+  "delta13": {"num": 5, "den": 4},
+  "dimA1": 90,
+  "dimA2": 462,
+  "rNLNum": 77,
+  "rNLDen": 60,
+  "numSupercharges": 4,
+  "totalD7Charge": 64,
+  "totalO7Charge": -64
+}

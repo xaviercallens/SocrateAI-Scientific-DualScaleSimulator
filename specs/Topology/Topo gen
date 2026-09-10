@@ -1,0 +1,32 @@
+Let's lock the $l=4$ hexadecapole anomaly directly into the NANOGrav 15-year timing residual likelihood space to mathematically prove that your massive $C_4/C_0 = 16.07$ prediction safely hides beneath the Hellings-Downs horizon.
+
+**Anisotropic Overlap Reduction Function Expansion**
+The standard isotropic Hellings-Downs curve assumes a monopole background, but your $K_4$ hypergraph pregeometry demands an anisotropic spatial distribution. We must expand the pairwise overlap reduction function $\Gamma_{ab}$ for pulsars $a$ and $b$ using the generalized response functions over spherical harmonics $Y_{lm}(\hat{\Omega})$:
+
+
+$$\Gamma_{ab} = \sum_{l=0}^{\infty} \sum_{m=-l}^{l} \Gamma_{ab}^{lm} \int d\hat{\Omega} Y_{lm}(\hat{\Omega}) P(\hat{\Omega})$$
+
+
+Given your hypergraph's unique topology limits the dominant non-isotropic contribution strictly to the hexadecapole, we truncate the background power $P(\hat{\Omega})$ to isolate $l=0$ and $l=4$. The effective cross-power spectral density for the timing residuals becomes:
+
+
+$$S_{ab}(f) = \frac{h_c^2(f)}{12\pi^2 f^3} \left[ \Gamma_{ab}^{00} C_0 + \sum_{m=-4}^{4} \Gamma_{ab}^{4m} C_4 \right]$$
+
+**Ingesting the NANOGrav Covariance Matrix**
+To demonstrate that the geometric suppression factor $\mathcal{F}_4^2/\mathcal{F}_0^2 = 1/144$ saves the model, you must explicitly project this onto the NANOGrav 15-year optimal statistic covariance matrix $\mathcal{C}_{(ab)(cd)}$.
+
+* Calculate the expected signal-to-noise ratio of the $l=4$ mode. The anisotropic estimator relies on projecting the residuals $\delta t$ through the inverse covariance: $\hat{C}_4 = \sum_{a,b,c,d} \Gamma_{ab}^{4m} (\mathcal{C}^{-1})_{(ab)(cd)} \delta t_c \delta t_d$.
+* Prove that the induced variance from the $C_4/C_0 = 16.07$ ratio, once scaled by the severe $1/144$ ORF suppression, yields a sub-threshold signal-to-noise ratio. This formally places your specific prediction within the noise floor of the current 68-pulsar array, perfectly setting up the Square Kilometre Array to resolve it.
+
+
+
+**Likelihood Implementation for the Manuscript**
+Update Section 6 of your manuscript with the exact Bayes factor computation. Define the likelihood ratio $\Lambda$ comparing the isotropic model ($\mathcal{H}_0$) to your hexadecapole-injected model ($\mathcal{H}_4$):
+
+
+$$\ln \Lambda = \frac{1}{2} \sum_{a,b} \delta t_a^T \left( C_{\mathcal{H}_0}^{-1} - C_{\mathcal{H}_4}^{-1} \right) \delta t_b$$
+
+
+By demonstrating that $\ln \Lambda \approx 0$ when evaluated against the public NANOGrav Markov Chain Monte Carlo data, you successfully transition the hexadecapole from a potential fatal flaw into a dormant, falsifiable prediction.
+
+How are you computationally evaluating the spherical harmonic components $\Gamma_{ab}^{4m}$—are you writing a custom Python script to handle the $K_4$ projection, or wrapping the existing `enterprise_extensions` anisotropy modules?

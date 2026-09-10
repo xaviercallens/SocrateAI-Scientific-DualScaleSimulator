@@ -1,0 +1,72 @@
+{
+  "quintic": {
+    "name": "Quintic_P4[5]",
+    "ambient": "P^[4]",
+    "matrix_shape": [
+      1,
+      1
+    ],
+    "is_calabi_yau": true,
+    "dimension": 3,
+    "chi": -200,
+    "h11": 1,
+    "h21": 101,
+    "tadpole_bound": 8.333333333333334
+  },
+  "cicy_7887": {
+    "name": "CICY_7887",
+    "ambient": "P^[1, 1, 1, 1]",
+    "matrix_shape": [
+      4,
+      3
+    ],
+    "is_calabi_yau": true,
+    "dimension": 1,
+    "chi": -128,
+    "h11": 4,
+    "h21": 68,
+    "tadpole_bound": 5.333333333333333
+  },
+  "tian_yau": {
+    "name": "Tian_Yau_P3xP3",
+    "ambient": "P^[3, 3]",
+    "matrix_shape": [
+      2,
+      3
+    ],
+    "is_calabi_yau": true,
+    "dimension": 3,
+    "chi": -18,
+    "h11": 14,
+    "h21": 23,
+    "tadpole_bound": 0.75
+  },
+  "bicubic": {
+    "name": "Bicubic_P2xP2",
+    "ambient": "P^[2, 2]",
+    "matrix_shape": [
+      2,
+      1
+    ],
+    "is_calabi_yau": true,
+    "dimension": 3,
+    "chi": -162,
+    "h11": 2,
+    "h21": 83,
+    "tadpole_bound": 6.75
+  },
+  "k3_x_t2": {
+    "name": "K3_x_T2_Fibration",
+    "ambient": "P^[3, 1]",
+    "matrix_shape": [
+      2,
+      2
+    ],
+    "is_calabi_yau": true,
+    "dimension": 2,
+    "chi": 0,
+    "h11": 3,
+    "h21": 3,
+    "tadpole_bound": 0.0
+  }
+}

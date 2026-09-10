@@ -1,0 +1,23 @@
+# Dependencies & Build artifacts
+.lake/
+build/
+target/
+.venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.egg-info/
+dist/
+
+# Logs & temp
+*.log
+scratch/
+test_*.yaml
+
+# Secret tokens
+.env
+.env.*
+zenodo_token
+token

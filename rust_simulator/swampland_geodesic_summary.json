@@ -1,0 +1,10 @@
+{
+  "total_steps": 500,
+  "total_geodesic_distance": 6.9858161344748595,
+  "initial_mass_gap": 1.0,
+  "final_mass_gap": 0.007157187468270595,
+  "mass_gap_ratio": 0.007157187468270595,
+  "sdc_alpha": 0.7071067811865475,
+  "bound_satisfied": true,
+  "eft_cutoff_broken": true
+}

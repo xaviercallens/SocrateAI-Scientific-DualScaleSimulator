@@ -1,0 +1,32 @@
+[package]
+name = "rust_simulator"
+version = "0.1.0"
+edition = "2021"
+default-run = "rust_simulator"
+
+[lib]
+name = "rust_simulator"
+path = "src/lib.rs"
+
+[[bin]]
+name = "rust_simulator"
+path = "src/main.rs"
+
+[[bin]]
+name = "swampland_distance"
+path = "src/bin/swampland_distance.rs"
+
+[[bin]]
+name = "tachyon_condensation"
+path = "src/bin/tachyon_condensation.rs"
+
+[[bin]]
+name = "vacuum_decay_cdl"
+path = "src/bin/vacuum_decay_cdl.rs"
+
+[dependencies]
+rand = "0.8"
+rand_distr = "0.4"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rayon = "1.8"

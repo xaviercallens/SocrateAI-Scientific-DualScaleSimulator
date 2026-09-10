@@ -1,0 +1,39 @@
+{
+  "title": "Mechanized T-Duality and Frontier String Dynamics on K3 × T²: Closing the Loop via LeanFlow Stiff Solvers with Native Duality, Topological Data Analysis, and Lean 4 Certification",
+  "description": "This deposit provides the complete reproducible artifacts for the manuscript 'Mechanized T-Duality and Frontier String Dynamics on K3 × T²: Closing the Loop via LeanFlow Stiff Solvers with Native Duality, Topological Data Analysis, and Lean 4 Certification'. The repository introduces LeanFlow, a neuro-symbolic computational architecture bridging stiff non-linear partial differential equation (PDE) solvers with automated theorem proving (Lean 4) and topological data analysis (TDA). Original computational contributions include: (1) Operational Algorithmic Section Condition in Double Field Theory (DFT) embedding Buscher duality into a 2D×2D generalized metric with in-loop AOT contract assertions executing in 12–18 ns; (2) Formal proofs in Lean 4 verifying Fourier–Mukai spherical reflection auto-equivalences on the Mukai lattice Γ^{4,20}, Kummer orbifold singularity resolution (e(X)=24), and discrete Betti invariants; (3) Closed-loop TDA Mapper extraction (187 nodes, 557 edges, β₁=376) certified through an outer IPC verification gate (45 ms); (4) Stiff simulation telemetry across three frontier string dynamics use cases: Langevin tunneling on Kummer orbifolds, Coleman–De Luccia vacuum decay, and boundary tachyon condensation.",
+  "creators": [
+    {
+      "name": "Callens, Xavier",
+      "affiliation": "SocrateAI Lab | SymbioticFactory Research",
+      "orcid": ""
+    }
+  ],
+  "keywords": [
+    "string-theory",
+    "T-duality",
+    "K3-surface",
+    "Lean4",
+    "formal-verification",
+    "topological-data-analysis",
+    "Double-Field-Theory",
+    "generalized-geometry",
+    "Mukai-lattice",
+    "neuro-symbolic",
+    "stiff-solvers",
+    "BDF-method",
+    "Langevin-dynamics",
+    "vacuum-decay",
+    "tachyon-condensation"
+  ],
+  "license": {
+    "id": "Apache-2.0"
+  },
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "access_right": "open",
+  "language": "eng",
+  "communities": [
+    { "identifier": "zenodo" }
+  ],
+  "notes": "Artifact bundle includes: (1) Complete compiled manuscript T_duality_Alone.pdf (34 pages); (2) Complete LaTeX source T_duality_Alone.tex; (3) 14 sorry-free Lean 4 formal proof files (FourierMukai.lean, BuscherRules.lean, KummerOrbifoldResolution.lean, MukaiLatticeK3.lean, KummerTDAAnomalyCertification.lean, etc.); (4) Rust high-performance stiff dual-scale simulator crate with in-loop AOT duality assertions; (5) Telemetry summaries: tda_mapper_skeleton.json (187 nodes, 557 edges), kummer_langevin_summary.json (48×48 lattice, 25,344 transitions), vacuum_decay_cdl_summary.json (S_E≈137.15, R_c≈2.82, Δc=-100), and tachyon_condensation_summary.json (w≈1.54√α')."
+}

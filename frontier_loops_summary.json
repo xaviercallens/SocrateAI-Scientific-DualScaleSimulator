@@ -1,0 +1,20 @@
+{
+  "loop1_sdc": {
+    "alpha": 0.7071067811865475,
+    "final_mass_gap": 0.0034934892766462036,
+    "cutoff_scale": 0.0034934892766462036,
+    "status": "VERIFIED_EXPONENTIAL_COLLAPSE"
+  },
+  "loop2_tachyon": {
+    "kink_width": 2.264150943396226,
+    "num_tda_nodes": 5,
+    "k_theory_class_conserved": true,
+    "status": "SEN_SOLITON_EXTRACTED"
+  },
+  "loop3_vacuum_decay": {
+    "bounce_action_s_e": 315.99838214082644,
+    "bubble_radius": 1.65,
+    "holographic_c_theorem_delta_c_negative": true,
+    "status": "IRREVERSIBLE_TUNNELING_CERTIFIED"
+  }
+}

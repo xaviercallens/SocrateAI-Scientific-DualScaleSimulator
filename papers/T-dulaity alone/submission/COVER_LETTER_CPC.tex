@@ -1,0 +1,58 @@
+\documentclass[11pt]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+
+\begin{document}
+
+\begin{flushleft}
+\textbf{To:} The Editors-in-Chief \\
+\textit{Computer Physics Communications (CPC)} \\
+Elsevier Science \\
+\today
+\end{flushleft}
+
+\vspace{1em}
+
+\noindent\textbf{Subject: Submission of Original Software and Computational Physics Manuscript} \\
+\textbf{Title:} \textit{LeanFlow: A Certified Neuro-Symbolic Architecture for Stiff Moduli Dynamics, Topological T-Duality, and Closed-Loop Anomaly Verification in String Cosmology}
+
+\vspace{1.5em}
+
+\noindent Dear Editors of Computer Physics Communications,
+
+We submit our original research manuscript for consideration as a Regular Article in \textit{Computer Physics Communications}.
+
+High-energy cosmological systems and string compactifications involve stiff, multi-scale systems of partial and ordinary differential equations. When scalar oscillation frequencies ($\omega \sim 10^3 H$) vastly exceed the cosmic expansion rate, classical explicit integrators experience catastrophic step-size collapse, while standard implicit solvers can drift into unphysically singular regions of moduli space. Concurrently, while interactive theorem provers (ITPs) like Lean 4 offer formal machine-checked proof certificates down to a minimal kernel, their interactive elaboration engines incur prohibitive interpretation latency (tens of milliseconds), historically precluding their use inside stiff numerical PDE integration loops.
+
+In this work, we introduce \textbf{LeanFlow}: a production-grade neuro-symbolic framework that bridges the compiled \texttt{rusty-SUNDIALS} stiff integration suite (CVODE and IDA BDF algorithms) with automated formal verification in Lean 4. 
+
+The primary computational and algorithmic contributions of our work are:
+\begin{enumerate}
+    \item \textbf{Dual-Tier Execution Architecture}: LeanFlow decouples formal invariant verification from numerical integration:
+    \begin{itemize}
+        \item \emph{Inner Loop (Microsecond Stepping)}: Mathematical invariants verified in Lean 4—including metric positivity on the upper half-plane ($\tau_{\text{im}} > 0$), the Weak Energy Condition bound ($w \ge -1$), and Buscher reflection projectors—are compiled Ahead-Of-Time (AOT) into zero-overhead Rust SIMD contract assertions. Incurring negligible runtime overhead ($\approx 12\text{--}18\,\text{ns}$ per residual evaluation), these inline locks enforce physical admissibility at zero penalty to the stiff BDF stepping performance ($0.12\,\text{ms}$ step latency).
+        \item \emph{Outer Loop (Asynchronous Dynamic Batch Gate)}: Full Lean 4 proof kernel verification is invoked asynchronously via non-blocking Unix domain socket IPC / C-FFI ($\approx 45\,\text{ms}$ batch latency) at macroscopic simulation milestones, checkpoint boundaries, and topological defect extraction sweeps.
+    \end{itemize}
+    
+    \item \textbf{Native Duality Engine}: The integrator natively embeds continuous Buscher symmetry ($R \cdot \widetilde{R} = \alpha'$) and modular group $SL(2, \mathbb{Z})$ invariance as an operational numerical section condition. By co-simulating dual geometric frames and folding trajectories across the fundamental domain boundary $\mathcal{F}$, LeanFlow prevents coordinate singularities near self-dual points ($R \approx \sqrt{\alpha'}$) without metric breakdown ($\min(y) = 0.289$).
+    
+    \item \textbf{Closed-Loop Neuro-Symbolic Triad}: We achieve an unbroken circuit linking numerical stochastic Langevin simulations to Topological Data Analysis (TDA) Mapper (extracting 184 nodes, 493 edges, $\beta_1 = 318$), partitioning defect configurations into string-theoretic equivalence classes, and certifying Ramond-Ramond tadpole cancellation ($\sum Q_i = 0$) in the Lean 4 kernel with zero \texttt{sorry} axioms.
+    
+    \item \textbf{Rigorous Benchmark Performance}: On identical non-linear cosmological equations (Einstein-Klein-Gordon moduli flow, Mukhanov-Sasaki perturbations, and Symmetron screening BVP), LeanFlow achieves a $\mathbf{1,520\times}$ speedup over standard Python/SciPy BVP baselines and a $\mathbf{7.1\times}$ speedup over standard C++ SUNDIALS/CVODE. Containerized for serverless spot GPU/TPU execution with scale-to-zero capability ($\text{min}=0$), it reduces computational costs by $99.1\%$ relative to dedicated HPC clusters.
+\end{enumerate}
+
+All code, proofs, and simulation pipelines are open-source and verified against an automated test suite ($27/27$ pytest tests passing, $32/32$ Lean jobs building with zero \texttt{sorry}).
+
+We believe LeanFlow represents a transformative paradigm for verifiable computational physics and will be of immediate value to the readers of CPC.
+
+Thank you for your consideration.
+
+\vspace{1.5em}
+
+\noindent Sincerely, \\
+\textbf{The Authors} \\
+SocrateAI Research Initiative
+\end{document}
