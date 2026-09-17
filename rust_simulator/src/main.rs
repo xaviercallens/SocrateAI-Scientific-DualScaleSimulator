@@ -49,12 +49,16 @@ fn main() {
     }
 
     if mode == "vacuum-decay" || mode == "all" {
-        println!("\n>>> Running Loop 3: Coleman-De Luccia Vacuum Decay & Holographic c-Theorem...");
+        println!("\n>>> Running Loop 3: Flat-Space Coleman Bounce & Holographic c-Theorem...");
         let config = VacuumDecayConfig::default();
         let sim = VacuumDecaySimulator::new(config);
-        let (summary, records) = sim.run_simulation();
-        sim.export_results(&summary, &records).expect("Failed to export Vacuum Decay telemetry");
-        println!(">>> Vacuum Decay Complete. Bounce action S_E: {:.4}, Δc: {} (c-theorem: {})", summary.euclidean_bounce_action, summary.delta_c, summary.c_theorem_satisfied);
+        match sim.run_simulation() {
+            Ok((summary, records)) => {
+                sim.export_results(&summary, &records).expect("Failed to export Vacuum Decay telemetry");
+                println!(">>> Vacuum Decay Complete. Bounce action S_E: {:.6}, Δc: {} (c-theorem: {})", summary.euclidean_bounce_action, summary.delta_c, summary.c_theorem_satisfied);
+            }
+            Err(e) => eprintln!("Vacuum Decay simulation failed: {}", e),
+        }
     }
 
     println!("\nAll requested simulations completed successfully.");

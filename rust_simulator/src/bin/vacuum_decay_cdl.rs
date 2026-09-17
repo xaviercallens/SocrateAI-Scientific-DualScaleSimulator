@@ -30,7 +30,14 @@ fn main() {
     }
 
     let sim = VacuumDecaySimulator::new(config);
-    let (summary, records) = sim.run_simulation();
-    sim.export_results(&summary, &records).expect("Failed to export vacuum decay telemetry");
-    println!("=== Coleman-De Luccia Vacuum Decay Simulation Success ===");
+    match sim.run_simulation() {
+        Ok((summary, records)) => {
+            sim.export_results(&summary, &records).expect("Failed to export vacuum decay telemetry");
+            println!("=== Flat-Space Coleman Bounce Simulation Success ===");
+        }
+        Err(e) => {
+            eprintln!("Simulation failed: {}", e);
+            std::process::exit(1);
+        }
+    }
 }
