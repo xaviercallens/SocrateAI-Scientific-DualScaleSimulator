@@ -23,6 +23,7 @@ HARD RULES:
 - Before any lake command: \`[ -e .lake ] || ln -s ${REPO}/.lake .lake\` (shares the built Mathlib; never run lake update or lake build of Mathlib). Rust: \`export CARGO_TARGET_DIR=${REPO}/rust_simulator/target\`.
 - No fabricated numbers: every number you write into code comments, JSON, docs or LaTeX must come from a command you ran in this session (quote it in your report). Never hard-code a PASS/true status; statuses must be computed.
 - Every new checker/test needs a positive control AND a negative control that fails on purpose.
+- A check that must find NOTHING (e.g. grep for sorry/xavkal) exits 1 on success: write it as `grep ... ; test $? -eq 1` so a clean result exits 0.
 - Do not weaken a test or assertion to make it pass. If blocked after 3 honest attempts, stop and report blocked=true with the first error.
 - Tier wording (Mathesis): "proved in Lean" only for kernel-checked, standard-axioms-only, adequate statements; exact arithmetic = tier B; literature = L; physical interpretation = C ("we conjecture"/"if"); floats/simulations = X. Benchmarks without an execution log: "pending hardware verification".
 - No git identity is configured and git config must not be changed: commit with \`git -c user.name="Xavier Callens" -c user.email=callensxavier@gmail.com commit ...\`.
