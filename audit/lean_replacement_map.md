@@ -1,83 +1,149 @@
-# Lean Replacement Map: proofs/*.lean → lean_foundation/DualScaleFoundation/
+# Local Lean → LeanMaster Replacement Map
 
-This document maps each old Lean proof file to its replacement in the verified foundation library.
+> **Orchestrator correction (T0, 2026-09-17).** The replacement agents read the live LeanMaster checkout, not the pinned build. Two of their statements are out of date: (1) the toolchain "blocker" is resolved by the separate downstream project `lean_foundation/` (Lean v4.33.1, requires LeanMaster at tag v2.2.0; the root project keeps v4.34.0-rc2); (2) `DualScaleStream2` builds and audits clean at v2.2.0 (99 theorems, 0 failing; re-run by the orchestrator). The implemented mapping is in `lean_foundation/STATEMENTS_FOR_REVIEW.md` (20 theorems, 0 failing). Rows below remain useful for gaps marked needs_new_formalization.
 
-## Mapping
+Local `proofs/` is review-only; the string-theory formalization is maintained in SocrateAI-Scientific-Agora-LeanMaster. Adequacy judged on statements, not docstrings.
 
-| Old Proof File | New Foundation Module | LeanMaster Base | Key Changes |
-|---|---|---|---|
-| `proofs/BuscherRules.lean` | `lean_foundation/DualScaleFoundation/TDuality.lean` | `DualScaleStream2.TDuality.{ODD,Factorized}` + `DualScaleStream2.DFT.GeneralizedMetric` | Removed 5 hand-written axioms (`inv_inv`, `buscher_cross_inv`, etc.); use kernel-verified O(d,d;ℤ) matrices instead |
-| `proofs/MukaiLatticeK3.lean` | `lean_foundation/DualScaleFoundation/K3Lattice.lean` | `DualScaleStream2.Lattice.{Mukai,K3T2Signature,Reflection}` | Replaced custom `MukaiVector`/`mukaiPairing` definitions with LeanMaster's verified versions; verified signature (3,19) for K3 |
-| `proofs/TadpoleCancellation.lean` | `lean_foundation/DualScaleFoundation/Tadpole.lean` | `DualScaleStream2.Flux.{Tadpole,Integrality}` | Retained K3×K3 anomaly and tadpole budget (arithmetic); omitted O7/T⁴/ℤ₂ charge bookkeeping (T0 question) |
-| `proofs/MathieuVertexOperators.lean` | `lean_foundation/DualScaleFoundation/Moonshine.lean` | `DualScaleStream2.Moonshine.EOT` | Replaced hard-coded representation dimensions (90, 462, …) with LeanMaster's `eotA` table; derived 77/60 ratio from `eotA` values |
+| local file | local verdict | action | candidate | adequacy | toolchain |
+|---|---|---|---|---|---|
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/BuscherRules.lean` | axiom-assumed, inconsistent: involution proved via five local axioms, at least one refutable (Phi_inv falsifiable at log = const 1); TestBuscherInconsis.lean derives False by instantiating inv_inv over Nat | needs_new_formalization | `DoubleFieldTheory/TDualityBuscher.lean` | inadequate | BLOCKER: Local repo uses leanprover/lean4:v4.34.0-rc2 (release candidate); LeanMaster uses leanprover/lean4:v4.33.1 (stable) with require "leanprover-community"/"mathlib" @ git "v4.33.1". Skill string-theory-foundation requires exact match to v4.33.1 and prohibits different Mathlib revisions. Migrating to LeanMaster's formalization requires downgrading this repo's lean-toolchain, which is a breaking change. DualScaleStream2 library in LeanMaster (containing related content) is not a default_target per lakefile.lean comment (line 48-50: "Not a default_target until it builds clean"); status unknown. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/DoubleScaleT2.lean` | class-conditional, uninstantiated: five component involutions proved via `exact AbstractFieldProps.<field>` calls; AbstractFieldProps class is declared but has no known instances in this repo; incomplete axiomatization (missing buscher_involution_B_alpha_beta, g_beta_theta theorems) | needs_new_formalization | `DoubleFieldTheory/TDualityBuscher.lean` | partial | BLOCKER: Same as BuscherRules.lean — local v4.34.0-rc2 vs LeanMaster v4.33.1. Additionally, `AbstractFieldProps` is a class with no instances in this repo; theorems are conditional on an uninhabited (or external) type class. Candidate `etaR_genMetric_sq` proves the Hull-Zwiebach constraint `(ηH)² = 1` with proper invertibility hypothesis over ℝ, making it suitable as a Tier A replacement *if* reformalized with ℝ matrices and invertibility assumptions, but component-wise involutions like `buscher_involution_g_alpha_beta` are not directly formalizable from it without additional work on block-matrix manipulation. The five Mathlib-free libraries (DualScaleM24Formalization, DoubleFieldTheory, DualScaleValidation, Lean5Corpus, StringTheoryFoundation) are arithmetic shadows per skill guidance, not field theory; candidate DoubleFieldTheory theorems are over Int, not suitable for ℝ-typed component involutions. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/MukaiLatticeK3.lean` | Mixed adequacy: symmetry theorem fully matches LeanMaster; additivity, moduli dimensions, and Fourier-Mukai preservation lack counterparts—requires new formalization for dimensional theorems and Tier B arithmetic bilinearity. | replace_with_candidate | `DualScaleStream2/Lattice/Mukai.lean` | partial | CRITICAL INCOMPATIBILITY: Local toolchain is leanprover/lean4:v4.34.0-rc2 (release candidate), while LeanMaster requires leanprover/lean4:v4.33.1 with Mathlib v4.33.1 pinned. v4.34.0-rc2 is forward-incompatible with v4.33.1 Mathlib. Before any import, must either: (1) downgrade local lean-toolchain to v4.33.1 and verify Mathlib compatibility, or (2) wait for LeanMaster to upgrade toolchain. A lake `require` will fail on version mismatch. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/FourierMukai.lean` | No theorems present: file contains only algebraic definitions (EvenCohomology, wedge, A_roof_K3, e_B, chern_character, mukai_vector). No LeanMaster equivalents exist—these are application-level cohomology ring structures, not formalized in the lattice/string-theory foundation. | needs_new_formalization | `none` | none | CRITICAL INCOMPATIBILITY: Same as MukaiLatticeK3.lean — local v4.34.0-rc2 is incompatible with LeanMaster's v4.33.1 + Mathlib v4.33.1. If formalization is to proceed, toolchain alignment is prerequisite. No proofs to verify, only definitions; they could eventually use LeanMaster's Mukai structures as components. |
+| `proofs/TadpoleCancellation.lean` | Adequate counterpart exists; local version slightly less substantive (derives 16 from hardcoded definition vs. from 2^4 in theorem). Both vacuous on charges (hardcoded as literals: chargeO7Minus := -4, numD7Branes := 32) but LeanMaster version derives fixed-point count from power arithmetic in theorem statement. | replace_with_candidate | `StringTheoryFoundation/StringTheory/TadpoleCancellation.lean` | adequate | BLOCKING: Local repo uses Lean 4.34.0-rc2 (release candidate), LeanMaster requires v4.33.1 stable with Mathlib v4.33.1 pinned (per string-theory-foundation skill requirement). To use LeanMaster candidate requires downgrading local toolchain to v4.33.1 and explicitly pinning mathlib revision in lakefile.lean. StringTheoryFoundation module is axiom-free (verified via grep for axiom/sorry/native_decide returning no results) and depends only on Lean's three standard axioms (propext, Classical.choice, Quot.sound). |
+| `proofs/KummerTDAAnomalyCertification.lean` | File contains non-vacuous inductive type (TDAEquivalenceClass with three arms: AttractorVacuum, DomainWall, CosmicString) but theorems are vacuous. Critical defect: `classTadpoleAnomaly` defines DomainWall and CosmicString cases as literal `0` (lines 68-75), making theorems `domain_wall_anomaly_free` and `cosmic_string_anomaly_free` trivial `0 = 0` proofs. AttractorVacuum arm computes `4 + chargeO7Plane` where `4` is an undocumented literal in the match expression. Master theorem `tda_all_equivalence_classes_anomaly_free` collapses to case splitting on a constructor with defined-to-be-true arms -- true by definition, not by anomaly cancellation logic. File duplicates D7/O7 tadpole arithmetic from TadpoleCancellation.lean under different namespace (SocrateAI.Cosmology.KummerTDA vs. SocrateAI.StringTheory.TadpoleCancellation) without deriving TDA content. | downgrade_to_tier_C_scaffold | `none` | none | BLOCKING for any reuse: Lean 4.34.0-rc2 vs. LeanMaster v4.33.1 requirement. TDAEquivalenceClass type structure is locally novel and has no formalized counterpart in LeanMaster StringTheory or DualScaleStream2 libraries (grep for TDAEquivalenceClass, AttractorVacuum, DomainWall, CosmicString, classTadpoleAnomaly across LeanMaster returned no results). Scaffold rationale: if the physical categorization (attractor vacua, domain walls, cosmic strings) is scientifically sound, keep the inductive type as Tier-C pseudocode/comment for later domain formalization; discard vacuous anomaly proofs. Current version mixes topology naming with arithmetic placeholders. |
+| `proofs/KummerOrbifoldResolution.lean` | Tier-honest local arithmetic: 8 theorems on Kummer intersection, Betti, Euler, signature via explicit numeric computation (simp/decide); all 7 related statements exist in LeanMaster (mapped below), but toolchain mismatch blocks replacement. | needs_new_formalization | `DoubleFieldTheory/K3Topology.lean + DualScaleStream2/Lattice/K3T2Signature.lean + StringTheoryFormalization/StringDynamics/KummerBlowup.lean` | partial | LOCAL: leanprover/lean4:v4.34.0-rc2 \| LEANMASTER: leanprover/lean4:v4.33.1 (Mathlib v4.33.1). Toolchain versions are incompatible: local is RC2 (unstable future), LeanMaster is stable v4.33.1. Replacing without resolving this incompatibility will cause import errors. Either: (a) update local to v4.33.1 (downgrade), (b) wait for LeanMaster to upgrade to v4.34.0+ (requires Mathlib rebind), or (c) keep local independent. CANDIDATE ADEQUACY SUMMARY: Tier A statements (the numeric identities) are adequate; Tier L inputs (lattice decomposition E8(−1)⊕2 ⊕ U⊕3, signature (3,19)) differ between local's direct blow-up derivation and LeanMaster's asserted-signature approach (Stream 2) — same conclusion (22, -16), different axiomatization. DoubleFieldTheory.K3Topology is Mathlib-free (no sorry/axiom); String/Stream2 depend on Mathlib. All LeanMaster candidates verified axiom-free. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/MathieuVertexOperators.lean` | scope mismatch: CFT conformal weights and OPE structure vs M24 irrep decomposition verification; toolchain: rc2 vs stable incompatibility | needs_new_formalization | `DualScaleStream2/Moonshine/EOT.lean` | inadequate | INCOMPATIBLE: local /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/lean-toolchain = leanprover/lean4:v4.34.0-rc2 (unstable rc); candidate (inferred from /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster/lean-toolchain) = leanprover/lean4:v4.33.1 with Mathlib v4.33.1 (stable). Local uses unpinned Mathlib. Toolchain mismatch prevents import as a `require`. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/GysinBEMSequence.lean` | Partial adequacy: bem_t_duality_involution matches LeanMaster bem_derived_exchange (Tier A); bem_chern_pairing_zero has no adequate counterpart (LeanMaster version is weaker, does not assert vanishing); euler_class_pullback_zero unmatched. | keep_as_tier_B_arithmetic | `DualScaleM24Formalization.Moonshine.GysinSequence` | partial | Local uses leanprover/lean4:v4.34.0-rc2 (pre-release); LeanMaster uses v4.33.1 (stable, pinned in lakefile to Mathlib v4.33.1). Forward-compatible but recommend using stable Lean 4.33.1 for lake require. Zero axioms in both files. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/TopologicalTDuality.lean` | Complete adequacy: single theorem bem_symmetric_exchange matches LeanMaster bem_derived_exchange exactly (flux-topology exchange law). Both Tier A, no axioms. | replace_with_candidate | `DualScaleM24Formalization.Moonshine.GysinSequence` | adequate | Local v4.34.0-rc2, LeanMaster v4.33.1 (stable). Forward-compatible. LEDGER.md entry K3T2-L-0002 cites Commun. Math. Phys. 249, 383 (2004) as foundational source for both formulations. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/SwamplandDistanceConjecture.lean` | vacuous discrete model: theorems prove trivial arithmetic (discreteMassBound intentionally → 0 for d>0) using rfl/decide/cases; no connection to verified string-theory foundation | needs_new_formalization | `none` | none | Local: leanprover/lean4:v4.34.0-rc2 (RC version). LeanMaster: leanprover/lean4:v4.33.1, Mathlib pinned v4.33.1 (commit 0df444a360). Incompatible versions: local would require downgrade or LeanMaster forward-port. No candidate is valid for direct substitution. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/FluxVacuumDecayCTheorem.lean` | Uses vacuous definition centralCharge := 100*(n+1), so holographic_c_theorem_decay is 100*(n+2) > 100*(n+1) by omega; tda_saddle_matches_cdl_trajectory is rfl on Bool field set to true | keep_as_tier_B_arithmetic | `DualScaleM24Formalization/FrontierTriad/FluxVacuumDecay` | inadequate | Local toolchain v4.34.0-rc2 incompatible with LeanMaster v4.33.1 + Mathlib v4.33.1 (lakefile.lean:17). Candidate repo pins v4.33.1 exact. A lake require is blocked without local downgrade to v4.33.1. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/TachyonCondensationKTheory.lean` | All four theorems are rfl reading back structure fields just assigned: sen_conjecture_k_theory_conservation reads worldvolumeDefect := systemKTheoryClass; kummerFractionalPair has braneE=antiBraneF so rrCharge sum is definitional zero | keep_as_tier_B_arithmetic | `DualScaleM24Formalization/FrontierTriad/TachyonCondensation` | inadequate | Local toolchain v4.34.0-rc2 incompatible with LeanMaster v4.33.1 + Mathlib v4.33.1. Candidate in forbidden module. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/DbraneBoundaryStates.lean` | Anomaly cancellation is definitional: worldsheetChiralAnomaly = -(g*I6), bulkAnomalyInflow = g*I6, so cancellation is neg_add_cancel; I8 and I7 polynomials accepted in structure but never used in any theorem. Only neumann_directions_count (p+1 + 9-p = 10) is a real but trivial Nat arithmetic fact. | needs_new_formalization | `none` | none | Local file compiles (no LaTeX syntax errors). Imports Mathlib.Algebra.Ring.Defs and Mathlib.Tactic.Ring but toolchain mismatch (local v4.34.0-rc2 vs LeanMaster requirement v4.33.1) prevents direct lake integration. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/FTheoryCosmology.lean` | File fails to compile with LaTeX syntax error: lines 28, 37, 42 contain invalid Lean 4 syntax '\forall x,' instead of valid '∀ x,'. Compilation rejected before any theorem verification. No verified content. | delete | `none` | none | File does not compile. Uses v4.34.0-rc2 toolchain with Mathlib import, but Mathlib not available in local environment. Primary blocker is syntax error (\forall); secondary blocker is toolchain version 4.34.0-rc2 vs LeanMaster pin v4.33.1. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/HoloAlg.lean` | File is mixed Tier quality. c_eff_invariant = 1701 is genuine Int arithmetic (rfl). gravitino_anomaly_cancellation is 'exact atiyah_singer_k3' where atiyah_singer_k3 is axiom; tadpole_cancellation rests on axiom sum_sixteen_const; CircleBundle.c1 : Type u is a type-constructor, not a cohomology class, so topology_exchange is type-level, not geometric. | downgrade_to_tier_C_scaffold | `none` | none | File imports only Mathlib.Algebra, not dependent on Mathlib v4.33.1 pin. However, 13 axioms invalidate Tier A status. Consider stripping to arithmetic-only theorems (c_eff, sym_square_level) and removing axiom-dependent ones. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/QuantumEntanglement.lean` | von_neumann_entropy defined as constant 0.0. Hypothesis t_duality_preserves_entropy has (is_t_dual : True), so theorem proves 0.0 = 0.0 by rfl. No substantive quantum information or T-duality content. | delete | `Lean5Corpus/Problems/Problem11_EntanglementEntropy` | inadequate | File compiles with no Mathlib imports. However, zero mathematical content (von_neumann_entropy is placeholder constant 0.0). Local theorem is vacuous; no candidate in mainstream LeanMaster libraries covers von Neumann entropy formalization. |
+| `/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/EmergentCosmology.lean` | File contains only variable declarations and placeholder definitions. No theorems exist. All definitions (G_emergent, m_p_sq, approx_log, Phi, v_squared) are constants 0.0 with formulas commented out. | delete | `none` | none | No theorems present; file is pure placeholder. Candidates in LeanMaster (e.g., DualScaleStream2.DualScale.TraceBound for trace-bound / effective scale concepts) exist but are unrelated to the stated emergent cosmology placeholder content. |
+
+## Theorem mappings and evidence
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/BuscherRules.lean
+
+
+Local: `theorem buscher_involution ... : buscherTransform log (buscherTransform log bg) = bg` proved via `exact inv_inv _`, `exact buscher_cross_inv _ _`, `exact buscher_gmunu_inv _ _ _ _ _ _`, `exact buscher_Bmunu_inv _ _ _ _ _ _`, `exact Phi_inv _ _ _`. Candidate: `theorem buscher_log_involution (x : Int) : BuscherLogMap (BuscherLogMap x) = x` by `dsimp [BuscherLogMap]; omega` and `theorem buscher_dilaton_involution (phi x : Int) : BuscherDilatonMap (BuscherDilatonMap phi x) (BuscherLogMap x) = phi` by `dsimp [BuscherDilatonMap, BuscherLogMap]; omega` — these prove specific component properties over Int, not the full transformation. The candidate does not formalize the complete TargetSpace involution (all eight fields and their interdependencies).
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/DoubleScaleT2.lean
+
+
+Local theorems (all over abstract R with [AbstractFieldProps R]): `buscher_involution_g_theta_theta`, `buscher_involution_g_alpha_theta`, `buscher_involution_B_alpha_theta`, `buscher_involution_g_alpha_beta`, `buscher_involution_phi` — each of the form `e.g. theorem buscher_involution_g_theta_theta (bg : LocalNSNS R) (half_log : R → R) : buscher_g_theta_theta (apply_T_duality bg half_log) = bg.g_theta_theta := by dsimp [apply_T_duality, buscher_g_theta_theta]; exact AbstractFieldProps.one_div_one_div bg.g_theta_theta`. Candidate: `buscher_log_involution`, `buscher_dilaton_involution` (over Int) and `etaR_genMetric_sq` (over ℝ with `IsUnit G.det` hypothesis: `(etaR d * genMetric G B) * (etaR d * genMetric G B) = 1`). The local gmunu component `g_alpha_beta - (1/g_theta_theta) * (g_alpha_theta * g_beta_theta - B_alpha_theta * B_beta_theta)` shadows the candidate's matrix block `G - B * G⁻¹ * B`, but local proofs skip invertibility hypotheses entirely; candidate properly requires `IsUnit G.det`.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/MukaiLatticeK3.lean
+- mukai_pairing_symmetric → mukaiPair_symm
+- mukai_pairing_additive → needs_new_formalization
+- moduliSpaceDimension → needs_new_formalization
+- skyscraper_sheaf_moduli_dim → needs_new_formalization
+- fourier_mukai_preserves_dim → needs_new_formalization
+- sphericalReflection → keep_as_tier_B_arithmetic (different formulation: vector vs matrix)
+
+LOCAL theorem mukai_pairing_symmetric {R : Type} [CommRing R] (v w : MukaiVector R) : mukaiPairing v w = mukaiPairing w v CANDIDATE theorem mukaiPair_symm {n : ℕ} (L : Gram n) (hL : Lᵀ = L) (v w : MukaiVec n) : mukaiPair L v w = mukaiPair L w v --- LOCAL def mukaiPairing {R : Type} [CommRing R] (v w : MukaiVector R) : R := v.v1 * w.v1 - v.v0 * w.v2 - v.v2 * w.v0 CANDIDATE def mukaiPair {n : ℕ} (L : Gram n) (v w : MukaiVec n) : ℤ := v.c ⬝ᵥ (L *ᵥ w.c) - v.r * w.s - v.s * w.r --- LOCAL theorem mukai_pairing_additive (u v w : MukaiVector R) : mukaiPairing (addMukai u v) w = mukaiPairing u w + mukaiPairing v w → NO CANDIDATE LOCAL theorem moduliSpaceDimension : dim M_v(K3) = ⟨v, v⟩ + 2 → NO CANDIDATE IN MUKAI.LEAN OR REFLECTION.LEAN LOCAL def sphericalReflection : returns modified vector; CANDIDATE def reflection L v : Gram n := 1 + vecMulVec v v * L (matrix form, not vector)
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/FourierMukai.lean
+
+
+LOCAL definitions only: structure EvenCohomology, def wedge, def A_roof_K3, def e_B, def chern_character, def mukai_vector. None are proved theorems. LeanMaster DualScaleStream2 provides lattice arithmetic (Mukai pairing, reflections, E8 Weyl group) but not cohomology ring wedge algebra or A-roof/B-field exponentiation. These definitions are specialized to Fourier-Mukai construction for K3 charge vectors and would need separate formalization that imports or extends LeanMaster's Mukai module.
+
+### proofs/TadpoleCancellation.lean
+- num_fixed_points_is_16 -> (2 : Nat) ^ 4 = numFixedPointsT4Z2 (LeanMaster derives the power; local checks against hardcoded 16)
+- total_O7_charge_is_minus_64 -> totalO7Charge = -64
+- total_D7_charge_is_64 -> totalD7Charge = 64
+- d7_tadpole_cancellation -> totalD7Charge + totalO7Charge = 0
+- curvature_d3_charge_is_1 -> d3_tadpole_target_is_one : d3TadpoleTarget = 1
+
+Local definitions: `def numFixedPointsT4Z2 : Nat := 16`, `def chargeO7Minus : Int := -4`, `def totalO7Charge : Int := (numFixedPointsT4Z2 : Int) * chargeO7Minus`, `def totalD7Charge : Int := (numD7Branes : Int) * chargeD7Brane`. LeanMaster definitions: `def numFixedPointsT4Z2 : Nat := 16`, `def chargeO7Minus : Int := -4`, `theorem num_fixed_points_is_16 : (2 : Nat) ^ 4 = numFixedPointsT4Z2 := by rfl`, `theorem d7_tadpole_cancellation : totalD7Charge + totalO7Charge = 0 := by rfl`. Both files use identical namespace structure for D7/O7 charge cancellation with same hardcoded values. Bookkeeping note: LEDGER K3T2-A-0005 uses `16*4 + 4*(-16) = 0` while local uses `32*2 + 16*(-4) = 0` -- same net charge but different source accounting (D7 stacks vs. brane pairs).
+
+### proofs/KummerTDAAnomalyCertification.lean
+
+
+Local definition (lines 64-75): `def classTadpoleAnomaly : TDAEquivalenceClass → Int \| TDAEquivalenceClass.AttractorVacuum _ => 4 + chargeO7Plane \| TDAEquivalenceClass.DomainWall _ _ => 0 \| TDAEquivalenceClass.CosmicString _ _ => 0`. Theorem proof (lines 83-85): `theorem domain_wall_anomaly_free (src dst : Fin 16) : classTadpoleAnomaly (TDAEquivalenceClass.DomainWall src dst) = 0 := by rfl`. LeanMaster has no TDAEquivalenceClass type, no AttractorVacuum/DomainWall/CosmicString constructors, and no `classTadpoleAnomaly` function. Tadpole arithmetic (line 50) duplicates local TadpoleCancellation.lean: `theorem kummer_bulk_tadpole_cancellation : totalD7Charge + totalO7Charge = 0 := by rfl`.
+
+### proofs/KummerOrbifoldResolution.lean
+- exceptional_self_intersection_is_minus_two -> StringTheoryFormalization.StringDynamics.exceptional_self_intersection
+- betti2_is_twenty_two -> DoubleFieldTheory.K3Topology.k3_second_betti_hodge (Hodge route) OR DualScaleStream2.Lattice.rank_K3 (lattice route)
+- kummer_euler_characteristic_is_24 -> DoubleFieldTheory.K3Topology.k3_euler_characteristic
+- kummer_signature_is_minus_16 -> DoubleFieldTheory.K3Topology.k3_hirzebruch_signature
+- b_minus_is_nineteen -> DualScaleStream2.Lattice.sigK3 (neg field = 19)
+- b_plus_plus_b_minus_is_betti2 -> DualScaleStream2.Lattice.rank_K3
+- b_plus_minus_b_minus_is_signature -> DoubleFieldTheory.K3Topology.k3_hirzebruch_signature OR DualScaleStream2.Lattice.sigK3 (index)
+- exceptional_cross_intersection_is_zero -> [NO MATCH IN LEANMASTER]
+
+Local theorems:   1. exceptional_self_intersection_is_minus_two(i) ≡ kummerIntersectionMatrix i i = -2   2. exceptional_cross_intersection_is_zero(i,j,h) ≡ kummerIntersectionMatrix i j = 0 (i ≠ j) [NO DIRECT MATCH]   3. betti2_is_twenty_two ≡ resolvedBetti2 = 22 [MATCHES: k3_second_betti_hodge (DoubleFieldTheory) OR rank_K3 (DualScale)]   4. kummer_euler_characteristic_is_24 ≡ eulerCharSmoothKummer = 24 [MATCHES: k3_euler_characteristic (DoubleFieldTheory)]   5. kummer_signature_is_minus_16 ≡ signatureKummerK3 = -16 [MATCHES: k3_hirzebruch_signature (DoubleFieldTheory) OR sigK3_eq via index (DualScale)]   6. b_minus_is_nineteen ≡ bMinusK3 = 19 [MATCHES: sigK3 = ⟨3,19⟩ neg component (DualScale)]   7. b_plus_plus_b_minus_is_betti2 ≡ 3 + 19 = 22 [MATCHES: rank_K3 (DualScale)]   8. b_plus_minus_b_minus_is_signature ≡ 3 - 19 = -16 [MATCHES: sigK3.index OR k3_hirzebruch_signature (DoubleFieldTheory)]
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/MathieuVertexOperators.lean
+
+
+LOCAL THEOREMS: delta1_is_half (h₁=1/4 → Δ₁=1/2), delta2_is_five_halves (h₂=5/4 → Δ₂=5/2), conformal_exponent_sum (Δ₁₂ + Δ₂₃ + Δ₁₃ = 7/4 via OPE), superconformal_geometric_congruence (4 supercharges ≡ 4 fixed points T²/ℤ₂), r_nl_cross_multiplication (dim A₂ × 60 = 4 × dim A₁ × 77 = 27720), isMathieuConsistent (observational tolerance predicate). CANDIDATE THEOREMS: first_five_are_irreps (∃i∈Fin 26, M24RepDim i = eotA n for n∈Fin 5), A6_decomposition (eotA 5 = M24RepDim 21 + M24RepDim 25 via rfl), A7_decomposition (similar), A6_not_irrep (∀i∈Fin 26, M24RepDim i ≠ eotA 5). NO CORRESPONDENCE: local's conformal weights (h1, h2, delta12, delta23, delta13) don't appear in candidate; candidate's M24RepDim table witness matching has no local analogue.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/GysinBEMSequence.lean
+- bem_t_duality_involution -> bem_derived_exchange
+- bem_chern_pairing_zero -> bem_characteristic_vanishing (inadequate)
+- euler_class_pullback_zero -> none
+
+Local bem_t_duality_involution: `pair.dual_seq.pushforward3 pair.dual_flux_H = pair.bundle.c1 ∧ pair.seq.pushforward3 pair.flux_H = pair.dual_bundle.c1` matches LeanMaster bem_derived_exchange: `pair.E_dual.c1 = pair.E.pi_push pair.H ∧ pair.E_dual.pi_push pair.H_dual = pair.E.c1` (mathematically identical BEM exchange). Local bem_chern_pairing_zero: `pair.bundle.c1 * pair.dual_bundle.c1 = 0` (states vanishing) vs LeanMaster bem_characteristic_vanishing: `x * pair.E.c1 * pair.E_dual.c1 = x * pair.E.c1 * pair.E.pi_push pair.H` (equality without vanishing claim, vacuous under standard BEM formulation).
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/TopologicalTDuality.lean
+- bem_symmetric_exchange -> bem_derived_exchange
+
+Local bem_symmetric_exchange: `E_dual.c1 = E.pi_star H ∧ E.c1 = E_dual.pi_star H_dual` is identical to LeanMaster bem_derived_exchange: `pair.E_dual.c1 = pair.E.pi_push pair.H ∧ pair.E_dual.pi_push pair.H_dual = pair.E.c1`. Both formalize the Bouwknegt-Evslin-Mathai duality relation with zero sorry/axioms.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/SwamplandDistanceConjecture.lean
+
+
+Local file theorems: (1) alpha_sdc_strictly_positive: alphaSDC > 0.0 [by decide], (2) sdc_mass_gap_collapses (d > 0) → discreteMassBound model d = 0 [by cases; rfl — vacuous by design]. Candidates: StringTheoryFormalization/StringDynamics/SwamplandSafe.lean defines sdc_tower_suppression: towerMass bound Δ ≤ m₀ on reals [continuous exponential on ℝ, not discrete Nat model]; marked in LEDGER as 'monotone decay of defined exponential, not SDC's substantive asymptotic content'. DualScaleM24Formalization/FrontierTriad/SwamplandDistance.lean proves arithmetic (sdc_decay_coefficient_identity: 2*α²_num = α²_den [by rfl]) and Picard bounds (10 ≤ ρ ≤ 20) [by decide] — unrelated to mass tower collapse. StringTheoryFoundation/StringTheory/VafaSwampland.lean: vafa_sdc_4d_decay_rate proves tower.alphaSquareDenominator = 2 [by rfl on struct field], gvw theorems on flux superpotential — all address Swampland *program criteria*, not *distance conjecture mass decay*. StringTheoryFormalization/Frontier/ModuliGeodesics.lean: marked IN PROGRESS — sorry axioms (status line 2); geodesic_equation_kummer_locus proves '(deriv (...) t = 0) ∨ True' [by right; trivial] — explicitly vacuous placeholder.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/FluxVacuumDecayCTheorem.lean
+- cdl_action_strictly_positive -> DualScaleM24Formalization.FrontierTriad.FluxVacuumDecay.cdl_action_strictly_positive
+- true_vacuum_energy_is_lower -> DualScaleM24Formalization.FrontierTriad.FluxVacuumDecay.true_vacuum_energy_is_lower
+- holographic_c_theorem_decay -> DualScaleM24Formalization.FrontierTriad.FluxVacuumDecay.holographic_c_theorem_decay
+- tda_saddle_matches_cdl_trajectory -> [no match]
+
+Candidate module is in forbidden FrontierTriad directory per task warning. LEDGER.md entry K3T2-A-0009 lists this as Tier A in forbidden module. Identical theorems (cdl_action_strictly_positive, true_vacuum_energy_is_lower, holographic_c_theorem_decay) exist in candidate but cannot be proposed for replacement.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/TachyonCondensationKTheory.lean
+- sen_conjecture_k_theory_conservation -> DualScaleM24Formalization.FrontierTriad.TachyonCondensation.sen_conjecture_k_theory_conservation
+- tachyon_condensation_preserves_rr_charge -> DualScaleM24Formalization.FrontierTriad.TachyonCondensation.tachyon_condensation_preserves_rr_charge
+- kummer_fractional_annihilation_yields_zero_charge -> DualScaleM24Formalization.FrontierTriad.TachyonCondensation.kummer_fractional_annihilation_yields_zero_charge
+- tda_isolated_kink_is_physical -> DualScaleM24Formalization.FrontierTriad.TachyonCondensation.tda_isolated_kink_is_physical
+
+Candidate module is in forbidden FrontierTriad directory per task warning. LEDGER.md entry K3T2-A-0008 lists this as Tier A in forbidden module. Four matching theorems exist but cannot be proposed for replacement. Local definitions match: rrCharge := k.rank + k.firstChern + k.secondChern at candidate line 97.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/DbraneBoundaryStates.lean
+
+
+No counterpart found in DualScaleStream2 or StringTheoryFormalization via grep searches for 'anomaly', 'Callan', 'Harvey', 'boundary state'. The formalization uses abstract differential forms (AnomalyDescent with I8, I7, I6_gauge : R for generic CommRing R) but never instantiates them or proves any non-trivial anomaly-inflow geometry.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/FTheoryCosmology.lean
+
+
+Lean compiler rejects at parse time: 'error: unknown module prefix Mathlib' and syntactic invalidity of '\forall' keyword (Lean 4 requires ∀). The mathematical content (rho = 1/tau_im, tau_im > 0, weak_energy_condition proof via one_div_pos) would be real if syntax were corrected, but file does not compile as-is.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/HoloAlg.lean
+- c_eff_invariant -> [genuine, keeps]
+- sym_square_level_preserved -> [rfl, keeps]
+- topology_exchange -> [type-level constraint, downgrades to Tier C]
+- tadpole_cancellation -> [rests on axiom sum_sixteen_const, downgrades]
+- flop_charge_conservation -> [rests on axiom grothendieck_relation, downgrades]
+- gravitino_anomaly_cancellation -> [rests on axiom atiyah_singer_k3, downgrades]
+
+No counterpart found in LeanMaster for individual theorems. Local file contains 13 axioms (K3, T2, K3xT2, Db, FM_transform, M, H_Flux, pi_star, TwistedKTheory, twisted_k_theory_iso_fn, sum_sixteen_const, sum_sixteen_zero, Hom, K_Zero, k_add, K_class, grothendieck_relation, atiyah_singer_k3). Quoted axioms: 'axiom atiyah_singer_k3 : ((1:R) / ((16:R) * pi_sq)) * int_tr_F_wedge_F K3 - int_omega_wedge_omega_bar K3 = 24' and 'axiom sum_sixteen_const (c : R) : R' make theorems dependent on unverified assumptions.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/QuantumEntanglement.lean
+
+
+LEDGER.md K3T2-L-0001 lists EntanglementEntropy in Lean5Corpus, but that module proves Ryu-Takayanagi strong subadditivity (holographic areas, geometric RT minimal surfaces), not von Neumann entropy of density matrices. Different physical content: local is pure-state QI, candidate is AdS/CFT holography. No statement match.
+
+### /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/proofs/LeanscratchDB/EmergentCosmology.lean
+
+
+File compiles with no imports or axioms, but theorem_mapping is empty (no theorems to map). Every definition body is '0.0', making this a non-formalizable scaffold without any Lean proofs or verified statements about emergent gravity.
 
 ---
-
-## Coverage
-
-**Files replaced**: 4 (out of 14 proofs/*.lean total)
-- TDuality involutions and O(d,d;ℤ) group closure
-- K3 lattice geometry and Mukai pairings
-- Tadpole cancellation (geometry + flux; excludes charge accounting)
-- Moonshine coefficients and bispectrum ratio
-
-**Files not yet addressed**:
-- `ExportAxioms.lean` (axiom enumeration; superseded by axiom audit)
-- `DbraneBoundaryStates.lean` (boundary state formalism)
-- `FourierMukai.lean` (derived category transforms)
-- `GysinBEMSequence.lean` (cohomology sequences)
-- `KummerOrbifoldResolution.lean` (Kummer surface)
-- `KummerTDAAnomalyCertification.lean` (anomaly polynomial)
-- `FluxVacuumDecayCTheorem.lean` (decay rates)
-- `FTheoryCosmology.lean` (F-theory duality)
-- `SwamplandDistanceConjecture.lean` (moduli geometry)
-- `TachyonCondensationKTheory.lean` (open string dynamics)
-
-These may be addressed in future iterations of the foundation bridge.
-
----
-
-## Non-Vacuity Summary
-
-### BuscherRules → TDuality
-- **Old**: 5 axioms asserting field properties + TargetSpace structure
-- **New**: O(d,d;ℤ) matrices, kernel-verified closure laws
-- **Win**: Proofs via LeanMaster declarations; no new axioms beyond Lean's standard three
-
-### MukaiLatticeK3 → K3Lattice
-- **Old**: Custom MukaiVector, mukaiPairing; signature hardcoded
-- **New**: LeanMaster's lattice hierarchy; verified E8(−1) ⊕ U decomposition
-- **Win**: Signature (3,19) derived from component signatures, not asserted
-
-### TadpoleCancellation → Tadpole
-- **Old**: 16 fixed points + O7/D7 charge reconciliation
-- **New**: K3×K3 anomaly (χ=24) and DRS budget; O7/D7 deferred
-- **Win**: Anomaly is geometric (Hodge diamonds); charge balance is T0 question
-
-### MathieuVertexOperators → Moonshine
-- **Old**: Rational arithmetic library from scratch; eotA as magic numbers
-- **New**: LeanMaster's eotA table + Burnside check against M24RepDim sum
-- **Win**: 77/60 ratio proven from table values, not re-verified
-
----
-
-## Axiom Audit Results
-
-```
-20 theorems audited, 0 failing.
-Dependency set for all theorems: {propext, Classical.choice, Quot.sound}
-```
-
-**Control Test**:
-- Before removal of `NegControl.lean`: 21 theorems, 1 failing (`sorryAx`)
-- After removal: 20 theorems, 0 failing
-
-Negative control theorem (false, with `sorry`) was correctly flagged by axiom audit as `FAIL` (contains `sorryAx`).
-
----
-
-## Links
-
-- **LeanMaster Documentation**: `/home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster/docs/VERIFIED_FOUNDATION.md` (v2.2.0)
-- **Verification Certificate**: LeanMaster build log `/mnt/disks/disk-socrateai-local-1/leanmaster-v2.2.0/build_v2.2.0.log` (EXIT 0)
-- **Foundation Statements**: `lean_foundation/STATEMENTS_FOR_REVIEW.md` (this session)
+Generated-by: physics-claims-audit workflow (Haiku; domain judge haiku) | Verified-by: 3-lens Haiku skeptics (not a kernel proof) | Reviewed-by: T0 N
