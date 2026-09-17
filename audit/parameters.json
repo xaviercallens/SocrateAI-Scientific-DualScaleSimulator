@@ -1,0 +1,288 @@
+{
+  "quantities": {
+    "mapper_nodes": {
+      "description": "Number of nodes in TDA Mapper 1-skeleton graph",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "axe6_kummer_tda_langevin.mapper_nodes"
+      },
+      "canonical_value": 186,
+      "comparison": "exact_integer",
+      "occurrences": [
+        {
+          "file": "papers/T-dulaity alone/T_duality_Alone.tex",
+          "regex": "\\(([0-9]+)\\s+nodes.*edges.*\\$\\\\beta_1"
+        },
+        {
+          "file": "papers/T-dulaity alone/submission/COVER_LETTER_JHEP.tex",
+          "regex": "\\(([0-9]+)\\s+nodes.*edges.*\\$\\\\beta_1"
+        },
+        {
+          "file": "zenodo_bundle/T_duality_Alone.tex",
+          "regex": "\\(([0-9]+)\\s+nodes.*edges.*\\$\\\\beta_1"
+        }
+      ]
+    },
+    "mapper_edges": {
+      "description": "Number of edges in TDA Mapper 1-skeleton graph",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "axe6_kummer_tda_langevin.mapper_edges"
+      },
+      "canonical_value": 528,
+      "comparison": "exact_integer",
+      "occurrences": [
+        {
+          "file": "papers/T-dulaity alone/T_duality_Alone.tex",
+          "regex": "nodes,\\s+([0-9]+)\\s+edges.*\\$\\\\beta_1"
+        },
+        {
+          "file": "papers/T-dulaity alone/submission/COVER_LETTER_JHEP.tex",
+          "regex": "nodes,\\s+([0-9]+)\\s+edges.*\\$\\\\beta_1"
+        },
+        {
+          "file": "zenodo_bundle/T_duality_Alone.tex",
+          "regex": "nodes,\\s+([0-9]+)\\s+edges.*\\$\\\\beta_1"
+        }
+      ]
+    },
+    "beta_1": {
+      "description": "First Betti number (persistent 1-cycles) in TDA Mapper",
+      "canonical_source": {
+        "type": "computed",
+        "formula": "|E| - |V| + |C| where E=mapper_edges, V=mapper_nodes, C=connected_components",
+        "expected_value": 376
+      },
+      "canonical_value": 376,
+      "comparison": "exact_integer",
+      "occurrences": [
+        {
+          "file": "papers/T-dulaity alone/T_duality_Alone.tex",
+          "regex": "\\$\\\\beta_1\\s*=\\s*([0-9]+)"
+        },
+        {
+          "file": "papers/T-dulaity alone/submission/COVER_LETTER_JHEP.tex",
+          "regex": "\\$\\\\beta_1\\s*=\\s*([0-9]+)"
+        }
+      ]
+    },
+    "final_string_count": {
+      "description": "Number of topological cosmic strings in simulation",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "axe6_kummer_tda_langevin.final_string_count"
+      },
+      "canonical_value": 101,
+      "comparison": "exact_integer",
+      "occurrences": []
+    },
+    "soliton_width": {
+      "description": "Width of Sen soliton in tachyon condensation",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "tachyon_condensation_summary.json",
+        "key_path": "soliton_width"
+      },
+      "canonical_value": 1.5398970458808714,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": [
+        {
+          "file": "papers/T-dulaity alone/T_duality_Alone.tex",
+          "regex": "w\\s*≈\\s*([0-9.]+).*√α"
+        }
+      ]
+    },
+    "sdl_final_mass_gap": {
+      "description": "Final SDC mass gap in swampland geodesic flow",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "swampland_geodesic_summary.json",
+        "key_path": "final_mass_gap"
+      },
+      "canonical_value": 0.007157187468270595,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": []
+    },
+    "screening_factor": {
+      "description": "Symmetron screening factor Delta R / R",
+      "canonical_source": {
+        "type": "latex_constant",
+        "source": "papers/T-dulaity alone/T_duality_Alone.tex",
+        "note": "Derived from Symmetron BVP, quoted as 1.24 × 10^-4"
+      },
+      "canonical_value": 1.24e-4,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": [
+        {
+          "file": "papers/T-dulaity alone/T_duality_Alone.tex",
+          "regex": "Delta\\s+R/R.*≈\\s*([0-9.]+)\\s*×"
+        },
+        {
+          "file": "papers/T-dulaity alone/submission/COVER_LETTER_JHEP.tex",
+          "regex": "Delta\\s+R/R.*≈\\s*([0-9.]+)\\s*×"
+        }
+      ]
+    },
+    "gamma_minus_1": {
+      "description": "Solar system PPN parameter deviation |gamma - 1|",
+      "canonical_source": {
+        "type": "latex_constant",
+        "source": "papers/T-dulaity alone/T_duality_Alone.tex",
+        "note": "Cassini bound, quoted as 2.48 × 10^-6"
+      },
+      "canonical_value": 2.48e-6,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": [
+        {
+          "file": "papers/T-dulaity alone/T_duality_Alone.tex",
+          "regex": "gamma\\s*-\\s*1.*≈\\s*([0-9.]+)\\s*×"
+        },
+        {
+          "file": "papers/T-dulaity alone/submission/COVER_LETTER_JHEP.tex",
+          "regex": "gamma\\s*-\\s*1.*≈\\s*([0-9.]+)\\s*×"
+        }
+      ]
+    },
+    "w0": {
+      "description": "Dark energy equation of state parameter w0",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "observables.w0"
+      },
+      "canonical_value": -0.9999963005031299,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": []
+    },
+    "wa": {
+      "description": "Dark energy equation of state running parameter wa",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "observables.wa"
+      },
+      "canonical_value": -5.46990569108541e-06,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": []
+    },
+    "delta_chi2": {
+      "description": "CMB chi-squared deviation vs LCDM",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "observables.delta_chi2_vs_lcdm"
+      },
+      "canonical_value": -0.0004271558779258555,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": []
+    },
+    "ln_bayes_factor": {
+      "description": "Natural log of Bayes factor vs LCDM",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "observables.ln_bayes_factor"
+      },
+      "canonical_value": 0.00021357793896292776,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": []
+    },
+    "lean_theorem_count_tadpole": {
+      "description": "Number of Lean 4 theorems in tadpole cancellation proof",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "axe3_formal_proof.theorems_verified_count"
+      },
+      "canonical_value": 9,
+      "comparison": "exact_integer",
+      "occurrences": []
+    },
+    "lean_theorem_count_moonshine": {
+      "description": "Number of Lean 4 theorems in Mathieu Moonshine proof",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "axe4_moonshine_voa.theorems_verified_count"
+      },
+      "canonical_value": 16,
+      "comparison": "exact_integer",
+      "occurrences": []
+    },
+    "lean_theorem_count_kummer_tda": {
+      "description": "Number of Lean 4 theorems in Kummer TDA anomaly certification",
+      "canonical_source": {
+        "type": "json_file",
+        "path": "simulation_results.json",
+        "key_path": "axe6_kummer_tda_langevin.theorems_verified_count"
+      },
+      "canonical_value": 11,
+      "comparison": "exact_integer",
+      "occurrences": []
+    },
+    "bubble_radius": {
+      "description": "Radius of nucleating vacuum bubble in CDL bounce",
+      "canonical_source": {
+        "type": "latex_constant",
+        "source": "papers/T-dulaity alone/T_duality_Alone.tex",
+        "note": "From Coleman-De Luccia bounce calculation, R_c ≈ 2.82"
+      },
+      "canonical_value": 2.82,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": [
+        {
+          "file": "papers/T-dulaity alone/T_duality_Alone.tex",
+          "regex": "R_c\\s*≈\\s*([0-9.]+),"
+        }
+      ]
+    },
+    "bounce_action": {
+      "description": "Euclidean bounce action in CDL instanton",
+      "canonical_source": {
+        "type": "latex_constant",
+        "source": "papers/T-dulaity alone/T_duality_Alone.tex",
+        "note": "From CDL bounce profile, S_E = 137.15"
+      },
+      "canonical_value": 137.15,
+      "comparison": "relative_tolerance",
+      "tolerance": 1e-9,
+      "occurrences": [
+        {
+          "file": "papers/T-dulaity alone/T_duality_Alone.tex",
+          "regex": "S_E\\s*=\\s*([0-9]{3,}\\.[0-9]+)"
+        }
+      ]
+    }
+  },
+  "grep_commands_used": [
+    "grep -n 'mapper_nodes' simulation_results.json",
+    "grep -n '187 nodes' papers/T-dulaity\\ alone/T_duality_Alone.tex",
+    "grep -n '184 nodes' papers/T-dulaity\\ alone/submission/COVER_LETTER_JHEP.tex",
+    "grep -n 'mapper_edges' simulation_results.json",
+    "grep -n '557 edges' papers/T-dulaity\\ alone/T_duality_Alone.tex",
+    "grep -n '493 edges' papers/T-dulaity\\ alone/submission/COVER_LETTER_JHEP.tex",
+    "grep -n '\\$\\\\beta_1.*376' papers/T-dulaity\\ alone/T_duality_Alone.tex",
+    "grep -n 'final_string_count' simulation_results.json",
+    "grep -n 'soliton_width' tachyon_condensation_summary.json",
+    "grep -n 'screening.*1.24' papers/T-dulaity\\ alone/T_duality_Alone.tex",
+    "grep -n 'gamma.*2.48' papers/T-dulaity\\ alone/T_duality_Alone.tex",
+    "grep -n '\"w0\"' simulation_results.json",
+    "grep -n '\"wa\"' simulation_results.json",
+    "grep -n 'delta_chi2_vs_lcdm' simulation_results.json",
+    "grep -n 'ln_bayes_factor' simulation_results.json",
+    "grep -n 'final_mass_gap' swampland_geodesic_summary.json",
+    "grep -n 'theorems_verified_count' simulation_results.json"
+  ]
+}
