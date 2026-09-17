@@ -24,6 +24,7 @@ jobs:
         run: cargo test --release
 
   python:
+    needs: lean
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +36,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .[dev]
           pip install numpy scipy scikit-learn matplotlib
+      - name: Install elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+      - name: Cache .lake
+        uses: actions/cache@v4
+        with:
+          path: .lake
+          key: lean-${{ runner.os }}-${{ hashFiles('lake-manifest.json', 'lean-toolchain') }}
+          restore-keys: |
+            lean-${{ runner.os }}-
+      - name: Build Lean project
+        run: lake build
       - name: Run pytest
         run: pytest -q
 
@@ -59,7 +73,7 @@ jobs:
         continue-on-error: true
         run: |
           if [ -f scripts/lean_axiom_audit.py ]; then
-            python3 scripts/lean_axiom_audit.py --report-only
+            python3 scripts/lean_axiom_audit.py
           else
             echo "lean_axiom_audit.py not found, skipping"
           fi
