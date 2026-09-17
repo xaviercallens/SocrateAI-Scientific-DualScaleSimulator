@@ -11,6 +11,7 @@ export const meta = {
 
 const REPO = '/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator'
 const LM = '/home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster'
+const LMPIN = '/mnt/disks/disk-socrateai-local-1/leanmaster-v2.2.0'
 const A = args || {}
 const REVIEW_MODEL = A.reviewModel || 'haiku'
 const MAX_ATTEMPTS = A.maxAttempts || 2
@@ -74,7 +75,7 @@ Do not hard-code today's counts anywhere.`,
   {
     id: 'lean-foundation-bridge', kind: 'lean', requiresArg: 'allowFoundationBuild',
     spec: `Create a NEW downstream Lean project lean_foundation/ that builds on LeanMaster's kernel-verified libraries and restates, non-vacuously, the content that proofs/*.lean only pretended to prove. Do not modify proofs/ or the root lakefile. Load skills \`leanmaster-onboard\`, \`string-theory-foundation\`, \`leanmaster-theorem-search\`, \`lean-tiered-proving\`, \`lean-proof-gate\` (Skill tool) first.
-Setup: copy ${LM}/examples/consumer_demo/{lakefile.lean,lean-toolchain} into lean_foundation/ (toolchain leanprover/lean4:v4.33.1; keep option A: packagesDir to LeanMaster's built packages + require by local path; rename package to «dualscale-foundation», lib «DualScaleFoundation»). Before building run \`pgrep -af "lake (build|env)"\` and \`git -C ${LM} status --porcelain -- "*.lean"\`; if any lake process is running against LeanMaster or its .lean files are modified (another session editing), wait (poll every 60 s, up to 20 min) — never run two builds against LeanMaster at once. Import specific modules only (e.g. import DualScaleStream2.DFT.GeneralizedMetric), not whole roots.
+Setup: copy ${LM}/examples/consumer_demo/{lakefile.lean,lean-toolchain} into lean_foundation/ (toolchain leanprover/lean4:v4.33.1). Rename package to «dualscale-foundation», lib «DualScaleFoundation». Depend on the PINNED, already-built clone of LeanMaster at release tag v2.2.0 — NOT the live ${LM} checkout (another session edits it): \`require «SocrateAI-Scientific-Agora-LeanMaster» from "${LMPIN}"\` and keep \`packagesDir := "/mnt/disks/disk-socrateai-local-1/leanmaster/lake/packages"\`. Before building verify \`git -C ${LMPIN} describe --tags\` prints v2.2.0 and \`tail -1 ${LMPIN}/build_v2.2.0.log\` shows EXIT 0; if not, stop with blocked=true. Never run lake update. Import specific modules only (e.g. import DualScaleStream2.DFT.GeneralizedMetric), not whole roots. In docs cite release v2.2.0 (certificate docs/VERIFIED_FOUNDATION.md pinned to v2.1.0; tree differs only in comments per its author — say so).
 Modules (one per replaced local file; header comment "-- Supersedes proofs/<file>.lean (see audit/lean_replacement_map.md)"):
   DualScaleFoundation/TDuality.lean — Buscher/T-duality content via DualScaleStream2.TDuality.ODD and DFT.GeneralizedMetric (e.g. genMetric, etaR_genMetric_sq, tduality_inverts_metric, isODD_mul, thetaShift_isODD). Add an \`example\` showing the old claim "T-duality applied twice is the identity" in the form LeanMaster supports, or document why it is not stated.
   DualScaleFoundation/K3Lattice.lean — Mukai/K3 via DualScaleStream2.Lattice (mukaiPair_*, sigK3_eq, sigMukai_eq, reflection_isometry).
