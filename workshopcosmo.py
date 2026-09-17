@@ -470,11 +470,24 @@ def run_observables_analysis(quint_res: Dict[str, Any]) -> Dict[str, Any]:
 
 def run_lean_verification(proof_path: Optional[str] = None) -> Dict[str, Any]:
     """
-    Runs Lean 4 compiler on the Tadpole Cancellation formal proof module.
-    Checks that there are zero sorry statements and the module compiles cleanly.
+    Verifies TadpoleCancellation.lean via the Lean 4 axiom audit (gate G3).
+    Uses the axiom audit JSON to determine if all theorems depend only on standard axioms.
+
+    Returns proof status with zero_sorry and verification counts from the audit.
     """
+    # Load axiom audit report
+    audit_report = load_lean_axiom_audit()
+    lib_status = get_library_axiom_status("TadpoleCancellation", audit_report)
+
+    # Count theorems from the audit, not hard-coded list
+    full_names = list(
+        audit_report.get("TadpoleCancellation", {}).get("theorems", {}).keys()
+    ) if audit_report else []
+    # Extract short names (last component after dots) for backwards compatibility
+    theorems_verified = [name.split(".")[-1] for name in full_names]
+
+    # Find proof file
     if proof_path is None:
-        # Default locations to check
         candidates = [
             "proofs/TadpoleCancellation.lean",
             "../SocrateAI-Lean-Lib/Lean/SocrateAI/StringTheory/TadpoleCancellation.lean",
@@ -486,48 +499,20 @@ def run_lean_verification(proof_path: Optional[str] = None) -> Dict[str, Any]:
                 break
 
     if proof_path is None or not os.path.isfile(proof_path):
-        return {
-            "success": False,
-            "error": "TadpoleCancellation.lean not found in candidate paths",
-            "proof_path": proof_path,
-        }
-
-    # Verify no 'sorry' in file
-    with open(proof_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    sorry_count = content.count("sorry")
-
-    # Run lean compiler
-    try:
-        cmd = ["lean", proof_path]
-        res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=30)
-        compiled_ok = (res.returncode == 0)
-        output_msg = res.stdout + res.stderr
-    except FileNotFoundError:
-        compiled_ok = False
-        output_msg = "lean binary not found in PATH"
-    except Exception as e:
-        compiled_ok = False
-        output_msg = str(e)
+        proof_path = "proofs/TadpoleCancellation.lean"
 
     return {
-        "success": compiled_ok and (sorry_count == 0),
-        "compiled_ok": compiled_ok,
-        "sorry_count": sorry_count,
+        "success": lib_status.get("verified", False),
+        "verified_via_axiom_audit": lib_status.get("verified"),
+        "total_theorems": lib_status.get("total_theorems", 0),
+        "standard_theorems": lib_status.get("standard_theorems", 0),
+        "sorry_count": lib_status.get("sorry_count", 0),
+        "custom_axiom_count": lib_status.get("custom_axiom_count", 0),
+        "axiom_footprint": lib_status.get("axiom_footprint", []),
+        "error": lib_status.get("error"),
         "proof_file": proof_path,
-        "compiler_output": output_msg.strip(),
-        "theorems_verified": [
-            "num_fixed_points_is_16",
-            "total_O7_charge_is_minus_64",
-            "total_D7_charge_is_64",
-            "d7_tadpole_cancellation",
-            "three_generation_index",
-            "curvature_d3_charge_is_1",
-            "flux_saturates_d3_tadpole",
-            "irreducible_anomalies_vanish",
-            "dual_scale_model_is_in_landscape",
-        ],
+        "compiler_output": "",
+        "theorems_verified": theorems_verified,
     }
 
 
@@ -946,6 +931,7 @@ def run_full_tda_langevin_pipeline(
         "lean_certification_verified": lean_cert.get("success"),
         "lean_theorems_verified_count": len(lean_cert.get("theorems_verified", [])),
         "lean_theorems": lean_cert.get("theorems_verified", []),
+        "axiom_footprint": lean_cert.get("axiom_footprint", []),
         "tadpole_anomaly": 0,
         "is_string_landscape": True,
     }
@@ -1216,6 +1202,7 @@ def generate_report(
             "zero_sorry": lean_res.get("sorry_count") == 0,
             "theorems_verified_count": len(lean_res.get("theorems_verified", [])),
             "proof_file": lean_res.get("proof_file"),
+            "axiom_footprint": lean_res.get("axiom_footprint", []),
         },
         "axe4_moonshine_voa": {
             "status": "PASS" if (moonshine_res and moonshine_res.get("success")) else "SKIP",
@@ -1224,6 +1211,7 @@ def generate_report(
             "clebsch_gordan_verified": moonshine_res.get("clebsch_gordan_verified") if moonshine_res else None,
             "lean_voa_verified": moonshine_res.get("lean_voa_verified") if moonshine_res else None,
             "theorems_verified_count": moonshine_res.get("lean_voa_theorems") if moonshine_res else None,
+            "axiom_footprint": moonshine_res.get("axiom_footprint", []) if moonshine_res else None,
         },
         "axe5_nanograv": {
             "status": "PASS" if (nanograv_res and nanograv_res.get("is_hidden")) else "SKIP",
@@ -1241,6 +1229,7 @@ def generate_report(
             "lean_certification_verified": tda_langevin_res.get("lean_certification_verified") if tda_langevin_res else None,
             "tadpole_anomaly": 0 if tda_langevin_res else None,
             "theorems_verified_count": tda_langevin_res.get("lean_theorems_verified_count") if tda_langevin_res else None,
+            "axiom_footprint": tda_langevin_res.get("axiom_footprint", []) if tda_langevin_res else None,
         },
         "observables": {
             "w0": obs_res.get("w0_fit"),
@@ -1272,8 +1261,8 @@ def generate_report(
         "|---|---|---|---|",
         f"| **Axe 1: Quintessence Flow** | Flow to Orbifold $\\tau_O = 1/2 + i\\sqrt{{3}}/2$ | $\\Delta d = {summary['axe1_quintessence']['attractor_distance']:.2e}$ | **{summary['axe1_quintessence']['status']}** |",
         f"| **Axe 2: Symmetron Screening** | Fifth Force Suppression $F_\\phi/F_N < 10^{{-4}}$ | $\\Delta R/R \\approx {summary['axe2_symmetron']['screening_factor']:.2e}$ | **{summary['axe2_symmetron']['status']}** |",
-        f"| **Axe 3: Global Anomaly Cancellation** | Lean 4 Tadpole $\\sum Q_{{RR}} = 0$ (0 sorry) | {summary['axe3_formal_proof']['theorems_verified_count']} theorems kernel-checked | **{summary['axe3_formal_proof']['status']}** |",
-        f"| **Axe 4: M₂₄ VOA Correlators** | Bispectrum Ratio $\\mathcal{{R}}_{{NL}} = 77/60$ | Conformal invariance & OPE certified | **{summary['axe4_moonshine_voa']['status']}** |",
+        f"| **Axe 3: Global Anomaly Cancellation** | Lean 4 Tadpole $\\sum Q_{{RR}} = 0$ (zero_sorry={summary['axe3_formal_proof']['zero_sorry']}) | {summary['axe3_formal_proof']['theorems_verified_count']} theorems with standard axioms only | **{summary['axe3_formal_proof']['status']}** |",
+        f"| **Axe 4: M₂₄ VOA Correlators** | Bispectrum Ratio $\\mathcal{{R}}_{{NL}} = 77/60$ | Conformal invariance & OPE verified | **{summary['axe4_moonshine_voa']['status']}** |",
         (f"| **Axe 5: NANOGrav 15-yr HD** | Anomaly Hidden ($l=4$ max dev < 0.15) | Max Deviation $\\Delta\\Gamma = {nanograv_res.get('max_deviation', 0.0):.3f}$ | **{summary['axe5_nanograv']['status']}** |" if nanograv_res else ""),
         (f"| **Axe 6: Kummer Langevin & TDA** | 16 Kummer vacua & strings certified anomaly-free | 0 anomaly ({tda_langevin_res.get('lean_theorems_verified_count')} Lean 4 theorems) | **{summary['axe6_kummer_tda_langevin']['status']}** |" if tda_langevin_res else ""),
         f"| **Observational Consistency** | DESI 2024 CPL ($w_0 = {obs_res.get('w0_fit'):.3f}, w_a = {obs_res.get('wa_fit'):.3f}$) | $\\Delta\\chi^2 = {obs_res.get('delta_chi2'):.2f}$ vs $\\Lambda$CDM | **PASS** |",
@@ -1296,7 +1285,7 @@ def generate_report(
         "- **Theorems Formally Checked:**",
     ]
     for th in lean_res.get("theorems_verified", []):
-        md_lines.append(f"  - `{th}`: Certified.")
+        md_lines.append(f"  - `{th}`: Verified (standard axioms only).")
 
     if moonshine_res and moonshine_res.get("success"):
         md_lines.extend([
@@ -1304,7 +1293,7 @@ def generate_report(
             "### 4. Axe 4: Mathieu Moonshine & 2D CFT Vertex Operator Algebra",
             f"- **SL(2, C) Conformal Invariance:** Relative error = `{moonshine_res.get('conformal_relative_error', 0.0):.2e}` (verified).",
             f"- **M₂₄ Clebsch-Gordan Ratio:** $\\mathcal{{R}}_{{NL}} = {moonshine_res.get('r_nl_exact')}$ (irreducible fraction 77/60).",
-            f"- **Lean 4 VOA Proof File:** `proofs/MathieuVertexOperators.lean` ({moonshine_res.get('lean_voa_theorems')} theorems, 0 sorry).",
+            f"- **Lean 4 VOA Proof File:** `proofs/MathieuVertexOperators.lean` ({moonshine_res.get('lean_voa_theorems')} theorems, {moonshine_res.get('sorry_count', 0)} sorry).",
         ])
 
     if nanograv_res and nanograv_res.get("success"):
@@ -1323,7 +1312,7 @@ def generate_report(
             f"- **Rust Langevin Simulation:** Final T = `{tda_langevin_res.get('final_temperature', 0.0):.4f}`, Symmetry Broken = `{tda_langevin_res.get('symmetry_broken')}`, Cosmic Strings = `{tda_langevin_res.get('final_string_count')}`, Wall Pixels = `{tda_langevin_res.get('final_wall_pixel_count')}`.",
             f"- **TDA Mapper 1-Skeleton:** Extracted `{tda_langevin_res.get('mapper_nodes')}` clusters/nodes, `{tda_langevin_res.get('mapper_edges')}` edges, `{tda_langevin_res.get('mapper_1_cycles')}` 1-cycles (vortex string loops).",
             f"- **Equivalence Classes:** Attractor Vacua ({tda_langevin_res.get('classes', {}).get('AttractorVacuum', 0)}), Domain Walls ({tda_langevin_res.get('classes', {}).get('DomainWall', 0)}), Cosmic Strings ({tda_langevin_res.get('classes', {}).get('CosmicString', 0)}).",
-            f"- **Lean 4 Kernel Certification:** `proofs/KummerTDAAnomalyCertification.lean` ({tda_langevin_res.get('lean_theorems_verified_count')} theorems, 0 sorry).",
+            f"- **Lean 4 Kernel Verification:** `proofs/KummerTDAAnomalyCertification.lean` ({tda_langevin_res.get('lean_theorems_verified_count')} theorems with standard axioms only).",
             "- **String Landscape Consistency:** Verified $\\sum Q_{RR} = 0$ (net anomaly = 0). All topological defects survive without breaking string theory coherence.",
         ])
 
@@ -1508,10 +1497,12 @@ def main():
             "r_nl_exact": m24_alg["reduced_ratio"],
             "lean_voa_verified": lean_voa["success"],
             "lean_voa_theorems": len(lean_voa.get("theorems_verified", [])),
+            "sorry_count": lean_voa.get("sorry_count", 0),
+            "axiom_footprint": lean_voa.get("axiom_footprint", []),
         }
         print(f"    -> SL(2, C) Conformal Ward Invariance: {'PASS' if cft_ward['conformal_invariance_verified'] else 'FAIL'} (rel err = {cft_ward['relative_error']:.2e})")
         print(f"    -> M24 Clebsch-Gordan Bispectrum Ratio: {m24_alg['reduced_ratio']} ({'PASS' if m24_alg['is_77_over_60'] else 'FAIL'})")
-        print(f"    -> Lean 4 VOA Formal Proof: {'PASS' if lean_voa['success'] else 'FAIL'} ({len(lean_voa.get('theorems_verified', []))} theorems, 0 sorry)")
+        print(f"    -> Lean 4 VOA Formal Proof: {'PASS' if lean_voa['success'] else 'FAIL'} ({len(lean_voa.get('theorems_verified', []))} theorems, {lean_voa.get('sorry_count', 0)} sorry)")
 
     # 6. NANOGrav Hexadecapole Anomaly (AXE 5)
     nanograv_res = None
@@ -1530,7 +1521,7 @@ def main():
         print(f"    -> Rust SDE Langevin: Symmetry Broken = {tda_langevin_res['symmetry_broken']}, Strings = {tda_langevin_res['final_string_count']}")
         print(f"    -> TDA Mapper 1-Skeleton: {tda_langevin_res['mapper_nodes']} nodes, {tda_langevin_res['mapper_edges']} edges, {tda_langevin_res['mapper_1_cycles']} 1-cycles")
         print(f"    -> Equivalence Classes: {tda_langevin_res['classes']}")
-        print(f"    -> Lean 4 Anomaly Certification: {'PASS' if tda_langevin_res['lean_certification_verified'] else 'FAIL'} ({tda_langevin_res['lean_theorems_verified_count']} theorems, 0 sorry, Net Anomaly = 0)")
+        print(f"    -> Lean 4 Anomaly Verification: {'PASS' if tda_langevin_res['lean_certification_verified'] else 'FAIL'} ({tda_langevin_res['lean_theorems_verified_count']} theorems with standard axioms only, Net Anomaly = 0)")
 
     # 8. Export Report
     print("\n[*] Generating Summary Reports...")

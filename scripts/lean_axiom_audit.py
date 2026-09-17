@@ -349,7 +349,8 @@ def main() -> int:
             return 2
         result = audit_scratch_file(args[1])
         print(json.dumps(result, indent=2))
-        return 0 if result.get("status") == "OK" else 1
+        status = result.get("status")
+        return 1 if status == "FAIL" else (2 if status == "ERROR" else 0)
 
     # Discover libraries
     try:
@@ -426,9 +427,12 @@ def main() -> int:
     else:
         print(f"  All theorems are STANDARD ✓")
 
-    # Determine exit code
-    if error_count or all_failed:
-        return 1 if not error_count else 2
+    # Determine exit code: FAIL wins over ERROR
+    # 0 = all standard, 1 = some failure (CUSTOM_AXIOM/SORRY/NATIVE/MISSING), 2 = only infrastructure errors
+    if failed_count:
+        return 1
+    if error_count:
+        return 2
     return 0
 
 
