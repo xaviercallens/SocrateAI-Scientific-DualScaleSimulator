@@ -19,7 +19,7 @@ import sys
 import json
 import argparse
 import math
-from typing import Dict, List, Tuple, Any
+from typing import Dict, List, Tuple, Any, Optional
 
 import numpy as np
 import pandas as pd
@@ -55,12 +55,17 @@ def compute_mapper_graph(
     overlap_frac: float = 0.35,
     dbscan_eps: float = 0.30,
     dbscan_min_samples: int = 5,
+    seed: Optional[int] = None,
 ) -> Tuple[nx.Graph, Dict[str, Any]]:
     """
     Executes the Mapper algorithm on the point cloud.
     - Lens 1: Energy density E = 0.5 * grad_sq + V
     - Lens 2: Order parameter norm = sqrt(phi1^2 + phi2^2)
     """
+    # Seed for determinism
+    if seed is not None:
+        np.random.seed(seed)
+
     # 1. Lens evaluation
     phi1 = df["phi1"].values
     phi2 = df["phi2"].values
@@ -114,7 +119,7 @@ def compute_mapper_graph(
             continue
             
         # Cluster within pullback
-        clusterer = DBSCAN(eps=dbscan_eps, min_samples=dbscan_min_samples)
+        clusterer = DBSCAN(eps=dbscan_eps, min_samples=dbscan_min_samples, algorithm='auto')
         labels = clusterer.fit_predict(feature_matrix[indices])
         
         unique_labels = set(labels) - {-1} # Ignore pure noise points in interval
@@ -291,14 +296,20 @@ def main():
     parser.add_argument("--output-png", type=str, default="tda_mapper_graph.png", help="Output PNG plot")
     parser.add_argument("--intervals", type=int, default=10, help="Number of cover intervals per lens")
     parser.add_argument("--overlap", type=float, default=0.35, help="Cover overlap fraction")
-    
+
+    # Get seed from MAPPER_SEED env var if available, or from command-line arg
+    default_seed = os.environ.get("MAPPER_SEED")
+    if default_seed:
+        default_seed = int(default_seed)
+    parser.add_argument("--seed", type=int, default=default_seed, help="Random seed for deterministic output")
+
     args = parser.parse_args()
-    
+
     print(f"=== Running TDA Mapper on {args.input} ===")
     df = load_point_cloud(args.input)
     print(f"Loaded {len(df)} points from point cloud.")
-    
-    graph, summary = compute_mapper_graph(df, num_intervals=args.intervals, overlap_frac=args.overlap)
+
+    graph, summary = compute_mapper_graph(df, num_intervals=args.intervals, overlap_frac=args.overlap, seed=args.seed)
     print(f"Extraction complete: {summary['num_nodes']} nodes, {summary['num_edges']} edges, {summary['betti_1_cycles']} 1-cycles.")
     print(f"Equivalence Classes: {summary['classes']}")
     print(f"Unique Kummer Vacua Reached: {summary['unique_kummer_vacua_reached']}/16")
