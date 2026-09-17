@@ -38,6 +38,103 @@ ORBIFOLD_Y = math.sqrt(3.0) / 2.0  # ~ 0.86602540378
 RHO_M0 = 0.315
 RHO_R0 = 9.2e-5
 
+
+# =============================================================================
+# AXIOM AUDIT INTEGRATION (G3 Gate)
+# =============================================================================
+
+def load_lean_axiom_audit() -> Dict[str, Any]:
+    """Load and cache the Lean axiom audit report from audit/lean_axiom_report.json.
+
+    Returns a dict mapping library names to their audit results.
+    Returns empty dict if audit file not found.
+    """
+    audit_path = os.path.join(os.path.dirname(__file__), "audit", "lean_axiom_report.json")
+    if not os.path.isfile(audit_path):
+        return {}
+    try:
+        with open(audit_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return {}
+
+
+def get_library_axiom_status(lib_name: str, audit_report: Dict[str, Any]) -> Dict[str, Any]:
+    """Get axiom audit status for a single library.
+
+    Returns:
+      {
+        "verified": bool,                    # True if all theorems are STANDARD
+        "total_theorems": int,
+        "standard_theorems": int,
+        "failing_theorems": int,
+        "custom_axiom_count": int,
+        "sorry_count": int,
+        "native_count": int,
+        "missing_count": int,
+        "axiom_footprint": list[str],        # All non-standard axiom names used
+        "error": str | None
+      }
+    """
+    if not audit_report or lib_name not in audit_report:
+        return {
+            "verified": None,
+            "total_theorems": 0,
+            "standard_theorems": 0,
+            "failing_theorems": 0,
+            "custom_axiom_count": 0,
+            "sorry_count": 0,
+            "native_count": 0,
+            "missing_count": 0,
+            "axiom_footprint": [],
+            "error": f"No audit data for {lib_name}"
+        }
+
+    lib_result = audit_report[lib_name]
+
+    if lib_result.get("status") == "ERROR":
+        return {
+            "verified": False,
+            "total_theorems": 0,
+            "standard_theorems": 0,
+            "failing_theorems": 0,
+            "custom_axiom_count": 0,
+            "sorry_count": 0,
+            "native_count": 0,
+            "missing_count": 0,
+            "axiom_footprint": [],
+            "error": lib_result.get("error")
+        }
+
+    summary = lib_result.get("summary", {})
+    total = summary.get("total", 0)
+    standard = summary.get("standard", 0)
+    custom_axiom = summary.get("custom_axiom", 0)
+    sorry = summary.get("sorry", 0)
+    native = summary.get("native", 0)
+    missing = summary.get("missing", 0)
+
+    # Collect all non-standard axioms
+    axiom_footprint_set = set()
+    for theo_data in lib_result.get("theorems", {}).values():
+        classification = theo_data.get("classification", "")
+        if classification != "STANDARD":
+            axiom_footprint_set.update(theo_data.get("axioms", []))
+
+    return {
+        "verified": lib_result.get("status") == "OK" and custom_axiom + sorry + native + missing == 0,
+        "total_theorems": total,
+        "standard_theorems": standard,
+        "failing_theorems": custom_axiom + sorry + native + missing,
+        "custom_axiom_count": custom_axiom,
+        "sorry_count": sorry,
+        "native_count": native,
+        "missing_count": missing,
+        "axiom_footprint": sorted(axiom_footprint_set),
+        "error": None
+    }
+
+
 # =============================================================================
 # REQ-COSMO-01: AXE 1 - QUINTESSENCE & MODULUS TAU DYNAMICS
 # =============================================================================
@@ -533,59 +630,35 @@ def verify_mathieu_moonshine_algebra() -> Dict[str, Any]:
 
 def run_lean_vertex_operator_verification(proof_path: Optional[str] = None) -> Dict[str, Any]:
     """
-    Compiles proofs/MathieuVertexOperators.lean with Lean 4 kernel.
+    Verifies MathieuVertexOperators.lean via the Lean 4 axiom audit (gate G3).
+    Uses the axiom audit JSON to determine if all theorems depend only on standard axioms.
     """
-    candidates = [
-        "proofs/MathieuVertexOperators.lean",
-        "../SocrateAI-Lean-Lib/Lean/SocrateAI/Moonshine/MathieuBispectrum.lean",
-    ]
-    if proof_path is None:
-        for c in candidates:
-            if os.path.isfile(c):
-                proof_path = c
-                break
+    # Load axiom audit report
+    audit_report = load_lean_axiom_audit()
+    lib_status = get_library_axiom_status("MathieuVertexOperators", audit_report)
 
-    if proof_path is None or not os.path.isfile(proof_path):
-        return {"success": False, "error": "MathieuVertexOperators.lean not found"}
+    # Count theorems from the audit, not hard-coded list
+    full_names = list(
+        audit_report.get("MathieuVertexOperators", {}).get("theorems", {}).keys()
+    ) if audit_report else []
+    # Extract short names (last component after dots) for backwards compatibility
+    theorems_verified = [name.split(".")[-1] for name in full_names]
 
-    with open(proof_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    sorry_count = content.count("sorry")
-    try:
-        cmd = ["lean", proof_path]
-        res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=30)
-        compiled_ok = (res.returncode == 0)
-        output_msg = res.stdout + res.stderr
-    except Exception as e:
-        compiled_ok = False
-        output_msg = str(e)
-
-    return {
-        "success": compiled_ok and (sorry_count == 0),
+    compiled_ok = lib_status.get("verified", False)
+    result = {
+        "success": lib_status.get("verified", False),
         "compiled_ok": compiled_ok,
-        "sorry_count": sorry_count,
-        "proof_file": proof_path,
-        "output": output_msg.strip(),
-        "theorems_verified": [
-            "delta1_is_half",
-            "delta2_is_five_halves",
-            "delta12_value",
-            "total_chiral_weight_value",
-            "conformal_exponent_sum",
-            "dimA1_decomposition",
-            "dimA2_decomposition",
-            "dimA3_decomposition",
-            "sym2_A1_dimension_is_4095",
-            "superconformal_geometric_congruence",
-            "r_nl_cross_multiplication",
-            "r_nl_is_irreducible",
-            "product_value_check",
-            "denominator_product_check",
-            "r_nl_parts_per_thousand_value",
-            "nominal_value_is_consistent",
-        ],
+        "verified_via_axiom_audit": lib_status.get("verified"),
+        "total_theorems": lib_status.get("total_theorems", 0),
+        "standard_theorems": lib_status.get("standard_theorems", 0),
+        "sorry_count": lib_status.get("sorry_count", 0),
+        "custom_axiom_count": lib_status.get("custom_axiom_count", 0),
+        "axiom_footprint": lib_status.get("axiom_footprint", []),
+        "error": lib_status.get("error"),
+        "theorems_verified": theorems_verified,
     }
+
+    return result
 
 
 # =============================================================================
@@ -807,57 +880,36 @@ def run_lean_tda_certification(
     proof_path: Optional[str] = None
 ) -> Dict[str, Any]:
     """
-    Runs Lean 4 compiler on the Kummer TDA Anomaly Certification formal proof module.
-    Verifies zero sorry statements and checks that all topological defect equivalence
-    classes satisfy exact Ramond-Ramond tadpole cancellation.
+    Verifies KummerTDAAnomalyCertification.lean via the Lean 4 axiom audit (gate G3).
+    Uses the axiom audit JSON to determine if all theorems depend only on standard axioms.
     """
-    if proof_path is None:
-        proof_path = os.path.join(os.path.dirname(__file__), "proofs", "KummerTDAAnomalyCertification.lean")
+    # Load axiom audit report
+    audit_report = load_lean_axiom_audit()
+    lib_status = get_library_axiom_status("KummerTDAAnomalyCertification", audit_report)
 
-    if not os.path.isfile(proof_path):
-        return {
-            "success": False,
-            "error": f"Proof file not found: {proof_path}",
-            "proof_path": proof_path,
-        }
+    # Count theorems from the audit, not hard-coded list
+    full_names = list(
+        audit_report.get("KummerTDAAnomalyCertification", {}).get("theorems", {}).keys()
+    ) if audit_report else []
+    # Extract short names (last component after dots) for backwards compatibility
+    theorems_verified = [name.split(".")[-1] for name in full_names]
 
-    with open(proof_path, "r", encoding="utf-8") as f:
-        content = f.read()
-
-    sorry_count = content.count("sorry")
-
-    try:
-        cmd = ["lean", proof_path]
-        res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=30)
-        compiled_ok = (res.returncode == 0)
-        output_msg = res.stdout + res.stderr
-    except Exception as e:
-        compiled_ok = False
-        output_msg = str(e)
-
-    theorems = [
-        "num_kummer_fixed_points_is_16",
-        "total_o7_charge_is_minus_64",
-        "total_d7_charge_is_64",
-        "kummer_bulk_tadpole_cancellation",
-        "attractor_vacuum_anomaly_free",
-        "domain_wall_anomaly_free",
-        "cosmic_string_anomaly_free",
-        "tda_all_equivalence_classes_anomaly_free",
-        "irreducible_anomalies_zero",
-        "topological_defects_preserve_string_landscape",
-        "sum_vacuum_charges_eq_zero",
-    ]
-
-    return {
-        "success": compiled_ok and (sorry_count == 0),
+    compiled_ok = lib_status.get("verified", False)
+    result = {
+        "success": lib_status.get("verified", False),
         "compiled_ok": compiled_ok,
-        "sorry_count": sorry_count,
-        "proof_file": proof_path,
-        "compiler_output": output_msg.strip(),
-        "theorems_verified": theorems,
+        "verified_via_axiom_audit": lib_status.get("verified"),
+        "total_theorems": lib_status.get("total_theorems", 0),
+        "standard_theorems": lib_status.get("standard_theorems", 0),
+        "sorry_count": lib_status.get("sorry_count", 0),
+        "custom_axiom_count": lib_status.get("custom_axiom_count", 0),
+        "axiom_footprint": lib_status.get("axiom_footprint", []),
+        "error": lib_status.get("error"),
+        "theorems_verified": theorems_verified,
         "tadpole_anomaly_net": 0,
     }
+
+    return result
 
 
 def run_full_tda_langevin_pipeline(
