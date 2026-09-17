@@ -1,71 +1,46 @@
-/-
-Supersedes proofs/MathieuVertexOperators.lean (see audit/lean_replacement_map.md)
-
-Moonshine coefficients and the bispectrum ratio via DualScaleStream2.Moonshine.EOT.
--/
+-- Supersedes proofs/Moonshine.lean (see audit/lean_replacement_map.md)
+-- Moonshine arithmetic via kernel-verified LeanMaster declarations
 
 import DualScaleStream2.Moonshine.EOT
 
-namespace DualScaleFoundation.Moonshine
+namespace DualScaleFoundation
 
-open DualScaleStream2.Moonshine StringTheory.StringDynamics
+open DualScaleStream2.Moonshine
 
-/-! # Mathieu Moonshine Coefficients
+/-!
+# Moonshine Arithmetic and M24 Representation Theory
 
-The elliptic genus of K3 carries an action of the sporadic group M₂₄.
-The first five Fourier coefficients (normalized per EOT eq. 1.12) are irreducible
-representation dimensions of M₂₄, with A₁ = 45, A₂ = 231, A₃ = 770, etc.
+Tier A: arithmetic identities derived from kernel-verified EOT A_n values.
+Tier C: physical interpretation (bispectrum ratio) is conjectural.
 -/
 
-theorem first_five_moonshine_irreps :
-    ∀ n : Fin 5, ∃ i : Fin 26, M24RepDim i = eotA (Fin.castLE (by norm_num) n) :=
+/-- First nine EOT A_n values indexed by Fin 9. -/
+theorem eot_values : eotA = ![45, 231, 770, 2277, 5796, 13915, 30843, 65550, 132825] := by
+  rfl
+
+/-- A₁ (index 0) has value 45: kernel-verified from `eotA` definition. -/
+theorem eot_a1_value : eotA 0 = 45 := by
+  decide
+
+/-- A₄ (index 3) has value 2277: kernel-verified from `eotA` definition. -/
+theorem eot_a4_value : eotA 3 = 2277 := by
+  decide
+
+/-- First five EOT values are irreducible M24 representations.
+    Kernel-verified: `first_five_are_irreps` from Moonshine.EOT. -/
+theorem first_five_m24_irreps :
+    ∀ n : Fin 5, ∃ i : Fin 26, StringTheory.StringDynamics.M24RepDim i = eotA (Fin.castLE (by norm_num) n) :=
   first_five_are_irreps
 
-/-! # Higher Coefficients as Sums
+/-- A₆ (index 5) is not a single irreducible M24 representation.
+    Kernel-verified: `A6_not_irrep` from Moonshine.EOT. -/
+theorem a6_not_m24_irrep : ∀ i : Fin 26, StringTheory.StringDynamics.M24RepDim i ≠ eotA 5 :=
+  A6_not_irrep
 
-A₆ and A₇ decompose as sums of irreducible dimensions.
--/
-
-theorem a6_sum_decomposition :
-    eotA 5 = M24RepDim 21 + M24RepDim 25 :=
+/-- A₆ decomposes as sum of two M24 irreps (EOT eq. 1.14).
+    Kernel-verified: `A6_decomposition` from Moonshine.EOT. -/
+theorem a6_decomposition :
+    eotA 5 = StringTheory.StringDynamics.M24RepDim 21 + StringTheory.StringDynamics.M24RepDim 25 :=
   A6_decomposition
 
-theorem a7_sum_decomposition :
-    eotA 6 = M24RepDim 25 + M24RepDim 23 + M24RepDim 24 + M24RepDim 22 +
-      M24RepDim 18 + M24RepDim 17 :=
-  A7_decomposition
-
-/-! # Bispectrum Ratio (Tier A arithmetic; Tier C physical interpretation)
-
-The vertex operator algebra's 3-point function Ward identities yield a ratio
-of representation dimensions. With the massive-multiplicity convention (each
-irrep appears twice: 45 → 90, 231 → 462), and 4 supercharges, the ratio is:
-
-  ℛ_NL = dim(V₂) / (supercharges × dim(V₁)) = (2·A₂) / (4 × 2·A₁)
-
-Cross-multiplying to avoid ℕ division:
-
-  (2·A₂) × 60 = (4 × 2·A₁) × 77
-
-This proves the exact arithmetic identity 77/60 in lowest terms.
-
-[Tier A] The identity holds as integer arithmetic derived from eotA values.
-[Tier C] Its reading as the bispectrum ratio ℛ_NL is conjectural.
--/
-
-theorem bispectrum_ratio_exact :
-    (2 * eotA 1) * 60 = (4 * (2 * eotA 0)) * 77 := by
-  norm_num [eotA]
-
-lemma gcd_77_60_one : Nat.gcd 77 60 = 1 := by
-  norm_num
-
-/-! # Verification
-
-The ratio 77/60 is already in lowest terms.
--/
-
-theorem bispectrum_ratio_minimal : Nat.gcd 77 60 = 1 :=
-  gcd_77_60_one
-
-end DualScaleFoundation.Moonshine
+end DualScaleFoundation

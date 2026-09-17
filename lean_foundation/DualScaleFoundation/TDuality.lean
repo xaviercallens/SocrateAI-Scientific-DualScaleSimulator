@@ -1,55 +1,37 @@
-/-
-Supersedes proofs/BuscherRules.lean (see audit/lean_replacement_map.md)
-
-T-duality content via DualScaleStream2.TDuality.ODD and DFT.GeneralizedMetric.
--/
+-- Supersedes proofs/TDuality.lean (see audit/lean_replacement_map.md)
+-- T-duality foundations via kernel-verified LeanMaster declarations
 
 import DualScaleStream2.TDuality.ODD
-import DualScaleStream2.TDuality.Factorized
 import DualScaleStream2.DFT.GeneralizedMetric
 
-namespace DualScaleFoundation.TDuality
+namespace DualScaleFoundation
 
-open DualScaleStream2.TDuality DualScaleStream2.DFT
+open DualScaleStream2.TDuality DualScaleStream2.DFT Matrix
 
-/-! # T-Duality Involution
+/-!
+# T-Duality (Buscher Transformation)
 
-T-duality applied twice returns the identity. In the LeanMaster library:
-- The factorized T-duality in direction `k ∈ Fin d` is `factorized k : Matrix (Charge d) (Charge d) ℤ`
-- It is an involution: `factorized k * factorized k = 1`
+Tier A: theorems directly cite kernel-verified LeanMaster declarations.
 -/
 
-theorem tduality_involution_factorized (d : ℕ) (k : Fin d) :
-    factorized k * factorized k = (1 : Matrix (Charge d) (Charge d) ℤ) :=
-  factorized_mul_self k
+/-- Theta-shift is ODD: kernel-verified by `thetaShift_isODD`. -/
+theorem theta_shift_is_odd (d : ℕ) (Θ : Matrix (Fin d) (Fin d) ℤ) (hΘ : Θᵀ = -Θ) :
+    IsODD (thetaShift Θ) :=
+  thetaShift_isODD Θ hΘ
 
-/-! # Generalized Metric Involution
+/-- Basis changes preserve ODD: kernel-verified by `basisChange_isODD`. -/
+theorem basis_change_preserves_odd (d : ℕ) (A B : Matrix (Fin d) (Fin d) ℤ) (h : Aᵀ * B = 1) :
+    IsODD (basisChange A B) :=
+  basisChange_isODD A B h
 
-In Double Field Theory, the generalized metric H satisfies the constraint (ηH)² = 1,
-which expresses T-duality's involutive property in the continuous (real) setting.
--/
+/-- Product of ODD matrices is ODD: kernel-verified by `isODD_mul`. -/
+theorem odd_mul_property (d : ℕ) (g h : Matrix (Charge d) (Charge d) ℤ)
+    (hg : IsODD g) (hh : IsODD h) : IsODD (g * h) :=
+  isODD_mul g h hg hh
 
-theorem generalized_metric_constraint (d : ℕ) (G B : Matrix (Fin d) (Fin d) ℝ)
-    (hG : IsUnit G.det) :
-    (etaR d * genMetric G B) * (etaR d * genMetric G B) = 1 :=
-  etaR_genMetric_sq G B hG
+/-- T-duality inverts the metric at B=0: kernel-verified by `tduality_inverts_metric`. -/
+theorem tduality_metric_inversion (d : ℕ) (G : Matrix (Fin d) (Fin d) ℝ) (hG : IsUnit G.det) :
+    etaR d * genMetric G 0 * etaR d = genMetric G⁻¹ 0 :=
+  tduality_inverts_metric G hG
 
-/-! # Example: T-duality is an O(d,d;ℤ) group element
-
-The full T-duality (swapping all momenta and windings) is itself in O(d,d;ℤ).
--/
-
-theorem tduality_is_odd (d : ℕ) : IsODD (eta d) :=
-  eta_isODD
-
-example (d : ℕ) : IsODD (eta d) := eta_isODD
-
-/-! # Structure-preserving property
-
-All factorized T-dualities lie in O(d,d;ℤ).
--/
-
-theorem factorized_is_odd (d : ℕ) (k : Fin d) : IsODD (factorized k) :=
-  factorized_isODD k
-
-end DualScaleFoundation.TDuality
+end DualScaleFoundation

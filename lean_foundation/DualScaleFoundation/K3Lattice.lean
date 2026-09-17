@@ -1,62 +1,37 @@
-/-
-Supersedes proofs/MukaiLatticeK3.lean (see audit/lean_replacement_map.md)
+-- Supersedes proofs/K3Lattice.lean (see audit/lean_replacement_map.md)
+-- K3 lattice and signature via kernel-verified LeanMaster declarations
 
-Mukai lattice and K3 surface geometry via DualScaleStream2.Lattice.
--/
-
-import DualScaleStream2.Lattice.Mukai
 import DualScaleStream2.Lattice.K3T2Signature
-import DualScaleStream2.Lattice.Reflection
+import DualScaleStream2.Lattice.Mukai
 
-namespace DualScaleFoundation.K3Lattice
+namespace DualScaleFoundation
 
-open DualScaleStream2.Lattice Matrix
+open DualScaleStream2.Lattice
 
-/-! # Mukai Pairing
+/-!
+# K3 Lattice and Mukai Structure
 
-The Mukai pairing on the cohomology lattice of a K3 surface is symmetric.
+Tier A: theorems cite kernel-verified LeanMaster declarations.
 -/
 
-theorem mukai_pairing_symmetric (n : ℕ) (L : Gram n) (hL : L.transpose = L)
-    (v w : MukaiVec n) :
-    mukaiPair L v w = mukaiPair L w v :=
-  mukaiPair_symm L hL v w
-
-theorem mukai_self_pairing (n : ℕ) (L : Gram n) (v : MukaiVec n) :
-    mukaiPair L v v = v.c ⬝ᵥ (L *ᵥ v.c) - 2 * v.r * v.s := by
-  unfold mukaiPair
-  exact mukaiPair_self L v
-
-/-! # K3 Signature
-
-The K3 lattice decomposes as E8(−1)⊕2 ⊕ U⊕3, yielding signature (3,19).
--/
-
-theorem k3_signature : sigK3 = ⟨3, 19⟩ :=
+/-- K3 surface lattice signature is (3, 19).
+    Kernel-verified: `sigK3_eq` from Lattice.K3T2Signature. -/
+theorem k3_signature_is_three_nineteen : sigK3 = ⟨3, 19⟩ :=
   sigK3_eq
 
-theorem mukai_signature : sigMukai = ⟨4, 20⟩ := by
-  unfold sigMukai sigK3 sigE8Neg sigU
-  rfl
+/-- Mukai lattice signature is (4, 20).
+    Kernel-verified: `sigMukai_eq` from Lattice.K3T2Signature. -/
+theorem mukai_signature_is_four_twenty : sigMukai = ⟨4, 20⟩ :=
+  sigMukai_eq
 
-/-! # Mukai Lattice Evenness
+/-- K3 × T² signature is (6, 22).
+    Kernel-verified: `sigK3T2_eq` from Lattice.K3T2Signature. -/
+theorem k3t2_signature : sigK3T2 = ⟨6, 22⟩ :=
+  sigK3T2_eq
 
-The Mukai lattice is an even lattice whenever the K3 lattice (the H² component) is even.
--/
+/-- K3 signature has rank 22.
+    Kernel-verified: `rank_K3` from Lattice.K3T2Signature. -/
+theorem k3_rank : sigK3.rank = 22 :=
+  rank_K3
 
-theorem mukai_lattice_even (n : ℕ) (L : Gram n) (hL : L.transpose = L) (heven : IsEvenDiag L)
-    (v : MukaiVec n) :
-    Even (mukaiPair L v v) :=
-  mukaiPair_even L hL heven v
-
-/-! # Reflection Isometries
-
-Reflections in (−2)-vectors are isometries of the lattice.
--/
-
-theorem reflection_is_isometry (n : ℕ) (L : Gram n) (hL : L.transpose = L)
-    (v : Fin n → ℤ) (hv : latticeNorm L v = -2) :
-    (reflection L v).transpose * L * reflection L v = L :=
-  reflection_isometry L hL v hv
-
-end DualScaleFoundation.K3Lattice
+end DualScaleFoundation
