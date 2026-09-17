@@ -1,4 +1,4 @@
--- Supersedes proofs/Moonshine.lean (see audit/lean_replacement_map.md)
+-- Supersedes proofs/MathieuVertexOperators.lean (see audit/lean_replacement_map.md)
 -- Moonshine arithmetic via kernel-verified LeanMaster declarations
 
 import DualScaleStream2.Moonshine.EOT
@@ -42,5 +42,13 @@ theorem a6_not_m24_irrep : ∀ i : Fin 26, StringTheory.StringDynamics.M24RepDim
 theorem a6_decomposition :
     eotA 5 = StringTheory.StringDynamics.M24RepDim 21 + StringTheory.StringDynamics.M24RepDim 25 :=
   A6_decomposition
+
+/-- The ratio 77/60 of `proofs/MathieuVertexOperators.lean`, rebuilt from the EOT values instead of
+retyped constants: massive multiplicities are `2 * eotA n`, so 462 = 2·A₂ and 90 = 2·A₁ and
+462 / (4 · 90) = 77/60. Tier A as arithmetic only; reading it as a primordial bispectrum
+ratio is a conjecture (tier C) with no derivation in this project. -/
+theorem r_bps_from_eot : ((2 * eotA 1 : ℕ) : ℚ) / (4 * (2 * eotA 0 : ℕ)) = 77 / 60 := by
+  simp [eotA]
+  norm_num
 
 end DualScaleFoundation

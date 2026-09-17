@@ -1,4 +1,4 @@
--- Supersedes proofs/K3Lattice.lean (see audit/lean_replacement_map.md)
+-- Supersedes proofs/MukaiLatticeK3.lean, proofs/FourierMukai.lean and proofs/KummerOrbifoldResolution.lean (signature part) (see audit/lean_replacement_map.md)
 -- K3 lattice and signature via kernel-verified LeanMaster declarations
 
 import DualScaleStream2.Lattice.K3T2Signature

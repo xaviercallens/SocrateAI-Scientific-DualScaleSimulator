@@ -192,3 +192,36 @@ theorem a6_decomposition :
 - **Sorries**: 0
 - **Statement Lock**: Pending review (T1 gate)
 
+
+## Gate results (re-run by the orchestrator, 2026-09-17)
+
+- `lake build`: Build completed successfully (3665 jobs), against LeanMaster clone at tag v2.2.0 (its own audit: DualScaleStream2 99/0 failing, StringTheoryFormalization 89/0, statement lock OK).
+- `sorry` outside comments: 0.
+- Negative control: a scratch theorem using `axiom bogus` is reported as depending on `[bogus]`.
+- Statement lock: NOT applied — statement review (G2) is for the project lead.
+- Added by orchestrator: `factorized_tduality_is_odd`, `factorized_tduality_involution` (replacement for the axiom-backed `buscher_involution`; scope: integer O(d,d) charge action, not field-level Buscher rules), `r_bps_from_eot` (77/60 rebuilt from `eotA`; arithmetic tier A, physical reading tier C).
+
+```
+OK      DualScaleFoundation.k3_signature_is_three_nineteen  []
+OK      DualScaleFoundation.mukai_signature_is_four_twenty  []
+OK      DualScaleFoundation.k3t2_signature  []
+OK      DualScaleFoundation.k3_rank  ['propext']
+OK      DualScaleFoundation.eot_values  ['propext']
+OK      DualScaleFoundation.eot_a1_value  ['propext']
+OK      DualScaleFoundation.eot_a4_value  ['propext']
+OK      DualScaleFoundation.first_five_m24_irreps  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.a6_not_m24_irrep  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.a6_decomposition  ['Quot.sound', 'propext']
+OK      DualScaleFoundation.r_bps_from_eot  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.theta_shift_is_odd  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.basis_change_preserves_odd  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.odd_mul_property  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.tduality_metric_inversion  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.factorized_tduality_is_odd  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.factorized_tduality_involution  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.k3_cross_k3_euler_over_24  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.k3t2_euler_is_zero  ['Classical.choice', 'Quot.sound', 'propext']
+OK      DualScaleFoundation.tadpole_conservation  ['Quot.sound', 'propext']
+
+20 theorems audited, 0 failing
+```

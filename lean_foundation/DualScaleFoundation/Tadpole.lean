@@ -1,4 +1,4 @@
--- Supersedes proofs/Tadpole.lean (see audit/lean_replacement_map.md)
+-- Supersedes the arithmetic part of proofs/TadpoleCancellation.lean (the O-plane charge bookkeeping is NOT restated) (see audit/lean_replacement_map.md)
 -- Tadpole cancellation and flux via kernel-verified LeanMaster declarations
 
 import DualScaleStream2.Flux.Tadpole

@@ -20,7 +20,7 @@ Each module restates specific string-theory content:
 - Tadpole: Tadpole cancellation constraints
 - Moonshine: Moonshine arithmetic and M24 representation theory
 
-Verified: depends only on Lean's three standard axioms (propext, Classical.choice, Quot.sound).
+Axiom status is established by running LeanMaster's tools/axiom_audit.py on this library (see STATEMENTS_FOR_REVIEW.md), not by this comment.
 -/
 
 end DualScaleFoundation
