@@ -21,3 +21,7 @@ test_*.yaml
 .env.*
 zenodo_token
 token
+
+# Lake build dirs / symlinks
+.lake
+lean_foundation/.lake
