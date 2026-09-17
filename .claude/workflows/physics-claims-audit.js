@@ -125,8 +125,8 @@ const resolveFile = f => `${REPO}/${f.file.replace(/^\/?/, '').replace(REPO + '/
 const LENSES = [
   { key: 'fidelity', model: 'haiku', effort: 'low', prompt: f => `QUOTE FIDELITY check only. Run: sed -n '${Math.max(1, f.line - 3)},${f.line + 3}p' "${resolveFile(f)}"
 Does this text appear (whitespace-insensitive) within ±3 lines: ${JSON.stringify(f.quote)} ?
-Does the source actually say what is claimed: ${JSON.stringify(f.claim)} ?
-refuted=true if the quote is absent or the finding misreads the source.` },
+Judge ONLY whether the quoted text is present. Do not judge the interpretation or the claim — other reviewers do that.
+refuted=true only if the quote is absent from that window.` },
   { key: 'domain', model: JUDGE, prompt: f => `Decisive-experiment referee: try to REFUTE this finding — check it as hard as you would a positive claim.
 [${f.category}, ${f.severity}, justified tier ${f.justified_tier}] ${f.file}:${f.line}
 Quote: ${JSON.stringify(f.quote)}
