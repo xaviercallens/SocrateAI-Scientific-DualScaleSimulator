@@ -28,6 +28,15 @@ import numpy as np
 from scipy.integrate import solve_ivp, solve_bvp
 
 # =============================================================================
+# UTILITY: OUTPUT PATH RESOLUTION & RUSTY-SUNDIALS ENV VAR
+# =============================================================================
+
+def _output_path(name: str) -> str:
+    """Resolve output path via OUTPUT_DIR env var (defaults to cwd)."""
+    base_dir = os.environ.get("OUTPUT_DIR", ".")
+    return os.path.join(base_dir, name)
+
+# =============================================================================
 # CONSTANTS & GROUND TRUTH PARAMETERS
 # =============================================================================
 FRICKE_X = 0.0
