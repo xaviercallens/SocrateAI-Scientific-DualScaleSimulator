@@ -1,10 +1,11 @@
 {
   "total_steps": 750,
   "final_time": 15.0,
-  "soliton_width": 1.5398970458808714,
+  "soliton_width": 1.5398970458808734,
   "soliton_center": 0.0,
-  "soliton_peak_energy": 1.8433010014814637,
-  "total_energy": 5.72713803975695,
+  "soliton_peak_energy": 1.843301001481462,
+  "total_energy": 5.727138039756952,
+  "seed": 42,
   "k_theory_charge_conserved": true,
   "grothendieck_defect_rank": 1,
   "rr_charge_match": true

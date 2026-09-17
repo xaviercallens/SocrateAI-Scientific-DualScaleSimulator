@@ -12,6 +12,12 @@ fn main() {
                     i += 1;
                 }
             }
+            "--seed" => {
+                if i + 1 < args.len() {
+                    config.seed = args[i + 1].parse().unwrap_or(42);
+                    i += 1;
+                }
+            }
             "--output-csv" => {
                 if i + 1 < args.len() {
                     config.output_csv = args[i + 1].clone();

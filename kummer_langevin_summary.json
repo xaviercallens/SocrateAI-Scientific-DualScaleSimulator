@@ -3,10 +3,11 @@
   "total_steps": 500,
   "final_time": 25.0,
   "final_temperature": 0.2564102564102564,
-  "final_string_count": 58,
-  "final_wall_pixel_count": 29,
-  "mean_field_norm": 1.0198059231733922,
-  "mean_energy_density": 0.5449132168425855,
+  "final_string_count": 43,
+  "final_wall_pixel_count": 19,
+  "mean_field_norm": 1.0599126953923284,
+  "mean_energy_density": 0.5250989883278419,
   "symmetry_broken": true,
-  "point_cloud_size": 25344
+  "point_cloud_size": 25344,
+  "seed": 42
 }

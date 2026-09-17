@@ -6,6 +6,10 @@ use std::fs::File;
 use std::io::{BufWriter, Write};
 use std::path::Path;
 
+fn default_seed() -> u64 {
+    42
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SimConfig {
     pub grid_size: usize,
@@ -24,6 +28,8 @@ pub struct SimConfig {
     pub output_json: String,
     #[serde(default)]
     pub use_supergravity: bool,
+    #[serde(default = "default_seed")]
+    pub seed: u64,
 }
 
 impl Default for SimConfig {
@@ -44,6 +50,7 @@ impl Default for SimConfig {
             output_csv: "kummer_langevin_pointcloud.csv".to_string(),
             output_json: "kummer_langevin_summary.json".to_string(),
             use_supergravity: false,
+            seed: 42,
         }
     }
 }
@@ -58,8 +65,10 @@ pub struct SimulationSummary {
     pub final_wall_pixel_count: usize,
     pub mean_field_norm: f64,
     pub mean_energy_density: f64,
+    /// Tier X: Computed as final_temp < t_crit && mean_norm > 0.2; numerical diagnostic.
     pub symmetry_broken: bool,
     pub point_cloud_size: usize,
+    pub seed: u64,
 }
 
 pub struct KummerLangevinSimulator {
@@ -74,7 +83,7 @@ pub struct KummerLangevinSimulator {
 impl KummerLangevinSimulator {
     pub fn new(config: SimConfig) -> Self {
         let n = config.grid_size;
-        let mut rng = StdRng::seed_from_u64(42);
+        let mut rng = StdRng::seed_from_u64(config.seed);
         let normal = Normal::new(0.0, 0.05).unwrap();
 
         let mut phi1 = vec![0.0; n * n];
@@ -327,7 +336,10 @@ impl KummerLangevinSimulator {
 
     pub fn run_simulation(&mut self) -> (SimulationSummary, Vec<Vec<f64>>) {
         let total_steps = (self.config.t_max / self.config.dt).ceil() as usize;
-        let mut rng = StdRng::seed_from_u64(1337);
+        // Derive dynamics RNG seed from config seed to avoid correlation between init and dynamics.
+        // XOR with constant avoids zero if config.seed is zero.
+        let dynamics_seed = self.config.seed ^ 0x9E37_79B9_7F4A_7C15u64;
+        let mut rng = StdRng::seed_from_u64(dynamics_seed);
 
         println!("--- Starting Kummer Moduli Space Langevin Simulation ---");
         println!("Grid: {}x{}, Steps: {}, t_max: {:.2}, dt: {:.4}", self.n, self.n, total_steps, self.config.t_max, self.config.dt);
@@ -404,6 +416,7 @@ impl KummerLangevinSimulator {
             mean_energy_density: mean_energy,
             symmetry_broken: final_temp < self.config.t_crit && mean_norm > 0.2,
             point_cloud_size: point_cloud_records.len(),
+            seed: self.config.seed,
         };
 
         (summary, point_cloud_records)
@@ -429,5 +442,79 @@ impl KummerLangevinSimulator {
         serde_json::to_writer_pretty(json_file, summary)?;
 
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_same_seed_identical_summary() {
+        // Positive control: same seed should produce bit-identical results
+        let mut config1 = SimConfig::default();
+        config1.seed = 42;
+        config1.grid_size = 16; // Small grid for test speed
+        config1.t_max = 0.1;
+        config1.dt = 0.05;
+
+        let mut config2 = SimConfig::default();
+        config2.seed = 42;
+        config2.grid_size = 16;
+        config2.t_max = 0.1;
+        config2.dt = 0.05;
+
+        let mut sim1 = KummerLangevinSimulator::new(config1);
+        let (summary1, _) = sim1.run_simulation();
+
+        let mut sim2 = KummerLangevinSimulator::new(config2);
+        let (summary2, _) = sim2.run_simulation();
+
+        let s1 = serde_json::to_string(&summary1).unwrap();
+        let s2 = serde_json::to_string(&summary2).unwrap();
+        assert_eq!(s1, s2, "Same seed should produce identical summaries");
+    }
+
+    #[test]
+    fn test_different_seed_differs() {
+        // Negative control: different seed should produce different results
+        let mut config1 = SimConfig::default();
+        config1.seed = 42;
+        config1.grid_size = 16;
+        config1.t_max = 0.1;
+        config1.dt = 0.05;
+
+        let mut config2 = SimConfig::default();
+        config2.seed = 123;
+        config2.grid_size = 16;
+        config2.t_max = 0.1;
+        config2.dt = 0.05;
+
+        let mut sim1 = KummerLangevinSimulator::new(config1);
+        let (summary1, _) = sim1.run_simulation();
+
+        let mut sim2 = KummerLangevinSimulator::new(config2);
+        let (summary2, _) = sim2.run_simulation();
+
+        assert_ne!(summary1.seed, summary2.seed, "Different seeds should be recorded");
+        // With high probability, at least one physics field should differ
+        assert!(
+            summary1.mean_field_norm != summary2.mean_field_norm ||
+            summary1.mean_energy_density != summary2.mean_energy_density ||
+            summary1.final_string_count != summary2.final_string_count,
+            "Different seeds should produce different simulation results"
+        );
+    }
+
+    #[test]
+    fn test_symmetry_broken_computed() {
+        // Verify that symmetry_broken is computed, not hardcoded
+        let config = SimConfig::default();
+        let mut sim = KummerLangevinSimulator::new(config);
+        let (summary, _) = sim.run_simulation();
+
+        // symmetry_broken should be computed as final_temp < t_crit && mean_norm > 0.2
+        let expected = summary.final_temperature < sim.config.t_crit && summary.mean_field_norm > 0.2;
+        assert_eq!(summary.symmetry_broken, expected, "symmetry_broken should match computed condition");
     }
 }

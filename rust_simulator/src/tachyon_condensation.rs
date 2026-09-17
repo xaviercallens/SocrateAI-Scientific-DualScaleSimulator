@@ -15,6 +15,12 @@ pub struct TachyonConfig {
     pub gauge_coupling: f64,
     pub output_csv: String,
     pub output_json: String,
+    #[serde(default = "default_seed")]
+    pub seed: u64,
+}
+
+fn default_seed() -> u64 {
+    42
 }
 
 impl Default for TachyonConfig {
@@ -30,6 +36,7 @@ impl Default for TachyonConfig {
             gauge_coupling: 0.4,
             output_csv: "tachyon_condensation_telemetry.csv".to_string(),
             output_json: "tachyon_condensation_summary.json".to_string(),
+            seed: 42,
         }
     }
 }
@@ -55,8 +62,13 @@ pub struct TachyonSummary {
     pub soliton_center: f64,
     pub soliton_peak_energy: f64,
     pub total_energy: f64,
+    pub seed: u64,
+    /// Tier X: Numerically computed as Q_initial == Q_final where Q = (sign(phi(L)) - sign(phi(-L)))/2.
+    /// Not a K-theory class; a discrete-grid sign change diagnostic for the kink configuration.
     pub k_theory_charge_conserved: bool,
+    /// Tier X: Count of adjacent sign changes in final t_field. Discrete-grid defect count, not Grothendieck rank.
     pub grothendieck_defect_rank: i64,
+    /// Tier X: Cross-check: |Q_final| == defect_count. Both are numerical discretization diagnostics.
     pub rr_charge_match: bool,
 }
 
@@ -67,6 +79,34 @@ pub struct TachyonSimulator {
     pub a_field: Vec<f64>,
     pub a_dot: Vec<f64>,
     pub dx: f64,
+}
+
+/// Compute net kink charge: Q = (sign(phi[last]) - sign(phi[0])) / 2.
+/// Tier X: discrete-grid diagnostic, not a true K-theory charge.
+#[inline]
+pub fn net_kink_charge(field: &[f64]) -> i64 {
+    if field.is_empty() {
+        return 0;
+    }
+    let sign_first = if field[0] > 0.0 { 1 } else { -1 };
+    let sign_last = if field[field.len() - 1] > 0.0 { 1 } else { -1 };
+    ((sign_last - sign_first) / 2) as i64
+}
+
+/// Count adjacent sign changes in field.
+/// Tier X: discrete-grid defect count, not Grothendieck rank.
+#[inline]
+pub fn count_sign_changes(field: &[f64]) -> i64 {
+    if field.len() < 2 {
+        return 0;
+    }
+    let mut count = 0i64;
+    for i in 0..field.len() - 1 {
+        if (field[i] > 0.0) != (field[i + 1] > 0.0) {
+            count += 1;
+        }
+    }
+    count
 }
 
 impl TachyonSimulator {
@@ -162,6 +202,9 @@ impl TachyonSimulator {
         let snapshot_interval = total_steps.max(10) / 10;
         let mut records = Vec::new();
 
+        // Capture initial charge before simulation starts
+        let q_initial = net_kink_charge(&self.t_field);
+
         for step in 0..=total_steps {
             let t = step as f64 * self.config.dt;
             if step > 0 {
@@ -220,6 +263,10 @@ impl TachyonSimulator {
             }
         }
 
+        // Compute charge diagnostics
+        let q_final = net_kink_charge(&self.t_field);
+        let defect_count = count_sign_changes(&self.t_field);
+
         let summary = TachyonSummary {
             total_steps,
             final_time: self.config.t_max,
@@ -227,9 +274,10 @@ impl TachyonSimulator {
             soliton_center: peak_x,
             soliton_peak_energy: peak_energy,
             total_energy: total_e,
-            k_theory_charge_conserved: true,
-            grothendieck_defect_rank: 1,
-            rr_charge_match: true,
+            seed: self.config.seed,
+            k_theory_charge_conserved: q_initial == q_final,
+            grothendieck_defect_rank: defect_count,
+            rr_charge_match: q_final.abs() == defect_count,
         };
 
         println!(
@@ -258,5 +306,91 @@ impl TachyonSimulator {
         serde_json::to_writer_pretty(json_file, summary)?;
 
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_same_seed_identical_summary() {
+        // Positive control: same seed should produce bit-identical results
+        let mut config1 = TachyonConfig::default();
+        config1.seed = 42;
+        config1.t_max = 0.1; // Short run for test speed
+        config1.dt = 0.02;
+
+        let mut config2 = TachyonConfig::default();
+        config2.seed = 42;
+        config2.t_max = 0.1;
+        config2.dt = 0.02;
+
+        let mut sim1 = TachyonSimulator::new(config1);
+        let (summary1, _) = sim1.run_simulation();
+
+        let mut sim2 = TachyonSimulator::new(config2);
+        let (summary2, _) = sim2.run_simulation();
+
+        let s1 = serde_json::to_string(&summary1).unwrap();
+        let s2 = serde_json::to_string(&summary2).unwrap();
+        assert_eq!(s1, s2, "Same seed should produce identical summaries");
+    }
+
+    #[test]
+    fn test_different_seed_differs() {
+        // Negative control: different seed would be a no-op for tachyon (no stochasticity)
+        // but the seed field itself should differ
+        let mut config1 = TachyonConfig::default();
+        config1.seed = 42;
+        config1.t_max = 0.1;
+        config1.dt = 0.02;
+
+        let mut config2 = TachyonConfig::default();
+        config2.seed = 123;
+        config2.t_max = 0.1;
+        config2.dt = 0.02;
+
+        let mut sim1 = TachyonSimulator::new(config1);
+        let (summary1, _) = sim1.run_simulation();
+
+        let mut sim2 = TachyonSimulator::new(config2);
+        let (summary2, _) = sim2.run_simulation();
+
+        assert_ne!(summary1.seed, summary2.seed, "Different seeds should be recorded");
+    }
+
+    #[test]
+    fn test_charge_diagnostic_positive_control() {
+        // Positive control: hand-constructed field with consistent boundary signs
+        // should show charge conservation and matching defect count
+        let field = vec![-0.1, -0.05, 0.0, 0.05, 0.1];
+        let q = net_kink_charge(&field);
+        let defects = count_sign_changes(&field);
+
+        // sign(-0.1) = -1, sign(0.1) = +1 => Q = (+1 - (-1))/2 = +1
+        assert_eq!(q, 1, "Expected charge +1 for boundary signs [-,-..+,+]");
+        // Sign changes: -0.1→-0.05 (no), -0.05→0.0 (no), 0.0→0.05 (yes), 0.05→0.1 (no) = 1 change
+        assert_eq!(defects, 1, "Expected 1 sign change in kink field");
+        assert_eq!(q.abs(), defects, "Charge magnitude should match defect count");
+    }
+
+    #[test]
+    fn test_charge_diagnostic_negative_control() {
+        // Negative control: hand-constructed field whose boundary signs differ
+        // at t=0 vs t=final (simulated by two different fields)
+        // Field 1: boundary signs consistent (left negative)
+        let field_initial = vec![-0.1, -0.05, 0.0, 0.05, 0.1];
+        let q_initial = net_kink_charge(&field_initial);
+
+        // Field 2: boundary signs flipped (right now negative)
+        let field_final = vec![0.1, 0.05, 0.0, -0.05, -0.1];
+        let q_final = net_kink_charge(&field_final);
+
+        // Initial: sign(-0.1)=-1, sign(0.1)=+1 => Q=+1
+        // Final: sign(0.1)=+1, sign(-0.1)=-1 => Q=-1
+        assert_eq!(q_initial, 1);
+        assert_eq!(q_final, -1);
+        assert_ne!(q_initial, q_final, "Charge should change when boundary signs flip");
     }
 }
