@@ -45,7 +45,7 @@ jobs:
       - name: Install elan
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/toolchains/*/bin" >> $GITHUB_PATH
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
       - name: Cache .lake
         uses: actions/cache@v4
         with:
@@ -54,9 +54,7 @@ jobs:
           restore-keys: |
             lean-${{ runner.os }}-
       - name: Build Lean project
-        run: |
-          source "$HOME/.elan/toolchains/leanprover--lean4---v4.*/activate"
-          lake build
+        run: lake build
       - name: Run lean axiom audit
         continue-on-error: true
         run: |
