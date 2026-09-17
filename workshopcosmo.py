@@ -503,6 +503,7 @@ def run_lean_verification(proof_path: Optional[str] = None) -> Dict[str, Any]:
 
     return {
         "success": lib_status.get("verified", False),
+        "compiled_ok": lib_status.get("verified", False),
         "verified_via_axiom_audit": lib_status.get("verified"),
         "total_theorems": lib_status.get("total_theorems", 0),
         "standard_theorems": lib_status.get("standard_theorems", 0),
