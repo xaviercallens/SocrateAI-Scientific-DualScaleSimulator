@@ -21,3 +21,4 @@ test_*.yaml
 .env.*
 zenodo_token
 token
+.paperwork/
