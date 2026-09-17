@@ -150,6 +150,23 @@ def set_metadata(base_url, dep_id, metadata, token, proxy=None):
     print(f"[+] Metadata registered successfully: '{metadata.get('title')}'")
     return res
 
+def create_new_version(base_url, record_id, token, proxy=None):
+    """Open a new-version draft of a published record so the concept DOI keeps one lineage."""
+    url = f"{base_url}/deposit/depositions/{record_id}/actions/newversion"
+    print(f"[*] Creating new-version draft of record {record_id}...")
+    res, _ = make_request(url, method="POST", data={}, token=token, proxy=proxy)
+    draft_url = res.get("links", {}).get("latest_draft")
+    if not draft_url:
+        raise RuntimeError("Zenodo did not return links.latest_draft for the new version")
+    draft, _ = make_request(draft_url, method="GET", token=token, proxy=proxy)
+    # Files are inherited from the previous version; remove them so only corrected artefacts remain.
+    for f in draft.get("files", []):
+        file_url = f.get("links", {}).get("self") or f"{base_url}/deposit/depositions/{draft['id']}/files/{f['id']}"
+        make_request(file_url, method="DELETE", token=token, proxy=proxy)
+        print(f"[+] Removed inherited file '{f.get('filename')}'")
+    print(f"[+] New-version draft ID: {draft['id']}")
+    return draft["id"], draft.get("links", {}).get("bucket"), draft
+
 def publish_deposit(base_url, dep_id, token, proxy=None):
     url = f"{base_url}/deposit/depositions/{dep_id}/actions/publish"
     print(f"[*] Publishing deposition {dep_id}...")
@@ -172,6 +189,7 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Verify artifacts and metadata without uploading.")
     parser.add_argument("--proxy", type=str, default=os.environ.get("HTTPS_PROXY"), help="HTTP/HTTPS proxy URL (e.g. socks5://localhost:1080 or http://proxy:8080)")
     parser.add_argument("--no-publish", action="store_true", help="Create draft and upload files, but do not trigger final publish action.")
+    parser.add_argument("--new-version-of", type=int, metavar="RECORD_ID", help="Deposit as a new version of this published record (keeps the concept DOI lineage) instead of a new record.")
     args = parser.parse_args()
 
     token = get_token()
@@ -212,8 +230,11 @@ def main():
         print("\n[+] Dry run complete. All files and metadata verified.")
         sys.exit(0)
 
-    # 1. Create Deposition
-    dep_id, bucket_url, dep_data = create_deposit(base_url, token, proxy=args.proxy)
+    # 1. Create Deposition (or a new version of an existing record)
+    if args.new_version_of:
+        dep_id, bucket_url, dep_data = create_new_version(base_url, args.new_version_of, token, proxy=args.proxy)
+    else:
+        dep_id, bucket_url, dep_data = create_deposit(base_url, token, proxy=args.proxy)
 
     # 2. Upload Files
     for fp in files_to_upload:
