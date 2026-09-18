@@ -1,0 +1,120 @@
+{
+  "track": "A",
+  "item": "K3 elliptic genus (phi_{0,1}, Z_K3, discriminant property, phi_{-2,1})",
+  "method": "exact Fraction arithmetic; Jacobi theta triple-product series truncated at q^{cutoff}, on the grid i=8*qexp, j=2*yexp (series2d.py); ratios theta_i(z)/theta_i(0) via exact formal power-series division (divide_scalar_series).",
+  "cutoff_q": 8,
+  "N_product_terms": 14,
+  "truncation_stability": {
+    "cutoff_10_matches_cutoff_8": true,
+    "cutoff_12_matches_cutoff_8": true
+  },
+  "ZK3_tau_0": {
+    "0": "24"
+  },
+  "ZK3_tau_0_note": "Z_K3(tau,0) computed directly from the theta-ratio formula; should equal the constant 24 (K3 Euler number) with ALL higher-q-order terms exactly zero. No 24 was fed in anywhere upstream.",
+  "discriminant_dependence_holds": true,
+  "discriminant_mismatches": {},
+  "c_of_D": {
+    "-1": "2",
+    "0": "20",
+    "3": "-128",
+    "4": "216",
+    "7": "-1026",
+    "8": "1616",
+    "11": "-5504",
+    "12": "8032",
+    "15": "-23550",
+    "16": "33048",
+    "19": "-86400",
+    "20": "117280",
+    "23": "-283652",
+    "24": "376608",
+    "27": "-854528",
+    "28": "1112832",
+    "31": "-2402298",
+    "32": "3082192"
+  },
+  "c_of_D_expected_from_memory_unverified": {
+    "-1": "2",
+    "0": "20",
+    "3": "-128",
+    "4": "216",
+    "7": "-1026",
+    "8": "1616",
+    "note": "recalled from general familiarity with K3 elliptic genus tables (e.g. Eguchi-Ooguri-Tachikawa-style discriminant coefficients); NOT used in the computation above, only compared after the fact."
+  },
+  "phi_minus_2_1_leading_qorder_y_coeffs": {
+    "1": "-1",
+    "0": "2",
+    "-1": "-1"
+  },
+  "phi01_tau0_nonzero_terms": {
+    "0": "12"
+  },
+  "rigidity_scan_b": {
+    "definition": "Replace the overall factor 2 in Z_K3 := k*phi_{0,1} by a rational k; scan k and report which values satisfy (i) Z(tau,0)=24 [Euler characteristic of a compact hyperkahler 4-fold] and (ii) all reported Fourier coefficients (q^0..q^8, all l) are integers.",
+    "honesty_note": "(i) alone is ONE LINEAR EQUATION in k (since phi_{0,1}(tau,0)=12 is itself a computed constant), so of course it pins k=2 uniquely; that by itself is not a nontrivial rigidity result. The nontrivial fact checked here is (ii): phi_{0,1}'s own Fourier coefficients already have gcd 1 (e.g. c(-1)/2=1), so ANY non-integer k, and in fact any k!=2 even among integers, fails to reproduce Z_K3; k=2 is the unique value in the scanned set satisfying BOTH conditions simultaneously.",
+    "scan": [
+      {
+        "k": "2",
+        "Z_tau0": {
+          "0": "24"
+        },
+        "euler_char_24_holds": true,
+        "all_coeffs_integral": true
+      },
+      {
+        "k": "1",
+        "Z_tau0": {
+          "0": "12"
+        },
+        "euler_char_24_holds": false,
+        "all_coeffs_integral": true
+      },
+      {
+        "k": "3",
+        "Z_tau0": {
+          "0": "36"
+        },
+        "euler_char_24_holds": false,
+        "all_coeffs_integral": true
+      },
+      {
+        "k": "5/2",
+        "Z_tau0": {
+          "0": "30"
+        },
+        "euler_char_24_holds": false,
+        "all_coeffs_integral": false
+      },
+      {
+        "k": "25/12",
+        "Z_tau0": {
+          "0": "25"
+        },
+        "euler_char_24_holds": false,
+        "all_coeffs_integral": false
+      },
+      {
+        "k": "201/100",
+        "Z_tau0": {
+          "0": "603/25"
+        },
+        "euler_char_24_holds": false,
+        "all_coeffs_integral": false
+      },
+      {
+        "k": "0",
+        "Z_tau0": {
+          "0": "0"
+        },
+        "euler_char_24_holds": false,
+        "all_coeffs_integral": true
+      }
+    ]
+  },
+  "could_not_do": [
+    "Item (2): H(tau) extraction via the Appell-Lerch mu-term and M24 decomposition of A_1..A_8. Implemented the Appell-Lerch sum's regularization Psi(tau,z):=T1(tau,z)*S(tau,z) exactly (appell.py), with the n=0 pole cancelled ALGEBRAICALLY against T1's own factor of (1-y) (no infinite-tail truncation anywhere -- see appell.py docstring). But two different, independently-plausible readings of how 'the 24*mu-term' combines with H(tau)*theta_1^2/eta^3 in the task's shorthand gave q,y-gradings that only one of them matched (Z_K3 = (theta_1^2/eta^3)*[24*mu*theta_1^2/eta^3-inverse-consistent combination]), and even that version FAILED the cross-check of extracting H(tau) from two different y-power slices of theta_1^2 and getting the SAME answer (they disagreed sharply, e.g. leading coefficients -22 vs +2 at q^{-1/8}). Rather than report an unverified H(tau)/A_n sequence, or the resulting M24 decomposition or the A_2*60=4*A_1*77 identity check built on top of it, this is left undone.",
+    "Item (3): the 2A-twined series H_2A and the survival of the A_2*60=4*A_1*77 identity under twining, and rigidity scan (a) on the '24' in the mu-term -- all depend on the item-(2) extraction above and were not attempted once that failed its own consistency check."
+  ]
+}
