@@ -46,7 +46,7 @@
 \begin{abstract}
 We present a closed-loop neuro-symbolic framework uniting automated discrete algebraic invariant checking in interactive theorem provers with high-throughput numerical partial differential equation (PDE) and stochastic Langevin integration for string phenomenology and early-universe cosmology. First, we build a Lean 4 formalization of discrete algebraic invariants associated with topological T-duality for Type II superstring theory compactified on a $K3 \times T^2$ fibration. Buscher involutions are encoded via five global axioms in \texttt{proofs/BuscherRules.lean} (\texttt{inv\_inv}, \texttt{buscher\_gmunu\_inv}, \texttt{buscher\_Bmunu\_inv}, \texttt{buscher\_cross\_inv}, \texttt{Phi\_inv}), which are assumed and not kernel-verified; one of them (\texttt{inv\_inv}) is inconsistent when instantiated outside $\mathbb{R}$ (it proves \texttt{False} at \texttt{Nat}), so no downstream theorem in this module establishes target-space duality consistency (tier C). Fourier-Mukai auto-equivalence of the Mukai lattice is instead encoded as a separate structural hypothesis (\texttt{h\_isometry}) rather than derived (tier C), and the Atiyah-Singer index identity ($\chi(K3) = 24$) rests on a distinct axiom, \texttt{atiyah\_singer\_k3}, likewise assumed rather than kernel-verified (tier C). A separately maintained, kernel-checked foundation instead covers the integer $O(d,d;\mathbb{Z})$ charge action and the generalized metric at $B=0$: \texttt{tduality\_inverts\_metric} ($\eta_R \cdot \mathcal{H}(G,0) \cdot \eta_R = \mathcal{H}(G^{-1},0)$ for invertible $G$) is kernel-checked in Lean 4 (v4.33.1, Mathlib v4.33.1) in \texttt{DualScaleStream2}, repository xaviercallens/SocrateAI-Scientific-Agora-LeanMaster, release v2.2.0, and depends only on Lean's three standard axioms \cite{leanmaster2026}, with a downstream restatement \texttt{tduality\_metric\_inversion} tracked in \texttt{lean\_foundation/}; this covers the $O(d,d;\mathbb{Z})$ charge action, not the field-level Buscher rules for the metric, $B$-field, and dilaton described above. The K3 topological invariants ($b_2 = 22$, $\chi = 24$, signature $(3,19)$) are exact arithmetic on entered constants (tier B); by contrast, Kummer orientifold $T^4/\mathbb{Z}_2$ tadpole bookkeeping ($\sum Q = 0$) is axiomatized, and its O-plane assignment has not been reconciled against the cited Gimon-Polchinski construction (hep-th/9601038), so it remains an open investigation (tier C). Other definitions in \texttt{proofs/}, including the Ramond-Ramond charge bookkeeping identity ($\mathrm{rrCharge} = \mathrm{rank} + c_1 + c_2$), are true by construction and do not verify the physics they name. The sporadic $M_{24}$ Mathieu Moonshine BPS character multiplicity identity ($\mathcal{R}_{\text{BPS}} = 2A_2/(4\cdot 2A_1) = 462/360 = 77/60$) is itself kernel-checked as a rational arithmetic identity (\texttt{r\_bps\_from\_eot}, LeanMaster v2.2.0, depending only on Lean's three standard axioms; tier A); we conjecture, but do not establish, that this ratio carries a validated cosmological or primordial-bispectrum interpretation (tier C).
 
-Furthermore, we introduce LeanFlow, a high-throughput neuro-symbolic solver equipped with native duality capability that links the discrete algebraic invariants above (tier A/B/C, as detailed) with a custom stiff integrator suite (integration with the external \texttt{rusty-SUNDIALS} project is planned but not present in this repository) to simulate non-linear cosmological dynamics:
+Furthermore, we introduce LeanFlow, a high-throughput neuro-symbolic solver equipped with native duality capability that links the discrete algebraic invariants above (tier A/B/C, as detailed) with numerical integrators (SciPy's implicit Radau and \texttt{solve\_bvp} solvers and custom explicit Rust integrators; integration with the external \texttt{rusty-SUNDIALS} project is planned but not present in this repository) to simulate non-linear cosmological dynamics:
 (i) \textbf{Native Duality Engine}: LeanFlow embeds continuous Buscher symmetry locks ($R \leftrightarrow \alpha'/R$) and modular group $SL(2, \mathbb{Z})$ invariance directly into the adaptive Backward Differentiation Formula (BDF) integrator, enabling dual-frame co-simulation (Type IIA $\leftrightarrow$ Type IIB) as the cosmological modulus dynamically traverses the Kummer orbifold singularities between the Fricke ($\tau = i$) and Orbifold ($\tau = e^{i\pi/3}$) attractors.
 (ii) \textbf{The Closed Loop}: We achieve an unbroken neuro-symbolic circuit ($\text{Numerical Discovery} \to \text{Topological Classification} \to \text{Algebraic Consistency Check}$). Simulating thermal symmetry breaking via a 2D phenomenological Langevin field theory across a periodic multi-well landscape with $\mathbb{Z}_2$ symmetry ($T_c = 1.0$), we extract the topological 1-skeleton graph via Topological Data Analysis (TDA) Mapper (\numreconcile{187}{Mapper nodes} nodes, \numreconcile{557}{Mapper edges} edges, cycle rank $\beta_1 = \numreconcile{376}{cycle rank}$ of the nerve graph from a single, unseeded run -- re-running Mapper on the same trajectory yields different counts -- isolating stable vacua; persistent-homology intervals are computed separately) and partition configurations into three string-theoretic equivalence classes (Attractor Vacua, Domain Walls, Cosmic Strings). By construction, the mapped discrete equivalence classes have summed Ramond-Ramond charges $\sum Q_i = 0$; Lean verifies this type-level tautology by reflexivity after unfolding the charge definitions, providing an internal-consistency check for the cosmic defect network.
 (iii) \textbf{Symmetron Screening}: We solve the non-linear Poisson boundary value problem for Symmetron screening, obtaining a screening factor $\Delta R/R \approx \numreconcile{1.18\times 10^{-4}}{screening factor}$; compliance with Cassini-type solar-system PPN bounds is not established, since the solver checks only a hard-coded threshold and does not compute or log $|\gamma - 1|$ (tier X).
@@ -320,16 +320,16 @@ In a Fourier-Mukai T-dual pair, topological T-duality would act as an auto-equiv
 \section{The LeanFlow Architecture: Neuro-Symbolic Stiff Solver with Native Duality Capability}
 \label{sec:leanflow}
 
-By coupling Lean 4 discrete algebraic verification with the \texttt{rusty-SUNDIALS} numerical integration suite (a Rust wrapper around SUNDIALS CVODE/IDA developed in a sibling repository not bundled with this codebase), LeanFlow combines high-throughput numerical PDE integration with post-hoc discrete algebraic verification. The continuous physics (geodesic flows, PDE/SDE integration) is computed numerically and is not formally verified; discrete consistency conditions extracted from simulation output are checked against explicitly stated model assumptions. Rather than treating numerical integration and algebraic consistency checking as fully isolated post-hoc stages, LeanFlow couples them into an asynchronous feedback loop, described below.
+LeanFlow is designed to couple Lean 4 discrete algebraic verification with the \texttt{rusty-SUNDIALS} numerical integration suite (a Rust wrapper around SUNDIALS CVODE/IDA developed in a sibling repository that is not bundled with this codebase and was not used for any result reported here). As implemented in this repository, the numerical integration uses SciPy (\texttt{solve\_ivp} with \texttt{method="Radau"} and \texttt{solve\_bvp}, in \texttt{workshopcosmo.py}) and custom explicit Rust integrators (\texttt{rust\_simulator/src/}). LeanFlow combines high-throughput numerical PDE integration with post-hoc discrete algebraic verification. The continuous physics (geodesic flows, PDE/SDE integration) is computed numerically and is not formally verified; discrete consistency conditions extracted from simulation output are checked against explicitly stated model assumptions. Rather than treating numerical integration and algebraic consistency checking as fully isolated post-hoc stages, LeanFlow couples them into an asynchronous feedback loop, described below.
 
 \subsection{Neuro-Symbolic Bridge: Stiff Integrators with Algebraic Guardrails}
 High-energy cosmological systems are notoriously stiff: the characteristic timescales of high-frequency scalar oscillations ($\omega \sim m_\phi \sim 10^3\,H$) differ by many orders of magnitude from the Hubble expansion rate $H(t)$. Classical explicit Runge-Kutta integrators require infinitesimally small timesteps to prevent numerical instability, while naive implicit solvers can drift unphysically into singular regions of moduli space.
 
-LeanFlow resolves this bottleneck by wrapping the \texttt{rusty-SUNDIALS} suite (leveraging CVODE and IDA variable-order Backward Differentiation Formulas, BDF, and Radau IIA methods) inside a runtime layer of algebraic invariant guardrails. During the implicit time-step solution:
+The intended design wraps the \texttt{rusty-SUNDIALS} suite (CVODE and IDA variable-order Backward Differentiation Formulas, BDF) inside a runtime layer of algebraic invariant guardrails. This wrapper is not implemented in this repository. The design targets the implicit time-step solution
 \begin{equation}
 y_n - \sum_{i=1}^k \alpha_i y_{n-i} = h \beta_0 f(t_n, y_n)
 \end{equation}
-LeanFlow evaluates the non-linear algebraic residual while simultaneously enforcing invariant guardrails compiled from formally stated bounds. If a candidate Newton-Raphson update threatens to violate one of these bounds—such as target-space metric positivity $\tau_{\text{im}} > 0$ or the Weak Energy Condition $\rho + p = 2 T_{\text{kin}} \ge 0$—the solver applies an orthogonal projection onto the admissible algebraic manifold. This projection enforces the bound to floating-point precision ($10^{-15}$) at each step; it is a numerical safeguard, not a kernel proof that the continuous trajectory satisfies the bound.
+In the design, the non-linear algebraic residual would be evaluated while enforcing invariant guardrails compiled from formally stated bounds, with a projection onto the admissible set whenever a candidate Newton-Raphson update would violate a bound such as target-space metric positivity $\tau_{\text{im}} > 0$ or the Weak Energy Condition $\rho + p = 2 T_{\text{kin}} \ge 0$. No such Newton-step projection exists in this repository. What the code does is floor the state after each step: $y \mapsto \max(y, 10^{-8})$ inside the right-hand side evaluated by SciPy's Radau solver (\texttt{workshopcosmo.py}), and $\operatorname{Im}\tau, \operatorname{Im}T \mapsto \max(\cdot, 10^{-4})$ after each RK4 step in \texttt{rust\_simulator/src/swampland\_geodesic.rs}. These floors are numerical safeguards. They are not a kernel proof that the continuous trajectory satisfies the bound, and a floored trajectory can mask a genuine violation.
 
 \paragraph{Dual-Tier Execution Architecture: AOT Contract Assertions vs. Asynchronous Batch Gate}
 A central architectural question in coupling interactive theorem provers with numerical solvers is the computational cost of invariant verification. In LeanFlow, the Lean 4 elaboration engine and interactive tactic machinery do \emph{not} execute inside the stiff microsecond BDF inner loop, which would incur prohibitive millisecond-scale interpretation latency per Newton-Raphson iteration. Instead, LeanFlow implements a \textbf{dual-tier verification architecture}:
@@ -403,7 +403,7 @@ LeanFlow orchestrates an unbroken closed-loop neuro-symbolic workflow:
 
 \section{Advanced Phenomenological Dynamics: Swampland, Tachyons, and Tunneling}
 \label{sec:advanced_pheno_dynamics}
-LeanFlow couples numerical PDE integration with post-hoc discrete algebraic verification; it is specialized to moduli geodesics, tachyon condensation, and flux landscapes on $K3 \times T^2$, not a general-purpose engine. We apply this \texttt{rusty-SUNDIALS} $\to$ TDA Mapper / Persistent Homology $\to$ Lean 4 pipeline to three worked examples:
+LeanFlow couples numerical PDE integration with post-hoc discrete algebraic verification; it is specialized to moduli geodesics, tachyon condensation, and flux landscapes on $K3 \times T^2$, not a general-purpose engine. We apply this numerical integration (SciPy and custom Rust; see above) $\to$ TDA Mapper / Persistent Homology $\to$ Lean 4 pipeline to three worked examples:
 \begin{enumerate}
     \item \textbf{Loop 1: The Swampland Distance Conjecture (SDC)}: Moduli geodesic flow and infinite tower mass collapse, topologically detected via persistent homology; a discrete algebraic consistency model is verified in Lean 4.
     \item \textbf{Loop 2: Tachyon Condensation and K-Theory Charge Conservation}: Sen's soliton roll-down at the Kummer singularity, simplicial defect extraction via TDA Mapper, and a discrete Grothendieck group model of charge conservation over modeled bundle classes, verified in Lean 4.
@@ -417,8 +417,8 @@ M(\Delta d) \le M_0 \exp(-\alpha \Delta d), \quad \alpha \sim \mathcal{O}(1) > 0
 \end{equation}
 thereby causing the 4D effective field theory (EFT) to break down at the species scale $\Lambda_{\text{QG}} \le M_{\text{Pl}} \exp(-\alpha \Delta d)$.
 
-\paragraph{Moduli Geodesic Simulation with \texttt{rusty-SUNDIALS}}
-On the $K3 \times T^2$ moduli space parameterized by the complexified K\"ahler modulus $T = \sigma + i \rho$ and axio-dilaton $\tau = x + i y$ with Weil-Petersson metric $ds^2 = \frac{dx^2 + dy^2}{y^2} + \frac{d\sigma^2 + d\rho^2}{\rho^2}$, the \texttt{rusty-SUNDIALS} BDF integrator solves the non-linear hyperbolic geodesic equations:
+\paragraph{Moduli Geodesic Simulation}
+On the $K3 \times T^2$ moduli space parameterized by the complexified K\"ahler modulus $T = \sigma + i \rho$ and axio-dilaton $\tau = x + i y$ with Weil-Petersson metric $ds^2 = \frac{dx^2 + dy^2}{y^2} + \frac{d\sigma^2 + d\rho^2}{\rho^2}$, a fixed-step classical fourth-order Runge-Kutta (RK4) integrator in \texttt{rust\_simulator/src/swampland\_geodesic.rs} solves the non-linear hyperbolic geodesic equations:
 \begin{equation}
 \ddot{x} - \frac{2}{y}\dot{x}\dot{y} = 0, \quad \ddot{y} + \frac{\dot{x}^2 - \dot{y}^2}{y} = 0
 \end{equation}
@@ -432,7 +432,7 @@ As $\Delta d$ grows, the mass gap collapses exponentially with $\alpha = 1/\sqrt
 To characterize the breakdown topologically, we compute the 0-dimensional persistent homology ($H_0$) of the mass spectrum point cloud $\{M_n(\Delta d)\}$ across filtration scales $\epsilon$. As shown in Figure \ref{fig:frontier_loops}(b), the persistence barcodes at $\Delta d = 0, 2, 4, 6$ exhibit dramatic shortening: the bar lengths, representing the spacing between adjacent energy levels in the low-energy spectrum, contract exponentially by over two orders of magnitude, providing a rigorous topological signature of the descent of the infinite tower into the EFT.
 
 \paragraph{Discrete Lean 4 Model of the SDC Bound}
-We model a discrete algebraic analog of the SDC in Lean 4 (\texttt{proofs/SwamplandDistanceConjecture.lean}), where mass collapse is defined by cases rather than derived from continuous physics; this is not a kernel-checked derivation of the Swampland Distance Conjecture. We clarify the precise interface between continuous numerical simulation and Lean 4 formalization: the non-linear hyperbolic geodesic equations on the Poincar\'e upper half-plane and the continuous Kaluza-Klein/winding mass spectrum $M_{(n, m)}(\Delta d)$ are integrated by \texttt{rusty-SUNDIALS}, while persistent homology barcodes capture the metric contraction. In Lean 4, the proof kernel operates as an automated \textbf{discrete algebraic consistency checker}: it models the asymptotic breakdown of the effective field theory over structured inductive types, verifying that when the excursion enters the asymptotic regime ($\Delta d > 0$), the discrete bound invalidates the low-energy EFT cutoff:
+We model a discrete algebraic analog of the SDC in Lean 4 (\texttt{proofs/SwamplandDistanceConjecture.lean}), where mass collapse is defined by cases rather than derived from continuous physics; this is not a kernel-checked derivation of the Swampland Distance Conjecture. We clarify the precise interface between continuous numerical simulation and Lean 4 formalization: the non-linear hyperbolic geodesic equations on the Poincar\'e upper half-plane and the continuous Kaluza-Klein/winding mass spectrum $M_{(n, m)}(\Delta d)$ are integrated by the RK4 integrator in \texttt{rust\_simulator/src/swampland\_geodesic.rs}, while persistent homology barcodes capture the metric contraction. In Lean 4, the proof kernel operates as an automated \textbf{discrete algebraic consistency checker}: it models the asymptotic breakdown of the effective field theory over structured inductive types, verifying that when the excursion enters the asymptotic regime ($\Delta d > 0$), the discrete bound invalidates the low-energy EFT cutoff:
 
 \begin{lstlisting}[language=lean, caption={Lean 4 Discrete Model of the Swampland Distance Conjecture Bound}, label={lst:sdc_proof}]
 namespace SocrateAI.Cosmology.SwamplandDistance
@@ -482,7 +482,7 @@ V(T) = \frac{V_0}{\cosh(T / T_0)}
 As the tachyon rolls to its runaway minimum $|T| \to \infty$, the open string vacuum energy drops to zero ($V \to 0$), dissolving the parent $D\bar{D}$ system. However, topologically non-trivial field profiles where $\det(T) = 0$ along a subspace leave behind stable lower-dimensional BPS D-branes (Sen solitons).
 
 \paragraph{Non-Linear Roll-Down Simulation}
-Using \texttt{rusty-SUNDIALS} and native lattice solvers, we simulate the 1D/2D coupled tachyon equation with radiation damping and gauge fields on the Kummer orbifold:
+Using an explicit first-order (semi-implicit Euler) finite-difference lattice integrator in \texttt{rust\_simulator/src/tachyon\_condensation.rs}, we simulate the 1D/2D coupled tachyon equation with radiation damping and gauge fields on the Kummer orbifold:
 \begin{equation}
 \partial_t^2 T - \partial_x^2 T + \gamma \partial_t T + V'(T) + g^2 A^2 T = 0
 \end{equation}
@@ -540,7 +540,7 @@ theorem tachyon_condensation_preserves_rr_charge (sys : BraneAntiBraneSystem) (d
 end SocrateAI.Cosmology.TachyonKTheory
 \end{lstlisting}
 
-We emphasize the conceptual division of labor: the continuous, non-linear partial differential equation governing tachyon roll-down, radiation damping, and spatial soliton profile formation is integrated numerically by \texttt{rusty-SUNDIALS}, and TDA Mapper isolates the localized solitonic defect node. In Lean 4, the formalization models the discrete Grothendieck group $K_0(X)$ of topological vector bundles. The theorem \texttt{sen\_conjecture\_k\_theory\_conservation} verifies that within the formalized discrete classification schema, assigning the Grothendieck difference class $[E] - [F]$ to the emergent defect strictly conserves the net Ramond-Ramond charge. This serves as an automated algebraic consistency gate ensuring that the numerical defect identified by Mapper is assigned to an admissible K-theory class, while the underlying Quillen superconnections and continuous boundary string field theory (BSFT) decay are simulated dynamically. This is not a kernel-checked derivation of Sen's conjecture or of continuous K-theory charge conservation: the theorem holds by \texttt{rfl} from the construction of \texttt{kSub} and \texttt{systemKTheoryClass}, so it checks internal consistency of the bookkeeping rather than the physics.
+We emphasize the conceptual division of labor: the continuous, non-linear partial differential equation governing tachyon roll-down, radiation damping, and spatial soliton profile formation is integrated numerically by the explicit lattice integrator in \texttt{rust\_simulator/src/tachyon\_condensation.rs}, and TDA Mapper isolates the localized solitonic defect node. In Lean 4, the formalization models the discrete Grothendieck group $K_0(X)$ of topological vector bundles. The theorem \texttt{sen\_conjecture\_k\_theory\_conservation} verifies that within the formalized discrete classification schema, assigning the Grothendieck difference class $[E] - [F]$ to the emergent defect strictly conserves the net Ramond-Ramond charge. This serves as an automated algebraic consistency gate ensuring that the numerical defect identified by Mapper is assigned to an admissible K-theory class, while the underlying Quillen superconnections and continuous boundary string field theory (BSFT) decay are simulated dynamically. This is not a kernel-checked derivation of Sen's conjecture or of continuous K-theory charge conservation: the theorem holds by \texttt{rfl} from the construction of \texttt{kSub} and \texttt{systemKTheoryClass}, so it checks internal consistency of the bookkeeping rather than the physics.
 
 \subsection{Loop 3: Vacuum Decay and Flux Landscape Tunneling (Coleman-De Luccia \& Holographic \texorpdfstring{$c$}{c}-Theorem)}
 In the string flux landscape, discrete vacua are labeled by quantized Ramond-Ramond or Neveu-Schwarz flux integers $N \in \mathbb{Z}$ wrapping cycles on $K3 \times T^2$. First-order phase transitions between adjacent flux vacua ($N+1 \to N$) proceed via quantum tunneling mediated by Coleman-De Luccia (CDL) bounce instantons \cite{coleman1980}.
@@ -646,72 +646,78 @@ We explicitly note the formalization scope: Listing \ref{lst:atiyah_singer} enco
 \section{Topological T-Duality: The Cohomology Gysin Sequence and Flux-Topology Exchange}
 A rigorous foundation for topological T-duality was established by Bouwknegt, Evslin, and Mathai (BEM) \cite{bouwknegt2004, bunke2005}. Consider a spacetime modeled as a principal $S^1$-bundle $\pi: E \to B$ over a base manifold $B$, equipped with background NS-NS 3-form flux $H \in H^3(E, \mathbb{Z})$. T-duality replaces $(E, H)$ with a dual circle bundle $\hat{\pi}: \widehat{E} \to B$ carrying dual flux $\widehat{H} \in H^3(\widehat{E}, \mathbb{Z})$.
 
-Rather than asserting the flux-topology exchange as an ad-hoc axiomatic hypothesis, we formalize the \textbf{cohomology Gysin exact sequence} of the circle bundle $S^1 \hookrightarrow E \xrightarrow{\pi} B$ in \texttt{proofs/GysinBEMSequence.lean}:
+We record a small algebraic model of this setting in \texttt{proofs/GysinBEMSequence.lean}. The relevant segment of the cohomology Gysin sequence of the circle bundle $S^1 \hookrightarrow E \xrightarrow{\pi} B$ is
 \begin{equation}
 \label{eq:gysin_sequence}
 \dots \longrightarrow H^2(B) \xrightarrow{\; \cup c_1(E) \;} H^4(B) \xrightarrow{\; \pi^* \;} H^4(E) \xrightarrow{\; \pi_* \;} H^3(B) \xrightarrow{\; \cup c_1(E) \;} H^5(B) \longrightarrow \dots
 \end{equation}
-Fiber integration $\pi_*: H^k(E) \to H^{k-1}(B)$ satisfies the topological projection formula:
+and, one degree lower, $H^3(E) \xrightarrow{\;\pi_*\;} H^2(B) \xrightarrow{\;\cup c_1(E)\;} H^4(B)$. Fiber integration $\pi_*: H^k(E) \to H^{k-1}(B)$ satisfies the projection formula
 \begin{equation}
-\pi_*(\pi^* \alpha \cup \beta) = \alpha \cup \pi_* \beta, \quad \pi_*(\pi^* \alpha) = 0
+\pi_*(\pi^* \alpha \cup \beta) = \alpha \cup \pi_* \beta, \quad \pi_*(\pi^* \alpha) = 0 .
 \end{equation}
-Topological T-duality requires that the dual bundle $\widehat{E}$ has its first Chern class determined by the pushforward of the original $H$-flux, while the dual flux $\widehat{H}$ integrates along the fiber to the original first Chern class:
+Topological T-duality requires that the dual bundle $\widehat{E}$ has its first Chern class determined by the pushforward of the original $H$-flux, while the dual flux $\widehat{H}$ integrates along the fiber to the original first Chern class \cite{bouwknegt2004}:
 \begin{equation}
-c_1(\widehat{E}) = \pi_* H \in H^2(B, \mathbb{Z}), \quad \hat{\pi}_* \widehat{H} = c_1(E) \in H^2(B, \mathbb{Z})
+c_1(\widehat{E}) = \pi_* H \in H^2(B, \mathbb{Z}), \quad \hat{\pi}_* \widehat{H} = c_1(E) \in H^2(B, \mathbb{Z}) .
 \end{equation}
-From exactness of the Gysin sequence at $H^4(B)$, the pullback along $\pi^*$ annihilates elements in the image of the Euler class cup product: $\pi^*(x \cup c_1(E)) = 0$. Consequently, the dual Chern class satisfies the fundamental topological vanishing theorem:
+Exactness of the Gysin sequence at $H^2(B)$ implies that the composite $H^3(E) \xrightarrow{\pi_*} H^2(B) \xrightarrow{\cup c_1(E)} H^4(B)$ is zero. Applied to $H$, together with the first exchange law, this gives the vanishing
 \begin{equation}
-c_1(E) \cup c_1(\widehat{E}) = c_1(E) \cup \pi_* H = 0 \in H^4(B, \mathbb{Z})
+c_1(E) \cup c_1(\widehat{E}) = c_1(E) \cup \pi_* H = 0 \in H^4(B, \mathbb{Z}) .
 \end{equation}
 
-\begin{lstlisting}[language=lean, caption={Lean 4 Formalization of the Circle Bundle Gysin Sequence and Derived BEM Duality Theorems}, label={lst:bem_duality}]
-namespace SocrateAI.StringTheory.GysinSequence
+\begin{lstlisting}[language=lean, caption={Excerpt of \texttt{proofs/GysinBEMSequence.lean} (docstrings abridged; Unicode replaced by math-mode symbols for typesetting)}, label={lst:bem_duality}]
+namespace SocrateAI.StringTheory.GysinBEM
 
-structure CohomologyRing (R : Type) [CommRing R] where
-  H2_B : R  -- H^2(B, Z)
-  H3_B : R  -- H^3(B, Z)
-  H4_B : R  -- H^4(B, Z)
-  H3_E : R  -- H^3(E, Z)
-  H4_E : R  -- H^4(E, Z)
+structure CircleBundle (R : Type) [CommRing R] where
+  c1 : R  -- First Chern class e = c_1(E) in H^2(B)
 
-structure CircleBundle (R : Type) [CommRing R] (cr : CohomologyRing R) where
-  c1 : R  -- Euler class / First Chern class c_1(E) in H^2(B)
-  pi_star : R -> R   -- Pullback pi*: H^k(B) -> H^k(E)
-  pi_push : R -> R   -- Pushforward / Fiber integration pi*: H^k(E) -> H^{k-1}(B)
-  h_exact_push_pull : forall x : R, pi_push (pi_star x) = 0
+def cupEuler {R : Type} [CommRing R] (bundle : CircleBundle R) (x : R) : R :=
+  x * bundle.c1
 
-def cupEuler {R : Type} [CommRing R] {cr : CohomologyRing R}
-    (bundle : CircleBundle R cr) (x : R) : R := x * bundle.c1
+structure GysinMorphisms (R : Type) [CommRing R] (bundle : CircleBundle R) where
+  pullback2 : R $\to$ R     -- H^2(B) $\to$ H^2(E)
+  pullback3 : R $\to$ R     -- H^3(B) $\to$ H^3(E)
+  pushforward3 : R $\to$ R  -- H^3(E) $\to$ H^2(B)
+  pushforward4 : R $\to$ R  -- H^4(E) $\to$ H^3(B)
 
-structure GysinExactSequence (R : Type) [CommRing R] {cr : CohomologyRing R}
-    (bundle : CircleBundle R cr) where
-  exact_at_H4_B : forall x : R, bundle.pi_star (cupEuler bundle x) = 0
+def gysin_exact_at_H2B {R : Type} [CommRing R] (bundle : CircleBundle R)
+    (m : GysinMorphisms R bundle) : Prop :=
+  $\forall$ y : R, (m.pushforward3 y) * bundle.c1 = 0
 
-structure BEMDualPair (R : Type) [CommRing R] (cr : CohomologyRing R) where
-  E : CircleBundle R cr
-  E_dual : CircleBundle R cr
-  H : R       -- NS-NS 3-form flux H in H^3(E, Z)
-  H_dual : R  -- Dual 3-form flux H_dual in H^3(E_dual, Z)
-  bem_dual_c1 : E_dual.c1 = E.pi_push H
-  bem_dual_H  : E_dual.pi_push H_dual = E.c1
+structure BEMTDualPair (R : Type) [CommRing R] where
+  bundle : CircleBundle R
+  dual_bundle : CircleBundle R
+  flux_H : R        -- H $\in$ H^3(E)
+  dual_flux_H : R   -- H^hat $\in$ H^3(E^hat)
+  seq : ExactGysinSequence R bundle
+  dual_seq : ExactGysinSequence R dual_bundle
+  -- BEM exchange laws (hypotheses, not derived):
+  h_bem_first_chern_dual : dual_bundle.c1 = seq.pushforward3 flux_H
+  h_bem_dual_flux : dual_seq.pushforward3 dual_flux_H = bundle.c1
 
-/-- Derived Theorem: The original Euler class cup-product with the pushforward 
-    of the dual flux yields the characteristic vanishing in H^4(B, Z).
-    Note: multiplication `*` in the commutative ring `R` represents the
-    graded cup product in the integral cohomology ring $H^*(B, \mathbb{Z})$. -/
-theorem bem_characteristic_vanishing {R : Type} [CommRing R] {cr : CohomologyRing R}
-    (pair : BEMDualPair R cr) (x : R) :
-    x * pair.E.c1 * pair.E_dual.c1 = x * pair.E.c1 * pair.E.pi_push pair.H := by
-  rw [pair.bem_dual_c1]
+theorem euler_class_pullback_zero {R : Type} [CommRing R]
+    (bundle : CircleBundle R) (seq : ExactGysinSequence R bundle) :
+    seq.pullback2 (cupEuler bundle 1) = seq.pullback2 bundle.c1 := by
+  simp [cupEuler]
 
-/-- Derived Theorem: Bidirectional BEM flux-topology exchange duality. -/
-theorem bem_derived_exchange {R : Type} [CommRing R] {cr : CohomologyRing R}
-    (pair : BEMDualPair R cr) :
-    pair.E_dual.c1 = pair.E.pi_push pair.H $\wedge$ pair.E_dual.pi_push pair.H_dual = pair.E.c1 := by
-  exact $\langle$pair.bem_dual_c1, pair.bem_dual_H$\rangle$
+theorem bem_chern_pairing_zero {R : Type} [CommRing R] (pair : BEMTDualPair R) :
+    pair.bundle.c1 * pair.dual_bundle.c1 = 0 := by
+  have h_dual : pair.dual_bundle.c1 = pair.seq.pushforward3 pair.flux_H :=
+    pair.h_bem_first_chern_dual
+  have h_exact : (pair.seq.pushforward3 pair.flux_H) * pair.bundle.c1 = 0 :=
+    pair.seq.h_exact_B pair.flux_H
+  rw [$\leftarrow$ h_dual] at h_exact
+  rw [mul_comm] at h_exact
+  exact h_exact
+
+theorem bem_t_duality_involution {R : Type} [CommRing R] (pair : BEMTDualPair R) :
+    pair.dual_seq.pushforward3 pair.dual_flux_H = pair.bundle.c1 $\wedge$
+    pair.seq.pushforward3 pair.flux_H = pair.dual_bundle.c1 := by
+  exact $\langle$pair.h_bem_dual_flux, pair.h_bem_first_chern_dual.symm$\rangle$
+
+end SocrateAI.StringTheory.GysinBEM
 \end{lstlisting}
 
-Listing \ref{lst:bem_duality} establishes that LeanFlow's formal gate is not a set of ad-hoc assertions, but a derived theorem pipeline rooted in the cohomology Gysin sequence of the circle fibration.
+\paragraph{Scope of Listing \ref{lst:bem_duality}.} All three theorems are kernel-checked. \texttt{\#print axioms} reports \texttt{[propext]} for \texttt{euler\_class\_pullback\_zero} and no axioms for the other two. What they establish is much narrower than the cohomological statements above. (i) Every cohomology group is modelled by the same commutative ring $R$, with no grading, and the cup product is ring multiplication. (ii) The ``exactness'' conditions (\texttt{gysin\_exact\_at\_H2B} and its siblings, bundled as fields of \texttt{ExactGysinSequence}) assert only that consecutive composites vanish, $\operatorname{im} \subseteq \ker$; the reverse inclusion is not encoded, so the sequence is a complex, not an exact sequence. (iii) The BEM exchange laws are hypotheses: they are fields of \texttt{BEMTDualPair}, so \texttt{bem\_t\_duality\_involution} returns those two fields and derives nothing. (iv) Despite its name, \texttt{euler\_class\_pullback\_zero} states only $\pi^*(1 \cdot c_1) = \pi^*(c_1)$, not $\pi^*(c_1) = 0$. (v) \texttt{bem\_chern\_pairing\_zero} is the only derivation: two rewrites that combine the composite-zero hypothesis at $H^2(B)$ with the first exchange law. It is a correct commutative-ring identity under those hypotheses (tier A as algebra). It is not a formalization of the Gysin sequence of a circle bundle, and it does not show the absence of global anomalies in the T-dual background (tier C). A faithful treatment requires graded cohomology and a genuine exactness statement, and none is available in this repository.
 
 
 \section{Fundamental String Cosmology: Moduli Dynamics, Symmetron Screening, and Energy Conditions}
@@ -726,7 +732,7 @@ Coupled to 4D Friedmann-Lema\^itre-Robertson-Walker (FLRW) gravity with Hubble e
 \ddot{x} + 3 H \dot{x} - \frac{2}{y} \dot{x}\dot{y} + y^2 \frac{\partial V}{\partial x} = 0, \quad
 \ddot{y} + 3 H \dot{y} + \frac{1}{y}(\dot{x}^2 - \dot{y}^2) + y^2 \frac{\partial V}{\partial y} = 0
 \end{equation}
-LeanFlow executes this stiff dynamical system using the adaptive Backward Differentiation Formula (BDF) solvers in \texttt{rusty-SUNDIALS}. The solver applies a regularization intended to keep the trajectory within the fundamental modular domain $\mathcal{F} = \{ \tau \in \mathbb{H} : |\tau| \ge 1, |\operatorname{Re}(\tau)| \le 1/2 \}$; whether the unregularized dynamics remain within $\mathcal{F}$ has not been independently verified. The numerical simulation suggests that the modulus relaxes from high-energy initial conditions toward two fixed points, $\tau = i$ and $\tau = e^{i\pi/3}$ (the Kummer orbifold point). The energy-condition development below assumes the invariant $y = \tau_{\text{im}} > 0$; this is not kernel-checked in this repository (see below for why). Because $\mathcal{F}$ requires $|\tau| \ge 1$ and $|\operatorname{Re}(\tau)| \le 1/2$, any $\tau \in \mathcal{F}$ satisfies $y \ge \sqrt{3}/2 \approx 0.866$; a previously reported minimum $\min(y) = 0.289$ is inconsistent with this bound and could not be traced to any output field in this repository, so it is withdrawn pending an identified source.
+LeanFlow integrates this stiff dynamical system with SciPy's implicit Radau IIA solver (\texttt{solve\_ivp} with \texttt{method="Radau"}, \texttt{workshopcosmo.py}). The implementation applies a regularization intended to keep the trajectory within the fundamental modular domain $\mathcal{F} = \{ \tau \in \mathbb{H} : |\tau| \ge 1, |\operatorname{Re}(\tau)| \le 1/2 \}$; whether the unregularized dynamics remain within $\mathcal{F}$ has not been independently verified. The numerical simulation suggests that the modulus relaxes from high-energy initial conditions toward two fixed points, $\tau = i$ and $\tau = e^{i\pi/3}$ (the Kummer orbifold point). The energy-condition development below assumes the invariant $y = \tau_{\text{im}} > 0$; this is not kernel-checked in this repository (see below for why). Because $\mathcal{F}$ requires $|\tau| \ge 1$ and $|\operatorname{Re}(\tau)| \le 1/2$, any $\tau \in \mathcal{F}$ satisfies $y \ge \sqrt{3}/2 \approx 0.866$; a previously reported minimum $\min(y) = 0.289$ is inconsistent with this bound and could not be traced to any output field in this repository, so it is withdrawn pending an identified source.
 
 \subsection{Symmetron Screening Mechanics and Non-Linear Poisson BVP}
 Scalar-tensor modifications of general relativity with non-trivial matter couplings risk violating tight solar system equivalence principle constraints unless an effective screening mechanism is present \cite{brax2021}. In our compactification, the light scalar modulus $\phi$ couples conformally to the matter sector via the Jordan-frame metric:
@@ -772,7 +778,7 @@ In our simulation, we assign the physical mass scales:
 \begin{equation}
 \mu = 1.0 \times 10^{-3}\,\text{eV}, \quad M = 10.0\,M_{\text{Pl}}, \quad \lambda = 1.0
 \end{equation}
-which establishes the vacuum VEV $\phi_0 = 1.0 \times 10^{-3}\,\text{eV}$ and places $\rho_c \approx 10^{-4} \rho_{\text{crit}}$. For an astrophysical body of radius $R$ with surface Newtonian gravitational potential $\Phi_N = \frac{G M_{\text{body}}}{R} \approx 2.12 \times 10^{-6}$ (representative of solar/stellar configurations), \texttt{rusty-SUNDIALS} integrates the non-linear BVP. The interior scalar field is driven to $\phi(0)/\phi_0 = \numreconcile{1.97\times 10^{-14}}{\texttt{interior\_suppression}}$, indicating strong local symmetry restoration in the deep interior. The field transitions to its vacuum expectation value only within a narrow outer shell of thickness $\Delta R$, whose thickness the thin-shell approximation estimates as:
+which establishes the vacuum VEV $\phi_0 = 1.0 \times 10^{-3}\,\text{eV}$ and places $\rho_c \approx 10^{-4} \rho_{\text{crit}}$. For an astrophysical body of radius $R$ with surface Newtonian gravitational potential $\Phi_N = \frac{G M_{\text{body}}}{R} \approx 2.12 \times 10^{-6}$ (representative of solar/stellar configurations), SciPy's collocation solver \texttt{solve\_bvp} (\texttt{workshopcosmo.py}) integrates the non-linear BVP. The interior scalar field is driven to $\phi(0)/\phi_0 = \numreconcile{1.97\times 10^{-14}}{\texttt{interior\_suppression}}$, indicating strong local symmetry restoration in the deep interior. The field transitions to its vacuum expectation value only within a narrow outer shell of thickness $\Delta R$, whose thickness the thin-shell approximation estimates as:
 \begin{equation}
 \frac{\Delta R}{R} = \frac{\phi_0^2}{6 M^2 \Phi_N}
 \end{equation}
@@ -867,7 +873,7 @@ end SocrateAI.Cosmology.EnergyConditions
 \end{lstlisting}
 
 \subsection{Cosmological Perturbations and CMB Observables via Mukhanov-Sasaki Integration}
-To bridge our string vacuum model with near-future observations (e.g., LiteBIRD, CMB-S4), we intend to extend the rusty-SUNDIALS framework to compute cosmological perturbations. While the background Einstein-Klein-Gordon equations govern the continuous flow of the $\tau$ modulus described above, integrating the Mukhanov-Sasaki equation to track quantum fluctuations, and verifying gauge invariance of the resulting perturbation variables, are implementation goals that have not been independently verified in this repository. No simulation output reports computed values of the scalar spectral index ($n_s$) or the tensor-to-scalar ratio ($r$), and no comparison to Cosmic Microwave Background observational bounds has been carried out; this is left to future work once such a pipeline exists and its outputs are logged.
+To bridge our string vacuum model with near-future observations (e.g., LiteBIRD, CMB-S4), we intend to extend the numerical framework to compute cosmological perturbations. While the background Einstein-Klein-Gordon equations govern the continuous flow of the $\tau$ modulus described above, integrating the Mukhanov-Sasaki equation to track quantum fluctuations, and verifying gauge invariance of the resulting perturbation variables, are implementation goals that have not been independently verified in this repository. No simulation output reports computed values of the scalar spectral index ($n_s$) or the tensor-to-scalar ratio ($r$), and no comparison to Cosmic Microwave Background observational bounds has been carried out; this is left to future work once such a pipeline exists and its outputs are logged.
 
 \subsection{Lyapunov Stability of the Moduli Space Attractor}
 A critical question in string phenomenology is whether a derived vacuum is robust against early-universe chaotic initial conditions; one route to an answer is to compute Lyapunov exponents for the phase-space flow of the $T^2$ moduli toward the fixed point $\tau = i$ using the continuous BDF solvers. No Lyapunov-exponent computation, log, or output file for this trajectory exists in this repository, so we do not report a value here; this analysis is pending (tier X). Establishing global asymptotic stability of the attractor would, in addition, require showing that no other direction of the moduli space admits saddle-type behavior, which containment of trajectories within the fundamental domain -- itself not kernel-checked in this repository, as above -- does not by itself provide.
