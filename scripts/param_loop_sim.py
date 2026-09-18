@@ -3,8 +3,9 @@
 param_loop_sim.py -- REQ-LOOP-01: Parametrized experiment harness for the
 Hypothesis -> Experimentation -> TDA -> reduce-parameter loop.
 
-Takes a 6-vector of theory parameters (a_pot, b_pot, mu_sym, lambda_sym,
-pta_suppression, c4_c0_ratio) and computes, from a single call into
+Takes the theory parameters (a_pot, b_pot, mu_sym, pta_suppression,
+c4_c0_ratio; lambda_sym was deleted in round 2, see
+audit/zero_param_loop/lambda_deletion/) and computes, from a single call into
 workshopcosmo.py, three observable blocks:
 
   1. dark-energy observables  (quintessence ODE -> w(z), w0/wa CPL fit,
@@ -49,14 +50,14 @@ import workshopcosmo as wc  # noqa: E402
 # -----------------------------------------------------------------------
 # Defaults: exactly the hard-coded values workshopcosmo.py used before this
 # harness existed (a_pot=1.0, b_pot=0.01 from compute_potential;
-# mu_sym=1.0, lambda_sym=1.0 from run_symmetron_screening_simulation;
+# mu_sym=1.0 from run_symmetron_screening_simulation (lambda_sym, formerly 1.0,
+# no longer exists: the psi-form equation does not contain it);
 # pta_suppression=0.005, c4_c0_ratio=16.07 from run_nanograv_hexadecapole_simulation).
 # -----------------------------------------------------------------------
 DEFAULT_PARAMS: Dict[str, float] = {
     "a_pot": 1.0,
     "b_pot": 0.01,
     "mu_sym": 1.0,
-    "lambda_sym": 1.0,
     "pta_suppression": 0.005,
     "c4_c0_ratio": 16.07,
 }
@@ -172,8 +173,10 @@ def compute_dark_energy_observables(a_pot: float, b_pot: float) -> Dict[str, Any
 # =============================================================================
 # Block 2: screening observable
 # =============================================================================
-def compute_screening_observable(mu_sym: float, lambda_sym: float) -> Dict[str, Any]:
-    res = wc.run_symmetron_screening_simulation(mu_sym=mu_sym, lambda_sym=lambda_sym)
+def compute_screening_observable(mu_sym: float) -> Dict[str, Any]:
+    # lambda_sym was deleted (round 2 skeptic condition): the screening equation is
+    # solved in psi = phi/phi_0 form, where lambda does not appear.
+    res = wc.run_symmetron_screening_simulation(mu_sym=mu_sym)
     ssf = float(res["screening_suppression_factor"])
     pcr = float(res["phi_center_ratio"])
     # workshopcosmo's run_symmetron_screening_simulation always reports
@@ -253,7 +256,7 @@ def evaluate_point(params: Dict[str, float]) -> Dict[str, Any]:
     merged.update(params)
     t0 = time.time()
     dark_energy = compute_dark_energy_observables(merged["a_pot"], merged["b_pot"])
-    screening = compute_screening_observable(merged["mu_sym"], merged["lambda_sym"])
+    screening = compute_screening_observable(merged["mu_sym"])
     pta = compute_pta_observable(merged["pta_suppression"], merged["c4_c0_ratio"])
     elapsed = time.time() - t0
     return {
@@ -401,10 +404,10 @@ def run_selftest() -> Dict[str, Any]:
     # (see review notes) where such a change left ALL_PASS=True. Uses the
     # /10 direction because x10 sends the BVP fallback to NaN (see Check B).
     print("[selftest] Check D: vitality -- mu_sym actually moves screening_suppression_factor ...")
-    ssf_base = compute_screening_observable(DEFAULT_PARAMS["mu_sym"], DEFAULT_PARAMS["lambda_sym"])[
+    ssf_base = compute_screening_observable(DEFAULT_PARAMS["mu_sym"])[
         "screening_suppression_factor"
     ]
-    ssf_div10 = compute_screening_observable(DEFAULT_PARAMS["mu_sym"] / 10.0, DEFAULT_PARAMS["lambda_sym"])[
+    ssf_div10 = compute_screening_observable(DEFAULT_PARAMS["mu_sym"] / 10.0)[
         "screening_suppression_factor"
     ]
     d_diff = abs(ssf_base - ssf_div10)
