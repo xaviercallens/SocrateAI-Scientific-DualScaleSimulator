@@ -1,0 +1,134 @@
+{
+  "N=6": {
+    "N": "N=6",
+    "num_fixed_points_computed": 16,
+    "chi_U_computed": -8,
+    "chi_S2_computed": 2,
+    "chi_RP3_computed_from_link_betti": 0,
+    "chi_cone_RP3_STATED": 1,
+    "chi_of_k_scan": {
+      "0": 8,
+      "1": 9,
+      "2": 10,
+      "3": 11,
+      "4": 12,
+      "5": 13,
+      "6": 14,
+      "7": 15,
+      "8": 16,
+      "9": 17,
+      "10": 18,
+      "11": 19,
+      "12": 20,
+      "13": 21,
+      "14": 22,
+      "15": 23,
+      "16": 24
+    },
+    "chi_of_k_is_affine_in_k": true,
+    "chi_of_k_slope": 1,
+    "closed_form": "chi(X_k) = 8 + 1*k",
+    "solution_set_chi_equals_24": {
+      "set": [
+        16
+      ],
+      "classification": "NORMALISATION",
+      "reason": "selecting condition chi(X_k)==24 is built from the literal target value 24 (the external identification of this resolution as K3); chi(X_k) is strictly monotonic (affine, slope=1) in k, so this condition trivially isolates a point for ANY target, carrying no independent discriminating power",
+      "input_that_fixes_it": "the literal target chi=24, i.e. the physics assertion that this resolution IS the K3 surface -- an external input, not derived here"
+    },
+    "candidate_structural_condition_manifoldness": {
+      "criterion": "X_k is a smooth closed manifold (no remaining orbifold points) iff k == num_fixed",
+      "classification": "REJECTED as an independent rigid criterion",
+      "reason": "definitional given the X_k construction (X_k is DEFINED to have 16-k unresolved cone points), not an independent GUDHI computation; a genuinely computable Betti-number-only distinguishing test was sought (Z/2-torsion jump at unresolved links, degree-1 MV term) and found NOT to depend on k with the tools available here (see module docstring, points (i)-(ii))"
+    },
+    "structural_but_weak_condition_parity": {
+      "criterion": "chi(X_k) even (necessary for a closed even-dimensional manifold, via Poincare duality: b1=b3 forces chi even)",
+      "classification": "STRUCTURAL but WEAK (does not use the literal target 24 anywhere)",
+      "solution_set": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16
+      ],
+      "set_size": 9,
+      "isolates_single_point": false
+    },
+    "negative_control_k=num_fixed-1": {
+      "k": 15,
+      "chi": 23,
+      "fails_chi_24": true
+    },
+    "rigidity_conclusion": "NO RIGID selecting condition for k=16 was found in this track's own data. chi(X_k)==24 is NORMALISATION (external target). The only condition found that avoids referencing the target value (chi parity) is structural but WEAK: it narrows k to a 9-element set, not a single point. This is a materially different, more conservative conclusion than v1's claim of a rigid, two-independent-criteria result."
+  },
+  "N=8": {
+    "N": "N=8",
+    "num_fixed_points_computed": 16,
+    "chi_U_computed": -8,
+    "chi_S2_computed": 2,
+    "chi_RP3_computed_from_link_betti": 0,
+    "chi_cone_RP3_STATED": 1,
+    "chi_of_k_scan": {
+      "0": 8,
+      "1": 9,
+      "2": 10,
+      "3": 11,
+      "4": 12,
+      "5": 13,
+      "6": 14,
+      "7": 15,
+      "8": 16,
+      "9": 17,
+      "10": 18,
+      "11": 19,
+      "12": 20,
+      "13": 21,
+      "14": 22,
+      "15": 23,
+      "16": 24
+    },
+    "chi_of_k_is_affine_in_k": true,
+    "chi_of_k_slope": 1,
+    "closed_form": "chi(X_k) = 8 + 1*k",
+    "solution_set_chi_equals_24": {
+      "set": [
+        16
+      ],
+      "classification": "NORMALISATION",
+      "reason": "selecting condition chi(X_k)==24 is built from the literal target value 24 (the external identification of this resolution as K3); chi(X_k) is strictly monotonic (affine, slope=1) in k, so this condition trivially isolates a point for ANY target, carrying no independent discriminating power",
+      "input_that_fixes_it": "the literal target chi=24, i.e. the physics assertion that this resolution IS the K3 surface -- an external input, not derived here"
+    },
+    "candidate_structural_condition_manifoldness": {
+      "criterion": "X_k is a smooth closed manifold (no remaining orbifold points) iff k == num_fixed",
+      "classification": "REJECTED as an independent rigid criterion",
+      "reason": "definitional given the X_k construction (X_k is DEFINED to have 16-k unresolved cone points), not an independent GUDHI computation; a genuinely computable Betti-number-only distinguishing test was sought (Z/2-torsion jump at unresolved links, degree-1 MV term) and found NOT to depend on k with the tools available here (see module docstring, points (i)-(ii))"
+    },
+    "structural_but_weak_condition_parity": {
+      "criterion": "chi(X_k) even (necessary for a closed even-dimensional manifold, via Poincare duality: b1=b3 forces chi even)",
+      "classification": "STRUCTURAL but WEAK (does not use the literal target 24 anywhere)",
+      "solution_set": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16
+      ],
+      "set_size": 9,
+      "isolates_single_point": false
+    },
+    "negative_control_k=num_fixed-1": {
+      "k": 15,
+      "chi": 23,
+      "fails_chi_24": true
+    },
+    "rigidity_conclusion": "NO RIGID selecting condition for k=16 was found in this track's own data. chi(X_k)==24 is NORMALISATION (external target). The only condition found that avoids referencing the target value (chi parity) is structural but WEAK: it narrows k to a 9-element set, not a single point. This is a materially different, more conservative conclusion than v1's claim of a rigid, two-independent-criteria result."
+  }
+}

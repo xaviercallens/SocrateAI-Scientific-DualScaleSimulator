@@ -1,0 +1,95 @@
+{
+  "tier": "B (exact simplicial arithmetic + a hybrid Mayer-Vietoris step) at best; never 'proved'.",
+  "blindness_self_report": [
+    "No file under SocrateAI-Scientific-Agora-LeanMaster, k3t2-sealed-v2, proofs/, lean_foundation/, audit/PAPER_FACTS.md, or the v1 sealed-comparison files (targets_sealed.json, comparison.json, agreement_ledger.json, build_ledger.py, REPORT.md, reverse/, skeptic/) was opened, read, grepped or listed in this session. v1 CODE in genus-moonshine/, dyons/, lattices-duality/, tda-gudhi/ was read and reused (as licensed), but not its sealed comparison outputs."
+  ],
+  "premise_checks": {
+    "closed_star_disjointness": {
+      "4": false,
+      "6": true,
+      "8": true
+    },
+    "nonsingular_link_is_S3": {
+      "4": true,
+      "6": true,
+      "8": true
+    },
+    "N4_excluded_because": "closed stars of the 16 singular points are NOT pairwise disjoint at N=4 (computed, see 00_premise_checks_results.json); this despite N=4's raw Betti numbers numerically matching N=6/N=8 -- that numerical agreement is explicitly NOT treated as evidence the N=4 premise held.",
+    "valid_N_used_downstream": [
+      6,
+      8
+    ],
+    "source": "00_premise_checks_results.json"
+  },
+  "resolved_K3_betti_numbers": {
+    "N=6": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1
+    },
+    "N=8": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1
+    },
+    "labeling": "b1,b2 COMPUTED (Mayer-Vietoris from GUDHI Betti numbers of U and links); b0,b3,b4 STATED (connectedness/Poincare duality), unchanged from v1",
+    "cross_field_Z5_agrees": {
+      "N=6": true,
+      "N=8": true
+    },
+    "chi_fvector_vs_betti_cross_check": {
+      "N=6": true,
+      "N=8": true
+    },
+    "torsion_control_RP3_mod2_jump_confirmed": {
+      "N=6": true,
+      "N=8": true
+    },
+    "source": "03_resolution_hybrid_results.json"
+  },
+  "K3_x_T2_kunneth": {
+    "betti": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+    ],
+    "chi": 0,
+    "chi_cross_check_matches_multiplicativity": true,
+    "all_N_and_fields_agree": true,
+    "source": "04_kunneth_results.json"
+  },
+  "rigidity_scan_over_k": {
+    "closed_form": "chi(X_k) = 8 + 1*k",
+    "chi_equals_24_classification": "NORMALISATION",
+    "chi_equals_24_solution_set": [
+      16
+    ],
+    "manifoldness_condition_classification": "REJECTED as an independent rigid criterion",
+    "parity_condition_classification": "STRUCTURAL but WEAK (does not use the literal target 24 anywhere)",
+    "parity_solution_set_size": 9,
+    "conclusion": "NO RIGID selecting condition for k=16 was found in this track's own data. chi(X_k)==24 is NORMALISATION (external target). The only condition found that avoids referencing the target value (chi parity) is structural but WEAK: it narrows k to a 9-element set, not a single point. This is a materially different, more conservative conclusion than v1's claim of a rigid, two-independent-criteria result.",
+    "agrees_at_N8": true,
+    "source": "05_rigidity_scan_results.json"
+  },
+  "translation_negative_control": {
+    "N=6": {
+      "dropped": false,
+      "passes_halving_check": true,
+      "matches_T4_betti": true
+    },
+    "N=8": {
+      "dropped": false,
+      "passes_halving_check": true,
+      "matches_T4_betti": true
+    },
+    "source": "02_invariance_and_quotient_results.json"
+  }
+}
