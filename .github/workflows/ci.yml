@@ -35,7 +35,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e .[dev]
-          pip install numpy scipy scikit-learn matplotlib pandas
+          pip install numpy scipy scikit-learn matplotlib pandas networkx
       - name: Install elan
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain none
@@ -96,7 +96,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e .[dev]
-          pip install numpy scipy scikit-learn matplotlib pandas
+          pip install numpy scipy scikit-learn matplotlib pandas networkx
       - name: Run cross consistency check
         continue-on-error: true
         run: |
