@@ -189,8 +189,10 @@ REVERSE LOOP: reduced parameters -> TDA -> experiment -> hypothesis. Work under 
 4. HYPOTHESIS feedback: in plain words, what does this round say the theory must change? (e.g. "potential parameters are invisible to data because the field is frozen: either the quintessence sector is removed and dark energy IS the self-dual constant, or the potential must be steepened by a derived, not tuned, amount").
 Commit.`, { label: `r${r}:reverse`, phase: 'Reverse', model: 'sonnet', schema: REVERSE })
 
+  const r3note = r >= 3 ? `
+NOTE FOR THE ROUND-3 SKEPTIC: after round 3's forward/reverse agents ran, the orchestrator landed commit 8b8911c on loop/zero-param ("delete lambda_sym -- symmetron solved in psi = phi/phi_0 form") to meet the round-2 skeptic's condition. It was written by the orchestrator, NOT by you: verify it independently (read the diff, re-run audit/zero_param_loop/lambda_deletion/test_lambda_deletion.py and the harness selftest, and try your own mutation). Decide whether lambda_sym now counts as DELETED (count 2) or stays convention_only (count 3). Also state explicitly, for a_pot/b_pot, that the replacement constant Omega_Lambda is an imported Planck value (tier L), so the removal is 'replaced by a measured constant', not 'derived from K3 x T2'.` : ''
   const verdict = await agent(`${RULES}
-${state}
+${state}${r3note}
 You are the SKEPTIC for round ${r}. You produced none of this. Default to rejecting what you cannot reproduce.
 FORWARD: ${JSON.stringify(fwd)}
 REVERSE: ${JSON.stringify(rev)}

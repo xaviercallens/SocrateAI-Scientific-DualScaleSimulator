@@ -26,10 +26,33 @@ X exploratory numerics.
   (`proofs/MukaiLatticeK3.lean`); Kummer b₂ = 22, χ = 24, signature (3,19) as arithmetic on entered
   constants (tier B); EOT multiplicity arithmetic and 462·60 = 360·77 (tier B).
 - `proofs/FTheoryCosmology.lean` is not a build target and does not compile.
-- Orientifold bookkeeping: files cite Gimon–Polchinski (hep-th/9601038) for the 16 fixed points of
-  T⁴/ℤ₂ while assigning O7⁻ planes (charge −4) and 32 D7-branes (+2). The construction cited and the
-  O-plane type assigned have not been reconciled against the source. Status: UNRESOLVED (tier C,
-  under revision). Do not state the correct O-plane type.
+- Orientifold bookkeeping: RESOLVED 2026-09-18 at literature level (tier L). Sources pinned on branch
+  `loop/k3t2-rigidity`, `audit/k3t2_rigidity_v2/sources/` (sha256 in SHA256SUMS).
+  - Type IIB on K3 × T²/ℤ₂ (Tripathy–Trivedi, hep-th/0301139, §2.2, text lines 160–176):
+    - "The ℤ₂ orientifold symmetry has 4 fixed points on the T², an O7-plane is located at each of
+      these fixed points. To cancel the resulting 7-brane charge 16 D7-branes need to be added."
+    - O7s and D7s wrap K3. That induces 2 units of D3 charge per O7 and 1 per D7: 4·2 + 16·1 = 24.
+    - Their eq. (2.3) is **½ N_flux + N_D3 = 24**, where N_flux = (2π)⁻⁴(α′)⁻² ∫ H₃∧F₃ is taken over the
+      covering space (footnote: in F-theory, 24 (p,q) 7-branes each carry one unit).
+    - In their symmetric configuration each O7 carries 4 D7s (lines 312–314).
+    - Hence −4 per O7 in D7 units. That value is an inference from 16/4, not a quote.
+  - The 16 fixed points of T⁴/ℤ₂ are the orbifold limit of the **K3 factor**. The IIB orientifold does
+    not act on K3, so **no O7-plane sits at a Kummer point**.
+  - In the Type I / Gimon–Polchinski description (T-dual along T²) those points carry O5-planes and
+    half five-branes. BLPSSW (hep-th/9605184, §1, text lines 227–229) say "there must be one instanton
+    hidden at each fixed point", and after blow-up "eight 5-branes on a smooth K3" remain (p. 10).
+    16 + 8 = 24 is our inference.
+  - Therefore the assignment "O7⁻ (−4) at each of the 16 Kummer points + 32 D7 (+2)" in
+    `proofs/KummerTDAAnomalyCertification.lean`, `proofs/TadpoleCancellation.lean` and the old paper
+    text describes no construction. Its arithmetic 64 − 64 = 0 is true but has no physical content.
+    **Withdrawn.**
+  - LeanMaster `DualScaleStream2.Flux.Tadpole.tadpole_budget` (flux + n = 24, restated here as
+    `lean_foundation` `tadpole_conservation`) has the same form as eq. (2.3) with flux := ½ N_flux.
+    - LeanMaster sources it to Dasgupta–Rajesh–Sethi (M-theory on K3 × K3, ½∫G∧G + n = 24 = χ(K3×K3)/24).
+    - That setting is dual to IIB on K3 × T²/ℤ₂, so two independent literature routes give the same 24.
+  - LeanMaster `StringTheoryFoundation/StringTheory/TadpoleCancellation.lean` has the same 16-O7
+    assignment, and its D3 condition "= χ(K3)/24 = 1" disagrees with (2.3). Reported to the LeanMaster
+    session; see `audit/LEANMASTER_NOTE_orientifold.md`.
 
 ## F2. Replacement: kernel-checked foundation (LeanMaster)
 - LeanMaster clone at tag v2.2.0 (commit b27ce8b) built (3708 jobs). Its own gates re-run here:

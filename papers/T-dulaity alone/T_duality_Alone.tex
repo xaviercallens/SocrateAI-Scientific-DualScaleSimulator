@@ -206,7 +206,7 @@ theorem fourier_mukai_preserves_dim {R : Type} [CommRing R] [OfNat R 2]
 \end{lstlisting}
 
 \section{Kummer Orbifold Blow-Up Resolution and Tadpole Cancellation}
-The most critical geometric arena for string compactification on $K3$ is the Kummer surface resolution of the orientifold limit $T^4/\mathbb{Z}_2$. In Type IIB superstring theory, the coordinate reflection involution $\theta: x_i \mapsto -x_i$ on the 4-torus $T^4$ generates exactly $2^4 = 16$ isolated quotient singularities of $A_1$ type.
+The most critical geometric arena for string compactification on $K3$ is the Kummer surface resolution of the orbifold limit $T^4/\mathbb{Z}_2$ of the $K3$ factor. The coordinate reflection involution $\theta: x_i \mapsto -x_i$ on the 4-torus $T^4$ generates exactly $2^4 = 16$ isolated quotient singularities of $A_1$ type.
 
 Resolving each $A_1$ singularity replaces the singular point with an exceptional divisor $E_i \cong \mathbb{P}^1$ ($i = 1, \dots, 16$), mutually disjoint and of self-intersection $-2$. Rather than modeling the 16 fixed points as abstract discrete numbers, in \texttt{proofs/KummerOrbifoldResolution.lean} we encode the topological invariants of the resulting resolved surface -- the intersection numbers $E_i \cdot E_j$, the second Betti number $b_2$, the Euler characteristic $\chi$, and the signature -- as exact arithmetic on the entered constants; the blow-up morphism $\pi: \widetilde{X} \to T^4/\mathbb{Z}_2$ itself, and the scheme-theoretic resolution of each singularity, are not formalized. The exceptional curves satisfy:
 \begin{equation}
@@ -223,10 +223,11 @@ with Hodge numbers $h^{1,1} = 20$ and $h^{2,0} = h^{0,2} = 1$. Its topological E
 \end{equation}
 The rank $b_2 = 22$ and the signature $(3,19)$ are independently kernel-checked in LeanMaster v2.2.0 (Lean 4 v4.33.1, Mathlib v4.33.1; depends only on Lean's three standard axioms) as \texttt{k3\_rank} and \texttt{k3\_signature\_is\_three\_nineteen} \cite{leanmaster2026}, restated in \texttt{lean\_foundation/}. The Euler characteristic $\chi = 24$ has no such independent kernel-checked restatement and remains local, tier-B arithmetic on the entered constants above.
 
-At each orientifold fixed point, this construction assigns the localized plane an O$7^-$ Ramond-Ramond 8-form charge $Q(\text{O}7^-) = -4$ in D7-brane units, following the general orientifold bookkeeping of \cite{gimon1996, sen1996}; this O-plane type assignment has not yet been reconciled against those sources, and its correctness is unresolved (tier C, under revision), so it should be read as the assignment used by this construction rather than as an established result. Taking that assignment at face value, global consistency requires introducing 32 physical D7-branes (16 pairs with their orientifold images), each carrying charge $+2$. The resulting Ramond-Ramond charge count -- elementary arithmetic, contingent on the O-plane assignment above and not itself encoded as a Lean theorem in \texttt{proofs/KummerOrbifoldResolution.lean} -- vanishes identically:
+\paragraph{Orientifold content (corrected).} An earlier version of this construction placed an O$7^-$-plane of charge $-4$ at each of the 16 Kummer points and cancelled it with 32 D7-branes of charge $+2$. That assignment is withdrawn. Its arithmetic ($64-64=0$) is correct, but it describes no string construction. In the Type IIB orientifold on $K3\times T^2/\mathbb{Z}_2$, the orientifold $\mathbb{Z}_2$ acts on the $T^2$, not on $K3$ \cite{tripathy2003}. It has 4 fixed points on the $T^2$, an O7-plane sits at each of them, and 16 D7-branes cancel the 7-brane charge (\cite{tripathy2003}, \S2.2). In the symmetric configuration each O7-plane carries 4 D7-branes, so each O7-plane has charge $-4$ in D7 units (our arithmetic, $16/4$):
 \begin{equation}
-\sum_{k=1}^{32} Q(\text{D}7) + \sum_{i=1}^{16} Q(\text{O}7^-) = 64 + (-64) = 0
+\sum_{k=1}^{16} Q(\text{D}7) + \sum_{i=1}^{4} Q(\text{O}7) = 16 + 4\times(-4) = 0 .
 \end{equation}
+Because the O7-planes and D7-branes wrap $K3$, they induce D3-brane charge: 2 units per O7-plane and 1 per D7-brane, in total $4\cdot 2 + 16\cdot 1 = 24$. This gives the tadpole condition $\tfrac12 N_{\text{flux}} + N_{\text{D3}} = 24$, with $N_{\text{flux}}$ integrated over the covering space (\cite{tripathy2003}, eq.~(2.3)). The kernel-checked LeanMaster statement \texttt{tadpole\_budget} (flux $+\,n = 24$; restated in \texttt{lean\_foundation/} as \texttt{tadpole\_conservation}) has the same form, with flux $:= \tfrac12 N_{\text{flux}}$. LeanMaster sources it to the M-theory compactification on $K3\times K3$, where $\chi(K3\times K3)/24 = 24$; that compactification is dual to the Type IIB orientifold considered here. The 16 Kummer points of the $K3$ factor carry no O7-plane. In the T-dual Type I description of Gimon and Polchinski \cite{gimon1996} they carry O5-planes, and at the orbifold point one gauge instanton is hidden at each of them \cite{berkooz1996}. The local files \texttt{proofs/KummerTDAAnomalyCertification.lean} and \texttt{proofs/TadpoleCancellation.lean} still encode the withdrawn assignment.
 
 \begin{lstlisting}[language=lean, caption={Lean 4 Encoding of Kummer Surface Topological Invariants, \texttt{proofs/KummerOrbifoldResolution.lean}}]
 namespace SocrateAI.StringTheory.KummerGeometry
@@ -1056,7 +1057,7 @@ More importantly, checking the resulting topological equivalence classes—Domai
     \item \textbf{Geometric Disambiguation of Defect Networks}: Conventional cosmological simulations struggle to separate physical defect cores from transient thermal noise or coordinate artifacts. TDA Mapper resolves this ambiguity by extracting the simplicial nerve 1-skeleton ($\beta_1 = \numreconcile{376}{cycle rank}$), cleanly separating topological cycles of the nerve complex (vortex loops and solitonic phase boundaries) from Gaussian quantum-thermal noise. The 10 attractor-vacuum clusters extracted by TDA Mapper, partitioning the 16 Kummer fixed points at this clustering resolution, are isolated with geometric precision.
     \item \textbf{Discrete Landscape Consistency}: In Type IIB orientifolds on $K3 \times T^2$, spontaneous symmetry breaking risks generating uncancelled localized Ramond-Ramond charges, triggering gravitational or gauge anomalies that exile the vacuum into the Swampland. Lean 4 verifies that:
     \begin{itemize}
-        \item Attractor vacua are assigned exact local charge cancellation ($4 + (-4) = 0$) at each of the 16 Kummer fixed points, where $-4$ is the O7$^-$-plane charge entered in the model; this charge assignment has not been reconciled against the cited $T^4/\mathbb{Z}_2$ construction and is unresolved (tier C, under revision; we do not assert which O-plane type is correct).
+        \item Attractor vacua are assigned local charge cancellation ($4 + (-4) = 0$) at each of the 16 Kummer fixed points, using an O7$^-$-plane charge entered in the model. This assignment is withdrawn (Section on the Kummer construction): no O7-plane sits at a Kummer point of $K3\times T^2/\mathbb{Z}_2$ \cite{tripathy2003}. The Lean check below therefore verifies bookkeeping for a configuration that does not occur.
         \item Domain wall interfaces maintain exact worldvolume anomaly inflow balance ($\Delta F = 0$).
         \item Cosmic string vortices satisfy 6D Green-Schwarz anomaly polynomial factorization ($I_8 = \frac{1}{2} X_4^2$) with vanishing irreducible anomalies ($\operatorname{tr}(R^4) = \operatorname{tr}(F^4) = 0$).
     \end{itemize}
@@ -1159,7 +1160,7 @@ Crucially, applying the LeanFlow $\to$ TDA $\to$ Lean 4 triad to frontier non-pe
 
 Operating on serverless spot GPU and TPU infrastructure with scale-to-zero capabilities ($\text{min}=0$), LeanFlow is designed to deliver improved solver throughput relative to interpreted Python/SciPy BVP baselines and reduced cost relative to traditional HPC clusters running C++ SUNDIALS; these comparisons are pending hardware verification; the target figures given in Table \ref{tab:comparison} remain unmeasured. This charts a path toward more verifiable and cost-aware computational string cosmology \cite{socrate2026}.
 
-\paragraph{Limitations.} Several items remain open. The orientifold O-plane type assignment for the Kummer construction is unresolved, pending reconciliation with Gimon--Polchinski (hep-th/9601038). The Rust simulator numerics reported above (vacuum bounce, swampland geodesic integration, TDA Mapper statistics) are being regenerated on fix branches (RK4 integration with measured $\alpha_{\text{effective}}$, a seeded Mapper, and a corrected true-vacuum root) and should be treated as exploratory snapshots rather than final values. Statement review (lock) of the kernel-checked Lean 4 results this work builds on is pending with the responsible project lead.
+\paragraph{Limitations.} Several items remain open. The orientifold assignment used in earlier versions (O7-planes at the 16 Kummer points) is withdrawn in favour of the Tripathy--Trivedi content (4 O7-planes at the $T^2/\mathbb{Z}_2$ fixed points, 16 D7-branes, $\tfrac12 N_{\text{flux}} + N_{\text{D3}} = 24$) \cite{tripathy2003, berkooz1996}. The local Lean files that encode the old assignment have not been rewritten. The Rust simulator numerics reported above (vacuum bounce, swampland geodesic integration, TDA Mapper statistics) are being regenerated on fix branches (RK4 integration with measured $\alpha_{\text{effective}}$, a seeded Mapper, and a corrected true-vacuum root) and should be treated as exploratory snapshots rather than final values. Statement review (lock) of the kernel-checked Lean 4 results this work builds on is pending with the responsible project lead.
 
 \bibliographystyle{unsrt}
 \begin{thebibliography}{99}
@@ -1188,6 +1189,16 @@ Commun. Math. Phys. 249 (2004) 383--415.
 E.~G.~Gimon and J.~Polchinski.
 \textit{Consistency Conditions for Orientifolds and D-Manifolds}.
 Phys. Rev. D 54 (1996) 1667--1676.
+
+\bibitem{tripathy2003}
+P.~K.~Tripathy and S.~P.~Trivedi.
+\textit{Compactification with flux on K3 and tori}.
+JHEP 03 (2003) 028, arXiv:hep-th/0301139.
+
+\bibitem{berkooz1996}
+M.~Berkooz, R.~G.~Leigh, J.~Polchinski, J.~H.~Schwarz, N.~Seiberg and E.~Witten.
+\textit{Anomalies, dualities, and topology of $D=6$ $N=1$ superstring vacua}.
+Nucl. Phys. B 475 (1996) 115--148, arXiv:hep-th/9605184.
 
 \bibitem{sen1996}
 A.~Sen.
