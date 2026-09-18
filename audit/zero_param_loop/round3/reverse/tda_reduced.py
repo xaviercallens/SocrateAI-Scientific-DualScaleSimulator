@@ -158,6 +158,11 @@ def run():
     degeneracy_h1_model_real = check_half_bar_degeneracy(bd_h1_model_real, bd_model[1], bd_real[1])
     degeneracy_h1_null_real = check_half_bar_degeneracy(bd_h1_null_real, bd_null[1], bd_real[1])
 
+    ordering_model_closer_than_null_H0 = (
+        bd_h0_model_real < bd_h0_null_real
+        if isinstance(bd_h0_model_real, float) and isinstance(bd_h0_null_real, float) else None
+    )
+
     circle_h1 = np.array(res_circle["diagram_by_dim"]["1"]) if res_circle["diagram_by_dim"]["1"] else np.empty((0, 2))
     if len(circle_h1) >= 1:
         pers = np.sort(circle_h1[:, 1] - circle_h1[:, 0])[::-1]
@@ -197,6 +202,18 @@ def run():
         "observed_vs_predicted": {
             "observed_betti": observed_betti, "predicted_betti": PREDICTED_BETTI,
             "matches_prediction": matches_prediction,
+            "predicted_dimension": 2,
+            "observed_pca_dimension_k": pca_k,
+            "dimension_matches_prediction": bool(pca_k == 2),
+            "note_dimension_vs_betti": (
+                "The task's own predictor is 'dimension = number of remaining "
+                "free params' (2 here); PCA-to-95%-variance gives pca_k=2, "
+                "a HIT on that dimension prediction. matches_prediction "
+                "above is about the connected-COMPONENT count (Betti b0) "
+                "specifically, [1,0] predicted vs [2,0] observed, which is a "
+                "MISS -- these are two different, both-true facts and should "
+                "not be collapsed into a single pass/fail."
+            ),
             "forward_round3_model_betti_seed42": forward_model_betti,
             "cross_seed_consistent_with_forward": bool(forward_model_betti is not None and observed_betti == forward_model_betti),
         },
@@ -213,8 +230,19 @@ def run():
             "null_vs_real_H0": bd_h0_null_real, "null_vs_real_H1": bd_h1_null_real,
             "half_max_persistence_degeneracy_check_model_vs_real_H1": degeneracy_h1_model_real,
             "half_max_persistence_degeneracy_check_null_vs_real_H1": degeneracy_h1_null_real,
-            "ordering_model_closer_than_null": (
+            "ordering_model_closer_than_null_H1": (
                 bd_h1_model_real < bd_h1_null_real if isinstance(bd_h1_model_real, float) and isinstance(bd_h1_null_real, float) else None
+            ),
+            "ordering_model_closer_than_null_H0": ordering_model_closer_than_null_H0,
+            "caveat_H0_H1_disagree": (
+                "In H1 the model is closer to real than the null is "
+                "(ordering_model_closer_than_null_H1); in H0 the ORDERING "
+                "REVERSES -- the null is closer to real than the model is "
+                "(ordering_model_closer_than_null_H0). Per round2/ledger.json "
+                "(ordering_survives_variance_matching: false) TDA here is a "
+                "sanity gate, not evidence, and this H0/H1 disagreement is "
+                "exactly why: no single 'model is closer than null' claim "
+                "should be quoted without naming which homology dimension."
             ),
         },
         "caveat": (

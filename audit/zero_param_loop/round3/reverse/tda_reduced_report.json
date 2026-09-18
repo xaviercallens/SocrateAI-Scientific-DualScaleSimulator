@@ -30,6 +30,10 @@
       0
     ],
     "matches_prediction": false,
+    "predicted_dimension": 2,
+    "observed_pca_dimension_k": 2,
+    "dimension_matches_prediction": true,
+    "note_dimension_vs_betti": "The task's own predictor is 'dimension = number of remaining free params' (2 here); PCA-to-95%-variance gives pca_k=2, a HIT on that dimension prediction. matches_prediction above is about the connected-COMPONENT count (Betti b0) specifically, [1,0] predicted vs [2,0] observed, which is a MISS -- these are two different, both-true facts and should not be collapsed into a single pass/fail.",
     "forward_round3_model_betti_seed42": [
       2,
       0
@@ -49,7 +53,7 @@
       0
     ],
     "n_H1_bars": 37,
-    "dominant_to_second_H1_bar_ratio": 47.94101689241429,
+    "dominant_to_second_H1_bar_ratio": 49.05363270439605,
     "passes_single_long_H1_bar_check": true
   },
   "null_control_poisson_matched_to_real": {
@@ -75,7 +79,9 @@
       "dominant_over_2": 0.0325182825400775,
       "half_max_degeneracy_triggered": true
     },
-    "ordering_model_closer_than_null": true
+    "ordering_model_closer_than_null_H1": true,
+    "ordering_model_closer_than_null_H0": false,
+    "caveat_H0_H1_disagree": "In H1 the model is closer to real than the null is (ordering_model_closer_than_null_H1); in H0 the ORDERING REVERSES -- the null is closer to real than the model is (ordering_model_closer_than_null_H0). Per round2/ledger.json (ordering_survives_variance_matching: false) TDA here is a sanity gate, not evidence, and this H0/H1 disagreement is exactly why: no single 'model is closer than null' claim should be quoted without naming which homology dimension."
   },
   "caveat": "Same sanity-gate-not-evidence status as round2/round3 forward TDA (round2/ledger.json ordering_survives_variance_matching: false). This reverse-loop TDA is reported for the cross-seed robustness check only."
 }

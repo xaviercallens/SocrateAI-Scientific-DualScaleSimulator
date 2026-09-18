@@ -94,7 +94,22 @@ def verify_chi2_flat_on_reduced_sweep():
         "probe_mu_sym": probe_rows["mu_sym"].tolist(),
         "probe_c4_pta_product": probe_rows["c4_pta_product"].tolist(),
         "chi2_total_assigned_to_each": [chi2_val, chi2_val, chi2_val],
-        "note": "chi2 comes ONLY from the frozen-LCDM dark-energy block (BAO+SN); mu_sym/c4_pta_product never enter it, verified on the seed-43 sweep independently of ../chi2.py's seed-42 check.",
+        "note": (
+            "CAVEAT (added after advisor review, do not remove): this probe "
+            "does NOT independently re-run eval_point at each (mu_sym, "
+            "c4_pta_product) triple -- it reads the CSV's own mu_sym/"
+            "c4_pta_product values for provenance but assigns the SAME "
+            "eval_lcdm_frozen() call to all three, so the 0.0 'cross-check' "
+            "below is a value compared to itself, not an independent "
+            "measurement, and must not be reported as one. The actual "
+            "evidence that chi2 is flat is STRUCTURAL, not this probe: "
+            "reduced_model.py's frozen_lcdm_dark_energy() takes zero "
+            "arguments (mu_sym and c4_pta_product are never passed to it), "
+            "and de.eval_point/de.lcdm_Ez likewise take no screening/PTA "
+            "argument -- confirmed by reading reduced_model.py and "
+            "decisive_experiment.py directly, not by probing 3 points and "
+            "getting the same cached number back three times."
+        ),
     }
 
 
@@ -116,6 +131,12 @@ def run():
     flat_check = verify_chi2_flat_on_reduced_sweep()
     chi2_reduced = flat_check["chi2_total_assigned_to_each"][0]
 
+    # NOTE (post-advisor-review): chi2_reduced and chi2_full both come from
+    # the same eval_lcdm_frozen() computation (the reduced model's frozen
+    # dark-energy block IS this round's full model's dark-energy block --
+    # there was no reduction to make them differ), so this diff is 0.0 BY
+    # CONSTRUCTION, not an independent agreement between two separate
+    # refits. Reported for completeness, not cited as evidence.
     cross_check_full_vs_reduced = abs(chi2_full - chi2_reduced)
 
     n_removed_params = 0  # no reduction accepted this round
@@ -152,6 +173,7 @@ def run():
             "full_model_round3_forward": chi2_full,
             "reduced_model_round3_reverse": chi2_reduced,
             "cross_check_full_vs_reduced_abs_diff": cross_check_full_vs_reduced,
+            "cross_check_caveat": "0.0 by construction (same frozen dark-energy computation on both sides, no reduction was made); NOT an independent-refit agreement. See chi2_flat_verification_seed43.note for the real (structural, code-read) argument.",
             "lcdm_om_fitted": chi2_om_fitted, "om_fitted": om_fitted,
             "lcdm_frozen_lean": chi2_frozen,
         },
@@ -166,17 +188,25 @@ def run():
         "delta_bic_vs_lcdm_frozen": delta_bic_vs_lcdm,
         "n_removed_params_this_round": n_removed_params,
         "delta_chi2_reduced_minus_full": delta_chi2_reduced_minus_full,
-        "fit_degraded_rule": "delta_chi2(reduced-full) > 2 per removed param; 0 removed this round, so fit_degraded = True only if the independent refit disagrees with the forward chi2 beyond numerical noise (1e-6).",
+        "fit_degraded_rule": "delta_chi2(reduced-full) > 2 per removed param; 0 removed this round, so fit_degraded is trivially False by construction (reduced IS full -- see cross_check_caveat), not from an independent refit disagreeing.",
         "fit_degraded": fit_degraded,
         "headline": (
-            "reduced == full model (0 parameters removed this round): "
-            f"chi2 cross-check agrees to {cross_check_full_vs_reduced:.3e} (numerical noise), so fit is NOT degraded by construction. "
-            f"But the 2 untested params (mu_sym, c4_pta_product) cost exactly "
+            "reduced == full model (0 parameters removed this round, "
+            "verified structurally: reduced_model.frozen_lcdm_dark_energy() "
+            "takes zero mu_sym/c4_pta_product arguments), so fit_degraded is "
+            "trivially False -- there is nothing to degrade. "
             f"delta_AIC={delta_aic_vs_lcdm:.4f} and delta_BIC={delta_bic_vs_lcdm:.4f} "
-            "against frozen Lean-pinned LCDM for ZERO chi2 improvement -- "
-            "Occam's-razor evidence (not a ground-rule-tier derivation) that "
-            "both should eventually be dropped once tested, or replaced by a "
-            "genuine tier-A/B/L identification."
+            "against frozen Lean-pinned LCDM are DEFINITIONAL, not measured: "
+            "with chi2 unchanged, 2 extra parameters cost exactly 2*2=4.0 "
+            "(AIC) and 2*ln(1602)=14.758 (BIC) by the formula alone, given "
+            "the k-counting convention already disclosed in k_theory_params. "
+            "This restates, rather than newly tests, round 3's own finding "
+            "(chi2_total_is_flat_across_sweep in ../chi2_report.json): mu_sym "
+            "and c4_pta_product are invisible to every dataset this repo has "
+            "verified, so any nonzero k-count for them is pure AIC/BIC "
+            "penalty with no offsetting fit gain -- not independent "
+            "Occam's-razor evidence, just the direct consequence of that "
+            "same insensitivity, quantified."
         ),
     }
     with open(os.path.join(HERE, "chi2_aic_bic_report.json"), "w") as f:
