@@ -1,0 +1,96 @@
+{
+ "H0_from_hubbleRadius_m": 67.66112249493798,
+ "n_bao": 12,
+ "n_sn": 1590,
+ "frozen_lean": {
+  "chi2": 702.9063072414215,
+  "bao": 14.058698564520256,
+  "sn": 688.8476086769012,
+  "sn_offset": 43.05486997284607,
+  "H0_implied_by_offset": 73.42546547148707
+ },
+ "fitted_lcdm": {
+  "Om": 0.31695077302930563,
+  "chi2": 702.6750406090171,
+  "bao": 15.043851105702625,
+  "sn": 687.6311895033144,
+  "sn_offset": 43.05680217858932,
+  "H0_implied_by_offset": 73.36015955101146
+ },
+ "delta_chi2_frozen_minus_fitted": 0.23126663240441303,
+ "cpl_Om_frozen": {
+  "w0": -0.8435589141198621,
+  "wa": -0.48629158393648314,
+  "chi2": 696.6193448253691,
+  "bao": 11.976882262510047,
+  "sn": 684.6424625628591,
+  "sn_offset": 43.0742481655906,
+  "H0_implied_by_offset": 72.77313256641192
+ },
+ "cpl_Om_free": {
+  "Om": 0.31479466550485546,
+  "w0": -0.8373195758761194,
+  "wa": -0.573244250618641,
+  "chi2": 696.5837588727071,
+  "bao": 11.848016699208483,
+  "sn": 684.7357421734986,
+  "sn_offset": 43.07511583464955,
+  "H0_implied_by_offset": 72.74405995115343
+ },
+ "delta_chi2_frozen_minus_cpl_Om_frozen": 6.286962416052347,
+ "controls": {
+  "Om_L=0.50": 153.47542207102254,
+  "Om_L=0.72": 10.237817065777904,
+  "Om_L=0.65": 6.802801691764216
+ },
+ "frozen_lean_sn_offset_frozen": {
+  "offset": 43.23240752245271,
+  "chi2": 1907.3865761824484,
+  "bao": 14.058698564520256,
+  "sn": 1893.3278776179282,
+  "sn_offset": 43.23240752245271,
+  "H0_implied_by_offset": 67.66112249493796
+ },
+ "delta_chi2_offset_frozen_minus_offset_fitted": 1204.480268941027,
+ "threshold_preregistered": 11.8,
+ "reject_frozen_offset_fitted": false,
+ "reject_frozen_offset_frozen": true,
+ "probes": {
+  "nominal": {
+   "ssf": 0.00011811720750749558,
+   "pcr": 1.9741863069299735e-14,
+   "stable": true,
+   "pta_max_dev": 0.08035000000000003,
+   "w0_cpl": -1.0010306567238916
+  },
+  "mu_sym_x10": {
+   "ssf": NaN,
+   "pcr": NaN,
+   "stable": false,
+   "pta_max_dev": 0.08035000000000003,
+   "w0_cpl": -1.0010306567238916
+  },
+  "mu_sym_x0.1": {
+   "ssf": 3.278545626375635e-05,
+   "pcr": 1.0242091989224548e-14,
+   "stable": true,
+   "pta_max_dev": 0.08035000000000003,
+   "w0_cpl": -1.0010306567238916
+  },
+  "c4_pta_product_x10": {
+   "ssf": 0.00011811720750749558,
+   "pcr": 1.9741863069299735e-14,
+   "stable": true,
+   "pta_max_dev": 0.8035000000000001,
+   "w0_cpl": -1.0010306567238916
+  },
+  "c4_pta_product_x0.1": {
+   "ssf": 0.00011811720750749558,
+   "pcr": 1.9741863069299735e-14,
+   "stable": true,
+   "pta_max_dev": 0.008035000000000014,
+   "w0_cpl": -1.0010306567238916
+  }
+ },
+ "probes_note": "chi2 (BAO+SN) is computed from frozen LCDM E(z), which takes neither mu_sym nor c4_pta_product; no screening or PTA-angular dataset exists (ABSENT), so chi2 is identical at every probe."
+}

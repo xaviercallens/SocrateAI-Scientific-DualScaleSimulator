@@ -1,0 +1,35 @@
+{
+ "round": 3,
+ "role": "skeptic (independent; produced none of the forward/reverse/orchestrator work)",
+ "free_parameter_count_after_round3": 2,
+ "free_parameters": ["mu_sym", "c4_pta_product"],
+ "reductions_accepted_this_round": 0,
+ "verdicts": {
+  "lambda_sym": {"accepted": true, "counts_as": "deleted", "count_effect": "none (already excluded from the 2 since round 2; condition now met, so no reversion to 3)",
+   "evidence": ["8b8911c diff read: psi = phi/phi_0 algebra correct (lambda*phi^3 = phi_0*mu^2*psi^3; BC psi(r_max)=1); lambda_sym absent from workshopcosmo signature/body and param_loop_sim DEFAULT_PARAMS; harness rejects --params '{\"lambda_sym\":5}'",
+     "legacy_phi_form.py verbatim vs 8b8911c^ (diff: trailing section comment only)",
+     "test_lambda_deletion.py: 18 passed; harness --selftest ALL_PASS=True (selftest.log)",
+     "lambda_mutation_probe.py: lambda in {0.003,0.37,7.3,250} x mu in {0.5,1.5} (values not in the committed test): max rel diff 3.8e-5; cubic-term mutants detected at 18-74%; BC mutant psi(r_max)=mu nearly invisible at mu=1.5 (2.4e-7), so the test's power comes from the cubic mutants"],
+   "caveat": "Deletion is relative to the retained observable set (ratios phi/phi_0). In a physical symmetron, lambda sets phi_0 and so the absolute fifth-force coupling; it is unobservable here only because no absolute-force observable is retained. Tier B, no Lean theorem.",
+   "regression_found_and_fixed": "8b8911c renamed return key dphi_dr -> dphi_dr_over_phi0 but not the CSV export: `python workshopcosmo.py` died with KeyError: 'dphi_dr' at workshopcosmo.py:1517 (workshopcosmo_main.log). Fixed in the skeptic commit; rerun rc=0 (workshopcosmo_main_after_fix.log). Commit message claims 94 passed/6 skipped; measured with system python3: 98 passed, 2 skipped (before and after fix)."},
+  "mu_sym": {"accepted": false, "counts_as": "rejected",
+   "reason": "Forward withdrew its own value. LeanMaster HEAD f4da238 (v3.17.0-2) has selfDual_length_sq_bracket (SelfDualCutoff.lean:106) and selfDual_above_torsion_radius_bound (DarkEnergyScale.lean:106) verbatim, unchanged since v3.9.0, but they bound planckLength_m*hubbleRadius_m only; mu_sym is an uncalibrated dimensionless BVP coefficient with no length bridge. Probe: mu_sym x0.1 moves ssf 1.181e-4 -> 3.279e-5; x10 is nonfinite (solver fallback). Live in a retained observable, no dataset (fifth_force ABSENT).",
+   "fabrication_note": "mu_sym_length_bridge_report.json 'named_reference_short_range_gravity_micron: 47.0' and 'ratio_computed_to_reference: 1.00017' compare sqrt(l_P*L_H) to a number from the same formula: a non-result (circular, as the correction admits), not a match."},
+  "c4_pta_product": {"accepted": false, "counts_as": "rejected",
+   "reason": "Not convention_only: x10/x0.1 moves retained pta.max_deviation_from_hd 0.08035 -> 0.8035 / 0.008035. What is missing is a dataset (angular HD / optimal-statistic product ABSENT), not a dependence. Dropping the sector is a scope change needing code edits, not a derivation."},
+  "a_pot_b_pot_statement": "Removed in round 2 by rule (a) 'replaced by a measured constant': Omega_Lambda = 0.68885 (DarkEnergyScale.lean:84) is an imported Planck 2018 value, tier L; identification tier C; NOT derived from K3 x T2 or dual-scale structure."
+ },
+ "decisive_experiment_independent_rerun": {
+  "script": "chi2_independent.py (own implementation, no import of round2/decisive_experiment)",
+  "frozen_Om_offset_fitted": 702.9063, "fitted_lcdm": 702.6750, "Om_fit": 0.31695, "delta_chi2": 0.2313, "threshold": 11.8, "reject": false,
+  "controls_delta_chi2_vs_fitted": {"Om_L=0.50": 153.48, "Om_L=0.72": 10.24, "Om_L=0.65": 6.80},
+  "cpl_Om_frozen": {"w0": -0.8436, "wa": -0.4863, "delta_chi2_vs_frozen": 6.29, "note": "below 11.8; data mildly prefer w0>-1, wa<0 in this pipeline (diagonal SN errors, thresholds uncalibrated)"},
+  "frozen_sn_offset_H0_from_hubbleRadius_m": {"H0": 67.661, "delta_chi2_vs_offset_fitted": 1204.5, "reject": true,
+   "note": "Previously reported ABSENT ('no M_B fiducial'), but MU_SH0ES in the verified Pantheon+ file already carries the SH0ES calibration; fitted offset implies H0 = 73.43. Freezing H0 = c/hubbleRadius_m is rejected (Hubble tension; diagonal errors inflate the size, tier X). The frozen theory's H0 is therefore not 'indistinguishable'; only Omega_m is supported."}
+ },
+ "tda": {"tda_valid": false, "script": "tda_skeptic.py", "gudhi": "3.13.0 imported from .venv-tda (printed in report)",
+  "findings": ["Known-answer circle (seeds 42, 44): the 'betti_numbers' field tda.py reports is the homology of the full complex at max_edge_length = 2*median and reads [1,0] for a clean circle; persistent Betti at mid top-H1-bar is [1,1]; bar ratio 39.1 / 51.3. The circle passes only by bar ratio; the reported Betti numbers cannot detect a known loop, so model [2,0] vs 'predicted [1,0]' and reverse topology_match=false are uninformative.",
+   "Model b0=2 is identical with sparse=None, so 'sparse-Rips sampling-density artifact' is refuted: it is a gap wider than max_edge_length=0.1315 (of unit diameter) in a heavy-tailed cloud, a truncation-scale effect, not topology.",
+   "model_vs_real_H0 bottleneck 0.12807891742435012 equals exactly half the real cloud's largest finite H0 death: the half-max degeneracy fires in H0 too, but tda.py checked H1 only.",
+   "Null vs real: over 10 real re-subsamples and 10 box-matched Poisson nulls, H1 max persistence separates (real 0.0085-0.037 vs null 0.057-0.088), H0 bottleneck does not. The model's H1 max persistence 0.0123 lies inside the real re-subsample range, so model-vs-real H1 proximity is within real resampling noise; also the model cloud (sweep observable space) and real cloud (3D SN positions) are different kinds of object."]}
+}

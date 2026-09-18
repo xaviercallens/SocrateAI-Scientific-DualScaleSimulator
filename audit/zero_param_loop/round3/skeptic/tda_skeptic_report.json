@@ -1,0 +1,147 @@
+{
+ "gudhi_version": "3.13.0",
+ "gudhi_file": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/lib/python3.10/site-packages/gudhi/__init__.py",
+ "circle": {
+  "42": {
+   "final_scale_betti_numbers_as_reported_by_tda_py": [
+    1,
+    0
+   ],
+   "max_edge_length": 1.2519724340789908,
+   "h1": {
+    "n": 35,
+    "max_pers": 0.6390297984525691,
+    "ratio": 39.12915639058327,
+    "top_bar": [
+     0.07423543052931215,
+     0.7132652289818813
+    ]
+   },
+   "persistent_betti_at_mid_of_top_H1_bar": [
+    1,
+    1
+   ]
+  },
+  "44": {
+   "final_scale_betti_numbers_as_reported_by_tda_py": [
+    1,
+    0
+   ],
+   "max_edge_length": 1.2602462743633098,
+   "h1": {
+    "n": 32,
+    "max_pers": 0.6324025573442073,
+    "ratio": 51.272230317093616,
+    "top_bar": [
+     0.07316127888378007,
+     0.7055638362279874
+    ]
+   },
+   "persistent_betti_at_mid_of_top_H1_bar": [
+    1,
+    1
+   ]
+  }
+ },
+ "model": {
+  "pca_k": 2,
+  "sparse=0.2": {
+   "final_scale_betti": [
+    2,
+    0
+   ],
+   "max_edge_length": 0.13153824474777878,
+   "n_infinite_H0": 2,
+   "largest_finite_H0_deaths": [
+    0.12062909568514972,
+    0.11830796462425522,
+    0.108762511255616,
+    0.10227813143045505,
+    0.0941118850815218
+   ],
+   "h1": {
+    "n": 18,
+    "max_pers": 0.01228586429861598,
+    "ratio": 1.114414148505081,
+    "top_bar": [
+     0.045730004086333986,
+     0.058015868384949966
+    ]
+   }
+  },
+  "sparse=None": {
+   "final_scale_betti": [
+    2,
+    0
+   ],
+   "max_edge_length": 0.13153824474777878,
+   "n_infinite_H0": 2,
+   "largest_finite_H0_deaths": [
+    0.12062909568514972,
+    0.11830796462425522,
+    0.108762511255616,
+    0.10227813143045505,
+    0.0941118850815218
+   ],
+   "h1": {
+    "n": 18,
+    "max_pers": 0.01228586429861598,
+    "ratio": 1.114414148505081,
+    "top_bar": [
+     0.045730004086333986,
+     0.058015868384949966
+    ]
+   }
+  }
+ },
+ "null_vs_real": {
+  "ref": "real subsample seed 42 (N=300)",
+  "real_resubsamples_min_med_max": {
+   "h1_max_pers": [
+    0.008547396874258237,
+    0.01572158874563527,
+    0.0372181919156529
+   ],
+   "h1_n": [
+    44.0,
+    54.0,
+    70.0
+   ],
+   "bottleneck_H1_to_ref": [
+    0.004960867314685896,
+    0.007817225806808218,
+    0.01860909595782645
+   ],
+   "bottleneck_H0_to_ref": [
+    0.024888848690220122,
+    0.06372954656192822,
+    0.12378031977453188
+   ]
+  },
+  "poisson_nulls_min_med_max": {
+   "h1_max_pers": [
+    0.05701901360832762,
+    0.07454969065286518,
+    0.08762515213381168
+   ],
+   "h1_n": [
+    120.0,
+    125.5,
+    142.0
+   ],
+   "bottleneck_H1_to_ref": [
+    0.02850950680416381,
+    0.03727484532643259,
+    0.043812576066905834
+   ],
+   "bottleneck_H0_to_ref": [
+    0.10610025415428809,
+    0.11888390332017364,
+    0.12807891742435012
+   ]
+  },
+  "separated_on_h1_max_pers": true,
+  "separated_on_bottleneck_H0_to_ref": false,
+  "separated_on_bottleneck_H1_to_ref": true
+ }
+}

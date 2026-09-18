@@ -1512,9 +1512,9 @@ def main():
     # Export Symmetron CSV
     symm_csv_path = _output_path("symmetron_screening_profile.csv")
     with open(symm_csv_path, "w", encoding="utf-8") as f:
-        f.write("r,phi_ratio,dphi_dr\n")
+        f.write("r,phi_ratio,dphi_dr_over_phi0\n")
         for i in range(len(symm_res["r"])):
-            f.write(f"{symm_res['r'][i]:.5e},{symm_res['phi_ratio'][i]:.5e},{symm_res['dphi_dr'][i]:.5e}\n")
+            f.write(f"{symm_res['r'][i]:.5e},{symm_res['phi_ratio'][i]:.5e},{symm_res['dphi_dr_over_phi0'][i]:.5e}\n")
     print("    -> Exported: symmetron_screening_profile.csv")
 
     # Check rusty-SUNDIALS Symmetron CSV
