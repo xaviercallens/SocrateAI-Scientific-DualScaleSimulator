@@ -4,6 +4,7 @@
 \geometry{a4paper, margin=1in}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
+\providecommand{\numreconcile}[2]{#1}
 
 \begin{document}
 
@@ -17,7 +18,7 @@ International School for Advanced Studies (SISSA) \\
 \vspace{1em}
 
 \noindent\textbf{Subject: Submission of Original Research Manuscript} \\
-\textbf{Title:} \textit{Topological T-Duality and Emergent Symmetries on $K3 \times T^2$: A Certified Neuro-Symbolic Approach to String Phenomenology and Cosmological Dynamics}
+\textbf{Title:} \textit{Topological T-Duality and Emergent Symmetries on $K3 \times T^2$: A Neuro-Symbolic Approach to String Phenomenology and Cosmological Dynamics}
 
 \vspace{1.5em}
 
@@ -27,26 +28,26 @@ We submit our original research manuscript for consideration as a Regular Articl
 
 A longstanding challenge in string phenomenology and early-universe cosmology is that non-linear moduli trajectories frequently encounter unphysical coordinate singularities (such as the self-dual radius $R = \sqrt{\alpha'}$ or modular boundary cusps) when integrated using conventional numerical differential equation solvers. Furthermore, verifying that dynamical defect networks formed during cosmic phase transitions satisfy global quantum consistency constraints—such as Ramond-Ramond tadpole cancellation ($\sum Q_i = 0$)—has historically relied on manual, post-hoc bookkeeping.
 
-In this work, we introduce \textbf{LeanFlow}: a high-throughput neuro-symbolic framework coupling production-grade stiff numerical integration (\texttt{rusty-SUNDIALS}) with automated discrete algebraic invariant verification in the Lean 4 interactive theorem prover. Our manuscript establishes an unbroken closed-loop verification circuit ($\text{Numerical Integration} \to \text{Topological Extraction via TDA Mapper} \to \text{Formal Kernel Certification}$) and delivers the following primary physical and methodological advances:
+In this work, we introduce \textbf{LeanFlow}: an exploratory neuro-symbolic framework coupling numerical integration with automated discrete algebraic invariant verification via the Lean 4 interactive theorem prover. Our manuscript describes a candidate closed-loop pipeline (numerical integration $\to$ topological extraction via TDA Mapper $\to$ discrete symbolic consistency checks in Lean 4) and reports the following methodological and exploratory results, tiered per our Mathesis scale (A: kernel-checked and adequate; B: exact arithmetic with a negative control; L: literature; C: conjecture/interpretation; X: exploratory numerics):
 
 \begin{enumerate}
-    \item \textbf{Native Duality Engine \& Algorithmic Section Condition}: LeanFlow embeds continuous Buscher symmetry locks ($R \leftrightarrow \alpha'/R$) and modular group $SL(2, \mathbb{Z})$ invariance directly into the adaptive Backward Differentiation Formula (BDF) solver. By dynamically co-simulating dual geometric frames (Type IIA $\leftrightarrow$ Type IIB), the solver circumvents coordinate singularities as the cosmological modulus relaxes from high energies toward the Fricke saddle ($\tau = i$) and Kummer orbifold fixed point ($\tau = e^{i\pi/3}$) without metric breakdown ($\min(y) = 0.289$).
-    
-    \item \textbf{Closed-Loop Defect Verification}: Passing the stochastic Langevin dynamics of a multi-well landscape across thermal symmetry breaking ($T_c = 1.0$) into a Topological Data Analysis (TDA) Mapper 1-skeleton graph (184 nodes, 493 edges, $\beta_1 = 318$), we partition the network into string-theoretic equivalence classes (Attractor Vacua, Domain Walls, and Cosmic Strings). We check in the Lean 4 proof kernel with zero \texttt{sorry} axioms that the discrete mapped classes identically satisfy Ramond-Ramond tadpole cancellation ($\sum Q_i = 0$).
-    
+    \item \textbf{Native Duality Engine \& Algorithmic Section Condition}: LeanFlow embeds continuous Buscher symmetry locks ($R \leftrightarrow \alpha'/R$) and modular group $SL(2, \mathbb{Z})$ invariance into its numerical integration (SciPy's implicit Radau solver for the modulus flow). By dynamically co-simulating dual geometric frames (Type IIA $\leftrightarrow$ Type IIB), the solver aims to circumvent coordinate singularities as the cosmological modulus relaxes from high energies toward the Fricke saddle ($\tau = i$) and Kummer orbifold fixed point ($\tau = e^{i\pi/3}$). A previously quoted metric minimum $\min(y)$ could not be traced to any output in the repository and has been withdrawn (tier X, pending regeneration).
+
+    \item \textbf{Closed-Loop Defect Verification}: Passing the stochastic Langevin dynamics of a multi-well landscape across thermal symmetry breaking ($T_c = 1.0$) into a Topological Data Analysis (TDA) Mapper 1-skeleton graph ($\numreconcile{187}{\text{nodes}}$ nodes, $\numreconcile{557}{\text{edges}}$ edges, $\beta_1 = \numreconcile{376}{\beta_1}$, the cycle rank of the Mapper graph), we partition the network into string-theoretic equivalence classes (Attractor Vacua, Domain Walls, and Cosmic Strings). For the defect classes extracted by TDA Mapper, a type-level consistency check verifies that the algebraic sum of charges equals zero (tier X: the check is a stored flag over hard-coded charge values, not a derivation of Ramond-Ramond tadpole cancellation).
+
     \item \textbf{Frontier Non-Perturbative Dynamics}: We apply the pipeline to three core open problems in string theory:
     \begin{itemize}
-        \item \emph{Swampland Distance Conjecture}: Moduli geodesic flows on $K3 \times T^2$ are computed, with persistent homology $H_0$ barcodes tracking the exponential collapse of the Kaluza-Klein mass tower ($M \le M_0 e^{-\alpha \Delta d}$, $\alpha = 1/\sqrt{2}$).
-        \item \emph{Sen's Tachyon Condensation}: Non-linear brane-antibrane roll-down is simulated, extracting the localized BPS soliton via TDA Mapper, with Lean 4 certifying discrete Grothendieck group charge conservation $[E] - [F] = [D_{\text{defect}}]$ over modeled bundle classes.
-        \item \emph{Vacuum Decay in the Flux Landscape}: Coleman-De Luccia bounce instantons are solved via shooting methods, with Lean 4 certifying holographic central charge monotonicity ($\Delta c < 0$) to verify cosmic irreversibility.
+        \item \emph{Swampland Distance Conjecture}: Moduli geodesic flows on $K3 \times T^2$ are computed, with persistent homology $H_0$ barcodes tracking the exponential collapse of the Kaluza-Klein mass tower ($M \le M_0 e^{-\alpha \Delta d}$), with $\alpha = 1/\sqrt{2}$ assumed as a fixed model parameter, not measured from string theory (tier X).
+        \item \emph{Sen's Tachyon Condensation}: Non-linear brane-antibrane roll-down is simulated, extracting the localized BPS soliton via TDA Mapper; a discrete algebraic model verifies the symbolic identity $[E] - [F] = [D_{\text{defect}}]$ by construction over modeled bundle classes; we conjecture that this identity corresponds to physical Grothendieck-group charge conservation (tier C).
+        \item \emph{Vacuum Decay in the Flux Landscape}: Coleman bounce instantons in a flat-space (non-gravitational) approximation are solved via shooting methods. We study the evolution of a flux potential parameterized by $c(N) = 100(N+1)$, a model assumption rather than a derived $c$-theorem quantity, and observe a monotonic decrease ($\Delta c < 0$) across flux transitions in this exploratory model (tier X; not a holographic-duality derivation).
     \end{itemize}
-    
-    \item \textbf{Cosmological Stability \& Energy Conditions}: We solve the non-linear Poisson boundary value problem for Symmetron screening, deriving an exact screening factor $\Delta R/R \approx 1.24 \times 10^{-4}$ satisfying Cassini solar system bounds ($|\gamma - 1| \approx 2.48 \times 10^{-6}$). Furthermore, we prove that target-space metric positivity $\tau_{\text{im}} > 0$ strictly enforces the Weak Energy Condition $w(t) \ge -1$, structurally precluding phantom energy without unphysical pressure assumptions.
+
+    \item \textbf{Cosmological Stability \& Energy Conditions}: We solve the non-linear Poisson boundary value problem for Symmetron screening, obtaining a screening factor $\Delta R/R \approx \numreconcile{1.18\times 10^{-4}}{\Delta R/R}$ from our current simulation output (tier X; number subject to revision pending the numerics fixes noted below). We assume a coupling $\rho = 1/\tau_{\text{im}}$; we conjecture that, in this model, target-space metric positivity $\tau_{\text{im}} > 0$ constrains the weak energy condition $w(t) \ge -1$ (tier C, not a derivation from first principles).
 \end{enumerate}
 
-All numerical simulation code, Lean 4 formalization scripts, and TDA Mapper pipelines are open-source, fully documented, and backed by a comprehensive regression test suite ($27/27$ pytest tests, $32/32$ Lean jobs compiling cleanly with zero \texttt{sorry}).
+All numerical simulation code, Lean 4 formalization scripts, and TDA Mapper pipelines are open-source and documented. A regression test suite addressing core functionality is being added on an active fix branch; the Rust simulator carried no unit tests prior to that branch, so no pytest or Lean job pass count is asserted here. An axiom audit of the local Lean library reports 83 theorems audited, with 5 failing, and the edge cases it identified are under revision on those branches. In particular, the Buscher-involution verification claim made in an earlier version of this pipeline is withdrawn: the local Lean formalization (\texttt{proofs/BuscherRules.lean}) declares global axioms that, instantiated at \texttt{Nat}, yield \texttt{False}, so that result establishes nothing. The designated kernel-checked replacement foundation is LeanMaster (tag v2.2.0), whose verified scope is limited to integer $O(d,d;\mathbb{Z})$ charge actions and the generalized metric at $B=0$, not the field-level Buscher rules for the metric, $B$-field and dilaton. Any performance or cost figures elsewhere in the manuscript are pending hardware verification and are not asserted here. The simulation outputs reported above (the minimum metric component, the TDA Mapper graph cardinalities, and the screening factor) are unseeded or not attested by committed output, and are being regenerated after the numerics fixes on an active branch. Accordingly, this submission accompanies a correction notice detailing these changes and will be issued as a new version of our existing Zenodo record 22683565 (DOI 10.5281/zenodo.22683565; concept record 22683564).
 
-We believe this paper will be of strong interest to the string theory, Swampland cosmology, and computational high-energy physics communities. 
+We believe this paper will be of interest to the string theory, Swampland cosmology, and computational high-energy physics communities as an exploratory methodological contribution, with the above tiering intended to state plainly which results are kernel-checked, which are exact arithmetic, and which remain numerical or interpretive.
 
 Thank you for your time and consideration.
 

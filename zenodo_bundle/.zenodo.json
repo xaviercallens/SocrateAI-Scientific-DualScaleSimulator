@@ -1,6 +1,6 @@
 {
-  "title": "Mechanized T-Duality and Frontier String Dynamics on K3 × T²: Closing the Loop via LeanFlow Stiff Solvers with Native Duality, Topological Data Analysis, and Lean 4 Certification",
-  "description": "This deposit provides the complete reproducible artifacts for the manuscript 'Mechanized T-Duality and Frontier String Dynamics on K3 × T²: Closing the Loop via LeanFlow Stiff Solvers with Native Duality, Topological Data Analysis, and Lean 4 Certification'. The repository introduces LeanFlow, a neuro-symbolic computational architecture bridging stiff non-linear partial differential equation (PDE) solvers with automated theorem proving (Lean 4) and topological data analysis (TDA). Original computational contributions include: (1) Operational Algorithmic Section Condition in Double Field Theory (DFT) embedding Buscher duality into a 2D×2D generalized metric with in-loop AOT contract assertions executing in 12–18 ns; (2) Formal proofs in Lean 4 verifying Fourier–Mukai spherical reflection auto-equivalences on the Mukai lattice Γ^{4,20}, Kummer orbifold singularity resolution (e(X)=24), and discrete Betti invariants; (3) Closed-loop TDA Mapper extraction (187 nodes, 557 edges, β₁=376) certified through an outer IPC verification gate (45 ms); (4) Stiff simulation telemetry across three frontier string dynamics use cases: Langevin tunneling on Kummer orbifolds, Coleman–De Luccia vacuum decay, and boundary tachyon condensation.",
+  "title": "Tiered Formal and Numerical Methods for T-Duality and Frontier String Dynamics on K3 × T²: Closing the Loop via LeanFlow Stiff Solvers with Native Duality, Topological Data Analysis, and Lean 4 Checking",
+  "description": "Corrected version of the manuscript 'Tiered Formal and Numerical Methods for T-Duality and Frontier String Dynamics on K3 × T²: Closing the Loop via LeanFlow Stiff Solvers with Native Duality, Topological Data Analysis, and Lean 4 Checking' and its reproducible artifacts. This version withdraws claims made in the version issued as Zenodo record 22683565 (DOI 10.5281/zenodo.22683565); see the Correction notice in the manuscript. The repository couples numerical integration (SciPy Radau and solve_bvp solvers; custom explicit Rust integrators) with Lean 4 checking of discrete algebraic invariants and topological data analysis (TDA Mapper) of simulation output. Status of the contents, by evidence tier: (1) Kernel-checked foundation: integer O(d,d;Z) T-duality charge action and the generalized metric at B = 0, K3/Mukai/K3×T² lattice signatures, flux-tadpole arithmetic and Mathieu-moonshine dimension facts are kernel-checked in the external LeanMaster project (release v2.2.0) and restated in lean_foundation/, depending only on Lean's three standard axioms. They do not cover the field-level Buscher rules for metric, B-field and dilaton. (2) Local Lean files in proofs/ are superseded and are not a verification of the physics they name: BuscherRules.lean rests on five global axioms, one of which (inv_inv) proves False when instantiated at Nat, and many other theorems hold by construction of their definitions. (3) All simulation outputs (moduli geodesics, Kummer-orbifold Langevin dynamics, flat-space Coleman bounce, tachyon condensation, TDA Mapper graphs) are exploratory numerics and will be regenerated after numerics fixes. (4) No benchmark or cost figure is claimed: all speed and cost comparisons are pending hardware verification. The external rusty-SUNDIALS integrator is planned but is not present in this repository and was not used.",
   "creators": [
     {
       "name": "Callens, Xavier",
@@ -13,17 +13,17 @@
     "T-duality",
     "K3-surface",
     "Lean4",
-    "formal-verification",
     "topological-data-analysis",
     "Double-Field-Theory",
     "generalized-geometry",
     "Mukai-lattice",
     "neuro-symbolic",
     "stiff-solvers",
-    "BDF-method",
     "Langevin-dynamics",
     "vacuum-decay",
-    "tachyon-condensation"
+    "tachyon-condensation",
+    "Lean4-checking",
+    "numerical-integration"
   ],
   "license": {
     "id": "Apache-2.0"
@@ -33,7 +33,9 @@
   "access_right": "open",
   "language": "eng",
   "communities": [
-    { "identifier": "zenodo" }
+    {
+      "identifier": "zenodo"
+    }
   ],
-  "notes": "Artifact bundle includes: (1) Complete compiled manuscript T_duality_Alone.pdf (34 pages); (2) Complete LaTeX source T_duality_Alone.tex; (3) 14 sorry-free Lean 4 formal proof files (FourierMukai.lean, BuscherRules.lean, KummerOrbifoldResolution.lean, MukaiLatticeK3.lean, KummerTDAAnomalyCertification.lean, etc.); (4) Rust high-performance stiff dual-scale simulator crate with in-loop AOT duality assertions; (5) Telemetry summaries: tda_mapper_skeleton.json (187 nodes, 557 edges), kummer_langevin_summary.json (48×48 lattice, 25,344 transitions), vacuum_decay_cdl_summary.json (S_E≈137.15, R_c≈2.82, Δc=-100), and tachyon_condensation_summary.json (w≈1.54√α')."
+  "notes": "Artifact bundle includes: (1) compiled manuscript T_duality_Alone.pdf and its LaTeX source T_duality_Alone.tex; (2) local Lean 4 files in proofs/ (superseded; see the manuscript's Correction notice for what they do and do not establish) and the lean_foundation/ project restating kernel-checked LeanMaster theorems; (3) Rust simulator crate rust_simulator/ and Python driver workshopcosmo.py; (4) simulation telemetry summaries (tda_mapper_skeleton.json, kummer_langevin_summary.json, vacuum_decay_cdl_summary.json, tachyon_condensation_summary.json). Telemetry values are exploratory, some committed summaries disagree with each other, and the TDA Mapper output is not seeded; values will be regenerated."
 }

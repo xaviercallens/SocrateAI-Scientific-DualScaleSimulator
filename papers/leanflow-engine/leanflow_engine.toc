@@ -1,24 +1,26 @@
-\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Contributions of LeanFlow (Phase 2)}{3}{subsection.1.1}%
-\contentsline {section}{\numberline {2}The LeanFlow Engine Architecture}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Dual-Tier Latency Decoupling}{4}{subsection.2.1}%
-\contentsline {paragraph}{Tier 1: Microsecond In-Loop AOT Contract Assertions ($12\text {--}18\,\text {ns}$)}{4}{section*.3}%
-\contentsline {paragraph}{Tier 2: Asynchronous Macroscopic Verification Gate ($1\text {--}45\,\text {ms}$)}{4}{section*.4}%
-\contentsline {subsection}{\numberline {2.2}Mathematical Projection Operators}{5}{subsection.2.2}%
-\contentsline {section}{\numberline {3}Declarative Invariant Specification DSL}{6}{section.3}%
-\contentsline {paragraph}{State Guarding vs. Derivative Invariance}{6}{section*.5}%
-\contentsline {section}{\numberline {4}Direct String Theory Dataset Ingestion}{7}{section.4}%
-\contentsline {subsection}{\numberline {4.1}CICY Configuration Matrix Parser}{7}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Kreuzer-Skarke 4D Reflexive Polyhedra}{7}{subsection.4.2}%
-\contentsline {section}{\numberline {5}Specialized Working-Group Toolkits}{8}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Working Group 1: Numerical Calabi-Yau Metric Learning (cymetric / PINN)}{8}{subsection.5.1}%
-\contentsline {paragraph}{The Negative Eigenvalue Failure Mode}{8}{section*.7}%
-\contentsline {subsection}{\numberline {5.2}Working Group 2: Swampland \& MCMC Flux Vacuum Explorers}{8}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Working Group 3: Topological Defect Modelers (TDA Nerve Extraction)}{9}{subsection.5.3}%
-\contentsline {section}{\numberline {6}Empirical Benchmarks \& Performance}{9}{section.6}%
-\contentsline {subsection}{\numberline {6.1}The 2-Minute Community Quickstart}{9}{subsection.6.1}%
-\contentsline {section}{\numberline {7}Open-Source Ecosystem \& Community Release}{10}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Packaging and PyPI Installation}{10}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Hugging Face Papers \& Model Hub Release}{10}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Discussion \& Conclusion}{10}{section.8}%
-\contentsline {paragraph}{Future Roadmap}{11}{section*.9}%
+\contentsline {paragraph}{Correction notice.}{2}{section*.1}%
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Contributions of LeanFlow (Phase 2)}{4}{subsection.1.1}%
+\contentsline {section}{\numberline {2}The LeanFlow Engine Architecture}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Dual-Tier Latency Decoupling}{5}{subsection.2.1}%
+\contentsline {paragraph}{Tier 1: Microsecond In-Loop AOT Contract Assertions (12--18, pending hardware verification)}{6}{section*.4}%
+\contentsline {paragraph}{Tier 2: Asynchronous Macroscopic Verification Gate (1--45, pending hardware verification)}{6}{section*.5}%
+\contentsline {subsection}{\numberline {2.2}Mathematical Projection Operators}{6}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Declarative Invariant Specification DSL}{7}{section.3}%
+\contentsline {paragraph}{State Guarding vs. Derivative Invariance}{8}{section*.6}%
+\contentsline {section}{\numberline {4}Direct String Theory Dataset Ingestion}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}CICY Configuration Matrix Parser}{8}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Kreuzer-Skarke 4D Reflexive Polyhedra}{9}{subsection.4.2}%
+\contentsline {section}{\numberline {5}Specialized Working-Group Toolkits}{9}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Working Group 1: Numerical Calabi-Yau Metric Learning (cymetric / PINN)}{9}{subsection.5.1}%
+\contentsline {paragraph}{The Negative Eigenvalue Failure Mode}{9}{section*.8}%
+\contentsline {subsection}{\numberline {5.2}Working Group 2: Swampland \& MCMC Flux Vacuum Explorers}{10}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Working Group 3: Topological Defect Modelers (TDA Nerve Extraction)}{10}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Empirical Benchmarks \& Performance}{11}{section.6}%
+\contentsline {subsection}{\numberline {6.1}The 2-Minute Community Quickstart}{11}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Open-Source Ecosystem \& Community Release}{12}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Packaging and PyPI Installation}{12}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Hugging Face Papers \& Model Hub Release}{12}{subsection.7.2}%
+\contentsline {section}{\numberline {8}Discussion \& Conclusion}{13}{section.8}%
+\contentsline {paragraph}{Future Roadmap}{13}{section*.10}%
+\contentsline {paragraph}{Limitations}{13}{section*.11}%
