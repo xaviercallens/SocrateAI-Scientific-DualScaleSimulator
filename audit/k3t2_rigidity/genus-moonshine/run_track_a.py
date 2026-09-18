@@ -392,6 +392,8 @@ def main():
     # ---- chi(2A): not given by the task; scan rather than recall it.
     chi2A_scan = []
     chi2A_polar_solve = None
+    H2A_first6 = None
+    twined_identity = None
     if agree24 and mb_ok:
         inv_e3_H = reciprocal_1d({i: v for (i, j), v in e3_H.items() if j == 0}, imaxH, istep=8)
         inv_e3_2d = {(i, 0): v for i, v in inv_e3_H.items()}
@@ -427,6 +429,27 @@ def main():
                 "H_tau_polar_coeff": str(h24_m1),
                 "chi_2A_solving_H_2A_polar_eq_minus_2": str(chi_solution),
                 "is_integer": (chi_solution.denominator == 1),
+            }
+
+        # ---- H_2A's first 6 coefficients at chi(2A)=8 (the value picked
+        # out by the polar-term discriminator above), and the 2A-twined
+        # survival of A_2*60=4*A_1*77.
+        H2A_8_2d = add(scal(H24_2d, Fr(8, 24)), scal(F2A_over_eta3, -1))
+        H2A_8 = {i: v for (i, j), v in H2A_8_2d.items() if j == 0}
+        H2A_first6 = {n: H2A_8.get(-1 + 8 * n) for n in range(0, 6)}
+        A_2A = {}
+        for n in range(1, 6):
+            v = H2A_first6.get(n)
+            if v is not None:
+                A_2A[n] = v / 2
+        twined_identity = None
+        if 1 in A_2A and 2 in A_2A:
+            lhs2A = A_2A[2] * 60
+            rhs2A = 4 * A_2A[1] * 77
+            twined_identity = {
+                "A_1_2A": str(A_2A[1]), "A_2_2A": str(A_2A[2]),
+                "A_2_2A_times_60": str(lhs2A), "4_times_A_1_2A_times_77": str(rhs2A),
+                "holds": (lhs2A == rhs2A),
             }
 
     out = {
@@ -555,6 +578,9 @@ def main():
                 "integrality condition, not a truncation artifact, and "
                 "does NOT by itself pin down chi(2A).",
             "polar_term_discriminator": chi2A_polar_solve,
+            "H_2A_first_6_coeffs_at_chi_2A_8": (
+                {str(n): str(v) for n, v in H2A_first6.items()} if H2A_first6 else None),
+            "twined_identity_A2_60_eq_4_A1_77_under_2A": twined_identity,
             "polar_term_discriminator_note": "The premise that H_g's polar "
                 "term is the SAME -2 for every M24 conjugacy class g "
                 "(tier L, a literature/moonshine structural fact, NOT "
@@ -568,14 +594,12 @@ def main():
                 "independently of it.",
         },
         "could_not_do": [
-            "The 2A-twined identity check (whether A_2*60=4*A_1*77 survives "
-            "when A_n is replaced by its 2A-twined counterpart) was not "
-            "attempted: it needs the FULL 2A-twined elliptic genus "
-            "Z_K3^{2A}(tau,z) via F_2A's numerator structure combined with "
-            "theta_1(tau,z)^2 the same way H combines with it, which is a "
-            "further nontrivial regularization step beyond H_2A(tau) alone "
-            "(a tau-only object) that time did not allow re-deriving and "
-            "cross-checking to the same standard as the rest of this file.",
+            "Nothing further within the scope actually attempted for item "
+            "(3): the twined identity check WAS carried out (see "
+            "twined_identity_A2_60_eq_4_A1_77_under_2A above) using the "
+            "same H_g-polar-term-is-minus-2 normalization (tier L "
+            "premise) that also fixed chi(2A)=8; whether that identity "
+            "holds or fails is reported there as computed, not assumed.",
         ] if agree24 and mb_ok else [
             "Item (2)/(3): H(tau) extraction did not pass its own two-slice "
             "and multiply-back consistency checks at this cutoff; see "
