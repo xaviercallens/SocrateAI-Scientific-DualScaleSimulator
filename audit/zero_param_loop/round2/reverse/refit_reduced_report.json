@@ -1,0 +1,62 @@
+{
+  "chi2_reduced": 702.9066083231721,
+  "chi2_reduced_detail": {
+    "bao": {
+      "chi2": 14.058692315581345,
+      "s_fit": 0.03355226367814766
+    },
+    "sn": {
+      "chi2": 688.8479160075908,
+      "offset_fit": 43.05487041378623,
+      "n_sn": 1590
+    },
+    "chi2_total": 702.9066083231721,
+    "Om_frozen": 0.31115000000000004,
+    "H0_implied_km_s_Mpc": 67.661122494938
+  },
+  "chi2_reduced_data_facing_free_params": 0,
+  "chi2_reduced_caveat": "mu_sym and c4_pta_product are free in the model but contribute 0 to this number: no fifth-force or angular-PTA dataset exists in data/real/ to fit them against. This is the chi2 of a 0-parameter model, not a 2-parameter fit.",
+  "chi2_lcdm": 702.6753004830802,
+  "chi2_lcdm_detail": {
+    "bao": {
+      "chi2": 15.043943842115478,
+      "s_fit": 0.03340657853655864
+    },
+    "sn": {
+      "chi2": 687.6313566409647,
+      "offset_fit": 43.056802802344144,
+      "n_sn": 1590
+    },
+    "chi2_total": 702.6753004830802,
+    "Om_fit": 0.3169513026014882
+  },
+  "chi2_full": 703.8946371287691,
+  "chi2_full_source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-loop/audit/zero_param_loop/round2/sweep_chi2.csv (min of 378 finite points, reused not recomputed)",
+  "cross_check_vs_forward_decisive_experiment": {
+    "forward_lcdm_frozen_chi2_total": 702.9066083231721,
+    "this_script_chi2_reduced": 702.9066083231721,
+    "diff_frozen": 0.0,
+    "forward_lcdm_fitted_chi2_total": 702.6753004830802,
+    "this_script_chi2_lcdm": 702.6753004830802,
+    "diff_fitted": 0.0
+  },
+  "aic": {
+    "k_reduced": 0,
+    "k_lcdm": 1,
+    "k_full": 2,
+    "aic_reduced": 702.9066083231721,
+    "aic_lcdm": 704.6753004830802,
+    "aic_full": 707.8946371287691,
+    "sign_convention": "delta_aic_vs_X = AIC_reduced - AIC_X; negative favors the reduced model"
+  },
+  "delta_aic_vs_lcdm": -1.7686921599080279,
+  "delta_aic_vs_full": -4.988028805596969,
+  "delta_chi2_reduced_minus_full": -0.9880288055969686,
+  "fit_degraded_threshold_2removed_params": 4,
+  "fit_degraded_2removed": false,
+  "fit_degraded_threshold_3removed_params_conservative": 6,
+  "fit_degraded_3removed_conservative": false,
+  "fit_degraded": false,
+  "n_bao": 12,
+  "n_sn": 1590
+}

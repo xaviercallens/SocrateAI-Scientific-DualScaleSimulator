@@ -1,0 +1,145 @@
+{
+  "dark_energy_columns_dropped": [
+    "H0_implied_km_s_Mpc",
+    "Omega_m_frozen"
+  ],
+  "dark_energy_columns_constant_check": {
+    "H0_implied_km_s_Mpc": {
+      "n_unique_values": 1,
+      "value": 67.661122494938
+    },
+    "Omega_m_frozen": {
+      "n_unique_values": 1,
+      "value": 0.31115
+    }
+  },
+  "results": {
+    "2d": {
+      "n_total_swept": 129,
+      "n_numerically_stable": 129,
+      "n_zero_variance_columns_dropped": 0,
+      "columns_used": [
+        "screening_suppression_factor",
+        "phi_center_ratio",
+        "pta_max_deviation_from_hd"
+      ],
+      "effective_dimension_svd": 3,
+      "singular_values": [
+        16.059447819805225,
+        11.357816517228652,
+        0.3068219091283628
+      ],
+      "pca_k": 2,
+      "pca_cumulative_variance_fraction": [
+        0.6664234219045138,
+        0.9997567450027877
+      ],
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "n_finite_bars": {
+        "0": 128,
+        "1": 43,
+        "2": 0
+      }
+    },
+    "mu_only": {
+      "n_total_swept": 48,
+      "n_numerically_stable": 48,
+      "n_zero_variance_columns_dropped": 1,
+      "columns_used": [
+        "screening_suppression_factor",
+        "phi_center_ratio"
+      ],
+      "effective_dimension_svd": 2,
+      "singular_values": [
+        9.796076115465462,
+        0.19207482918676877
+      ],
+      "pca_k": 1,
+      "pca_cumulative_variance_fraction": [
+        0.9996157006249257
+      ],
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "n_finite_bars": {
+        "0": 47,
+        "1": 0,
+        "2": 0
+      }
+    },
+    "c4_only": {
+      "n_total_swept": 48,
+      "n_numerically_stable": 48,
+      "n_zero_variance_columns_dropped": 2,
+      "columns_used": [
+        "pta_max_deviation_from_hd"
+      ],
+      "effective_dimension_svd": 1,
+      "singular_values": [
+        6.928203230275509
+      ],
+      "pca_k": 1,
+      "pca_cumulative_variance_fraction": [
+        1.0
+      ],
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "n_finite_bars": {
+        "0": 47,
+        "1": 0,
+        "2": 0
+      }
+    }
+  },
+  "prediction_check": {
+    "predicted_betti_2d_sweep": [
+      1,
+      0
+    ],
+    "observed_betti_2d_sweep": [
+      1,
+      0
+    ],
+    "betti_matches_prediction": true,
+    "predicted_betti_positive_controls": [
+      1,
+      0
+    ],
+    "observed_betti_mu_only": [
+      1,
+      0
+    ],
+    "observed_betti_c4_only": [
+      1,
+      0
+    ],
+    "controls_betti_match_prediction": true,
+    "predicted_effective_dimension_2d_sweep": 2,
+    "observed_pca_variance_dimension_2d_sweep": 2,
+    "observed_strict_svd_threshold_dimension_2d_sweep_SECONDARY_METRIC": 3,
+    "positive_control_mu_only_pca_variance_dimension": 1,
+    "positive_control_mu_only_strict_svd_dimension_SECONDARY_METRIC": 2,
+    "positive_control_mu_only_dimension_1_as_predicted": true,
+    "positive_control_c4_only_pca_variance_dimension": 1,
+    "positive_control_c4_only_strict_svd_dimension_SECONDARY_METRIC": 1,
+    "positive_control_c4_only_dimension_1_as_predicted": true,
+    "dimension_metric_note": "PCA cumulative-variance-fraction k (primary, matches predictions in all 3 cases: 2d->2, mu_only->1, c4_only->1) and the stricter singular-value/1e-3-of-max threshold (secondary, inflated by curvature/correlation, as the forward round already found for this metric) DISAGREE; only the primary metric decides topology_match here.",
+    "topology_match_per_PREREGISTRATION_definition": true
+  },
+  "dark_energy_subvector_check": {
+    "prediction": "single point, all pairwise distances 0, Betti_0=1, Betti_1=0",
+    "observed_max_pairwise_distance_across_all_swept_points": 0.0,
+    "matches_prediction": true
+  },
+  "bottleneck_vs_forward_real_data_DESCRIPTIVE_ONLY": {
+    "H0": 0.06132221906652191,
+    "H1": 0.026234442108469716,
+    "caveat_verbatim_from_forward_round": "model cloud is a PCA embedding of standardized observables and real cloud is a native embedding, each independently rescaled to unit diameter with its own median-based max_edge_length, so Betti_0 counts and raw bottleneck magnitudes are not on equal footing across the two constructions. This number does NOT set topology_match (see PREREGISTRATION.md)."
+  }
+}
