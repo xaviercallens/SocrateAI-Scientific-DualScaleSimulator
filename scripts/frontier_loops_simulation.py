@@ -20,6 +20,9 @@ from scipy.optimize import brentq
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 
+# np.trapz was removed in NumPy 2.x; np.trapezoid does not exist before 2.0.
+_trapezoid = getattr(np, "trapezoid", None) or np.trapz
+
 # Matplotlib styling for high-impact academic publication
 plt.rcParams.update({
     "font.family": "serif",
@@ -202,7 +205,7 @@ def run_vacuum_decay_loop(num_flux_levels: int = 4):
     integrand = r_span**3 * (0.5 * dphi_dr**2 + (potential(phi_bounce, 2) - potential(phi_false, 2)))
     # Ensure positive integrand near wall
     integrand = np.maximum(0.0, integrand)
-    s_e = 2.0 * (np.pi**2) * np.trapz(integrand, r_span)
+    s_e = 2.0 * (np.pi**2) * _trapezoid(integrand, r_span)
 
     # Holographic central charge and flux hierarchy
     fluxes = np.arange(num_flux_levels, 0, -1)  # [4, 3, 2, 1]
