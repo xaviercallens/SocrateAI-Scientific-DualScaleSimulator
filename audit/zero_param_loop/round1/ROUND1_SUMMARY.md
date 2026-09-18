@@ -126,11 +126,19 @@ the mandated controls; the dimension count is the Jacobian/PCA result above.
 
 - **Model side**: standardized 20-dim observable vector (w0,wa; DM*H0 and H/H0 at DESI's 7
   z's; log-ssf, log-pcr; pta max-dev, log-c4pta) over the 316 stable points, PCA'd to
-  **4 dims at 97.3% cumulative variance** (`pca_cumulative_variance_fraction`) -- a striking,
-  independent cross-check of the Jacobian's eff_dim~3-4 at the best-fit point, via a completely
-  different method (global PCA vs local SVD of a Jacobian). Rips complex (rescaled to max
-  pairwise distance=1, `sparse=0.2`): betti_numbers `[1,0]` (one connected, contractible blob,
-  as expected).
+  **4 dims at 97.3% cumulative variance** (`pca_cumulative_variance_fraction`). **Correction
+  (post-advisor review): this is NOT an independent cross-check of the Jacobian's eff_dim.**
+  The Jacobian is a *local* derivative rank at one point (how many directions move the
+  observables there); the PCA is a *global* variance decomposition of 316 points spread over a
+  4-decade box (how many linear axes carry the cloud's spread). These measure different things
+  and their landing at similar numbers (4 vs. 3 at best-fit) is not evidence either is right --
+  a strongly nonlinear 2-parameter model can produce a high-rank PCA, and a near-degenerate
+  6-parameter model confined to a thin curved sheet can produce a low-rank PCA at high local
+  Jacobian rank. Reported here only as its own finding (dark energy + screening observables
+  compress to a 4-dim linear subspace over this sweep box), not as confirmation of anything
+  else. **The effective-dimension number this round is the Jacobian's: 3, at the best-fit
+  point, per Section 2.** Rips complex (rescaled to max pairwise distance=1, `sparse=0.2`):
+  betti_numbers `[1,0]` (one connected, contractible blob, as expected).
 - **Real side (primary)**: Pantheon+ SN residual-vs-best-fit-flat-LCDM embedding
   `(zHD, c, x1, residual)`, 4D, N=316 (subsampled to match model cloud size, seed 42). Also
   betti `[1,0]`.
@@ -144,9 +152,14 @@ the mandated controls; the dimension count is the Jacobian/PCA result above.
   (`circle_control_assertion.ASSERTION_one_dominant_H1_bar: true`). Poisson/uniform null cloud,
   same N=316 and (post-rescale) dimension as the model cloud (4, after PCA).
 - **Bottleneck distances** (all clouds rescaled to max pairwise distance=1 first; still
-  labeled qualitative): `model_vs_real_sn_H1 = 0.0195`, `null_vs_real_sn_H1 = 0.0399`
-  (model is closer to the real SN-residual topology than the null is); same pattern against
-  2MRS (`model_vs_real_2mrs_H1 = 0.0291` vs `null_vs_real_2mrs_H1 = 0.0403`).
+  labeled qualitative): `model_vs_real_sn_H1 = 0.0195`, `null_vs_real_sn_H1 = 0.0399`; same
+  pattern against 2MRS (`model_vs_real_2mrs_H1 = 0.0291` vs `null_vs_real_2mrs_H1 = 0.0403`).
+  **Caveat added post-advisor review**: the null cloud is drawn uniformly in a box; this
+  ordering (model closer to real than null is) is reported **with a uniform-box null only,
+  NOT tested against a null matched to the model cloud's own per-axis (PCA) variances** -- if
+  the ordering is actually a bounding-box artifact of the uniform null being "more spread out"
+  than either the model or real sheet, a variance-matched null could flip it. Not claiming the
+  model resembles the real topology more than chance until that control is run (round 2).
 
 ## 4. REDUCE -- proposals (`reduce_proposals.json`)
 
