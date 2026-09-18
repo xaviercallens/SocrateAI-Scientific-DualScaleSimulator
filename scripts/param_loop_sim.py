@@ -395,6 +395,48 @@ def run_selftest() -> Dict[str, Any]:
     report["checks"].append(checkC)
     ok_all = ok_all and checkC["pass"]
 
+    # --- Check D: mu_sym is actually wired into screening (vitality check) -
+    # Check A/C alone cannot catch a compute_screening_observable() that
+    # silently ignores mu_sym -- verified empirically in a scratch mutation
+    # (see review notes) where such a change left ALL_PASS=True. Uses the
+    # /10 direction because x10 sends the BVP fallback to NaN (see Check B).
+    print("[selftest] Check D: vitality -- mu_sym actually moves screening_suppression_factor ...")
+    ssf_base = compute_screening_observable(DEFAULT_PARAMS["mu_sym"], DEFAULT_PARAMS["lambda_sym"])[
+        "screening_suppression_factor"
+    ]
+    ssf_div10 = compute_screening_observable(DEFAULT_PARAMS["mu_sym"] / 10.0, DEFAULT_PARAMS["lambda_sym"])[
+        "screening_suppression_factor"
+    ]
+    d_diff = abs(ssf_base - ssf_div10)
+    checkD = {
+        "name": "mu_sym_vitality_screening_suppression_factor",
+        "ssf_base": ssf_base,
+        "ssf_mu_sym_div10": ssf_div10,
+        "abs_diff": d_diff,
+        "pass": bool(np.isfinite(ssf_base) and np.isfinite(ssf_div10) and d_diff > 1e-9),
+    }
+    print(f"    ssf(mu_sym=1.0)={ssf_base!r} ssf(mu_sym=0.1)={ssf_div10!r} diff={d_diff:.3e} PASS={checkD['pass']}")
+    report["checks"].append(checkD)
+    ok_all = ok_all and checkD["pass"]
+
+    # --- Check E: PTA product term is not vacuous (vitality check) --------
+    # Check C alone cannot catch a compute_pta_observable() that silently
+    # drops the c4_c0_ratio*pta_suppression*l4_response term -- verified
+    # empirically in a scratch mutation where Check C's diff became exactly
+    # 0.0 (it PASSES *harder*, since the degeneracy check has nothing left
+    # to compare) while ALL_PASS stayed True. This check asserts the term is
+    # actually present and nonzero at the default point.
+    print("[selftest] Check E: vitality -- PTA product term is nonzero at the default point ...")
+    e_diff = _scalar_diff(base_pta["gamma_theta"], base_pta["hd_curve"])
+    checkE = {
+        "name": "pta_product_term_vitality",
+        "max_abs_diff_gamma_theta_vs_hd_curve": e_diff,
+        "pass": bool(e_diff > 1e-6),
+    }
+    print(f"    max|gamma_theta - hd_curve| = {e_diff:.3e}  PASS={checkE['pass']}")
+    report["checks"].append(checkE)
+    ok_all = ok_all and checkE["pass"]
+
     report["all_pass"] = ok_all
     return report
 
