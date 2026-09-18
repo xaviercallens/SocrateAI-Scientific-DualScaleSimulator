@@ -26,3 +26,4 @@ token
 .lake
 lean_foundation/.lake
 .paperwork/
+.venv-tda/
