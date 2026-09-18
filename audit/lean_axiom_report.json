@@ -1,0 +1,694 @@
+{
+  "BuscherRules": {
+    "library": "BuscherRules",
+    "file": "proofs/BuscherRules.lean",
+    "status": "FAIL",
+    "error": null,
+    "theorems": {
+      "SocrateAI.StringTheory.Buscher.buscher_involution": {
+        "axioms": [
+          "SocrateAI.StringTheory.Buscher.Phi_inv",
+          "SocrateAI.StringTheory.Buscher.buscher_Bmunu_inv",
+          "SocrateAI.StringTheory.Buscher.buscher_cross_inv",
+          "SocrateAI.StringTheory.Buscher.buscher_gmunu_inv",
+          "SocrateAI.StringTheory.Buscher.inv_inv",
+          "propext"
+        ],
+        "classification": "CUSTOM_AXIOM"
+      }
+    },
+    "summary": {
+      "total": 1,
+      "standard": 0,
+      "custom_axiom": 1,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "DbraneBoundaryStates": {
+    "library": "DbraneBoundaryStates",
+    "file": "proofs/DbraneBoundaryStates.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.StringTheory.DbraneInflow.neumann_directions_count": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.DbraneInflow.callan_harvey_exact_anomaly_cancellation": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 2,
+      "standard": 2,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "FluxVacuumDecayCTheorem": {
+    "library": "FluxVacuumDecayCTheorem",
+    "file": "proofs/FluxVacuumDecayCTheorem.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.Cosmology.FluxVacuumDecay.cdl_action_strictly_positive": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.FluxVacuumDecay.true_vacuum_energy_is_lower": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.FluxVacuumDecay.holographic_c_theorem_decay": {
+        "axioms": [
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.FluxVacuumDecay.tda_saddle_matches_cdl_trajectory": {
+        "axioms": [],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 4,
+      "standard": 4,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "FourierMukai": {
+    "library": "FourierMukai",
+    "file": "proofs/FourierMukai.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {},
+    "summary": {
+      "total": 0,
+      "standard": 0,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "GysinBEMSequence": {
+    "library": "GysinBEMSequence",
+    "file": "proofs/GysinBEMSequence.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.StringTheory.GysinBEM.euler_class_pullback_zero": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.GysinBEM.bem_chern_pairing_zero": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.GysinBEM.bem_t_duality_involution": {
+        "axioms": [],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 3,
+      "standard": 3,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "KummerOrbifoldResolution": {
+    "library": "KummerOrbifoldResolution",
+    "file": "proofs/KummerOrbifoldResolution.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.StringTheory.KummerGeometry.exceptional_self_intersection_is_minus_two": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.KummerGeometry.exceptional_cross_intersection_is_zero": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.KummerGeometry.betti2_is_twenty_two": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.KummerGeometry.kummer_euler_characteristic_is_24": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.KummerGeometry.kummer_signature_is_minus_16": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.KummerGeometry.b_minus_is_nineteen": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.KummerGeometry.b_plus_plus_b_minus_is_betti2": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.KummerGeometry.b_plus_minus_b_minus_is_signature": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 8,
+      "standard": 8,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "KummerTDAAnomalyCertification": {
+    "library": "KummerTDAAnomalyCertification",
+    "file": "proofs/KummerTDAAnomalyCertification.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.Cosmology.KummerTDA.num_kummer_fixed_points_is_16": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.total_o7_charge_is_minus_64": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.total_d7_charge_is_64": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.kummer_bulk_tadpole_cancellation": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.attractor_vacuum_anomaly_free": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.domain_wall_anomaly_free": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.cosmic_string_anomaly_free": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.tda_all_equivalence_classes_anomaly_free": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.irreducible_anomalies_zero": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.topological_defects_preserve_string_landscape": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.KummerTDA.sum_vacuum_charges_eq_zero": {
+        "axioms": [],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 11,
+      "standard": 11,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "LeanscratchDB.DoubleScaleT2": {
+    "library": "LeanscratchDB.DoubleScaleT2",
+    "file": "proofs/LeanscratchDB/DoubleScaleT2.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.StringTheory.LeanscratchDB.DoubleScaleT2.buscher_involution_g_theta_theta": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.DoubleScaleT2.buscher_involution_g_alpha_theta": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.DoubleScaleT2.buscher_involution_B_alpha_theta": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.DoubleScaleT2.buscher_involution_g_alpha_beta": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.DoubleScaleT2.buscher_involution_phi": {
+        "axioms": [],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 5,
+      "standard": 5,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "LeanscratchDB.EmergentCosmology": {
+    "library": "LeanscratchDB.EmergentCosmology",
+    "file": "proofs/LeanscratchDB/EmergentCosmology.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {},
+    "summary": {
+      "total": 0,
+      "standard": 0,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "LeanscratchDB.HoloAlg": {
+    "library": "LeanscratchDB.HoloAlg",
+    "file": "proofs/LeanscratchDB/HoloAlg.lean",
+    "status": "FAIL",
+    "error": null,
+    "theorems": {
+      "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase2_RR.c_eff_invariant": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase2_RR.sym_square_level_preserved": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase3.topology_exchange": {
+        "axioms": [
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase3.H_Flux",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase3.M",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase3.pi_star"
+        ],
+        "classification": "CUSTOM_AXIOM"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Tadpole.z2_is_involution": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Tadpole.local_charge_zero": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Tadpole.tadpole_cancellation": {
+        "axioms": [
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Tadpole.sum_sixteen_const",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Tadpole.sum_sixteen_zero"
+        ],
+        "classification": "CUSTOM_AXIOM"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Perverse.flop_charge_conservation": {
+        "axioms": [
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Perverse.Hom",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Perverse.K_Zero",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Perverse.K_class",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Perverse.grothendieck_relation",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_Perverse.k_add"
+        ],
+        "classification": "CUSTOM_AXIOM"
+      },
+      "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_IndexTheorem.gravitino_anomaly_cancellation": {
+        "axioms": [
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_IndexTheorem.K3",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_IndexTheorem.atiyah_singer_k3",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_IndexTheorem.int_omega_wedge_omega_bar",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_IndexTheorem.int_tr_F_wedge_F",
+          "SocrateAI.StringTheory.LeanscratchDB.HoloAlg.Phase4_IndexTheorem.pi_sq"
+        ],
+        "classification": "CUSTOM_AXIOM"
+      }
+    },
+    "summary": {
+      "total": 8,
+      "standard": 4,
+      "custom_axiom": 4,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "LeanscratchDB.QuantumEntanglement": {
+    "library": "LeanscratchDB.QuantumEntanglement",
+    "file": "proofs/LeanscratchDB/QuantumEntanglement.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.StringTheory.LeanscratchDB.QuantumEntanglement.t_duality_preserves_entropy": {
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 1,
+      "standard": 1,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "LeanscratchDB.TopologicalTDuality": {
+    "library": "LeanscratchDB.TopologicalTDuality",
+    "file": "proofs/LeanscratchDB/TopologicalTDuality.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "HoloAlg.TopologicalTDuality.bem_symmetric_exchange": {
+        "axioms": [],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 1,
+      "standard": 1,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "MathieuVertexOperators": {
+    "library": "MathieuVertexOperators",
+    "file": "proofs/MathieuVertexOperators.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.Moonshine.MathieuVertexOperators.delta1_is_half": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.delta2_is_five_halves": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.delta12_value": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.total_chiral_weight_value": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.conformal_exponent_sum": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.dimA1_decomposition": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.dimA2_decomposition": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.dimA3_decomposition": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.sym2_A1_dimension_is_4095": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.superconformal_geometric_congruence": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.r_nl_cross_multiplication": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.r_nl_is_irreducible": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.product_value_check": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.denominator_product_check": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.r_nl_parts_per_thousand_value": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Moonshine.MathieuVertexOperators.nominal_value_is_consistent": {
+        "axioms": [],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 16,
+      "standard": 16,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "MukaiLatticeK3": {
+    "library": "MukaiLatticeK3",
+    "file": "proofs/MukaiLatticeK3.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.StringTheory.Mukai.mukai_pairing_symmetric": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.Mukai.mukai_pairing_additive": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.Mukai.skyscraper_sheaf_moduli_dim": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.Mukai.fourier_mukai_preserves_dim": {
+        "axioms": [
+          "propext"
+        ],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 4,
+      "standard": 4,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "SwamplandDistanceConjecture": {
+    "library": "SwamplandDistanceConjecture",
+    "file": "proofs/SwamplandDistanceConjecture.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.Cosmology.SwamplandDistance.alpha_sdc_strictly_positive": {
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.SwamplandDistance.standard_sdc_coupling_positive": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.SwamplandDistance.sdc_initial_mass": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.SwamplandDistance.sdc_mass_gap_collapses": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.SwamplandDistance.sdc_t_duality_tower_invariance": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.SwamplandDistance.sdc_eft_breakdown": {
+        "axioms": [],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 6,
+      "standard": 6,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "TachyonCondensationKTheory": {
+    "library": "TachyonCondensationKTheory",
+    "file": "proofs/TachyonCondensationKTheory.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.Cosmology.TachyonKTheory.sen_conjecture_k_theory_conservation": {
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.TachyonKTheory.tachyon_condensation_preserves_rr_charge": {
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.TachyonKTheory.kummer_fractional_annihilation_yields_zero_charge": {
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.Cosmology.TachyonKTheory.tda_isolated_kink_is_physical": {
+        "axioms": [
+          "Classical.choice",
+          "Quot.sound",
+          "propext"
+        ],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 4,
+      "standard": 4,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  },
+  "TadpoleCancellation": {
+    "library": "TadpoleCancellation",
+    "file": "proofs/TadpoleCancellation.lean",
+    "status": "OK",
+    "error": null,
+    "theorems": {
+      "SocrateAI.StringTheory.TadpoleCancellation.num_fixed_points_is_16": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.TadpoleCancellation.total_O7_charge_is_minus_64": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.TadpoleCancellation.total_D7_charge_is_64": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.TadpoleCancellation.d7_tadpole_cancellation": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.TadpoleCancellation.three_generation_index": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.TadpoleCancellation.curvature_d3_charge_is_1": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.TadpoleCancellation.flux_saturates_d3_tadpole": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.TadpoleCancellation.irreducible_anomalies_vanish": {
+        "axioms": [],
+        "classification": "STANDARD"
+      },
+      "SocrateAI.StringTheory.TadpoleCancellation.dual_scale_model_is_in_landscape": {
+        "axioms": [],
+        "classification": "STANDARD"
+      }
+    },
+    "summary": {
+      "total": 9,
+      "standard": 9,
+      "custom_axiom": 0,
+      "sorry": 0,
+      "native": 0,
+      "missing": 0
+    }
+  }
+}
