@@ -1,0 +1,117 @@
+{
+  "Q": 2,
+  "validation_m1_2_3": {
+    "m=1": {
+      "vanish2_at_p24": {
+        "holds": true,
+        "bad": {}
+      },
+      "vanish2_at_p24_plus1_should_fail": {
+        "holds_ie_BAD_if_true": false,
+        "bad": {
+          "0": [
+            "-1",
+            "0"
+          ]
+        }
+      },
+      "vanish2_at_p24_minus1_should_fail": {
+        "holds_ie_BAD_if_true": false,
+        "bad": {
+          "0": [
+            "1",
+            "0"
+          ]
+        }
+      },
+      "matches_lean_pattern": true
+    },
+    "m=2": {
+      "vanish2_at_p24": {
+        "holds": true,
+        "bad": {}
+      },
+      "vanish2_at_p24_plus1_should_fail": {
+        "holds_ie_BAD_if_true": false,
+        "bad": {
+          "0": [
+            "-1",
+            "0"
+          ]
+        }
+      },
+      "vanish2_at_p24_minus1_should_fail": {
+        "holds_ie_BAD_if_true": false,
+        "bad": {
+          "0": [
+            "1",
+            "0"
+          ]
+        }
+      },
+      "matches_lean_pattern": true
+    },
+    "m=3": {
+      "vanish2_at_p24": {
+        "holds": true,
+        "bad": {}
+      },
+      "vanish2_at_p24_plus1_should_fail": {
+        "holds_ie_BAD_if_true": false,
+        "bad": {
+          "0": [
+            "-1",
+            "0"
+          ]
+        }
+      },
+      "vanish2_at_p24_minus1_should_fail": {
+        "holds_ie_BAD_if_true": false,
+        "bad": {
+          "0": [
+            "1",
+            "0"
+          ]
+        }
+      },
+      "matches_lean_pattern": true
+    }
+  },
+  "P3_m4": {
+    "p24_m_plus_1": "176256",
+    "vanish2_at_p24": {
+      "holds": true,
+      "bad_coefficients": {}
+    },
+    "vanish2_at_p24_plus1": {
+      "holds": false,
+      "note": "predicted to be FALSE (negative control)"
+    },
+    "vanish2_at_p24_minus1": {
+      "holds": false,
+      "note": "predicted to be FALSE (negative control)"
+    },
+    "prediction_confirmed": true,
+    "lean_checked_range": "m in {1,2,3} only (polar_part_removes_pole / polar_coefficient_pinned / immortal_exact_m23)",
+    "honesty_note_d1": "d1 (the y-derivative-at-1 half of vanish2) was 0 identically in every case here (main and both negative controls: d1_ever_nonzero=False), by the y<->y^-1 symmetry of A, A2m and the dmvv product -- exactly the caveat DMVV.lean's own doc comment states under polar_part_removes_pole. The only condition doing real discriminating work is eval1: G_{m+1}(q^n,y=1) = p24(m+1) for every n<=Q, which the +-1 controls break. This is NOT an independently-verified double-pole cancellation; it is a single (first-order) pole-coefficient check."
+  },
+  "P4_m5": {
+    "p24_m_plus_1": "1073720",
+    "vanish2_at_p24": {
+      "holds": true,
+      "bad_coefficients": {}
+    },
+    "vanish2_at_p24_plus1": {
+      "holds": false,
+      "note": "predicted to be FALSE (negative control)"
+    },
+    "vanish2_at_p24_minus1": {
+      "holds": false,
+      "note": "predicted to be FALSE (negative control)"
+    },
+    "prediction_confirmed": true,
+    "lean_checked_range": "m in {1,2,3} only (polar_part_removes_pole / polar_coefficient_pinned / immortal_exact_m23)",
+    "honesty_note_d1": "d1 (the y-derivative-at-1 half of vanish2) was 0 identically in every case here (main and both negative controls: d1_ever_nonzero=False), by the y<->y^-1 symmetry of A, A2m and the dmvv product -- exactly the caveat DMVV.lean's own doc comment states under polar_part_removes_pole. The only condition doing real discriminating work is eval1: G_{m+1}(q^n,y=1) = p24(m+1) for every n<=Q, which the +-1 controls break. This is NOT an independently-verified double-pole cancellation; it is a single (first-order) pole-coefficient check."
+  },
+  "all_validation_matches_lean": true
+}
