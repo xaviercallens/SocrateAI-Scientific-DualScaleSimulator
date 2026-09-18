@@ -493,8 +493,8 @@ class TestOutputDirRouting:
 
         import subprocess
         result = subprocess.run(
-            ["grep", "-rn", needle, "--include=*.py", "."],
-            cwd="/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.claude/worktrees/wf_029d0f52-25c-18",
+            ["grep", "-rn", needle, "--include=*.py", "--exclude-dir=.claude", "."],
+            cwd=os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
             capture_output=True,
             text=True
         )
