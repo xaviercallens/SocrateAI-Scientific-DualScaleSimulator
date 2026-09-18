@@ -230,7 +230,7 @@ reverse = [
     {"id": "P5", "extends": "blind Track C 04_dual_scale_bound.py (d<=6); NOT a located Lean statement",
      "computed": {d: p5["by_dimension"][d]["random_spd_sample_bound"]["all_f_nonnegative"] for d in ["7", "8", "9", "10"]},
      "holds": True, "lean_reachable_now": None,
-     "caveat": "Structurally an algebraic identity (sum (x_i-1)^2/x_i). Note: targets_sealed.json lists DualScaleStream2/DualScale/TraceBound.lean:87 dualScale_eq and :173 dualScale_eq_iff, so the reverse pass's 'no Lean statement located' (it searched StringTheoryFoundation/ and DoubleFieldTheory/) is a search gap, not an absence."},
+     "caveat": "Structurally an algebraic identity (sum (x_i-1)^2/x_i). Note: the bound itself appears in the comparator's lean_only list of unsealed Lean statements the blind route reproduces ('dual-scale bound tr G + tr G^-1 >= 2d'); the sealed file carries two adjacent statements, TraceBound.lean:87 dualScale_eq (definition unfolding) and :173 dualScale_eq_iff (equality case), neither of which is the inequality. So the reverse pass's 'no Lean statement located' (it searched StringTheoryFoundation/ and DoubleFieldTheory/) is a search gap, not a missing theorem."},
 ]
 
 out = {
