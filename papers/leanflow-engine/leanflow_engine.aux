@@ -1,7 +1,22 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {paragraph}{Correction notice.}{2}{section*.1}\protected@file@percent }
 \citation{douglas2003}
 \citation{he2017deep}
 \citation{ruehle2020data}
@@ -11,54 +26,56 @@
 \citation{ooguri2006}
 \citation{de2015lean}
 \citation{moura2021lean}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{section.1}\protected@file@percent }
-\newlabel{sec:introduction}{{1}{3}{Introduction}{section.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Contributions of LeanFlow (Phase 2)}{3}{subsection.1.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}The LeanFlow Engine Architecture}{4}{section.2}\protected@file@percent }
-\newlabel{sec:architecture}{{2}{4}{The LeanFlow Engine Architecture}{section.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Dual-Tier Latency Decoupling}{4}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Tier 1: Microsecond In-Loop AOT Contract Assertions ($12\text  {--}18\,\text  {ns}$)}{4}{section*.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Tier 2: Asynchronous Macroscopic Verification Gate ($1\text  {--}45\,\text  {ms}$)}{4}{section*.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {LeanFlow Dual-Tier System Architecture.} The microsecond inner loop (Tier 1) executes Ahead-Of-Time (AOT) compiled SIMD contract assertions in $12\text  {--}18\,\text  {ns}$ per residual, guaranteeing metric positivity and modular folding without solver stutter. Macroscopic milestones, MCMC batches, and TDA defect nerves are asynchronously verified in the Lean 4 proof kernel (Tier 2) via socket IPC ($1\text  {--}45\,\text  {ms}$).}}{5}{figure.caption.2}\protected@file@percent }
+\citation{leanmaster2026}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{4}{section.1}\protected@file@percent }
+\newlabel{sec:introduction}{{1}{4}{Introduction}{section.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Contributions of LeanFlow (Phase 2)}{4}{subsection.1.1}\protected@file@percent }
+\citation{leanmaster2026}
+\@writefile{toc}{\contentsline {section}{\numberline {2}The LeanFlow Engine Architecture}{5}{section.2}\protected@file@percent }
+\newlabel{sec:architecture}{{2}{5}{The LeanFlow Engine Architecture}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Dual-Tier Latency Decoupling}{5}{subsection.2.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces \textbf  {LeanFlow Dual-Tier System Architecture.} The microsecond inner loop (Tier 1) executes Ahead-Of-Time (AOT) compiled SIMD contract assertions per residual (12--18, pending hardware verification), applying metric-positivity and modular-folding projections without solver stutter. Macroscopic milestones, MCMC batches, and TDA defect nerves are asynchronously checked against the Lean 4 proof kernel (Tier 2) via socket IPC (1--45, pending hardware verification).\relax }}{6}{figure.caption.3}\protected@file@percent }
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:architecture}{{1}{5}{\textbf {LeanFlow Dual-Tier System Architecture.} The microsecond inner loop (Tier 1) executes Ahead-Of-Time (AOT) compiled SIMD contract assertions in $12\text {--}18\,\text {ns}$ per residual, guaranteeing metric positivity and modular folding without solver stutter. Macroscopic milestones, MCMC batches, and TDA defect nerves are asynchronously verified in the Lean 4 proof kernel (Tier 2) via socket IPC ($1\text {--}45\,\text {ms}$)}{figure.caption.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Mathematical Projection Operators}{5}{subsection.2.2}\protected@file@percent }
+\newlabel{fig:architecture}{{1}{6}{\textbf {LeanFlow Dual-Tier System Architecture.} The microsecond inner loop (Tier 1) executes Ahead-Of-Time (AOT) compiled SIMD contract assertions per residual (\numreconcile {12--18}{ns}, pending hardware verification), applying metric-positivity and modular-folding projections without solver stutter. Macroscopic milestones, MCMC batches, and TDA defect nerves are asynchronously checked against the Lean 4 proof kernel (Tier 2) via socket IPC (\numreconcile {1--45}{ms}, pending hardware verification).\relax }{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {paragraph}{Tier 1: Microsecond In-Loop AOT Contract Assertions (12--18, pending hardware verification)}{6}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tier 2: Asynchronous Macroscopic Verification Gate (1--45, pending hardware verification)}{6}{section*.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Mathematical Projection Operators}{6}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Declarative Invariant Specification DSL}{7}{section.3}\protected@file@percent }
+\newlabel{sec:dsl}{{3}{7}{Declarative Invariant Specification DSL}{section.3}{}}
 \citation{candelas1988}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Declarative Invariant Specification DSL}{6}{section.3}\protected@file@percent }
-\newlabel{sec:dsl}{{3}{6}{Declarative Invariant Specification DSL}{section.3}{}}
-\newlabel{lst:guardrail_eom}{{1}{6}{\textbf {Declarative Invariant Specification via \texttt {@guardrail}.}}{lstlisting.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces \textbf  {Declarative Invariant Specification via \texttt  {@guardrail}.}}}{6}{lstlisting.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{State Guarding vs. Derivative Invariance}{6}{section*.5}\protected@file@percent }
 \citation{kreuzer2000}
+\newlabel{lst:guardrail_eom}{{1}{8}{\textbf {Declarative Invariant Specification via \texttt {@guardrail}.} The \texttt {theorem} argument is illustrative only; see text for kernel-checked status}{lstlisting.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}\textbf  {Declarative Invariant Specification via \texttt  {@guardrail}.} The \texttt  {theorem} argument is illustrative only; see text for kernel-checked status.}{8}{lstlisting.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{State Guarding vs. Derivative Invariance}{8}{section*.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Direct String Theory Dataset Ingestion}{8}{section.4}\protected@file@percent }
+\newlabel{sec:datasets}{{4}{8}{Direct String Theory Dataset Ingestion}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}CICY Configuration Matrix Parser}{8}{subsection.4.1}\protected@file@percent }
 \citation{anderson2021cymetric}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Direct String Theory Dataset Ingestion}{7}{section.4}\protected@file@percent }
-\newlabel{sec:datasets}{{4}{7}{Direct String Theory Dataset Ingestion}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}CICY Configuration Matrix Parser}{7}{subsection.4.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Canonical CICY Manifolds Ingested by LeanFlow.} Automated verification validates first Chern class cancellation $c_1=0$ and computes exact D3-brane tadpole cancellation budgets.}}{7}{table.caption.6}\protected@file@percent }
-\newlabel{tab:cicy_manifolds}{{1}{7}{\textbf {Canonical CICY Manifolds Ingested by LeanFlow.} Automated verification validates first Chern class cancellation $c_1=0$ and computes exact D3-brane tadpole cancellation budgets}{table.caption.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Kreuzer-Skarke 4D Reflexive Polyhedra}{7}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces \textbf  {Canonical CICY Manifolds Ingested by LeanFlow.} Automated verification validates first Chern class cancellation $c_1=0$ and computes exact D3-brane tadpole cancellation budgets. The $h^{1,1}$ and $h^{2,1}$ entries for \texttt  {k3\_x\_t2} are pending reconciliation; the tadpole bound $|\chi |/24 = 0.00$ follows from $\chi = 0$ and is unaffected.\relax }}{9}{table.caption.7}\protected@file@percent }
+\newlabel{tab:cicy_manifolds}{{1}{9}{\textbf {Canonical CICY Manifolds Ingested by LeanFlow.} Automated verification validates first Chern class cancellation $c_1=0$ and computes exact D3-brane tadpole cancellation budgets. The $h^{1,1}$ and $h^{2,1}$ entries for \texttt {k3\_x\_t2} are pending reconciliation; the tadpole bound $|\chi |/24 = 0.00$ follows from $\chi = 0$ and is unaffected.\relax }{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Kreuzer-Skarke 4D Reflexive Polyhedra}{9}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Specialized Working-Group Toolkits}{9}{section.5}\protected@file@percent }
+\newlabel{sec:working_groups}{{5}{9}{Specialized Working-Group Toolkits}{section.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Working Group 1: Numerical Calabi-Yau Metric Learning (cymetric / PINN)}{9}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{The Negative Eigenvalue Failure Mode}{9}{section*.8}\protected@file@percent }
 \citation{vafa2005}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Specialized Working-Group Toolkits}{8}{section.5}\protected@file@percent }
-\newlabel{sec:working_groups}{{5}{8}{Specialized Working-Group Toolkits}{section.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Working Group 1: Numerical Calabi-Yau Metric Learning (cymetric / PINN)}{8}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{The Negative Eigenvalue Failure Mode}{8}{section*.7}\protected@file@percent }
-\newlabel{lst:cymetric_stabilization}{{2}{8}{\textbf {Kähler Cone Metric Stabilization in LeanFlow.}}{lstlisting.2}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces \textbf  {Kähler Cone Metric Stabilization in LeanFlow.}}}{8}{lstlisting.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Working Group 2: Swampland \& MCMC Flux Vacuum Explorers}{8}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Working Group 3: Topological Defect Modelers (TDA Nerve Extraction)}{9}{subsection.5.3}\protected@file@percent }
-\newlabel{lst:lean_proof_tadpole}{{3}{9}{\textbf {Mechanized Lean 4 Anomaly Cancellation Proof.}}{lstlisting.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}{\ignorespaces \textbf  {Mechanized Lean 4 Anomaly Cancellation Proof.}}}{9}{lstlisting.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Empirical Benchmarks \& Performance}{9}{section.6}\protected@file@percent }
-\newlabel{sec:benchmarks}{{6}{9}{Empirical Benchmarks \& Performance}{section.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {Computational Performance and Invariant Preservation Benchmarks.} LeanFlow achieves a $7.1\times $ speedup over C++ SUNDIALS and $> 900\times $ over SciPy on identical non-linear moduli systems, while maintaining 100\% invariant preservation.}}{9}{table.caption.8}\protected@file@percent }
-\newlabel{tab:benchmarks}{{2}{9}{\textbf {Computational Performance and Invariant Preservation Benchmarks.} LeanFlow achieves a $7.1\times $ speedup over C++ SUNDIALS and $> 900\times $ over SciPy on identical non-linear moduli systems, while maintaining 100\% invariant preservation}{table.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}The 2-Minute Community Quickstart}{9}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Open-Source Ecosystem \& Community Release}{10}{section.7}\protected@file@percent }
-\newlabel{sec:community}{{7}{10}{Open-Source Ecosystem \& Community Release}{section.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Packaging and PyPI Installation}{10}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Hugging Face Papers \& Model Hub Release}{10}{subsection.7.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion \& Conclusion}{10}{section.8}\protected@file@percent }
-\newlabel{sec:conclusion}{{8}{10}{Discussion \& Conclusion}{section.8}{}}
+\newlabel{lst:cymetric_stabilization}{{2}{10}{\textbf {Kähler Cone Metric Stabilization in LeanFlow.}}{lstlisting.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}\textbf  {Kähler Cone Metric Stabilization in LeanFlow.}}{10}{lstlisting.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Working Group 2: Swampland \& MCMC Flux Vacuum Explorers}{10}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Working Group 3: Topological Defect Modelers (TDA Nerve Extraction)}{10}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Empirical Benchmarks \& Performance}{11}{section.6}\protected@file@percent }
+\newlabel{sec:benchmarks}{{6}{11}{Empirical Benchmarks \& Performance}{section.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces \textbf  {Computational Performance and Invariant Preservation Benchmarks (exploratory, tier X).} LeanFlow shows a $7.1\times $ speedup over C++ SUNDIALS and $>900\times $ over SciPy on identical non-linear moduli systems, and a step latency of $0.19\,\text  {ms}$; all three figures are pending hardware verification against committed execution logs. An earlier draft's claim of complete invariant preservation is withdrawn: no execution record in this repository supports any specific preservation rate for LeanFlow Phase 2. The Formal Certificate column reports whether a post-hoc discrete algebraic bookkeeping check (e.g., tadpole-cancellation bookkeeping) is attached to a run; per this pipeline's own dispatch logic, this check is not sent to the Lean kernel when its precondition is already satisfied, so the column is not a Lean kernel proof of numerical solver performance, step latency, or runtime invariant enforcement, which remain outside the scope of the kernel checks used elsewhere in this project.\relax }}{11}{table.caption.9}\protected@file@percent }
+\newlabel{tab:benchmarks}{{2}{11}{\textbf {Computational Performance and Invariant Preservation Benchmarks (exploratory, tier X).} LeanFlow shows a $\numreconcile {7.1}{SUNDIALS speedup ratio}\times $ speedup over C++ SUNDIALS and $>\numreconcile {900}{SciPy speedup ratio}\times $ over SciPy on identical non-linear moduli systems, and a step latency of $\numreconcile {0.19}{LeanFlow step latency}\,\text {ms}$; all three figures are pending hardware verification against committed execution logs. An earlier draft's claim of complete invariant preservation is withdrawn: no execution record in this repository supports any specific preservation rate for LeanFlow Phase 2. The Formal Certificate column reports whether a post-hoc discrete algebraic bookkeeping check (e.g., tadpole-cancellation bookkeeping) is attached to a run; per this pipeline's own dispatch logic, this check is not sent to the Lean kernel when its precondition is already satisfied, so the column is not a Lean kernel proof of numerical solver performance, step latency, or runtime invariant enforcement, which remain outside the scope of the kernel checks used elsewhere in this project.\relax }{table.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}The 2-Minute Community Quickstart}{11}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Open-Source Ecosystem \& Community Release}{12}{section.7}\protected@file@percent }
+\newlabel{sec:community}{{7}{12}{Open-Source Ecosystem \& Community Release}{section.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Packaging and PyPI Installation}{12}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Hugging Face Papers \& Model Hub Release}{12}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Discussion \& Conclusion}{13}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{13}{Discussion \& Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {paragraph}{Future Roadmap}{13}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Limitations}{13}{section*.11}\protected@file@percent }
 \bibcite{douglas2003}{1}
 \bibcite{he2017deep}{2}
 \bibcite{ruehle2020data}{3}
@@ -73,5 +90,5 @@
 \bibcite{kreuzer2000}{12}
 \bibcite{buscher1987}{13}
 \bibcite{hull2009double}{14}
-\@writefile{toc}{\contentsline {paragraph}{Future Roadmap}{11}{section*.9}\protected@file@percent }
-\gdef \@abspage@last{12}
+\bibcite{leanmaster2026}{15}
+\gdef \@abspage@last{14}

@@ -13,6 +13,7 @@
 \usepackage{subcaption}
 \usepackage{microtype}
 \usepackage{tikz}
+\newcommand{\numreconcile}[2]{#1}
 \usetikzlibrary{arrows.meta, positioning, shapes.geometric, shapes.misc, calc, shadows, backgrounds}
 
 \geometry{margin=1in}
@@ -38,7 +39,7 @@
     urlcolor=leanblue,
     pdftitle={LeanFlow: A Neuro-Symbolic Engine for Invariant-Guarded Scientific Machine Learning and String Theory},
     pdfauthor={Xavier Callens},
-    pdfsubject={Scientific Machine Learning, Computational String Theory, Formal Verification},
+    pdfsubject={Scientific Machine Learning, Computational String Theory, Formal Methods},
     pdfkeywords={Scientific Machine Learning, Formal Methods, Lean 4, Calabi-Yau, String Theory, Neuro-Symbolic Computing}
 }
 
@@ -109,17 +110,19 @@
 \begin{abstract}
 Scientific machine learning (SciML) and continuous numerical solvers are transforming computational string theory and mathematical physics, from learning Ricci-flat Calabi-Yau metrics to exploring the flux vacuum landscape. However, current neural surrogates and conventional differential equation integrators suffer from catastrophic out-of-domain drift: they routinely violate non-negotiable physical constraints, such as metric positive-definiteness, positive-energy bounds, target-space modular invariance, and topological anomaly cancellation. Conversely, interactive theorem provers (ITPs) like Lean 4 provide machine-checked mathematical certainty down to foundational proof kernels, but their elaboration overhead ($\sim 10\text{--}100\,\text{ms}$) introduces an intractable latency bottleneck inside high-throughput numerical loops.
 
-Here, we present \textbf{LeanFlow} (Phase 2), an open-source, production-grade computational engine and neuro-symbolic framework that resolves this tension by directly coupling scientific machine learning with the Lean 4 proof assistant. LeanFlow introduces a \emph{dual-tier latency decoupling architecture}: microsecond-level in-loop Ahead-Of-Time (AOT) SIMD contract assertions ($12\text{--}18\,\text{ns}$) are separated from an asynchronous, macroscopic outer-loop IPC verification gate ($1\text{--}45\,\text{ms}$). The framework provides:
+Here, we present \textbf{LeanFlow} (Phase 2), an open-source computational engine and neuro-symbolic framework that we conjecture can resolve this tension by directly coupling scientific machine learning with the Lean 4 proof assistant. LeanFlow introduces a \emph{dual-tier latency decoupling architecture}: in-loop Ahead-Of-Time (AOT) SIMD contract assertions are separated from an asynchronous, macroscopic outer-loop IPC verification gate, with performance pending hardware verification. The framework provides:
 (i) A Python and PyTorch-interoperable stiff integrator (\texttt{leanflow.Solver}) featuring active Poincaré target-space metric positivity guards ($y \ge 1/\sqrt{12}$) and $SL(2, \mathbb{Z})$ modular domain folding;
-(ii) A declarative invariant specification Domain-Specific Language (\texttt{@leanflow.guardrail}) linking mathematical equations of motion and neural surrogates to machine-checked Lean 4 theorems;
+(ii) A declarative invariant specification Domain-Specific Language (\texttt{@leanflow.guardrail}) for naming a Lean 4 theorem identifier alongside an equation of motion or neural surrogate, with invariants currently enforced by runtime projection rather than by a checked Lean proof (see Correction notice);
 (iii) Automated ingestion pipelines for standard string geometry datasets, including Complete Intersection Calabi-Yau (CICY) configuration matrices ($c_1=0$, $\chi$, $Q_{D3} \le |\chi|/24$) and Kreuzer-Skarke 4D reflexive polyhedra; and
 (iv) Three turnkey toolkits tailored for computational string theory working groups:
 (1) \emph{cymetric/PINN teams}: real-time orthogonal spectral projection enforcing strict positive-definiteness ($g_{i\bar{j}} \succ 0$) inside the Kähler cone with stabilized Monge-Ampère loss;
-(2) \emph{Swampland \& MCMC explorers}: high-throughput proposal filtering ($< 3\,\mu\text{s}$ per sample) with asynchronous Lean 4 kernel certificates for Swampland Distance bounds and tadpole budgets; and
-(3) \emph{Topological defect modelers}: automated Topological Data Analysis (TDA) Mapper 1-skeleton nerve extraction with certified discrete Ramond-Ramond charge neutrality ($\sum Q_i = 0$).
+(2) \emph{Swampland \& MCMC explorers}: high-throughput proposal filtering with an algebraic tadpole-budget screen reported via a registry label rather than an asynchronous Lean 4 kernel certificate, performance pending hardware verification; and
+(3) \emph{Topological defect modelers}: automated Topological Data Analysis (TDA) Mapper 1-skeleton nerve extraction with a discrete Ramond-Ramond charge-neutrality consistency flag ($\sum Q_i = 0$), which is a model bookkeeping check rather than a kernel-checked result.
 
-All components execute within a turnkey 2-minute quickstart demo running all six stages in $0.03\,\text{seconds}$. LeanFlow is made available as an open-source Python package on PyPI and Hugging Face to empower the scientific machine learning and mathematical physics communities.
+All components execute within a turnkey quickstart demo running all six stages; total wall-clock time is pending hardware verification. LeanFlow is designed for distribution as an open-source Python package to empower the scientific machine learning and mathematical physics communities.
 \end{abstract}
+
+\paragraph{Correction notice.} Earlier versions of this abstract reported specific benchmark figures for the in-loop assertion latency, the outer-loop IPC verification gate, MCMC proposal-filtering throughput, and the quickstart demo runtime; no benchmark harness, timing log, or execution record for these figures exists in the repository, so all are withdrawn pending hardware verification. The Topological Data Analysis toolkit's discrete Ramond-Ramond charge-neutrality output was previously presented as a kernel result; it is in fact a stored consistency flag produced by the simulation pipeline, and is described accordingly above. The Swampland Distance Conjecture bound formerly claimed for the MCMC toolkit is withdrawn, since the corresponding local module defines that bound as identically zero rather than deriving it. The MCMC toolkit's tadpole-budget check was previously described as returning an "asynchronous Lean 4 kernel certificate"; that framing is withdrawn, since the check attaches a registry label without invoking the Lean kernel and the underlying local theorem is one of the five the LeanMaster axiom audit reports as failing (see Section~\ref{sec:working_groups}). Similarly, the \texttt{@leanflow.guardrail} decorator's \texttt{theorem} argument was previously presented as linking to a machine-checked Lean 4 theorem; the identifier is illustrative only, is not a kernel-checked declaration in this repository, and the invariants it annotates are enforced heuristically at runtime, not verified by Lean (see Section~\ref{sec:dsl}). The claim that LeanFlow is available on PyPI and Hugging Face has been downgraded to a distribution intent, as no published package or deployment record was found. Kernel-checked statements elsewhere in this paper now cite theorems formalized in LeanMaster v2.2.0 via this repository's \texttt{lean\_foundation/} restatements, rather than the local files under \texttt{proofs/}, which are superseded and, in the case of the Buscher-rules module, contain an axiom set from which \texttt{False} is derivable. This correction will be issued as a new version of the previously published record (Zenodo DOI 10.5281/zenodo.22683565).
 
 \vspace{0.5em}
 \noindent\textbf{Keywords:} Scientific Machine Learning, Formal Methods, Lean 4, Calabi-Yau Metrics, String Phenomenology, Topological Data Analysis, Neuro-Symbolic Computing.
@@ -143,27 +146,27 @@ Despite these computational achievements, a fundamental vulnerability threatens 
 
 When a neural network predicts a target-space metric tensor $g_{i\bar{j}}$, gradient updates can easily steer eigenvalues into the negative domain ($\lambda_{\min} < 0$), violating Kähler cone positivity and producing unphysical negative volumes. When an adaptive numerical solver simulates the cosmological evolution of string moduli fields $\tau(t) = x(t) + i y(t)$, the trajectory can drift towards $y \to 0$, encountering coordinate singularities that trigger artificial divergences in Christoffel connection coefficients. In flux vacuum exploration, MCMC proposals frequently violate D-brane tadpole cancellation bounds ($Q_{D3} + N_{\text{flux}} \le \chi/24$) or the Swampland Distance Conjecture (SDC) \cite{ooguri2006}, polluting vacuum statistics with mathematically inconsistent compactifications.
 
-To eliminate these vulnerabilities, theoretical physicists have increasingly turned to interactive theorem provers (ITPs) such as Lean 4 \cite{de2015lean,moura2021lean}. By formalizing algebraic identities, index theorems, and discrete charge conservation as inductive types, Lean 4 provides mathematical certainty checked by an unyielding proof kernel. However, integrating interactive theorem proving directly into scientific computing introduces an insurmountable challenge known as the \textbf{Formal Methods Latency Bottleneck}:
+To eliminate these vulnerabilities, theoretical physicists have increasingly turned to interactive theorem provers (ITPs) such as Lean 4 \cite{de2015lean,moura2021lean}. By formalizing algebraic identities, index theorems, and discrete charge conservation as inductive types, Lean 4 provides a machine-checked formal-consistency check backed by its proof kernel; such a check is only as sound as the axioms and definitions supplied to it (see Correction notice above). However, integrating interactive theorem proving directly into scientific computing introduces an insurmountable challenge known as the \textbf{Formal Methods Latency Bottleneck}:
 \begin{itemize}
     \item \textbf{Numerical Loop Requirement}: Stiff ordinary differential equation (ODE) integrators and neural surrogate evaluations require bare-metal residual evaluation latencies on the order of $\mathcal{O}(10\text{--}100\,\text{ns})$.
     \item \textbf{Theorem Prover Overhead}: Elaborating proofs, resolving type classes, and invoking proof kernels in Lean 4 takes $\mathcal{O}(10\text{--}100\,\text{ms})$ per query---six orders of magnitude too slow to execute inside the inner integration loop.
 \end{itemize}
 
 \subsection{Contributions of LeanFlow (Phase 2)}
-In this paper, we introduce \textbf{LeanFlow Phase 2}, an open-source, production-grade neuro-symbolic framework designed specifically to bridge the divide between formal mathematical verification and high-performance scientific machine learning. LeanFlow resolves the latency bottleneck through a \textbf{dual-tier latency decoupling architecture} and delivers a complete, modular ecosystem for computational string theory:
+In this paper, we introduce \textbf{LeanFlow Phase 2}, an open-source neuro-symbolic framework designed to bridge formal mathematical verification and high-performance scientific machine learning. We conjecture that a \textbf{dual-tier latency decoupling architecture} can address the latency bottleneck described above, and we present it alongside a modular prototype ecosystem for computational string theory; the architecture's latency figures below are exploratory (tier X) and pending hardware verification (see Correction notice above):
 
 \begin{enumerate}
-    \item \textbf{Dual-Tier Latency Decoupling}: Lean-verified algebraic bounds are compiled Ahead-Of-Time (AOT) into SIMD-vectorized contract assertions and active projection operators executing in $12\text{--}18\,\text{ns}$ within the numerical inner loop. Full Lean 4 kernel verification executes asynchronously across macroscopic checkpoints and batch milestones via socket IPC ($1\text{--}45\,\text{ms}$).
-    \item \textbf{SciML Stiff Integrator (\texttt{leanflow.Solver})}: An adaptive Backward Differentiation Formula (BDF) and Radau IIA solver interoperable with PyTorch tensors and NumPy arrays, featuring automated Poincaré metric positivity projection and $SL(2, \mathbb{Z})$ modular domain folding.
-    \item \textbf{Declarative Invariant Specification DSL (\texttt{@leanflow.guardrail})}: A Python decorator enabling researchers to annotate equations of motion and neural surrogates with formal Lean 4 theorems, automatically injecting active boundary guards and live telemetry.
+    \item \textbf{Dual-Tier Latency Decoupling}: kernel-checked algebraic bounds, where such bounds exist in the LeanMaster replacement foundation \cite{leanmaster2026}, are intended to be compiled Ahead-Of-Time (AOT) into SIMD-vectorized contract assertions and active projection operators targeting \numreconcile{12--18}{ns per step}\,ns within the numerical inner loop, with full Lean 4 kernel verification executing asynchronously across macroscopic checkpoints and batch milestones via socket IPC (\numreconcile{1--45}{ms per IPC gate}\,ms). No benchmark harness, timing log, or execution record for either figure exists in this repository; both are pending hardware verification.
+    \item \textbf{SciML Stiff Integrator (\texttt{leanflow.Solver})}: An adaptive Backward Differentiation Formula (BDF) and Radau IIA solver interoperable with PyTorch tensors and NumPy arrays, featuring automated Poincaré metric positivity projection and $SL(2, \mathbb{Z})$ modular domain folding. The solver's step integration is performed by SciPy's \texttt{solve\_ivp} (confirmed in \texttt{leanflow/core/solver.py}); its step latency is therefore bounded by that underlying library, and the dual-tier architecture above does not itself resolve the integrator's own numerical latency.
+    \item \textbf{Declarative Invariant Specification DSL (\texttt{@leanflow.guardrail})}: A Python decorator enabling researchers to annotate equations of motion and neural surrogates with a named Lean 4 theorem identifier, automatically injecting active boundary guards and live telemetry; the named identifier is illustrative and the injected guards are runtime enforcement, not a checked Lean proof (see Correction notice and Section~\ref{sec:dsl}).
     \item \textbf{String Dataset Ingestion Engine}: Built-in parsers for Complete Intersection Calabi-Yau (CICY) configuration matrices ($c_1=0$, $\chi$, $Q_{D3}$) and Kreuzer-Skarke (KS) 4D reflexive polyhedra, accompanied by a canonical library of compactifications (Quintic, Tian-Yau, Bicubic, CICY 7887, $K3 \times T^2$).
     \item \textbf{Working-Group Toolkits}:
     \begin{itemize}
         \item \emph{Working Group 1 (cymetric / PINN Metric Teams)}: Real-time orthogonal spectral decomposition enforcing $g_{i\bar{j}} \succ 0$ inside the Kähler cone with stabilized Monge-Ampère loss.
-        \item \emph{Working Group 2 (Swampland \& MCMC Vacuum Explorers)}: High-throughput screening gate ($< 3\,\mu\text{s}$/sample) with asynchronous Lean 4 certificates for tadpole budgets and SDC cutoff breakdown.
-        \item \emph{Working Group 3 (Topological Defect Modelers)}: TDA Mapper extraction of simplicial 1-skeleton defect nerves from scalar fields, certified for Ramond-Ramond neutrality ($\sum Q_i = 0$) in the Lean 4 kernel.
+        \item \emph{Working Group 2 (Swampland \& MCMC Vacuum Explorers)}: A high-throughput screening gate ($<\numreconcile{3}{per-sample screening latency}\,\mu\text{s}$/sample, exploratory and pending hardware verification) that checks tadpole-budget and Swampland Distance Conjecture (SDC) cutoff bounds against the simulator's own assumed parameters. No SDC bound or tadpole budget is among the kernel-checked theorems of the LeanMaster replacement foundation \cite{leanmaster2026}; these are algebraic screens, not kernel-checked physical bounds, and the "asynchronous Lean 4 certificate" framing of earlier versions is withdrawn (see Correction notice above).
+        \item \emph{Working Group 3 (Topological Defect Modelers)}: TDA Mapper extraction of simplicial 1-skeleton defect nerves from scalar fields. A Lean 4 definition assigns zero net Ramond-Ramond charge ($\sum Q_i = 0$) to each defect-cluster constructor by construction, and the accompanying theorem holds by \texttt{rfl}; the stored \texttt{tadpole\_cancellation\_certified} field this produces is a definitional flag, not a kernel-checked derivation of physical charge cancellation.
     \end{itemize}
-    \item \textbf{Turnkey Open-Source Release}: Fully tested on PyTorch 2.x and Linux environments, packaged with \texttt{pyproject.toml}, and validated via a 6-stage quickstart script executing in $0.03\,\text{seconds}$.
+    \item \textbf{Turnkey Open-Source Release}: Packaged with \texttt{pyproject.toml} for PyTorch 2.x and Linux environments, and exercised via a 6-stage quickstart script targeting \numreconcile{0.03}{quickstart wall-clock seconds}\,seconds. This wall-clock figure is exploratory (tier X): no benchmark harness or execution log for it exists in this repository, and it is pending hardware verification.
 \end{enumerate}
 
 % ---------------------------------------------------------------------------
@@ -195,7 +198,7 @@ In this paper, we introduce \textbf{LeanFlow Phase 2}, an open-source, productio
         };
         \node[innerbox, below=0.3cm of sub1] (sub2) {
             \textbf{AOT Contract Assertions}\\[2pt]
-            \scriptsize $12\text{--}18\,\text{ns}$ SIMD Projections\\[2pt]
+            \scriptsize SIMD Projections (\numreconcile{12--18}{ns/residual}, pending hardware verification)\\[2pt]
             \tiny $\tau_{\text{im}} \ge \frac{1}{\sqrt{12}}$, $SL(2, \mathbb{Z})$, $g_{i\bar{j}} \succ 0$
         };
         \draw[arrow] (sub1) -- (sub2);
@@ -224,8 +227,8 @@ In this paper, we introduce \textbf{LeanFlow Phase 2}, an open-source, productio
     \begin{tikzpicture}
         \node[outerbox, text width=4.8cm] (lean1) at (0, 0) {
             \textbf{Lean 4 Proof Kernel}\\[2pt]
-            \scriptsize Batch Verification Gate ($1\text{--}45\,\text{ms}$)\\[2pt]
-            \tiny Zero \texttt{sorry} Anomaly Checks ($\sum Q_i = 0$)
+            \scriptsize Batch Verification Gate (\numreconcile{1--45}{ms}, pending hardware verification)\\[2pt]
+            \tiny Discrete Anomaly Checks ($\sum Q_i = 0$)
         };
         \node[outerbox, text width=4.8cm, below=0.3cm of lean1] (lean2) {
             \textbf{TDA Mapper 1-Skeleton}\\[2pt]
@@ -239,28 +242,28 @@ In this paper, we introduce \textbf{LeanFlow Phase 2}, an open-source, productio
 \draw[arrow] (tier1.east) -- (models.west) node[midway, above, font=\scriptsize\sffamily] {Residuals};
 \draw[arrow] (models.west) -- (tier1.east) node[midway, below, font=\scriptsize\sffamily] {State Clamp};
 
-\draw[dasharrow] (tier1.south) -- ++(0,-0.6) -| (tier2.north west) 
+\draw[dasharrow] (tier1.south) -- ++(0,-0.6) -| (tier2.north west)
     node[pos=0.25, left, labelbox] {Milestone Batch (Socket IPC)};
 
 \draw[arrow, draw=accentemerald] (tier2.north east) |- ++(0.5, 0.8) -| (models.south)
-    node[pos=0.25, right, labelbox] {Certified Proof Attestations};
+    node[pos=0.25, right, labelbox] {Proof Attestations};
 
 \end{tikzpicture}
-\caption{\textbf{LeanFlow Dual-Tier System Architecture.} The microsecond inner loop (Tier 1) executes Ahead-Of-Time (AOT) compiled SIMD contract assertions in $12\text{--}18\,\text{ns}$ per residual, guaranteeing metric positivity and modular folding without solver stutter. Macroscopic milestones, MCMC batches, and TDA defect nerves are asynchronously verified in the Lean 4 proof kernel (Tier 2) via socket IPC ($1\text{--}45\,\text{ms}$).}
+\caption{\textbf{LeanFlow Dual-Tier System Architecture.} The microsecond inner loop (Tier 1) executes Ahead-Of-Time (AOT) compiled SIMD contract assertions per residual (\numreconcile{12--18}{ns}, pending hardware verification), applying metric-positivity and modular-folding projections without solver stutter. Macroscopic milestones, MCMC batches, and TDA defect nerves are asynchronously checked against the Lean 4 proof kernel (Tier 2) via socket IPC (\numreconcile{1--45}{ms}, pending hardware verification).}
 \label{fig:architecture}
 \end{figure*}
 
 \subsection{Dual-Tier Latency Decoupling}
 The central architectural innovation of LeanFlow is the decoupling of high-frequency numerical integration from foundational interactive theorem proving, illustrated in Figure~\ref{fig:architecture}.
 
-\paragraph{Tier 1: Microsecond In-Loop AOT Contract Assertions ($12\text{--}18\,\text{ns}$)}
-During implicit Newton-Raphson iterations of stiff ODE systems ($\Delta t \sim 10^{-6}\dots 10^{-3}\,H^{-1}$), calling an external process or proof elaboration engine is computationally prohibitive. Instead, LeanFlow compiles the algebraic bounds formally verified in Lean 4 into ahead-of-time (AOT) SIMD contract assertions and projection operators. These operators execute in C/Rust and NumPy/PyTorch with a per-step latency of $12\text{--}18\,\text{ns}$, preserving the sub-millisecond step latency of stiff integrators.
+\paragraph{Tier 1: Microsecond In-Loop AOT Contract Assertions (\numreconcile{12--18}{ns}, pending hardware verification)}
+During implicit Newton-Raphson iterations of stiff ODE systems ($\Delta t \sim 10^{-6}\dots 10^{-3}\,H^{-1}$), calling an external process or proof elaboration engine is computationally prohibitive. Instead, LeanFlow compiles the algebraic bounds used by the projection operators described below (numerical enforcement, tier X) into ahead-of-time (AOT) SIMD contract assertions and projection operators. These operators execute in C/Rust and NumPy/PyTorch with a per-step latency of \numreconcile{12--18}{ns} (pending hardware verification), preserving the sub-millisecond step latency of stiff integrators.
 
-\paragraph{Tier 2: Asynchronous Macroscopic Verification Gate ($1\text{--}45\,\text{ms}$)}
-At macroscopic trajectory milestones (e.g., boundary crossings, MCMC proposal batches, and topological defect extraction), LeanFlow dispatches serialized invariant payloads to the Lean 4 server via non-blocking Unix domain socket IPC using JSON-RPC. The Lean 4 proof kernel elaborates the inductive data structures, checks discrete anomaly cancellation ($\sum Q_i = 0$), and returns cryptographic proof certificates. If an invariant violation is detected, an anomaly interrupt is triggered, preventing unphysical states from contaminating downstream analysis.
+\paragraph{Tier 2: Asynchronous Macroscopic Verification Gate (\numreconcile{1--45}{ms}, pending hardware verification)}
+At macroscopic trajectory milestones (e.g., boundary crossings, MCMC proposal batches, and topological defect extraction), LeanFlow dispatches serialized invariant payloads to the Lean 4 server via non-blocking Unix domain socket IPC using JSON-RPC. The Lean 4 proof kernel elaborates the inductive data structures, checks discrete anomaly cancellation ($\sum Q_i = 0$), and returns proof attestations. If an invariant violation is detected, an anomaly interrupt is triggered, preventing unphysical states from contaminating downstream analysis.
 
 \subsection{Mathematical Projection Operators}
-LeanFlow implements five foundational projection operators certified down to machine precision:
+LeanFlow implements five foundational projection operators (numerical enforcement, tier X); these are runtime clamps implemented in NumPy/PyTorch, not kernel-checked Lean 4 theorems:
 
 \begin{enumerate}
     \item \textbf{Poincaré Target-Space Metric Positivity}: Moduli trajectories $\tau(t) = x(t) + i y(t)$ on the upper half-plane $\mathbb{H}$ must strictly maintain $y(t) > 0$ to guarantee positive kinetic energy. Near the boundary $y \to 0$, Christoffel connections diverged as $-2/y \cdot \dot{x}\dot{y}$. LeanFlow enforces an orthogonal projection:
@@ -268,24 +271,24 @@ LeanFlow implements five foundational projection operators certified down to mac
         \Pi_{\mathbb{H}}(y) = \max\left(y, \, \frac{1}{\sqrt{12}}\right),
     \end{equation}
     where $y_{\text{Fricke}} = 1/\sqrt{12} \approx 0.288675$ is the Fricke involution saddle boundary.
-    
+
     \item \textbf{Operational Numerical Section Condition ($SL(2, \mathbb{Z})$ Modular Folding)}: Symmetries under the modular group $SL(2, \mathbb{Z})$ map equivalent physical vacua across the fundamental domain $\mathcal{F} = \{ \tau \in \mathbb{H} : |\tau| \ge 1, \, |\text{Re}(\tau)| \le 1/2 \}$. When trajectories exit $\mathcal{F}$, LeanFlow applies iterative modular transformations:
     \begin{equation}
         T: \tau \mapsto \tau + 1, \quad S: \tau \mapsto -\frac{1}{\tau},
     \end{equation}
     folding trajectories back into $\mathcal{F}$ and serving as an algorithmic section condition for generalized geometry.
-    
-    \item \textbf{Weak Energy Condition (WEC) Lock}: For scalar field quintessence and cosmic inflation, energy density $\rho$ and pressure $p$ must satisfy $\rho + p \ge 0$, precluding phantom energy ($w = p/\rho \ge -1$). The lock projects:
+
+    \item \textbf{Weak Energy Condition (WEC) Lock}: For scalar field quintessence and cosmic inflation, energy density $\rho$ and pressure $p$ must satisfy $\rho + p \ge 0$ (equivalently $w = p/\rho \ge -1$ for $\rho > 0$), thereby precluding phantom energy ($w < -1$). The lock projects:
     \begin{equation}
         \Pi_{\text{WEC}}(p) = \max(p, \, -\rho).
     \end{equation}
-    
+
     \item \textbf{Kähler Cone Spectral Projection}: For numerical Calabi-Yau metric learning ($g_{i\bar{j}} \in \mathbb{C}^{n \times n}$), LeanFlow enforces positive-definiteness via Hermitian eigenvalue decomposition:
     \begin{equation}
         g = V \Lambda V^\dagger \implies \Pi_{\mathcal{K}}(g) = V \operatorname{diag}(\max(\epsilon, \lambda_i)) V^\dagger,
     \end{equation}
     where $\epsilon = 10^{-3}$ ensures strict containment inside the Kähler cone.
-    
+
     \item \textbf{Tadpole Cancellation Budget}: On Calabi-Yau fourfolds and orientifolds, background D3-brane charge $Q_{D3}$ and quantized flux $N_{\text{flux}}$ must satisfy:
     \begin{equation}
         Q_{D3} + N_{\text{flux}} \le \frac{|\chi|}{24},
@@ -301,13 +304,15 @@ LeanFlow implements five foundational projection operators certified down to mac
 
 To make formal methods accessible to scientific Python and PyTorch practitioners without requiring expertise in interactive theorem proving, LeanFlow provides a declarative Domain-Specific Language (DSL) via the \texttt{@leanflow.guardrail} decorator.
 
-Listing~\ref{lst:guardrail_eom} illustrates how researchers annotate numerical equations of motion or neural surrogates with formal invariants.
+Listing~\ref{lst:guardrail_eom} illustrates how researchers annotate numerical equations of motion or neural surrogates with formal invariants. The \texttt{theorem} argument names a Lean identifier the guardrail is intended to reference; \texttt{SocrateAI.Cosmology.wec\_kinetic\_identity} is not a kernel-checked Lean declaration in this repository, and no corresponding source file is present here to check it against. Accordingly the listed \texttt{invariants} (\texttt{metric\_positivity}, \texttt{modular\_invariance}, \texttt{wec\_bound}) are currently enforced heuristically by the wrapper's runtime clamping, not by a verified Lean proof; theorem-level verification is pending.
 
-\begin{lstlisting}[language=python-leanflow, caption={\textbf{Declarative Invariant Specification via \texttt{@guardrail}.}}, label={lst:guardrail_eom}]
+\begin{lstlisting}[language=python-leanflow, caption={\textbf{Declarative Invariant Specification via \texttt{@guardrail}.} The \texttt{theorem} argument is illustrative only; see text for kernel-checked status.}, label={lst:guardrail_eom}]
 import leanflow as lf
 import numpy as np
 
 @lf.guardrail(
+    # theorem= is illustrative; not a kernel-checked Lean declaration here (see text)
+    # invariants below are enforced heuristically by the wrapper, not by a checked proof
     theorem="SocrateAI.Cosmology.wec_kinetic_identity",
     invariants=["metric_positivity", "modular_invariance", "wec_bound"],
     projection="orthogonal"
@@ -315,19 +320,19 @@ import numpy as np
 def moduli_equations_of_motion(t, state):
     # state = [x, y, vx, vy] for tau = x + i y
     x, y, vx, vy = state[0], state[1], state[2], state[3]
-    
+
     # Target-space connection terms: -2/y * vx * vy
     H = 0.05
     ax = -3.0 * H * vx + (2.0 / y) * vx * vy - (y**2) * 0.1 * np.sin(np.pi * x)
     ay = -3.0 * H * vy - (1.0 / y) * (vx**2 - vy**2) - (y**2) * 0.2 * (y - 0.866)
-    
+
     return np.array([vx, vy, ax, ay])
 \end{lstlisting}
 
 \paragraph{State Guarding vs. Derivative Invariance}
-A critical engineering breakthrough in LeanFlow's DSL design is the strict separation between \emph{state variables} and \emph{derivative returns}. In early implementations of numerical guardrails, applying coordinate transformations directly to the output of an ODE right-hand side $f(t, y)$ corrupted the derivative vector $\dot{y} = [v_x, v_y, a_x, a_y]$, introducing artificial jump discontinuities that caused adaptive multistep solvers (BDF and Radau) to fail convergence.
+In LeanFlow's DSL design, we implement a strict separation between \emph{state variables} and \emph{derivative returns}. In early implementations of numerical guardrails, applying coordinate transformations directly to the output of an ODE right-hand side $f(t, y)$ corrupted the derivative vector $\dot{y} = [v_x, v_y, a_x, a_y]$, introducing artificial jump discontinuities that caused adaptive multistep solvers (BDF and Radau) to fail convergence.
 
-In LeanFlow Phase 2, the \texttt{@guardrail} wrapper inspects the \emph{input state} argument before passing it to the underlying function. If $y < 10^{-4}$, the dilaton coordinate is safely clamped to prevent division-by-zero singularities in the Christoffel connections $(1/y)$, while the returned derivative vector $\dot{y}$ remains perfectly continuous. Trajectory folding across the modular boundary $\mathcal{F}$ is handled at the discrete step boundaries, guaranteeing smooth implicit solver convergence.
+In LeanFlow Phase 2, the \texttt{@guardrail} wrapper inspects the \emph{input state} argument before passing it to the underlying function. If $y < 10^{-4}$, the dilaton coordinate is safely clamped to prevent division-by-zero singularities in the Christoffel connections $(1/y)$, while the returned derivative vector $\dot{y}$ remains continuous. Trajectory folding across the modular boundary $\mathcal{F}$ is handled at the discrete step boundaries; this is designed to improve implicit solver convergence stability (pending hardware verification).
 
 % ---------------------------------------------------------------------------
 % Section 4: String Theory Dataset Ingestion Pipeline
@@ -358,7 +363,7 @@ d_{m1} & \dots & d_{mK}
 \end{bmatrix}.
 \end{equation}
 
-The first Chern class vanishes ($c_1(X) = 0$, guaranteeing Calabi-Yau metric existence) if and only if each row sum satisfies the adjunction condition:
+The first Chern class vanishes ($c_1(X) = 0$, the condition for existence of a Ricci-flat Kähler metric) if and only if each row sum satisfies the adjunction condition:
 \begin{equation}
 \sum_{j=1}^K d_{rj} = n_r + 1 \quad \forall r \in \{1, \dots, m\}.
 \end{equation}
@@ -375,15 +380,15 @@ LeanFlow automatically verifies this identity upon loading, computes the complex
 \texttt{cicy\_7887} & $(\mathbb{P}^1)^4$ & 3 & \checkmark & 4 & 68 & 5.33 \\
 \texttt{tian\_yau} & $\mathbb{P}^3 \times \mathbb{P}^3$ & 3 & \checkmark & 14 & 23 & 0.75 \\
 \texttt{bicubic} & $\mathbb{P}^2 \times \mathbb{P}^2[3, 3]$ & 3 & \checkmark & 2 & 83 & 6.75 \\
-\texttt{k3\_x\_t2} & $\mathbb{P}^3[4] \times \mathbb{P}^1[2]$ & 3 & \checkmark & 20 & 20 & 0.00 \\
+\texttt{k3\_x\_t2} & $\mathbb{P}^3[4] \times \mathbb{P}^1[2]$ & 3 & \checkmark & \numreconcile{20}{K3xT2 h11} & \numreconcile{20}{K3xT2 h21} & 0.00 \\
 \bottomrule
 \end{tabular}
-\caption{\textbf{Canonical CICY Manifolds Ingested by LeanFlow.} Automated verification validates first Chern class cancellation $c_1=0$ and computes exact D3-brane tadpole cancellation budgets.}
+\caption{\textbf{Canonical CICY Manifolds Ingested by LeanFlow.} Automated verification validates first Chern class cancellation $c_1=0$ and computes exact D3-brane tadpole cancellation budgets. The $h^{1,1}$ and $h^{2,1}$ entries for \texttt{k3\_x\_t2} are pending reconciliation; the tadpole bound $|\chi|/24 = 0.00$ follows from $\chi = 0$ and is unaffected.}
 \label{tab:cicy_manifolds}
 \end{table}
 
 \subsection{Kreuzer-Skarke 4D Reflexive Polyhedra}
-For toric hypersurfaces, a lattice polytope $\Delta \subset \mathbb{Z}^4$ is reflexive if the origin $\mathbf{0}$ is in its strict interior and its polar dual $\Delta^\circ = \{ y \in \mathbb{R}^4 : \langle x, y \rangle \ge -1, \, \forall x \in \Delta \}$ is also an integral lattice polytope. LeanFlow validates origin containment $\mathbf{0} \in \operatorname{int}(\Delta)$ and ingests canonical KS polyhedra (including \texttt{ks\_quintic}, \texttt{ks\_bicubic}, and \texttt{ks\_k3\_surface}).
+For toric hypersurfaces, a lattice polytope $\Delta \subset \mathbb{Z}^4$ is reflexive if the origin $\mathbf{0}$ is in its strict interior and its polar dual $\Delta^\circ = \{ y \in \mathbb{R}^4 : \langle x, y \rangle \ge -1, \, \forall x \in \Delta \}$ is also an integral lattice polytope. LeanFlow ingests canonical KS polyhedra (including \texttt{ks\_quintic}, \texttt{ks\_bicubic}, and \texttt{ks\_k3\_surface}) with reflexivity supplied by the caller as an \texttt{is\_reflexive} flag; the ingestion routine does not itself check origin containment $\mathbf{0} \in \operatorname{int}(\Delta)$ or polar-dual integrality, so reflexivity is assumed rather than validated: the listed invariants hold only if the supplied polyhedra are in fact reflexive (tier C).
 
 % ---------------------------------------------------------------------------
 % Section 5: Working-Group Toolkits
@@ -419,7 +424,7 @@ evals = np.linalg.eigvalsh(stabilized_metric)
 ma_loss = lf.compute_monge_ampere_loss(stabilized_metric, omega_norm=np.array([1.0]))
 \end{lstlisting}
 
-As shown in Listing~\ref{lst:cymetric_stabilization}, LeanFlow's \texttt{project\_kahler\_metric} applies an orthogonal spectral decomposition, clamping negative eigenvalues to $\epsilon = 10^{-3}$ and reconstructing the metric in $\mathcal{O}(2\,\mu\text{s})$, guaranteeing $g_{i\bar{j}} \succ 0$ with autograd transparency in PyTorch.
+As shown in Listing~\ref{lst:cymetric_stabilization}, LeanFlow's \texttt{project\_kahler\_metric} applies an orthogonal spectral decomposition, clamping negative eigenvalues to $\epsilon = 10^{-3}$ and reconstructing the metric, enforcing $g_{i\bar{j}} \succ 0$ to machine precision with autograd transparency in PyTorch. The reconstruction latency of \numreconcile{2}{Kähler projection reconstruction latency ($\mu$s)} ($\mathcal{O}(2\,\mu\text{s})$) is exploratory (tier X) and pending hardware verification; no benchmark harness or timing log for this figure is committed to the repository.
 
 \subsection{Working Group 2: Swampland \& MCMC Flux Vacuum Explorers}
 In the exploration of string vacua via MCMC or genetic algorithms, candidate vacua must be screened against Swampland criteria \cite{vafa2005}. The \texttt{SwamplandMCMCFilter} provides high-throughput evaluation, screening candidates across three criteria:
@@ -432,36 +437,16 @@ In the exploration of string vacua via MCMC or genetic algorithms, candidate vac
     \end{equation}
 \end{enumerate}
 
-In benchmarks evaluating 500 MCMC proposals, LeanFlow filters the batch in \textbf{1.38 ms} ($< 3\,\mu\text{s}$ per proposal) and issues an asynchronous Lean 4 certificate:
+In benchmarks evaluating 500 MCMC proposals, LeanFlow filters the batch in \numreconcile{1.38}{MCMC batch filter latency (ms)}\,ms ($<$\,\numreconcile{3}{MCMC per-proposal filter latency ($\mu$s)}\,$\mu$s per proposal); these figures are exploratory (tier X) and pending hardware verification against committed execution logs. The filter additionally reports a status token:
 \begin{center}
 \texttt{SocrateAI.StringTheory.AtiyahSingerK3.tadpole\_bound\_certified}.
 \end{center}
+This token is a registry label emitted by \texttt{leanflow/bridge/lean\_ipc.py}: the code attaches it whenever the numeric bound $N_{\text{flux}} \le |\chi|/24$ is satisfied and a file named \texttt{proofs/LeanscratchDB/HoloAlg.lean} exists on disk, without invoking the Lean kernel on that call path. That file's associated theorem, \texttt{tadpole\_cancellation}, is one of the five theorems the LeanMaster axiom audit reports as failing (it rests on inconsistent project axioms), so the label is not backed by a kernel-checked result and attaching it does not itself certify the D-brane tadpole bound. No theorem in the replacement Lean foundation (\texttt{lean\_foundation/}) currently covers this tadpole bound or the Swampland Distance Conjecture criterion checked above.
 
 \subsection{Working Group 3: Topological Defect Modelers (TDA Nerve Extraction)}
-For cosmological field theories and cosmic defect networks, LeanFlow provides the \texttt{TopologicalDefectExtractor}. From a 2D scalar field configuration $\vec{\phi}(x, y)$, the module extracts order parameter norms and gradient energy densities, constructs a simplicial 1-skeleton graph via TDA Mapper, isolates cosmic string cores and domain walls, and dispatches discrete Ramond-Ramond charges to the Lean 4 proof kernel.
+For cosmological field theories and cosmic defect networks, LeanFlow provides the \texttt{TopologicalDefectExtractor}. From a 2D scalar field configuration $\vec{\phi}(x, y)$, the module extracts order parameter norms and gradient energy densities, constructs a simplicial 1-skeleton graph via TDA Mapper, isolates cosmic string cores and domain walls, and computes a discrete Ramond-Ramond charge sum for the resulting defect clusters (\texttt{leanflow/working\_groups/topological\_defects.py}).
 
-Listing~\ref{lst:lean_proof_tadpole} displays the mechanized Lean 4 theorem certifying that the extracted topological defect equivalence classes satisfy discrete Ramond-Ramond tadpole cancellation ($\sum Q_i = 0$) with zero \texttt{sorry}.
-
-\begin{lstlisting}[language=lean4, caption={\textbf{Mechanized Lean 4 Anomaly Cancellation Proof.}}, label={lst:lean_proof_tadpole}]
-import Mathlib.Data.Int.Basic
-
-namespace SocrateAI.Cosmology.KummerTadpole
-
-structure DefectCluster where
-  cosmic_strings : Int
-  domain_walls   : Int
-  attractor_vacua : Int
-
-def net_ramond_ramond_charge (c : DefectCluster) : Int :=
-  c.cosmic_strings * 1 + c.cosmic_strings * (-1) + c.domain_walls * 0
-
-theorem tadpole_cancellation_proved (c : DefectCluster) :
-  net_ramond_ramond_charge c = 0 := by
-  unfold net_ramond_ramond_charge
-  ring
-
-end SocrateAI.Cosmology.KummerTadpole
-\end{lstlisting}
+This charge sum is passed to a verification client (\texttt{leanflow/bridge/lean\_ipc.py}, which dispatches blocking \texttt{subprocess.run} calls rather than asynchronous IPC despite its module name) that looks for a companion module \texttt{proofs/KummerLangevinTDA.lean}; that file is not present in this repository, and no Lean namespace \texttt{SocrateAI.Cosmology.KummerTadpole} exists anywhere in \texttt{proofs/}. When the module is absent, the client's own fallback sets its verification flag to true whenever the computed charge sum is already zero, so no Lean kernel check is actually dispatched. The charge sum is zero not because of an independent physical cancellation but because the underlying assignment pairs each cosmic-string count against itself with opposite sign (a $+1$ and a $-1$ weight on the same count, plus a $0$ weight on the domain-wall count), so the sum vanishes by construction of the formula rather than as a derived tadpole cancellation. The \texttt{tadpole\_cancellation\_certified} flag recorded in \texttt{tda\_mapper\_skeleton.json} is this same stored flag, not a kernel-checked result. Consequently the discrete Ramond-Ramond tadpole cancellation claimed for TDA-extracted defect clusters is tier X (exploratory bookkeeping): it is not kernel-checked in Lean 4, and no theorem in the replacement foundation covers Ramond-Ramond charge physics or this defect-cluster construction.
 
 % ---------------------------------------------------------------------------
 % Section 6: Empirical Benchmarks & Performance
@@ -469,7 +454,7 @@ end SocrateAI.Cosmology.KummerTadpole
 \section{Empirical Benchmarks \& Performance}
 \label{sec:benchmarks}
 
-To evaluate the computational efficiency of LeanFlow Phase 2, we benchmarked the framework across three criteria: step latency, invariant preservation rate, and end-to-end execution time against industry-standard baselines.
+To evaluate the computational efficiency of LeanFlow Phase 2, we benchmarked the framework across three criteria: step latency, invariant preservation rate, and end-to-end execution time against industry-standard baselines. The figures below are exploratory (tier X) and are reported pending hardware verification against committed execution logs; no benchmark harness or timing log for these runs is yet checked into the repository.
 
 \begin{table}[h]
 \centering
@@ -478,26 +463,26 @@ To evaluate the computational efficiency of LeanFlow Phase 2, we benchmarked the
 \toprule
 \textbf{Framework / Solver} & \textbf{Step Latency} & \textbf{Invariant Preservation} & \textbf{PyTorch Interop} & \textbf{Formal Certificate} \\
 \midrule
-Standard SciPy \texttt{solve\_ivp} (Radau) & 182 ms & 62.4\% & $\times$ & None \\
-C++ SUNDIALS CVODE (BDF) & 0.85 ms & 74.1\% & $\times$ & None \\
-Naive PyTorch PINN (Unconstrained) & 1.45 ms & 51.8\% & \checkmark & None \\
-\textbf{LeanFlow Phase 2 (BDF + Invariants)} & \textbf{0.19 ms} & \textbf{100.0\%} & \textbf{\checkmark} & \textbf{Lean 4 Kernel} \\
+Standard SciPy \texttt{solve\_ivp} (Radau) & \numreconcile{182}{SciPy step latency}\,ms & \numreconcile{62.4}{SciPy invariant preservation}\% & $\times$ & None \\
+C++ SUNDIALS CVODE (BDF) & \numreconcile{0.85}{SUNDIALS step latency}\,ms & \numreconcile{74.1}{SUNDIALS invariant preservation}\% & $\times$ & None \\
+Naive PyTorch PINN (Unconstrained) & \numreconcile{1.45}{PyTorch PINN step latency}\,ms & \numreconcile{51.8}{PyTorch PINN invariant preservation}\% & \checkmark & None \\
+\textbf{LeanFlow Phase 2 (BDF + Invariants)} & \textbf{pending hardware verification} & \textbf{pending hardware verification} & \textbf{\checkmark} & \textbf{Algebraic (post-hoc)} \\
 \bottomrule
 \end{tabular}
-\caption{\textbf{Computational Performance and Invariant Preservation Benchmarks.} LeanFlow achieves a $7.1\times$ speedup over C++ SUNDIALS and $> 900\times$ over SciPy on identical non-linear moduli systems, while maintaining 100\% invariant preservation.}
+\caption{\textbf{Computational Performance and Invariant Preservation Benchmarks (exploratory, tier X).} LeanFlow shows a $\numreconcile{7.1}{SUNDIALS speedup ratio}\times$ speedup over C++ SUNDIALS and $>\numreconcile{900}{SciPy speedup ratio}\times$ over SciPy on identical non-linear moduli systems, and a step latency of $\numreconcile{0.19}{LeanFlow step latency}\,\text{ms}$; all three figures are pending hardware verification against committed execution logs. An earlier draft's claim of complete invariant preservation is withdrawn: no execution record in this repository supports any specific preservation rate for LeanFlow Phase 2. The Formal Certificate column reports whether a post-hoc discrete algebraic bookkeeping check (e.g., tadpole-cancellation bookkeeping) is attached to a run; per this pipeline's own dispatch logic, this check is not sent to the Lean kernel when its precondition is already satisfied, so the column is not a Lean kernel proof of numerical solver performance, step latency, or runtime invariant enforcement, which remain outside the scope of the kernel checks used elsewhere in this project.}
 \label{tab:benchmarks}
 \end{table}
 
 \subsection{The 2-Minute Community Quickstart}
-The end-to-end execution of all six stages described in this paper is implemented in \texttt{examples/phase2\_string\_community\_quickstart.py}. Benchmark logs show:
+The end-to-end execution of all six stages described in this paper is implemented in \texttt{examples/phase2\_string\_community\_quickstart.py}. The timings below are exploratory (tier X) and pending hardware verification against committed execution logs:
 \begin{itemize}
-    \item \textbf{Stage 1 (Dataset Ingestion)}: CICY Quintic ($c_1=0$, $\chi = -200$) and KS Polytope loaded in $1.2\,\text{ms}$.
-    \item \textbf{Stage 2 (DSL Instrumentation)}: Moduli equations of motion wrapped with zero overhead.
-    \item \textbf{Stage 3 (Stiff Integration)}: 100 BDF steps evaluated in $19.4\,\text{ms}$ ($0.194\,\text{ms}$/step, 130 modular folds applied).
-    \item \textbf{Stage 4 (cymetric Stabilization)}: Unphysical eigenvalue $-0.4463$ projected to $0.0010$ in $2.1\,\mu\text{s}$.
-    \item \textbf{Stage 5 (Swampland MCMC)}: 500 proposals screened in $1.38\,\text{ms}$ ($2.76\,\mu\text{s}$/proposal).
-    \item \textbf{Stage 6 (TDA Defect Verification)}: 1-skeleton graph extracted and certified neutral in $3.4\,\text{ms}$.
-    \item \textbf{Total Wall-Clock Time}: \textbf{0.03 seconds} for the entire pipeline!
+    \item \textbf{Stage 1 (Dataset Ingestion)}: CICY Quintic ($c_1=0$, $\chi = -200$) and KS Polytope loaded in $\numreconcile{1.2}{Stage 1 load time}\,\text{ms}$ (pending hardware verification).
+    \item \textbf{Stage 2 (DSL Instrumentation)}: Moduli equations of motion wrapped with minimal overhead (overhead magnitude pending hardware verification).
+    \item \textbf{Stage 3 (Stiff Integration)}: $\numreconcile{100}{Stage 3 BDF step count}$ BDF steps evaluated in $\numreconcile{19.4}{Stage 3 total time}\,\text{ms}$ ($\numreconcile{0.194}{Stage 3 per-step time}\,\text{ms}$/step, $\numreconcile{130}{Stage 3 modular fold count}$ modular folds applied), pending hardware verification.
+    \item \textbf{Stage 4 (cymetric Stabilization)}: Unphysical eigenvalue $\numreconcile{-0.4463}{Stage 4 unphysical eigenvalue}$ projected to $\numreconcile{0.0010}{Stage 4 projected eigenvalue}$ in $\numreconcile{2.1}{Stage 4 projection time}\,\mu\text{s}$ (pending hardware verification).
+    \item \textbf{Stage 5 (Swampland MCMC)}: $\numreconcile{500}{Stage 5 proposal count}$ proposals screened in $\numreconcile{1.38}{Stage 5 total time}\,\text{ms}$ ($\numreconcile{2.76}{Stage 5 per-proposal time}\,\mu\text{s}$/proposal), pending hardware verification.
+    \item \textbf{Stage 6 (TDA Defect Verification)}: 1-skeleton graph extracted and flagged tadpole-neutral in $\numreconcile{3.4}{Stage 6 time}\,\text{ms}$; this flag is a stored bookkeeping result from the pipeline's post-hoc algebraic check, not a Lean kernel result, and the timing is pending hardware verification.
+    \item \textbf{Total Wall-Clock Time}: $\numreconcile{0.03}{Total pipeline time}\,\text{s}$ for the entire pipeline (pending hardware verification against committed execution logs).
 \end{itemize}
 
 % ---------------------------------------------------------------------------
@@ -506,24 +491,23 @@ The end-to-end execution of all six stages described in this paper is implemente
 \section{Open-Source Ecosystem \& Community Release}
 \label{sec:community}
 
-LeanFlow is packaged under the open-source MIT License to ensure seamless adoption by the machine learning, theoretical physics, and computational science communities.
+LeanFlow declares the open-source MIT License in its \texttt{pyproject.toml} packaging metadata, intended to ease adoption by the machine learning, theoretical physics, and computational science communities.
 
 \subsection{Packaging and PyPI Installation}
 The framework is configured via standard \texttt{pyproject.toml} specifications:
 \begin{lstlisting}[language=bash]
-# Install LeanFlow in development or production mode
-pip install leanflow
-# Or clone from source:
-git clone https://github.com/SocrateAI/LeanFlow.git && cd LeanFlow
+# Install LeanFlow from source (no PyPI package has been published)
+git clone https://github.com/SocrateAI/SocrateAI-Scientific-DualScaleSimulator.git
+cd SocrateAI-Scientific-DualScaleSimulator
 pip install -e .
 \end{lstlisting}
 
 \subsection{Hugging Face Papers \& Model Hub Release}
-LeanFlow is formatted for direct ingestion into the \textbf{Hugging Face Hub}:
+LeanFlow's data formats are compatible with the \textbf{Hugging Face Hub}; the following components are prepared for, but not yet confirmed as published on, the Hub:
 \begin{itemize}
-    \item \textbf{Hugging Face Papers Page}: Published under the tag \texttt{AI-for-Science / Formal-Methods / String-Theory}.
-    \item \textbf{Hugging Face Datasets}: Pre-processed CICY configuration matrices and Kreuzer-Skarke 4D reflexive polyhedra are uploaded to the Hugging Face Dataset Hub (\texttt{datasets/SocrateAI/cicy-canonical}, \texttt{datasets/SocrateAI/kreuzer-skarke-4d}).
-    \item \textbf{Interactive Hugging Face Spaces}: A Gradio-based interactive Space enables users to upload custom CICY matrices, inspect $c_1=0$ adjunction cancellations, test Kähler cone metric projections, and visualize modular domain folds in real time.
+    \item \textbf{Hugging Face Papers Page}: If published, it would be tagged \texttt{AI-for-Science / Formal-Methods / String-Theory}; no such page is confirmed at present.
+    \item \textbf{Hugging Face Datasets}: Pre-processed CICY configuration matrices and Kreuzer-Skarke 4D reflexive polyhedra are formatted for upload to the Hugging Face Dataset Hub; no corresponding public dataset repositories are confirmed at present.
+    \item \textbf{Interactive Hugging Face Spaces}: A Gradio-based interactive Space implements three tabs: Kähler cone positivity stabilization for a neural Calabi--Yau metric (selected from a fixed dropdown of manifolds, not arbitrary user-uploaded CICY matrices), a Swampland MCMC vacuum-screening explorer, and topological defect extraction via a TDA Mapper graph.
 \end{itemize}
 
 % ---------------------------------------------------------------------------
@@ -532,27 +516,30 @@ LeanFlow is formatted for direct ingestion into the \textbf{Hugging Face Hub}:
 \section{Discussion \& Conclusion}
 \label{sec:conclusion}
 
-The development of LeanFlow Phase 2 demonstrates that formal mathematical rigor and high-throughput scientific machine learning are not mutually exclusive. By introducing a dual-tier latency decoupling architecture, LeanFlow eliminates the traditional performance penalty associated with formal methods, enabling microsecond AOT SIMD contract assertions in the numerical loop while maintaining asynchronous cryptographic verification via the Lean 4 proof kernel.
+The development of LeanFlow Phase 2 illustrates that formal mathematical rigor and high-throughput scientific machine learning are not designed to be mutually exclusive, though the throughput side of that claim remains pending hardware verification. By introducing a dual-tier latency decoupling architecture, LeanFlow separates the numerical integration loop, which performs in-loop metric positivity projections, from formal consistency checks carried out asynchronously via the Lean 4 proof kernel; these Lean-side checks are discrete algebraic consistency checks rather than cryptographic verification, and absolute latency and throughput figures for this architecture are pending hardware verification. One such check, tadpole cancellation, is vacuous by design: the charges it examines are assigned by convention to sum to zero and are checked algebraically, not derived from or independently verified against the underlying simulation dynamics.
 
-LeanFlow empowers three critical subfields:
-(1) It stabilizes neural Calabi-Yau metric learning for \emph{cymetric} and PINN practitioners;
-(2) It accelerates MCMC vacuum exploration with formal Swampland and tadpole filtering; and
-(3) It guarantees discrete Ramond-Ramond charge neutrality for topological defect modelers.
+LeanFlow targets three critical subfields:
+(1) It applies runtime projection to stabilize neural Calabi-Yau metric learning for \emph{cymetric} and PINN practitioners;
+(2) It applies numerical Swampland-distance-conjecture checks and algebraic tadpole filtering to MCMC vacuum exploration, with proposal-filtering throughput pending hardware verification; the discrete Lean model of the Swampland Distance Conjecture is vacuous by construction (its mass bound collapses to zero by definition for any nonzero distance) and does not itself verify the conjecture; and
+(3) It filters for discrete Ramond-Ramond charge neutrality for topological defect modelers, where charges are assigned by convention and their sum is checked algebraically rather than derived from the underlying dynamics.
 
 \paragraph{Future Roadmap}
 Future extensions of LeanFlow will focus on two major frontiers:
 \begin{itemize}
-    \item \textbf{Double Field Theory (DFT) Generalized Geometry}: Extending native duality folding to genuine doubled target-space metrics $\mathcal{H}_{MN}(X)$ satisfying the full differential section condition $\partial_M \partial^M \Psi = 0$.
-    \item \textbf{Formal Mathlib Depth}: Mechanizing the Gysin exact sequence in cohomology and the degree-shifting isomorphisms of twisted $K$-theory $K^{*+1}(E, H) \cong K^*(E^\vee, H^\vee)$ in Lean 4's \texttt{mathlib}.
+    \item \textbf{Double Field Theory (DFT) Generalized Geometry}: The present formalization covers only the integer $O(d,d;\mathbb{Z})$ discrete duality action and the generalized metric at $B=0$, not the field-level Buscher rules or full generalized geometry. We aim to extend native duality folding to genuine doubled target-space metrics $\mathcal{H}_{MN}(X)$ satisfying the full differential section condition $\partial_M \partial^M \Psi = 0$ as future work.
+    \item \textbf{Formal Mathlib Depth}: Our present Gysin-sequence formalization proves only the composition-zero condition at each position (i.e., $\mathrm{im} \subseteq \ker$), not full exactness ($\mathrm{im} = \ker$); the two conditions are documented separately. We aim to mechanize the full Gysin exact sequence in cohomology and the degree-shifting isomorphisms of twisted $K$-theory $K^{*+1}(E, H) \cong K^*(E^\vee, H^\vee)$ in Lean 4's \texttt{mathlib} as future work.
 \end{itemize}
 
-By open-sourcing LeanFlow to the scientific community on GitHub and Hugging Face, we hope to accelerate the transition towards verified, invariant-guarded artificial intelligence in the physical and mathematical sciences.
+\paragraph{Limitations}
+Three items remain open. First, the orientifold bookkeeping underlying the tadpole-cancellation budgets above cites Gimon--Polchinski for the fixed-point count of $T^4/\mathbb{Z}_2$ but has not been reconciled against the O-plane charge and D-brane count assigned elsewhere in this codebase; this is unresolved and under revision, and no O-plane type is asserted here. Second, the simulation numbers referenced elsewhere in this work are being regenerated following fixes to the integrators and are not yet final. Third, the downstream \texttt{lean\_foundation/} project in this repository, which restates kernel-checked results from LeanMaster, has passed its axiom audit with a negative control detected, but statement-level review (lock) against the intended physics statements is still pending with the project lead.
+
+By open-sourcing LeanFlow to the scientific community on GitHub, with Hugging Face release intended (see Correction notice), we hope to accelerate the transition towards formally specified, invariant-guarded artificial intelligence in the physical and mathematical sciences. We emphasize that the formal models underlying LeanFlow rest on project-specific axioms and structural assumptions rather than full derivation from first principles, and should be read accordingly.
 
 % ---------------------------------------------------------------------------
 % Acknowledgements
 % ---------------------------------------------------------------------------
 \section*{Acknowledgements}
-The author thanks the Lean 4 mathematical community, the developers of \texttt{mathlib}, the authors of the \texttt{cymetric} Calabi-Yau metric project, and the SUNDIALS team for providing the open-source foundations that made this neuro-symbolic framework possible.
+The author thanks the Lean 4 mathematical community, the developers of \texttt{mathlib}, and the authors of the \texttt{cymetric} Calabi-Yau metric project for providing the open-source foundations that made this neuro-symbolic framework possible.
 
 % ---------------------------------------------------------------------------
 % References
@@ -635,6 +622,11 @@ C.~Hull and B.~Zwiebach,
 \emph{Double field theory},
 JHEP \textbf{09} (2009) 099,
 \href{https://arxiv.org/abs/0904.4664}{\texttt{arXiv:0904.4664 [hep-th]}}.
+
+\bibitem{leanmaster2026}
+X.~Callens et al.,
+\emph{SocrateAI-Scientific-Agora-LeanMaster}, release v2.2.0,
+\href{https://github.com/xaviercallens/SocrateAI-Scientific-Agora-LeanMaster}{\texttt{https://github.com/xaviercallens/SocrateAI-Scientific-Agora-LeanMaster}}.
 
 \end{thebibliography}
 

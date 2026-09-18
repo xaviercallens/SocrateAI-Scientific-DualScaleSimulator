@@ -4,6 +4,7 @@
 \geometry{a4paper, margin=1in}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
+\providecommand{\numreconcile}[2]{#1}
 
 \begin{document}
 
@@ -17,7 +18,7 @@ Elsevier Science \\
 \vspace{1em}
 
 \noindent\textbf{Subject: Submission of Original Software and Computational Physics Manuscript} \\
-\textbf{Title:} \textit{LeanFlow: A Certified Neuro-Symbolic Architecture for Stiff Moduli Dynamics, Topological T-Duality, and Closed-Loop Anomaly Verification in String Cosmology}
+\textbf{Title:} \textit{LeanFlow: A Neuro-Symbolic Architecture for Stiff Moduli Dynamics, Topological T-Duality, and Closed-Loop Anomaly Verification in String Cosmology}
 
 \vspace{1.5em}
 
@@ -27,26 +28,28 @@ We submit our original research manuscript for consideration as a Regular Articl
 
 High-energy cosmological systems and string compactifications involve stiff, multi-scale systems of partial and ordinary differential equations. When scalar oscillation frequencies ($\omega \sim 10^3 H$) vastly exceed the cosmic expansion rate, classical explicit integrators experience catastrophic step-size collapse, while standard implicit solvers can drift into unphysically singular regions of moduli space. Concurrently, while interactive theorem provers (ITPs) like Lean 4 offer formal machine-checked proof certificates down to a minimal kernel, their interactive elaboration engines incur prohibitive interpretation latency (tens of milliseconds), historically precluding their use inside stiff numerical PDE integration loops.
 
-In this work, we introduce \textbf{LeanFlow}: a production-grade neuro-symbolic framework that bridges the compiled \texttt{rusty-SUNDIALS} stiff integration suite (CVODE and IDA BDF algorithms) with automated formal verification in Lean 4. 
+In this work, we introduce \textbf{LeanFlow}: a neuro-symbolic framework that combines stiff numerical PDE integration with automated formal verification in Lean 4. A coupling to an external \texttt{rusty-SUNDIALS} (CVODE/IDA BDF) integration suite is planned but is not present in the submitted codebase, which loads that suite only from an absent sibling repository; the results below use our own Rust integrator.
 
 The primary computational and algorithmic contributions of our work are:
 \begin{enumerate}
-    \item \textbf{Dual-Tier Execution Architecture}: LeanFlow decouples formal invariant verification from numerical integration:
+    \item \textbf{Dual-Tier Execution Architecture}: LeanFlow separates invariant checking from numerical integration:
     \begin{itemize}
-        \item \emph{Inner Loop (Microsecond Stepping)}: Mathematical invariants verified in Lean 4—including metric positivity on the upper half-plane ($\tau_{\text{im}} > 0$), the Weak Energy Condition bound ($w \ge -1$), and Buscher reflection projectors—are compiled Ahead-Of-Time (AOT) into zero-overhead Rust SIMD contract assertions. Incurring negligible runtime overhead ($\approx 12\text{--}18\,\text{ns}$ per residual evaluation), these inline locks enforce physical admissibility at zero penalty to the stiff BDF stepping performance ($0.12\,\text{ms}$ step latency).
-        \item \emph{Outer Loop (Asynchronous Dynamic Batch Gate)}: Full Lean 4 proof kernel verification is invoked asynchronously via non-blocking Unix domain socket IPC / C-FFI ($\approx 45\,\text{ms}$ batch latency) at macroscopic simulation milestones, checkpoint boundaries, and topological defect extraction sweeps.
+        \item \emph{Inner Loop (Rust Contract Assertions)}: Metric positivity on the upper half-plane ($\tau_{\text{im}} > 0$), the Weak Energy Condition bound ($w \ge -1$), and Buscher-type reflection symmetry are treated as axiomatically assumed invariants that guide the integrator; they are compiled Ahead-of-Time into Rust SIMD contract assertions but are not kernel-verified in Lean 4 at the field level (metric, $B$-field, and dilaton). Per-residual overhead ($\numreconcile{\approx 12\text{--}18\,\text{ns}}{residual eval overhead}$) and stepping latency ($\numreconcile{0.12\,\text{ms}}{step latency}$) are estimates pending hardware verification; no benchmark harness for these figures currently exists in the repository.
+        \item \emph{Outer Loop (Asynchronous Batch Gate)}: Structural Lean 4 kernel checks (described below) are invoked asynchronously via non-blocking Unix domain socket IPC/C-FFI ($\numreconcile{\approx 45\,\text{ms}}{IPC batch latency}$, pending hardware verification) at macroscopic simulation milestones, checkpoint boundaries, and topological defect extraction sweeps.
     \end{itemize}
-    
-    \item \textbf{Native Duality Engine}: The integrator natively embeds continuous Buscher symmetry ($R \cdot \widetilde{R} = \alpha'$) and modular group $SL(2, \mathbb{Z})$ invariance as an operational numerical section condition. By co-simulating dual geometric frames and folding trajectories across the fundamental domain boundary $\mathcal{F}$, LeanFlow prevents coordinate singularities near self-dual points ($R \approx \sqrt{\alpha'}$) without metric breakdown ($\min(y) = 0.289$).
-    
-    \item \textbf{Closed-Loop Neuro-Symbolic Triad}: We achieve an unbroken circuit linking numerical stochastic Langevin simulations to Topological Data Analysis (TDA) Mapper (extracting 184 nodes, 493 edges, $\beta_1 = 318$), partitioning defect configurations into string-theoretic equivalence classes, and certifying Ramond-Ramond tadpole cancellation ($\sum Q_i = 0$) in the Lean 4 kernel with zero \texttt{sorry} axioms.
-    
-    \item \textbf{Rigorous Benchmark Performance}: On identical non-linear cosmological equations (Einstein-Klein-Gordon moduli flow, Mukhanov-Sasaki perturbations, and Symmetron screening BVP), LeanFlow achieves a $\mathbf{1,520\times}$ speedup over standard Python/SciPy BVP baselines and a $\mathbf{7.1\times}$ speedup over standard C++ SUNDIALS/CVODE. Containerized for serverless spot GPU/TPU execution with scale-to-zero capability ($\text{min}=0$), it reduces computational costs by $99.1\%$ relative to dedicated HPC clusters.
+
+    \item \textbf{Native Duality Engine}: The integrator embeds continuous Buscher symmetry ($R \cdot \widetilde{R} = \alpha'$) and modular group $SL(2,\mathbb{Z})$ invariance, axiomatically assumed rather than kernel-verified, as an operational numerical section condition. By co-simulating dual geometric frames and folding trajectories across the fundamental domain boundary $\mathcal{F}$, LeanFlow avoided coordinate singularities near self-dual points ($R \approx \sqrt{\alpha'}$) in the runs performed, without metric breakdown in those runs ($\numreconcile{\min(y) = 0.289}{metric minimum}$).
+
+    \item \textbf{Closed-Loop Neuro-Symbolic Triad}: We link numerical stochastic Langevin simulations to Topological Data Analysis (TDA) Mapper output (from the committed \texttt{tda\_mapper\_skeleton.json}: $\numreconcile{187}{TDA nodes}$ nodes, $\numreconcile{557}{TDA edges}$ edges, $\beta_1 = \numreconcile{376}{TDA beta 1}$ -- the cycle rank of the Mapper graph, not a persistent-homology Betti number), partitioning defect configurations into candidate string-theoretic equivalence classes, and checking structurally, in the Lean 4 kernel, whether the resulting charges satisfy the algebraic Ramond--Ramond tadpole condition ($\sum Q_i = 0$). This check contains no \texttt{sorry} declarations, but it rests on Lean's standard axioms together with additional project-specific axioms (not zero axioms), and its soundness depends on the fidelity of the upstream TDA extraction; we do not claim it certifies tadpole cancellation in the underlying physical theory.
+
+    \item \textbf{Preliminary Benchmark Estimates}: On the non-linear cosmological test equations described in the manuscript (Einstein--Klein--Gordon moduli flow, Mukhanov--Sasaki perturbations, and Symmetron screening BVP), we estimate a $\numreconcile{1{,}520\times}{speedup vs SciPy}$ speedup over standard Python/SciPy BVP baselines and a $\numreconcile{7.1\times}{speedup vs SUNDIALS}$ speedup over standard C++ SUNDIALS/CVODE, and an estimated $\numreconcile{99.1\%}{cost reduction}$ reduction in computational cost relative to dedicated HPC clusters when containerized for serverless spot GPU/TPU execution with scale-to-zero capability ($\text{min}=0$). All figures in this item are pending hardware verification: no benchmark execution log or timing harness for these numbers currently exists in the repository.
 \end{enumerate}
 
-All code, proofs, and simulation pipelines are open-source and verified against an automated test suite ($27/27$ pytest tests passing, $32/32$ Lean jobs building with zero \texttt{sorry}).
+All code, proofs, and simulation pipelines are open source. The codebase currently contains no \texttt{sorry} declarations; the Lean proofs rest on Lean's standard axioms (\texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound}) together with additional project-specific physics-domain axioms, and one local file (\texttt{proofs/FTheoryCosmology.lean}) is not a build target and does not compile. We withdraw a claim made in the original submission: the local \texttt{buscher\_involution} result does not certify anything, because the underlying axiom (\texttt{inv\_inv}), instantiated at \texttt{Nat}, proves \texttt{False}. Kernel-checked T-duality and lattice results we do rely on come from our LeanMaster foundation (release v2.2.0; theorems cited by name in the manuscript, depending only on Lean's three standard axioms) and cover integer $O(d,d;\mathbb{Z})$ charge action and the generalized metric at $B=0$, not the field-level Buscher rules asserted in the original letter.
 
-We believe LeanFlow represents a transformative paradigm for verifiable computational physics and will be of immediate value to the readers of CPC.
+This is a corrected resubmission. The original claims were deposited as Zenodo record 22683565 (DOI 10.5281/zenodo.22683565, concept 22683564); the corrected manuscript, with the withdrawn Buscher certification and hedged benchmark figures described above, will be issued as a new version of that concept record.
+
+We believe LeanFlow, evaluated honestly against these caveats, remains of interest to the readers of CPC as a case study in combining stiff numerical integration with structural formal checks.
 
 Thank you for your consideration.
 
