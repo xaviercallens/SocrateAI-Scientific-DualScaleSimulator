@@ -1,6 +1,6 @@
 {
   "track": "A",
-  "item": "K3 elliptic genus (phi_{0,1}, Z_K3, discriminant property, phi_{-2,1})",
+  "item": "K3 elliptic genus (phi_{0,1}, Z_K3, discriminant property, phi_{-2,1}, H(tau)/Appell-Lerch mu-term, M24 dims, 2A twining Lambda_2/F_2A)",
   "method": "exact Fraction arithmetic; Jacobi theta triple-product series truncated at q^{cutoff}, on the grid i=8*qexp, j=2*yexp (series2d.py); ratios theta_i(z)/theta_i(0) via exact formal power-series division (divide_scalar_series).",
   "cutoff_q": 8,
   "N_product_terms": 14,
@@ -139,8 +139,221 @@
       "8": "32"
     }
   },
+  "H_tau_appell_lerch": {
+    "definition": "H(tau) = 2 q^{-1/8}(-1 + sum_{n>=1} A_n q^n), solved from Z_K3*eta^3 = 24*y^{1/2}*Psi(tau,z) - H(tau)*theta_1(tau,z)^2, where Psi:=T1(tau,z)*S(tau,z) (S = Appell-Lerch sum) is computed exactly with the n=0 term's pole cancelled algebraically against T1's own (1-y) factor -- no truncation/regularization trick anywhere (appell.py). H is extracted from TWO independent, non-symmetry-related y-power slices of theta_1^2 (j=0 and j=2) and accepted only if they agree; the result is then multiplied back through theta_1^2 and compared term-by-term against the defining equation as a second, stronger check.",
+    "cutoff_q_used": 10,
+    "two_slices_agree": true,
+    "multiply_back_check_passes": true,
+    "truncation_stability_of_A_n": {
+      "cutoff_12_A_n_match_cutoff_10": true,
+      "cutoff_14_A_n_match_cutoff_10": true
+    },
+    "coeff_24_slices_agree": true,
+    "multiply_back_mismatch_count": 0,
+    "H_leading_coeff_at_q_neg_1_8": "-2",
+    "polar_term_is_minus_2": true,
+    "A_n": {
+      "1": "45",
+      "2": "231",
+      "3": "770",
+      "4": "2277",
+      "5": "5796",
+      "6": "13915",
+      "7": "30843",
+      "8": "65550"
+    },
+    "A_n_all_integral": true,
+    "A1_to_A5_vs_M24_irrep_dims_given_list": {
+      "1": {
+        "A_n": "45",
+        "matches_single_M24_dim": true
+      },
+      "2": {
+        "A_n": "231",
+        "matches_single_M24_dim": true
+      },
+      "3": {
+        "A_n": "770",
+        "matches_single_M24_dim": true
+      },
+      "4": {
+        "A_n": "2277",
+        "matches_single_M24_dim": true
+      },
+      "5": {
+        "A_n": "5796",
+        "matches_single_M24_dim": true
+      },
+      "6": {
+        "A_n": "13915",
+        "matches_single_M24_dim": false
+      },
+      "7": {
+        "A_n": "30843",
+        "matches_single_M24_dim": false
+      },
+      "8": {
+        "A_n": "65550",
+        "matches_single_M24_dim": false
+      }
+    },
+    "identity_A2_60_eq_4_A1_77": {
+      "A_2*60": "13860",
+      "4*A_1*77": "13860",
+      "holds": true
+    }
+  },
+  "rigidity_scan_a": {
+    "definition": "Replace the '24' multiplying the Appell-Lerch mu-term by N in 20..28; for each N re-extract H(tau) (two-slice agreement required) and report whether its polar term is exactly -2 and whether all q^0..q^{cutoff} coefficients are integers.",
+    "scan": [
+      {
+        "N": 20,
+        "slices_agree": false
+      },
+      {
+        "N": 21,
+        "slices_agree": false
+      },
+      {
+        "N": 22,
+        "slices_agree": false
+      },
+      {
+        "N": 23,
+        "slices_agree": false
+      },
+      {
+        "N": 24,
+        "slices_agree": true,
+        "polar_term": "-2",
+        "polar_is_minus_2": true,
+        "all_reported_coeffs_integral": true
+      },
+      {
+        "N": 25,
+        "slices_agree": false
+      },
+      {
+        "N": 26,
+        "slices_agree": false
+      },
+      {
+        "N": 27,
+        "slices_agree": false
+      },
+      {
+        "N": 28,
+        "slices_agree": false
+      }
+    ]
+  },
+  "chi_2A_scan_for_H_2A": {
+    "definition": "H_2A(tau) := (chi(2A)/24)*H(tau) - F_2A(tau)/eta(tau)^3. chi(2A) (the trace of the 2A element of M24 in its 24-dim permutation representation) is NOT given in the task text, so it is scanned over 0..24 rather than typed in from memory; report which value(s) make H_2A's q^0..q^{cutoff} coefficients all integers.",
+    "scan": [
+      {
+        "chi_2A": 0,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 1,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 2,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 3,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 4,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 5,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 6,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 7,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 8,
+        "H_2A_all_coeffs_integral": true
+      },
+      {
+        "chi_2A": 9,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 10,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 11,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 12,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 13,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 14,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 15,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 16,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 17,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 18,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 19,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 20,
+        "H_2A_all_coeffs_integral": true
+      },
+      {
+        "chi_2A": 21,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 22,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 23,
+        "H_2A_all_coeffs_integral": false
+      },
+      {
+        "chi_2A": 24,
+        "H_2A_all_coeffs_integral": false
+      }
+    ],
+    "chi_2A_expected_from_memory_unverified": "8 (M24's 24-point permutation character at a 2A element, i.e. number of fixed points; recalled from general ATLAS/M24 familiarity, NOT used anywhere upstream, only compared after the fact). The scan above found TWO integral candidates in 0..24 (8 and 20) at this cutoff -- consistent with, but not by itself pinning down, chi(2A)=8."
+  },
   "could_not_do": [
-    "Item (2): H(tau) extraction via the Appell-Lerch mu-term, the M24 decomposition of A_1..A_8, and the A_2*60=4*A_1*77 identity check. What WAS done exactly and finitely (appell.py): Psi(tau,z) := T1(tau,z)*S(tau,z), where S is the Appell-Lerch sum, with the n=0 term's naive 1/(1-y) pole cancelled ALGEBRAICALLY against T1's own exact factor of (1-y) -- no infinite-tail truncation or regularization prescription anywhere. A candidate normalization with self-consistent q,y gradings was found (Z_K3*eta^3 = -24*y^{1/2}*Psi + H*theta_1^2, i.e. theta_1^2/eta^3 multiplies the WHOLE bracket [24*mu+H], not H alone) and its leading term, read off one y-power slice of theta_1^2, landed on H_0=-2 -- matching the task's stated polar term. But the DEFINITIVE check (multiply the candidate H back through theta_1^2 and compare term-by-term against -[Z_K3*eta^3+24*y^{1/2}*Psi], not just one y-slice) shows real mismatches starting at the very leading q-order (e.g. at q^{1/8}*y^0: 4 from the candidate vs -44 required). This is a genuine normalization/formula error, not a coding bug that was left unfixed: two DIFFERENT y-power slices (j=0 vs j=2) of theta_1^2, which should give the identical y-independent H(tau) if the formula were right, disagree outright (+22 vs -2 at the leading order; j=2 and j=-2 agreeing with each other is a trivial consequence of theta_1^2's y<->1/y symmetry, not an independent check). No H(tau)/A_n sequence is reported because none was found that passes this check.",
-    "Item (3), the H-dependent half: the 2A-twined series H_2A and the survival of the A_2*60=4*A_1*77 identity under twining, and rigidity scan (a) on the '24' in the mu-term -- all depend on the item-(2) extraction above and were not attempted once that failed its own consistency check. The mu-FREE half of item (3), Lambda_2 (needed for F_2A = 16*Lambda_2), WAS computed exactly and cross-checked by an independent direct log-derivative computation (see lambda_2_and_F_2A above) -- it just cannot be turned into H_2A without H."
+    "The 2A-twined identity check (whether A_2*60=4*A_1*77 survives when A_n is replaced by its 2A-twined counterpart) was not attempted: it needs the FULL 2A-twined elliptic genus Z_K3^{2A}(tau,z) via F_2A's numerator structure combined with theta_1(tau,z)^2 the same way H combines with it, which is a further nontrivial regularization step beyond H_2A(tau) alone (a tau-only object) that time did not allow re-deriving and cross-checking to the same standard as the rest of this file."
   ]
 }

@@ -38,8 +38,9 @@ import json
 import sys
 from fractions import Fraction as Fr
 
-from series2d import y_to_1, divide_scalar_series, mul, add, scal
-from thetas import theta2, theta3, theta4, theta1_over_i, eta6, prod1
+from series2d import y_to_1, divide_scalar_series, mul, add, scal, shift, reciprocal_1d
+from thetas import theta2, theta3, theta4, theta1_over_i, eta3, eta6, prod1
+from appell import psi
 
 
 def compute_ZK3_and_phi01(cutoff_q, N):
@@ -139,6 +140,77 @@ def lambda_N_closed_form(N, cutoff_q):
     return {n: out.get(n, Fr(0)) for n in range(cutoff_q + 1)}
 
 
+M24_IRREP_DIMS = [1, 23, 45, 45, 231, 231, 252, 253, 483, 770, 770, 990, 990,
+                   1035, 1035, 1035, 1265, 1771, 2024, 2277, 3312, 3520,
+                   5313, 5544, 5796, 10395]
+
+
+def build_theta1_psi_T1sq_eta3(cutoff_q, N_prod):
+    """Shared building blocks for the H(tau) extraction (item 2)."""
+    imax = 8 * cutoff_q
+    t2 = theta2(N_prod, imax)
+    t3 = theta3(N_prod, imax)
+    t4 = theta4(N_prod, imax)
+    r2 = divide_scalar_series(t2, y_to_1(t2), imax)
+    r3 = divide_scalar_series(t3, y_to_1(t3), imax)
+    r4 = divide_scalar_series(t4, y_to_1(t4), imax)
+    r2sq = mul(r2, r2, imax)
+    r3sq = mul(r3, r3, imax)
+    r4sq = mul(r4, r4, imax)
+    phi01 = scal(add(add(r2sq, r3sq), r4sq), 4)
+    ZK3 = scal(phi01, 2)
+
+    T1 = theta1_over_i(N_prod, imax)
+    Psi = psi(N_prod, imax, T1)
+    T1sq = mul(T1, T1, imax)
+    e3 = eta3(N_prod, imax)
+
+    ZK3_eta3 = mul(ZK3, e3, imax)
+    y12Psi = shift(Psi, dj=1)
+    return imax, ZK3, T1sq, e3, ZK3_eta3, y12Psi
+
+
+def extract_H(coeff_N, ZK3_eta3, y12Psi, T1sq, imax):
+    """H(tau) := (coeff_N * y^{1/2}*Psi - Z_K3*eta^3) / T1(tau,z)^2, solved
+    via TWO independent y-power slices (j=0 and j=2) of theta_1^2=-T1^2;
+    returns (H_dict_or_None_if_slices_disagree, agree_bool, H_j0, H_j2).
+    """
+    numer = add(scal(y12Psi, coeff_N), scal(ZK3_eta3, -1))
+
+    def slice1d(d, j0):
+        return {i: v for (i, j), v in d.items() if j == j0}
+
+    def H_from_slice(j0):
+        dslice = slice1d(T1sq, j0)
+        nslice = slice1d(numer, j0)
+        inv = reciprocal_1d(dslice, imax, istep=8)
+        inv2d = {(i, 0): v for i, v in inv.items()}
+        n2d = {(i, 0): v for i, v in nslice.items()}
+        q = mul(n2d, inv2d, imax)
+        return {k[0]: v for k, v in q.items()}
+
+    Hj0 = H_from_slice(0)
+    Hj2 = H_from_slice(2)
+    # ignore the last couple of q-orders near the truncation edge (imax),
+    # where add()/shift() can carry a stray term beyond what mul() would
+    # have kept -- compare only up to imax - 16 (2 full q-steps of margin).
+    safe = imax - 16
+    Hj0_safe = {i: v for i, v in Hj0.items() if i <= safe}
+    Hj2_safe = {i: v for i, v in Hj2.items() if i <= safe}
+    agree = (Hj0_safe == Hj2_safe)
+    return (Hj0_safe if agree else None), agree, Hj0_safe, Hj2_safe
+
+
+def multiply_back_check(H1d, T1sq, ZK3_eta3, y12Psi, coeff_N, imax):
+    H2d = {(i, 0): v for i, v in H1d.items()}
+    back = mul(H2d, T1sq, imax)
+    required = add(scal(y12Psi, coeff_N), scal(ZK3_eta3, -1))
+    safe = imax - 16
+    mism = {k: (back.get(k, 0), required.get(k, 0)) for k in set(back) | set(required)
+            if k[0] <= safe and back.get(k, 0) != required.get(k, 0)}
+    return len(mism) == 0, mism
+
+
 def verify_lambda2_by_direct_log_derivative(cutoff_q):
     """Independent check of lambda_N_closed_form(2,...): build
     eta(2tau)/eta(tau)*q^{-1/24} = prod(1-q^{2n})/prod(1-q^n) as a plain
@@ -227,9 +299,107 @@ def main():
     lam2_match = lam2_closed == lam2_direct
     F_2A = {n: 16 * c for n, c in lam2_closed.items()}
 
+    # ---- item (2): H(tau) via the Appell-Lerch mu-term (corrected sign,
+    # found by advisor's leading-order hand-check: numer = coeff_N*y^{1/2}
+    # Psi - Z_K3*eta^3, H = numer/T1(tau,z)^2). Extracted independently
+    # from two different (non-symmetry-related) y-power slices of
+    # theta_1(tau,z)^2 and cross-checked; ALSO verified by multiplying the
+    # extracted H back through T1^2 and comparing term-by-term.
+    H_cutoff_q = cutoff_q + 2  # extra margin so q^8 is not near the edge
+    H_N_prod = H_cutoff_q + 8
+    imaxH, ZK3_H, T1sq_H, e3_H, ZK3_eta3_H, y12Psi_H = build_theta1_psi_T1sq_eta3(H_cutoff_q, H_N_prod)
+
+    H24, agree24, Hj0_24, Hj2_24 = extract_H(24, ZK3_eta3_H, y12Psi_H, T1sq_H, imaxH)
+    mb_ok, mb_mismatches = (False, {"error": "slices disagreed"})
+    if agree24:
+        mb_ok, mb_mismatches = multiply_back_check(H24, T1sq_H, ZK3_eta3_H, y12Psi_H, 24, imaxH)
+
+    # truncation-stability of A_1..A_8: rerun the whole H extraction at two
+    # higher cutoffs and confirm every A_n is unchanged.
+    H_stability = {}
+    for cq2 in (H_cutoff_q + 2, H_cutoff_q + 4):
+        Np2 = cq2 + 8
+        imax2, _, T1sq2, _, ZK3e3_2, y12Psi2 = build_theta1_psi_T1sq_eta3(cq2, Np2)
+        H2, agree2, _, _ = extract_H(24, ZK3e3_2, y12Psi2, T1sq2, imax2)
+        ok2, _ = (multiply_back_check(H2, T1sq2, ZK3e3_2, y12Psi2, 24, imax2) if agree2 else (False, None))
+        same_An = agree24 and mb_ok and agree2 and ok2 and all(
+            H2.get(-1 + 8 * n) == H24.get(-1 + 8 * n) for n in range(1, cutoff_q + 1))
+        H_stability[f"cutoff_{cq2}_A_n_match_cutoff_{H_cutoff_q}"] = same_An
+
+    H_result = {
+        "coeff_24_slices_agree": agree24,
+        "multiply_back_check_passes": mb_ok,
+        "multiply_back_mismatch_count": len(mb_mismatches) if isinstance(mb_mismatches, dict) else None,
+    }
+    A_n = {}
+    m24_decomp = {}
+    identity_check = None
+    if agree24 and mb_ok:
+        # H(tau) = 2 q^{-1/8} (-1 + sum_{n>=1} A_n q^n); H's coefficient
+        # at i = -1 + 8n (q^{-1/8+n}) is 2*A_n (A_0 := -1 fixed by i=-1).
+        H0 = H24.get(-1)
+        polar_is_minus_2 = (H0 == Fr(-2))
+        for n in range(1, H_cutoff_q + 1):
+            i = -1 + 8 * n
+            if i in H24:
+                v = H24[i]
+                if v % 2 == 0:
+                    A_n[n] = v // 2
+                else:
+                    A_n[n] = Fr(v, 2)
+        integral_polar_ok = polar_is_minus_2 and all(
+            isinstance(a, int) or (isinstance(a, Fr) and a.denominator == 1) for a in A_n.values())
+        for n, a in A_n.items():
+            m24_decomp[n] = {"A_n": str(a), "matches_single_M24_dim": (a in M24_IRREP_DIMS)}
+        if 1 in A_n and 2 in A_n:
+            lhs = A_n[2] * 60
+            rhs = 4 * A_n[1] * 77
+            identity_check = {"A_2*60": str(lhs), "4*A_1*77": str(rhs), "holds": (lhs == rhs)}
+        H_result.update({
+            "H_leading_coeff_at_q_neg_1_8": str(H0),
+            "polar_term_is_minus_2": polar_is_minus_2,
+            "A_n": {str(n): str(a) for n, a in sorted(A_n.items())},
+            "A_n_all_integral": integral_polar_ok,
+            "A1_to_A5_vs_M24_irrep_dims_given_list": m24_decomp,
+            "identity_A2_60_eq_4_A1_77": identity_check,
+        })
+
+    # ---- rigidity scan (a): replace the "24" multiplying the mu-term by
+    # N in 20..28; report for which N the resulting H has integer
+    # coefficients AND polar term exactly -2.
+    scan_a = []
+    if agree24 and mb_ok:
+        for Ncoef in range(20, 29):
+            Hn, agreeN, _, _ = extract_H(Ncoef, ZK3_eta3_H, y12Psi_H, T1sq_H, imaxH)
+            row = {"N": Ncoef, "slices_agree": agreeN}
+            if agreeN:
+                h0 = Hn.get(-1)
+                row["polar_term"] = str(h0)
+                row["polar_is_minus_2"] = (h0 == Fr(-2))
+                ints = all(v.denominator == 1 for v in Hn.values())
+                row["all_reported_coeffs_integral"] = ints
+                if Ncoef in (23, 25):
+                    row["failing_detail"] = f"H(q^-1/8)={h0}, all_integral={ints}"
+            scan_a.append(row)
+
+    # ---- chi(2A): not given by the task; scan rather than recall it.
+    chi2A_scan = []
+    if agree24 and mb_ok:
+        inv_e3_H = reciprocal_1d({i: v for (i, j), v in e3_H.items() if j == 0}, imaxH, istep=8)
+        inv_e3_2d = {(i, 0): v for i, v in inv_e3_H.items()}
+        F2A_2d = {(8 * n, 0): 16 * c for n, c in lam2_closed.items() if n <= H_cutoff_q}
+        F2A_over_eta3 = mul(F2A_2d, inv_e3_2d, imaxH)
+        H24_2d = {(i, 0): v for i, v in H24.items()}
+        for chi in range(0, 25):
+            H2A = add(scal(H24_2d, Fr(chi, 24)), scal(F2A_over_eta3, -1))
+            ints = all(v.denominator == 1 for v in H2A.values())
+            chi2A_scan.append({"chi_2A": chi, "H_2A_all_coeffs_integral": ints})
+
     out = {
         "track": "A",
-        "item": "K3 elliptic genus (phi_{0,1}, Z_K3, discriminant property, phi_{-2,1})",
+        "item": "K3 elliptic genus (phi_{0,1}, Z_K3, discriminant property, "
+                "phi_{-2,1}, H(tau)/Appell-Lerch mu-term, M24 dims, 2A "
+                "twining Lambda_2/F_2A)",
         "method": "exact Fraction arithmetic; Jacobi theta triple-product "
                    "series truncated at q^{cutoff}, on the grid i=8*qexp, "
                    "j=2*yexp (series2d.py); ratios theta_i(z)/theta_i(0) "
@@ -283,42 +453,69 @@ def main():
             "Lambda_2_coeffs_q0_to_q8": {str(n): str(lam2_closed[n]) for n in range(cutoff_q + 1)},
             "F_2A_coeffs_q0_to_q8": {str(n): str(F_2A[n]) for n in range(cutoff_q + 1)},
         },
+        "H_tau_appell_lerch": {
+            "definition": "H(tau) = 2 q^{-1/8}(-1 + sum_{n>=1} A_n q^n), "
+                           "solved from Z_K3*eta^3 = 24*y^{1/2}*Psi(tau,z) "
+                           "- H(tau)*theta_1(tau,z)^2, where "
+                           "Psi:=T1(tau,z)*S(tau,z) (S = Appell-Lerch sum) "
+                           "is computed exactly with the n=0 term's pole "
+                           "cancelled algebraically against T1's own "
+                           "(1-y) factor -- no truncation/regularization "
+                           "trick anywhere (appell.py). H is extracted from "
+                           "TWO independent, non-symmetry-related y-power "
+                           "slices of theta_1^2 (j=0 and j=2) and accepted "
+                           "only if they agree; the result is then "
+                           "multiplied back through theta_1^2 and compared "
+                           "term-by-term against the defining equation as a "
+                           "second, stronger check.",
+            "cutoff_q_used": H_cutoff_q,
+            "two_slices_agree": agree24,
+            "multiply_back_check_passes": mb_ok,
+            "truncation_stability_of_A_n": H_stability,
+            **H_result,
+        },
+        "rigidity_scan_a": {
+            "definition": "Replace the '24' multiplying the Appell-Lerch "
+                           "mu-term by N in 20..28; for each N re-extract "
+                           "H(tau) (two-slice agreement required) and "
+                           "report whether its polar term is exactly -2 "
+                           "and whether all q^0..q^{cutoff} coefficients "
+                           "are integers.",
+            "scan": scan_a,
+        },
+        "chi_2A_scan_for_H_2A": {
+            "definition": "H_2A(tau) := (chi(2A)/24)*H(tau) - F_2A(tau)/eta(tau)^3. "
+                           "chi(2A) (the trace of the 2A element of M24 in its "
+                           "24-dim permutation representation) is NOT given "
+                           "in the task text, so it is scanned over 0..24 "
+                           "rather than typed in from memory; report which "
+                           "value(s) make H_2A's q^0..q^{cutoff} coefficients "
+                           "all integers.",
+            "scan": chi2A_scan,
+            "chi_2A_expected_from_memory_unverified": "8 (M24's 24-point "
+                "permutation character at a 2A element, i.e. number of "
+                "fixed points; recalled from general ATLAS/M24 familiarity, "
+                "NOT used anywhere upstream, only compared after the "
+                "fact). The scan above found TWO integral candidates in "
+                "0..24 (8 and 20) at this cutoff -- consistent with, but "
+                "not by itself pinning down, chi(2A)=8.",
+        },
         "could_not_do": [
-            "Item (2): H(tau) extraction via the Appell-Lerch mu-term, the "
-            "M24 decomposition of A_1..A_8, and the A_2*60=4*A_1*77 "
-            "identity check. What WAS done exactly and finitely (appell.py): "
-            "Psi(tau,z) := T1(tau,z)*S(tau,z), where S is the Appell-Lerch "
-            "sum, with the n=0 term's naive 1/(1-y) pole cancelled "
-            "ALGEBRAICALLY against T1's own exact factor of (1-y) -- no "
-            "infinite-tail truncation or regularization prescription "
-            "anywhere. A candidate normalization with self-consistent q,y "
-            "gradings was found (Z_K3*eta^3 = -24*y^{1/2}*Psi + H*theta_1^2, "
-            "i.e. theta_1^2/eta^3 multiplies the WHOLE bracket [24*mu+H], "
-            "not H alone) and its leading term, read off one y-power slice "
-            "of theta_1^2, landed on H_0=-2 -- matching the task's stated "
-            "polar term. But the DEFINITIVE check (multiply the candidate "
-            "H back through theta_1^2 and compare term-by-term against "
-            "-[Z_K3*eta^3+24*y^{1/2}*Psi], not just one y-slice) shows real "
-            "mismatches starting at the very leading q-order (e.g. at "
-            "q^{1/8}*y^0: 4 from the candidate vs -44 required). This is a "
-            "genuine normalization/formula error, not a coding bug that "
-            "was left unfixed: two DIFFERENT y-power slices (j=0 vs j=2) "
-            "of theta_1^2, which should give the identical y-independent "
-            "H(tau) if the formula were right, disagree outright (+22 vs "
-            "-2 at the leading order; j=2 and j=-2 agreeing with each "
-            "other is a trivial consequence of theta_1^2's y<->1/y "
-            "symmetry, not an independent check). No H(tau)/A_n sequence "
-            "is reported because none was found that passes this check.",
-            "Item (3), the H-dependent half: the 2A-twined series H_2A and "
-            "the survival of the A_2*60=4*A_1*77 identity under twining, "
-            "and rigidity scan (a) on the '24' in the mu-term -- all "
-            "depend on the item-(2) extraction above and were not "
-            "attempted once that failed its own consistency check. The "
-            "mu-FREE half of item (3), Lambda_2 (needed for F_2A = "
-            "16*Lambda_2), WAS computed exactly and cross-checked by an "
-            "independent direct log-derivative computation (see "
-            "lambda_2_and_F_2A above) -- it just cannot be turned into "
-            "H_2A without H.",
+            "The 2A-twined identity check (whether A_2*60=4*A_1*77 survives "
+            "when A_n is replaced by its 2A-twined counterpart) was not "
+            "attempted: it needs the FULL 2A-twined elliptic genus "
+            "Z_K3^{2A}(tau,z) via F_2A's numerator structure combined with "
+            "theta_1(tau,z)^2 the same way H combines with it, which is a "
+            "further nontrivial regularization step beyond H_2A(tau) alone "
+            "(a tau-only object) that time did not allow re-deriving and "
+            "cross-checking to the same standard as the rest of this file.",
+        ] if agree24 and mb_ok else [
+            "Item (2)/(3): H(tau) extraction did not pass its own two-slice "
+            "and multiply-back consistency checks at this cutoff; see "
+            "H_tau_appell_lerch above for the specific failure. Everything "
+            "downstream (A_n, M24 decomposition, the A_2*60=4*A_1*77 "
+            "identity, rigidity scan (a), and H_2A) is consequently not "
+            "reported.",
         ],
     }
 
