@@ -1,0 +1,147 @@
+{
+  "prediction_file": "tda_prediction.json (written before this script ran)",
+  "model": {
+    "label": "model",
+    "n_points": 316,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 18.789754210776067,
+    "median_pairwise_dist_after_rescale": 0.17295309972488088,
+    "max_edge_length_used": 0.34590619944976175,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 55,
+      "2": 0
+    }
+  },
+  "model_n_before_subsample": 388,
+  "model_pca_raw_dim": 20,
+  "model_pca_reduced_dim": 4,
+  "model_pca_cumulative_variance_fraction": [
+    0.7595194646741641,
+    0.8582249359702103,
+    0.9340307962959279,
+    0.9733824521216065
+  ],
+  "real_sn": {
+    "label": "real_sn",
+    "n_points": 316,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 8.841098317956906,
+    "median_pairwise_dist_after_rescale": 0.28587669171719243,
+    "max_edge_length_used": 0.5717533834343849,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 182,
+      "2": 0
+    }
+  },
+  "real_sn_lcdm_Om_used": 0.34930040766273757,
+  "real_sn_lcdm_offset_used": 43.0674195975208,
+  "circle_control": {
+    "label": "circle",
+    "n_points": 316,
+    "dim": 2,
+    "rescale_factor_to_unit_diam": 2.2664580034673123,
+    "median_pairwise_dist_after_rescale": 0.6241104288229435,
+    "max_edge_length_used": 1.248220857645887,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 42,
+      "2": 0
+    }
+  },
+  "circle_control_assertion": {
+    "n_H1_bars": 42,
+    "top_persistence": 0.6280698513652341,
+    "second_persistence": 0.018288244078969514,
+    "ratio": 34.34281873389257,
+    "ASSERTION_one_dominant_H1_bar": true
+  },
+  "null_uniform_box_control": {
+    "label": "null_uniform_box",
+    "n_points": 316,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 3.2863235808002678,
+    "median_pairwise_dist_after_rescale": 0.4769721400526502,
+    "max_edge_length_used": 0.9539442801053004,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 194,
+      "2": 0
+    }
+  },
+  "null_variance_matched_control": {
+    "label": "null_variance_matched",
+    "n_points": 316,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 14.045678231277511,
+    "median_pairwise_dist_after_rescale": 0.3654169996584833,
+    "max_edge_length_used": 0.7308339993169666,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 191,
+      "2": 0
+    }
+  },
+  "bottleneck_distances": {
+    "model_vs_real_sn_H0": 0.13500386616952925,
+    "model_vs_real_sn_H1": 0.027069824244136675,
+    "null_uniform_box_vs_real_sn_H1": 0.04089188481391906,
+    "null_variance_matched_vs_real_sn_H1": 0.020287062044994808,
+    "model_reduced_vs_model_round1_H0": 0.0389480656953468,
+    "model_reduced_vs_model_round1_H1": 0.027069824244136675
+  },
+  "variance_matched_null_check": {
+    "purpose": "round-1 next_round_priorities #3: was null_vs_real_sn_H1 > model_vs_real_sn_H1 a bounding-box artifact of the uniform-box null? This control uses a null matched to the model cloud's own per-axis variance instead.",
+    "null_variance_matched_vs_real_sn_H1": 0.020287062044994808,
+    "null_uniform_box_vs_real_sn_H1": 0.04089188481391906,
+    "model_vs_real_sn_H1": 0.027069824244136675,
+    "ordering_null_farther_than_model_survives_variance_matching": false,
+    "conclusion": "Ordering does NOT survive variance-matching -- round-1's null_vs_real_sn_H1 > model_vs_real_sn_H1 finding WAS a bounding-box artifact; no model-vs-real topology preference is supported."
+  },
+  "predicted_topology_naive": {
+    "reduced_free_param_count": 5,
+    "naive_reading": "If persistence-diagram 'dimension' tracked parameter count directly, going 6->5 params should show up as SOME detectable shrinkage of the observable-image's complexity/spread relative to round 1's model cloud.",
+    "status": "This naive reading is NOT what round 1 found and is not what we predict here. It is recorded only because the task text states it verbatim."
+  },
+  "predicted_topology_corrected": {
+    "source": "round-1 tda_report.json interpretation_caveat, carried forward unchanged: 'Betti numbers of the model cloud (beta0=1, beta1=beta2=0 expected for a smooth image of a box) are NOT a parameter count. They describe global shape (one connected contractible blob) which is uninformative about effective dimension here.'",
+    "prediction_betti": "H0=1 (single connected component), H1=0 in the persistent-forever sense (beta1 as reported by gudhi.betti_numbers()), IDENTICAL to round 1's model cloud [1,0], because a_pot,b_pot,mu_sym,lambda_sym,c4_pta_product are all still CONTINUOUS free parameters (none frozen to a point) -- removing one exactly-degenerate direction from a smooth map does not change the topology of a still-continuous, still-connected image. Betti numbers would only collapse toward a single point (beta0=1 with a near-zero-radius cloud, not a qualitatively different beta1=0 since that is already 0) if free parameters were fixed to specific numbers, i.e. genuinely reduced to zero, which has not happened this round (5 remain).",
+    "prediction_effective_dimension_svd": "The Jacobian-SVD effective dimension (jacobian_report.json's own diagnostic, NOT Betti numbers) should remain 3, unchanged from round 1's best_fit probe (singular values [4.65,2.58,1.72,3.7e-4,3.2e-14,0.0], eff_dim_at_1e-3=3). The removed direction (pta_suppression vs c4_c0_ratio difference) was ALREADY an exact SV=0.0 null direction in the 6-param model, so collapsing it to 1 parameter should not add or remove effective dimension: 5 nominal params, same 3 effective.",
+    "prediction_bottleneck_vs_round1_model": "NONZERO but small, NOT a topology change. Two independent sources of nonzero bottleneck distance are predicted, neither indicating 'more' or 'less' theory content: (a) a different RNG seed (43 vs 42) and a different sweep sample; (b) a genuinely different marginal density along the c4_pta_product/max_deviation_from_hd axis -- round 1's 6-dim LHS gives c4_c0_ratio*pta_suppression the density of a SUM of two independent log-uniform variables (a triangular-in-log distribution), whereas a fresh log-uniform draw directly on c4_pta_product gives a different (uniform-in-log) density on the same support. This is a sampling-density artifact, pre-registered here so a nonzero number below is not misread as evidence of a topology change.",
+    "prediction_bottleneck_vs_real_sn": "Should be of the same order as round 1's model_vs_real_sn_H1=0.0195 (within the sampling noise discussed above), since the sector that changed (PTA) is not one of the 4 embedding coordinates GUDHI's round-1 real_sn comparison actually used from the model side except through c4_pta_product/max_deviation_from_hd, which round 1's Jacobian already showed carries very weak signal (SV~3.7e-4) relative to the dominant a_pot/b_pot/mu_sym directions."
+  },
+  "betti_numbers_observed": [
+    1,
+    0
+  ],
+  "betti_matches_corrected_prediction": true,
+  "effective_dimension_svd_reduced_model": 3,
+  "effective_dimension_svd_round1_full_model": 3,
+  "effective_dimension_matches_prediction": true
+}
