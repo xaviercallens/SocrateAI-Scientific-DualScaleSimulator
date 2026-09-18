@@ -2,7 +2,8 @@
   "tier": "B (exact simplicial/cubical arithmetic + a hybrid Mayer-Vietoris step) at best; never 'proved'.",
   "provenance_self_report": [
     "Ran `ls audit/` at session start to confirm the k3t2_rigidity output directory existed; this printed the names of blinded files (PAPER_FACTS.md, physics_claims_ledger.md, etc.) in that listing but none of them were opened, grepped, or read.",
-    "A skill named 'k3t2-rigidity-loop' surfaced mid-session (its trigger fired on this task's topic); it was NOT invoked because its described workflow compares results against LeanMaster theorems, which the blindness rule for this run forbids. All computation here used only the mathematical definitions given in the task text."
+    "A skill named 'k3t2-rigidity-loop' surfaced mid-session (its trigger fired on this task's topic); it was NOT invoked because its described workflow compares results against LeanMaster theorems, which the blindness rule for this run forbids. All computation here used only the mathematical definitions given in the task text.",
+    "After committing this track's files, `git status` in the worktree showed three untracked paths belonging to sibling tracks/processes: audit/k3t2_rigidity/targets_sealed.json, audit/k3t2_rigidity/dyons/, audit/k3t2_rigidity/genus-moonshine/. None of these were opened, read, or grepped -- only their names appeared in the status listing, and targets_sealed.json in particular was recognized as likely containing the sealed answer key this blindness exercise is built around, so it was deliberately left untouched."
   ],
   "route_A_simplicial_TDA": {
     "T2_control": {
