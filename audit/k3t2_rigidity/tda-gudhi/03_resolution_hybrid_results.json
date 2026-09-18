@@ -1,0 +1,1245 @@
+{
+  "S2_control": {
+    "euler_characteristic_from_simplex_counts": 2,
+    "simplex_counts_by_dim": {
+      "0": 4,
+      "1": 6,
+      "2": 4
+    },
+    "num_vertices": 4,
+    "num_top_simplices": 4,
+    "betti_by_field": {
+      "Z3": [
+        1,
+        0,
+        1
+      ],
+      "Z5": [
+        1,
+        0,
+        1
+      ]
+    }
+  },
+  "N=4": {
+    "N": 4,
+    "num_singular_vertices": 16,
+    "link_results_per_vertex": [
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          0,
+          0,
+          2
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          0,
+          2,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          0,
+          2,
+          2
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          2,
+          0,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          2,
+          0,
+          2
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          2,
+          2,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          2,
+          2,
+          2
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          2,
+          0,
+          0,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          2,
+          0,
+          0,
+          2
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          2,
+          0,
+          2,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          2,
+          0,
+          2,
+          2
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          2,
+          2,
+          0,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          2,
+          2,
+          0,
+          2
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          2,
+          2,
+          2,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "num_bad_facets": 0
+      }
+    ],
+    "all_16_links_agree_Z3": true,
+    "all_16_links_agree_Z5": true,
+    "link_expected_betti_RP3_odd_field": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "link_expected_source": "RP^3 over a field of odd characteristic: H0=H3=F, H1=H2=0 (standard RP^n homology)",
+    "link_representative_vertex0_Z2_torsion_control": {
+      "euler_characteristic_from_simplex_counts": 0,
+      "simplex_counts_by_dim": {
+        "0": 15,
+        "1": 75,
+        "2": 120,
+        "3": 60
+      },
+      "num_vertices": 15,
+      "num_top_simplices": 120,
+      "betti_by_field": {
+        "Z2": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "link_expected_betti_RP3_Z2": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "link_Z2_expected_source": "RP^3 over F2: all H_k (k=0..3) become rank-1 due to the Z/2 torsion in integral homology of RP^n",
+    "U_complement_result": {
+      "euler_characteristic_from_simplex_counts": -8,
+      "simplex_counts_by_dim": {
+        "0": 120,
+        "1": 1680,
+        "2": 5200,
+        "3": 5760,
+        "4": 2112
+      },
+      "num_vertices": 120,
+      "num_top_simplices": 4224,
+      "betti_by_field": {
+        "Z3": [
+          1,
+          0,
+          6,
+          15,
+          0
+        ],
+        "Z5": [
+          1,
+          0,
+          6,
+          15,
+          0
+        ]
+      }
+    },
+    "resolved_K3_betti_Z3": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1,
+      "b0_b4_status": "STATED (connectedness/orientability/Poincare duality), NOT computed",
+      "b3_status": "STATED via Poincare duality (b3=b1). b3(U)=15 is COMPUTED (GUDHI); a Mayer-Vietoris argument gives b3(K3)=b3(U)-rank(f) for the boundary-inclusion map f, and IF f is surjective (ARGUED, not verified: no chain-level map is available from Betti numbers alone) this evaluates to 0, consistent with but not an independent re-derivation of b3=b1=0.",
+      "b1_b2_status": "COMPUTED from U via Mayer-Vietoris (b1=b1(U), b2=b2(U)+16)",
+      "chi_from_betti_numbers": 24,
+      "chi_from_MV_simplex_counts(chi(U)+32)": 24,
+      "chi_cross_check_matches": true,
+      "b2_plus_signature_note": "b2 = b2^+ + b2^- ; signs require the intersection form, computed separately in 04_signature.py"
+    },
+    "resolved_K3_betti_Z5": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1,
+      "b0_b4_status": "STATED (connectedness/orientability/Poincare duality), NOT computed",
+      "b3_status": "STATED via Poincare duality (b3=b1). b3(U)=15 is COMPUTED (GUDHI); a Mayer-Vietoris argument gives b3(K3)=b3(U)-rank(f) for the boundary-inclusion map f, and IF f is surjective (ARGUED, not verified: no chain-level map is available from Betti numbers alone) this evaluates to 0, consistent with but not an independent re-derivation of b3=b1=0.",
+      "b1_b2_status": "COMPUTED from U via Mayer-Vietoris (b1=b1(U), b2=b2(U)+16)",
+      "chi_from_betti_numbers": 24,
+      "chi_from_MV_simplex_counts(chi(U)+32)": 24,
+      "chi_cross_check_matches": true,
+      "b2_plus_signature_note": "b2 = b2^+ + b2^- ; signs require the intersection form, computed separately in 04_signature.py"
+    },
+    "runtime_sec": 0.25832366943359375
+  },
+  "N=6": {
+    "N": 6,
+    "num_singular_vertices": 16,
+    "link_results_per_vertex": [
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          0,
+          0,
+          3
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          0,
+          3,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          0,
+          3,
+          3
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          3,
+          0,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          3,
+          0,
+          3
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          3,
+          3,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          0,
+          3,
+          3,
+          3
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          3,
+          0,
+          0,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          3,
+          0,
+          0,
+          3
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          3,
+          0,
+          3,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          3,
+          0,
+          3,
+          3
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          3,
+          3,
+          0,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          3,
+          3,
+          0,
+          3
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          3,
+          3,
+          3,
+          0
+        ],
+        "num_bad_facets": 0
+      },
+      {
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "singular_vertex": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "num_bad_facets": 0
+      }
+    ],
+    "all_16_links_agree_Z3": true,
+    "all_16_links_agree_Z5": true,
+    "link_expected_betti_RP3_odd_field": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "link_expected_source": "RP^3 over a field of odd characteristic: H0=H3=F, H1=H2=0 (standard RP^n homology)",
+    "link_representative_vertex0_Z2_torsion_control": {
+      "euler_characteristic_from_simplex_counts": 0,
+      "simplex_counts_by_dim": {
+        "0": 15,
+        "1": 75,
+        "2": 120,
+        "3": 60
+      },
+      "num_vertices": 15,
+      "num_top_simplices": 120,
+      "betti_by_field": {
+        "Z2": [
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    },
+    "link_expected_betti_RP3_Z2": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "link_Z2_expected_source": "RP^3 over F2: all H_k (k=0..3) become rank-1 due to the Z/2 torsion in integral homology of RP^n",
+    "U_complement_result": {
+      "euler_characteristic_from_simplex_counts": -8,
+      "simplex_counts_by_dim": {
+        "0": 640,
+        "1": 9480,
+        "2": 31200,
+        "3": 36960,
+        "4": 14592
+      },
+      "num_vertices": 640,
+      "num_top_simplices": 29184,
+      "betti_by_field": {
+        "Z3": [
+          1,
+          0,
+          6,
+          15,
+          0
+        ],
+        "Z5": [
+          1,
+          0,
+          6,
+          15,
+          0
+        ]
+      }
+    },
+    "resolved_K3_betti_Z3": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1,
+      "b0_b4_status": "STATED (connectedness/orientability/Poincare duality), NOT computed",
+      "b3_status": "STATED via Poincare duality (b3=b1). b3(U)=15 is COMPUTED (GUDHI); a Mayer-Vietoris argument gives b3(K3)=b3(U)-rank(f) for the boundary-inclusion map f, and IF f is surjective (ARGUED, not verified: no chain-level map is available from Betti numbers alone) this evaluates to 0, consistent with but not an independent re-derivation of b3=b1=0.",
+      "b1_b2_status": "COMPUTED from U via Mayer-Vietoris (b1=b1(U), b2=b2(U)+16)",
+      "chi_from_betti_numbers": 24,
+      "chi_from_MV_simplex_counts(chi(U)+32)": 24,
+      "chi_cross_check_matches": true,
+      "b2_plus_signature_note": "b2 = b2^+ + b2^- ; signs require the intersection form, computed separately in 04_signature.py"
+    },
+    "resolved_K3_betti_Z5": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1,
+      "b0_b4_status": "STATED (connectedness/orientability/Poincare duality), NOT computed",
+      "b3_status": "STATED via Poincare duality (b3=b1). b3(U)=15 is COMPUTED (GUDHI); a Mayer-Vietoris argument gives b3(K3)=b3(U)-rank(f) for the boundary-inclusion map f, and IF f is surjective (ARGUED, not verified: no chain-level map is available from Betti numbers alone) this evaluates to 0, consistent with but not an independent re-derivation of b3=b1=0.",
+      "b1_b2_status": "COMPUTED from U via Mayer-Vietoris (b1=b1(U), b2=b2(U)+16)",
+      "chi_from_betti_numbers": 24,
+      "chi_from_MV_simplex_counts(chi(U)+32)": 24,
+      "chi_cross_check_matches": true,
+      "b2_plus_signature_note": "b2 = b2^+ + b2^- ; signs require the intersection form, computed separately in 04_signature.py"
+    },
+    "runtime_sec": 1.4352293014526367
+  },
+  "total_runtime_sec": 1.693840503692627
+}

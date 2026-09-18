@@ -1,0 +1,104 @@
+{
+  "input_b_T2": [
+    1,
+    2,
+    1
+  ],
+  "input_b_T2_source": "01_controls_results.json / cubical.T2.betti",
+  "N=4_Z3": {
+    "input_b_K3": [
+      1,
+      0,
+      22,
+      0,
+      1
+    ],
+    "input_b_K3_source": "03_resolution_hybrid_results.json / N=4 / resolved_K3_betti_Z3",
+    "betti_K3xT2_via_kunneth": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+    ],
+    "chi_K3": 24,
+    "chi_T2": 0,
+    "chi_K3xT2_from_product_betti": 0,
+    "chi_K3xT2_from_multiplicativity_chiK3_times_chiT2": 0,
+    "chi_cross_check_matches": true
+  },
+  "N=4_Z5": {
+    "input_b_K3": [
+      1,
+      0,
+      22,
+      0,
+      1
+    ],
+    "input_b_K3_source": "03_resolution_hybrid_results.json / N=4 / resolved_K3_betti_Z5",
+    "betti_K3xT2_via_kunneth": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+    ],
+    "chi_K3": 24,
+    "chi_T2": 0,
+    "chi_K3xT2_from_product_betti": 0,
+    "chi_K3xT2_from_multiplicativity_chiK3_times_chiT2": 0,
+    "chi_cross_check_matches": true
+  },
+  "N=6_Z3": {
+    "input_b_K3": [
+      1,
+      0,
+      22,
+      0,
+      1
+    ],
+    "input_b_K3_source": "03_resolution_hybrid_results.json / N=6 / resolved_K3_betti_Z3",
+    "betti_K3xT2_via_kunneth": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+    ],
+    "chi_K3": 24,
+    "chi_T2": 0,
+    "chi_K3xT2_from_product_betti": 0,
+    "chi_K3xT2_from_multiplicativity_chiK3_times_chiT2": 0,
+    "chi_cross_check_matches": true
+  },
+  "N=6_Z5": {
+    "input_b_K3": [
+      1,
+      0,
+      22,
+      0,
+      1
+    ],
+    "input_b_K3_source": "03_resolution_hybrid_results.json / N=6 / resolved_K3_betti_Z5",
+    "betti_K3xT2_via_kunneth": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+    ],
+    "chi_K3": 24,
+    "chi_T2": 0,
+    "chi_K3xT2_from_product_betti": 0,
+    "chi_K3xT2_from_multiplicativity_chiK3_times_chiT2": 0,
+    "chi_cross_check_matches": true
+  }
+}

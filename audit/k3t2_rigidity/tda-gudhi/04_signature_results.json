@@ -1,0 +1,94 @@
+{
+  "invariant_H2_T4_basis_size": 6,
+  "invariant_H2_T4_basis_size_expected": "C(4,2)=6, computed as len(combinations(range(1,5),2))",
+  "cup_product_matrix_is_symmetric": true,
+  "cup_product_matrix_exact": [
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "1"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "0",
+      "-1",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "0",
+      "1",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0",
+      "1",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "-1",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    [
+      "1",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ]
+  ],
+  "eigenvalues_exact": [
+    "-1",
+    "-1",
+    "-1",
+    "1",
+    "1",
+    "1"
+  ],
+  "eigenvalue_signs": [
+    -1,
+    -1,
+    -1,
+    1,
+    1,
+    1
+  ],
+  "b2_plus_from_T4_invariant_part_COMPUTED": 3,
+  "b2_minus_from_T4_invariant_part_COMPUTED": 3,
+  "b2_zero_eigenvalues_T4_invariant_part": 0,
+  "cross_check_vs_quotient_b2": {
+    "quotient_b2_computed_in_step2": 6,
+    "b2_plus_plus_minus_plus_zero": 6,
+    "matches": true
+  },
+  "num_exceptional_minus2_curves": 16,
+  "exceptional_curves_orthogonality_and_self_intersection_status": "STATED (standard fact for isolated A1/ODP resolutions), NOT computed from an explicit intersection-form computation in this track",
+  "b2_plus_total": 3,
+  "b2_minus_total": 19,
+  "b2_total_(should_match_resolved_K3_b2_from_step3)": 22,
+  "b2_total_matches_step3_computation": true,
+  "signature_b2plus_minus_b2minus": -16,
+  "signature_expected_source": "K3 signature -16, standard fact (from memory, unverified) -- compared here only as a cross-check, not used as an input to the computation above",
+  "signature_matches_expected": true,
+  "honesty_limits": [
+    "Only the intersection form's SIGNS/rank over Q are computed here, not the integral unimodular lattice II_{3,19}.",
+    "Orthogonality and self-intersection -2 of the 16 exceptional curves is a stated standard fact, not independently computed by intersection-form arithmetic in this track.",
+    "c1=0 / Noether's formula is not derived anywhere in this track; see 07_rigidity_scan.py for how chi=24 is used only as a stated consistency identity."
+  ],
+  "runtime_sec": 0.0026733875274658203
+}
