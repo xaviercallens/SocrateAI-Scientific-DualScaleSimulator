@@ -333,25 +333,45 @@ def run_selftest() -> Dict[str, Any]:
     report["checks"].append(checkA)
     ok_all = ok_all and checkA["pass"]
 
-    # --- Check B: x10 sensitivity per parameter -----------------------------
-    print("[selftest] Check B: x10 parameter sensitivity per observable block ...")
+    # --- Check B: x10 AND /10 sensitivity per parameter ---------------------
+    # Both directions are probed: a single-direction x10 probe can falsely
+    # read as "unobservable" when the solver happens to diverge in that one
+    # direction (observed for mu_sym: x10 sends the symmetron BVP fallback to
+    # NaN, but /10 changes screening_suppression_factor by a factor of ~3.6 --
+    # mu_sym IS strongly observable; only the x10 arm is void).
+    print("[selftest] Check B: x10 and /10 parameter sensitivity per observable block ...")
     baseline = evaluate_point(DEFAULT_PARAMS)
     baseline_vals = {name: fn(baseline) for name, fn in OBSERVABLE_BLOCKS.items()}
     sensitivity: Dict[str, Dict[str, Any]] = {}
     for pname in DEFAULT_PARAMS:
-        varied_params = dict(DEFAULT_PARAMS)
-        varied_params[pname] = DEFAULT_PARAMS[pname] * 10.0
-        result = evaluate_point(varied_params)
-        changed, unchanged, nonfinite = [], [], []
-        for oname, fn in OBSERVABLE_BLOCKS.items():
-            verdict = _compare_observable(baseline_vals[oname], fn(result))
-            {"changed": changed, "unchanged": unchanged, "nonfinite": nonfinite}[verdict].append(oname)
-        sensitivity[pname] = {"changed": changed, "unchanged": unchanged, "nonfinite": nonfinite}
-        print(f"    {pname} x10 -> changed: {changed}")
-        print(f"    {pname} x10 -> UNCHANGED (structurally unobservable via this param): {unchanged}")
-        if nonfinite:
-            print(f"    {pname} x10 -> NONFINITE (solver diverged to NaN/Inf -- numerical instability, NOT evidence of insensitivity): {nonfinite}")
-    report["sensitivity_x10"] = sensitivity
+        per_direction: Dict[str, Dict[str, List[str]]] = {}
+        for direction, factor in (("x10", 10.0), ("div10", 0.1)):
+            varied_params = dict(DEFAULT_PARAMS)
+            varied_params[pname] = DEFAULT_PARAMS[pname] * factor
+            result = evaluate_point(varied_params)
+            changed, unchanged, nonfinite = [], [], []
+            for oname, fn in OBSERVABLE_BLOCKS.items():
+                verdict = _compare_observable(baseline_vals[oname], fn(result))
+                {"changed": changed, "unchanged": unchanged, "nonfinite": nonfinite}[verdict].append(oname)
+            per_direction[direction] = {"changed": changed, "unchanged": unchanged, "nonfinite": nonfinite}
+            print(f"    {pname} {direction} -> changed: {changed}")
+            print(f"    {pname} {direction} -> unchanged: {unchanged}")
+            if nonfinite:
+                print(f"    {pname} {direction} -> NONFINITE (solver diverged; NOT evidence of insensitivity): {nonfinite}")
+        # An observable is "structurally unobservable via this param" only if
+        # BOTH directions leave it unchanged AND finite. If either direction
+        # changes it (or is void due to divergence), it counts as observable
+        # / inconclusive, never as a clean removal candidate.
+        both_unchanged = set(per_direction["x10"]["unchanged"]) & set(per_direction["div10"]["unchanged"])
+        any_changed = set(per_direction["x10"]["changed"]) | set(per_direction["div10"]["changed"])
+        any_nonfinite = set(per_direction["x10"]["nonfinite"]) | set(per_direction["div10"]["nonfinite"])
+        truly_unobservable = sorted(both_unchanged - any_changed - any_nonfinite)
+        sensitivity[pname] = {
+            "per_direction": per_direction,
+            "truly_unobservable_both_directions": truly_unobservable,
+        }
+        print(f"    {pname} -> STRUCTURALLY UNOBSERVABLE in BOTH x10 and /10 (only these are removal candidates): {truly_unobservable}")
+    report["sensitivity_x10_and_div10"] = sensitivity
 
     # --- Check C: negative control, c4_c0_ratio/pta_suppression degeneracy -
     print("[selftest] Check C: negative control -- c4_c0_ratio*pta_suppression product degeneracy ...")
