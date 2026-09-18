@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "role": "COMPARATOR (computed nothing on the blind route; opened the blind results.json files and the Lean statements at LeanMaster tag v3.13.1, read-only)",
+    "generated_at": "2026-09-18",
+    "sealed_targets_file": "audit/k3t2_rigidity/targets_sealed.json",
+    "leanmaster_tag": "v3.13.1",
+    "leanmaster_commit": "21368559e6aa60041a0891b114f53dec009a747a",
+    "leanmaster_read_via": "git show v3.13.1:<file> in /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster (HEAD there is v3.17.0; the sealed tag was used so statements match the seal)",
+    "blind_inputs": {
+      "genus-moonshine": "audit/k3t2_rigidity/genus-moonshine/results.json (commit ed0248b)",
+      "dyons": "audit/k3t2_rigidity/dyons/results.json + part*_results.json (commit 237ec87)",
+      "lattices-duality": "audit/k3t2_rigidity/lattices-duality/results.json + 0*_result.json (commit eccf016)",
+      "tda-gudhi": "audit/k3t2_rigidity/tda-gudhi/00_master_summary.json + 0*_results.json (commit ffe3788)"
+    },
+    "comparator_own_checks": [
+      "Convention check (python, exact ints): Lean `coeff untwined n` is the FULL coefficient of q^{n-1/8} in H(tau); blind writes H = 2 q^{-1/8}(-1 + sum A_n q^n). Conversion: Lean coeff n = 2*A_n(blind). Verified 2*45=90, 2*231=462, 60*462=27720=2*13860.",
+      "Twining convention: Lean A1(2A)=-6, A2(2A)=14 equal blind's raw H_2A coefficients (-6, 14) at n=1,2; blind's 'A_1^2A=-3, A_2^2A=7' are the halved values under the same conversion.",
+      "Permutation character: Lean's chi2A table gives 1 + 7 = 8 for the 24-dim permutation representation (1 + 23), equal to the chi(2A)=8 the blind route pinned by the polar-term discriminator.",
+      "Lean-only arithmetic re-done from Lean's own table (not a blind result): sum chi3A^2 = 1080 and 244823040 mod 1080 = 0.",
+      "Data check (read-only, main repo tda_mapper_skeleton.json at HEAD and working copy): summary.num_nodes=187, num_edges=557, num_connected_components=6, betti_1_cycles=376 -- Lean's hard-coded Mapper constants match the simulator's own artifact; this is NOT a blind recomputation."
+    ],
+    "tier_note": "All blind results are tier B (exact arithmetic with negative controls) or lower; nothing here is 'proved'. Lean's theorems are kernel-checked arithmetic on definitions; where the definition is a typed constant (Signature pairs, Mapper V/E/b0, Betti inputs) the Lean theorem is bookkeeping and the blind route is the only side that computes."
+  },
+  "rows": [
+    {
+      "target_id": "genus-moonshine_lock_at_identity",
+      "status": "AGREE",
+      "lean_value": "coeff untwined 1 = 90, coeff untwined 2 = 462, literalLock (462*60 = 4*90*77), 462*60 = 27720",
+      "blind_value": "A_1 = 45, A_2 = 231 (H = 2q^{-1/8}(-1+sum A_n q^n)); A_2*60 = 13860 = 4*A_1*77 (genus-moonshine/results.json H_tau_appell_lerch.A_n, identity_A2_60_eq_4_A1_77)",
+      "note": "CONVENTION: Lean coeff n = full coefficient of q^{n-1/8} in H = 2*A_n(blind). Under this exact conversion 90=2*45, 462=2*231, 27720=2*13860; the lock holds on both sides. Blind extracted H(tau) by exact Appell-Lerch decomposition from two independent y-slices with multiply-back check; Lean computes 24H in QSeries.lean. Blind ALSO reproduces Lean's unsealed twined result: H_2A coefficients (-2,-6,14,-28,42,-56) match Lean's A1(2A)=-6, A2(2A)=14, and the literal lock fails at 2A on both sides (Lean literal_lock_fails_at_2A; blind 420 != -924 in halved units, i.e. 840 != -1848 in Lean units)."
+    },
+    {
+      "target_id": "genus-moonshine_norm_3A",
+      "status": "NOT_COMPUTED",
+      "lean_value": "dot chi3A chi3A = 1080 and 244823040 % 1080 = 0",
+      "blind_value": "not computed: blind Track A twined only by 2A (Lambda_2, F_2A, chi(2A)); no 3A character column was built",
+      "note": "Comparator re-did the arithmetic from Lean's own chi3A list (1080, divisible) but that is Lean-only data, not an independent route. Candidate for a reverse pass: compute H_3A via Lambda_3 and pin chi(3A)=6 by the polar-term discriminator, as was done for 2A."
+    },
+    {
+      "target_id": "genus-moonshine_umbral_exact",
+      "status": "NOT_COMPUTED",
+      "lean_value": "umbralOK 12 = true (the divisions defining Z^(5), Z^(7), Z^(9), Z^(13) from Z^(2), Z^(3), Z^(4) are exact and no odd power of q^{1/2} survives, through q^6)",
+      "blind_value": "only Z^(2) = 2*phi_{0,1} = Z_K3 was computed (integer coefficients through q^8); Z^(3), Z^(4) and the higher umbral forms were not built",
+      "note": "Partial overlap only: blind's Z_K3 integrality is the l=2 member of Lean's umbral family, but umbralOK's content is the exactness of the l>=5 divisions, which the blind route never touched."
+    },
+    {
+      "target_id": "dyons_c_depends_only_on_D",
+      "status": "AGREE",
+      "lean_value": "for n < 10 and |l| <= 12, coefficient (n,l) of Z_K3 = cK3(4n - l^2)",
+      "blind_value": "Track A: discriminant_dependence_holds = true, zero mismatches for n = 0..8, all l; Track B: A_index1_structure_holds, B_index1_structure_holds, cD_no_index1_conflict = true (QMAX = 22)",
+      "note": "Two blind tracks (independent theta-product implementations) and Lean agree. Ranges differ (Lean n<=9; blind A n<=8; blind B to q^22), no convention issue (same D = 4n - l^2)."
+    },
+    {
+      "target_id": "dyons_c_first",
+      "status": "AGREE",
+      "lean_value": "[cK3(-1), cK3 0, cK3 3, cK3 4] = [2, 20, -128, 216]",
+      "blind_value": "Track A c_of_D: -1 -> 2, 0 -> 20, 3 -> -128, 4 -> 216; Track B cD_table: c(-1)=2, c(0)=20, c(3)=-128, c(4)=216",
+      "note": "Exact match, both blind tracks. Blind continues the table to D=32 (A) and D=88 (B); Lean's zK3 = ellipticGenus 9 covers D <= 36 (n <= 9)."
+    },
+    {
+      "target_id": "dyons_p24_values",
+      "status": "AGREE",
+      "lean_value": "(List.range 6).map p24 = [1, 24, 324, 3200, 25650, 176256]  (p24 = coefficients of prod (1-q^k)^{-24})",
+      "blind_value": "Track B euler_numbers_k0_5 = 1, 24, 324, 3200, 25650, 176256, computed two ways: q^0,y=1 restriction of the DMVV product AND coefficients of prod_n (1-p^n)^{-24}; match_gottsche = true",
+      "note": "Exact match. Blind's DMVV-restriction route also reproduces Lean's unsealed theorem `goettsche` (G_k(tau,0) = p24(k), higher q-coefficients vanish). Blind additionally finds N = p24(2) = 324 as the unique polar multiplicity in its (N,M) scan, consistent with Lean's polar_part_removes_pole / polar_coefficient_pinned (unsealed)."
+    },
+    {
+      "target_id": "lattices-duality_sigK3_eq",
+      "status": "AGREE",
+      "lean_value": "sigK3 = <3, 19> where sigK3 := sigE8Neg + sigE8Neg + sigU + sigU + sigU with sigU := <1,1>, sigE8Neg := <0,8> asserted (bookkeeping, proof by rfl)",
+      "blind_value": "Track C item 2: K3 = 3U + 2(-E8) full 22x22 Gram matrix, rank 22, det = -1, even, signature (p,q,zero) = (3,19,0) by congruence diagonalization AND by Sturm root counting (agree). Track D item 4: b2^+ = 3, b2^- = 19 from the wedge-pairing matrix on the invariant H^2(T^4;Q) (3,3) plus 16 stated (-2) exceptional classes",
+      "note": "CONVENTION: both sides use (positive count, negative count) with E8 taken negative-definite, so <pos,neg> = (p,q) directly; no conversion needed. Lean's theorem is arithmetic on asserted component signatures; the blind route computes the signature from the assembled Gram matrix (two exact methods) and, via a different route (Kummer resolution), from topology. Blind also reports det = -1 for K3 (|det| = 1) -- Lean does not state the determinant."
+    },
+    {
+      "target_id": "lattices-duality_sigK3T2_eq",
+      "status": "AGREE",
+      "lean_value": "sigK3T2 = <6, 22> where sigK3T2 := (sigK3 + sigU) + (sigU + sigU) (bookkeeping, rfl)",
+      "blind_value": "Track C item 2: Gamma^{6,22} = 6U + 2(-E8) full 28x28 Gram matrix, rank 28, det = 1, even, unimodular, signature (6,22,0) by both exact methods; also Mukai = K3 + U: (4,20,0), det = 1",
+      "note": "Same (pos,neg) convention. Lean adds asserted pairs; blind computes from the full matrix. Blind additionally supplies det = 1 and evenness."
+    },
+    {
+      "target_id": "lattices-duality_thetaShift_isODD",
+      "status": "AGREE",
+      "lean_value": "for every d and every integer Theta with Theta^T = -Theta: thetaShift(Theta)^T * eta * thetaShift(Theta) = eta (universal, proved by block algebra)",
+      "blind_value": "Track C item 3: 200/200 seeded exact random antisymmetric Theta preserve eta for d = 2 and d = 3; negative control: 200/200 nonzero symmetric Theta fail; also basisChange, factorized duality K_i (squares to identity), eta^2 = 1, eta H(G,0) eta = H(G^-1,0) all 200/200",
+      "note": "No convention issue (both use eta = [[0,I],[I,0]], g_Theta = [[I,Theta],[0,I]]). Blind verifies finitely many instances at d = 2,3; Lean is universal in d and Theta. Agreement on every tested instance; the negative control shows the blind test is not vacuous. The Lean statement is strictly stronger."
+    },
+    {
+      "target_id": "tda-gudhi_k3_euler_characteristic",
+      "status": "AGREE",
+      "lean_value": "K3BettiSum 1 0 22 0 1 = 24 (alternating sum of typed Betti numbers)",
+      "blind_value": "Track D: b2(K3) = 22 COMPUTED via GUDHI (T^4/Z_2 quotient b2 = 6, complement U Betti (1,0,6,15,0), Mayer-Vietoris b2 = 6 + 16), b1 = 0 computed, b0 = b4 = 1 and b3 = 0 stated; chi = 24 from Betti numbers AND independently as chi(U) + 32 = -8 + 32 = 24; identical at N = 4 and N = 6, over Z/3 and Z/5. Track A: Z_K3(tau,0) = 24 exactly (all q^n terms zero). Track B: c(0) + 2c(-1) = 24. Track C item 5: alternating Betti sum = 24, negative control b2 -> 23 gives 25",
+      "note": "Lean's theorem is arithmetic on typed Betti numbers; four blind routes reach 24 by different means (GUDHI homology of a Kummer resolution, elliptic genus at z=0, DMVV/Goettsche, Betti sum). Blind Track D's rigidity scan also shows chi(X_k) = 8 + k, so chi = 24 forces resolving all k = 16 singular points."
+    },
+    {
+      "target_id": "tda-gudhi_kummer_mapper_betti1_eq_376",
+      "status": "NOT_COMPUTED",
+      "lean_value": "mapperBetti1WithComponents {nodes := 187, edges := 557} 6 = 557 - 187 + 6 = 376",
+      "blind_value": "not computed: blind Track D did not build the Kummer Langevin Mapper graph; its TDA was of exact simplicial/cubical models of T^4, T^4/Z_2, the Kummer resolution and a Clifford-torus point cloud",
+      "note": "Lean's V = 187, E = 557, b0 = 6 are typed constants from a simulation output, not mathematics of K3 x T^2; the theorem is the arithmetic E - V + b0. Comparator's read-only data check: the simulator's tda_mapper_skeleton.json (HEAD and working copy) reports num_nodes 187, num_edges 557, num_connected_components 6, betti_1_cycles 376, so Lean's constants match the artifact. Reproducing the Mapper graph itself from the Langevin point cloud with GUDHI would be a legitimate reverse-pass target but is simulation-dependent, not a zero-parameter fact."
+    },
+    {
+      "target_id": "tda-gudhi_kummer_mapper_euler_eq_minus_370",
+      "status": "NOT_COMPUTED",
+      "lean_value": "mapperEulerChar {nodes := 187, edges := 557} = 187 - 557 = -370",
+      "blind_value": "not computed (same reason as kummer_mapper_betti1_eq_376)",
+      "note": "Arithmetic on the same typed simulation constants; see previous row. chi = V - E = 187 - 557 = -370 is consistent with b0 - b1 = 6 - 376 = -370."
+    }
+  ],
+  "agree": 8,
+  "disagree": 0,
+  "not_computed": 4,
+  "not_comparable": 0,
+  "lean_only": [
+    "norm_3A: the 3A character column, its norm 1080 and 1080 | |M24| -- nobody recomputed a 3A twining (blind did 2A only).",
+    "umbral_exact: exactness of the divisions defining the umbral Jacobi forms Z^(5), Z^(7), Z^(9), Z^(13) and vanishing of odd q^{1/2} powers -- blind built only Z^(2) = Z_K3.",
+    "kummer_mapper_betti1_eq_376 and kummer_mapper_euler_eq_minus_370: arithmetic on typed Mapper-graph constants (V=187, E=557, b0=6) from the simulator; not recomputed by any blind track.",
+    "thetaShift_isODD universality: Lean proves it for every d and every antisymmetric integer Theta; blind checked only d = 2, 3 on 200 samples each.",
+    "Unsealed Lean statements that the blind route happens to reproduce (recorded for completeness): goettsche (G_k(tau,0) = p24(k)), literal_lock_fails_at_2A and the 2A twined coefficients -6, 14, k3_hirzebruch_signature (3 - 19 = -16), the dual-scale bound tr G + tr G^-1 >= 2d (blind: 2000 exact SPD samples per d = 1..6, equality only at G = I in a float scan)."
+  ],
+  "blind_only_findings": [
+    "Signature of the FULL Gram matrices computed exactly by two independent methods (congruence diagonalization over Q and Sturm root counting on the characteristic polynomial): K3 = 3U + 2(-E8) rank 22 det -1 even (3,19,0); Mukai rank 24 det 1 even (4,20,0); Gamma^{6,22} rank 28 det 1 even (6,22,0). Lean's sigK3_eq / sigK3T2_eq only add asserted component pairs. Candidate theorem: signature (and det, evenness) of the assembled 22x22 / 28x28 Gram matrix, not of a Signature-pair sum.",
+    "E8 Cartan matrix rebuilt from Dynkin adjacency: det = 1, leading principal minors 2,4,6,5,4,3,2,1, exactly 240 roots by exact Weyl-reflection closure, all of norm^2 2; negative control 2e_1 absent. Candidate theorem: the 240-root count.",
+    "Rank-22 even unimodular enumeration: all (m,n) with 2m + 8n = 22 give three candidates (11,0), (7,1), (3,2), ALL even, unimodular and with p - q = 0 mod 8; only the external signature (3,19) selects (3,2). I.e. intrinsic lattice conditions alone do not fix the K3 lattice decomposition -- a limit on the 'zero free parameters' claim that Lean does not state.",
+    "T-duality radius map R -> lambda alpha'/R: involution + spectrum preservation fix lambda^2 = 1 only (two points, +1 and -1); radius positivity is needed to select lambda = +1. Lean does not state this Z2 ambiguity.",
+    "K3 elliptic genus coefficients c(D) far beyond Lean's q^9: Track A to D = 32 (c(31) = -2402298, c(32) = 3082192), Track B to D = 88 (c(87) = -118164347946, c(88) = 138210142752). Candidate: extend zK3 or state c(D) for D up to 88.",
+    "DMZ m = 1 identity 4G_2 = 9B^2 + 3E4 A^2 verified coefficient-by-coefficient through q^10 with G_2 = 2B^2 + B(q^2,y^2) + C_2 derived from the DMVV p^2 combinatorics; negative control: shifting c(3) or c(4) by +1 breaks it at 122 coefficients. Lean's dmz_516_q1 / dmz_516_q2 stop at q^1 / q^2. Candidate: extend to q^10.",
+    "Hurwitz class numbers H(3)=1/3, H(4)=1/2, H(7)=H(8)=H(11)=1, H(12)=4/3, H(15)=2 by direct counting of reduced forms -- not in Lean.",
+    "Polar subtraction Delta psi_1 - N A_{2,1} = 3E4 A - M Hhat: unique (N,M) = (324, 648) on the window D >= -4, with an UNRESOLVED exact remainder of -324 at (n,l) = (4,-5), D = -9, stable under doubling YCAP. This is an open discrepancy inside the blind route itself (not against a sealed Lean target); Lean's polar_part_removes_pole tests a different statement (second-order vanishing at y = 1). Recommended: a third minimal computation of the D = -9 coefficient of A_{2,1} in the |q| < |y| < 1 strip (the likely culprit is the s <= -1 region of the 9.55 expansion) before any statement about the 648 Hhat identity is formalized.",
+    "H(tau) Appell-Lerch decomposition: A_1..A_8 = 45, 231, 770, 2277, 5796, 13915, 30843, 65550 extracted from two independent y-slices with multiply-back verification; the 24 multiplying the mu-term is the unique N in 20..28 making the slices agree; chi(2A) = 8 pinned by requiring H_2A's polar term to equal -2 (integrality alone leaves the family 8 mod 12). Lean states the A_n (QSeries, unsealed) but not the slice-agreement or the chi(2A) discriminator.",
+    "GUDHI topology of the Kummer construction, none of which Lean states: T^4/Z_2 singular quotient Betti (1,0,6,0,1), chi = 8; 16 fixed points; link of each singular vertex has Betti (1,0,0,1) over Z/3, Z/5 and (1,1,1,1) over Z/2 (RP^3); complement U Betti (1,0,6,15,0), chi = -8; resolved b2 = 22 via Mayer-Vietoris; wedge-pairing signature (3,3) on the invariant part; rigidity scan chi(X_k) = 8 + k with k = 16 unique; free-translation negative control returns T^4's Betti numbers; all invariant under grid refinement N = 4 -> 6.",
+    "Kunneth Betti numbers of K3 x T^2 = (1,2,23,44,23,2,1), chi = 0; chi(K3 x K3) = 576 = 24 * 24 via explicit Kunneth convolution (both tracks C and D). Lean has chi(K3) = 24 but not these products.",
+    "Lambda_2(tau) = 2 q d/dq log(eta(2tau)/eta(tau)) coefficients 1/12, 2, 2, 8, 2, 12, 8, 16, 2 (q^0..q^8), F_2A = 16 Lambda_2, by divisor sums cross-checked against a direct log-derivative series.",
+    "Dual-scale bound tr G + tr G^-1 - 2d >= 0 checked on 2000 exact SPD samples per d = 1..6 with minimum observed values recorded as exact fractions; the identity x + 1/x - 2 = (x-1)^2/x checked symbolically."
+  ]
+}

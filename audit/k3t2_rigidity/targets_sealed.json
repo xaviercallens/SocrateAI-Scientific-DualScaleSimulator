@@ -1,0 +1,562 @@
+{
+  "metadata": {
+    "generated_at": "2026-09-18T20:37:30.264705",
+    "source": "LeanMaster",
+    "leanmaster_tag": "v3.13.1",
+    "leanmaster_committed": true
+  },
+  "tracks": {
+    "genus-moonshine": [
+      {
+        "id": "genus-moonshine_norm_3A",
+        "track": "genus-moonshine",
+        "theorem": "norm_3A",
+        "file": "DualScaleMoonshine/Characters.lean",
+        "file_line": "DualScaleMoonshine/Characters.lean:59",
+        "line": 59,
+        "statement_verbatim": "theorem norm_3A : dot chi3A chi3A = 1080 \u2227 (244823040 : \u2124) % 1080 = 0 := by decide\n\n/-- Multiplicities of the 26 irreducibles in EOT's representation at levels 1\u20137, already doubled\n(so that level `n` has dimension `2A\u2099`), in `M24RepDim` ordering. -/\ndef eotMult : List (List \u2124) :=",
+        "numbers_asserted": [
+          "0",
+          "1",
+          "1080",
+          "244823040",
+          "26",
+          "7"
+        ],
+        "order_or_range": "character",
+        "committed": true
+      },
+      {
+        "id": "genus-moonshine_ratio_fails_at_every_class",
+        "track": "genus-moonshine",
+        "theorem": "ratio_fails_at_every_class",
+        "file": "DualScaleMoonshine/CharactersAll.lean",
+        "file_line": "DualScaleMoonshine/CharactersAll.lean:215",
+        "line": 215,
+        "statement_verbatim": "theorem ratio_fails_at_every_class :\n    \u2200 j : Fin 26, j.val \u2260 0 \u2192 \u00ac ratioTwines ((computedSeries.getD j []).map (24 * \u00b7)) := by",
+        "numbers_asserted": [
+          "0",
+          "24",
+          "26"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "genus-moonshine_lock_at_identity",
+        "track": "genus-moonshine",
+        "theorem": "lock_at_identity",
+        "file": "DualScaleMoonshine/ForgerTest.lean",
+        "file_line": "DualScaleMoonshine/ForgerTest.lean:62",
+        "line": 62,
+        "statement_verbatim": "theorem lock_at_identity :\n    coeff untwined 1 = 90 \u2227 coeff untwined 2 = 462 \u2227 literalLock untwined \u2227\n      coeff untwined 2 * 60 = 27720 := by decide",
+        "numbers_asserted": [
+          "1",
+          "2",
+          "27720",
+          "462",
+          "60",
+          "90"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "genus-moonshine_ratio_fails_at_2A",
+        "track": "genus-moonshine",
+        "theorem": "ratio_fails_at_2A",
+        "file": "DualScaleMoonshine/ForgerTest.lean",
+        "file_line": "DualScaleMoonshine/ForgerTest.lean:66",
+        "line": 66,
+        "statement_verbatim": "theorem ratio_fails_at_2A : \u00ac ratioTwines (twined24 9 8 2 (-16)) := by decide\ntheorem ratio_fails_at_3A : \u00ac ratioTwines (twined24 9 6 3 (-6)) := by decide",
+        "numbers_asserted": [
+          "16",
+          "2",
+          "3",
+          "6",
+          "8",
+          "9"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "genus-moonshine_ratio_fails_at_3A",
+        "track": "genus-moonshine",
+        "theorem": "ratio_fails_at_3A",
+        "file": "DualScaleMoonshine/ForgerTest.lean",
+        "file_line": "DualScaleMoonshine/ForgerTest.lean:67",
+        "line": 67,
+        "statement_verbatim": "theorem ratio_fails_at_3A : \u00ac ratioTwines (twined24 9 6 3 (-6)) := by decide\ntheorem ratio_fails_at_5A : \u00ac ratioTwines (twined24 9 4 5 (-2)) := by decide",
+        "numbers_asserted": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "9"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "genus-moonshine_umbral_exact",
+        "track": "genus-moonshine",
+        "theorem": "umbral_exact",
+        "file": "DualScaleMoonshine/HMNBridge.lean",
+        "file_line": "DualScaleMoonshine/HMNBridge.lean:255",
+        "line": 255,
+        "statement_verbatim": "theorem umbral_exact : umbralOK 12 = true := by decide +kernel\n\n/-- `\u03c7\u207d\u2113\u207e = Z\u207d\u2113\u207e(\u03c4, 0) = 24/(\u2113\u22121)` for `\u2113 = 2, 3, 4, 5, 7, 13` (and `0` at higher orders), through `q\u2076`. -/\ntheorem umbral_chi :\n    [2, 3, 4, 5, 7, 13].map (fun l => (umbralZ 6 l).map LP.eval1) =\n      [24, 12, 8, 6, 4, 2].map fun c => [c, 0, 0, 0, 0, 0, 0] := by decide",
+        "numbers_asserted": [
+          "0",
+          "1",
+          "12",
+          "13",
+          "2",
+          "24",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
+        ],
+        "order_or_range": "character",
+        "committed": true
+      },
+      {
+        "id": "genus-moonshine_f2_control",
+        "track": "genus-moonshine",
+        "theorem": "f2_control",
+        "file": "DualScaleMoonshine/QSeries.lean",
+        "file_line": "DualScaleMoonshine/QSeries.lean:81",
+        "line": 81,
+        "statement_verbatim": "theorem f2_control : (List.range 5).map f2Coeff = [0, 1, 1, -1, 1] := by decide\n\n/-- Jacobi's series `\u03a3 (\u22121)\u207f(2n+1) q^{n(n+1)/2}` agrees with `\u03a0(1\u2212q\u207f)\u00b3` through `q\u2079` (a check of\nten coefficients, not a proof of the identity). -/\ntheorem eta3_jacobi : eta3 9 = [1, -3, 0, 5, 0, 0, -7, 0, 0, 0] := by decide",
+        "numbers_asserted": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "5",
+          "7",
+          "9"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "genus-moonshine_unknown_40",
+        "track": "genus-moonshine",
+        "theorem": "unknown_40",
+        "file": "DualScaleMoonshine/Shadow.lean",
+        "file_line": "DualScaleMoonshine/Shadow.lean:40",
+        "line": 40,
+        "statement_verbatim": "* `decomposition_pins_chi`: (\u2605) fails with `\u03c7 = 23` and `\u03c7 = 25`. Two independent facts meet at `24`:\n  the value `Z(\u03c4,0)` and the multiplicity of the polar part.\n* `decomposition_needs_H`: (\u2605) fails if `h` is replaced by the twined series `H_2A`.\n* `shadowTheta_eq_eta3`: the unary theta series `S\u2081\u207d\u00b2\u207e = \u03a3 (4n+1) q^{(4n+1)\u00b2/8}` of (2.26) equals\n  `\u03b7\u00b3 = q^{1/8}\u03a0(1\u2212q\u207f)\u00b3` through `q\u2079` (Jacobi's identi...",
+        "numbers_asserted": [
+          "0",
+          "1",
+          "14",
+          "2",
+          "23",
+          "24",
+          "25",
+          "26",
+          "29",
+          "3",
+          "4349",
+          "4364",
+          "8"
+        ],
+        "order_or_range": "character",
+        "committed": true
+      }
+    ],
+    "dyons": [
+      {
+        "id": "dyons_c_depends_only_on_D",
+        "track": "dyons",
+        "theorem": "c_depends_only_on_D",
+        "file": "DualScaleDyons/DMVV.lean",
+        "file_line": "DualScaleDyons/DMVV.lean:58",
+        "line": 58,
+        "statement_verbatim": "theorem c_depends_only_on_D :\n    (List.range 10).all fun n => (List.range 25).all fun i =>\n      let l : \u2124 := (i : \u2124) - 12",
+        "numbers_asserted": [
+          "10",
+          "12",
+          "25"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "dyons_c_first",
+        "track": "dyons",
+        "theorem": "c_first",
+        "file": "DualScaleDyons/DMVV.lean",
+        "file_line": "DualScaleDyons/DMVV.lean:64",
+        "line": 64,
+        "statement_verbatim": "theorem c_first : [cK3 (-1), cK3 0, cK3 3, cK3 4] = [2, 20, -128, 216] := by decide\n\n/-! ### The DMVV product -/\n\n/-- A series in `p` (index `r`, `0 \u2026 K`) of series in `q` with Laurent coefficients in `y`. -/\nabbrev Ser3 := List Ser",
+        "numbers_asserted": [
+          "0",
+          "1",
+          "128",
+          "2",
+          "20",
+          "216",
+          "3",
+          "4"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "dyons_p24_values",
+        "track": "dyons",
+        "theorem": "p24_values",
+        "file": "DualScaleDyons/DMVV.lean",
+        "file_line": "DualScaleDyons/DMVV.lean:146",
+        "line": 146,
+        "statement_verbatim": "theorem p24_values : (List.range 6).map p24 = [1, 24, 324, 3200, 25650, 176256] := by decide\n\n/-- **G\u00f6ttsche**: `G_k(\u03c4, 0) = p\u2082\u2084(k)` for `k \u2264 5`, and every higher `q`-coefficient vanishes. -/\ntheorem goettsche :\n    (dmvv 5 1).map (fun Gk => Gk.map LP.eval1) =\n      (List.range 6).map fun k => [p24 k, 0] := by decide +kernel",
+        "numbers_asserted": [
+          "0",
+          "1",
+          "176256",
+          "24",
+          "25650",
+          "3200",
+          "324",
+          "5",
+          "6"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "dyons_dmz_516_q1",
+        "track": "dyons",
+        "theorem": "dmz_516_q1",
+        "file": "DualScaleDyons/DMVV.lean",
+        "file_line": "DualScaleDyons/DMVV.lean:194",
+        "line": 194,
+        "statement_verbatim": "theorem dmz_516_q1 :\n    (List.range 6).all (fun k =>\n      Ser.eqB (Ser.scale ((dmz516 1).getD k (1, [])).1 ((dmvv 5 1).getD k []))\n        ((dmz516 1).getD k (1, [])).2) = true := by decide +kernel",
+        "numbers_asserted": [
+          "1",
+          "2",
+          "5",
+          "6"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "dyons_polar_part_removes_pole",
+        "track": "dyons",
+        "theorem": "polar_part_removes_pole",
+        "file": "DualScaleDyons/DMVV.lean",
+        "file_line": "DualScaleDyons/DMVV.lean:248",
+        "line": 248,
+        "statement_verbatim": "theorem polar_part_removes_pole : [1, 2, 3].all (fun m => vanish2 (polarDefect m (p24 (m + 1)))) = true := by\n  decide +kernel\n\n/-- **Negative control**: `p\u2082\u2084(m+1) \u00b1 1` leave a pole. -/\ntheorem polar_coefficient_pinned :\n    [1, 2, 3].all (fun m => !vanish2 (polarDefect m (p24 (m + 1) + 1)) &&\n      !vanish2 (polarDefect m (p24 (m + 1) - 1))) = true := by decide +kernel",
+        "numbers_asserted": [
+          "1",
+          "2",
+          "3"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "dyons_hurwitz_values",
+        "track": "dyons",
+        "theorem": "hurwitz_values",
+        "file": "DualScaleDyons/Immortal.lean",
+        "file_line": "DualScaleDyons/Immortal.lean:53",
+        "line": 53,
+        "statement_verbatim": "theorem hurwitz_values :\n    [0, 3, 4, 7, 8, 11, 12, 15].map h12 = [-1, 4, 6, 12, 12, 12, 16, 24] := by decide",
+        "numbers_asserted": [
+          "0",
+          "1",
+          "11",
+          "12",
+          "15",
+          "16",
+          "24",
+          "3",
+          "4",
+          "6",
+          "7",
+          "8"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "dyons_immortal_m1_exact",
+        "track": "dyons",
+        "theorem": "immortal_m1_exact",
+        "file": "DualScaleDyons/Immortal.lean",
+        "file_line": "DualScaleDyons/Immortal.lean:83",
+        "line": 83,
+        "statement_verbatim": "theorem immortal_m1_exact : vanish2 immortalNum = true := by decide +kernel\n\n/-- **Immortal dyons at `m = 1` are counted by class numbers**: `\u2206\u03c8\u2081^F = 3E\u2084A \u2212 648H` through `q\u00b3`. -/\ntheorem immortal_m1 :\n    Ser.eqB immortalM1 (Ser.sub (Ser.scale 3 (Ser.mul (e4 3) (phiA 3))) (Ser.scale 54 (hurwitzSer 3))) = true := by",
+        "numbers_asserted": [
+          "1",
+          "3",
+          "54"
+        ],
+        "order_or_range": "dyon",
+        "committed": true
+      },
+      {
+        "id": "dyons_immortal_m1_needs_H",
+        "track": "dyons",
+        "theorem": "immortal_m1_needs_H",
+        "file": "DualScaleDyons/Immortal.lean",
+        "file_line": "DualScaleDyons/Immortal.lean:91",
+        "line": 91,
+        "statement_verbatim": "theorem immortal_m1_needs_H :\n    Ser.eqB immortalM1 (Ser.scale 3 (Ser.mul (e4 3) (phiA 3))) = false := by decide +kernel",
+        "numbers_asserted": [
+          "3"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      }
+    ],
+    "lattices-duality": [
+      {
+        "id": "lattices-duality_tduality_inverts_metric",
+        "track": "lattices-duality",
+        "theorem": "tduality_inverts_metric",
+        "file": "DualScaleStream2/DFT/GeneralizedMetric.lean",
+        "file_line": "DualScaleStream2/DFT/GeneralizedMetric.lean:153",
+        "line": 153,
+        "statement_verbatim": "theorem tduality_inverts_metric (G : Matrix (Fin d) (Fin d) \u211d) (hG : IsUnit G.det) :\n    etaR d * genMetric G 0 * etaR d = genMetric G\u207b\u00b9 0 := by",
+        "numbers_asserted": [
+          "0"
+        ],
+        "order_or_range": "T-duality",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_dualScale_eq",
+        "track": "lattices-duality",
+        "theorem": "dualScale_eq",
+        "file": "DualScaleStream2/DualScale/TraceBound.lean",
+        "file_line": "DualScaleStream2/DualScale/TraceBound.lean:87",
+        "line": 87,
+        "statement_verbatim": "theorem dualScale_eq (G : Matrix (Fin d) (Fin d) \u211d) :\n    dualScale G = G.trace + G\u207b\u00b9.trace := by",
+        "numbers_asserted": [],
+        "order_or_range": "trace",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_dualScale_eq_iff",
+        "track": "lattices-duality",
+        "theorem": "dualScale_eq_iff",
+        "file": "DualScaleStream2/DualScale/TraceBound.lean",
+        "file_line": "DualScaleStream2/DualScale/TraceBound.lean:173",
+        "line": 173,
+        "statement_verbatim": "theorem dualScale_eq_iff (G : Matrix (Fin d) (Fin d) \u211d) (hG : G.PosDef) :\n    dualScale G = 2 * d \u2194 G = 1 := by",
+        "numbers_asserted": [
+          "1",
+          "2"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_tadpole_budget",
+        "track": "lattices-duality",
+        "theorem": "tadpole_budget",
+        "file": "DualScaleStream2/Flux/Tadpole.lean",
+        "file_line": "DualScaleStream2/Flux/Tadpole.lean:116",
+        "line": 116,
+        "statement_verbatim": "theorem tadpole_budget (flux n : \u2115) (h : flux + n = 24) : n \u2264 24 \u2227 (flux = 0 \u2192 n = 24) := by\n  refine' \u27e8by omega, _\u27e9\n  intro h\u2080\n  omega\n\nend DualScaleStream2.Flux",
+        "numbers_asserted": [
+          "0",
+          "24"
+        ],
+        "order_or_range": "tadpole constraint",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_cartanE8_posDef",
+        "track": "lattices-duality",
+        "theorem": "cartanE8_posDef",
+        "file": "DualScaleStream2/Lattice/E8PosDef.lean",
+        "file_line": "DualScaleStream2/Lattice/E8PosDef.lean:163",
+        "line": 163,
+        "statement_verbatim": "theorem cartanE8_posDef : cartanE8R.PosDef := by\n  have hHerm : cartanE8R.IsHermitian :=",
+        "numbers_asserted": [],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_sigK3_eq",
+        "track": "lattices-duality",
+        "theorem": "sigK3_eq",
+        "file": "DualScaleStream2/Lattice/K3T2Signature.lean",
+        "file_line": "DualScaleStream2/Lattice/K3T2Signature.lean:154",
+        "line": 154,
+        "statement_verbatim": "theorem sigK3_eq : sigK3 = \u27e83, 19\u27e9 := by\n  rfl\n\n/-- The Mukai lattice signature is `(4,20)`, matching Aspinwall's `\u0393\u2074'\u00b2\u2070`. -/\ntheorem sigMukai_eq : sigMukai = \u27e84, 20\u27e9 := by",
+        "numbers_asserted": [
+          "19",
+          "20",
+          "3",
+          "4"
+        ],
+        "order_or_range": "character",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_sigMukai_eq",
+        "track": "lattices-duality",
+        "theorem": "sigMukai_eq",
+        "file": "DualScaleStream2/Lattice/K3T2Signature.lean",
+        "file_line": "DualScaleStream2/Lattice/K3T2Signature.lean:158",
+        "line": 158,
+        "statement_verbatim": "theorem sigMukai_eq : sigMukai = \u27e84, 20\u27e9 := by\n  rfl\n\n/-- The full K3 \u00d7 T\u00b2 charge lattice has signature `(6,22)`. -/\ntheorem sigK3T2_eq : sigK3T2 = \u27e86, 22\u27e9 := by",
+        "numbers_asserted": [
+          "20",
+          "22",
+          "4",
+          "6"
+        ],
+        "order_or_range": "signature",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_sigK3T2_eq",
+        "track": "lattices-duality",
+        "theorem": "sigK3T2_eq",
+        "file": "DualScaleStream2/Lattice/K3T2Signature.lean",
+        "file_line": "DualScaleStream2/Lattice/K3T2Signature.lean:162",
+        "line": 162,
+        "statement_verbatim": "theorem sigK3T2_eq : sigK3T2 = \u27e86, 22\u27e9 := by\n  rfl\n\n/-- The K3 lattice has rank `22 = 3 + 19`, matching `b\u2082(K3) = 22`. -/\ntheorem rank_K3 : sigK3.rank = 22 := by",
+        "numbers_asserted": [
+          "19",
+          "22",
+          "3",
+          "6"
+        ],
+        "order_or_range": "character",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_factorized_mul_self",
+        "track": "lattices-duality",
+        "theorem": "factorized_mul_self",
+        "file": "DualScaleStream2/TDuality/Factorized.lean",
+        "file_line": "DualScaleStream2/TDuality/Factorized.lean:112",
+        "line": 112,
+        "statement_verbatim": "theorem factorized_mul_self (k : Fin d) : factorized k * factorized k = 1 := by\n  have hp : proj k * proj k = proj k := proj_mul_self k",
+        "numbers_asserted": [
+          "1"
+        ],
+        "order_or_range": "T-duality factorization",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_thetaShift_isODD",
+        "track": "lattices-duality",
+        "theorem": "thetaShift_isODD",
+        "file": "DualScaleStream2/TDuality/ODD.lean",
+        "file_line": "DualScaleStream2/TDuality/ODD.lean:110",
+        "line": 110,
+        "statement_verbatim": "theorem thetaShift_isODD (\u0398 : Matrix (Fin d) (Fin d) \u2124) (h\u0398 : \u0398\u1d40 = -\u0398) :\n    IsODD (thetaShift \u0398) := by",
+        "numbers_asserted": [],
+        "order_or_range": "general",
+        "committed": true
+      },
+      {
+        "id": "lattices-duality_basisChange_isODD",
+        "track": "lattices-duality",
+        "theorem": "basisChange_isODD",
+        "file": "DualScaleStream2/TDuality/ODD.lean",
+        "file_line": "DualScaleStream2/TDuality/ODD.lean:123",
+        "line": 123,
+        "statement_verbatim": "theorem basisChange_isODD (A B : Matrix (Fin d) (Fin d) \u2124) (h : A\u1d40 * B = 1) :\n    IsODD (basisChange A B) := by",
+        "numbers_asserted": [
+          "1"
+        ],
+        "order_or_range": "general",
+        "committed": true
+      }
+    ],
+    "tda-gudhi": [
+      {
+        "id": "tda-gudhi_k3_euler_characteristic",
+        "track": "tda-gudhi",
+        "theorem": "k3_euler_characteristic",
+        "file": "DoubleFieldTheory/K3Topology.lean",
+        "file_line": "DoubleFieldTheory/K3Topology.lean:51",
+        "line": 51,
+        "statement_verbatim": "theorem k3_euler_characteristic :\n    K3BettiSum 1 0 22 0 1 = 24 := by",
+        "numbers_asserted": [
+          "0",
+          "1",
+          "22",
+          "24"
+        ],
+        "order_or_range": "character",
+        "committed": true
+      },
+      {
+        "id": "tda-gudhi_k3_second_betti_hodge",
+        "track": "tda-gudhi",
+        "theorem": "k3_second_betti_hodge",
+        "file": "DoubleFieldTheory/K3Topology.lean",
+        "file_line": "DoubleFieldTheory/K3Topology.lean:80",
+        "line": 80,
+        "statement_verbatim": "theorem k3_second_betti_hodge :\n    SecondBetti 1 20 1 = 22 := by",
+        "numbers_asserted": [
+          "1",
+          "20",
+          "22"
+        ],
+        "order_or_range": "cohomology",
+        "committed": true
+      },
+      {
+        "id": "tda-gudhi_kummer_mapper_betti1_eq_376",
+        "track": "tda-gudhi",
+        "theorem": "kummer_mapper_betti1_eq_376",
+        "file": "DualScaleM24Formalization/FrontierTriad/TriadContract.lean",
+        "file_line": "DualScaleM24Formalization/FrontierTriad/TriadContract.lean:100",
+        "line": 100,
+        "statement_verbatim": "theorem kummer_mapper_betti1_eq_376 :\n    mapperBetti1WithComponents KummerLangevinMapperGraph kummer_defect_clusters = 376 := by",
+        "numbers_asserted": [
+          "376"
+        ],
+        "order_or_range": "cohomology",
+        "committed": true
+      },
+      {
+        "id": "tda-gudhi_kummer_mapper_euler_eq_minus_370",
+        "track": "tda-gudhi",
+        "theorem": "kummer_mapper_euler_eq_minus_370",
+        "file": "DualScaleM24Formalization/FrontierTriad/TriadContract.lean",
+        "file_line": "DualScaleM24Formalization/FrontierTriad/TriadContract.lean:108",
+        "line": 108,
+        "statement_verbatim": "theorem kummer_mapper_euler_eq_minus_370 :\n    mapperEulerChar KummerLangevinMapperGraph = -370 := by",
+        "numbers_asserted": [
+          "370"
+        ],
+        "order_or_range": "cohomology",
+        "committed": true
+      },
+      {
+        "id": "tda-gudhi_euler_K3",
+        "track": "tda-gudhi",
+        "theorem": "euler_K3",
+        "file": "DualScaleStream2/Flux/Tadpole.lean",
+        "file_line": "DualScaleStream2/Flux/Tadpole.lean:87",
+        "line": 87,
+        "statement_verbatim": "theorem euler_K3 : eulerFromHodge StringTheory.Frontier.k3HodgeNumber = 24 := by\n  simp [eulerFromHodge, StringTheory.Frontier.k3HodgeNumber]\n  <;> rfl\n  <;> decide\n  <;> decide\n  <;> decide\n\n/-- `\u03c7(K3 \u00d7 K3)` via K\u00fcnneth (Tier L), arithmetic Tier A. -/\ndef chiK3K3 : \u2124 := eulerFromHodge StringTheory.Frontier.k3HodgeNumber *",
+        "numbers_asserted": [
+          "24"
+        ],
+        "order_or_range": "character",
+        "committed": true
+      }
+    ]
+  }
+}
