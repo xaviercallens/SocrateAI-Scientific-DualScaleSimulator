@@ -1,0 +1,106 @@
+{
+ "a_star_matter_lambda_equality": 0.7672702881411911,
+ "frozen_lcdm": {
+  "chi2": 702.9063072414215,
+  "bao": 14.058698564520235,
+  "sn": 688.8476086769012,
+  "H0_implied_by_offset": 73.42546547148707
+ },
+ "variants": {
+  "A_astar_eq": {
+   "kind": "A",
+   "a_star": 0.7672702881411911,
+   "w0": -0.9137040036239324,
+   "wa": -0.310992336383098,
+   "chi2": 698.1946318489036,
+   "bao": 12.097558464356046,
+   "sn": 686.0970733845475,
+   "H0_implied_by_offset": 73.10612632316723,
+   "delta_chi2_vs_frozen_lcdm": -4.711675392517918
+  },
+  "B_astar_eq": {
+   "kind": "B",
+   "a_star": 0.7672702881411911,
+   "w0": -1.0862959963760677,
+   "wa": 0.3109923363275868,
+   "chi2": 712.0737751387261,
+   "bao": 18.52292851353544,
+   "sn": 693.5508466251906,
+   "H0_implied_by_offset": 73.74317770155069,
+   "delta_chi2_vs_frozen_lcdm": 9.167467897304618
+  },
+  "C_A_astar_1": {
+   "kind": "A",
+   "a_star": 1.0,
+   "w0": -1.0,
+   "wa": -0.3333333332689037,
+   "chi2": 707.9726740577512,
+   "bao": 13.204069971284705,
+   "sn": 694.7686040864664,
+   "H0_implied_by_offset": 73.59612632994687,
+   "delta_chi2_vs_frozen_lcdm": 5.066366816329719
+  },
+  "D_B_astar_1": {
+   "kind": "B",
+   "a_star": 1.0,
+   "w0": -1.0,
+   "wa": 0.33333333332441484,
+   "chi2": 703.8044782893287,
+   "bao": 18.24915939892938,
+   "sn": 685.5553188903993,
+   "H0_implied_by_offset": 73.25134598059356,
+   "delta_chi2_vs_frozen_lcdm": 0.8981710479072262
+  }
+ },
+ "cpl_Om_frozen": {
+  "w0": -0.8435589141198621,
+  "wa": -0.48629158393648314,
+  "chi2": 696.6193448253691,
+  "bao": 11.976882262510047,
+  "sn": 684.6424625628591,
+  "H0_implied_by_offset": 72.77313256641192,
+  "delta_chi2_vs_frozen_lcdm": -6.286962416052347
+ },
+ "fraction_of_cpl_gain_recovered_by_A": 0.7494359089037518,
+ "look_elsewhere_note": "4 discrete variants tried, A chosen after seeing the data; threshold 11.8 pre-registered in round 2.",
+ "hd_legendre_coefficients": {
+  "0": {
+   "numeric": 1.148174139772736e-17,
+   "closed_form": 0.0,
+   "abs_diff": 1.148174139772736e-17
+  },
+  "1": {
+   "numeric": -6.306526723398833e-19,
+   "closed_form": 0.0,
+   "abs_diff": 6.306526723398833e-19
+  },
+  "2": {
+   "numeric": 0.31249999999999994,
+   "closed_form": 0.3125,
+   "abs_diff": 5.551115123125783e-17
+  },
+  "3": {
+   "numeric": 0.08750000000000001,
+   "closed_form": 0.0875,
+   "abs_diff": 1.3877787807814457e-17
+  },
+  "4": {
+   "numeric": 0.03750000000000004,
+   "closed_form": 0.0375,
+   "abs_diff": 4.163336342344337e-17
+  },
+  "5": {
+   "numeric": 0.01964285714285716,
+   "closed_form": 0.019642857142857142,
+   "abs_diff": 1.734723475976807e-17
+  },
+  "6": {
+   "numeric": 0.011607142857142838,
+   "closed_form": 0.011607142857142858,
+   "abs_diff": 1.9081958235744878e-17
+  }
+ },
+ "hd_l4_closed_form_rational": "3/80",
+ "model_l4_coefficient_nominal": 0.11785000000000001,
+ "note_pta": "param_loop_sim adds c4_pta_product*P4 on top of hd, so the model's total l=4 coefficient is 3/80 + c4_pta_product; c4_pta_product = 0 is the GR (massless transverse-traceless, isotropic) value. The integral is tier B here (quadrature vs closed form); identifying the model's PTA sector with GR is tier C."
+}
