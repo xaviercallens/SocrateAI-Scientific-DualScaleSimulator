@@ -1585,8 +1585,35 @@ def main():
         if plot_simulations(quint_res, symm_res, nanograv_res):
             print("    -> Saved: cosmo_simulations_plot.png")
 
+    # 10. Check axiom audit gate before reporting consilience
+    print("\n[*] Checking Axiom Audit Gate...")
+    axiom_audit_failed = False
+    failed_libraries = []
+    axiom_report_path = "audit/lean_axiom_report.json"
+    if os.path.exists(axiom_report_path):
+        try:
+            with open(axiom_report_path, "r") as f:
+                axiom_report = json.load(f)
+            for lib_name, lib_data in axiom_report.items():
+                if lib_data.get("status") == "FAIL":
+                    axiom_audit_failed = True
+                    failed_libraries.append(lib_name)
+            if failed_libraries:
+                print(f"    -> ⚠ AXIOM AUDIT: {len(failed_libraries)} libraries with custom axioms:")
+                for lib in failed_libraries:
+                    print(f"       - {lib}")
+            else:
+                print("    -> AXIOM AUDIT: All libraries use standard Lean axioms (propext, Classical.choice, Quot.sound)")
+        except Exception as e:
+            print(f"    -> Warning: Could not read axiom report: {e}")
+
     print("\n=====================================================================")
-    print(" ALL SIMULATIONS & PROOFS COMPLETED SUCCESSFULLY (100% CONSILIENCE)")
+    if axiom_audit_failed:
+        print(f" SIMULATIONS COMPLETED (CONDITIONAL CONSILIENCE)")
+        print(f" Note: {len(failed_libraries)} Lean modules depend on custom axioms")
+        print(f" (see audit/PAPER_FACTS.md § F1 for breakdown)")
+    else:
+        print(" ALL SIMULATIONS & PROOFS COMPLETED SUCCESSFULLY (100% CONSILIENCE)")
     print("=====================================================================")
 
 

@@ -96,3 +96,33 @@ X exploratory numerics.
 Simulation numbers will be regenerated after the numerics fixes merge. Wherever a simulation number is
 kept, wrap it as `\numreconcile{<value>}{<quantity>}` (macro defined in the preamble) so the post-merge
 pass can find and replace it. Do not invent new values.
+
+## F7. Parameter classification (constant source accountability)
+The manuscript should not claim "no free parameters" without specifying the source tier for each constant.
+Below is the full classification (Mathesis tier A/B/L/C/X methodology):
+
+**Tier A (Lean kernel-derived, adequate statement):**
+- `c112 = 77/60`: Kernel-checked arithmetic (462·60 = 360·77, gcd(77,60)=1) in MathieuVertexOperators.lean
+- `h1 = 0.25, h2 = 1.25`: Candidate Lean-derivable via Kummer K3 geometry (depends on completion of derived theorem chain; currently assumed in code)
+
+**Tier B (exact arithmetic with negative control):**
+- Kummer surface invariants: b₂=22, χ=24, signature (3,19) via Mukai pairing (proven in MukaiLatticeK3.lean)
+- EOT multiplicities A_n for n=1..9 via explicit enumeration in MathieuVertexOperators.lean
+
+**Tier L (literature fixed):**
+- `RHO_M0 = 0.315`: Planck 2018 ΩM (https://doi.org/10.1051/0004-6361/201833910)
+- `RHO_R0 = 9.2e-5`: Planck 2018 ΩR
+- `DESI_w0_mu = -0.827, DESI_wa_mu = -0.75`: DESI 2024 DR1 BAO+CMB+SNe fit (hard-coded at workshopcosmo.py:438–439; cite release DOI)
+
+**Tier C (conjecture/physical assumption, no derivation):**
+- `a_pot = 1.0, b_pot = 0.01`: Potential well depth (ansatz for screening model)
+- `mu_sym = 1.0, lambda_sym = 1.0`: Symmetron coupling (model scaling; no derivation from fundamental theory)
+- `pta_suppression = 0.005`: PTA l=4 hexadecapole suppression (workshopcosmo.py:700; comment cites 10^-3, code uses 5×10^-3; needs justification)
+- `NANOGrav_c4_c0_ratio = 16.07`: Injected into simulation (workshopcosmo.py:691); described as "injected" in docstring
+
+**Tier X (exploratory/numerical, regenerable, not claimed as fixed):**
+- All Langevin SDE step-size and noise coefficients (numeric integration tuning, not physical constants)
+- TDA Mapper clustering resolution and filtration thresholds
+- Simulation output (κummer_langevin_*, tda_mapper_*, vacuum_decay_*, swampland_geodesic_* JSON/CSV files)
+
+**How to apply:** Before any manuscript paragraph claims "no free parameters" or "all parameters determined by theory," enumerate the constants involved, list their tier, and confirm that tier A+B+L cover all required terms. Any tier C or X constant means the statement should be qualified: "N of M parameters are theory-fixed; the remaining M-N are determined by [external data / physical assumption / model tuning]."
