@@ -141,15 +141,30 @@ if (!check || !check.usable) {
 }
 
 // ---------------- Rounds ----------------
+const EXTRA = `
+NEW CONTEXT FOR THIS ROUND (LeanMaster advanced to v3.12.0+, 587 theorems; READ-ONLY, quote before use):
+- Stream 3 (DualScaleCosmology/CKNInstance.lean docstring): the reading "l_micro ~ l_Planck paired with l_macro ~ 1/H0" is tested and FALSIFIED by ~10^30 (planckEnergy_gt_ckn_horizon_cutoff). docs/STREAM5_WORKFLOW.md s1 says the literal dual-scale hypothesis R <-> alpha'/R was refuted at cosmological scales. What survives (DarkEnergyScale.lean): the self-dual length sqrt(l_P * L_H) and the MVV micron-scale dark dimension, tier L/C.
+- Stream 4 (DualScaleMoonshine/ForgerTest.lean, CharactersAll.lean): the "27720 lock" (462*60 = 360*77, i.e. the simulator's R_BPS = c112 = 77/60) holds at the identity but FAILS the M24 twining test at all 25 non-identity classes (ratio_fails_at_every_class). So 77/60 is true arithmetic with no group-theoretic meaning: it must not be used as a derived physical constant. What DOES pass the twining test: 24 = chi(K3) and the Goettsche numbers p24(k) = 1, 24, 324, 3200, 25650 (DualScaleDyons/TwinedHilbert.lean).
+- Stream 5 (DualScaleDyons): quarter-BPS dyons on K3 x T2 from the K3 elliptic genus; immortal (single-centred) dyon counts = Hurwitz class numbers (immortal_m1, immortal_m2, immortal_m3). These are genuinely ZERO-PARAMETER predictions of the K3 x T2 theory, but about black-hole microstate integers, not cosmology; STREAM5_WORKFLOW s1 states it says nothing about cosmological scales (tier C otherwise).
+STAGED PLAN from round 1 (follow it, report honestly if a step fails):
+ S1 rewrite the symmetron BVP in dimensionless psi = phi/phi_0 form, DELETE lambda_sym from code + harness, add negative control  (5 -> 4, mechanism delete_unobservable).
+ S2 fix the dark-energy confound: normalise at H(a0) = H0 with matter fraction explicit; set the dark-energy fraction from LeanMaster omegaLambda = 0.68885 (DarkEnergyScale.lean:84; number tier L, identification tier C); one potential-shape parameter remains (4 -> 3). 
+ S3 PTA sector: either find a REAL angular-correlation dataset (NANOGrav 15yr HD binned/optimal-statistic products) or remove the sector from retained observables, labelled "scope", not derivation (3 -> 2).
+ S4 remaining mu_sym + shape parameter: needs real fifth-force data or the MINIMAL fallback.
+ DECISIVE EXPERIMENT (pre-registered): flat LCDM with Omega_L = 0.68885 and H0 = c / hubbleRadius_m FROZEN vs fitted LCDM on the same DESI + Pantheon+ data; reject frozen theory if delta chi2 > 11.8; run with SN offset fitted and frozen; negative control Omega_L = 0.5 must be worse. Also fit CPL (w0, wa) on the same data so the DESI-preference question is answered from data, not from memory.
+ ALSO: check reverse/reduced_tda.py for the two bottleneck distances identical to all digits (copy error?). For real-data TDA use a 3D comoving cloud with redshifts (fetch a catalogue slice WITH z; the round-1 2MRS file had none) and keep both controls; TDA remains a sanity gate unless a control-passing discrimination appears.
+`
+
 let free = ['a_pot', 'b_pot', 'mu_sym', 'lambda_sym', 'pta_suppression', 'c4_c0_ratio']
 const ledger = []
 const rounds = []
 for (let r = 1; r <= MAX_ROUNDS && free.length > 0; r++) {
+  const extra = r >= 2 ? EXTRA : ''
   const state = `ROUND ${r}. Currently free parameters (${free.length}): ${free.join(', ')}.
 Accepted so far: ${JSON.stringify(ledger)}
 Verified datasets: ${JSON.stringify(check.data_verified || [])}; rejected: ${JSON.stringify(check.data_rejected || [])}.
 Lean constants available: ${JSON.stringify(lean && lean.constants)}
-Harness: ${harness.script}; observables: ${JSON.stringify(harness.observables)}; harness problems: ${JSON.stringify(harness.problems)}`
+Harness: ${harness.script}; observables: ${JSON.stringify(harness.observables)}; harness problems: ${JSON.stringify(harness.problems)}${extra}`
 
   const fwd = await agent(`${RULES}
 ${state}
@@ -190,9 +205,12 @@ TDA check: confirm gudhi was really imported and run (read the script, re-run th
   absorbed.forEach(p => ledger.push({ round: r, param: p.param, how: 'absorbed', reason: p.reason }))
   const gone = new Set(removedNow.map(p => p.param))
   // absorbed: a pair becoming one combination removes one name; keep conservative: remove only if skeptic said accepted
-  absorbed.forEach(p => gone.add(p.param))
+  const split = s => String(s).split(/\s*[+,]\s*/).map(x => x.trim()).filter(Boolean)
+  removedNow.forEach(p => split(p.param).forEach(n => gone.add(n)))
+  absorbed.forEach(p => split(p.param).forEach(n => gone.add(n)))
   const before = free.length
-  free = free.filter(p => !gone.has(p))
+  const combos = absorbed.length && rev && rev.reduced_params ? rev.reduced_params.filter(n => !free.includes(n)) : []
+  free = free.filter(p => !gone.has(p)).concat(combos.filter(n => !gone.has(n)))
   rounds.push({ r, fwd, rev, verdict, free_after: [...free] })
   log(`round ${r}: ${before} -> ${free.length} free (${free.join(', ') || 'none'}); conventions/rejections: ${verdict.per_reduction.filter(p => !gone.has(p.param)).map(p => p.param + ':' + p.counts_as).join(', ') || 'none'}`)
   if (free.length === before) { log(`round ${r}: no accepted reduction - loop is dry, stopping`); break }
