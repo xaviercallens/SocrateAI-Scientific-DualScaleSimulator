@@ -148,13 +148,13 @@ def get_library_axiom_status(lib_name: str, audit_report: Dict[str, Any]) -> Dic
 # REQ-COSMO-01: AXE 1 - QUINTESSENCE & MODULUS TAU DYNAMICS
 # =============================================================================
 
-def compute_potential(x: float, y: float) -> Tuple[float, float, float]:
+def compute_potential(x: float, y: float, a_pot: float = 1.0, b_pot: float = 0.01) -> Tuple[float, float, float]:
     """
     Computes potential V(x, y) and derivatives (V, dV/dx, dV/dy) on Poincaré target space.
     Saddle at Fricke point (0, 1/sqrt(12)), minimum at Orbifold point (0.5, sqrt(3)/2).
+
+    a_pot, b_pot: potential-shape parameters (defaults preserve original hard-coded values).
     """
-    a_pot = 1.0
-    b_pot = 0.01
     pi = math.pi
 
     cos_pi_x = math.cos(pi * x)
@@ -173,7 +173,7 @@ def compute_potential(x: float, y: float) -> Tuple[float, float, float]:
     return v, dv_dx, dv_dy
 
 
-def cosmology_rhs(_t: float, y_vec: np.ndarray) -> np.ndarray:
+def cosmology_rhs(_t: float, y_vec: np.ndarray, a_pot: float = 1.0, b_pot: float = 0.01) -> np.ndarray:
     """
     RHS for Einstein-Klein-Gordon system in Poincaré metric:
     y_vec = [a, x, y, u, v] where u = dx/dt, v = dy/dt.
@@ -184,7 +184,7 @@ def cosmology_rhs(_t: float, y_vec: np.ndarray) -> np.ndarray:
     u = float(y_vec[3])
     v = float(y_vec[4])
 
-    v_pot, dv_dx, dv_dy = compute_potential(x, y)
+    v_pot, dv_dx, dv_dy = compute_potential(x, y, a_pot, b_pot)
     t_kin = (u * u + v * v) / (2.0 * y * y)
 
     a3 = a * a * a
@@ -202,9 +202,14 @@ def cosmology_rhs(_t: float, y_vec: np.ndarray) -> np.ndarray:
     return np.array([da_dt, dx_dt, dy_dt, du_dt, dv_dt], dtype=np.float64)
 
 
-def run_quintessence_simulation(t_max: float = 70.0, num_points: int = 500) -> Dict[str, Any]:
+def run_quintessence_simulation(
+    t_max: float = 70.0, num_points: int = 500, a_pot: float = 1.0, b_pot: float = 0.01
+) -> Dict[str, Any]:
     """
     Solves the hyper-stiff cosmology ODE system using SciPy's Radau stiff integrator.
+
+    a_pot, b_pot: potential-shape parameters forwarded to compute_potential/cosmology_rhs
+    (defaults preserve original hard-coded values).
     """
     y0 = [1e-10, 0.001, FRICKE_Y + 0.001, 0.0, 0.0]
     t_span = (0.0, t_max)
@@ -220,6 +225,7 @@ def run_quintessence_simulation(t_max: float = 70.0, num_points: int = 500) -> D
         atol=1e-10,
         first_step=1e-22,
         max_step=0.5,
+        args=(a_pot, b_pot),
     )
 
     if not sol.success:
@@ -234,6 +240,7 @@ def run_quintessence_simulation(t_max: float = 70.0, num_points: int = 500) -> D
             atol=1e-9,
             first_step=1e-22,
             max_step=0.5,
+            args=(a_pot, b_pot),
         )
 
     t_arr = sol.t
@@ -257,7 +264,7 @@ def run_quintessence_simulation(t_max: float = 70.0, num_points: int = 500) -> D
         u_val = u_arr[i]
         v_val = v_arr[i]
 
-        v_pot, _, _ = compute_potential(x_val, y_val)
+        v_pot, _, _ = compute_potential(x_val, y_val, a_pot, b_pot)
         t_kin = (u_val * u_val + v_val * v_val) / (2.0 * y_val * y_val)
 
         a3 = a_val ** 3
