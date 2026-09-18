@@ -1,0 +1,42 @@
+{
+ "c0": "20",
+ "cm1": "2",
+ "c0_plus_2cm1": "24",
+ "D_leq_-2_present_in_table (should be empty)": {},
+ "euler_numbers_k0_5_from_DMVV_q0_y1_kappa1": {
+  "0": "1",
+  "1": "24",
+  "2": "324",
+  "3": "3200",
+  "4": "25650",
+  "5": "176256"
+ },
+ "euler_numbers_k0_5_from_gottsche_prod_1-pn_neg24": {
+  "0": "1",
+  "1": "24",
+  "2": "324",
+  "3": "3200",
+  "4": "25650",
+  "5": "176256"
+ },
+ "match_for_k_0_to_5": true,
+ "kappa_rigidity_scan": {
+  "grid": "n/12 for n=0..36 (0 to 3)",
+  "solution_set (kappa matching ALL k=0..5)": [
+   "1"
+  ]
+ },
+ "negative_control_near_kappa_1": {
+  "25/24": {
+   "matches_all_k_0_5": false,
+   "k1": "25",
+   "gottsche_k1": "24"
+  },
+  "23/24": {
+   "matches_all_k_0_5": false,
+   "k1": "23",
+   "gottsche_k1": "24"
+  }
+ },
+ "honesty_note": "This q^0,y=1 restriction of DMVV collapses ANALYTICALLY (derived above, not assumed) to prod_r (1-p^r)^{-kappa*(c0+2*cm1)}, i.e. a single linear equation kappa*(c0+2*cm1)=24 in kappa. It is tier B exact arithmetic but constrains only the ONE combination c(0)+2*c(-1), not the full DMVV structure. Do not oversell this as testing 'the whole product'; Part 2's G_2 identity (4*Delta*psi_1 = 9B^2/A + 3E4*A) is the structural test that uses c(D) for D>4 as well."
+}

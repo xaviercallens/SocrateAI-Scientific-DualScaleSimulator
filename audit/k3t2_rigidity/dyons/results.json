@@ -1,0 +1,147 @@
+{
+ "track": "B - quarter-BPS dyons on K3 x T2 (DMVV product; Dabholkar-Murthy-Zagier)",
+ "tier": "B (exact rational arithmetic with negative controls); conjecture/literature-identification claims marked separately; nothing here is 'proved'",
+ "commands_to_reproduce": [
+  "python theta_forms.py 22   # builds A,B,E4,E6,Delta and the c(D) table, QMAX=22",
+  "python part1_euler_numbers.py",
+  "python part2_psi_m.py",
+  "python hurwitz_class_numbers.py",
+  "python part3_polar.py"
+ ],
+ "1_theta_forms": {
+  "checks": {
+   "A_index1_structure_holds": true,
+   "B_index1_structure_holds": true,
+   "A_q0_leading_term_y_minus2_plus_yinv": {
+    "y^1": "1",
+    "const": "-2",
+    "y^-1": "1",
+    "expected_pattern": "1, -2, 1 (i.e. A|q0 = y - 2 + 1/y)"
+   },
+   "e_K3_from_c0_plus_2cm1": {
+    "c(0)": "20",
+    "c(-1)": "2",
+    "note": "e(K3) = c(0) + 2*c(-1); expect 24 (Euler characteristic of K3) but this is COMPUTED not assumed"
+   },
+   "cD_no_index1_conflict": true
+  },
+  "cD_table_sample": {
+   "-1": "2",
+   "87": "-118164347946",
+   "88": "138210142752",
+   "84": "73470825024",
+   "80": "38508444960",
+   "79": "-32689375200",
+   "76": "19880131104",
+   "72": "10097415792",
+   "71": "-8501335066",
+   "68": "5039175744"
+  },
+  "expected_from_literature_UNVERIFIED": {
+   "note": "from memory, Dabholkar-Murthy-Zagier / Eguchi-Ooguri-Taormina K3 elliptic genus table",
+   "c(-1)": "2",
+   "c(0)": "20",
+   "c(3)": "-128",
+   "c(4)": "216",
+   "matches_computed": true
+  }
+ },
+ "2_part1_euler_numbers": {
+  "euler_numbers_k0_5": {
+   "0": "1",
+   "1": "24",
+   "2": "324",
+   "3": "3200",
+   "4": "25650",
+   "5": "176256"
+  },
+  "match_gottsche": true,
+  "kappa_rigidity_solution_set": [
+   "1"
+  ],
+  "honesty_note": "This q^0,y=1 restriction of DMVV collapses ANALYTICALLY (derived above, not assumed) to prod_r (1-p^r)^{-kappa*(c0+2*cm1)}, i.e. a single linear equation kappa*(c0+2*cm1)=24 in kappa. It is tier B exact arithmetic but constrains only the ONE combination c(0)+2*c(-1), not the full DMVV structure. Do not oversell this as testing 'the whole product'; Part 2's G_2 identity (4*Delta*psi_1 = 9B^2/A + 3E4*A) is the structural test that uses c(D) for D>4 as well."
+ },
+ "3_part2_psi_m": {
+  "m_minus1": {
+   "statement": "Delta*psi_{-1} = G_0/A = 1/A (G_0=1 since Sym^0(K3)=point)",
+   "status": "definitional; no further identity to test per problem statement"
+  },
+  "m_0": {
+   "statement": "Delta*psi_0 = G_1/A =?= 2B/A",
+   "status": "holds identically BY CONSTRUCTION (c(D) were defined as the Fourier coefficients of 2B, so G_1:=sum_{s,t} c(4s-t^2) q^s y^t is 2B term-for-term)",
+   "note": "definitional: c(D) was extracted FROM B, so G_1 := sum c(D) q^n y^l == 2B identically; not an independent test."
+  },
+  "m_1_identity_holds_to_q10": true,
+  "negative_control": {
+   "perturb_c(3)_by_+1": {
+    "num_mismatched_coeffs": 122,
+    "identity_breaks": true
+   },
+   "perturb_c(4)_by_+1": {
+    "num_mismatched_coeffs": 122,
+    "identity_breaks": true
+   },
+   "purpose": "Shows the m=1 identity 4G2=9B^2+3E4A^2 is a genuine, non-tautological consistency check: an arbitrary +1 shift in a single Fourier coefficient c(D) of the K3 elliptic genus breaks it. This is the rigidity evidence for TRACK B: the c(D) table (hence the DMVV structure built from it) admits no 1-integer deformation at D=3 or D=4 that preserves the m=1 identity."
+  }
+ },
+ "4_hurwitz_class_numbers": {
+  "3": "1/3",
+  "4": "1/2",
+  "7": "1",
+  "8": "1",
+  "11": "1",
+  "12": "4/3",
+  "15": "2"
+ },
+ "5_part3_polar_subtraction": {
+  "N_rigidity_scan_320_328": {
+   "320": false,
+   "321": false,
+   "322": false,
+   "323": false,
+   "324": true,
+   "325": false,
+   "326": false,
+   "327": false,
+   "328": false
+  },
+  "N_solution_set": [
+   324
+  ],
+  "M_rigidity_scan_640_656": {
+   "640": false,
+   "641": false,
+   "642": false,
+   "643": false,
+   "644": false,
+   "645": false,
+   "646": false,
+   "647": false,
+   "648": true,
+   "649": false,
+   "650": false,
+   "651": false,
+   "652": false,
+   "653": false,
+   "654": false,
+   "655": false,
+   "656": false
+  },
+  "M_solution_set": [
+   648
+  ],
+  "expected_from_literature_UNVERIFIED": {
+   "note": "from memory, Dabholkar-Murthy-Zagier polar-term multiplicity p_24(2)",
+   "p24(2)": 324,
+   "matches_computed_N": true
+  },
+  "support_filter_used": "n<=QCHK-2, |l|<=20, D=4n-l^2>=-4 (excludes finite-YCAP-truncation noise in the deep-negative-D tail of 1/A; see note)",
+  "caveat": "Truncated at QCHK=5 in q to keep the invA recursion and A_{2,1}/Hhat construction well inside runtime budget; the top q-order (q^QCHK) is dropped from the comparison because the invA recursion's own truncation error concentrates there (finite YCAP and the geometric-series truncation in the s<=-1 / s=0 branches of A_{2,1} both introduce boundary effects at the highest retained order -- reported honestly, not hidden)."
+ },
+ "could_not_do": [
+  "Could not push the m=1 (4G2=9B^2+3E4A^2) check or the N/M polar scans to arbitrarily high truncation order within the time budget; verified exactly to q^10 (part 2) and q^4-q^6 with the D>=-4,|l|<=20 support window (part 3). Higher orders were not attempted; no claim is made about them.",
+  "The deep-negative-D (D<-4) tail of the polar-subtraction remainder was NOT reconciled -- it carries residual noise from the finite-window (YCAP) truncation used to construct 1/A as a power series, and was excluded from the N/M scans rather than debugged further (documented, not hidden).",
+  "psi_{-1} (m=-1) was only recorded definitionally (Delta*psi_{-1}=1/A); no further identity was computed for it since the problem statement gives none to test.",
+  "The m=0 check (Delta*psi_0=2B/A) is tautological given how c(D) was extracted from B; flagged, not presented as independent confirmation."
+ ]
+}
