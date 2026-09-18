@@ -34,6 +34,21 @@ single-parameter positive-control points).
 
 `topology_match = True` per the definition fixed in `PREREGISTRATION.md`.
 
+**Disclosure (sequencing, not just results):** `PREREGISTRATION.md` said
+"effective dimension" without disambiguating between two conventions
+already in use elsewhere in this loop (the SVD-singular-value threshold
+`jacobian.py` uses vs. the PCA-cumulative-variance-fraction k
+`tda_gudhi.py` uses). Both were computed; **the PCA-variance metric was
+selected as primary only after both had been run and the SVD-threshold
+metric was seen to give the unstable (3,2,1) reading** (matching the
+forward round's own already-reported instability of that exact metric).
+Likewise, the log10 transform of `pta_max_deviation_from_hd` below was
+adopted **after** the untransformed run produced a `Betti_0=9` artifact
+for the `c4_only` control, not decided in advance. Both choices are
+principled and documented, but neither was locked in before the data was
+seen -- stated here rather than left implicit, since that is exactly what
+pre-registration is meant to prevent.
+
 Two findings worth recording honestly rather than smoothing over:
 
 - A **stricter** dimensionality metric (singular value > 1e-3 of the
@@ -68,6 +83,25 @@ carrying the forward round's own caveat verbatim (different, independently
 rescaled embeddings; not on equal footing). Per `PREREGISTRATION.md`, this
 number does NOT set `topology_match`.
 
+**Note on round-1's own bottleneck numbers** (task asked to check
+`round1/reverse/reduced_tda.py` for "two bottleneck distances identical to
+all digits"): re-derived directly with GUDHI in this session --
+`model_vs_real_sn_H1` and `model_reduced_vs_model_round1_H1` are both
+exactly `0.027069824244136675`, and this is **not a copy-paste error**.
+Both equal exactly half the persistence of the round-1 reduced model's
+single most-persistent H1 bar, `(0.30690863919317485 -
+0.2527689907049015)/2 = 0.027069824244136675`: that bar is so much more
+persistent than anything in either comparison target (the real-SN diagram
+and round-1's own full-model diagram) that it is left unmatched (matched
+to the diagonal) in BOTH comparisons, saturating the bottleneck cost at
+the same value regardless of what the rest of either target diagram looks
+like. The metric was saturated by one dominant bar and is therefore
+UNINFORMATIVE about the actual difference between those two (very
+different) target diagrams -- a caveat that applies to any bottleneck
+number in this loop dominated by a single outlier bar, and is recorded
+here in the round-2 ledger rather than left only in this session's
+transcript.
+
 ## 3. Experiment (`refit_reduced.py`)
 
 Independent re-implementation (own DESI-BAO/Pantheon+ loading and chi2,
@@ -95,6 +129,14 @@ angular-PTA dataset exists in `data/real/`; both ABSENT in
 the data" would be false.
 
 ## 4. Hypothesis (theory_feedback)
+
+**Ladder count this round: 3 removed (a_pot, b_pot, lambda_sym), 2 remain
+free (mu_sym, c4_pta_product); 5 -> 2.** The reduced model fits
+DESI+Pantheon+ with **zero** data-facing parameters, not two -- and does
+so at least as well as the 2-parameter quintessence sector's own best fit
+(delta_chi2 = -0.99, delta_AIC = -4.99 vs. the full model, -1.77 vs.
+fitted LCDM; both favor the reduced model). That is the single strongest
+result of this round.
 
 The dark-energy sector reaches zero data-facing free parameters this
 round, but **by importing two Planck-2018 literature constants through

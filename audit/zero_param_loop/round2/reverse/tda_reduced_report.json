@@ -129,7 +129,7 @@
     "positive_control_c4_only_pca_variance_dimension": 1,
     "positive_control_c4_only_strict_svd_dimension_SECONDARY_METRIC": 1,
     "positive_control_c4_only_dimension_1_as_predicted": true,
-    "dimension_metric_note": "PCA cumulative-variance-fraction k (primary, matches predictions in all 3 cases: 2d->2, mu_only->1, c4_only->1) and the stricter singular-value/1e-3-of-max threshold (secondary, inflated by curvature/correlation, as the forward round already found for this metric) DISAGREE; only the primary metric decides topology_match here.",
+    "dimension_metric_note": "PCA cumulative-variance-fraction k (primary, matches predictions in all 3 cases: 2d->2, mu_only->1, c4_only->1) and the stricter singular-value/1e-3-of-max threshold (secondary, inflated by curvature/correlation, as the forward round already found for this metric) DISAGREE; only the primary metric decides topology_match here. DISCLOSURE: PREREGISTRATION.md said 'effective dimension' without disambiguating between these two conventions already in use elsewhere in this loop (jacobian.py's SVD-threshold vs tda_gudhi.py's PCA-variance-k); both were computed, and the primary metric was selected AFTER both results were seen, not fixed in advance. The log10 transform of pta_max_deviation_from_hd (linear in c4_pta_product) was likewise adopted after the untransformed run showed a Betti_0=9 sampling artifact for the c4_only control -- see REVERSE_ROUND2_SUMMARY.md. Both choices are principled (documented reasons given), but neither was locked in before the data was seen, and that is stated here rather than left implicit.",
     "topology_match_per_PREREGISTRATION_definition": true
   },
   "dark_energy_subvector_check": {
@@ -139,7 +139,7 @@
   },
   "bottleneck_vs_forward_real_data_DESCRIPTIVE_ONLY": {
     "H0": 0.06132221906652191,
-    "H1": 0.026234442108469716,
+    "H1": 0.024184083798318726,
     "caveat_verbatim_from_forward_round": "model cloud is a PCA embedding of standardized observables and real cloud is a native embedding, each independently rescaled to unit diameter with its own median-based max_edge_length, so Betti_0 counts and raw bottleneck magnitudes are not on equal footing across the two constructions. This number does NOT set topology_match (see PREREGISTRATION.md)."
   }
 }
