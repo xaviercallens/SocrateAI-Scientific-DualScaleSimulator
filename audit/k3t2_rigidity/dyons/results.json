@@ -1,7 +1,10 @@
 {
  "track": "B - quarter-BPS dyons on K3 x T2 (DMVV product; Dabholkar-Murthy-Zagier)",
- "tier": "B (exact rational arithmetic with negative controls); conjecture/literature-identification claims marked separately; nothing here is 'proved'",
+ "tier": "B (exact rational arithmetic with negative controls). L/C claims (that these numbers mean dyons/moonshine) are literature identification, not computed here. Nothing in this file is 'proved'.",
+ "top_line_honesty_note": "Track B reproduces ESTABLISHED DMVV/DMZ mathematics (Goettsche's Euler-number formula, the p_24(2)=324 polar multiplicity, the 648*Hhat identity). Agreement with known results validates that THIS COMPUTATIONAL LOOP is implemented correctly -- it is a check on the loop, not independent evidence for the dual-scale model. A second track re-deriving the same literature facts does not compound into stronger support for the theory.",
+ "strongest_evidence": "The single most convincing rigidity result is the negative control in part 2: perturbing a K3 elliptic-genus Fourier coefficient c(3) or c(4) BY +1 (an input, not a prefactor we inserted) breaks the identity 4*G_2=9*B^2+3*E4*A^2 at 122 of the checked coefficients. kappa/N/M are each a single linear equation in an inserted multiplier with a one-line solve; the c(D) perturbation is the only test here that deforms the actual mathematical input.",
  "commands_to_reproduce": [
+  "cd audit/k3t2_rigidity/dyons",
   "python theta_forms.py 22   # builds A,B,E4,E6,Delta and the c(D) table, QMAX=22",
   "python part1_euler_numbers.py",
   "python part2_psi_m.py",
@@ -59,7 +62,7 @@
   "kappa_rigidity_solution_set": [
    "1"
   ],
-  "honesty_note": "This q^0,y=1 restriction of DMVV collapses ANALYTICALLY (derived above, not assumed) to prod_r (1-p^r)^{-kappa*(c0+2*cm1)}, i.e. a single linear equation kappa*(c0+2*cm1)=24 in kappa. It is tier B exact arithmetic but constrains only the ONE combination c(0)+2*c(-1), not the full DMVV structure. Do not oversell this as testing 'the whole product'; Part 2's G_2 identity (4*Delta*psi_1 = 9B^2/A + 3E4*A) is the structural test that uses c(D) for D>4 as well."
+  "honesty_note": "This q^0,y=1 restriction of DMVV collapses ANALYTICALLY (derived above, not assumed) to prod_r (1-p^r)^{-kappa*(c0+2*cm1)}, i.e. a single linear equation kappa*(c0+2*cm1)=24 in kappa. It is tier B exact arithmetic but constrains only the ONE combination c(0)+2*c(-1), not the full DMVV structure. Do not oversell this as testing 'the whole product'; Part 2's G_2 identity (4*Delta*psi_1 = 9B^2/A + 3E4*A) is the structural test that uses c(D) for D>4 as well. This kappa test and the N/M tests in part 3 are each a SINGLE linear equation in an inserted multiplier -- report as one-line solves, not as independent structural confirmations."
  },
  "3_part2_psi_m": {
   "m_minus1": {
@@ -72,7 +75,7 @@
    "note": "definitional: c(D) was extracted FROM B, so G_1 := sum c(D) q^n y^l == 2B identically; not an independent test."
   },
   "m_1_identity_holds_to_q10": true,
-  "negative_control": {
+  "negative_control_perturb_cD": {
    "perturb_c(3)_by_+1": {
     "num_mismatched_coeffs": 122,
     "identity_breaks": true
@@ -94,6 +97,7 @@
   "15": "2"
  },
  "5_part3_polar_subtraction": {
+  "joint_finding": "N and M were NOT found independently: N was scanned first (with M fixed at the literal problem value 648), giving unique N=324; M was then scanned AT THAT N=324. Report this as ONE joint result -- (N,M)=(324,648) is the unique solution of the affine system in the scanned box -- not as two separate rigidity confirmations.",
   "N_rigidity_scan_320_328": {
    "320": false,
    "321": false,
@@ -105,10 +109,7 @@
    "327": false,
    "328": false
   },
-  "N_solution_set": [
-   324
-  ],
-  "M_rigidity_scan_640_656": {
+  "M_rigidity_scan_640_656_at_N324": {
    "640": false,
    "641": false,
    "642": false,
@@ -127,21 +128,23 @@
    "655": false,
    "656": false
   },
-  "M_solution_set": [
-   648
-  ],
+  "joint_solution": {
+   "N": 324,
+   "M": 648
+  },
   "expected_from_literature_UNVERIFIED": {
    "note": "from memory, Dabholkar-Murthy-Zagier polar-term multiplicity p_24(2)",
    "p24(2)": 324,
    "matches_computed_N": true
   },
-  "support_filter_used": "n<=QCHK-2, |l|<=20, D=4n-l^2>=-4 (excludes finite-YCAP-truncation noise in the deep-negative-D tail of 1/A; see note)",
-  "caveat": "Truncated at QCHK=5 in q to keep the invA recursion and A_{2,1}/Hhat construction well inside runtime budget; the top q-order (q^QCHK) is dropped from the comparison because the invA recursion's own truncation error concentrates there (finite YCAP and the geometric-series truncation in the s<=-1 / s=0 branches of A_{2,1} both introduce boundary effects at the highest retained order -- reported honestly, not hidden)."
+  "support_filter_used": "n<=QCHK-2, |l|<=20, D=4n-l^2>=-4 (excludes finite-YCAP-truncation noise in the deep-negative-D tail of 1/A; see note) -- this filter EXCLUDES an unresolved point at (n,l)=(4,-5), D=-9, where the remainder is exactly -324 and stays exactly -324 when YCAP is doubled (60->120, checked explicitly) -- so it is NOT window truncation noise, it is a genuine unexplained discrepancy outside D>=-4. The N=324/M=648 solution is therefore verified on D>=-4 only, not unconditionally.",
+  "caveat": "Truncated at QCHK=6 in q, YCAP=60 in y, to keep the invA recursion and A_{2,1}/Hhat construction well inside runtime budget. The comparison window (n<=QCHK-2, |l|<=20, D=4n-l^2>=-4) was chosen to avoid the top q-order (genuine truncation boundary of the invA recursion) AND to exclude a specific unresolved point at (n,l)=(4,-5), D=-9: there the remainder is exactly -324 and STAYS exactly -324 when YCAP is doubled to 120 (checked explicitly), so it is NOT a finite-window artifact -- it is a genuine, unexplained discrepancy outside the D>=-4 region this script actually verifies. The N=324 / M=648 solutions below are therefore reported as holding on D>=-4 only, not unconditionally; the D<-4 tail of the polar-subtraction identity was left unresolved (see could_not_do)."
  },
  "could_not_do": [
-  "Could not push the m=1 (4G2=9B^2+3E4A^2) check or the N/M polar scans to arbitrarily high truncation order within the time budget; verified exactly to q^10 (part 2) and q^4-q^6 with the D>=-4,|l|<=20 support window (part 3). Higher orders were not attempted; no claim is made about them.",
-  "The deep-negative-D (D<-4) tail of the polar-subtraction remainder was NOT reconciled -- it carries residual noise from the finite-window (YCAP) truncation used to construct 1/A as a power series, and was excluded from the N/M scans rather than debugged further (documented, not hidden).",
-  "psi_{-1} (m=-1) was only recorded definitionally (Delta*psi_{-1}=1/A); no further identity was computed for it since the problem statement gives none to test.",
-  "The m=0 check (Delta*psi_0=2B/A) is tautological given how c(D) was extracted from B; flagged, not presented as independent confirmation."
+  "The D<-4 tail of the m=1 polar-subtraction identity (Delta*psi_1 - N*A_2,1 = 3E4A - M*Hhat) was NOT reconciled: at (n,l)=(4,-5), D=-9, the remainder is exactly -324 for N=324, independent of YCAP (checked at 60 and 120) -- a genuine unresolved discrepancy, not a truncation artifact. N=324, M=648 are reported as the unique solution on D>=-4 only.",
+  "The m=1 identity and the N/M polar scans were verified only to q^4-q^6 (part 3) and q^10 (part 2) within the time budget; no claim is made about higher orders.",
+  "psi_{-1} (m=-1) was only recorded definitionally (Delta*psi_{-1}=1/A); the problem statement gives no further identity to test for it, so none was attempted.",
+  "The m=0 check (Delta*psi_0=2B/A) is tautological given how c(D) was extracted from B itself; flagged, not presented as independent confirmation.",
+  "N and M (part 3) were scanned sequentially (N first, M second at that N), so they constitute one joint affine solve, not two independent rigidity findings; see '5_part3_polar_subtraction'."
  ]
 }

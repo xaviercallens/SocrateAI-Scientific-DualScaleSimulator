@@ -208,10 +208,12 @@ def remainder_matches_target(N, qchk, ycap):
     # inside the YCAP=60 window (|l|<=20), away from the finite-window boundary artifacts
     keys = {k for k in keys if k[0] <= qchk - 2 and abs(k[1]) <= 20
             and (4 * k[0] - k[1] * k[1]) >= -4}
-    # D=4n-l^2 < -4 is outside the support where either side is expected to carry genuine
-    # signal (target = 3E4A-648Hhat is a weight-2-index-1-type object supported on D>=-1;
-    # deep-negative-D noise here is an artifact of the FINITE-window (YCAP) truncation used
-    # to construct 1/A, not a feature of the true identity -- excluded and reported as such).
+    # D=4n-l^2 < -4 is excluded. CHECKED (not assumed): at (n,l)=(4,-5), D=-9, the
+    # remainder is exactly -324 regardless of YCAP (tested at YCAP=60 and YCAP=120,
+    # identical result) -- so this is NOT a finite-window truncation artifact, it is an
+    # UNRESOLVED discrepancy at D=-9, outside the D>=-4 window this script actually
+    # verifies. Reported honestly in results.json; the N=324/M=648 solutions below hold
+    # only on D>=-4, not unconditionally.
     mism = {k: (remainder.get(k, Fr(0)), target.get(k, Fr(0))) for k in keys
             if remainder.get(k, Fr(0)) != target.get(k, Fr(0))}
     return mism, remainder, target
@@ -237,7 +239,7 @@ def remainder_matches_target_M(N, M, qchk, ycap):
     target = add(scal(3, mul(E4_2d, A, qchk, None)), scal(-M, Hhat))
     keys = set(remainder) | set(target)
     keys = {k for k in keys if k[0] <= qchk - 2 and abs(k[1]) <= 20
-            and (4 * k[0] - k[1] * k[1]) >= -4}
+            and (4 * k[0] - k[1] * k[1]) >= -4}  # see D>=-4 caveat above (unresolved D=-9 point)
     mism = {k: (remainder.get(k, Fr(0)), target.get(k, Fr(0))) for k in keys
             if remainder.get(k, Fr(0)) != target.get(k, Fr(0))}
     return mism
@@ -259,12 +261,16 @@ result = {
     "M_solution_set": M_solution_set,
     "support_filter_used_for_scans": "n<=QCHK-2, |l|<=20, D=4n-l^2>=-4 (excludes finite-YCAP-truncation noise in the deep-negative-D tail of 1/A; see note)",
     "note": (
-        "Truncated at QCHK=5 in q to keep the invA recursion and A_{2,1}/Hhat construction "
-        "well inside runtime budget; the top q-order (q^QCHK) is dropped from the comparison "
-        "because the invA recursion's own truncation error concentrates there (finite YCAP "
-        "and the geometric-series truncation in the s<=-1 / s=0 branches of A_{2,1} both "
-        "introduce boundary effects at the highest retained order -- reported honestly, "
-        "not hidden)."
+        "Truncated at QCHK=6 in q, YCAP=60 in y, to keep the invA recursion and A_{2,1}/Hhat "
+        "construction well inside runtime budget. The comparison window (n<=QCHK-2, |l|<=20, "
+        "D=4n-l^2>=-4) was chosen to avoid the top q-order (genuine truncation boundary of the "
+        "invA recursion) AND to exclude a specific unresolved point at (n,l)=(4,-5), D=-9: "
+        "there the remainder is exactly -324 and STAYS exactly -324 when YCAP is doubled to "
+        "120 (checked explicitly), so it is NOT a finite-window artifact -- it is a genuine, "
+        "unexplained discrepancy outside the D>=-4 region this script actually verifies. "
+        "The N=324 / M=648 solutions below are therefore reported as holding on D>=-4 only, "
+        "not unconditionally; the D<-4 tail of the polar-subtraction identity was left "
+        "unresolved (see could_not_do)."
     ),
 }
 
