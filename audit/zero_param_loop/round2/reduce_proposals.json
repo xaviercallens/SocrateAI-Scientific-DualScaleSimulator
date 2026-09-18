@@ -1,0 +1,56 @@
+{
+  "generated": "2026-09-18",
+  "round": 2,
+  "starting_free_params": ["a_pot", "b_pot", "mu_sym", "lambda_sym", "c4_pta_product"],
+  "proposed_this_round": [
+    {
+      "params_removed": ["a_pot", "b_pot"],
+      "mechanism": "lean_constant",
+      "replacement": "flat LCDM with Omega_m = 1 - omegaLambda = 0.31115 (omegaLambda := 0.68885, DarkEnergyScale.lean:84) and H0 implied by hubbleRadius_m := 1.3672e26 m (SelfDualCutoff.lean:100) -> H0 = 67.6611 km/s/Mpc. Both are kernel-fixed Lean defs (tier L as physics: Planck 2018 values); the claim that THIS toy model's dark-energy sector IS flat LCDM at these values is tier C.",
+      "evidence": [
+        "decisive_experiment.py: chi2_total(LCDM, Om FITTED)=702.6753 vs chi2_total(LCDM, Om+H0 FROZEN to Lean)=702.9066 on the SAME DESI-2024 12x12-covariance BAO + Pantheon+ SH0ES 1590-SN data. delta_chi2(frozen-fitted)=0.2313, far below both the task's pre-registered 11.8 and the dof-correct 1-dof-3-sigma threshold of 9.0 (H0 is degenerate with the always-fitted BAO/SN nuisances in this dimensionless-ratio setup, so only Om=1 real dof is actually frozen; see decisive_experiment_report.json dof_caveat).",
+        "Negative control PASSED: Omega_Lambda=0.5 gives chi2_total=856.15, far worse than fitted (702.68) or frozen (702.91) -- confirms the comparison has real discriminating power, not a degenerate/vacuous test.",
+        "sweep_chi2.py: the 2-parameter quintessence sector's OWN best point over a 513-point Sobol sweep of (a_pot,b_pot) in [1e-2,1e2]x[1e-4,1] gives chi2_total=703.8946 (idx=409), consistent with round 1's dedicated optimizer result 703.8819 -- i.e. the quintessence sector's best achievable fit is WORSE than the 0-shape-parameter frozen LCDM (702.9066) by ~1.0 chi2 despite having 2 extra free parameters. The sector adds fitting freedom that the fetched data does not reward.",
+        "This is a materially STRONGER result than round 1's rejected proposal (pinning a_pot,b_pot to Lean's dark_energy_w0=-1,wa=0 definitions, which measured a matter-free de Sitter point and was correctly rejected by the round-1 skeptic): here the comparison is a real flat-LCDM cosmology (with matter) against the SAME data, using an independently re-implemented chi2 pipeline (decisive_experiment.py), not the harness's own quintessence code."
+      ],
+      "caveat": "CPL fit (w0,wa free, Om held at the frozen Lean value) gives chi2_total=696.62, i.e. delta_chi2=-6.29 vs frozen LCDM with 2 extra fitted parameters (AIC preference for CPL ~ -2.29, a mild, not decisive, appetite for SOME w0-wa departure from LCDM in this data). This does NOT rescue a_pot,b_pot: the specific quintessence potential shape implemented in workshopcosmo.py does not capture that departure (its own best grid point is worse than frozen LCDM, see above). Whether a differently-shaped quintessence potential could is out of scope this round (tier C, not evaluated).",
+      "tier": "B (chi2 non-improvement is measured on real data, not asserted) for the deletion; L for the constant values; C for identifying this toy model's dark-energy sector as flat LCDM at those values.",
+      "result_if_accepted": "5 -> 3 free parameters (mu_sym, lambda_sym, c4_pta_product remain)"
+    },
+    {
+      "params_removed": ["lambda_sym"],
+      "mechanism": "delete_unobservable",
+      "replacement": "none needed -- lambda_sym is deleted from the screening sector entirely; the symmetron ODE is rewritten in psi := phi/phi_0 form (phi_0 = mu_sym/sqrt(lambda_sym)), in which lambda_sym cancels EXACTLY (see lambda_sym_negative_control.py module docstring for the full substitution): psi'' + (2/r)psi' = (rho(r)/M^2 - mu_sym^2)*psi + mu_sym^2*psi^3, psi(r_max)=1, independent of lambda_sym and of rho_profile (which also does not depend on lambda_sym).",
+      "evidence": [
+        "EXACT ALGEBRA (reproduced in lambda_sym_negative_control.py, not asserted): substituting phi=phi_0*psi into workshopcosmo.py's symmetron ODE (lines 350-357) and BCs (359-362) eliminates lambda_sym completely; it survives only in the overall normalisation phi_0, which grep confirms (param_loop_sim.py:175-190, quoted in lambda_sym_negative_control_report.json) is NEVER read by compute_screening_observable -- only screening_suppression_factor and phi_center_ratio are returned, both exactly dimensionless in psi.",
+        "Numeric negative control: lambda_sym probed over 6 decades (1e-3 to 1e3) at 5 different (a_pot,b_pot,mu_sym,c4_c0_ratio,pta_suppression) base points. Max relative range in screening_suppression_factor over that full 6-decade probe: 4.60e-5; in phi_center_ratio: 2.30e-5. FLAT (not growing with the probed range): a true lambda^3-type dependence surviving over 6 decades would show a relative range many orders larger, not ~1e-5. This is BVP solver-tolerance noise (tol=1e-4 in solve_bvp), consistent with the exact algebra, not a real dependence.",
+        "jacobian.py (this round, fresh seed-42 sweep, best-fit + 5 random points, independent of round 1's 6 probes): lambda_sym is an EXACT machine-precision null direction (singular value = 0.0, right-singular-vector loading exactly 1.0 on ln(lambda_sym), 0.0 on all other params) at the best-fit point (jacobian_report.json probed_points.best_fit.near_null_right_singular_vectors). effective_dimension_at_1e-3_of_max = 3 at best-fit (singular values [4.181, 1.662, 0.583, 1.22e-6, 0.0]); spread over 5 random stable points = [2,3,2,2,3] (not uniformly 3, matching round 1's finding that effective dimension is point-dependent)."
+      ],
+      "tier": "B (exact arithmetic + negative control). NOT tier A: no kernel-checked Lean theorem for this substitution exists yet -- the draft statement (symmetron_profile_lambda_indep) is in round1/REPORT.md #4, unproven in LeanMaster.",
+      "result_if_accepted": "if combined with the a_pot,b_pot removal above: 5 -> 2 free parameters (mu_sym, c4_pta_product remain), reaching this round's '2' ladder milestone.",
+      "code_change_required_before_counting": "This proposal identifies the reduction; workshopcosmo.run_symmetron_screening_simulation itself has NOT been rewritten in psi-form and lambda_sym has NOT been deleted from param_loop_sim.py's signature this round (ground rules restrict this worktree to audit/experiment files; the staged S1 code rewrite from round1's plan is left for a code-change round, matching the round-1 pattern of proposing before implementing)."
+    }
+  ],
+  "kept_as_live_physical_parameter_not_a_reduction_candidate": [
+    {
+      "param": "mu_sym",
+      "reason": "Confirmed again this round: appears with nonzero loading in the model observable cloud's screening axis (log10_ssf, log10_pcr columns of the PCA-reduced sweep) and in jacobian.py's per-point spectra (see jacobian_report.json); no fifth-force/screening dataset exists to fit it against (fifth_force_screening: ABSENT, data/real/MANIFEST.json), so it stays free and unconstrained by data, not because it is unobservable in the model."
+    },
+    {
+      "param": "c4_pta_product",
+      "reason": "Round-1's tier-B absorbed combination; PTA chi2 remains ABSENT (no real angular-correlation Gamma(theta) dataset was found this round either -- the verified NANOGrav 15yr product is a per-frequency free-spectrum KDE with no pulsar-pair angular separation info). The task's S3 (drop the PTA sector from retained observables) would remove it from the OBSERVABLE list by scope, not by derivation -- explicitly NOT proposed as a counted reduction here, per the ground rule that insensitivity/no-data-to-test-against is not derivation."
+    }
+  ],
+  "lean_context_downgrade_noted_this_round": {
+    "item": "tensor_to_scalar_ratio_num/den = 1/252 (Observables.lean:72,75), round-1's tier-C candidate for a_pot",
+    "note": "Round 1 sourced 1/252 from a match with the '27720 lock' (462*60=360*77). This round's harness context states DualScaleMoonshine/ForgerTest.lean and CharactersAll.lean now show that lock FAILS the M24 twining test at all 25 non-identity conjugacy classes (ratio_fails_at_every_class) -- i.e. it is arithmetic coincidence with no verified group-theoretic meaning. Not directly used in this round's proposals (round 1 already dropped it, see round1 REPORT.md 'ideas dropped'), but recorded here as a downgrade of that candidate's already-low standing, per the harness's explicit instruction to report this honestly.",
+    "not_independently_reverified_this_round": "This downgrade is read from the task's own supplied context, not re-derived from LeanMaster source in this session (LeanMaster is read-only here and this specific claim was not re-grepped); reported as given, tier C provenance."
+  },
+  "ladder_status_if_both_accepted": "5 -> 2 (mu_sym, c4_pta_product remain), reaching the task's '2' ladder milestone this round.",
+  "next_round_priorities": [
+    "Implement the code changes this round only proposed: rewrite run_symmetron_screening_simulation in psi-form and delete lambda_sym from param_loop_sim.py's parameter set and DEFAULT_PARAMS; delete a_pot,b_pot from the swept parameter set and hard-freeze the dark-energy sector to flat LCDM(Om=0.31115, H0=67.66); re-run the full sweep/chi2/Jacobian/TDA pipeline on the resulting 2-param (mu_sym, c4_pta_product) model as a fresh reverse-loop round, to confirm nothing breaks and the byte-level equivalence holds where expected.",
+    "mu_sym / screening: still needs real fifth-force or short-range-gravity data (ABSENT this round and last) before any tier B/L reduction is possible; this is the harness's own S4 and remains open.",
+    "c4_pta_product / PTA sector: either locate a real angular Gamma(theta) or Hellings-Downs-binned NANOGrav data product (the raw .tim/.par files noted in round 1 were not processed; the verified ceffyl KDE product has no angular info) or formally drop the PTA block from retained observables under 'scope, not derivation' (S3), which does not reduce the tier-B/C count but does shrink the observable vector honestly.",
+    "Get the lambda_sym-independence substitution (symmetron_profile_lambda_indep, round1 REPORT.md #4) into LeanMaster as an actual kernel-checked theorem, which would upgrade this round's tier-B lambda_sym removal to tier A."
+  ]
+}

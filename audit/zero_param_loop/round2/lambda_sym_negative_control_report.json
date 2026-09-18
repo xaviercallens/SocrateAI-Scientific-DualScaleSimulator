@@ -1,0 +1,223 @@
+{
+  "algebra": "psi := phi/phi_0 substitution eliminates lambda_sym exactly from the ODE, BCs, and rho_profile (see module docstring); lambda_sym survives only in phi_0 = mu/sqrt(lambda), which no retained screening observable in param_loop_sim.py uses.",
+  "screening_block_source_grep": [
+    "175:def compute_screening_observable(mu_sym: float, lambda_sym: float) -> Dict[str, Any]:",
+    "176:    res = wc.run_symmetron_screening_simulation(mu_sym=mu_sym, lambda_sym=lambda_sym)",
+    "177:    ssf = float(res[\"screening_suppression_factor\"])",
+    "178:    pcr = float(res[\"phi_center_ratio\"])",
+    "179:    # workshopcosmo's run_symmetron_screening_simulation always reports",
+    "180:    # success=True even when the BVP/relaxation fallback has actually",
+    "181:    # diverged to NaN/Inf (observed empirically at mu_sym=10.0, lambda_sym=1.0",
+    "182:    # -- see \"problems\"). Detect that here rather than trusting its flag.",
+    "183:    numerically_stable = bool(np.isfinite(ssf) and np.isfinite(pcr))",
+    "184:    return {",
+    "185:        \"success\": bool(res[\"success\"]),",
+    "186:        \"numerically_stable\": numerically_stable,",
+    "187:        \"screening_suppression_factor\": ssf,",
+    "188:        \"phi_center_ratio\": pcr,",
+    "189:        \"is_screened\": bool(res[\"is_screened\"]),",
+    "190:    }",
+    "191:"
+  ],
+  "numeric_probe_base_points": [
+    {
+      "base_point_idx": 0,
+      "base_point": {
+        "a_pot": 1.0,
+        "b_pot": 0.01,
+        "mu_sym": 1.0,
+        "c4_c0_ratio": 4.0,
+        "pta_suppression": 0.02
+      },
+      "lambda_sym_probed": [
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0,
+        1000.0
+      ],
+      "screening_suppression_factor_values": [
+        0.0001181173644827494,
+        0.00011811736459241374,
+        0.00011811734233485311,
+        0.00011811720750749558,
+        0.00011811735180570304,
+        0.0001181170010143877,
+        0.00011811616640703245
+      ],
+      "phi_center_ratio_values": [
+        1.974187618755261e-14,
+        1.9741876196717136e-14,
+        1.9741874336677292e-14,
+        1.9741863069299735e-14,
+        1.974187512814582e-14,
+        1.9741845812879857e-14,
+        1.9741776065434856e-14
+      ],
+      "relative_range_ssf_over_6_decades_of_lambda": 1.0144045519766895e-05,
+      "relative_range_phi_center_ratio_over_6_decades_of_lambda": 5.072030008236642e-06
+    },
+    {
+      "base_point_idx": 1,
+      "base_point": {
+        "a_pot": 3.47,
+        "b_pot": 0.000428,
+        "mu_sym": 1.0,
+        "c4_c0_ratio": 4.0,
+        "pta_suppression": 0.02
+      },
+      "lambda_sym_probed": [
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0,
+        1000.0
+      ],
+      "screening_suppression_factor_values": [
+        0.0001181173644827494,
+        0.00011811736459241374,
+        0.00011811734233485311,
+        0.00011811720750749558,
+        0.00011811735180570304,
+        0.0001181170010143877,
+        0.00011811616640703245
+      ],
+      "phi_center_ratio_values": [
+        1.974187618755261e-14,
+        1.9741876196717136e-14,
+        1.9741874336677292e-14,
+        1.9741863069299735e-14,
+        1.974187512814582e-14,
+        1.9741845812879857e-14,
+        1.9741776065434856e-14
+      ],
+      "relative_range_ssf_over_6_decades_of_lambda": 1.0144045519766895e-05,
+      "relative_range_phi_center_ratio_over_6_decades_of_lambda": 5.072030008236642e-06
+    },
+    {
+      "base_point_idx": 2,
+      "base_point": {
+        "a_pot": 0.1,
+        "b_pot": 0.5,
+        "mu_sym": 0.5,
+        "c4_c0_ratio": 4.0,
+        "pta_suppression": 0.02
+      },
+      "lambda_sym_probed": [
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0,
+        1000.0
+      ],
+      "screening_suppression_factor_values": [
+        6.788702756802944e-05,
+        6.788702818493604e-05,
+        6.788702056504764e-05,
+        6.788692254088316e-05,
+        6.788684142864739e-05,
+        6.788639369247319e-05,
+        6.788951711072127e-05
+      ],
+      "phi_center_ratio_values": [
+        1.4793174952066983e-14,
+        1.479317501928165e-14,
+        1.479317418906159e-14,
+        1.479316350889738e-14,
+        1.479315467135643e-14,
+        1.4793105888402216e-14,
+        1.4793446572113584e-14
+      ],
+      "relative_range_ssf_over_6_decades_of_lambda": 4.6008908018982396e-05,
+      "relative_range_phi_center_ratio_over_6_decades_of_lambda": 2.3029752080160426e-05
+    },
+    {
+      "base_point_idx": 3,
+      "base_point": {
+        "a_pot": 10.0,
+        "b_pot": 0.001,
+        "mu_sym": 5.0,
+        "c4_c0_ratio": 4.0,
+        "pta_suppression": 0.02
+      },
+      "lambda_sym_probed": [
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0,
+        1000.0
+      ],
+      "screening_suppression_factor_values": [
+        0.001043602907317695,
+        0.001043602885682293,
+        0.0010436028855583582,
+        0.0010436028854040088,
+        0.0010436028850450741,
+        0.0010436028846567257,
+        0.0010436028818021049
+      ],
+      "phi_center_ratio_values": [
+        8.839024953605687e-14,
+        8.839024861981134e-14,
+        8.839024861456265e-14,
+        8.839024860802628e-14,
+        8.839024859282562e-14,
+        8.839024850841031e-14,
+        8.839024823498683e-14
+      ],
+      "relative_range_ssf_over_6_decades_of_lambda": 2.4449520377994885e-08,
+      "relative_range_phi_center_ratio_over_6_decades_of_lambda": 1.4719610646342253e-08
+    },
+    {
+      "base_point_idx": 4,
+      "base_point": {
+        "a_pot": 0.5,
+        "b_pot": 0.05,
+        "mu_sym": 2.0,
+        "c4_c0_ratio": 4.0,
+        "pta_suppression": 0.02
+      },
+      "lambda_sym_probed": [
+        0.001,
+        0.01,
+        0.1,
+        1.0,
+        10.0,
+        100.0,
+        1000.0
+      ],
+      "screening_suppression_factor_values": [
+        0.00025160553985113267,
+        0.0002516055398511328,
+        0.00025160554152969794,
+        0.0002516055679106561,
+        0.0002516054936016799,
+        0.00025160548295510247,
+        0.00025160460075491283
+      ],
+      "phi_center_ratio_values": [
+        3.019010966855672e-14,
+        3.019010966855672e-14,
+        3.019010976926206e-14,
+        3.0190111351984934e-14,
+        3.019010689382536e-14,
+        3.019010625508496e-14,
+        3.019005332752161e-14
+      ],
+      "relative_range_ssf_over_6_decades_of_lambda": 3.843938809409892e-06,
+      "relative_range_phi_center_ratio_over_6_decades_of_lambda": 1.921969831814701e-06
+    }
+  ],
+  "max_relative_range_ssf_over_6_decades": 4.6008908018982396e-05,
+  "max_relative_range_phi_center_ratio_over_6_decades": 2.3029752080160426e-05,
+  "verdict": "FLAT (solver-tolerance noise, consistent with exact algebraic lambda_sym-independence): max relative range over 6 decades is 4.601e-05 (ssf) / 2.303e-05 (phi_center_ratio), NOT growing with the probed range, and of the SAME ORDER as round-1's single x10 probe (1.2e-06) rather than 1000x larger as a true cubic-in-lambda dependence over 6 decades would produce.",
+  "conclusion": "lambda_sym provably affects no retained observable (exact algebra) and the residual numeric variation is flat solver noise, not a true dependence -> ground rule (b) delete_unobservable applies; tier B (exact arithmetic + negative control), not tier A (no kernel-checked Lean statement for this substitution yet -- draft is in round1 REPORT.md #4)."
+}

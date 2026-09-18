@@ -1,0 +1,16 @@
+{
+  "n_stable_rows": 378,
+  "n_finite_chi2_rows": 378,
+  "best_fit_row": {
+    "idx": 409,
+    "a_pot": 1.13955196282296,
+    "b_pot": 0.000503520484396,
+    "mu_sym": 0.516439315139834,
+    "lambda_sym": 0.0575630046681962,
+    "c4_pta_product": 0.0001884353102553,
+    "chi2_bao": 16.826508281813425,
+    "chi2_sn": 687.0681288469557,
+    "chi2_total": 703.8946371287691
+  },
+  "note": "This is a GRID minimum over the 513-point Sobol sweep, not a continuous re-optimization; it is a lower bound on how good this sweep's best point looks, used only to pick a Jacobian probe point, not as a claimed global best fit. Compare to decisive_experiment.py's independent LCDM chi2_total=702.68 (Om fitted) / 702.91 (Om,H0 frozen to Lean)."
+}

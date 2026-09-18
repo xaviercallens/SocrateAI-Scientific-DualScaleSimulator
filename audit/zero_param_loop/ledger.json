@@ -8,7 +8,9 @@
   "ladder": [
     {"round": 1, "before": 6, "after": 5, "removed": ["pta_suppression", "c4_c0_ratio"], "replacement": "c4_pta_product (nominal 0.08035, still free, counts as 1)", "how": "absorbed", "tier": "B", "skeptic": "accepted", "evidence": "splits max diff 1.1e-16/0.0/0.0; product change moves Gamma by 0.08035; Jacobian SV 0.0..3.5e-18 at 6 points", "caveat": "no data content (pta_chi2 ABSENT); baseline 6 was generous"},
     {"round": 1, "before": 5, "after": 5, "proposed": ["a_pot", "b_pot"], "replacement": "dark_energy_w0=-1, dark_energy_wa=0 (Observables.lean:97-98)", "how": "lean_pin", "tier": "C", "skeptic": "rejected", "reason": "definitions not theorems; pinned point is matter-free de Sitter, chi2 6483.8 measures no-matter not w=-1"},
-    {"round": 1, "before": 5, "after": 5, "proposed": ["c4_pta_product"], "replacement": "planckGmuBound=1.5e-7 (CosmicString.lean:83)", "how": "lean_pin", "tier": "L", "skeptic": "rejected", "reason": "upper bound on a different quantity; 5.4e5 mismatch; no angular PTA data"}
+    {"round": 1, "before": 5, "after": 5, "proposed": ["c4_pta_product"], "replacement": "planckGmuBound=1.5e-7 (CosmicString.lean:83)", "how": "lean_pin", "tier": "L", "skeptic": "rejected", "reason": "upper bound on a different quantity; 5.4e5 mismatch; no angular PTA data"},
+    {"round": 2, "before": 5, "after": 5, "proposed": ["a_pot", "b_pot"], "replacement": "flat LCDM, Omega_m=1-omegaLambda=0.31115, H0=c/hubbleRadius_m=67.661 km/s/Mpc (DarkEnergyScale.lean:84, SelfDualCutoff.lean:100)", "how": "lean_constant", "tier": "B (non-improvement measured)/L (constants)/C (sector ID)", "skeptic": "pending (not yet reviewed)", "evidence": "decisive_experiment.py: delta_chi2(frozen-fitted)=0.2313 << 11.8 (task's rule) and << 9.0 (dof-correct 1-dof 3sigma); negative control Om=0.5 chi2=856.15 correctly worse; quintessence sector's own sweep-grid best (chi2=703.895) is WORSE than frozen LCDM (702.907) despite 2 extra params.", "not_yet_implemented_in_code": true, "would_give": "5 -> 3"},
+    {"round": 2, "before": 5, "after": 5, "proposed": ["lambda_sym"], "replacement": "delete from screening ODE (psi=phi/phi_0 substitution makes it cancel exactly)", "how": "delete_unobservable", "tier": "B", "skeptic": "pending (not yet reviewed)", "evidence": "exact algebra (psi'' + (2/r)psi' = (rho/M^2-mu^2)psi + mu^2 psi^3, lambda-free); jacobian.py round2 (fresh seed-42, 6 points): SV=0.0 exactly at best-fit, loading 1.0 on ln(lambda_sym); numeric probe over 6 decades: max relative range 4.6e-5 (ssf) / 2.3e-5 (phi_center_ratio), flat not growing.", "not_yet_implemented_in_code": true, "would_give": "3 -> 2 if combined with a_pot,b_pot removal above (5 -> 2 total, reaching this round's ladder milestone)"}
   ],
   "convention_only_not_counted": [
     {"param": "lambda_sym", "value": 1.0, "evidence_weight": 0.5, "evidence": "Jacobian SV 3.2e-14..1.1e-19 at 6 points; probe over 0.01..100 gives ssf 1.18117e-4 (1e-6 relative); psi-rescaling symmetry identified by skeptic", "upgrade_condition": "rewrite ODE in psi form, delete lambda_sym from code, add negative control"}
@@ -31,7 +33,32 @@
       "reverse_model_vs_sn_H1": 0.027069824244136675,
       "reverse_variance_matched_null_vs_sn_H1": 0.020287062044994808,
       "ordering_survives_variance_matching": false,
-      "flag_unverified": "reverse model_vs_real_sn_H1 equals model_reduced_vs_model_round1_H1 to all digits; possible copy error in reduced_tda.py"
+      "flag_unverified": "reverse model_vs_real_sn_H1 equals model_reduced_vs_model_round1_H1 to all digits; possible copy error in reduced_tda.py -- RESOLVED IN ROUND 2, see results.round2 below"
+    },
+    "round2": {
+      "sweep": {"sampler": "Sobol seed 42", "n_points": 513, "n_stable": 378, "n_errors": 0},
+      "chi2_lcdm_om_fitted": 702.6753004830802,
+      "chi2_lcdm_frozen_lean": 702.9066083231721,
+      "chi2_lcdm_negative_control_om_0.5": 856.1487994018894,
+      "chi2_cpl_om_frozen_w0wa_free": 696.6192624361269,
+      "chi2_quintessence_sweep_grid_best": 703.8946371287691,
+      "delta_chi2_frozen_minus_fitted": 0.23130784009197214,
+      "preregistered_threshold": 11.8,
+      "dof_correct_threshold_1dof_3sigma": 9.0,
+      "reject_frozen_theory": false,
+      "effective_dimension_forward_round2": {"best_fit": 3, "random": [2, 3, 2, 2, 3]},
+      "lambda_sym_jacobian_null_all_probed_points": "SV=0.0 exactly at best-fit (fresh seed-42 points); see jacobian_report.json",
+      "lambda_sym_numeric_probe_6_decades": {"max_rel_range_ssf": 4.6008908018982396e-05, "max_rel_range_phi_center_ratio": 2.3029752080160426e-05},
+      "tda": {
+        "model_betti": [2, 0], "real_betti": [1, 0],
+        "real_cloud": "genuine 3D comoving Cartesian from Pantheon+ RA/DEC/zHD, flat LCDM Om=0.31115",
+        "model_vs_real_H1": 0.011094914869650904,
+        "null_box_vs_real_H1": 0.03871767485515332,
+        "null_variance_matched_vs_real_H1": 0.027568786206406695,
+        "null_poisson_real_vs_real_H1": 0.03563970809302948,
+        "circle_control_ratio": 35.21591477163045
+      },
+      "round1_flag_unverified_resolution": "NOT a copy-paste bug: model_vs_real_sn_H1 == model_reduced_vs_model_round1_H1 (both 0.027069824244136675) because both equal exactly half the model diagram's own largest H1 bar (0.05413964848827335), which exceeded twice the max H1 persistence in BOTH comparison diagrams -- gudhi.bottleneck_distance sends an unmatched dominant bar to the diagonal regardless of the other diagram in that regime. Verified independently this round (tda_gudhi.py), not asserted."
     }
   },
   "adapted_hypothesis": {
@@ -45,10 +72,12 @@
     "fallback_null_model": "flat LCDM with Omega_Lambda and H0 frozen to Lean constants; E_geo/observed DE scale = 1.884 (C, O(1) factor underived)",
     "dropped": ["pin a_pot,b_pot to w0/wa defs", "pin c4_pta_product to planckGmuBound", "n_s=0.965 potential constraint", "c4 from h1,h2", "mu_sym = self-dual/CKN scale (deferred)", "thawing slope from 1/252 or h2-h1 (deferred, needs pre-registration)", "TDA as agreement evidence"]
   },
-  "next_experiment": "chi2 of flat LCDM with Omega_m=0.31115, H0=67.66 fixed vs fitted LCDM 697.34 on DESI 12x12 + 1590 Pantheon+; reject if delta chi2 > 11.8; SN offset fitted and SH0ES-frozen variants; negative control Omega_Lambda=0.5",
-  "next_lean_statement": "theorem symmetron_profile_lambda_indep (μ λ₁ λ₂ : ℝ) (h₁ : 0 < λ₁) (h₂ : 0 < λ₂) (hμ : 0 < μ) : screeningRatio μ λ₁ = screeningRatio μ λ₂",
-  "absent": ["pta_chi2 (no angular PTA dataset)", "fifth_force_screening dataset", "short-range gravity bound (47 micron)", "CPL fit on fetched data", "frozen-constant LCDM chi2", "Pantheon+ full covariance", "contents of 3 LeanMaster FrontierTriad files"],
+  "next_experiment_round1_ANSWERED_round2": "ANSWERED: decisive_experiment.py, delta_chi2(frozen-fitted)=0.2313, frozen theory NOT rejected under either threshold. SH0ES-frozen-offset variant remains ABSENT (no verified M_B fiducial fetched).",
+  "next_lean_statement": "theorem symmetron_profile_lambda_indep (μ λ₁ λ₂ : ℝ) (h₁ : 0 < λ₁) (h₂ : 0 < λ₂) (hμ : 0 < μ) : screeningRatio μ λ₁ = screeningRatio μ λ₂ -- STILL NOT IN LEANMASTER as of round 2 (LeanMaster read-only, not re-verified this round); lambda_sym removal this round is tier B (algebra+numerics), not yet tier A.",
+  "next_experiment_round2": "Implement the two round-2 proposed reductions in code (delete lambda_sym via psi-form rewrite; delete a_pot,b_pot, freeze dark-energy sector to LCDM(Om=0.31115,H0=67.66)); re-run sweep/chi2/Jacobian/TDA on the resulting 2-param (mu_sym, c4_pta_product) model as a fresh round-3 reverse loop.",
+  "absent": ["pta_chi2 (no angular PTA dataset, unchanged round 2)", "fifth_force_screening dataset (unchanged round 2)", "short-range gravity bound (47 micron)", "Pantheon+ full covariance", "contents of 3 LeanMaster FrontierTriad files", "SH0ES M_B fiducial for frozen-SN-offset decisive-experiment variant (round 2)"],
   "overturned_by_skeptic": ["Lean w0/wa 'disfavored by data' inference", "round-1 model-closer-than-null TDA ordering", "baseline count of 6 generous", "selftest gate lacked coverage before 88f7a51"],
+  "resolved_round2": ["CPL fit on fetched data: ran (chi2=696.62 Om-frozen, mild AIC preference ~-2.3 for CPL over LCDM, not decisive; quintessence sector itself does not capture it)", "frozen-constant LCDM chi2: computed (702.907), not rejected", "round-1 flagged identical-bottleneck-distance item: resolved as a real bottleneck-metric property, not a bug"],
   "fabricated": [],
   "known_broken_not_used": ["vacuum_decay_cdl", "tadpole_cancellation_certified", "proofs/BuscherRules.lean"]
 }

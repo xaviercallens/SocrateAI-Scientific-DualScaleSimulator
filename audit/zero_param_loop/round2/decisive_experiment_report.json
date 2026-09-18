@@ -1,0 +1,117 @@
+{
+  "lean_constants_used": {
+    "omegaLambda": {
+      "value": 0.68885,
+      "file_line": "DarkEnergyScale.lean:84",
+      "tier_as_lean_def": "kernel-fixed",
+      "tier_as_physics": "L (Planck 2018 literature value)"
+    },
+    "hubbleRadius_m": {
+      "value": 1.3672e+26,
+      "file_line": "SelfDualCutoff.lean:100",
+      "tier_as_lean_def": "kernel-fixed",
+      "tier_as_physics": "L"
+    },
+    "H0_implied_km_s_Mpc": 67.661122494938,
+    "Omega_m_frozen": 0.31115000000000004,
+    "identification_with_this_fit_tier": "C (the claim that THIS toy model's Omega_m equals the Lean value is asserted, not derived)"
+  },
+  "lcdm_om_fitted": {
+    "bao": {
+      "chi2": 15.043943842115478,
+      "s_fit": 0.03340657853655864,
+      "ok": true
+    },
+    "sn": {
+      "chi2": 687.6313566409647,
+      "offset_fit": 43.056802802344144,
+      "n_sn": 1590,
+      "ok": true
+    },
+    "chi2_total": 702.6753004830802,
+    "Om_fit": 0.3169513026014882
+  },
+  "lcdm_frozen_lean": {
+    "bao": {
+      "chi2": 14.058692315581345,
+      "s_fit": 0.03355226367814766,
+      "ok": true
+    },
+    "sn": {
+      "chi2": 688.8479160075908,
+      "offset_fit": 43.05487041378623,
+      "n_sn": 1590,
+      "ok": true
+    },
+    "chi2_total": 702.9066083231721,
+    "Om_frozen": 0.31115000000000004,
+    "H0_implied_km_s_Mpc": 67.661122494938,
+    "note_H0_role": "H0 does not independently enter this dimensionless-ratio chi2 (it is degenerate with the always-fitted BAO scale u_star and SN offset), so 'freezing H0' here changes nothing beyond freezing Om; see module docstring."
+  },
+  "lcdm_negative_control_om_0.5": {
+    "bao": {
+      "chi2": 118.22061664781786,
+      "s_fit": 0.029830097686256184,
+      "ok": true
+    },
+    "sn": {
+      "chi2": 737.9281827540715,
+      "offset_fit": 43.11374975894438,
+      "n_sn": 1590,
+      "ok": true
+    },
+    "chi2_total": 856.1487994018894,
+    "Om": 0.5
+  },
+  "cpl_fit_om_frozen_w0wa_free": {
+    "bao": {
+      "chi2": 11.976870720551684,
+      "s_fit": 0.03321169405773759,
+      "ok": true
+    },
+    "sn": {
+      "chi2": 684.6423917155752,
+      "offset_fit": 43.07424941932727,
+      "n_sn": 1590,
+      "ok": true
+    },
+    "chi2_total": 696.6192624361269,
+    "w0_fit": -0.843553524592916,
+    "wa_fit": -0.4863028876614355,
+    "Om_held_at_frozen_lean_value": 0.31115000000000004
+  },
+  "cpl_fit_all_free": {
+    "bao": {
+      "chi2": 11.847964525451438,
+      "s_fit": 0.03319444173684193,
+      "ok": true
+    },
+    "sn": {
+      "chi2": 684.7356927669744,
+      "offset_fit": 43.07511734157766,
+      "n_sn": 1590,
+      "ok": true
+    },
+    "chi2_total": 696.5836572924258,
+    "Om_fit": 0.3147956216173222,
+    "w0_fit": -0.8373122614297355,
+    "wa_fit": -0.5732797055991287
+  },
+  "delta_chi2_frozen_minus_fitted": 0.23130784009197214,
+  "preregistered_threshold_as_stated_in_task": 11.8,
+  "reject_frozen_theory_per_preregistered_rule": false,
+  "actual_dof_removed_by_freezing": 1,
+  "correct_1dof_3sigma_threshold": 9.0,
+  "reject_frozen_theory_per_correct_1dof_rule": false,
+  "dof_caveat": "H0 is degenerate with the always-fitted BAO scale and SN offset in this dimensionless-ratio setup, so freezing it removes 0 real dof; only Om is actually frozen (1 dof), not 2. The task's pre-registered 11.8 (stated for '2 parameters') is reported alongside the correct 1-dof threshold (9.0) rather than silently substituted.",
+  "negative_control_omega_0.5_worse_than_fitted": true,
+  "sh0es_frozen_offset_variant": "ABSENT: no SH0ES M_B fiducial was fetched and verified in this session; inventing one would violate the ground rule against invented experimental bounds, so this specific sub-variant (SN offset frozen to a Cepheid-calibrated absolute magnitude, expected to show the Hubble tension as a chi2 penalty) is not run.",
+  "cpl_preference_in_fetched_data": {
+    "delta_chi2_cpl_vs_lcdm_frozen_om": -6.287345887045262,
+    "delta_chi2_cpl_free_om_vs_lcdm_fitted": -6.091643190654395,
+    "interpretation": "negative delta favors CPL over LCDM at that same Om baseline; AIC/BIC penalty for the 2 (or 3) extra fitted parameters is not subtracted here, only raw chi2."
+  },
+  "n_bao": 12,
+  "n_sn": 1590,
+  "n_data": 1602
+}
