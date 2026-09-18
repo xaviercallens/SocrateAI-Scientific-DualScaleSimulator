@@ -113,8 +113,34 @@
       }
     ]
   },
+  "lambda_2_and_F_2A": {
+    "definition": "Lambda_N(tau) := N q d/dq log(eta(N tau)/eta(tau)); F_2A := 16 Lambda_2. Pure divisor-sum arithmetic (sympy.divisor_sigma), no mu, no theta functions.",
+    "Lambda_2_closed_form_matches_direct_log_derivative_check": true,
+    "Lambda_2_coeffs_q0_to_q8": {
+      "0": "1/12",
+      "1": "2",
+      "2": "2",
+      "3": "8",
+      "4": "2",
+      "5": "12",
+      "6": "8",
+      "7": "16",
+      "8": "2"
+    },
+    "F_2A_coeffs_q0_to_q8": {
+      "0": "4/3",
+      "1": "32",
+      "2": "32",
+      "3": "128",
+      "4": "32",
+      "5": "192",
+      "6": "128",
+      "7": "256",
+      "8": "32"
+    }
+  },
   "could_not_do": [
-    "Item (2): H(tau) extraction via the Appell-Lerch mu-term and M24 decomposition of A_1..A_8. Implemented the Appell-Lerch sum's regularization Psi(tau,z):=T1(tau,z)*S(tau,z) exactly (appell.py), with the n=0 pole cancelled ALGEBRAICALLY against T1's own factor of (1-y) (no infinite-tail truncation anywhere -- see appell.py docstring). But two different, independently-plausible readings of how 'the 24*mu-term' combines with H(tau)*theta_1^2/eta^3 in the task's shorthand gave q,y-gradings that only one of them matched (Z_K3 = (theta_1^2/eta^3)*[24*mu*theta_1^2/eta^3-inverse-consistent combination]), and even that version FAILED the cross-check of extracting H(tau) from two different y-power slices of theta_1^2 and getting the SAME answer (they disagreed sharply, e.g. leading coefficients -22 vs +2 at q^{-1/8}). Rather than report an unverified H(tau)/A_n sequence, or the resulting M24 decomposition or the A_2*60=4*A_1*77 identity check built on top of it, this is left undone.",
-    "Item (3): the 2A-twined series H_2A and the survival of the A_2*60=4*A_1*77 identity under twining, and rigidity scan (a) on the '24' in the mu-term -- all depend on the item-(2) extraction above and were not attempted once that failed its own consistency check."
+    "Item (2): H(tau) extraction via the Appell-Lerch mu-term, the M24 decomposition of A_1..A_8, and the A_2*60=4*A_1*77 identity check. What WAS done exactly and finitely (appell.py): Psi(tau,z) := T1(tau,z)*S(tau,z), where S is the Appell-Lerch sum, with the n=0 term's naive 1/(1-y) pole cancelled ALGEBRAICALLY against T1's own exact factor of (1-y) -- no infinite-tail truncation or regularization prescription anywhere. A candidate normalization with self-consistent q,y gradings was found (Z_K3*eta^3 = -24*y^{1/2}*Psi + H*theta_1^2, i.e. theta_1^2/eta^3 multiplies the WHOLE bracket [24*mu+H], not H alone) and its leading term, read off one y-power slice of theta_1^2, landed on H_0=-2 -- matching the task's stated polar term. But the DEFINITIVE check (multiply the candidate H back through theta_1^2 and compare term-by-term against -[Z_K3*eta^3+24*y^{1/2}*Psi], not just one y-slice) shows real mismatches starting at the very leading q-order (e.g. at q^{1/8}*y^0: 4 from the candidate vs -44 required). This is a genuine normalization/formula error, not a coding bug that was left unfixed: two DIFFERENT y-power slices (j=0 vs j=2) of theta_1^2, which should give the identical y-independent H(tau) if the formula were right, disagree outright (+22 vs -2 at the leading order; j=2 and j=-2 agreeing with each other is a trivial consequence of theta_1^2's y<->1/y symmetry, not an independent check). No H(tau)/A_n sequence is reported because none was found that passes this check.",
+    "Item (3), the H-dependent half: the 2A-twined series H_2A and the survival of the A_2*60=4*A_1*77 identity under twining, and rigidity scan (a) on the '24' in the mu-term -- all depend on the item-(2) extraction above and were not attempted once that failed its own consistency check. The mu-FREE half of item (3), Lambda_2 (needed for F_2A = 16*Lambda_2), WAS computed exactly and cross-checked by an independent direct log-derivative computation (see lambda_2_and_F_2A above) -- it just cannot be turned into H_2A without H."
   ]
 }

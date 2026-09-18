@@ -133,7 +133,7 @@ def divide_scalar_series(num, den1d, imax):
     return out
 
 
-def reciprocal_1d(den1d, imax):
+def reciprocal_1d(den1d, imax, istep=None):
     """1/D(q) for a plain (y-independent) series D = {i: Fr}, D's minimal
     exponent i0 has nonzero coefficient d0. Returns {i: Fr} representing
     the reciprocal series (its minimal exponent is -i0; the result can and
@@ -142,8 +142,16 @@ def reciprocal_1d(den1d, imax):
     Unlike divide_scalar_series, this places NO constraint on what a
     subsequent numerator's residue class (mod istep) must be: multiply the
     result by any 2D series via mul() to get an exact quotient.
+
+    `istep` should normally be passed explicitly from the KNOWN algebraic
+    grid of the object (e.g. 8 for anything graded by whole powers of
+    q^{1/8}) rather than inferred from `_min_step(den1d)`: if a coefficient
+    on the true grid happens to be exactly zero, `_min_step` silently
+    detects a coarser (wrong) sublattice and the reciprocal it builds
+    omits real terms of D(q), giving a wrong-but-plausible result.
     """
-    istep = _min_step(den1d)
+    if istep is None:
+        istep = _min_step(den1d)
     i0 = min(den1d)
     d0 = den1d[i0]
     kmax = (imax + i0) // istep

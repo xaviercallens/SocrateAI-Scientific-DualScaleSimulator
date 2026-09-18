@@ -121,6 +121,74 @@ def rigidity_scan_b(phi01, cutoff_q, k_values):
     return phi01_0_nonzero, results
 
 
+def lambda_N_closed_form(N, cutoff_q):
+    """Lambda_N(tau) := N * q d/dq log(eta(N*tau)/eta(tau)), exact, via
+    divisor sums (mu-free): q d/dq log eta(tau) = 1/24 - sum sigma_1(m) q^m
+    (standard; independently re-derived and cross-checked below against a
+    direct series log-derivative of eta(N tau)/eta(tau) for N=2).
+    Lambda_N = N(N-1)/24 + N*sum sigma_1(m) q^m - N^2*sum sigma_1(m) q^{N m}.
+    """
+    from sympy import divisor_sigma
+    out = {0: Fr(N * (N - 1), 24)}
+    for m in range(1, cutoff_q + 1):
+        s1 = int(divisor_sigma(m, 1))
+        out[m] = out.get(m, Fr(0)) + N * s1
+    for m in range(1, cutoff_q // N + 1):
+        s1 = int(divisor_sigma(m, 1))
+        out[N * m] = out.get(N * m, Fr(0)) - N * N * s1
+    return {n: out.get(n, Fr(0)) for n in range(cutoff_q + 1)}
+
+
+def verify_lambda2_by_direct_log_derivative(cutoff_q):
+    """Independent check of lambda_N_closed_form(2,...): build
+    eta(2tau)/eta(tau)*q^{-1/24} = prod(1-q^{2n})/prod(1-q^n) as a plain
+    1D Fraction q-series by long division, take its q d/dq log via series
+    reciprocal + differentiation, and compare to the closed form."""
+    def poch(step, cut):
+        out = {0: Fr(1)}
+        for n in range(1, cut // step + 2):
+            term = {0: Fr(1), n * step: Fr(-1)}
+            new = {}
+            for e1, c1 in out.items():
+                for e2, c2 in term.items():
+                    e = e1 + e2
+                    if e <= cut:
+                        new[e] = new.get(e, Fr(0)) + c1 * c2
+            out = {k: v for k, v in new.items() if v != 0}
+        return out
+
+    def reciprocal(P, cut):
+        assert P[0] == 1
+        inv = {0: Fr(1)}
+        for n in range(1, cut + 1):
+            s = Fr(0)
+            for k in range(1, n + 1):
+                if k in P:
+                    s += P[k] * inv.get(n - k, Fr(0))
+            inv[n] = -s
+        return inv
+
+    def mul1d(A, B, cut):
+        out = {}
+        for e1, c1 in A.items():
+            for e2, c2 in B.items():
+                e = e1 + e2
+                if e <= cut:
+                    out[e] = out.get(e, Fr(0)) + c1 * c2
+        return out
+
+    cut = cutoff_q
+    P1 = poch(1, cut)
+    P2 = poch(2, cut)
+    f = mul1d(P2, reciprocal(P1, cut), cut)
+    qfprime = {n: n * c for n, c in f.items()}
+    logderiv = mul1d(qfprime, reciprocal(f, cut), cut)
+    lam2 = {0: 2 * (Fr(1, 24) + logderiv.get(0, Fr(0)))}
+    for n in range(1, cut + 1):
+        lam2[n] = 2 * logderiv.get(n, Fr(0))
+    return lam2
+
+
 def main():
     cutoff_q = 8
     N_main = cutoff_q + 6
@@ -151,6 +219,13 @@ def main():
     # ---- rigidity scan (b)
     k_values = [Fr(2), Fr(1), Fr(3), Fr(5, 2), Fr(2) + Fr(1, 12), Fr(2) + Fr(1, 100), Fr(0)]
     phi01_0_nonzero, scan_b = rigidity_scan_b(phi01, cutoff_q, k_values)
+
+    # ---- item (3), mu-free part only: Lambda_2 divisor-sum series, cross
+    # checked by an independent direct log-derivative computation.
+    lam2_closed = lambda_N_closed_form(2, cutoff_q)
+    lam2_direct = verify_lambda2_by_direct_log_derivative(cutoff_q)
+    lam2_match = lam2_closed == lam2_direct
+    F_2A = {n: 16 * c for n, c in lam2_closed.items()}
 
     out = {
         "track": "A",
@@ -200,29 +275,50 @@ def main():
                              "BOTH conditions simultaneously.",
             "scan": scan_b,
         },
+        "lambda_2_and_F_2A": {
+            "definition": "Lambda_N(tau) := N q d/dq log(eta(N tau)/eta(tau)); "
+                           "F_2A := 16 Lambda_2. Pure divisor-sum arithmetic "
+                           "(sympy.divisor_sigma), no mu, no theta functions.",
+            "Lambda_2_closed_form_matches_direct_log_derivative_check": lam2_match,
+            "Lambda_2_coeffs_q0_to_q8": {str(n): str(lam2_closed[n]) for n in range(cutoff_q + 1)},
+            "F_2A_coeffs_q0_to_q8": {str(n): str(F_2A[n]) for n in range(cutoff_q + 1)},
+        },
         "could_not_do": [
-            "Item (2): H(tau) extraction via the Appell-Lerch mu-term and "
-            "M24 decomposition of A_1..A_8. Implemented the Appell-Lerch "
-            "sum's regularization Psi(tau,z):=T1(tau,z)*S(tau,z) exactly "
-            "(appell.py), with the n=0 pole cancelled ALGEBRAICALLY against "
-            "T1's own factor of (1-y) (no infinite-tail truncation "
-            "anywhere -- see appell.py docstring). But two different, "
-            "independently-plausible readings of how 'the 24*mu-term' "
-            "combines with H(tau)*theta_1^2/eta^3 in the task's shorthand "
-            "gave q,y-gradings that only one of them matched (Z_K3 = "
-            "(theta_1^2/eta^3)*[24*mu*theta_1^2/eta^3-inverse-consistent "
-            "combination]), and even that version FAILED the cross-check "
-            "of extracting H(tau) from two different y-power slices of "
-            "theta_1^2 and getting the SAME answer (they disagreed sharply, "
-            "e.g. leading coefficients -22 vs +2 at q^{-1/8}). Rather than "
-            "report an unverified H(tau)/A_n sequence, or the resulting M24 "
-            "decomposition or the A_2*60=4*A_1*77 identity check built on "
-            "top of it, this is left undone.",
-            "Item (3): the 2A-twined series H_2A and the survival of the "
-            "A_2*60=4*A_1*77 identity under twining, and rigidity scan (a) "
-            "on the '24' in the mu-term -- all depend on the item-(2) "
-            "extraction above and were not attempted once that failed its "
-            "own consistency check.",
+            "Item (2): H(tau) extraction via the Appell-Lerch mu-term, the "
+            "M24 decomposition of A_1..A_8, and the A_2*60=4*A_1*77 "
+            "identity check. What WAS done exactly and finitely (appell.py): "
+            "Psi(tau,z) := T1(tau,z)*S(tau,z), where S is the Appell-Lerch "
+            "sum, with the n=0 term's naive 1/(1-y) pole cancelled "
+            "ALGEBRAICALLY against T1's own exact factor of (1-y) -- no "
+            "infinite-tail truncation or regularization prescription "
+            "anywhere. A candidate normalization with self-consistent q,y "
+            "gradings was found (Z_K3*eta^3 = -24*y^{1/2}*Psi + H*theta_1^2, "
+            "i.e. theta_1^2/eta^3 multiplies the WHOLE bracket [24*mu+H], "
+            "not H alone) and its leading term, read off one y-power slice "
+            "of theta_1^2, landed on H_0=-2 -- matching the task's stated "
+            "polar term. But the DEFINITIVE check (multiply the candidate "
+            "H back through theta_1^2 and compare term-by-term against "
+            "-[Z_K3*eta^3+24*y^{1/2}*Psi], not just one y-slice) shows real "
+            "mismatches starting at the very leading q-order (e.g. at "
+            "q^{1/8}*y^0: 4 from the candidate vs -44 required). This is a "
+            "genuine normalization/formula error, not a coding bug that "
+            "was left unfixed: two DIFFERENT y-power slices (j=0 vs j=2) "
+            "of theta_1^2, which should give the identical y-independent "
+            "H(tau) if the formula were right, disagree outright (+22 vs "
+            "-2 at the leading order; j=2 and j=-2 agreeing with each "
+            "other is a trivial consequence of theta_1^2's y<->1/y "
+            "symmetry, not an independent check). No H(tau)/A_n sequence "
+            "is reported because none was found that passes this check.",
+            "Item (3), the H-dependent half: the 2A-twined series H_2A and "
+            "the survival of the A_2*60=4*A_1*77 identity under twining, "
+            "and rigidity scan (a) on the '24' in the mu-term -- all "
+            "depend on the item-(2) extraction above and were not "
+            "attempted once that failed its own consistency check. The "
+            "mu-FREE half of item (3), Lambda_2 (needed for F_2A = "
+            "16*Lambda_2), WAS computed exactly and cross-checked by an "
+            "independent direct log-derivative computation (see "
+            "lambda_2_and_F_2A above) -- it just cannot be turned into "
+            "H_2A without H.",
         ],
     }
 
