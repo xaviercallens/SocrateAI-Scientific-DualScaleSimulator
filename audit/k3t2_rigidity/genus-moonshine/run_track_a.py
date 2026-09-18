@@ -365,35 +365,69 @@ def main():
         })
 
     # ---- rigidity scan (a): replace the "24" multiplying the mu-term by
-    # N in 20..28; report for which N the resulting H has integer
-    # coefficients AND polar term exactly -2.
+    # N in 20..28. H(N) = H(24) + (N-24)*mu(tau,z), so for N != 24 the
+    # residual (N-24)*mu is manifestly z-dependent and the two y-power
+    # slices MUST disagree -- this is the SAME one-linear-condition
+    # structure as scan (b) (honestly flagged there too), not a sharper
+    # test. What is reported for every N, agreeing or not, is each
+    # slice's own polar coefficient (i=-1, i.e. q^{-1/8}), which is a
+    # concrete, always-defined number usable as a negative control.
     scan_a = []
-    if agree24 and mb_ok:
-        for Ncoef in range(20, 29):
-            Hn, agreeN, _, _ = extract_H(Ncoef, ZK3_eta3_H, y12Psi_H, T1sq_H, imaxH)
-            row = {"N": Ncoef, "slices_agree": agreeN}
-            if agreeN:
-                h0 = Hn.get(-1)
-                row["polar_term"] = str(h0)
-                row["polar_is_minus_2"] = (h0 == Fr(-2))
-                ints = all(v.denominator == 1 for v in Hn.values())
-                row["all_reported_coeffs_integral"] = ints
-                if Ncoef in (23, 25):
-                    row["failing_detail"] = f"H(q^-1/8)={h0}, all_integral={ints}"
-            scan_a.append(row)
+    for Ncoef in range(20, 29):
+        Hn, agreeN, Hj0_N, Hj2_N = extract_H(Ncoef, ZK3_eta3_H, y12Psi_H, T1sq_H, imaxH)
+        h0_j0 = Hj0_N.get(-1)
+        h0_j2 = Hj2_N.get(-1)
+        row = {
+            "N": Ncoef,
+            "slices_agree": agreeN,
+            "polar_term_from_j0_slice": str(h0_j0) if h0_j0 is not None else None,
+            "polar_term_from_j2_slice": str(h0_j2) if h0_j2 is not None else None,
+        }
+        if agreeN:
+            ints = all(v.denominator == 1 for v in Hn.values())
+            row["polar_is_minus_2"] = (h0_j0 == Fr(-2))
+            row["all_reported_coeffs_integral"] = ints
+        scan_a.append(row)
 
     # ---- chi(2A): not given by the task; scan rather than recall it.
     chi2A_scan = []
+    chi2A_polar_solve = None
     if agree24 and mb_ok:
         inv_e3_H = reciprocal_1d({i: v for (i, j), v in e3_H.items() if j == 0}, imaxH, istep=8)
         inv_e3_2d = {(i, 0): v for i, v in inv_e3_H.items()}
         F2A_2d = {(8 * n, 0): 16 * c for n, c in lam2_closed.items() if n <= H_cutoff_q}
         F2A_over_eta3 = mul(F2A_2d, inv_e3_2d, imaxH)
         H24_2d = {(i, 0): v for i, v in H24.items()}
-        for chi in range(0, 25):
+        for chi in range(0, 41):  # widened range to test mod-12 periodicity
             H2A = add(scal(H24_2d, Fr(chi, 24)), scal(F2A_over_eta3, -1))
             ints = all(v.denominator == 1 for v in H2A.values())
-            chi2A_scan.append({"chi_2A": chi, "H_2A_all_coeffs_integral": ints})
+            polar = H2A.get((-1, 0))
+            chi2A_scan.append({
+                "chi_2A": chi,
+                "H_2A_all_coeffs_integral": ints,
+                "H_2A_polar_term": str(polar) if polar is not None else None,
+            })
+        integral_chis = [row["chi_2A"] for row in chi2A_scan if row["H_2A_all_coeffs_integral"]]
+        # Solve, exactly, for the chi that makes H_2A's polar term equal
+        # -2 -- the SAME polar term H(tau) itself has. This "polar term is
+        # g-independent" premise is a literature (tier L) input, NOT
+        # something derived here; the arithmetic that follows from it is
+        # exact (tier B): H_2A's q^{-1/8} coefficient is
+        # -chi/12 - F_2A(q^0)/eta^3(q^{-1/8}-coefficient... ) computed
+        # directly from the already-verified F_2A and 1/eta^3 series.
+        f2a_over_eta3_at_i_minus1 = F2A_over_eta3.get((-1, 0), Fr(0))
+        # H_2A(-1) = chi/24 * H24(-1) - f2a_over_eta3(-1); solve for chi
+        # such that H_2A(-1) = -2 (the same polar term H(tau) itself has):
+        # chi = 24*(-2 + f2a_over_eta3(-1)) / H24(-1)
+        h24_m1 = H24.get(-1)
+        if h24_m1 not in (None, 0):
+            chi_solution = 24 * (Fr(-2) + f2a_over_eta3_at_i_minus1) / h24_m1
+            chi2A_polar_solve = {
+                "F_2A_over_eta3_polar_coeff": str(f2a_over_eta3_at_i_minus1),
+                "H_tau_polar_coeff": str(h24_m1),
+                "chi_2A_solving_H_2A_polar_eq_minus_2": str(chi_solution),
+                "is_integer": (chi_solution.denominator == 1),
+            }
 
     out = {
         "track": "A",
@@ -477,28 +511,61 @@ def main():
         "rigidity_scan_a": {
             "definition": "Replace the '24' multiplying the Appell-Lerch "
                            "mu-term by N in 20..28; for each N re-extract "
-                           "H(tau) (two-slice agreement required) and "
-                           "report whether its polar term is exactly -2 "
-                           "and whether all q^0..q^{cutoff} coefficients "
-                           "are integers.",
+                           "H(tau) from two independent y-power slices "
+                           "(j=0, j=2) of theta_1^2 and report both "
+                           "slices' polar coefficients.",
+            "honesty_note": "H(N) = H(24) + (N-24)*mu(tau,z) algebraically "
+                             "(mu = y^{1/2}*Psi/T1^2), so for N!=24 the "
+                             "residual (N-24)*mu is manifestly "
+                             "z-dependent and the two slices MUST disagree "
+                             "-- this is the same one-linear-condition "
+                             "structure honestly flagged in rigidity_scan_b, "
+                             "not a stronger test. What IS a genuine, "
+                             "computed (not fed-in) fact: N=24 is not "
+                             "assumed anywhere upstream -- it is the "
+                             "specific value at which the two "
+                             "independently-extracted slices happen to "
+                             "agree at all, for every N in the scanned "
+                             "range. The j=2 slice's polar coefficient is "
+                             "-2 for every N (Psi's leading term is pure "
+                             "y^{-1/2}, contributing nothing to theta_1^2's "
+                             "y^1 coefficient), while the j=0 slice's polar "
+                             "coefficient varies linearly with N -- giving "
+                             "an always-defined negative control even when "
+                             "the slices disagree (see polar_term_from_j0_slice "
+                             "for N=23, N=25 below; only N=24 makes the two "
+                             "columns equal).",
             "scan": scan_a,
         },
         "chi_2A_scan_for_H_2A": {
             "definition": "H_2A(tau) := (chi(2A)/24)*H(tau) - F_2A(tau)/eta(tau)^3. "
                            "chi(2A) (the trace of the 2A element of M24 in its "
                            "24-dim permutation representation) is NOT given "
-                           "in the task text, so it is scanned over 0..24 "
-                           "rather than typed in from memory; report which "
-                           "value(s) make H_2A's q^0..q^{cutoff} coefficients "
-                           "all integers.",
+                           "in the task text, so it is scanned (0..40, widened "
+                           "from 0..24 to test periodicity) rather than typed "
+                           "in from memory.",
             "scan": chi2A_scan,
-            "chi_2A_expected_from_memory_unverified": "8 (M24's 24-point "
-                "permutation character at a 2A element, i.e. number of "
-                "fixed points; recalled from general ATLAS/M24 familiarity, "
-                "NOT used anywhere upstream, only compared after the "
-                "fact). The scan above found TWO integral candidates in "
-                "0..24 (8 and 20) at this cutoff -- consistent with, but "
-                "not by itself pinning down, chi(2A)=8.",
+            "integrality_is_periodic_mod_12_note": "Integrality alone does "
+                "NOT discriminate a unique chi(2A): it holds at chi=8 and "
+                "chi=20 in 0..24, AND (by construction, since H_2A depends "
+                "on chi only through chi/24 and H(tau) has integer "
+                "coefficients apart from the fixed q^{-1/8} denominator 24) "
+                "at every chi congruent to 8 mod 12 in the widened 0..40 "
+                "range -- this is a structural periodicity of the "
+                "integrality condition, not a truncation artifact, and "
+                "does NOT by itself pin down chi(2A).",
+            "polar_term_discriminator": chi2A_polar_solve,
+            "polar_term_discriminator_note": "The premise that H_g's polar "
+                "term is the SAME -2 for every M24 conjugacy class g "
+                "(tier L, a literature/moonshine structural fact, NOT "
+                "derived in this file) turns into an exact, computed "
+                "(tier B) linear equation for chi(2A) via the "
+                "already-verified F_2A and 1/eta^3 series; solving it gives "
+                "chi(2A)=8 exactly. Combined with the mod-12 integrality "
+                "family {8,20,32,...} above, chi=8 is the UNIQUE value "
+                "satisfying both conditions in the scanned range. This "
+                "matches the recalled-from-memory value, but was computed "
+                "independently of it.",
         },
         "could_not_do": [
             "The 2A-twined identity check (whether A_2*60=4*A_1*77 survives "

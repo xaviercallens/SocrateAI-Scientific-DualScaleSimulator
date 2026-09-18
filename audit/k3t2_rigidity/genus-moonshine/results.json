@@ -204,154 +204,284 @@
     }
   },
   "rigidity_scan_a": {
-    "definition": "Replace the '24' multiplying the Appell-Lerch mu-term by N in 20..28; for each N re-extract H(tau) (two-slice agreement required) and report whether its polar term is exactly -2 and whether all q^0..q^{cutoff} coefficients are integers.",
+    "definition": "Replace the '24' multiplying the Appell-Lerch mu-term by N in 20..28; for each N re-extract H(tau) from two independent y-power slices (j=0, j=2) of theta_1^2 and report both slices' polar coefficients.",
+    "honesty_note": "H(N) = H(24) + (N-24)*mu(tau,z) algebraically (mu = y^{1/2}*Psi/T1^2), so for N!=24 the residual (N-24)*mu is manifestly z-dependent and the two slices MUST disagree -- this is the same one-linear-condition structure honestly flagged in rigidity_scan_b, not a stronger test. What IS a genuine, computed (not fed-in) fact: N=24 is not assumed anywhere upstream -- it is the specific value at which the two independently-extracted slices happen to agree at all, for every N in the scanned range. The j=2 slice's polar coefficient is -2 for every N (Psi's leading term is pure y^{-1/2}, contributing nothing to theta_1^2's y^1 coefficient), while the j=0 slice's polar coefficient varies linearly with N -- giving an always-defined negative control even when the slices disagree (see polar_term_from_j0_slice for N=23, N=25 below; only N=24 makes the two columns equal).",
     "scan": [
       {
         "N": 20,
-        "slices_agree": false
+        "slices_agree": false,
+        "polar_term_from_j0_slice": null,
+        "polar_term_from_j2_slice": "-2"
       },
       {
         "N": 21,
-        "slices_agree": false
+        "slices_agree": false,
+        "polar_term_from_j0_slice": "-1/2",
+        "polar_term_from_j2_slice": "-2"
       },
       {
         "N": 22,
-        "slices_agree": false
+        "slices_agree": false,
+        "polar_term_from_j0_slice": "-1",
+        "polar_term_from_j2_slice": "-2"
       },
       {
         "N": 23,
-        "slices_agree": false
+        "slices_agree": false,
+        "polar_term_from_j0_slice": "-3/2",
+        "polar_term_from_j2_slice": "-2"
       },
       {
         "N": 24,
         "slices_agree": true,
-        "polar_term": "-2",
+        "polar_term_from_j0_slice": "-2",
+        "polar_term_from_j2_slice": "-2",
         "polar_is_minus_2": true,
         "all_reported_coeffs_integral": true
       },
       {
         "N": 25,
-        "slices_agree": false
+        "slices_agree": false,
+        "polar_term_from_j0_slice": "-5/2",
+        "polar_term_from_j2_slice": "-2"
       },
       {
         "N": 26,
-        "slices_agree": false
+        "slices_agree": false,
+        "polar_term_from_j0_slice": "-3",
+        "polar_term_from_j2_slice": "-2"
       },
       {
         "N": 27,
-        "slices_agree": false
+        "slices_agree": false,
+        "polar_term_from_j0_slice": "-7/2",
+        "polar_term_from_j2_slice": "-2"
       },
       {
         "N": 28,
-        "slices_agree": false
+        "slices_agree": false,
+        "polar_term_from_j0_slice": "-4",
+        "polar_term_from_j2_slice": "-2"
       }
     ]
   },
   "chi_2A_scan_for_H_2A": {
-    "definition": "H_2A(tau) := (chi(2A)/24)*H(tau) - F_2A(tau)/eta(tau)^3. chi(2A) (the trace of the 2A element of M24 in its 24-dim permutation representation) is NOT given in the task text, so it is scanned over 0..24 rather than typed in from memory; report which value(s) make H_2A's q^0..q^{cutoff} coefficients all integers.",
+    "definition": "H_2A(tau) := (chi(2A)/24)*H(tau) - F_2A(tau)/eta(tau)^3. chi(2A) (the trace of the 2A element of M24 in its 24-dim permutation representation) is NOT given in the task text, so it is scanned (0..40, widened from 0..24 to test periodicity) rather than typed in from memory.",
     "scan": [
       {
         "chi_2A": 0,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-4/3"
       },
       {
         "chi_2A": 1,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-17/12"
       },
       {
         "chi_2A": 2,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-3/2"
       },
       {
         "chi_2A": 3,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-19/12"
       },
       {
         "chi_2A": 4,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-5/3"
       },
       {
         "chi_2A": 5,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-7/4"
       },
       {
         "chi_2A": 6,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-11/6"
       },
       {
         "chi_2A": 7,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-23/12"
       },
       {
         "chi_2A": 8,
-        "H_2A_all_coeffs_integral": true
+        "H_2A_all_coeffs_integral": true,
+        "H_2A_polar_term": "-2"
       },
       {
         "chi_2A": 9,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-25/12"
       },
       {
         "chi_2A": 10,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-13/6"
       },
       {
         "chi_2A": 11,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-9/4"
       },
       {
         "chi_2A": 12,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-7/3"
       },
       {
         "chi_2A": 13,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-29/12"
       },
       {
         "chi_2A": 14,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-5/2"
       },
       {
         "chi_2A": 15,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-31/12"
       },
       {
         "chi_2A": 16,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-8/3"
       },
       {
         "chi_2A": 17,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-11/4"
       },
       {
         "chi_2A": 18,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-17/6"
       },
       {
         "chi_2A": 19,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-35/12"
       },
       {
         "chi_2A": 20,
-        "H_2A_all_coeffs_integral": true
+        "H_2A_all_coeffs_integral": true,
+        "H_2A_polar_term": "-3"
       },
       {
         "chi_2A": 21,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-37/12"
       },
       {
         "chi_2A": 22,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-19/6"
       },
       {
         "chi_2A": 23,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-13/4"
       },
       {
         "chi_2A": 24,
-        "H_2A_all_coeffs_integral": false
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-10/3"
+      },
+      {
+        "chi_2A": 25,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-41/12"
+      },
+      {
+        "chi_2A": 26,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-7/2"
+      },
+      {
+        "chi_2A": 27,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-43/12"
+      },
+      {
+        "chi_2A": 28,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-11/3"
+      },
+      {
+        "chi_2A": 29,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-15/4"
+      },
+      {
+        "chi_2A": 30,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-23/6"
+      },
+      {
+        "chi_2A": 31,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-47/12"
+      },
+      {
+        "chi_2A": 32,
+        "H_2A_all_coeffs_integral": true,
+        "H_2A_polar_term": "-4"
+      },
+      {
+        "chi_2A": 33,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-49/12"
+      },
+      {
+        "chi_2A": 34,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-25/6"
+      },
+      {
+        "chi_2A": 35,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-17/4"
+      },
+      {
+        "chi_2A": 36,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-13/3"
+      },
+      {
+        "chi_2A": 37,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-53/12"
+      },
+      {
+        "chi_2A": 38,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-9/2"
+      },
+      {
+        "chi_2A": 39,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-55/12"
+      },
+      {
+        "chi_2A": 40,
+        "H_2A_all_coeffs_integral": false,
+        "H_2A_polar_term": "-14/3"
       }
     ],
-    "chi_2A_expected_from_memory_unverified": "8 (M24's 24-point permutation character at a 2A element, i.e. number of fixed points; recalled from general ATLAS/M24 familiarity, NOT used anywhere upstream, only compared after the fact). The scan above found TWO integral candidates in 0..24 (8 and 20) at this cutoff -- consistent with, but not by itself pinning down, chi(2A)=8."
+    "integrality_is_periodic_mod_12_note": "Integrality alone does NOT discriminate a unique chi(2A): it holds at chi=8 and chi=20 in 0..24, AND (by construction, since H_2A depends on chi only through chi/24 and H(tau) has integer coefficients apart from the fixed q^{-1/8} denominator 24) at every chi congruent to 8 mod 12 in the widened 0..40 range -- this is a structural periodicity of the integrality condition, not a truncation artifact, and does NOT by itself pin down chi(2A).",
+    "polar_term_discriminator": {
+      "F_2A_over_eta3_polar_coeff": "4/3",
+      "H_tau_polar_coeff": "-2",
+      "chi_2A_solving_H_2A_polar_eq_minus_2": "8",
+      "is_integer": true
+    },
+    "polar_term_discriminator_note": "The premise that H_g's polar term is the SAME -2 for every M24 conjugacy class g (tier L, a literature/moonshine structural fact, NOT derived in this file) turns into an exact, computed (tier B) linear equation for chi(2A) via the already-verified F_2A and 1/eta^3 series; solving it gives chi(2A)=8 exactly. Combined with the mod-12 integrality family {8,20,32,...} above, chi=8 is the UNIQUE value satisfying both conditions in the scanned range. This matches the recalled-from-memory value, but was computed independently of it."
   },
   "could_not_do": [
     "The 2A-twined identity check (whether A_2*60=4*A_1*77 survives when A_n is replaced by its 2A-twined counterpart) was not attempted: it needs the FULL 2A-twined elliptic genus Z_K3^{2A}(tau,z) via F_2A's numerator structure combined with theta_1(tau,z)^2 the same way H combines with it, which is a further nontrivial regularization step beyond H_2A(tau) alone (a tau-only object) that time did not allow re-deriving and cross-checking to the same standard as the rest of this file."
