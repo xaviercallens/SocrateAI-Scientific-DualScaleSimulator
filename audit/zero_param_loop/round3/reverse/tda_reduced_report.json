@@ -1,0 +1,81 @@
+{
+  "generated": "2026-09-18",
+  "tool": "gudhi 3.13.0",
+  "seed": 43,
+  "prediction_stated_before_running": {
+    "n_remaining_free_params": 2,
+    "predicted_betti": [
+      1,
+      0
+    ],
+    "reasoning": "2 free params (mu_sym, c4_pta_product), c4_pta_product moves all 15 gamma_theta bins along one direction, mu_sym enters through 2 screening scalars; not a zero-param model so NOT predicting a single point. Same prediction as forward round3/tda.py, restated independently pre-computation for this different-seed check."
+  },
+  "model_cloud_reduced": {
+    "n_stable_sweep_rows": 378,
+    "n_zero_variance_columns": 0,
+    "pca_k": 2,
+    "betti_numbers": [
+      2,
+      0
+    ],
+    "n_points_used": 300
+  },
+  "observed_vs_predicted": {
+    "observed_betti": [
+      2,
+      0
+    ],
+    "predicted_betti": [
+      1,
+      0
+    ],
+    "matches_prediction": false,
+    "forward_round3_model_betti_seed42": [
+      2,
+      0
+    ],
+    "cross_seed_consistent_with_forward": true
+  },
+  "real_cloud": {
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_points_used": 300
+  },
+  "known_answer_control_circle": {
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_H1_bars": 37,
+    "dominant_to_second_H1_bar_ratio": 47.94101689241429,
+    "passes_single_long_H1_bar_check": true
+  },
+  "null_control_poisson_matched_to_real": {
+    "betti_numbers": [
+      1,
+      0
+    ]
+  },
+  "bottleneck_distances": {
+    "model_vs_real_H0": 0.12807891742435012,
+    "model_vs_real_H1": 0.00960328964671131,
+    "null_vs_real_H0": 0.09486098349878896,
+    "null_vs_real_H1": 0.03251828254007749,
+    "half_max_persistence_degeneracy_check_model_vs_real_H1": {
+      "max_persistence_a": 0.01920657929342262,
+      "max_persistence_b": 0.01120568803475069,
+      "dominant_over_2": 0.00960328964671131,
+      "half_max_degeneracy_triggered": false
+    },
+    "half_max_persistence_degeneracy_check_null_vs_real_H1": {
+      "max_persistence_a": 0.065036565080155,
+      "max_persistence_b": 0.01120568803475069,
+      "dominant_over_2": 0.0325182825400775,
+      "half_max_degeneracy_triggered": true
+    },
+    "ordering_model_closer_than_null": true
+  },
+  "caveat": "Same sanity-gate-not-evidence status as round2/round3 forward TDA (round2/ledger.json ordering_survives_variance_matching: false). This reverse-loop TDA is reported for the cross-seed robustness check only."
+}

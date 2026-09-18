@@ -1,0 +1,20 @@
+{
+  "generated": "2026-09-18",
+  "purpose": "REVERSE loop round 3, step 1: independent re-sweep (seed 43) of the REDUCED model, which is numerically identical to the round-3 forward FULL model because neither proposed reduction (mu_sym length bridge, c4_pta_product PTA-scope) was accepted per ../../ledger.json ladder round-3 entry.",
+  "reduced_params_still_free": [
+    "mu_sym",
+    "c4_pta_product"
+  ],
+  "reduction_count_change": "2 -> 2 (no change; this is the honest headline of round 3's reverse loop too)",
+  "sampler": "scipy.stats.qmc.Sobol(d=2, scramble=True, seed=43).random_base2(m=9)",
+  "n_points_total": 513,
+  "n_numerically_stable": 378,
+  "fraction_stable": 0.7368421052631579,
+  "wall_time_seconds_pool6": 5.497241973876953,
+  "mu_sym_stable_range_actually_explored": [
+    0.01010166796774185,
+    14.566019188716801
+  ],
+  "s3_scope_convention_applied": "PTA gamma_theta columns are still computed and written (so the convention decision is auditable) but pta_max_deviation_from_hd is NOT used in chi2_aic_bic.py's fit (retained_for_chi2=False) per the S3 'scope, not derivation' convention -- this does not change the free-parameter count.",
+  "cross_seed_check_vs_forward_round3": "see chi2_aic_bic.py for the chi2 cross-check; TDA cross-seed comparison in tda_reduced.py."
+}
