@@ -1,0 +1,70 @@
+{
+  "track": "C",
+  "item": "5_tadpole_arithmetic",
+  "method": "Euler characteristic from given Betti numbers via alternating sum; Kunneth formula for products verified two ways (direct Betti-number convolution vs. the chi(X)*chi(Y) factorization) and shown to agree, rather than assuming multiplicativity.",
+  "K3": {
+    "betti_numbers_b0_b4": [
+      1,
+      0,
+      22,
+      0,
+      1
+    ],
+    "euler_characteristic": 24,
+    "expected": {
+      "value": 24,
+      "source": "standard K3 fact, from memory, unverified prior to computation"
+    }
+  },
+  "T2": {
+    "betti_numbers_b0_b2": [
+      1,
+      2,
+      1
+    ],
+    "euler_characteristic": 0,
+    "expected": {
+      "value": 0,
+      "source": "standard T^2 fact (torus Euler char = 0), from memory, unverified prior to computation"
+    }
+  },
+  "K3_x_K3": {
+    "betti_numbers_via_kunneth": [
+      1,
+      0,
+      44,
+      0,
+      486,
+      0,
+      44,
+      0,
+      1
+    ],
+    "chi_direct_from_kunneth_betti": 576,
+    "chi_via_multiplicativity_chiX_times_chiY": 576,
+    "two_methods_agree": true,
+    "chi_over_24_exact": "24"
+  },
+  "K3_x_T2": {
+    "betti_numbers_via_kunneth": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+    ],
+    "chi_direct_from_kunneth_betti": 0,
+    "chi_via_multiplicativity_chiX_times_chiY": 0,
+    "two_methods_agree": true,
+    "chi_over_24_exact": "0",
+    "note": "chi(K3 x T2) = chi(K3) * chi(T2) = chi(K3) * 0 = 0, since T2 has vanishing Euler characteristic (it is a group manifold / has a nowhere-vanishing vector field); this is exact, not a numerical coincidence, and follows directly from Kunneth applied to the given Betti numbers."
+  },
+  "negative_control": {
+    "description": "perturbing K3's b2 from 22 to 23 (not the real K3 Hodge number) must change chi",
+    "chi_with_perturbed_betti": 25,
+    "chi_with_true_betti": 24,
+    "control_passes": true
+  }
+}

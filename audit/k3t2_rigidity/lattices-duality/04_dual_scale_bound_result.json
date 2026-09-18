@@ -1,0 +1,104 @@
+{
+  "track": "C",
+  "item": "4_dual_scale_bound",
+  "method": "Exact sympy Rational for random-SPD-sample bound (tr G + tr G^-1 - 2d >= 0, each sample checked exactly); algebraic identity x+1/x-2=(x-1)^2/x checked exactly via sympy; equality-iff-G=I demonstrated by a float perturbation scan around G=I (explicitly marked non-exact -- eigenvalue signs / trace bound are the only floats in this run, per ground rules).",
+  "algebraic_identity_x_plus_1_over_x_minus_2_eq_square_over_x": true,
+  "by_dimension": {
+    "1": {
+      "random_spd_sample_bound": {
+        "n_samples": 2000,
+        "all_f_nonnegative": true,
+        "min_f_observed_exact": "1/2",
+        "exact": true
+      },
+      "perturbation_scan_equality_check": {
+        "f_at_identity_exact_formula": 0.0,
+        "n_perturbations_checked": 180,
+        "min_f_for_eps_neq_0": 5.98775695692666e-09,
+        "violations": [],
+        "equality_iff_G_eq_I_supported": true,
+        "exact": false
+      }
+    },
+    "2": {
+      "random_spd_sample_bound": {
+        "n_samples": 2000,
+        "all_f_nonnegative": true,
+        "min_f_observed_exact": "8/3",
+        "exact": true
+      },
+      "perturbation_scan_equality_check": {
+        "f_at_identity_exact_formula": 0.0,
+        "n_perturbations_checked": 180,
+        "min_f_for_eps_neq_0": 2.867761225466836e-05,
+        "violations": [],
+        "equality_iff_G_eq_I_supported": true,
+        "exact": false
+      }
+    },
+    "3": {
+      "random_spd_sample_bound": {
+        "n_samples": 2000,
+        "all_f_nonnegative": true,
+        "min_f_observed_exact": "463/40",
+        "exact": true
+      },
+      "perturbation_scan_equality_check": {
+        "f_at_identity_exact_formula": 0.0,
+        "n_perturbations_checked": 180,
+        "min_f_for_eps_neq_0": 5.236803264629941e-05,
+        "violations": [],
+        "equality_iff_G_eq_I_supported": true,
+        "exact": false
+      }
+    },
+    "4": {
+      "random_spd_sample_bound": {
+        "n_samples": 2000,
+        "all_f_nonnegative": true,
+        "min_f_observed_exact": "274818/7529",
+        "exact": true
+      },
+      "perturbation_scan_equality_check": {
+        "f_at_identity_exact_formula": 0.0,
+        "n_perturbations_checked": 180,
+        "min_f_for_eps_neq_0": 0.00039224629586342985,
+        "violations": [],
+        "equality_iff_G_eq_I_supported": true,
+        "exact": false
+      }
+    },
+    "5": {
+      "random_spd_sample_bound": {
+        "n_samples": 2000,
+        "all_f_nonnegative": true,
+        "min_f_observed_exact": "7956599/127334",
+        "exact": true
+      },
+      "perturbation_scan_equality_check": {
+        "f_at_identity_exact_formula": 0.0,
+        "n_perturbations_checked": 180,
+        "min_f_for_eps_neq_0": 0.0007258337069835363,
+        "violations": [],
+        "equality_iff_G_eq_I_supported": true,
+        "exact": false
+      }
+    },
+    "6": {
+      "random_spd_sample_bound": {
+        "n_samples": 2000,
+        "all_f_nonnegative": true,
+        "min_f_observed_exact": "1747937976/16576805",
+        "exact": true
+      },
+      "perturbation_scan_equality_check": {
+        "f_at_identity_exact_formula": 0.0,
+        "n_perturbations_checked": 180,
+        "min_f_for_eps_neq_0": 0.0014747950929976383,
+        "violations": [],
+        "equality_iff_G_eq_I_supported": true,
+        "exact": false
+      }
+    }
+  }
+}
