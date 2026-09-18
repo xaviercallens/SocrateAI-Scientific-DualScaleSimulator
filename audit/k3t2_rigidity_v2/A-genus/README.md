@@ -3,8 +3,7 @@
 ## Exact reproduction command
 
 ```
-cd audit/k3t2_rigidity_v2/A-genus
-/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_track_a_v2.py
+cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/A-genus && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_track_a_v2.py
 ```
 
 Runs from a clean checkout of this directory alone (only imports
@@ -60,6 +59,12 @@ and `exports.json` in the current directory (overwriting). Takes ~2s.
 - `negative_control_wrong_class_pairing`: chi=6 (3A's) deliberately paired
   with F_2A (wrong pairing) -- fails integrality and congruence, confirming
   the structural checks have discriminating power (not vacuously true).
+- `negative_control_sharper_mod12_integral_but_wrong`: a SHARPER control,
+  chi=20 (mod-12-congruent to the correct chi(2A)=8, per v1's own finding
+  that integrality is periodic mod 12) paired with F_2A. This wrong
+  pairing PASSES integrality but FAILS the mod-ord(g) congruence check,
+  isolating that the congruence check has discriminating power beyond
+  what integrality alone provides.
 - `lambda_N_cross_checks_match_direct_log_derivative`: Lambda_N closed form
   independently re-derived by direct series log-differentiation for every
   N in {2,3,5,7} used; all match.
@@ -78,9 +83,19 @@ and results.json reflect the corrected run.
 
 ## Could not do
 
-See `could_not_do` in results.json: no literal-free structural condition
-was found for rigidity scan (b) (the overall factor k of Z=k*phi_{0,1});
-both selectors tried are reported as NORMALISATION rather than mislabelled
-RIGID. Everything else in the task's Track A scope was attempted and
-reported, including the negative/failing results (7A's non-integer A_n,
-the 27720 lock failing under every twining).
+See `could_not_do` in results.json (3 entries):
+1. no literal-free structural condition was found for rigidity scan (b)
+   (the overall factor k of Z=k*phi_{0,1}); both selectors tried are
+   reported as NORMALISATION rather than mislabelled RIGID.
+2. the sign-pattern structural check is reported as computed data for all
+   four classes but with NO pass/fail verdict -- there is no literal-free
+   criterion for the "expected" pattern (2A alternates as (-1)^n, 5A does
+   not), so none is asserted post hoc.
+3. v1's `chi_2A_scan` (re-deriving chi(2A) from a polar-term premise) was
+   not repeated, since the task supplies chi(g) directly as tier-L input
+   for all four classes here.
+
+Everything else in the task's Track A scope was attempted and reported,
+including the negative/failing results (7A's non-integer A_n, explained
+via Re(chi_45(7A)) rather than swept aside; the 27720 lock failing under
+every twining).

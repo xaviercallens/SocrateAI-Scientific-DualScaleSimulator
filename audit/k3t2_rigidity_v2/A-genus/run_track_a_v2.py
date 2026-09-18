@@ -547,6 +547,7 @@ def main():
     # F_g with 3A's chi (an obviously WRONG class-function pairing) and show
     # the congruence / integrality structural checks catch it.
     neg_control = None
+    neg_control_sharp = None
     if H24_2d is not None:
         wrong_info = {"ord": 2, "chi": CLASSES["3A"]["chi"], "F_factor": CLASSES["2A"]["F_factor"]}
         wrong_row, raw_wrong, A_wrong = compute_twining_row("wrong", wrong_info, H24_2d, inv_e3_2d,
@@ -563,6 +564,31 @@ def main():
                 "congruence_An_g_equiv_An_mod_ord_g_n_le_8"].items()},
             "congruence_all_hold": wrong_row["congruence_all_hold"],
             "fails_relative_to_2A": wrong_row["congruence_all_hold"] != twining.get("2A", {}).get("congruence_all_hold"),
+        }
+
+        # SHARPER negative control: chi=20 (which v1 found lies in the SAME
+        # mod-12 integrality family as the correct chi(2A)=8 -- i.e.
+        # chi=20+F_2A DOES pass the integrality check) but is still the
+        # wrong class-function pairing. This isolates the congruence
+        # check's OWN discriminating power, independent of integrality.
+        sharp_info = {"ord": 2, "chi": 20, "F_factor": CLASSES["2A"]["F_factor"]}
+        sharp_row, raw_sharp, A_sharp = compute_twining_row("sharp", sharp_info, H24_2d, inv_e3_2d,
+                                                             imaxH, safe24, H24, H_CUTOFF)
+        neg_control_sharp = {
+            "definition": "SHARPER wrong pairing: chi=20 (mod-12-congruent to "
+                           "the correct chi(2A)=8, so integrality alone does "
+                           "NOT catch it -- see H_all_reported_coeffs_integral "
+                           "below) combined with F_2A. Isolates the "
+                           "congruence check's discriminating power "
+                           "independent of the integrality check.",
+            "H_all_reported_coeffs_integral": sharp_row["H_g_all_reported_coeffs_integral"],
+            "A_n_wrong": sharp_row["A_n_g"],
+            "congruence_mod_ord2_holds_per_n": {n: c["congruent"] for n, c in sharp_row[
+                "congruence_An_g_equiv_An_mod_ord_g_n_le_8"].items()},
+            "congruence_all_hold": sharp_row["congruence_all_hold"],
+            "passes_integrality_but_fails_congruence": (
+                sharp_row["H_g_all_reported_coeffs_integral"] and not sharp_row["congruence_all_hold"]
+            ),
         }
 
     out = {
@@ -675,6 +701,7 @@ def main():
         "twining_truncation_stability_cutoff_plus2": twining_stability,
         "lambda_N_cross_checks_match_direct_log_derivative": lambda_cross_checks,
         "negative_control_wrong_class_pairing": neg_control,
+        "negative_control_sharper_mod12_integral_but_wrong": neg_control_sharp,
         "could_not_do": [
             "Rigidity scan (b) (overall factor k of Z=k*phi_{0,1}): no "
             "structural condition (consistency, integrality, modularity, "
@@ -685,6 +712,22 @@ def main():
             "NORMALISATION, per the task's own fallback instruction, "
             "rather than mislabelled RIGID. See "
             "rigidity_scan_b_overall_factor.q0_y1_coefficient_selector.",
+            "Sign-pattern structural check (twining_2A_3A_5A_7A.*."
+            "sign_pattern_n_le_8): reported as computed data (A_n^(g) sign "
+            "vs A_n sign, zero-filled) for all four classes, but NO "
+            "pass/fail verdict is issued -- there is no literal-free "
+            "criterion for what the 'expected' sign pattern should be. "
+            "2A's A_n^(g) alternates strictly as (-1)^n (an observation, "
+            "not a criterion derived independently of seeing the data); "
+            "5A's does not alternate simply (signs +,-,+,+,-,... on its "
+            "nonzero terms). Verdict left open rather than asserting a "
+            "pattern post hoc.",
+            "v1's chi_2A_scan (scanning chi(2A) itself via the "
+            "polar-term-is-minus-2 premise) was NOT repeated in v2: since "
+            "the task supplies chi(g) directly as tier-L input data for "
+            "all four classes, re-scanning for it would not add "
+            "information beyond what v1 already reported; superseded by "
+            "the direct twining computation above.",
         ],
     }
 

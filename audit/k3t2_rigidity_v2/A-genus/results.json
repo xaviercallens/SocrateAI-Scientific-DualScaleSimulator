@@ -714,7 +714,38 @@
     "congruence_all_hold": false,
     "fails_relative_to_2A": true
   },
+  "negative_control_sharper_mod12_integral_but_wrong": {
+    "definition": "SHARPER wrong pairing: chi=20 (mod-12-congruent to the correct chi(2A)=8, so integrality alone does NOT catch it -- see H_all_reported_coeffs_integral below) combined with F_2A. Isolates the congruence check's discriminating power independent of the integrality check.",
+    "H_all_reported_coeffs_integral": true,
+    "A_n_wrong": {
+      "0": "-3/2",
+      "1": "39/2",
+      "2": "245/2",
+      "3": "371",
+      "4": "2319/2",
+      "5": "2870",
+      "6": "14001/2",
+      "7": "30705/2",
+      "8": "32869",
+      "9": "132587/2",
+      "10": "130452"
+    },
+    "congruence_mod_ord2_holds_per_n": {
+      "1": false,
+      "2": false,
+      "3": true,
+      "4": false,
+      "5": true,
+      "6": false,
+      "7": false,
+      "8": true
+    },
+    "congruence_all_hold": false,
+    "passes_integrality_but_fails_congruence": true
+  },
   "could_not_do": [
-    "Rigidity scan (b) (overall factor k of Z=k*phi_{0,1}): no structural condition (consistency, integrality, modularity, exactness, or agreement of two independent computations) that pins k to a unique value WITHOUT referencing the literal targets 24 (Euler char) or 2 (q^0 y^1 coefficient) was found in this session -- both selectors tried are reported as NORMALISATION, per the task's own fallback instruction, rather than mislabelled RIGID. See rigidity_scan_b_overall_factor.q0_y1_coefficient_selector."
+    "Rigidity scan (b) (overall factor k of Z=k*phi_{0,1}): no structural condition (consistency, integrality, modularity, exactness, or agreement of two independent computations) that pins k to a unique value WITHOUT referencing the literal targets 24 (Euler char) or 2 (q^0 y^1 coefficient) was found in this session -- both selectors tried are reported as NORMALISATION, per the task's own fallback instruction, rather than mislabelled RIGID. See rigidity_scan_b_overall_factor.q0_y1_coefficient_selector.",
+    "Sign-pattern structural check (twining_2A_3A_5A_7A.*.sign_pattern_n_le_8): reported as computed data (A_n^(g) sign vs A_n sign, zero-filled) for all four classes, but NO pass/fail verdict is issued -- there is no literal-free criterion for what the 'expected' sign pattern should be. 2A's A_n^(g) alternates strictly as (-1)^n (an observation, not a criterion derived independently of seeing the data); 5A's does not alternate simply (signs +,-,+,+,-,... on its nonzero terms). Verdict left open rather than asserting a pattern post hoc.",
+    "v1's chi_2A_scan (scanning chi(2A) itself via the polar-term-is-minus-2 premise) was NOT repeated in v2: since the task supplies chi(g) directly as tier-L input data for all four classes, re-scanning for it would not add information beyond what v1 already reported; superseded by the direct twining computation above."
   ]
 }
