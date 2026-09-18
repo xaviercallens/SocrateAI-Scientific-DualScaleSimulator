@@ -1,0 +1,49 @@
+{
+  "generated": "2026-09-18",
+  "sampler": "scipy.stats.qmc.Sobol(d=2, scramble=True, seed=42).random_base2(m=9)",
+  "n_points_total": 513,
+  "n_points_sobol": 512,
+  "n_numerically_stable": 381,
+  "n_numerically_unstable": 132,
+  "fraction_stable": 0.7426900584795322,
+  "wall_time_seconds_pool6": 5.264455795288086,
+  "ranges": {
+    "mu_sym_log10_bounds": [
+      -2.0,
+      2.0
+    ],
+    "mu_sym_bounds": [
+      0.01,
+      100.0
+    ],
+    "c4_pta_product_log10_bounds": [
+      -5.0,
+      3.0
+    ],
+    "c4_pta_product_bounds": [
+      1e-05,
+      1000.0
+    ]
+  },
+  "mu_sym_stable_range_actually_explored": [
+    0.010113070181480995,
+    17.153825553255924
+  ],
+  "mu_sym_unstable_range": [
+    4.426465277664195,
+    98.36654391507452
+  ],
+  "instability_mechanism": "known symmetron BVP relaxation-fallback silent divergence to NaN/Inf at large mu_sym (workshopcosmo.run_symmetron_screening_simulation reports success=True regardless; caught via the numerically_stable field, first identified round 1/round 2).",
+  "split_invariance_check_round3": {
+    "same_product_different_split_max_diff": 1.1102230246251565e-16,
+    "different_product_max_diff": 0.08034999999999998,
+    "split_invariance_holds": true,
+    "positive_control_product_change_moves_output": true
+  },
+  "params_held_fixed_at_ledger_values": {
+    "a_pot_b_pot_sector": "DELETED, replaced by frozen flat LCDM (round2/reverse/reduced_model.py, zero free params)",
+    "lambda_sym": 1.0,
+    "pta_suppression_split_denominator": 0.005
+  },
+  "lambda_sym_condition_status": "ROUND-2 CONDITIONAL NOT MET: round2/ledger.json's convention_only_not_counted entry required the psi-form rewrite to 'land next round or this reverts to convention_only'. That code change (deleting lambda_sym from workshopcosmo.py's ODE and from param_loop_sim.py's DEFAULT_PARAMS/signature) was NOT made this round either -- ground rules restrict this worktree to audit/ experiment files, and no separate code-change round was run. Per the ground rules this reverts lambda_sym's removal to 'fixed by convention', 0.5-evidence, reported separately, NOT counted in the free-parameter total. See round3 ledger update."
+}

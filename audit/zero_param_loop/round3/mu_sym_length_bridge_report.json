@@ -1,0 +1,22 @@
+{
+  "generated": "2026-09-18",
+  "inputs_quoted_verbatim": {
+    "planckLength_m": {
+      "value": 1.616255e-35,
+      "file_line": "SelfDualCutoff.lean:96"
+    },
+    "hubbleRadius_m": {
+      "value": 1.3672e+26,
+      "file_line": "SelfDualCutoff.lean:100"
+    }
+  },
+  "self_dual_length_m": 4.700791248290016e-05,
+  "self_dual_length_micron": 47.00791248290016,
+  "named_reference_short_range_gravity_micron": 47.0,
+  "ratio_computed_to_reference": 1.0001683507000034,
+  "agreement_within_10pct": true,
+  "identification_tier": "C",
+  "status": "NOT a reduction. mu_sym has no length calibration anywhere in workshopcosmo.py's symmetron ODE or param_loop_sim.py (it is a bare dimensionless coefficient of the BVP); this number is a candidate target for a future calibration, not a value FOR mu_sym.",
+  "missing_bridge": "A formula relating mu_sym (dimensionless, current model) to 1/self_dual_length_m (or any other physical inverse-length) does not exist in this codebase; would need to be constructed and then tested against a real torsion-balance/short-range-gravity dataset, which is itself ABSENT from data/real/MANIFEST.json (fifth_force_screening entry).",
+  "absent_dataset_needed_to_test": "fifth_force_screening (data/real/MANIFEST.json: status ABSENT)"
+}
