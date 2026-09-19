@@ -1,0 +1,5 @@
+{
+ "lens": "MATHEMATICAL CORRECTNESS",
+ "status": "SKELETON - written first for crash safety; being completed in this session (2026-09-19)",
+ "prior_scripts_rerun_byte_identical": ["skA_twining", "skA_scan_depends_on_k", "skB_immortal", "skC_chain", "skD_kummer N=4", "skD_kummer N=6", "skE_lattice"]
+}
