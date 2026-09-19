@@ -527,8 +527,14 @@
      "r<0.7R_over_nF": 0.9418073355081604
     }
    },
+   "PASS_extension_states": false,
+   "extension_convergence": {
+    "Omega0.70_ext": false,
+    "Omega0.80_ext": true,
+    "Omega0.90_ext": false
+   },
    "PASS": false,
-   "note": "one vortex in the central disk changes the ratio by ~0.05-0.12 (8-18 central vortices); the Omega=0.8 step-cap value 0.841 becomes 0.925 in the extension run"
+   "note": "one vortex in the central disk changes the ratio by ~0.05-0.12 (8-18 central vortices); the Omega=0.8 step-cap value 0.841 becomes 0.925 in the converged extension run. In the extension states all three central densities are inside [0.85, 1.05] (0.915, 0.925, 0.977), but the edge-depletion sub-rule then fails at Omega=0.7 (18 vortices, 1.050 x Omega/pi inside 0.7 R_eff; one vortex above the 1.02 limit). Headline verdict = primary runs (FAIL)."
   },
   "E2c_lattice_tda": {
    "primary": {
@@ -865,9 +871,9 @@
    "points are stored in exact nested-loop raster order (i-major, j-minor): True",
    "displacements from the ideal sites are isotropic Gaussian: std = 0.0435, 0.0414; D'Agostino normality p = 0.72, 0.31; max |residual| 0.116",
    "z column identically [0.0]; lengths dimensionless (no nm/um scale, no field value), no image, no defects, no dislocations",
-   "the only other array is a bare scalar pinning_strength = 1.5",
-   "the NIMS SuperCon database is a database of superconducting materials and critical temperatures, not of vortex images or coordinates; YBCO SQUID images are not distributed as dimensionless 20x15 coordinate lists (statement from general knowledge of the database, not checked online in this run)"
+   "the only other array is a bare scalar pinning_strength = 1.5"
   ],
+  "note_on_named_source": "The contents of the NIMS SuperCon database and of any 'Scanning SQUID Microscopy Benchmark (YBCO)' were not checked online in this run; the verdict rests only on the file-content evidence above.",
   "verdict": "SYNTHETIC: a generated 20 x 15 triangular lattice (a = 1) with ~0.04a Gaussian jitter, labelled with real-source names. Not a measurement. Not used as validation data.",
   "alpha_signature_for_record": {
    "h0": {
@@ -906,6 +912,7 @@
   "E1f_alpha_pairing": true,
   "E2a_h0_equals_winding": false,
   "E2b_feynman": false,
+  "E2b_feynman_extension_states": false,
   "E2c_lattice_tda_rule": true,
   "E2c_psi6_crosscheck": false,
   "E2d_controls": true,
