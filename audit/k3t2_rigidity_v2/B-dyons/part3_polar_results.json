@@ -87,58 +87,60 @@
   "fails_as_expected": true
  },
  "negative_control_joint_perturb_c3_c4": {
-  "QCHK_used": 5,
+  "QCHK_used": 8,
+  "note": "perturbing c(3),c(4) moves B (hence G2_over_A) only -- A, A_{2,1}(=A21) and Hhat do not depend on B's Fourier coefficients and are correctly reused unperturbed at the SAME QCHK; this control therefore tests whether the B-side of the identity is rigid, given the (independently constructed) A-side and Hhat fixed. sanity_zero_perturbation_reproduces_unperturbed_match confirms (0,0) recovers exactly the unperturbed result.",
+  "sanity_zero_perturbation_mismatches (must be 0)": 0,
   "N_M_tested": [
    324,
    648
   ],
   "grid": {
    "(-2,-2)": {
-    "num_mismatches": 54,
+    "num_mismatches": 117,
     "breaks": true
    },
    "(-2,-1)": {
-    "num_mismatches": 54,
+    "num_mismatches": 117,
     "breaks": true
    },
    "(-2,0)": {
-    "num_mismatches": 53,
+    "num_mismatches": 104,
     "breaks": true
    },
    "(-2,1)": {
-    "num_mismatches": 54,
+    "num_mismatches": 117,
     "breaks": true
    },
    "(-2,2)": {
-    "num_mismatches": 54,
+    "num_mismatches": 108,
     "breaks": true
    },
    "(-1,-2)": {
-    "num_mismatches": 54,
+    "num_mismatches": 116,
     "breaks": true
    },
    "(-1,-1)": {
-    "num_mismatches": 54,
+    "num_mismatches": 117,
     "breaks": true
    },
    "(-1,0)": {
-    "num_mismatches": 53,
+    "num_mismatches": 104,
     "breaks": true
    },
    "(-1,1)": {
-    "num_mismatches": 54,
+    "num_mismatches": 108,
     "breaks": true
    },
    "(-1,2)": {
-    "num_mismatches": 40,
+    "num_mismatches": 100,
     "breaks": true
    },
    "(0,-2)": {
-    "num_mismatches": 51,
+    "num_mismatches": 114,
     "breaks": true
    },
    "(0,-1)": {
-    "num_mismatches": 51,
+    "num_mismatches": 114,
     "breaks": true
    },
    "(0,0)": {
@@ -146,56 +148,57 @@
     "breaks": false
    },
    "(0,1)": {
-    "num_mismatches": 51,
+    "num_mismatches": 114,
     "breaks": true
    },
    "(0,2)": {
-    "num_mismatches": 51,
+    "num_mismatches": 114,
     "breaks": true
    },
    "(1,-2)": {
-    "num_mismatches": 40,
+    "num_mismatches": 100,
     "breaks": true
    },
    "(1,-1)": {
-    "num_mismatches": 54,
+    "num_mismatches": 108,
     "breaks": true
    },
    "(1,0)": {
-    "num_mismatches": 53,
+    "num_mismatches": 104,
     "breaks": true
    },
    "(1,1)": {
-    "num_mismatches": 54,
+    "num_mismatches": 117,
     "breaks": true
    },
    "(1,2)": {
-    "num_mismatches": 54,
+    "num_mismatches": 117,
     "breaks": true
    },
    "(2,-2)": {
-    "num_mismatches": 54,
+    "num_mismatches": 108,
     "breaks": true
    },
    "(2,-1)": {
-    "num_mismatches": 54,
+    "num_mismatches": 117,
     "breaks": true
    },
    "(2,0)": {
-    "num_mismatches": 53,
+    "num_mismatches": 104,
     "breaks": true
    },
    "(2,1)": {
-    "num_mismatches": 54,
+    "num_mismatches": 117,
     "breaks": true
    },
    "(2,2)": {
-    "num_mismatches": 54,
+    "num_mismatches": 117,
     "breaks": true
    }
   },
   "survivors (expect only (0,0))": [
    "(0,0)"
   ]
- }
+ },
+ "A21_symmetric_under_l_to_-l_for_n_geq_1": true
 }

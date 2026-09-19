@@ -127,45 +127,50 @@ E4_2d = {(n, 0): v for n, v in E4.items() if n <= QCHK}
 threeE4A_over4 = scal(Fr(3, 4), mul(E4_2d, A, QCHK, None))
 G2_over_A = add(NineB2_over_4A, threeE4A_over4)
 
-# ---- Step 3: A_{2,m}(qchk, ycap), general m -- FIXED s<=-1 branch (see docstring)
+# ---- Step 3: A_{2,m}(qchk, ycap), general m -- FIXED s<=-1 branch (see docstring).
+# Bound s directly by "m*s^2+s <= qchk" (s>=1) / "m*t^2+t <= qchk" (t=-s>=1), NOT by a
+# guessed smax with a skip-if-too-large guard (an earlier version of this function used a
+# fixed smax=int((qchk/m)**0.5)+3 combined with a `continue` on base_n>qchk, which for
+# m=1,QCHK=8 happens to cover everything needed but is not a safe general-m bound and
+# silently drops valid s for larger m -- fixed here to loop exactly while the bound holds).
 def build_A2m(m, qchk, ycap):
     out = {}
-    smax = int((qchk / max(m, 1)) ** 0.5) + 3
-    # s >= 1
-    for s in range(1, smax + 1):
+    # s >= 1: n = m*s^2+s+s*k, l = 2ms+1+k
+    s = 1
+    while m * s * s + s <= qchk:
         base_n = m * s * s + s
-        if base_n > qchk:
-            continue
         kmax = (qchk - base_n) // s
         for k in range(0, kmax + 1):
             n = base_n + s * k
-            if n > qchk:
-                continue
             l = 2 * m * s + 1 + k
-            if abs(l) > ycap:
-                continue
-            out[(n, l)] = out.get((n, l), Fr(0)) + (k + 1)
-    # s = 0
+            if abs(l) <= ycap:
+                out[(n, l)] = out.get((n, l), Fr(0)) + (k + 1)
+        s += 1
+    # s = 0: y/(1-y)^2 = sum_{l>=1} l*y^l, independent of m (base_n=0 always <= qchk)
     for l in range(1, ycap + 1):
         out[(0, l)] = out.get((0, l), Fr(0)) + l
-    # s <= -1 (FIXED): n = m*s^2 - s - s*k = m*t^2 + t + t*k (t=-s>=1), l = 2ms-1-k = -2mt-1-k
-    for t in range(1, smax + 1):
-        s = -t
+    # s <= -1 (FIXED branch): n = m*s^2-s-s*k = m*t^2+t+t*k (t=-s>=1), l=2ms-1-k=-2mt-1-k
+    t = 1
+    while m * t * t + t <= qchk:
         base_n = m * t * t + t
-        if base_n > qchk:
-            continue
         kmax = (qchk - base_n) // t
         for k in range(0, kmax + 1):
             n = base_n + t * k
-            if n > qchk:
-                continue
             l = -2 * m * t - 1 - k
-            if abs(l) > ycap:
-                continue
-            out[(n, l)] = out.get((n, l), Fr(0)) + (k + 1)
+            if abs(l) <= ycap:
+                out[(n, l)] = out.get((n, l), Fr(0)) + (k + 1)
+        t += 1
     return {k: v for k, v in out.items() if v != 0}
 
 A21 = build_A2m(1, QCHK, YCAP)
+
+# sanity: for n>=1, the s>=1 and s<=-1 branches contribute symmetric (k+1) weight to
+# (n,l) and (n,-l) respectively (same base_n formula under s<->t=-s, l<->-l), so A21
+# should be symmetric under l->-l for n>=1 (checked explicitly; the n=0/s=0 branch alone
+# is NOT symmetric, since y/(1-y)^2 only has positive powers of y -- confirmed below, not
+# assumed, and excluded from the check for that documented reason).
+_A21_symmetric_n_geq_1 = all(A21.get((n, l), Fr(0)) == A21.get((n, -l), Fr(0))
+                              for (n, l) in list(A21) if n >= 1)
 
 # ---- REGRESSION CHECK: the v1 bug, precisely (see docstring). Reconstruct v1's (buggy)
 # s<=-1 branch verbatim for comparison, at the exact point the bug first bites (s=-2,k=0).
@@ -373,8 +378,19 @@ def rebuild_and_check(delta3, delta4, qchk, ycap, N_try, M_try):
     mism = sum(1 for k in keys if rem.get(k, Fr(0)) != target.get(k, Fr(0)))
     return mism
 
-QCHK_PERT = 5
+QCHK_PERT = QCHK  # MUST match QCHK: an earlier version used QCHK_PERT=5 while
+# threeE4A_over4 (used inside rebuild_and_check) was the QCHK=8 module-level value -- a
+# truncation-order mismatch that silently made the perturbation test meaningless (caught
+# by the advisor review, not self-discovered). Fixed by using the SAME qchk throughout, so
+# threeE4A_over4, A21, and Hhat (all correctly built once at QCHK -- they do NOT depend on
+# c(3),c(4), only B does, so they are legitimately reused unperturbed) are on the same
+# truncation order as the perturbed invA_l/G2A_p built inside the function.
 N_center, M_center = (solutions[0] if solutions else (None, None))
+# sanity: the zero-perturbation point must reproduce the unperturbed (N,M) match exactly
+sanity_zero_pert_mismatches = (
+    rebuild_and_check(Fr(0), Fr(0), QCHK_PERT, YCAP, N_center, M_center)
+    if N_center is not None else None
+)
 joint_pert_results = {}
 survivors = []
 if N_center is not None:
@@ -403,10 +419,18 @@ result = {
     "negative_control_M0": M0_control,
     "negative_control_joint_perturb_c3_c4": {
         "QCHK_used": QCHK_PERT,
+        "note": "perturbing c(3),c(4) moves B (hence G2_over_A) only -- A, A_{2,1}(=A21) "
+                "and Hhat do not depend on B's Fourier coefficients and are correctly "
+                "reused unperturbed at the SAME QCHK; this control therefore tests "
+                "whether the B-side of the identity is rigid, given the (independently "
+                "constructed) A-side and Hhat fixed. sanity_zero_perturbation_reproduces_unperturbed_match "
+                "confirms (0,0) recovers exactly the unperturbed result.",
+        "sanity_zero_perturbation_mismatches (must be 0)": sanity_zero_pert_mismatches,
         "N_M_tested": [N_center, M_center],
         "grid": joint_pert_results,
         "survivors (expect only (0,0))": survivors,
     },
+    "A21_symmetric_under_l_to_-l_for_n_geq_1": _A21_symmetric_n_geq_1,
 }
 
 with open("part3_polar_results.json", "w") as f:
@@ -418,4 +442,6 @@ print(json.dumps({
     "N_from_tail_slope": str(N_from_slope),
     "M0_control_fails_as_expected": M0_control.get("fails_as_expected"),
     "joint_pert_survivors": survivors,
+    "sanity_zero_pert_mismatches": sanity_zero_pert_mismatches,
+    "A21_symmetric_n_geq_1": _A21_symmetric_n_geq_1,
 }, indent=1))
