@@ -82,3 +82,16 @@ All registered numbers are postulates or imported constants. None is derived fro
 - a replacement for the 27720-based formula for r.
 
 Until then, a failure of P1 or P2 refutes a cosmological postulate. It does not refute K3×T².
+
+## Addendum 2026-09-19 (appended; original rules above unchanged)
+Source: simulator branch `loop/reverse-zero` (E1 commit 4eba061, E3 commit 0c590a5, skeptic commits 240e421/1d42c16/e5cf853, ledger 5b6302e, report 13756dc, errata b77d11a); LeanMaster read-only at `eb791e7` (v3.25.0).
+
+**A1. P1 pipeline action (lines 46-48) executed.** DESI DR2 BAO (ALL_GCcomb, 13×13 cov) + Pantheon+SH0ES full STAT+SYS covariance, 1590 SNe, no CMB, script `audit/reverse_zero/E1-desi-dr2/e1_desi_dr2.py` (not `decisive_experiment.py`). CPL vs Λ, Ω_m free in both: Δχ² = 4.547 (2 dof, 1.63σ), w₀ = −0.896, wₐ = −0.186. ΛCDM fit Ω_Λ = 0.6960 (0.89σ from 0.68885). The falsification rules at lines 40-45 name DESI DR3/final BAO + CMB + SN, Euclid, or Rubin; they are **not applicable** to this dataset, and no verdict on P1 is recorded from it. The published DESI DR2 + CMB + SN 3.1σ (R4) is not reproduced (no CMB likelihood used).
+
+**A2. R3 superseded in accuracy (R3 kept as the historical record).** Same DR1 BAO and same 1590-SN cut: diagonal SN errors give Δχ² = 6.091 (reproduces R3), full STAT+SYS covariance gives Δχ² = 3.191 (1.27σ). R3's 2.0σ is an artefact of neglecting SN covariance.
+
+**A3. Reported, not pre-registered: M0.** M0 = frozen flat ΛCDM with Ω_Λ = 0.68885 (imported Planck18 value), symmetron sector removed, c4_pta_product = 0 (GR). It is a hypothesis change, not a derivation from K3×T². It carries two profiled nuisances (r_d·h, SN offset); H0 is not frozen (R1). DESI DR2 + Pantheon+ full cov (1580 SNe): Δχ²(M0 − fitted ΛCDM) = 0.746 (1 dof, 0.86σ).
+
+**A4. P2.** No new short-range gravity data analysed; the rule at line 58 is not triggered. LeanMaster Stream 6 (STREAM6_EXPERIMENT_PLAN.md:74-83 at `eb791e7`) excludes R = s ≈ 47 µm as an extra-dimension radius and gives κ = 1 under the Tier C identification α′ = s²; this does not remove the (8π)^{1/4} convention spread of line 53.
+
+**A5. No TDA threshold is registered in this file.** The TDA thresholds used on 2026-09-19 (ξ(r) gate RMS z < 3, LOO 95th percentile, Bonferroni over 6) were fixed in script source, not here. Any future TDA or defect test enters this file, with statistic, null, seeds and decision rule, before its data are loaded.
