@@ -1,0 +1,57 @@
+{
+ "N": 4,
+ "T4": {
+  "label": "Kuhn T^4, expected even (spin) and nondegenerate rank 6 (Poincare duality)",
+  "n_simplices_by_dim": [
+   256,
+   3840,
+   12800,
+   15360,
+   6144
+  ],
+  "mod2_fundamental_class_is_cycle": true,
+  "dim_H2_Z2": 6,
+  "gram_symmetric": true,
+  "gram_rank_Z2": 6,
+  "q_on_basis": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "q_identically_zero": true,
+  "q_invariant_under_adding_coboundary_(20 random checks)": true
+ },
+ "Q": {
+  "label": "quotient T^4/Z2, singular orbifold, NOT the K3",
+  "n_simplices_by_dim": [
+   136,
+   1920,
+   6400,
+   7680,
+   3072
+  ],
+  "mod2_fundamental_class_is_cycle": true,
+  "dim_H2_Z2": 11,
+  "gram_symmetric": true,
+  "gram_rank_Z2": 0,
+  "q_on_basis": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "q_identically_zero": true,
+  "q_invariant_under_adding_coboundary_(20 random checks)": true
+ },
+ "scope": "does not decide the K3 parity; see docstring and could_not_do"
+}

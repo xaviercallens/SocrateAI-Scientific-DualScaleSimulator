@@ -1,0 +1,16 @@
+{
+ "chi": 24,
+ "b2": 22,
+ "n_singular": 16,
+ "betti_b0_b4": [
+  1,
+  0,
+  22,
+  0,
+  1
+ ],
+ "chi_K3xT2": 0,
+ "agree_across_N_4_6_8_and_Z3_Z5": true,
+ "generated_by": "04_kunneth_scan_results.py",
+ "status": "computed by exact Mayer-Vietoris on GUDHI Betti numbers; depends on declared input resolution_local_model (tier L)"
+}

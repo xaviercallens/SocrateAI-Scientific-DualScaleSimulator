@@ -1,0 +1,1504 @@
+{
+ "args": [
+  3,
+  4,
+  5,
+  6,
+  7,
+  8
+ ],
+ "N=3": {
+  "N": 3,
+  "n_fixed_points": 1,
+  "orbit_collisions_in_simplices": 240,
+  "fvector_T4": [
+   81,
+   1215,
+   4050,
+   4860,
+   1944
+  ],
+  "fvector_Q": [
+   41,
+   495,
+   1710,
+   2100,
+   852
+  ],
+  "chi_T4_from_f": 0,
+  "chi_Q_from_f": 8,
+  "chi_Q_orbifold_formula_(chiT+n_fixed)/2": 0,
+  "chi_Q_matches_orbifold_formula": false,
+  "quotient_is_regular_f_halving": false,
+  "n_adjacent_singular_pairs(open_stars_meet)": 0,
+  "open_stars_pairwise_disjoint": true,
+  "n_closed_star_violating_pairs": 0,
+  "closed_stars_pairwise_disjoint(v2_criterion)": true,
+  "singular_link_betti_by_field_all_points": {
+   "(0, 0, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   }
+  },
+  "all_singular_links_agree_per_field": {
+   "Z2": true,
+   "Z3": true,
+   "Z5": true
+  },
+  "singular_link_representative": {
+   "Z2": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "singular_link_is_RP3_homology": true,
+  "ordinary_vertex_link": {
+   "Z2": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "ordinary_link_is_S3": true,
+  "runtime_sec": 0.2,
+  "PREMISE_VALID_FOR_MV": false
+ },
+ "N=4": {
+  "N": 4,
+  "n_fixed_points": 16,
+  "orbit_collisions_in_simplices": 0,
+  "fvector_T4": [
+   256,
+   3840,
+   12800,
+   15360,
+   6144
+  ],
+  "fvector_Q": [
+   136,
+   1920,
+   6400,
+   7680,
+   3072
+  ],
+  "chi_T4_from_f": 0,
+  "chi_Q_from_f": 8,
+  "chi_Q_orbifold_formula_(chiT+n_fixed)/2": 8,
+  "chi_Q_matches_orbifold_formula": true,
+  "quotient_is_regular_f_halving": true,
+  "n_adjacent_singular_pairs(open_stars_meet)": 0,
+  "open_stars_pairwise_disjoint": true,
+  "n_closed_star_violating_pairs": 120,
+  "closed_stars_pairwise_disjoint(v2_criterion)": false,
+  "singular_link_betti_by_field_all_points": {
+   "(0, 0, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 0, 0, 2)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 0, 2, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 0, 2, 2)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 2, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 2, 0, 2)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 2, 2, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 2, 2, 2)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(2, 0, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(2, 0, 0, 2)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(2, 0, 2, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(2, 0, 2, 2)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(2, 2, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(2, 2, 0, 2)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(2, 2, 2, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(2, 2, 2, 2)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   }
+  },
+  "all_singular_links_agree_per_field": {
+   "Z2": true,
+   "Z3": true,
+   "Z5": true
+  },
+  "singular_link_representative": {
+   "Z2": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "singular_link_is_RP3_homology": true,
+  "ordinary_vertex_link": {
+   "Z2": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "ordinary_link_is_S3": true,
+  "runtime_sec": 0.4,
+  "PREMISE_VALID_FOR_MV": true
+ },
+ "N=5": {
+  "N": 5,
+  "n_fixed_points": 1,
+  "orbit_collisions_in_simplices": 240,
+  "fvector_T4": [
+   625,
+   9375,
+   31250,
+   37500,
+   15000
+  ],
+  "fvector_Q": [
+   313,
+   4575,
+   15310,
+   18420,
+   7380
+  ],
+  "chi_T4_from_f": 0,
+  "chi_Q_from_f": 8,
+  "chi_Q_orbifold_formula_(chiT+n_fixed)/2": 0,
+  "chi_Q_matches_orbifold_formula": false,
+  "quotient_is_regular_f_halving": false,
+  "n_adjacent_singular_pairs(open_stars_meet)": 0,
+  "open_stars_pairwise_disjoint": true,
+  "n_closed_star_violating_pairs": 0,
+  "closed_stars_pairwise_disjoint(v2_criterion)": true,
+  "singular_link_betti_by_field_all_points": {
+   "(0, 0, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   }
+  },
+  "all_singular_links_agree_per_field": {
+   "Z2": true,
+   "Z3": true,
+   "Z5": true
+  },
+  "singular_link_representative": {
+   "Z2": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "singular_link_is_RP3_homology": true,
+  "ordinary_vertex_link": {
+   "Z2": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "ordinary_link_is_S3": true,
+  "runtime_sec": 0.9,
+  "PREMISE_VALID_FOR_MV": false
+ },
+ "N=6": {
+  "N": 6,
+  "n_fixed_points": 16,
+  "orbit_collisions_in_simplices": 0,
+  "fvector_T4": [
+   1296,
+   19440,
+   64800,
+   77760,
+   31104
+  ],
+  "fvector_Q": [
+   656,
+   9720,
+   32400,
+   38880,
+   15552
+  ],
+  "chi_T4_from_f": 0,
+  "chi_Q_from_f": 8,
+  "chi_Q_orbifold_formula_(chiT+n_fixed)/2": 8,
+  "chi_Q_matches_orbifold_formula": true,
+  "quotient_is_regular_f_halving": true,
+  "n_adjacent_singular_pairs(open_stars_meet)": 0,
+  "open_stars_pairwise_disjoint": true,
+  "n_closed_star_violating_pairs": 0,
+  "closed_stars_pairwise_disjoint(v2_criterion)": true,
+  "singular_link_betti_by_field_all_points": {
+   "(0, 0, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 0, 0, 3)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 0, 3, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 0, 3, 3)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 3, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 3, 0, 3)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 3, 3, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 3, 3, 3)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(3, 0, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(3, 0, 0, 3)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(3, 0, 3, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(3, 0, 3, 3)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(3, 3, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(3, 3, 0, 3)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(3, 3, 3, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(3, 3, 3, 3)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   }
+  },
+  "all_singular_links_agree_per_field": {
+   "Z2": true,
+   "Z3": true,
+   "Z5": true
+  },
+  "singular_link_representative": {
+   "Z2": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "singular_link_is_RP3_homology": true,
+  "ordinary_vertex_link": {
+   "Z2": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "ordinary_link_is_S3": true,
+  "runtime_sec": 2.2,
+  "PREMISE_VALID_FOR_MV": true
+ },
+ "N=7": {
+  "N": 7,
+  "n_fixed_points": 1,
+  "orbit_collisions_in_simplices": 240,
+  "fvector_T4": [
+   2401,
+   36015,
+   120050,
+   144060,
+   57624
+  ],
+  "fvector_Q": [
+   1201,
+   17895,
+   59710,
+   71700,
+   28692
+  ],
+  "chi_T4_from_f": 0,
+  "chi_Q_from_f": 8,
+  "chi_Q_orbifold_formula_(chiT+n_fixed)/2": 0,
+  "chi_Q_matches_orbifold_formula": false,
+  "quotient_is_regular_f_halving": false,
+  "n_adjacent_singular_pairs(open_stars_meet)": 0,
+  "open_stars_pairwise_disjoint": true,
+  "n_closed_star_violating_pairs": 0,
+  "closed_stars_pairwise_disjoint(v2_criterion)": true,
+  "singular_link_betti_by_field_all_points": {
+   "(0, 0, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   }
+  },
+  "all_singular_links_agree_per_field": {
+   "Z2": true,
+   "Z3": true,
+   "Z5": true
+  },
+  "singular_link_representative": {
+   "Z2": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "singular_link_is_RP3_homology": true,
+  "ordinary_vertex_link": {
+   "Z2": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "ordinary_link_is_S3": true,
+  "runtime_sec": 4.2,
+  "PREMISE_VALID_FOR_MV": false
+ },
+ "N=8": {
+  "N": 8,
+  "n_fixed_points": 16,
+  "orbit_collisions_in_simplices": 0,
+  "fvector_T4": [
+   4096,
+   61440,
+   204800,
+   245760,
+   98304
+  ],
+  "fvector_Q": [
+   2056,
+   30720,
+   102400,
+   122880,
+   49152
+  ],
+  "chi_T4_from_f": 0,
+  "chi_Q_from_f": 8,
+  "chi_Q_orbifold_formula_(chiT+n_fixed)/2": 8,
+  "chi_Q_matches_orbifold_formula": true,
+  "quotient_is_regular_f_halving": true,
+  "n_adjacent_singular_pairs(open_stars_meet)": 0,
+  "open_stars_pairwise_disjoint": true,
+  "n_closed_star_violating_pairs": 0,
+  "closed_stars_pairwise_disjoint(v2_criterion)": true,
+  "singular_link_betti_by_field_all_points": {
+   "(0, 0, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 0, 0, 4)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 0, 4, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 0, 4, 4)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 4, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 4, 0, 4)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 4, 4, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(0, 4, 4, 4)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(4, 0, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(4, 0, 0, 4)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(4, 0, 4, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(4, 0, 4, 4)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(4, 4, 0, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(4, 4, 0, 4)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(4, 4, 4, 0)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "(4, 4, 4, 4)": {
+    "Z2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "Z3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "Z5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   }
+  },
+  "all_singular_links_agree_per_field": {
+   "Z2": true,
+   "Z3": true,
+   "Z5": true
+  },
+  "singular_link_representative": {
+   "Z2": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "singular_link_is_RP3_homology": true,
+  "ordinary_vertex_link": {
+   "Z2": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z3": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "Z5": [
+    1,
+    0,
+    0,
+    1
+   ]
+  },
+  "ordinary_link_is_S3": true,
+  "runtime_sec": 8.4,
+  "PREMISE_VALID_FOR_MV": true
+ }
+}
