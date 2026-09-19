@@ -1,0 +1,37 @@
+{
+  "note": "The round-2 task text's 'LEANMASTER AT HEAD' block asserts LeanMaster HEAD is eb791e7 (v3.25.0) with no commits since. That is stale: LeanMaster has advanced since that block was computed. Re-verified independently below at the ACTUAL current HEAD.",
+  "actual_head_at_time_of_this_check": "64f905ffc63c07b4d7ec4b3a7a62bc975239f60d",
+  "describe": "v3.28.0",
+  "commits_since_eb791e7": [
+    "64f905f LeanMaster as an MCP server for other Claude sessions and projects; README S8 rewritten on leanstack; docstring fix",
+    "225abc5 Stream 8 open question 2 answered (orbifold weights); gate tools cover @[simp] theorems; leanstack (LeanCache/LeanMemory/LeanDatastore/LeanGraph/LeanRAG)",
+    "404f4b9 LL S8.5: spell out why standard U2(Z[w]) is monomial; the 96/72 counts stand",
+    "1ff4e25 Stream 8 P8.4c: trapping on the K3 factor selects SO(40); globally SO(44), not a product point; LL S8"
+  ],
+  "commits_since_eb791e7_command": "cd /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster && git log eb791e7..HEAD --oneline",
+  "prohibited_term_search": [
+    {
+      "topic": "mu_sym",
+      "command": "cd /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster && git grep -F -i 'mu_sym' HEAD -- .",
+      "result": "NOT FOUND (no output, full working tree at HEAD, not just the last commit's diff)"
+    },
+    {
+      "topic": "c4_pta",
+      "command": "cd /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster && git grep -F -i 'c4_pta' HEAD -- .",
+      "result": "NOT FOUND"
+    },
+    {
+      "topic": "unit-bearing",
+      "command": "cd /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster && git grep -F -i 'unit-bearing' HEAD -- .",
+      "result": "NOT FOUND"
+    },
+    {
+      "topic": "TDA prediction",
+      "command": "cd /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster && git grep -i -E 'TDA.*prediction' HEAD -- .",
+      "result": "NOT FOUND"
+    }
+  ],
+  "method_note": "git show <commit> | grep (as the task's LEANMASTER AT HEAD block used) only searches that one commit's DIFF, not the whole repository tree, so it is not a reliable absence check by itself; git grep <term> HEAD -- . searches the full tree at that commit and is used here instead.",
+  "consequence_for_x3": "No LeanMaster statement at the true current HEAD (64f905f) mentions mu_sym, c4_pta_product, 'unit-bearing', or a TDA prediction, consistent with the task's claim, but via an independently re-run, full-tree check rather than by re-quoting the (stale) supplied block verbatim.",
+  "leanmaster_read_only": "LeanMaster was not modified; only 'git log', 'git grep' and 'git show' (read-only) were run."
+}

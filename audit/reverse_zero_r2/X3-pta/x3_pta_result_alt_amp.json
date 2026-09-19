@@ -1,0 +1,167 @@
+{
+ "n_pulsars_used": 66,
+ "n_pulsars_selected": 67,
+ "dropped_pulsars": [
+  "J1713+0747"
+ ],
+ "n_pairs": 2145,
+ "n_bins": 7,
+ "bin_edges_rad": [
+  0.016645904256451235,
+  0.5189847786440952,
+  0.834889979974975,
+  1.1480241645153657,
+  1.5319674992778147,
+  1.9283181934956395,
+  2.3970460161622187,
+  3.119919066991236
+ ],
+ "bin_npairs": [
+  306,
+  307,
+  306,
+  307,
+  306,
+  307,
+  306
+ ],
+ "rho_bin": [
+  1.617443302232014e-30,
+  2.604528360499366e-30,
+  7.918563675435885e-31,
+  -2.1782007818004747e-30,
+  -1.3903289806833342e-30,
+  -1.1355417362037448e-30,
+  5.4801075324770705e-31
+ ],
+ "design_HD_bin": [
+  0.341214928321915,
+  0.11380787555891592,
+  -0.05470968585381004,
+  -0.14287816988745103,
+  -0.11393962887408189,
+  0.002436318729903605,
+  0.17076406098115968
+ ],
+ "design_P4_bin": [
+  0.49236337160438115,
+  -0.24596075309510781,
+  -0.33982275006258955,
+  0.18079857465239113,
+  0.24032196217354482,
+  -0.2772446290550968,
+  0.13729985448694915
+ ],
+ "jackknife_covariance": [
+  [
+   5.03039117905766e-60,
+   1.2434589959491032e-60,
+   7.730931852358773e-61,
+   9.347335703172163e-61,
+   -9.983133516824252e-61,
+   -6.070496925567726e-61,
+   6.834062635384068e-61
+  ],
+  [
+   1.2434589959491031e-60,
+   1.0882097221795366e-59,
+   2.090297004439134e-61,
+   -6.461922792452131e-61,
+   -1.3939781662510688e-60,
+   4.0870389559275006e-64,
+   8.523832215707475e-61
+  ],
+  [
+   7.730931852358773e-61,
+   2.090297004439133e-61,
+   5.701704644802584e-60,
+   -4.830931060216846e-61,
+   -1.3261368584276968e-60,
+   -1.62229025041454e-60,
+   -3.366402332236019e-61
+  ],
+  [
+   9.347335703172162e-61,
+   -6.461922792452131e-61,
+   -4.830931060216846e-61,
+   5.86124447115805e-60,
+   -8.430097520301688e-61,
+   2.2063563138388532e-60,
+   -5.453553787457805e-61
+  ],
+  [
+   -9.983133516824252e-61,
+   -1.393978166251069e-60,
+   -1.3261368584276968e-60,
+   -8.430097520301688e-61,
+   8.000032756277577e-60,
+   -1.5923551824032108e-60,
+   4.692806963942151e-61
+  ],
+  [
+   -6.070496925567726e-61,
+   4.087038955929914e-64,
+   -1.62229025041454e-60,
+   2.206356313838853e-60,
+   -1.5923551824032108e-60,
+   1.2955267900966743e-59,
+   -5.1976412474502616e-61
+  ],
+  [
+   6.834062635384067e-61,
+   8.523832215707476e-61,
+   -3.366402332236017e-61,
+   -5.4535537874578026e-61,
+   4.692806963942152e-61,
+   -5.1976412474502616e-61,
+   1.447709589813569e-59
+  ]
+ ],
+ "a_hat": 8.325478762045347e-30,
+ "b_hat": -2.6976179150835544e-30,
+ "Var_a": 4.1089088188636295e-59,
+ "Var_b": 1.4130906494039694e-59,
+ "Cov_ab": -1.3796567112190461e-59,
+ "c4_pta_product": -0.3240195539722718,
+ "c4_interval_68": {
+  "bounded": true,
+  "lo": -0.887477352592262,
+  "hi": 0.273660317207091
+ },
+ "c4_interval_95": {
+  "bounded": false,
+  "note": "denominator term a^2 - k*Var(a) <= 0: interval is unbounded (or the complement of a bounded interval)"
+ },
+ "a_hat_snr_sigma": 1.2988110215226076,
+ "a_hat_snr_note": "HD amplitude a_hat is only ~1.30 sigma from zero; the 95% Fieller interval is bounded but marginally so (a bit less HD signal and the registered rule would report 'no bound' instead of an interval).",
+ "monopole_amplitude_marginalized": -8.09337186819401e-32,
+ "monopole_sigma_marginalized": 9.461772386097277e-31,
+ "monopole_z_marginalized": -0.08553758786341198,
+ "dipole_amplitude_marginalized": 6.698182998203177e-31,
+ "dipole_sigma_marginalized": 1.918270434987762e-30,
+ "dipole_z_marginalized": 0.3491782428605229,
+ "monopole_z_single_regressor_unmarginalized": -0.08545566110998574,
+ "dipole_z_single_regressor_unmarginalized": 0.6673534986697691,
+ "negative_control_note": "Monopole/dipole amplitudes are fit JOINTLY with HD+P4 (3-parameter GLS), since a single-regressor fit is confounded by the real HD signal (monopole and HD are not orthogonal over 7 bins). The single-regressor z-scores are reported too, for comparison, and are not the primary number.",
+ "sky_scramble_n": 1000,
+ "sky_scramble_seed_rule": "8000000+k (k<1000)",
+ "gate_mean_chi2_over_dof": 0.42433560076175364,
+ "gate_mean_chi2_over_dof_raw_dof7": 0.42433560076175364,
+ "gate_mean_chi2_over_dof_postfit_dof5": 0.3350665709311315,
+ "gate_statistic_note": "Two candidate gate statistics were computed: the raw scrambled bin vector against C (dof=7, matches the registration's literal 'chi2/7'), and the post-GLS-fit residual (dof=7-2=5, which would read ~5/7=0.71 even for a perfectly calibrated C purely from fitting away 2 of 7 dof). The registered wording is read as selecting the dof=7 statistic; the dof=5 number is reported alongside, not discarded.",
+ "gate_pass": false,
+ "fixed_curn": {
+  "gamma": 4.333333333333333,
+  "log10_A": -14.0,
+  "n_freq": 14,
+  "note": "NOT ATTEMPTED: fetching/citing the exact NANOGrav 15-yr gamma=13/3 CURN amplitude this round; this value is a representative fixed value, not attributed to a specific NANOGrav table. See the sensitivity deviation below (or, in the alt run, the base-run comparison) for the effect of changing it."
+ },
+ "deviations": [
+  "Registered '7x7 covariance that includes shared-pulsar correlations' has no analytic implementation in enterprise_extensions 3.0.3 (grep of frequentist/*.py for pair_cov/covariance found none). Substituted a delete-one-pulsar jackknife covariance over the n_pulsars_used pulsars, which by construction removes all pairs sharing a pulsar together and so captures shared-pulsar correlation empirically rather than analytically.",
+  "Sky-scramble gate reuses the real-data jackknife covariance C for every scramble instead of recomputing a fresh 66-pulsar jackknife per scramble (1000x cost), for runtime under the stated budget. Effect: the gate checks whether the scrambled-sky chi2 is consistent with dof=7 under the REAL covariance, not a scramble-specific one.",
+  "J1713+0747 (59395 TOAs, 33 backend .tim files) is excluded: PINT Pulsar() construction did not complete in 3 attempts of ~10 minutes (foreground, prlimit 10GB) each; not a data-quality exclusion. J1713+0747 is one of the highest-timing-precision pulsars in the array, so its exclusion plausibly costs real HD signal-to-noise (relevant given a_hat_snr_sigma is only moderate); the direction of the resulting shift in c4_pta_product is not known and is the top item for a follow-up round, not something further wall-clock in this round should chase.",
+  "SENSITIVITY (log10_A_CURN): a full 66-pulsar rerun at log10_A=-14.0 instead of the default -14.62 (x3_persr.py --log10a -14.0 --outdir cache_alt_amp) gives c4_pta_product=-0.324 (vs -0.187 here), an UNBOUNDED 95% Fieller interval, and a FAILING sky-scramble gate (mean chi2/7=0.424). c4_pta_product is NOT invariant to this assumed fixed amplitude; see x3_pta_result_alt_amp.json. The bound in this file should be read as conditional on log10_A_CURN=-14.62 (itself NOT ATTEMPTED to verify against the NANOGrav 15-yr paper this round -- see x3_common.py), not as amplitude-independent.",
+  "No pulsar subset was named in the registration beyond '14 frequencies, gamma=13/3, fixed noise'; the working subset (66 pulsars) is the full narrowband release minus per-telescope split duplicates (ao/gbt entries where a combined entry exists) and one dropped for TOA-span < 3 yr (J0614-3329), chosen by tim-file MJDs only (data-blind to residuals/correlations), plus the single computational exclusion above."
+ ],
+ "wall_seconds": 9.974581480026245
+}
