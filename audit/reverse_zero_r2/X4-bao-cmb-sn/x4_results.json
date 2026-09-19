@@ -1,0 +1,1142 @@
+{
+ "id": "X4",
+ "script": "audit/reverse_zero_r2/X4-bao-cmb-sn/x4_bao_cmb_sn.py (+ x4_core.py, x4_camb_check.py, x4_fetch_prior.py)",
+ "commands": [
+  "cd audit/reverse_zero_r2/X4-bao-cmb-sn && <venv python> x4_fetch_prior.py",
+  "cd audit/reverse_zero_r2/X4-bao-cmb-sn && prlimit --as=10737418240 -- <venv python> x4_camb_check.py",
+  "cd audit/reverse_zero_r2/X4-bao-cmb-sn && prlimit --as=10737418240 -- <venv python> x4_bao_cmb_sn.py regress --cut {1580,1590}",
+  "cd audit/reverse_zero_r2/X4-bao-cmb-sn && prlimit --as=10737418240 -- <venv python> x4_bao_cmb_sn.py fit --cut {1580,1590} --model {m0,lcdm,cpl} --start-lo I --start-hi J   (starts 0..19)",
+  "cd audit/reverse_zero_r2/X4-bao-cmb-sn && prlimit --as=10737418240 -- <venv python> x4_bao_cmb_sn.py polish --cut {1580,1590} --model {m0,lcdm,cpl}",
+  "cd audit/reverse_zero_r2/X4-bao-cmb-sn && prlimit --as=10737418240 -- <venv python> x4_bao_cmb_sn.py assemble"
+ ],
+ "seeds": "minimiser starts default_rng(9000000 + start_index), start_index 0..19 (registered); r_d table validation default_rng(9100000); no other randomness",
+ "framing": "M0 = frozen flat LCDM with the imported Planck18 Omega_Lambda = 0.68885, GR tensor sector, no symmetron sector: a hypothesis change, NOT a derivation from K3xT2. It carries profiled/free nuisances (h, omega_b free in the CMB-included fit; SN offset profiled). LeanMaster Stream 8 records 'Observables: none'. Nothing here says K3xT2 predicts or fixes mu_sym, c4, Omega_Lambda or any TDA outcome.",
+ "tier": "X (data fit)",
+ "registration": {
+  "commit": "9e6705e940f35aef8b377ec3631f62ba3d52aea4",
+  "file": "audit/reverse_zero_r2/registration/registration.json",
+  "file_sha256_equals_commit_blob": true,
+  "commit_is_ancestor_of_HEAD": true,
+  "registered_test_X4_full": {
+   "title": "DESI DR2 BAO + compressed CMB (distance priors) + Pantheon+ full covariance: CPL vs Lambda (informational for PRE_REGISTRATION P1, the cosmological constant)",
+   "tier": "X",
+   "status_for_P1": "INFORMATIONAL / pipeline action. PRE_REGISTRATION P1 names DR3 or final BAO + CMB + SN, Euclid or Rubin; DR2 is none of them. No P1 verdict follows from X4, whatever the number.",
+   "data": {
+    "bao": "data/real2/dark_energy/desi_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt and ..._cov.txt (13 measurements, 13 x 13 covariance)",
+    "sn": "data/real/dark_energy/pantheon_plus_sh0es.dat with data/real2/dark_energy/Pantheon+SH0ES_STAT+SYS.cov; ONE cut everywhere: zHD > 0.01, zHD <= 2.4, IS_CALIBRATOR == 0, giving 1580 SNe, the covariance sliced by the same boolean mask. The 1590 variant (no IS_CALIBRATOR filter) is DISCLOSED as a secondary run, never mixed with the primary. Sample size is asserted equal to 1580 (primary) or 1590 (variant) before the fit; otherwise the run stops.",
+    "cmb": "compressed CMB distance priors (R, l_A, omega_b) with their covariance for Planck 2018 (TT,TE,EE+lowE) from Chen, Huang & Wang, 'Distance priors from Planck final release' (JCAP 2019; arXiv id 1808.05724 recalled at registration, to be verified by fetch). X4 must copy the values from the paper's table, cite table and page, and mark ABSENT (no CMB result) if the table cannot be fetched after 3 attempts. No numbers are inserted from memory. The table variant (LCDM vs wCDM) used is stated by X4; priors were derived for restricted models, so applying them to CPL is an approximation (tier X, stated)."
+   },
+   "models": {
+    "M0": "flat LCDM, Omega_Lambda = 0.68885 frozen (Omega_m = 0.31115); free: h, omega_b",
+    "Lambda": "flat LCDM; free: Omega_m, h, omega_b",
+    "CPL": "flat w0waCDM; free: Omega_m, h, omega_b, w0, wa (Lambda is the nested point w0 = -1, wa = 0)",
+    "nuisances": "SN absolute-magnitude offset profiled analytically; BAO uses D/r_d with r_d computed from (omega_b, omega_m) by one stated fitting formula, NOT profiled when the CMB priors are included (X4 also reports the r_d*h-profiled BAO+SN fit as a disclosed variant, since this is the M0 nuisance convention).",
+    "cmb_observables": "R = sqrt(Omega_m H0^2) D_M(z*)/c, l_A = pi D_M(z*)/r_s(z*), with z* from the Hu & Sugiyama fitting formula as used in the distance-prior papers; radiation from Tcmb = 2.7255 K, Neff = 3.046; massless neutrinos (approximation stated)."
+   },
+   "statistics": {
+    "delta_chi2_CPL_vs_Lambda": "chi2_min(Lambda) - chi2_min(CPL), 2 dof",
+    "delta_chi2_Lambda_vs_M0": "chi2_min(M0) - chi2_min(Lambda), 1 dof",
+    "sigma": "p = scipy.stats.chi2.sf(delta, dof); sigma = scipy.stats.norm.isf(p/2)",
+    "minimiser": "scipy.optimize with 20 seeded random starts (seed 9000000 + start) per model; best chi2 kept; all starts reported"
+   },
+   "num_tests": 2,
+   "effective_number_of_tests": {
+    "N_eff": 1,
+    "reason": "CPL vs Lambda is the primary comparison; Lambda vs M0 is reported alongside and is not corrected. The result is informational, not a rejection test."
+   },
+   "decision_rule": {
+    "thresholds_for_context_only": {
+     "2dof_3sigma": 11.83,
+     "2dof_5sigma": 28.74,
+     "1dof_3sigma": 9.0,
+     "1dof_5sigma": 25.0,
+     "source": "PRE_REGISTRATION.md threshold table, recomputed with scipy here; it is a table, not a rule for this comparison"
+    },
+    "reporting": "X4 reports Delta chi2, the p-value and sigma for each comparison, primary (1580) and disclosed (1590) cuts, and says 'DR2, informational for PRE_REGISTRATION P1; not a P1 verdict'. Words such as 'falsified' or 'confirmed' are not used. Because the CMB priors are an approximation, X4 also states that the published DR2 combination (PRE_REGISTRATION R4, 3.1 sigma with the full CMB likelihood) is not re-analysed here.",
+    "for_M0": "M0 vs Lambda: Delta chi2 with 1 dof; M0 'not rejected' if p >= 0.05, else 'disfavoured relative to fitted Lambda at that DR2 combination', still no P1 verdict."
+   },
+   "data_files": {
+    "data/real2/dark_energy/desi_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt": 472,
+    "data/real2/dark_energy/desi_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt": 2547,
+    "data/real/dark_energy/pantheon_plus_sh0es.dat": 579283,
+    "data/real2/dark_energy/Pantheon+SH0ES_STAT+SYS.cov": 33284960
+   }
+  },
+  "deviations": [
+   {
+    "what": "CPL minimiser rejects w0+wa >= 0 with a smooth penalty (a DESI-style prior), which the registered spec for CPL ('free: Omega_m, h, omega_b, w0, wa') does not impose.",
+    "reason": "carried over from the E1-style convention (round 2) to keep the minimiser away from a numerically pathological corner; not requested by X4's own registration.",
+    "effect": "inactive at every reported CPL best fit: w0+wa = -1.368 (1580) and -1.363 (1590), both well inside the unconstrained region, so the penalty changes none of the reported chi2/sigma numbers."
+   },
+   {
+    "what": "r_drag(omega_b, omega_m) is supplied by a CAMB-2.0.4-built bicubic-spline interpolation table (data/camb_rd_table.npz), not a hand-coded closed-form fitting formula (e.g. Eisenstein & Hu 1998).",
+    "reason": "the registered spec asks for r_d 'computed from (omega_b, omega_m) by one stated fitting formula'; CAMB is available in this environment and is more accurate than any closed-form fit.",
+    "effect": "validated to a maximum 1.4e-5 relative error against direct CAMB calls at 40 seeded points (seed 9100000, x4_camb_check.json.rd_spline_vs_camb); a strengthening, not a weakening, of the registered method."
+   },
+   {
+    "what": "the sample-size assert in x4_core.py (assert int(m.sum()) == cut) was added to the source file after this run's fits had already completed.",
+    "reason": "the registered spec requires the sample size be asserted before the fit; it is a no-op guard (both cuts already gave exactly 1580/1590), added for future reruns of this same script.",
+    "effect": "none on the numbers reported here, since assemble does not reload the SN data; disclosed for transparency about the order of operations in this run."
+   }
+  ]
+ },
+ "quotes_verbatim": [
+  {
+   "quote": "- 2 dof: \u0394\u03c7\u00b2 = 11.83 is 3\u03c3, and 28.74 is 5\u03c3.",
+   "command": "grep -F -- '- 2 dof: \u0394\u03c7\u00b2 = 11.83 is 3\u03c3, and 28.74 is 5\u03c3.' /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/audit/PRE_REGISTRATION.md",
+   "matched": true
+  },
+  {
+   "quote": "- 1 dof: \u0394\u03c7\u00b2 = 9.00 is 3\u03c3, and 25.00 is 5\u03c3;",
+   "command": "grep -F -- '- 1 dof: \u0394\u03c7\u00b2 = 9.00 is 3\u03c3, and 25.00 is 5\u03c3;' /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/audit/PRE_REGISTRATION.md",
+   "matched": true
+  },
+  {
+   "quote": "- **Falsified if** any of these, analysed with full published covariances, prefers the w\u2080 > \u22121, w\u2090 < 0 quadrant over w = \u22121 at **\u2265 5\u03c3 (\u0394\u03c7\u00b2 \u2265 28.74, 2 dof)**:",
+   "command": "grep -F -- '- **Falsified if** any of these, analysed with full published covariances, prefers the w\u2080 > \u22121, w\u2090 < 0 quadrant over w = \u22121 at **\u2265 5\u03c3 (\u0394\u03c7\u00b2 \u2265 28.74, 2 dof)**:' /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/audit/PRE_REGISTRATION.md",
+   "matched": true
+  },
+  {
+   "quote": "  - DESI DR3 or final BAO combined with CMB and any one major SN compilation;",
+   "command": "grep -F -- '  - DESI DR3 or final BAO combined with CMB and any one major SN compilation;' /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/audit/PRE_REGISTRATION.md",
+   "matched": true
+  },
+  {
+   "quote": "| R4 | w = \u22121 exactly | DESI DR2 BAO + CMB + SNe (arXiv:2503.14738, 2503.14743), as recorded in LeanMaster `DualScaleValidation/Observables.lean` module docstring | **Disfavored at 3.1\u03c3**",
+   "command": "grep -F -- '| R4 | w = \u22121 exactly | DESI DR2 BAO + CMB + SNe (arXiv:2503.14738, 2503.14743), as recorded in LeanMaster `DualScaleValidation/Observables.lean` module docstring | **Disfavored at 3.1\u03c3**' /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/audit/PRE_REGISTRATION.md",
+   "matched": true
+  },
+  {
+   "quote": "preferred over $\\Lambda$CDM at $3.1\\sigma$ for DESI BAO combined with CMB and supernovae",
+   "command": "git -C /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster show eb791e7:DualScaleValidation/Observables.lean | grep -F -- 'preferred over $\\Lambda$CDM at $3.1\\sigma$ for DESI BAO combined with CMB and supernovae'",
+   "matched": true
+  },
+  {
+   "quote": "Observables: none",
+   "command": "git -C /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster show eb791e7:docs/STREAM8_WHICH_K3.md | grep -F -- 'Observables: none'",
+   "matched": true
+  }
+ ],
+ "paper": {
+  "citation": "Chen, Huang & Wang, 'Distance Priors from Planck Final Release', arXiv:1808.05724, JCAP 02 (2019) 028 (doi 10.1088/1475-7516/2019/02/028), from arXiv metadata in data/fetch_log.json",
+  "fetch_log": {
+   "attempts": {
+    "abs": 1,
+    "pdf": 1,
+    "eprint": 1
+   },
+   "sha256": {
+    "abs": "aa9c9747260adac3331a04412b9626855236c77dab7901e8af9f9c03248724d8",
+    "pdf": "09effe1d0d8caa0173bf8c826a621fb3606ab884a4d2931b198212a4f47310b5",
+    "eprint": "9a01121d3a36ff2fd00b39023906e030a4044b9581a5596b7c0e7b535ec4a110"
+   },
+   "bytes": {
+    "abs": 41513,
+    "pdf": 6273047,
+    "eprint": 5832773
+   },
+   "arxiv_metadata": {
+    "title": [
+     "Distance Priors from Planck Final Release"
+    ],
+    "author": [
+     "Chen, Lu",
+     "Huang, Qing-Guo",
+     "Wang, Ke"
+    ],
+    "doi": [
+     "10.1088/1475-7516/2019/02/028"
+    ],
+    "date": [
+     "2018/08/17"
+    ],
+    "arxiv_id": [
+     "1808.05724"
+    ]
+   },
+   "tex_member": "distance-priors-2018.tex",
+   "tex_sha256": "b63854bd0fd48bd80d6bff224be64b3ab0bb0b8a730486da04bf2fc2883e2888"
+  },
+  "tex_source": "audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+  "tex_sha256": "b63854bd0fd48bd80d6bff224be64b3ab0bb0b8a730486da04bf2fc2883e2888",
+  "verbatim_lines": {
+   "table_LCDM_R_row": {
+    "tex_line": 140,
+    "text": "$R$                                           & $1.7502\\pm0.0046$       & $1.0$&    $0.46$&   $-0.66$&   $-0.74$ \\\\",
+    "matched": true
+   },
+   "table_LCDM_lA_row": {
+    "tex_line": 141,
+    "text": "$l_\\textrm{A}$                                & $301.471^{+0.089}_{-0.090}$        & $0.46$&    $1.0$&   $-0.33$&   $-0.35$ \\\\",
+    "matched": true
+   },
+   "table_LCDM_wb_row": {
+    "tex_line": 142,
+    "text": "$\\Omega_b h^2$                              & $0.02236\\pm0.00015$      & $-0.66$&   $-0.33$&  $1.0$&    $0.46$\\\\",
+    "matched": true
+   },
+   "distance_ini_r": {
+    "tex_line": 282,
+    "text": "r=1.750235",
+    "matched": true
+   },
+   "distance_ini_la": {
+    "tex_line": 283,
+    "text": "la=301.4707",
+    "matched": true
+   },
+   "distance_ini_wb": {
+    "tex_line": 284,
+    "text": "omegabh2=0.02235976",
+    "matched": true
+   },
+   "invcov_row1": {
+    "tex_line": 305,
+    "text": "     94392.3971   -1360.4913   1664517.2916   ",
+    "matched": true
+   },
+   "invcov_row2": {
+    "tex_line": 306,
+    "text": "    -1360.4913   161.4349   3671.6180   ",
+    "matched": true
+   },
+   "invcov_row3": {
+    "tex_line": 307,
+    "text": "     1664517.2916   3671.6180   79719182.5162  ",
+    "matched": true
+   },
+   "chi2_definition": {
+    "tex_line": 192,
+    "text": "\\chi^2_{\\rm distance\\ priors}=\\sum(x_i-d_i)(C^{-1})_{ij}(x_j-d_j),",
+    "matched": true
+   },
+   "z_star_use": {
+    "tex_line": 195,
+    "text": "Here we use the approximate formula of $z_*$ to calculate $x_i$ \\cite{Hu:1995en}",
+    "matched": true
+   },
+   "g1_prose": {
+    "tex_line": 201,
+    "text": "g_1 &=& \\frac{0.0738(\\Omega_b h^2)^{-0.238}}{1+39.5(\\Omega_b h^2)^{0.763}}\\ ,\\\\",
+    "matched": true
+   },
+   "g1_code": {
+    "tex_line": 436,
+    "text": "    g_1 = 0.0783D0*(CMB%ombh2)**(-0.238D0)/(1.0D0+39.5D0*(CMB%ombh2)**0.763D0)",
+    "matched": true
+   },
+   "Omega_r_prescription": {
+    "tex_line": 118,
+    "text": "\\Omega_{r}=\\frac{\\Omega_{m}}{1+z_{\\textrm{eq}}}, ~~z_{\\textrm{eq}}=2.5\\times10^{4}\\Omega_{m}h^2\\left(T_{CMB}/2.7\\textrm{K}\\right)^{-4}\\ .",
+    "matched": true
+   },
+   "likelihood_lA_in_code": {
+    "tex_line": 440,
+    "text": "    l_a=const_pi/this%Calculator%CMBToTheta(CMB)    ",
+    "matched": true
+   }
+  },
+  "quotes_verbatim": [
+   {
+    "quote": "$R$                                           & $1.7502\\pm0.0046$       & $1.0$&    $0.46$&   $-0.66$&   $-0.74$ \\\\",
+    "command": "grep -nF -- '$R$                                           & $1.7502\\pm0.0046$       & $1.0$&    $0.46$&   $-0.66$&   $-0.74$ \\\\' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "$l_\\textrm{A}$                                & $301.471^{+0.089}_{-0.090}$        & $0.46$&    $1.0$&   $-0.33$&   $-0.35$ \\\\",
+    "command": "grep -nF -- '$l_\\textrm{A}$                                & $301.471^{+0.089}_{-0.090}$        & $0.46$&    $1.0$&   $-0.33$&   $-0.35$ \\\\' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "$\\Omega_b h^2$                              & $0.02236\\pm0.00015$      & $-0.66$&   $-0.33$&  $1.0$&    $0.46$\\\\",
+    "command": "grep -nF -- '$\\Omega_b h^2$                              & $0.02236\\pm0.00015$      & $-0.66$&   $-0.33$&  $1.0$&    $0.46$\\\\' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "r=1.750235",
+    "command": "grep -nF -- 'r=1.750235' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "la=301.4707",
+    "command": "grep -nF -- 'la=301.4707' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "omegabh2=0.02235976",
+    "command": "grep -nF -- 'omegabh2=0.02235976' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "     94392.3971   -1360.4913   1664517.2916   ",
+    "command": "grep -nF -- '     94392.3971   -1360.4913   1664517.2916   ' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "    -1360.4913   161.4349   3671.6180   ",
+    "command": "grep -nF -- '    -1360.4913   161.4349   3671.6180   ' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "     1664517.2916   3671.6180   79719182.5162  ",
+    "command": "grep -nF -- '     1664517.2916   3671.6180   79719182.5162  ' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "\\chi^2_{\\rm distance\\ priors}=\\sum(x_i-d_i)(C^{-1})_{ij}(x_j-d_j),",
+    "command": "grep -nF -- '\\chi^2_{\\rm distance\\ priors}=\\sum(x_i-d_i)(C^{-1})_{ij}(x_j-d_j),' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "Here we use the approximate formula of $z_*$ to calculate $x_i$ \\cite{Hu:1995en}",
+    "command": "grep -nF -- 'Here we use the approximate formula of $z_*$ to calculate $x_i$ \\cite{Hu:1995en}' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "g_1 &=& \\frac{0.0738(\\Omega_b h^2)^{-0.238}}{1+39.5(\\Omega_b h^2)^{0.763}}\\ ,\\\\",
+    "command": "grep -nF -- 'g_1 &=& \\frac{0.0738(\\Omega_b h^2)^{-0.238}}{1+39.5(\\Omega_b h^2)^{0.763}}\\ ,\\\\' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "g_1 = 0.0783D0*(CMB%ombh2)**(-0.238D0)/(1.0D0+39.5D0*(CMB%ombh2)**0.763D0)",
+    "command": "grep -nF -- 'g_1 = 0.0783D0*(CMB%ombh2)**(-0.238D0)/(1.0D0+39.5D0*(CMB%ombh2)**0.763D0)' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "\\Omega_{r}=\\frac{\\Omega_{m}}{1+z_{\\textrm{eq}}}, ~~z_{\\textrm{eq}}=2.5\\times10^{4}\\Omega_{m}h^2\\left(T_{CMB}/2.7\\textrm{K}\\right)^{-4}\\ .",
+    "command": "grep -nF -- '\\Omega_{r}=\\frac{\\Omega_{m}}{1+z_{\\textrm{eq}}}, ~~z_{\\textrm{eq}}=2.5\\times10^{4}\\Omega_{m}h^2\\left(T_{CMB}/2.7\\textrm{K}\\right)^{-4}\\ .' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   },
+   {
+    "quote": "l_a=const_pi/this%Calculator%CMBToTheta(CMB)",
+    "command": "grep -nF -- 'l_a=const_pi/this%Calculator%CMBToTheta(CMB)' audit/reverse_zero_r2/X4-bao-cmb-sn/data/distance-priors-2018.tex",
+    "matched": true
+   }
+  ],
+  "table_caption_dataset": "Planck TT,TE,EE+lowE (base LCDM); the published table also lists wCDM, LCDM+Omega_k and LCDM+A_L, not used",
+  "values_used": {
+   "means": [
+    1.750235,
+    301.4707,
+    0.02235976
+   ],
+   "inverse_covariance_before_normalisation": [
+    [
+     94392.3971,
+     -1360.4913,
+     1664517.2916
+    ],
+    [
+     -1360.4913,
+     161.4349,
+     3671.618
+    ],
+    [
+     1664517.2916,
+     3671.618,
+     79719182.5162
+    ]
+   ],
+   "z_star": "Hu-Sugiyama fit with the code coefficient 0.0783 (the prose prints 0.0738; a 0.0738 variant is not the primary)"
+  }
+ },
+ "camb_check": {
+  "rd_spline_vs_camb": {
+   "seed": 9100000,
+   "n": 40,
+   "max_abs_rel_err": 1.3786268012294656e-05,
+   "grid": {
+    "wb": [
+     0.0185,
+     0.0275,
+     10
+    ],
+    "wm": [
+     0.04000000000000001,
+     0.42,
+     60
+    ]
+   }
+  },
+  "table_implied_point": {
+   "Omega_m": 0.316253911052831,
+   "h": 0.6744228296348402,
+   "omega_m": 0.1438468748555401,
+   "omega_b": 0.02235976,
+   "paper_formulas": {
+    "R": 1.7502349999999998,
+    "lA": 301.4707,
+    "zstar": 1091.9944644243146,
+    "Or": 9.128507551383034e-05
+   },
+   "camb_theta_star": {
+    "R": 1.7505945165889085,
+    "lA": 301.41636371071644,
+    "zstar": 1089.9949241874292,
+    "rd": 146.88235655386276,
+    "rstar": 144.22416363877596,
+    "DMstar": 13837.415526658342
+   },
+   "table_means": {
+    "R": 1.750235,
+    "lA": 301.4707
+   },
+   "camb_minus_table_R_over_sigmaR": 0.07815578019750809,
+   "camb_minus_table_lA_over_sigmalA": -0.6071093774702014,
+   "chi2_cmb_paper_formulas": 4.653904488892951e-27,
+   "chi2_cmb_camb": 0.5419798850936283,
+   "note": "paper-formula lA reproduces the table mean by construction of the solve; the CAMB theta*-based lA at the same parameters is offset, which is why the primary fit uses the paper's own definition"
+  },
+  "components_at_camb_zstar": {
+   "zstar_camb": 1089.9949241874292,
+   "zstar_HS_code": 1091.9944644243146,
+   "DM_paper_formula_Mpc": 13834.225876892653,
+   "DM_camb_Mpc": 13837.415526658342,
+   "rs_paper_formula_Mpc": 144.34208941689477,
+   "rs_camb_Mpc": 144.22416363877596
+  },
+  "paper_line78_point": {
+   "H0": 67.36,
+   "omega_m": 0.143,
+   "omega_b": 0.02237,
+   "paper_formulas": {
+    "R": 1.749599876105787,
+    "lA": 301.8075156716134,
+    "zstar": 1091.9068900826396,
+    "Or": 9.15080721218627e-05
+   },
+   "camb_theta_star": {
+    "R": 1.7499616656907553,
+    "lA": 301.7534178701545,
+    "zstar": 1089.9074054634214,
+    "rd": 147.09640795774584,
+    "rstar": 144.4367871220556,
+    "DMstar": 13873.311719920746
+   },
+   "note": "TeX line 78 is commented out and gives the TT,TE,EE+lowE+lensing values; used only as a second reference point"
+  },
+  "covariance_check": {
+   "sigma_from_published_invcov": [
+    0.00462101180588747,
+    0.088864091840637,
+    0.0001491182753474269
+   ],
+   "sigma_table": [
+    0.0046,
+    0.0895,
+    0.00015
+   ],
+   "corr_from_published_invcov": [
+    [
+     1.0,
+     0.4634167761387548,
+     -0.6597600806575934
+    ],
+    [
+     0.4634167761387549,
+     1.0,
+     -0.32729626824417446
+    ],
+    [
+     -0.6597600806575934,
+     -0.32729626824417435,
+     1.0000000000000002
+    ]
+   ],
+   "corr_table": [
+    [
+     1.0,
+     0.46,
+     -0.66
+    ],
+    [
+     0.46,
+     1.0,
+     -0.33
+    ],
+    [
+     -0.66,
+     -0.33,
+     1.0
+    ]
+   ],
+   "chi2_diff_at_1sigma_R_offset_published_vs_table_cov": -0.008392050994806333
+  }
+ },
+ "thresholds_recomputed_scipy": {
+  "1dof_3sigma": 9.000000000000002,
+  "1dof_5sigma": 25.000000000000004,
+  "2dof_3sigma": 11.82915808190081,
+  "2dof_5sigma": 28.743702426857567
+ },
+ "regression_no_cmb": {
+  "1580": {
+   "cut": 1580,
+   "n_sn": 1580,
+   "M0": {
+    "chi2": 1401.0709554851699,
+    "bao": 12.669853432077614,
+    "sn": 1388.4011020530922,
+    "sn_offset": 43.05358021151749
+   },
+   "LCDM": {
+    "Om": 0.3042180600125559,
+    "chi2": 1400.3253509823728,
+    "bao": 10.870575582457322,
+    "sn": 1389.4547753999154,
+    "sn_offset": 43.051312015569614
+   },
+   "CPL_Om_free_E1_style_unbounded": {
+    "Om": 0.30481199890431054,
+    "w0": -0.8928008907212235,
+    "wa": -0.20104979463961956,
+    "chi2": 1395.5905441181274,
+    "bao": 8.716866220193289,
+    "sn": 1386.8736778979342,
+    "sn_offset": 43.066196402932
+   },
+   "CPL_Om_free_bounded_20_seeded_starts": {
+    "Om": 0.30481199619809446,
+    "w0": -0.8928009197350508,
+    "wa": -0.20104961104787997,
+    "chi2": 1395.5905441181235,
+    "bao": 8.716866424128826,
+    "sn": 1386.8736776939948,
+    "sn_offset": 43.06619640001459
+   },
+   "dchi2_M0_minus_LCDM_1dof": 0.7456045027970504,
+   "dchi2_LCDM_minus_CPL_2dof_E1_style": 4.734806864245456,
+   "dchi2_LCDM_minus_CPL_2dof_bounded_seeded": 4.734806864249322,
+   "note": "no radiation, no CMB, u and SN offset profiled, no w0+wa<0 constraint (E1 convention); an earlier unbounded seeded run drifted to Omega_m < 0 and was discarded, hence the bounds"
+  },
+  "1590": {
+   "cut": 1590,
+   "n_sn": 1590,
+   "M0": {
+    "chi2": 1417.553796256854,
+    "bao": 12.669853432077614,
+    "sn": 1404.8839428247763,
+    "sn_offset": 43.053942877952025
+   },
+   "LCDM": {
+    "Om": 0.3040275734276113,
+    "chi2": 1416.7655624643844,
+    "bao": 10.837646755016925,
+    "sn": 1405.9279157093674,
+    "sn_offset": 43.05161402957202
+   },
+   "CPL_Om_free_E1_style_unbounded": {
+    "Om": 0.30424148269086226,
+    "w0": -0.8960472097718253,
+    "wa": -0.18633395128318575,
+    "chi2": 1412.21887068509,
+    "bao": 8.747514807706102,
+    "sn": 1403.471355877384,
+    "sn_offset": 43.06605644247521
+   },
+   "CPL_Om_free_bounded_20_seeded_starts": {
+    "Om": 0.3042414836972339,
+    "w0": -0.8960471679747148,
+    "wa": -0.18633403133333962,
+    "chi2": 1412.2188706850889,
+    "bao": 8.747514452392624,
+    "sn": 1403.4713562326963,
+    "sn_offset": 43.066056448532464
+   },
+   "dchi2_M0_minus_LCDM_1dof": 0.7882337924695548,
+   "dchi2_LCDM_minus_CPL_2dof_E1_style": 4.546691779294406,
+   "dchi2_LCDM_minus_CPL_2dof_bounded_seeded": 4.546691779295543,
+   "note": "no radiation, no CMB, u and SN offset profiled, no w0+wa<0 constraint (E1 convention); an earlier unbounded seeded run drifted to Omega_m < 0 and was discarded, hence the bounds"
+  },
+  "E1_json_DR2_dchi2_CPL_vs_Lambda_2dof_1590": 4.546691779292587,
+  "E3_json_dchi2_M0_minus_LCDM_1dof_1580": 0.7456045027945493,
+  "ERRATA_quoted_CPL_dchi2_1580_and_1590": "ERRATA.md: 'DR2 Delta chi2 is 4.547 and 4.735' (1590 and 1580); not re-derived from a JSON"
+ },
+ "fits": {
+  "1580": {
+   "n_sn": 1580,
+   "models": {
+    "m0": {
+     "chi2": 1408.954974731751,
+     "params": {
+      "h": 0.6781347484230345,
+      "wb": 0.022393190987905175,
+      "Om": 0.31105971167297897,
+      "w0": -1.0,
+      "wa": 0.0
+     },
+     "n_starts": 20,
+     "start_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "n_starts_within_1e-3_of_best": 20,
+     "non_converged_start_indices": [],
+     "chi2_spread_all_starts": [
+      1408.954974731751,
+      1408.9549747317528,
+      1408.9549747317546
+     ],
+     "at_bound": [],
+     "components_at_best": {
+      "bao": 20.052150310923846,
+      "sn": 1388.3944518142262,
+      "cmb": 0.5083726066009278
+     },
+     "camb_exact_polish": {
+      "cut": 1580,
+      "model": "m0",
+      "start_from_paper_best": {
+       "h": 0.6781347484230345,
+       "wb": 0.022393190987905175,
+       "Om": 0.31105971167297897,
+       "w0": -1.0,
+       "wa": 0.0
+      },
+      "camb_exact_best": {
+       "h": 0.6778302397788628,
+       "wb": 0.022385063650119143,
+       "Om": 0.3110596305560312,
+       "w0": -1.0,
+       "wa": 0.0
+      },
+      "chi2_camb_best": 1409.2125399871102,
+      "chi2_camb_at_paper_best": 1409.729360652486,
+      "nfev": 195,
+      "components": {
+       "chi2": 1409.2125399871102,
+       "bao": 20.395151997427153,
+       "sn": 1388.3944458532046,
+       "cmb": 0.4229421364783909,
+       "sn_offset": 43.05359605718347,
+       "R": 1.7477378779226536,
+       "lA": 301.42838907531825,
+       "rd": 147.1053933135556,
+       "zstar": 1089.8800246098567
+      },
+      "note": "R, l_A, r_drag straight from CAMB 2.0.4 (theta*-based), 1 massive nu 0.06 eV; sensitivity variant, not the registered primary"
+     }
+    },
+    "lcdm": {
+     "chi2": 1404.2795311183224,
+     "params": {
+      "Om": 0.3027699652374178,
+      "h": 0.6843158106435483,
+      "wb": 0.022509004290376094,
+      "w0": -1.0,
+      "wa": 0.0
+     },
+     "n_starts": 20,
+     "start_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "n_starts_within_1e-3_of_best": 20,
+     "non_converged_start_indices": [],
+     "chi2_spread_all_starts": [
+      1404.2795311183224,
+      1404.2795311183258,
+      1404.2795311183286
+     ],
+     "at_bound": [],
+     "components_at_best": {
+      "bao": 11.924976960377695,
+      "sn": 1389.6892448805636,
+      "cmb": 2.6653092773811675
+     },
+     "camb_exact_polish": {
+      "cut": 1580,
+      "model": "lcdm",
+      "start_from_paper_best": {
+       "Om": 0.3027699652374178,
+       "h": 0.6843158106435483,
+       "wb": 0.022509004290376094,
+       "w0": -1.0,
+       "wa": 0.0
+      },
+      "camb_exact_best": {
+       "Om": 0.30248490302206693,
+       "h": 0.6842469731519277,
+       "wb": 0.022505958038843546,
+       "w0": -1.0,
+       "wa": 0.0
+      },
+      "chi2_camb_best": 1404.162432164439,
+      "chi2_camb_at_paper_best": 1404.641883069239,
+      "nfev": 344,
+      "components": {
+       "chi2": 1404.162432164439,
+       "bao": 11.891800755963846,
+       "sn": 1389.7419817383995,
+       "cmb": 2.5286496700755223,
+       "sn_offset": 43.05078766086473,
+       "R": 1.7429167940753312,
+       "lA": 301.39663968146556,
+       "rd": 147.34637394642462,
+       "zstar": 1089.6058757965916
+      },
+      "note": "R, l_A, r_drag straight from CAMB 2.0.4 (theta*-based), 1 massive nu 0.06 eV; sensitivity variant, not the registered primary"
+     }
+    },
+    "cpl": {
+     "chi2": 1397.2808419916469,
+     "params": {
+      "Om": 0.3114756016180625,
+      "h": 0.6770871792429363,
+      "wb": 0.022434570221233584,
+      "w0": -0.8576736686923067,
+      "wa": -0.5095790201555982
+     },
+     "n_starts": 20,
+     "start_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "n_starts_within_1e-3_of_best": 19,
+     "non_converged_start_indices": [
+      3
+     ],
+     "chi2_spread_all_starts": [
+      1397.2808419916469,
+      1397.280841991649,
+      1526.726058184404
+     ],
+     "at_bound": [],
+     "components_at_best": {
+      "bao": 9.31991917859655,
+      "sn": 1387.2724026473938,
+      "cmb": 0.6885201656564568
+     },
+     "camb_exact_polish": {
+      "cut": 1580,
+      "model": "cpl",
+      "start_from_paper_best": {
+       "Om": 0.3114756016180625,
+       "h": 0.6770871792429363,
+       "wb": 0.022434570221233584,
+       "w0": -0.8576736686923067,
+       "wa": -0.5095790201555982
+      },
+      "camb_exact_best": {
+       "Om": 0.31124429387192726,
+       "h": 0.6768428863208282,
+       "wb": 0.022433799765763474,
+       "w0": -0.8582688723936707,
+       "wa": -0.5022949249475487
+      },
+      "chi2_camb_best": 1397.2348311684475,
+      "chi2_camb_at_paper_best": 1397.743950059705,
+      "nfev": 600,
+      "components": {
+       "chi2": 1397.2348311684475,
+       "bao": 9.301530638594413,
+       "sn": 1387.2621450674264,
+       "cmb": 0.6711554624267189,
+       "sn_offset": 43.06944633687024,
+       "R": 1.7464691901663076,
+       "lA": 301.4322746671232,
+       "rd": 147.15165428918507,
+       "zstar": 1089.785867105978
+      },
+      "note": "R, l_A, r_drag straight from CAMB 2.0.4 (theta*-based), 1 massive nu 0.06 eV; sensitivity variant, not the registered primary"
+     }
+    }
+   },
+   "CPL_vs_Lambda_2dof_primary": {
+    "delta_chi2": 6.998689126675572,
+    "dof": 2,
+    "p_wilks": 0.030217182382289744,
+    "sigma": 2.1672318182646757,
+    "label": "CPL vs flat Lambda, Omega_m free in both (registered primary)",
+    "w0": -0.8576736686923067,
+    "wa": -0.5095790201555982,
+    "in_w0_gt_-1_wa_lt_0_quadrant": true,
+    "ge_3sigma_threshold_2dof": false,
+    "ge_5sigma_threshold_2dof": false
+   },
+   "M0_vs_fitted_Lambda_1dof": {
+    "delta_chi2": 4.67544361342857,
+    "dof": 1,
+    "p_wilks": 0.03059679960331101,
+    "sigma": 2.162277413614767,
+    "label": "M0 minus fitted flat Lambda (reported alongside, uncorrected; not a rejection test)",
+    "not_rejected_if_p_ge_0.05": false,
+    "M0_h": 0.6781347484230345,
+    "Lambda_Om": 0.3027699652374178,
+    "Lambda_h": 0.6843158106435483
+   },
+   "M0_vs_CPL_3dof_informational": {
+    "delta_chi2": 11.674132740104142,
+    "dof": 3,
+    "p_wilks": 0.00858703785864174,
+    "sigma": 2.6280718408901724,
+    "label": "M0 minus CPL (3 extra parameters)"
+   },
+   "published_3.1sigma_comparison": {
+    "published_sigma_recorded_in_PRE_REG_R4": 3.1,
+    "this_fit_sigma": 2.1672318182646757,
+    "shortfall_sigma": 0.9327681817353244,
+    "note": "3.1 is the number recorded in PRE_REGISTRATION R4 / LeanMaster Observables.lean for DESI BAO + CMB + SNe (their own analysis, different CMB likelihood and SN sample handling). This fit uses compressed CMB priors and one SN sample; the comparison is informational."
+   },
+   "sensitivity_camb_exact": {
+    "m0": 1409.2125399871102,
+    "lcdm": 1404.162432164439,
+    "cpl": 1397.2348311684475,
+    "dchi2_CPL_vs_Lambda_2dof": 6.927600995991497,
+    "sigma_CPL_vs_Lambda": 2.153103567339304,
+    "dchi2_M0_minus_Lambda_1dof": 5.05010782267118,
+    "sigma_M0_vs_Lambda": 2.2472444955258384
+   }
+  },
+  "1590": {
+   "n_sn": 1590,
+   "models": {
+    "m0": {
+     "chi2": 1425.4382988189866,
+     "params": {
+      "h": 0.6781347486470821,
+      "wb": 0.02239319100177369,
+      "Om": 0.3110597116730386,
+      "w0": -1.0,
+      "wa": 0.0
+     },
+     "n_starts": 20,
+     "start_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "n_starts_within_1e-3_of_best": 20,
+     "non_converged_start_indices": [],
+     "chi2_spread_all_starts": [
+      1425.4382988189866,
+      1425.438298818994,
+      1425.438298818997
+     ],
+     "at_bound": [],
+     "components_at_best": {
+      "bao": 20.05215015191148,
+      "sn": 1404.877775901469,
+      "cmb": 0.5083727656060626
+     },
+     "camb_exact_polish": {
+      "cut": 1590,
+      "model": "m0",
+      "start_from_paper_best": {
+       "h": 0.6781347486470821,
+       "wb": 0.02239319100177369,
+       "Om": 0.3110597116730386,
+       "w0": -1.0,
+       "wa": 0.0
+      },
+      "camb_exact_best": {
+       "h": 0.6778302397776865,
+       "wb": 0.022385063704054048,
+       "Om": 0.3110596305560309,
+       "w0": -1.0,
+       "wa": 0.0
+      },
+      "chi2_camb_best": 1425.6958645085606,
+      "chi2_camb_at_paper_best": 1426.2126853560483,
+      "nfev": 198,
+      "components": {
+       "chi2": 1425.6958645085606,
+       "bao": 20.39515262401762,
+       "sn": 1404.8777703746352,
+       "cmb": 0.4229415099078457,
+       "sn_offset": 43.05395871072887,
+       "R": 1.7477378779208805,
+       "lA": 301.4283891321298,
+       "rd": 147.105393267956,
+       "zstar": 1089.880024537587
+      },
+      "note": "R, l_A, r_drag straight from CAMB 2.0.4 (theta*-based), 1 massive nu 0.06 eV; sensitivity variant, not the registered primary"
+     }
+    },
+    "lcdm": {
+     "chi2": 1420.7124430578413,
+     "params": {
+      "Om": 0.3027267739115142,
+      "h": 0.684348584921686,
+      "wb": 0.022509615845754227,
+      "w0": -1.0,
+      "wa": 0.0
+     },
+     "n_starts": 20,
+     "start_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "n_starts_within_1e-3_of_best": 20,
+     "non_converged_start_indices": [],
+     "chi2_spread_all_starts": [
+      1420.7124430578413,
+      1420.7124430578438,
+      1420.7124430578472
+     ],
+     "at_bound": [],
+     "components_at_best": {
+      "bao": 11.900087214913722,
+      "sn": 1406.1299844304053,
+      "cmb": 2.6823714125221767
+     },
+     "camb_exact_polish": {
+      "cut": 1590,
+      "model": "lcdm",
+      "start_from_paper_best": {
+       "Om": 0.3027267739115142,
+       "h": 0.684348584921686,
+       "wb": 0.022509615845754227,
+       "w0": -1.0,
+       "wa": 0.0
+      },
+      "camb_exact_best": {
+       "Om": 0.30245959596845723,
+       "h": 0.684270022789096,
+       "wb": 0.022506847166056044,
+       "w0": -1.0,
+       "wa": 0.0
+      },
+      "chi2_camb_best": 1420.5936757376815,
+      "chi2_camb_at_paper_best": 1421.0726285193798,
+      "nfev": 344,
+      "components": {
+       "chi2": 1420.5936757376815,
+       "bao": 11.877564077420153,
+       "sn": 1406.1778592901915,
+       "cmb": 2.538252370069885,
+       "sn_offset": 43.05114424867652,
+       "R": 1.7429024129533908,
+       "lA": 301.3962951623838,
+       "rd": 147.34623777188133,
+       "zstar": 1089.6044812790299
+      },
+      "note": "R, l_A, r_drag straight from CAMB 2.0.4 (theta*-based), 1 massive nu 0.06 eV; sensitivity variant, not the registered primary"
+     }
+    },
+    "cpl": {
+     "chi2": 1413.9441507464358,
+     "params": {
+      "Om": 0.3111930985450648,
+      "h": 0.6773771794629948,
+      "wb": 0.022435124793242587,
+      "w0": -0.8605025876994784,
+      "wa": -0.5020117401659578
+     },
+     "n_starts": 20,
+     "start_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+     ],
+     "n_starts_within_1e-3_of_best": 19,
+     "non_converged_start_indices": [
+      3
+     ],
+     "chi2_spread_all_starts": [
+      1413.9441507464358,
+      1413.944150746437,
+      1544.2904915280865
+     ],
+     "at_bound": [],
+     "components_at_best": {
+      "bao": 9.35858745522256,
+      "sn": 1403.8874922778948,
+      "cmb": 0.6980710133185061
+     },
+     "camb_exact_polish": {
+      "cut": 1590,
+      "model": "cpl",
+      "start_from_paper_best": {
+       "Om": 0.3111930985450648,
+       "h": 0.6773771794629948,
+       "wb": 0.022435124793242587,
+       "w0": -0.8605025876994784,
+       "wa": -0.5020117401659578
+      },
+      "camb_exact_best": {
+       "Om": 0.31096212744712465,
+       "h": 0.677132697860048,
+       "wb": 0.022434355818945137,
+       "w0": -0.8610917342994956,
+       "wa": -0.49475388408594456
+      },
+      "chi2_camb_best": 1413.8973796924784,
+      "chi2_camb_at_paper_best": 1414.4062753810545,
+      "nfev": 600,
+      "components": {
+       "chi2": 1413.8973796924784,
+       "bao": 9.339920898036478,
+       "sn": 1403.876867260538,
+       "cmb": 0.6805915339038345,
+       "sn_offset": 43.06935947003274,
+       "R": 1.746442606193358,
+       "lA": 301.43202752865943,
+       "rd": 147.15309821296927,
+       "zstar": 1089.784506089666
+      },
+      "note": "R, l_A, r_drag straight from CAMB 2.0.4 (theta*-based), 1 massive nu 0.06 eV; sensitivity variant, not the registered primary"
+     }
+    }
+   },
+   "CPL_vs_Lambda_2dof_primary": {
+    "delta_chi2": 6.768292311405503,
+    "dof": 2,
+    "p_wilks": 0.03390658093015993,
+    "sigma": 2.121180912272625,
+    "label": "CPL vs flat Lambda, Omega_m free in both (registered primary)",
+    "w0": -0.8605025876994784,
+    "wa": -0.5020117401659578,
+    "in_w0_gt_-1_wa_lt_0_quadrant": true,
+    "ge_3sigma_threshold_2dof": false,
+    "ge_5sigma_threshold_2dof": false
+   },
+   "M0_vs_fitted_Lambda_1dof": {
+    "delta_chi2": 4.72585576114534,
+    "dof": 1,
+    "p_wilks": 0.029712394659185102,
+    "sigma": 2.1739033467809317,
+    "label": "M0 minus fitted flat Lambda (reported alongside, uncorrected; not a rejection test)",
+    "not_rejected_if_p_ge_0.05": false,
+    "M0_h": 0.6781347486470821,
+    "Lambda_Om": 0.3027267739115142,
+    "Lambda_h": 0.684348584921686
+   },
+   "M0_vs_CPL_3dof_informational": {
+    "delta_chi2": 11.494148072550843,
+    "dof": 3,
+    "p_wilks": 0.009333028711484488,
+    "sigma": 2.5996080666390555,
+    "label": "M0 minus CPL (3 extra parameters)"
+   },
+   "published_3.1sigma_comparison": {
+    "published_sigma_recorded_in_PRE_REG_R4": 3.1,
+    "this_fit_sigma": 2.121180912272625,
+    "shortfall_sigma": 0.9788190877273752,
+    "note": "3.1 is the number recorded in PRE_REGISTRATION R4 / LeanMaster Observables.lean for DESI BAO + CMB + SNe (their own analysis, different CMB likelihood and SN sample handling). This fit uses compressed CMB priors and one SN sample; the comparison is informational."
+   },
+   "sensitivity_camb_exact": {
+    "m0": 1425.6958645085606,
+    "lcdm": 1420.5936757376815,
+    "cpl": 1413.8973796924784,
+    "dchi2_CPL_vs_Lambda_2dof": 6.696296045203098,
+    "sigma_CPL_vs_Lambda": 2.1066331638708853,
+    "dchi2_M0_minus_Lambda_1dof": 5.102188770879138,
+    "sigma_M0_vs_Lambda": 2.2588025081620438
+   }
+  }
+ },
+ "N_data": {
+  "BAO": 13,
+  "CMB_priors": 3,
+  "SN_1580": 1580,
+  "SN_1590": 1590
+ },
+ "p1_status": "INFORMATIONAL. PRE_REGISTRATION P1 (the cosmological constant) names DESI DR3 or final BAO + CMB + one SN compilation, Euclid, or Rubin/LSST. DESI DR2 BAO + compressed Planck-2018 distance priors + Pantheon+ is none of these, so no P1 verdict follows. The words 'falsified' and 'confirmed' are not used."
+}

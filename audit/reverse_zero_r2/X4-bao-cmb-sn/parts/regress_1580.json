@@ -1,0 +1,39 @@
+{
+ "cut": 1580,
+ "n_sn": 1580,
+ "M0": {
+  "chi2": 1401.0709554851699,
+  "bao": 12.669853432077614,
+  "sn": 1388.4011020530922,
+  "sn_offset": 43.05358021151749
+ },
+ "LCDM": {
+  "Om": 0.3042180600125559,
+  "chi2": 1400.3253509823728,
+  "bao": 10.870575582457322,
+  "sn": 1389.4547753999154,
+  "sn_offset": 43.051312015569614
+ },
+ "CPL_Om_free_E1_style_unbounded": {
+  "Om": 0.30481199890431054,
+  "w0": -0.8928008907212235,
+  "wa": -0.20104979463961956,
+  "chi2": 1395.5905441181274,
+  "bao": 8.716866220193289,
+  "sn": 1386.8736778979342,
+  "sn_offset": 43.066196402932
+ },
+ "CPL_Om_free_bounded_20_seeded_starts": {
+  "Om": 0.30481199619809446,
+  "w0": -0.8928009197350508,
+  "wa": -0.20104961104787997,
+  "chi2": 1395.5905441181235,
+  "bao": 8.716866424128826,
+  "sn": 1386.8736776939948,
+  "sn_offset": 43.06619640001459
+ },
+ "dchi2_M0_minus_LCDM_1dof": 0.7456045027970504,
+ "dchi2_LCDM_minus_CPL_2dof_E1_style": 4.734806864245456,
+ "dchi2_LCDM_minus_CPL_2dof_bounded_seeded": 4.734806864249322,
+ "note": "no radiation, no CMB, u and SN offset profiled, no w0+wa<0 constraint (E1 convention); an earlier unbounded seeded run drifted to Omega_m < 0 and was discarded, hence the bounds"
+}
