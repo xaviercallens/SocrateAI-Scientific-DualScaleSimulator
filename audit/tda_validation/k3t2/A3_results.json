@@ -1,0 +1,504 @@
+{
+ "tier": "B",
+ "script": "A3_orbifold_x_T2.py",
+ "argv": [
+  "--big"
+ ],
+ "runs": [
+  {
+   "orbifold_N": 2,
+   "T2_M": 3,
+   "fvector": [
+    144,
+    576,
+    1152,
+    1440,
+    1080,
+    432,
+    72
+   ],
+   "n_cells": 4896,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "build_seconds": 0.12,
+   "by_field": {
+    "F2": {
+     "betti_engine2": [
+      1,
+      2,
+      12,
+      27,
+      22,
+      7,
+      1
+     ],
+     "ranks_d_k": [
+      143,
+      431,
+      709,
+      704,
+      354,
+      71
+     ],
+     "sec_engine2": 0.047,
+     "betti_engine1": [
+      1,
+      2,
+      12,
+      27,
+      22,
+      7,
+      1
+     ],
+     "sec_engine1": 0.304,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": "not pre-specified (F2; chi=0 only)",
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine2": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      143,
+      431,
+      714,
+      714,
+      359,
+      71
+     ],
+     "sec_engine2": 0.065,
+     "betti_engine1": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "sec_engine1": 0.297,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine2": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      143,
+      431,
+      714,
+      714,
+      359,
+      71
+     ],
+     "sec_engine2": 0.078,
+     "betti_engine1": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "sec_engine1": 0.407,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "seconds_total": 1.56,
+   "maxrss_MB": 17.2
+  },
+  {
+   "orbifold_N": 4,
+   "T2_M": 2,
+   "fvector": [
+    544,
+    3136,
+    7712,
+    10240,
+    7680,
+    3072,
+    512
+   ],
+   "n_cells": 32896,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "build_seconds": 0.95,
+   "by_field": {
+    "F2": {
+     "betti_engine2": [
+      1,
+      2,
+      12,
+      27,
+      22,
+      7,
+      1
+     ],
+     "ranks_d_k": [
+      543,
+      2591,
+      5109,
+      5104,
+      2554,
+      511
+     ],
+     "sec_engine2": 0.463,
+     "betti_engine1": [
+      1,
+      2,
+      12,
+      27,
+      22,
+      7,
+      1
+     ],
+     "sec_engine1": 2.186,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": "not pre-specified (F2; chi=0 only)",
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine2": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      543,
+      2591,
+      5114,
+      5114,
+      2559,
+      511
+     ],
+     "sec_engine2": 0.29,
+     "betti_engine1": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "sec_engine1": 2.111,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine2": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      543,
+      2591,
+      5114,
+      5114,
+      2559,
+      511
+     ],
+     "sec_engine2": 0.333,
+     "betti_engine1": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "sec_engine1": 1.978,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "seconds_total": 10.19,
+   "maxrss_MB": 59.6
+  },
+  {
+   "orbifold_N": 4,
+   "T2_M": 3,
+   "fvector": [
+    1224,
+    7056,
+    17352,
+    23040,
+    17280,
+    6912,
+    1152
+   ],
+   "n_cells": 74016,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "build_seconds": 0.99,
+   "by_field": {
+    "F2": {
+     "betti_engine2": [
+      1,
+      2,
+      12,
+      27,
+      22,
+      7,
+      1
+     ],
+     "ranks_d_k": [
+      1223,
+      5831,
+      11509,
+      11504,
+      5754,
+      1151
+     ],
+     "sec_engine2": 0.351,
+     "chi_betti": 0,
+     "expected": "not pre-specified (F2; chi=0 only)",
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine2": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      1223,
+      5831,
+      11514,
+      11514,
+      5759,
+      1151
+     ],
+     "sec_engine2": 0.548,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine2": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      1223,
+      5831,
+      11514,
+      11514,
+      5759,
+      1151
+     ],
+     "sec_engine2": 0.459,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "seconds_total": 4.04,
+   "maxrss_MB": 77.3
+  },
+  {
+   "orbifold_N": 6,
+   "T2_M": 2,
+   "fvector": [
+    2624,
+    15616,
+    38912,
+    51840,
+    38880,
+    15552,
+    2592
+   ],
+   "n_cells": 166016,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "build_seconds": 2.14,
+   "by_field": {
+    "F2": {
+     "betti_engine2": [
+      1,
+      2,
+      12,
+      27,
+      22,
+      7,
+      1
+     ],
+     "ranks_d_k": [
+      2623,
+      12991,
+      25909,
+      25904,
+      12954,
+      2591
+     ],
+     "sec_engine2": 1.113,
+     "chi_betti": 0,
+     "expected": "not pre-specified (F2; chi=0 only)",
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine2": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      2623,
+      12991,
+      25914,
+      25914,
+      12959,
+      2591
+     ],
+     "sec_engine2": 1.152,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine2": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      2623,
+      12991,
+      25914,
+      25914,
+      12959,
+      2591
+     ],
+     "sec_engine2": 0.988,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      7,
+      12,
+      7,
+      2,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "seconds_total": 9.55,
+   "maxrss_MB": 164.8
+  }
+ ],
+ "all_PASS": true
+}

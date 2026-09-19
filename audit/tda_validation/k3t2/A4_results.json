@@ -1,0 +1,2076 @@
+{
+ "tier": "B (with one labelled tier-L input: class of phi_2)",
+ "script": "A4_resolved_K3xT2.py",
+ "argv": [
+  "--big"
+ ],
+ "N": 6,
+ "decomposition_checks": {
+  "links_pairwise_disjoint": true,
+  "each_star_cell_contains_exactly_one_singular_vertex": true,
+  "star_faces_in_star_or_link": true,
+  "U_closed_under_faces": true,
+  "link_closed_under_faces": true
+ },
+ "sizes": {
+  "X_fvector": [
+   656,
+   2592,
+   3888,
+   2592,
+   648
+  ],
+  "U_n": 9720,
+  "star_n_total": 656,
+  "L_fvector": [
+   40,
+   104,
+   96,
+   32
+  ]
+ },
+ "links": [
+  {
+   "p": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    0,
+    0,
+    0,
+    3
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    0,
+    0,
+    3,
+    0
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    0,
+    0,
+    3,
+    3
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    0,
+    3,
+    0,
+    0
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    0,
+    3,
+    0,
+    3
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    0,
+    3,
+    3,
+    0
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    0,
+    3,
+    3,
+    3
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    3,
+    0,
+    0,
+    0
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    3,
+    0,
+    0,
+    3
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    3,
+    0,
+    3,
+    0
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    3,
+    0,
+    3,
+    3
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    3,
+    3,
+    0,
+    0
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    3,
+    3,
+    0,
+    3
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    3,
+    3,
+    3,
+    0
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  },
+  {
+   "p": [
+    3,
+    3,
+    3,
+    3
+   ],
+   "L_fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "L_betti": {
+    "F2": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "F3": [
+     1,
+     0,
+     0,
+     1
+    ],
+    "F5": [
+     1,
+     0,
+     0,
+     1
+    ]
+   },
+   "phi2_diag": {
+    "dim_ker_delta1_F2": 40,
+    "rank_delta0_F2": 39,
+    "dim_H1_F2": 1,
+    "integral_cocycle_violations": 0,
+    "phi2_mod2_not_coboundary": true,
+    "phi2_support": 6,
+    "phi2_values": [
+     -1,
+     1
+    ]
+   },
+   "H_rel_Cyl_L": {
+    "resolve": {
+     "F2": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    },
+    "trivial2": {
+     "F2": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "F3": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ],
+     "F5": [
+      0,
+      0,
+      1,
+      0,
+      1
+     ]
+    }
+   },
+   "L_is_RP3_homology": true,
+   "local_model_PASS": true
+  }
+ ],
+ "all_links_RP3": true,
+ "all_local_models_PASS": true,
+ "cone_reassembly": {
+  "name": "U + 16 cones (must equal A2 direct orbifold)",
+  "fvector": [
+   656,
+   3168,
+   5360,
+   3872,
+   1032
+  ],
+  "n_cells": 14088,
+  "chi_fvector": 8,
+  "d2_violations": 0,
+  "by_field": {
+   "F2": {
+    "betti": [
+     1,
+     0,
+     11,
+     5,
+     1
+    ],
+    "ranks_d_k": [
+     655,
+     2513,
+     2836,
+     1031
+    ],
+    "sec_engine2": 0.058,
+    "betti_engine1": [
+     1,
+     0,
+     11,
+     5,
+     1
+    ],
+    "sec_engine1": 0.277,
+    "engines_agree": true,
+    "chi_betti": 8,
+    "expected": [
+     1,
+     0,
+     11,
+     5,
+     1
+    ],
+    "PASS": true
+   },
+   "F3": {
+    "betti": [
+     1,
+     0,
+     6,
+     0,
+     1
+    ],
+    "ranks_d_k": [
+     655,
+     2513,
+     2841,
+     1031
+    ],
+    "sec_engine2": 0.05,
+    "betti_engine1": [
+     1,
+     0,
+     6,
+     0,
+     1
+    ],
+    "sec_engine1": 0.23,
+    "engines_agree": true,
+    "chi_betti": 8,
+    "expected": [
+     1,
+     0,
+     6,
+     0,
+     1
+    ],
+    "PASS": true
+   },
+   "F5": {
+    "betti": [
+     1,
+     0,
+     6,
+     0,
+     1
+    ],
+    "ranks_d_k": [
+     655,
+     2513,
+     2841,
+     1031
+    ],
+    "sec_engine2": 0.049,
+    "betti_engine1": [
+     1,
+     0,
+     6,
+     0,
+     1
+    ],
+    "sec_engine1": 0.225,
+    "engines_agree": true,
+    "chi_betti": 8,
+    "expected": [
+     1,
+     0,
+     6,
+     0,
+     1
+    ],
+    "PASS": true
+   }
+  },
+  "PASS": true,
+  "maxrss_MB": 31.5
+ },
+ "K3": {
+  "name": "X_res = U + 16 Cyl(phi) (Kummer K3)",
+  "fvector": [
+   656,
+   3168,
+   5376,
+   3872,
+   1032
+  ],
+  "n_cells": 14104,
+  "chi_fvector": 24,
+  "d2_violations": 0,
+  "by_field": {
+   "F2": {
+    "betti": [
+     1,
+     0,
+     22,
+     0,
+     1
+    ],
+    "ranks_d_k": [
+     655,
+     2513,
+     2841,
+     1031
+    ],
+    "sec_engine2": 0.049,
+    "betti_engine1": [
+     1,
+     0,
+     22,
+     0,
+     1
+    ],
+    "sec_engine1": 0.284,
+    "engines_agree": true,
+    "chi_betti": 24,
+    "expected": [
+     1,
+     0,
+     22,
+     0,
+     1
+    ],
+    "PASS": true
+   },
+   "F3": {
+    "betti": [
+     1,
+     0,
+     22,
+     0,
+     1
+    ],
+    "ranks_d_k": [
+     655,
+     2513,
+     2841,
+     1031
+    ],
+    "sec_engine2": 0.101,
+    "betti_engine1": [
+     1,
+     0,
+     22,
+     0,
+     1
+    ],
+    "sec_engine1": 0.254,
+    "engines_agree": true,
+    "chi_betti": 24,
+    "expected": [
+     1,
+     0,
+     22,
+     0,
+     1
+    ],
+    "PASS": true
+   },
+   "F5": {
+    "betti": [
+     1,
+     0,
+     22,
+     0,
+     1
+    ],
+    "ranks_d_k": [
+     655,
+     2513,
+     2841,
+     1031
+    ],
+    "sec_engine2": 0.05,
+    "betti_engine1": [
+     1,
+     0,
+     22,
+     0,
+     1
+    ],
+    "sec_engine1": 0.292,
+    "engines_agree": true,
+    "chi_betti": 24,
+    "expected": [
+     1,
+     0,
+     22,
+     0,
+     1
+    ],
+    "PASS": true
+   }
+  },
+  "PASS": true,
+  "maxrss_MB": 36.9,
+  "poincare_symmetric_all_fields": true,
+  "chi_expected": 24,
+  "build_seconds": 1.25
+ },
+ "K3xT2": [
+  {
+   "name": "X_res x T^2(Z_2^2) direct product",
+   "fvector": [
+    2624,
+    17920,
+    49472,
+    71168,
+    56608,
+    23744,
+    4128
+   ],
+   "n_cells": 225664,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      2623,
+      15295,
+      34154,
+      36970,
+      19615,
+      4127
+     ],
+     "sec_engine2": 1.415,
+     "betti_engine1": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "sec_engine1": 10.387,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      2623,
+      15295,
+      34154,
+      36970,
+      19615,
+      4127
+     ],
+     "sec_engine2": 1.839,
+     "betti_engine1": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "sec_engine1": 13.469,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      2623,
+      15295,
+      34154,
+      36970,
+      19615,
+      4127
+     ],
+     "sec_engine2": 2.01,
+     "betti_engine1": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "sec_engine1": 17.705,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 343.1,
+   "poincare_symmetric_all_fields": true,
+   "seconds_total": 54.17
+  },
+  {
+   "name": "X_res x T^2(Z_3^2) direct product",
+   "fvector": [
+    5904,
+    40320,
+    111312,
+    160128,
+    127368,
+    53424,
+    9288
+   ],
+   "n_cells": 507744,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      5903,
+      34415,
+      76874,
+      83210,
+      44135,
+      9287
+     ],
+     "sec_engine2": 4.915,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      5903,
+      34415,
+      76874,
+      83210,
+      44135,
+      9287
+     ],
+     "sec_engine2": 4.592,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      5903,
+      34415,
+      76874,
+      83210,
+      44135,
+      9287
+     ],
+     "sec_engine2": 4.513,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      23,
+      44,
+      23,
+      2,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 386.4,
+   "poincare_symmetric_all_fields": true,
+   "seconds_total": 40.73
+  }
+ ],
+ "all_PASS": true,
+ "seconds_total": 105.86,
+ "maxrss_MB": 386.4
+}
