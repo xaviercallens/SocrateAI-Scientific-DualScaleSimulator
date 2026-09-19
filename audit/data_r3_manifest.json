@@ -171,16 +171,68 @@
     "output.json"
    ],
    "note": "per-frequency strain and error only (14 frequencies). NOT an angular Hellings-Downs table. The 27 MB 15yr_emp_distr.json in the bucket was not downloaded."
+  },
+  {
+   "id": "desi_dr1_lss_v1.5",
+   "dir": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/desi_dr1_lss",
+   "source": "https://data.desi.lbl.gov/public/dr1/survey/catalogs/dr1/LSS/iron/LSScats/v1.5/ (DESI DR1 public LSS clustering catalogues, Adame et al. 2025)",
+   "files": {
+    "desi_dr1_lss/BGS_BRIGHT-21.5_NGC_0_clustering.ran.fits": "28eeada4fd38568a9744b30b82086ca962811cb389f30b58d538f12124e017f7",
+    "desi_dr1_lss/BGS_BRIGHT-21.5_NGC_clustering.dat.fits": "b67e8e3ee579d9673089f2c9c6930b793a2bf1895f85198472fb7fc5aa392825",
+    "desi_dr1_lss/BGS_BRIGHT-21.5_NGC_nz.txt": "bae3d1571be58e3ba476ee7afd3b48d09219679b17ccc3a973058b1a9f4eb4b0",
+    "desi_dr1_lss/BGS_BRIGHT-21.5_SGC_0_clustering.ran.fits": "32757814469155ae4f399e2d0ae4af95fd6599b0804961de84648f6b116b71d4",
+    "desi_dr1_lss/BGS_BRIGHT-21.5_SGC_clustering.dat.fits": "4daf878cc5bfce71c3ee67f91882bd70179643033741af1f1324bdf655c5d98f",
+    "desi_dr1_lss/BGS_BRIGHT-21.5_SGC_nz.txt": "e3be13fa2234fb181fee1e17c9061239b9c5c413febad4e4cf5b10c3c09c5d3b",
+    "desi_dr1_lss/BGS_BRIGHT_NGC_0_clustering.ran.fits": "7b2cb1f342f248bb4009faa0b1b411d6eecc1f17d297ce2bf2bee28d7fa5862c",
+    "desi_dr1_lss/BGS_BRIGHT_NGC_clustering.dat.fits": "04b86400761459a30592d52e86cb56cdd9457c1a6a3b8a310e31f517e9dfc5b1",
+    "desi_dr1_lss/BGS_BRIGHT_NGC_nz.txt": "28de65876c5a08ace1ffbf4c983b26508039e5e43c1e4fc50f9e20e3bb330d14",
+    "desi_dr1_lss/BGS_BRIGHT_SGC_0_clustering.ran.fits": "a37e2e5bb824f006a5d9f5d5771b8318252f429294a2ebe7e1ffcfbfd3e2a277",
+    "desi_dr1_lss/BGS_BRIGHT_SGC_clustering.dat.fits": "1a411153ebb6f492f45d55ac7347fc702665994c8fd94ffe71f29a160c3fe053",
+    "desi_dr1_lss/BGS_BRIGHT_SGC_nz.txt": "37be3cf39f5bcd5850e4553f85550eccb9b0ba3a3588d3644c96302c57978087",
+    "desi_dr1_lss/LRG_NGC_0_clustering.ran.fits": "f80aaa1bd48f2695c07cbccd480065f74e8e393e6a9e93b209af42419749e2bd",
+    "desi_dr1_lss/LRG_NGC_clustering.dat.fits": "84548c4ea5208232f1c2f04416ddf272c72fa31313e3bbb60e67d134f186a027",
+    "desi_dr1_lss/LRG_NGC_nz.txt": "0f9ab616e5e136adc6ddad448ba2067e407adbfac9ecb51f4fa315fb94d24677",
+    "desi_dr1_lss/LRG_SGC_0_clustering.ran.fits": "70821a9609c4f825fecd6c45f6ede3b95bc309103e7ca580231b212a27e2592e",
+    "desi_dr1_lss/LRG_SGC_clustering.dat.fits": "ae478557d9ef70257cc689197052515f5ebbc0b23359c81159a8ad3289332e69",
+    "desi_dr1_lss/LRG_SGC_nz.txt": "529a1db9ef43bd68790c0a84450f014f08e5af4a049ddabca8aa26f5efca7a3f"
+   },
+   "contents": "BGS_BRIGHT-21.5 (volume-limited, M_r < -21.5, z 0.1-0.4; NGC 217,614 galaxies), BGS_BRIGHT (z 0.01-0.5; SGC 1,047,989), LRG (z 0.4-1.1; NGC 1,476,135), each with its clustering randoms (random file 0 of 18; ~13 M points per BGS NGC file), weights (WEIGHT, WEIGHT_FKP, WEIGHT_COMP), NX and n(z).",
+   "why_for_TDA": "Real survey randoms with the true angular and radial selection (the round-1 null that SDSS lacked), a volume-limited sample (flat density), and much larger volume: the cosmic-web TDA gate range can carry information. Use data vs its own randoms; weights must be applied or the choice justified."
+  },
+  {
+   "id": "planck_pr3_smica",
+   "dir": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/planck_maps",
+   "source": "https://pla.esac.esa.int/pla/aio/product-action?MAP.MAP_ID=<file> (Planck Legacy Archive, PR3 2018)",
+   "files": {
+    "planck_maps/COM_CMB_IQU-smica_2048_R3.00_full.fits": "60952c645eb33d151905ddf5837477e15ca02a3261feca4ceca3c3feece4f9ac",
+    "planck_maps/COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits": "23f49a3479073408b83a7f1bb2cca490d9be7f934b2e0e891524b6a1d06a5fc4"
+   },
+   "contents": "SMICA CMB I/Q/U map, nside 2048, NESTED ordering, K_CMB, 5 arcmin; common intensity mask (TMASK, f_sky 0.779).",
+   "why_for_TDA": "Planck resolution and noise far better than WMAP ILC: the round-1 CMB null mismatch and string sensitivity can be redone at nside 512-1024 with FFP10-like Gaussian sims (not downloaded; generate from the Planck best-fit C_ell plus the SMICA beam)."
+  },
+  {
+   "id": "camels_hi_maps_hf",
+   "dir": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/camels_hi_hf",
+   "source": "https://huggingface.co/datasets/collins909/DDPM-HI-CAMELS-LH (secondary host of CAMELS LH-set HI maps; primary: CAMELS Multifield Dataset, Villaescusa-Navarro et al. 2022, camels-multifield-dataset.readthedocs.io)",
+   "files": "test and val splits only (params_2: labels Omega_m, sigma_8; params_6: 6 labels); the 3.5 GB train splits were not downloaded. sha256 in camels_hi_hf/SHA256SUMS",
+   "why_for_TDA": "Simulated 2-D HI maps with KNOWN cosmological parameters: a known-answer test of whether persistent-homology summaries of a field recover Omega_m and sigma_8 (a published result for CAMELS). Caveat: secondary host; preprocessing in process_hi_maps.py must be read before use; simulations, not observations."
   }
  ],
  "not_found": [
-  "Planck sky maps (SMICA/Commander/NILC): none on the disk or in the buckets",
   "angular Hellings-Downs (binned Gamma(theta)) table for NANOGrav 15-yr",
   "low-l Planck likelihood (commander/simall) files",
-  "Euclid Q1 tiles (193 MB, gs://.../euclid_q1) were not staged: MER photometric catalogues in a few small tiles, not a cosmic-web volume"
+  "Euclid Q1 tiles (193 MB, gs://.../euclid_q1) were not staged: MER photometric catalogues in a few small tiles, not a cosmic-web volume",
+  "Planck FFP10 simulations (not attempted: ~TB scale); generate Gaussian sims from C_ell instead"
  ],
  "already_on_disk": {
   "nanograv_timing": "/mnt/disks/disk-socrateai-local-1/NANOGrav15yr/NANOGrav15yr_PulsarTiming_v2.1.0 (2.4 GB; used by X3)",
   "venv_pta": "/mnt/disks/disk-socrateai-local-1/venv-pta"
- }
+ },
+ "rejected": [
+  {
+   "id": "hf_juliensimon_cosmic_void_catalog",
+   "reason": "Hugging Face card cites VizieR J/MNRAS/421/926 (Pan et al. 2012), but VizieR returns 'Table or Catalog not found' and the CDS FTP path 404s; the card's max void radius 452.7 Mpc is implausible for Pan et al. (voids ~10-60 Mpc/h). Provenance unverifiable: not downloaded, not used. The original Mao et al. 2017 BOSS void site (lss.phy.vanderbilt.edu/voids) was unreachable (connection failed)."
+  }
+ ],
+ "datalake_copy": "gs://socrateai-datalake-gen-lang-client-0625573011/dualscale_r3 (rsync, crc32c-verified by gsutil; sizes cross-checked for all 20 DESI/Planck objects on 2026-09-19)"
 }
