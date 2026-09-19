@@ -278,6 +278,7 @@ def main():
     consistent3d = (rat(selected["rank"]) == d_b2)
     pointer3b = find_file_pointer(C_DIR, "D-tda")
     typed_gram_note = C_lat.get("typed_gram_3U_2mE8", {}).get("note")
+    lattice_family_input = input_by_name(C_inputs, "k3_lattice_identification")
     links.append({
         "link": "C's SELECTED lattice m*U+n(-E8) signature == C's own Hodge-index "
                 "signature, and its rank == D.b2",
@@ -289,15 +290,23 @@ def main():
         "consistent": consistent3c and consistent3d,
         "file_pointer_C_to_D": pointer3b,
         "method": "POINTER",
-        "shared_declared_inputs": ["k3_lattice_identification"],
+        "method_reason": "not a file-level pointer to D (file_pointer_C_to_D is empty): both "
+                          "ends of the signature comparison are computed WITHIN Track C "
+                          "(the selected lattice vs C's own Hodge-index signature), and the "
+                          "lattice family searched is itself a declared input, so this is not "
+                          "an independent second route to D's numbers.",
+        "shared_declared_inputs": (
+            ["k3_lattice_identification"] if lattice_family_input else []
+        ),
         "independent_corroboration": False,
         "caveat": "the lattice FAMILY mU+n(-E8) is itself a declared input "
-                  "(k3_lattice_identification, tier L, FROM MEMORY); given that "
-                  "family, (m,n)=(3,2) is picked because it is the only one in "
-                  "0<=m,n<=30 whose signature matches C's own Hodge-index result "
-                  "-- a within-Track-C selection, not a second independent route "
-                  "to chi=24. C's typed-Gram cross-check note reads %r."
-                  % typed_gram_note,
+                  "(k3_lattice_identification: %r); given that family, (m,n)=(3,2) is "
+                  "picked because it is the only one in 0<=m,n<=30 whose signature "
+                  "matches C's own Hodge-index result -- a within-Track-C selection, "
+                  "not a second independent route to chi=24. C's typed-Gram "
+                  "cross-check note reads %r."
+                  % (lattice_family_input.get("why") if lattice_family_input else None,
+                     typed_gram_note),
     })
 
     # ================================================================
@@ -394,12 +403,25 @@ def main():
     f_ns_t = F_results["results"]["F2_NS_T"]["computed"]
     rank2_checks = [e for e in f_ns_t if e.get("rank_T") == 2]
     rank4_cases = [e for e in f_ns_t if e.get("rank_T") != 2]
-    rank2_ok = all(e.get("T_in_binary_list") and e.get("TKm_in_binary_list") for e in rank2_checks)
+    rank2_in_list_ok = all(e.get("T_in_binary_list") and e.get("TKm_in_binary_list") for e in rank2_checks)
+    # Nikulin_TKm (declared input): T(Km A) = T(A)(2), so on a rank-2 form the
+    # discriminant scales by 2^2 = 4. Check that relation directly from the
+    # read T_disc / TKm_disc numbers, not just F's own boolean flags.
+    disc_relation_checks = [
+        {"tau": e.get("tau"), "tau_prime": e.get("tau'"),
+         "T_disc": e.get("T_disc"), "TKm_disc": e.get("TKm_disc"),
+         "TKm_disc_equals_4x_T_disc": rat(e["TKm_disc"]) == 4 * rat(e["T_disc"])}
+        for e in rank2_checks
+    ]
+    disc_relation_ok = all(c["TKm_disc_equals_4x_T_disc"] for c in disc_relation_checks)
+    rank2_ok = rank2_in_list_ok and disc_relation_ok
     links.append({
-        "link": "F: T(A)/T(Km A) discriminants (rank-2 T cases) found in F's own reduced "
+        "link": "F: T(A)/T(Km A) discriminants (rank-2 T cases) satisfy TKm_disc==4*T_disc "
+                "(from Nikulin_TKm: T(Km A)=T(A)(2)) and are found in F's own reduced "
                 "binary-form enumeration (F2_binary_forms)",
         "n_rank2_T_cases_checked": len(rank2_checks),
-        "all_rank2_T_and_TKm_in_binary_list": rank2_ok,
+        "discriminant_relation_checks": disc_relation_checks,
+        "all_rank2_T_and_TKm_in_binary_list": rank2_in_list_ok,
         "n_rank4_T_cases_out_of_scope": len(rank4_cases),
         "binary_form_enumeration": F_results["results"]["F2_binary_forms"]["computed"],
         "source": F_results_p,
@@ -443,8 +465,13 @@ def main():
     print("\n=== SUMMARY ===")
     for l in links:
         status = "CONSISTENT" if l["consistent"] else "INCONSISTENT"
-        indep = "INDEPENDENT" if l.get("independent_corroboration") else "NOT independent (" + l["method"] + ")"
+        if l.get("independent_corroboration"):
+            indep = "INDEPENDENT*" if l.get("caveat") else "INDEPENDENT"
+        else:
+            indep = "NOT independent (" + l["method"] + ")"
         print(f"[{status}] [{indep}] {l['link']}")
+    print("\n(* an INDEPENDENT link still carries a caveat in its JSON record -- "
+          "read it before treating the agreement as unconditional)")
     print(f"\nALL CONSISTENT: {all_consistent}")
     print(f"INDEPENDENT CROSS-METHOD CORROBORATIONS: {len(independent_links)} / {len(links)}")
     print(f"Results written to: {out_path.relative_to(REPO)}")

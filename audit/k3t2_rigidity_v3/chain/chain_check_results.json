@@ -67,11 +67,12 @@
    "consistent": true,
    "file_pointer_C_to_D": [],
    "method": "POINTER",
+   "method_reason": "not a file-level pointer to D (file_pointer_C_to_D is empty): both ends of the signature comparison are computed WITHIN Track C (the selected lattice vs C's own Hodge-index signature), and the lattice family searched is itself a declared input, so this is not an independent second route to D's numbers.",
    "shared_declared_inputs": [
     "k3_lattice_identification"
    ],
    "independent_corroboration": false,
-   "caveat": "the lattice FAMILY mU+n(-E8) is itself a declared input (k3_lattice_identification, tier L, FROM MEMORY); given that family, (m,n)=(3,2) is picked because it is the only one in 0<=m,n<=30 whose signature matches C's own Hodge-index result -- a within-Track-C selection, not a second independent route to chi=24. C's typed-Gram cross-check note reads 'typed input (decl.py typed_gram_3U_2mE8): rank/signature are consequences of the typed matrix, NOT independent of it'."
+   "caveat": "the lattice FAMILY mU+n(-E8) is itself a declared input (k3_lattice_identification: 'FROM MEMORY (Nikulin/Milnor classification of indefinite even unimodular lattices); used only to define the candidate family scanned'); given that family, (m,n)=(3,2) is picked because it is the only one in 0<=m,n<=30 whose signature matches C's own Hodge-index result -- a within-Track-C selection, not a second independent route to chi=24. C's typed-Gram cross-check note reads 'typed input (decl.py typed_gram_3U_2mE8): rank/signature are consequences of the typed matrix, NOT independent of it'."
   },
   {
    "link": "E.n_singular (imported from D) == D.n_singular",
@@ -122,8 +123,24 @@
    "caveat": "the two implementations were written independently (A-genus/m24_shapes.py, F-whichk3/f4_codes.py) and neither script's source references the other track's directory, so this IS independent corroboration of the group's structure -- but the cycle-SHAPE SETS were each built from a finite random sample (A: 4000 elements, F: 40000 elements), not an exhaustive class enumeration, so 'all shapes agree' means 'every shape either sampler happened to hit agrees', not 'the full conjugacy-class list was independently enumerated twice'. Both ends also share the unnamed literature premise above (see 'shared_unnamed_premise')."
   },
   {
-   "link": "F: T(A)/T(Km A) discriminants (rank-2 T cases) found in F's own reduced binary-form enumeration (F2_binary_forms)",
+   "link": "F: T(A)/T(Km A) discriminants (rank-2 T cases) satisfy TKm_disc==4*T_disc (from Nikulin_TKm: T(Km A)=T(A)(2)) and are found in F's own reduced binary-form enumeration (F2_binary_forms)",
    "n_rank2_T_cases_checked": 2,
+   "discriminant_relation_checks": [
+    {
+     "tau": "i",
+     "tau_prime": "i",
+     "T_disc": 4,
+     "TKm_disc": 16,
+     "TKm_disc_equals_4x_T_disc": true
+    },
+    {
+     "tau": "e^{i pi/3}",
+     "tau_prime": "e^{i pi/3}",
+     "T_disc": 3,
+     "TKm_disc": 12,
+     "TKm_disc_equals_4x_T_disc": true
+    }
+   ],
    "all_rank2_T_and_TKm_in_binary_list": true,
    "n_rank4_T_cases_out_of_scope": 2,
    "binary_form_enumeration": {
