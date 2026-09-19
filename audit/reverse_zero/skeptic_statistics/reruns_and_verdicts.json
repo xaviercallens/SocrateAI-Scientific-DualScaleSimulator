@@ -1,0 +1,23 @@
+{
+ "lens": "statistics and data skeptic, run 2026-09-19 on branch loop/reverse-zero",
+ "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python (P below)",
+ "reruns_in_scratchpad_copies": {
+  "E1": {"cmd": "P e1.py (copy of E1-desi-dr2/e1_desi_dr2.py, ROOT patched to worktree)", "result": "all reported numbers identical (DR2 dchi2 4.546691779292587, DR1 3.1913734397599, Om_L distance 0.8865)"},
+  "E3": {"cmd": "P m0.py (copy of E3-M0/m0_model.py, WT_ROOT/HERE patched)", "result": "identical: dchi2 0.7456045027945493, dAIC -1.254, dBIC -6.628, 1701-variant 0.0094"},
+  "E2": {"cmd": "P e2.py (copy of e2_pta_sensitivity_scan.py, OUT_DIR patched)", "result": "thresholds identical 0.006482/0.032409/0.064818; slope 1.000 (not 6.171 as E2_RESULT.md:78 says)"},
+  "E2_TDA": {"cmd": "P t.py (copy of sdss_cosmic_web_tda.py, HERE patched)", "result": "all 315 leaf values identical; Welch p H1 3.5708e-4, H2 3.2675e-5, mean-NN p 2.6e-9"},
+  "E4": {"cmd": "P t.py (copy of E4-cosmic-web-tda/cosmic_web_tda.py, HERE/WT_ROOT patched)", "result": "33/35 leaves identical; circle control ratio 29.858 vs committed 29.693 and one H1 max persistence 0.06230 vs 0.06258 differ; script unchanged since 0c590a5; cause not isolated"},
+  "E5b": {"cmd": "timeout 1700 prlimit --as=10737418200 -- P e5b_lognormal_and_poisson_null.py (copy with cosmic_web_tda_scaled.py, WT_ROOT patched)", "result": "bit-identical: b_fit 0.8930470184710905, rms_z 0.8339593979531569, sigma8 ratio 1.000315, 22/22 mocks, rank p 0.043478 H0/H1/H2, margins 33.84/17.87/10.22, Poisson L2 identical, e5b_mock_betti_stacks.npz arrays identical; e5b_check_r_range_decomposition.py output byte-identical"},
+  "E5_CMB_null": {"cmd": "prlimit --as=8589934592 -- P cmb_tda.py --n-sims 25 --seed-offset 0 --dump-npz chunk0.npz --out chunk0_summary.json; P merge_null.py <4 committed chunks> --out-npz merged.npz --out-json null_report.json", "result": "chunk0 all 21 npz arrays identical to committed null_chunk0.npz; merged null_report.json identical except the chunks_merged path field"},
+  "E5_CMB_sensitivity": {"cmd": "prlimit --as=8589934592 -- P cmb_tda.py --skip-null --null-cache E5-cmb-tda/chunks/null_merged.npz --gmu 3e-7,1e-6,3e-6,1e-5 --n-inj-sims 20 --n-segments-inj 30 --out sens_rerun.json", "result": "fractions 0.05/0.15/1.00/1.00 and every injected chi2 identical; LOO 95th pct threshold 16.595"}
+ },
+ "independent_checks_committed_here": ["check_e1_e3_chi2.py/.json", "check_e2_slope.py/.json", "check_e5b_gate_power.py/.json", "check_e5b_poisson_selection.py/.json", "check_cmb_null_spectrum.py/.json", "decision_rule_cmb_recal.json (written before step-B results)"],
+ "verdicts": {
+  "exp:E1-desi-dr2-prereg": "stands",
+  "exp:E2-pta-hd": "stands (verdict); reported slope 6.171 is wrong, true slope 1.000",
+  "exp:E3-M0-definition": "stands",
+  "ground:leanmaster-streams6-8": "stands (theorem names/line pins verified); P1-label conflation flagged as framing",
+  "e5b-cosmic-web-tda-poisson-lognormal": "does not stand as reported: Betti INCONCLUSIVE stands, but the xi(r) gate has no power (Poisson xi=0 passes, RMS z 1.73 < 3)",
+  "E5-cmb-tda-full-run": "does not stand as reported: numbers reproduce, but null sims do not match the data's small-scale spectrum (ell>150); recalibration failed its pre-stated gate; non-rejection plausible but the 'real localized excursion' and 'matched by construction' claims are unsupported"
+ }
+}
