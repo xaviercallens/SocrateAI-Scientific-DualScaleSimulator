@@ -1,0 +1,273 @@
+{
+ "file": "/mnt/disks/disk-socrateai-local-1/dual_scale_datasets/domain06_supercon_abrikosov_vortices.npz",
+ "sha256": "deb3cdff7368f36bb86d385e466c67087bdd11f369eb1a10a505e2bd0e863f56",
+ "size_bytes": 5191,
+ "manifest_entry": {
+  "source": "NIMS SuperCon Database & Scanning SQUID Microscopy Benchmark (YBCO)",
+  "file": "/mnt/disks/disk-socrateai-local-1/dual_scale_datasets/domain06_supercon_abrikosov_vortices.npz",
+  "shape": [
+   300,
+   3
+  ],
+  "size_bytes": 5191,
+  "description": "Abrikosov Flux-Pinning Triangular Vortex Lattice in High-Tc Superconductor"
+ },
+ "keys": {
+  "coords": {
+   "shape": [
+    300,
+    3
+   ],
+   "dtype": "float64"
+  },
+  "pinning_strength": {
+   "shape": [],
+   "dtype": "float64"
+  }
+ },
+ "pinning_strength_value": 1.5,
+ "z_column_unique_values": [
+  0.0
+ ],
+ "lattice_fit": {
+  "i_range": [
+   0,
+   19
+  ],
+  "j_range": [
+   0,
+   14
+  ],
+  "n_unique_sites": 300,
+  "n_points": 300,
+  "storage_order_is_i_major_j_minor_raster": true,
+  "residual_mean": [
+   0.0020871995296834994,
+   -5.258993505686538e-05
+  ],
+  "residual_std": [
+   0.04348975126426628,
+   0.041389011851969415
+  ],
+  "max_abs_residual": 0.11552990946210073,
+  "normaltest_p": [
+   0.7189625359488481,
+   0.31071728060104997
+  ],
+  "units": "none: spacing is exactly 1.0 (dimensionless); a real SQUID/STM/decoration image has lengths in nm or um set by B"
+ },
+ "alpha_signature": {
+  "h0": {
+   "n": 299,
+   "median": 0.4744607148323764,
+   "q1": 0.46307349984316487,
+   "q3": 0.4851820593711509,
+   "iqr_over_median": 0.046597239427497834,
+   "mean": 0.4730841845644326,
+   "cv": 0.035840754675540897
+  },
+  "h1_death_median": 0.5797761325969268,
+  "sqrt3_median_h1_death": 1.0042017186736676
+ },
+ "sibling_files_keys": {
+  "domain01_topological_materials_berry.npz": {
+   "energy": [
+    [
+     24,
+     24,
+     24
+    ],
+    "float64"
+   ],
+   "berry_z": [
+    [
+     24,
+     24,
+     24
+    ],
+    "float64"
+   ],
+   "k_grid": [
+    [
+     24,
+     24,
+     24
+    ],
+    "float64"
+   ]
+  },
+  "domain02_plasma_tokamak_gyrokinetics.npz": {
+   "potential": [
+    [
+     32,
+     64,
+     32
+    ],
+    "float64"
+   ],
+   "q_profile": [
+    [
+     32,
+     64,
+     32
+    ],
+    "float64"
+   ],
+   "r": [
+    [
+     32
+    ],
+    "float64"
+   ]
+  },
+  "domain03_hea_dislocations_cantor.npz": {
+   "nodes": [
+    [
+     350,
+     3
+    ],
+    "float64"
+   ],
+   "burgers_vector": [
+    [
+     3
+    ],
+    "float64"
+   ]
+  },
+  "domain04_hcp_connectome_neurodynamics.npz": {
+   "coords": [
+    [
+     68,
+     3
+    ],
+    "float64"
+   ],
+   "structural": [
+    [
+     68,
+     68
+    ],
+    "float64"
+   ],
+   "bold": [
+    [
+     68,
+     400
+    ],
+    "float64"
+   ]
+  },
+  "domain05_cloudsat_radar_microphysics.npz": {
+   "reflectivity_dbz": [
+    [
+     128,
+     40
+    ],
+    "float64"
+   ],
+   "lats": [
+    [
+     128
+    ],
+    "float64"
+   ],
+   "alts": [
+    [
+     40
+    ],
+    "float64"
+   ]
+  },
+  "domain06_supercon_abrikosov_vortices.npz": {
+   "coords": [
+    [
+     300,
+     3
+    ],
+    "float64"
+   ],
+   "pinning_strength": [
+    [],
+    "float64"
+   ]
+  },
+  "domain07_simvascular_aorta_wss.npz": {
+   "centerline": [
+    [
+     250,
+     3
+    ],
+    "float64"
+   ],
+   "wss": [
+    [
+     50,
+     250
+    ],
+    "float64"
+   ],
+   "t_cardiac": [
+    [
+     50
+    ],
+    "float64"
+   ]
+  },
+  "domain08_earthscope_seismic_rupture.npz": {
+   "hypocenters": [
+    [
+     400,
+     3
+    ],
+    "float64"
+   ],
+   "magnitudes": [
+    [
+     400
+    ],
+    "float64"
+   ]
+  },
+  "domain09_digitalrocks_berea_co2.npz": {
+   "porosity_mask": [
+    [
+     32,
+     32,
+     32
+    ],
+    "float32"
+   ],
+   "co2_sat": [
+    [
+     32,
+     32,
+     32
+    ],
+    "float64"
+   ]
+  },
+  "domain10_mit_topopt_phononic_metamaterial.npz": {
+   "k_path": [
+    [
+     50
+    ],
+    "float64"
+   ],
+   "bands": [
+    [
+     50,
+     4
+    ],
+    "float64"
+   ],
+   "bandgap_khz": [
+    [
+     2
+    ],
+    "float64"
+   ]
+  }
+ },
+ "verdict": null
+}
