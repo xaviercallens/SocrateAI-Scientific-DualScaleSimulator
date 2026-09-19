@@ -1902,10 +1902,38 @@
       "p_raw": 0.010915414537970534
     },
     "bonferroni_corrected_p": 0.0654924872278232,
-    "residual_curve_shape": "sign-changing (localized excursion)",
-    "n_residual_points_positive": 9,
-    "n_residual_points_negative": 27,
-    "interpretation": "A single raw p-value below 0.05 out of 6 tested statistics is not evidence by itself (look-elsewhere effect); the Bonferroni-corrected p above is the honest number. The residual-curve shape further distinguishes a real localized topological anomaly from a broadband pseudo-Cl/fsky spectrum-matching artifact."
+    "residual_curve_shape": "localized excursion confined to nu in [1.20,2.40] (7/36 bins, all negative, |residual|>2); |residual|<=2 at every other nu -- NOT a uniform broadband offset",
+    "flagged_nu_residual_pairs_abs_gt_2": [
+      [
+        1.2000000000000002,
+        -2.3175288417522895
+      ],
+      [
+        1.4000000000000004,
+        -3.0722060585615205
+      ],
+      [
+        1.6000000000000005,
+        -2.679695687641725
+      ],
+      [
+        1.8000000000000007,
+        -2.376325777820571
+      ],
+      [
+        2.0,
+        -2.3935723164506495
+      ],
+      [
+        2.2,
+        -2.510973433404222
+      ],
+      [
+        2.4000000000000004,
+        -2.034916201385854
+      ]
+    ],
+    "interpretation": "A single raw p-value below 0.05 out of 6 tested statistics is not evidence by itself (look-elsewhere effect); the Bonferroni-corrected p above is the honest number. The residual-curve shape above further distinguishes a real localized topological anomaly from a broadband pseudo-Cl/fsky spectrum-matching artifact -- here it is a localized, one-sided excursion that is nonetheless NOT significant once the look-elsewhere correction is applied."
   },
   "cosmic_string_sensitivity": {
     "model": "toy Kaiser-Stebbins: great-circle ARC segments (v2: truncated along-circle to a random 1-10 deg half-length, not a full great circle), Delta T/T = 8 pi G mu v_gamma per crossing, v_gamma=0.6 fixed -- NOT a scaling-solution network -- sensitivity of the TDA statistic to this injection only, not a cosmological bound",

@@ -62,24 +62,50 @@ def main():
     if smallest is not None:
         name, p_raw, s = smallest
         p_bonf = min(1.0, p_raw * n_tests)
+        nu_grid = null_report["nu_grid_sigma"]
         resid = s["standardized_residual_full_curve"]
-        resid_finite = [r for r in resid if r is not None and r == r]  # drop None/NaN
-        n_pos = sum(1 for r in resid_finite if r > 0)
-        n_neg = sum(1 for r in resid_finite if r < 0)
-        sign_changing = n_pos > 0 and n_neg > 0
+        # find contiguous run(s) of |residual|>2 and describe them by
+        # nu-range, count and sign -- NOT a "sign changing vs single-sign"
+        # test, which is a tautology satisfied by almost any noisy curve
+        # (one stray-sign noise bin passes it). A single-sided, LOCALIZED
+        # excursion (contiguous in nu, same sign, |resid|>2) is the
+        # interesting case; a uniform-sign offset spread across ALL nu is
+        # the spectrum-mismatch case; neither is "sign-changing".
+        flagged = [(nu_grid[i], r) for i, r in enumerate(resid) if r is not None and r == r and abs(r) > 2]
+        if not flagged:
+            shape_label = "no |residual|>2 nu-bin anywhere on the grid -- fully consistent with the null"
+        else:
+            signs = set(1 if r > 0 else -1 for _, r in flagged)
+            nu_lo = min(n for n, _ in flagged); nu_hi = max(n for n, _ in flagged)
+            n_all = len([r for r in resid if r is not None and r == r])
+            frac_flagged = len(flagged) / n_all if n_all else float("nan")
+            if len(signs) > 1:
+                shape_label = (f"mixed-sign |residual|>2 bins across nu in [{nu_lo:.2f},{nu_hi:.2f}] "
+                                f"({len(flagged)}/{n_all} bins) -- not a simple offset")
+            elif frac_flagged > 0.7:
+                shape_label = (f"|residual|>2, same sign, over {len(flagged)}/{n_all} bins spanning "
+                                f"nearly the whole nu grid [{nu_lo:.2f},{nu_hi:.2f}] -- consistent with a "
+                                "broadband amplitude/spectrum offset (e.g. the pseudo-Cl/fsky "
+                                "approximation), not a localized topological feature")
+            else:
+                sign_word = "negative" if next(iter(signs)) < 0 else "positive"
+                shape_label = (f"localized excursion confined to nu in [{nu_lo:.2f},{nu_hi:.2f}] "
+                                f"({len(flagged)}/{n_all} bins, all {sign_word}, |residual|>2); "
+                                "|residual|<=2 at every other nu -- NOT a uniform broadband offset")
         multiple_testing_note = {
             "n_statistics_tested": n_tests,
             "smallest_raw_p_value": {"statistic": name, "p_raw": p_raw},
             "bonferroni_corrected_p": p_bonf,
-            "residual_curve_shape": "sign-changing (localized excursion)" if sign_changing
-                else "single-sign (consistent with a broadband amplitude/spectrum offset, not a localized topological feature)",
-            "n_residual_points_positive": n_pos, "n_residual_points_negative": n_neg,
+            "residual_curve_shape": shape_label,
+            "flagged_nu_residual_pairs_abs_gt_2": flagged,
             "interpretation": "A single raw p-value below 0.05 out of "
                 f"{n_tests} tested statistics is not evidence by itself "
                 "(look-elsewhere effect); the Bonferroni-corrected p above is "
-                "the honest number. The residual-curve shape further "
+                "the honest number. The residual-curve shape above further "
                 "distinguishes a real localized topological anomaly from a "
-                "broadband pseudo-Cl/fsky spectrum-matching artifact.",
+                "broadband pseudo-Cl/fsky spectrum-matching artifact -- here it "
+                "is a localized, one-sided excursion that is nonetheless NOT "
+                "significant once the look-elsewhere correction is applied.",
         }
 
     # smallest Gmu (of those scanned) at which >=95% of injected sims exceed
