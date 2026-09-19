@@ -1,0 +1,187 @@
+{
+ "n_fiducial": 500,
+ "bias": 0.9370000000000002,
+ "gate": {
+  "hartlap": 0.9779559118236473,
+  "thr95_fiducial": 20.17582016844158,
+  "chi2_mean_fiducial": 9.759999999999497,
+  "chi2_expected_mean_hartlap_scaled": "p*hartlap*(N-1)/(N-p-2)~p",
+  "poisson_reject_rate": 0.995,
+  "poisson_ci95": [
+   0.9724581015424416,
+   0.9998734189719902
+  ],
+  "x3_reject_rate": 0.985,
+  "x3_ci95": [
+   0.9567917180822902,
+   0.9968958923784449
+  ],
+  "power_pass": true,
+  "chi2_median_poisson": 22.063770202265744,
+  "chi2_median_x3": 81.76824368161823,
+  "split_half_diagnostic": {
+   "thr95": 22.05364068234291,
+   "poisson_rate": 0.91,
+   "x3_rate": 0.985
+  }
+ },
+ "calibration": {
+  "data_chi2": 40.21471907030045,
+  "p_lower": 1.0,
+  "p_upper": 0.001996007984031936,
+  "p_two_sided": 0.003992015968063872,
+  "convention": "2*min((1+#{fid<=d})/(N+1),(1+#{fid>=d})/(N+1))",
+  "calibration_pass": false,
+  "sigma_equiv": 2.878791946663771,
+  "data_xi_G": [
+   0.04162323567466394,
+   0.015044710733003999,
+   0.011190829263168316,
+   0.008497032296204791,
+   0.007513715978492973,
+   0.009348936658068182,
+   0.0086644349043113,
+   0.004954203279985419,
+   0.0011942577929275704,
+   -0.0017058651886115502
+  ],
+  "mock_mean_G": [
+   0.05928097294715338,
+   0.034964819715115725,
+   0.020320868202769765,
+   0.011059801680230148,
+   0.005164472834821041,
+   0.001515516012352221,
+   -0.0006772211252103627,
+   -0.0019890209394960163,
+   -0.0026889209770056296,
+   -0.002896971076899487
+  ],
+  "mock_sd_G": [
+   0.016152064780729777,
+   0.013231949630076833,
+   0.011036179211597788,
+   0.009491433384502071,
+   0.008520672515211353,
+   0.007891349726301905,
+   0.0073647146936385265,
+   0.006827580026824806,
+   0.006346002647591396,
+   0.005891322498439842
+  ],
+  "pull_per_bin": [
+   -1.0932185768321092,
+   -1.505455321325619,
+   -0.8272825916062327,
+   -0.27000867837411485,
+   0.2757110004495531,
+   0.9926591669872562,
+   1.268434205277602,
+   1.016937801124597,
+   0.6119094153556723,
+   0.2021797123826389
+  ]
+ },
+ "shell_matching": {
+  "ks_r_p_fiducial": {
+   "median": 0.6117138825012547,
+   "min": 0.4838015594904228,
+   "frac_below_0p05": 0.0
+  },
+  "ks_r_p_poisson": {
+   "median": 0.43061113817452634,
+   "min": 0.3429405695093899,
+   "frac_below_0p05": 0.0
+  },
+  "round1_poisson_ks_p": 0.009,
+  "note": "two-sample KS of mock comoving r vs data r, per mock"
+ },
+ "shortfall": {
+  "fiducial_total_short": 0,
+  "max_attempts": 3
+ },
+ "information": {
+  "N": 193536,
+  "n_mean_per_Mpch3": 0.014522827701035152,
+  "gal_per_20Mpch_sphere": 486.66462735917196,
+  "tile_valid_voxels": [
+   33150,
+   33672,
+   26969,
+   27418
+  ],
+  "valid_voxels_total": 121209,
+  "n_independent_smoothing_volumes_est_per_tile": [
+   16.838512249760704,
+   17.103661673422096,
+   13.698878940084358,
+   13.926948080360152
+  ],
+  "median_occupied_pixel_count": 3.0,
+  "n_mask_pixels": 57598,
+  "n_shells": 74
+ },
+ "gate_passes": false,
+ "controls": {
+  "control_void": {
+   "n": 30,
+   "detect_rate_p_corr_lt_0p05": 1.0,
+   "detect_rate_by_stat_raw_p_lt_0p05_over_6": 1.0,
+   "per_stat_rate_p_lt_0p05_over_6": {
+    "sub_b0": 0.0,
+    "sub_b1": 0.0,
+    "sub_b2": 0.0,
+    "super_b0": 0.0,
+    "super_b1": 0.0,
+    "super_b2": 1.0
+   },
+   "median_pmin": 0.001996007984031936,
+   "null_false_positive_rate_expected": 0.05,
+   "n_removed_median": 8380.5
+  },
+  "control_ring": {
+   "n": 30,
+   "detect_rate_p_corr_lt_0p05": 0.03333333333333333,
+   "detect_rate_by_stat_raw_p_lt_0p05_over_6": 0.03333333333333333,
+   "per_stat_rate_p_lt_0p05_over_6": {
+    "sub_b0": 0.0,
+    "sub_b1": 0.0,
+    "sub_b2": 0.0,
+    "super_b0": 0.03333333333333333,
+    "super_b1": 0.0,
+    "super_b2": 0.0
+   },
+   "median_pmin": 0.14471057884231536,
+   "null_false_positive_rate_expected": 0.05,
+   "n_ring_in_footprint_median": 7632.0
+  },
+  "fiducial_self_check": {
+   "family_false_positive_rate": 0.084,
+   "note": "each fiducial mock tested against the other mocks' T (LOO mu,sigma^2 already in Tm); should be near 0.05 or below"
+  }
+ },
+ "topology": "NOT COMPUTED: gate failed (registered rule: INCONCLUSIVE, no topology p)",
+ "verdict_registered": "INCONCLUSIVE (calibration)",
+ "topology_informational_deviation": {
+  "deviation_reason": "Gate calibration failed (data xi(r) chi2 on G=[20,60) is far outside the 500-mock fiducial distribution). The registered decision_rule computes no p-value in that case (verdict stays INCONCLUSIVE). This block applies the same T/p_corr formula anyway, against the same null, for context only -- not the registered verdict and not a test of M0.",
+  "T_data": {
+   "sub_b0": 45.42485831399896,
+   "sub_b1": 70.60445328456619,
+   "sub_b2": 3.1496120000000003,
+   "super_b0": 92.81839277473597,
+   "super_b1": 37.488322609633656,
+   "super_b2": 3.293044
+  },
+  "p_raw": {
+   "sub_b0": 0.6127744510978044,
+   "sub_b1": 0.2275449101796407,
+   "sub_b2": 0.8003992015968064,
+   "super_b0": 0.12974051896207583,
+   "super_b1": 0.5229540918163673,
+   "super_b2": 0.3153692614770459
+  },
+  "p_min": 0.12974051896207583,
+  "p_corr_sidak_neff3": 0.34090762065734703
+ },
+ "command": "cd audit/reverse_zero_r2/X2-cosmic-web && python x2_analyze.py"
+}
