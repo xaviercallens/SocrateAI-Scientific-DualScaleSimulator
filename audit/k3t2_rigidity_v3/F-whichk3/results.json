@@ -1,0 +1,2052 @@
+{
+ "results": {
+  "F1a_elliptic_points": {
+   "id": "F1a_elliptic_points",
+   "quantity": "points of the fundamental domain with |Stab_SL2Z| > 2, and orders",
+   "computed": {
+    "x=0, y^2=1": 4,
+    "x=1/2, y^2=3/4": 6
+   },
+   "shared_inputs": [
+    "search_bound_N"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f1_moduli.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f1_moduli.py 6",
+   "expected_after": "expected (FROM MEMORY, tier L): tau=i (order 4), tau=e^{2 pi i/3} (order 6)",
+   "tier": "B"
+  },
+  "F1b_max_stabiliser": {
+   "id": "F1b_max_stabiliser",
+   "quantity": "maximal stabiliser order in the full (formal) duality group over the candidate set (elliptic pairs + 30 sampled non-elliptic points)",
+   "computed": {
+    "max_order_formal": 144,
+    "max_order_effective_divided_by_4": 36,
+    "points": [
+     {
+      "tau": "x=1/2, y^2=3/4",
+      "rho": "x=1/2, y^2=3/4",
+      "eps_r_elements": [
+       [
+        0,
+        0
+       ],
+       [
+        0,
+        1
+       ],
+       [
+        1,
+        0
+       ],
+       [
+        1,
+        1
+       ]
+      ]
+     }
+    ],
+    "distinct_values_top6": [
+     144,
+     64,
+     48,
+     24,
+     16,
+     12
+    ],
+    "argument": "order = sum over (eps,r) of [image equivalent] |Stab tau||Stab rho| <= 4*a*b with a,b in {2,4,6}, so 144 needs a=b=6 and all four (eps,r)"
+   },
+   "shared_inputs": [
+    "duality_group",
+    "search_bound_N"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f1_moduli.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f1_moduli.py 6",
+   "tier": "B"
+  },
+  "F1c_narain_roots": {
+   "id": "F1c_narain_roots",
+   "quantity": "roots (p_R=0,p_L^2=2 and p_L=0,p_R^2=2) of Gamma^{2,2} and Cartan-matrix classification, at each maximal point and (contrast) other elliptic pairs",
+   "computed": [
+    {
+     "tau": "x=1/2, y^2=3/4",
+     "rho": "x=1/2, y^2=3/4",
+     "kind": "MAX",
+     "G": "[[1, 1/2], [1/2, 1]]",
+     "B12": "1/2",
+     "box": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "n_left_roots": 6,
+     "n_right_roots": 6,
+     "left_simple_roots": [
+      [
+       0,
+       1,
+       0,
+       1
+      ],
+      [
+       1,
+       0,
+       1,
+       -1
+      ]
+     ],
+     "left_cartan": [
+      [
+       2,
+       -1
+      ],
+      [
+       -1,
+       2
+      ]
+     ],
+     "left_algebra": [
+      "A2"
+     ],
+     "left_rank_of_roots": 2,
+     "right_simple_roots": [
+      [
+       -1,
+       0,
+       1,
+       0
+      ],
+      [
+       1,
+       1,
+       0,
+       -1
+      ]
+     ],
+     "right_cartan": [
+      [
+       2,
+       -1
+      ],
+      [
+       -1,
+       2
+      ]
+     ],
+     "right_algebra": [
+      "A2"
+     ],
+     "right_rank_of_roots": 2
+    },
+    {
+     "tau": "x=0, y^2=1",
+     "rho": "x=0, y^2=1",
+     "kind": "contrast",
+     "G": "[[1, 0], [0, 1]]",
+     "B12": "0",
+     "box": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "n_left_roots": 4,
+     "n_right_roots": 4,
+     "left_simple_roots": [
+      [
+       0,
+       1,
+       0,
+       1
+      ],
+      [
+       1,
+       0,
+       1,
+       0
+      ]
+     ],
+     "left_cartan": [
+      [
+       2,
+       0
+      ],
+      [
+       0,
+       2
+      ]
+     ],
+     "left_algebra": [
+      "A1",
+      "A1"
+     ],
+     "left_rank_of_roots": 2,
+     "right_simple_roots": [
+      [
+       -1,
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       -1,
+       0,
+       1
+      ]
+     ],
+     "right_cartan": [
+      [
+       2,
+       0
+      ],
+      [
+       0,
+       2
+      ]
+     ],
+     "right_algebra": [
+      "A1",
+      "A1"
+     ],
+     "right_rank_of_roots": 2
+    },
+    {
+     "tau": "x=0, y^2=1",
+     "rho": "x=1/2, y^2=3/4",
+     "kind": "contrast",
+     "G": "[[sqrt(3)/2, 0], [0, sqrt(3)/2]]",
+     "B12": "1/2",
+     "box": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "n_left_roots": 0,
+     "n_right_roots": 0,
+     "left_algebra": [],
+     "right_algebra": []
+    },
+    {
+     "tau": "x=1/2, y^2=3/4",
+     "rho": "x=0, y^2=1",
+     "kind": "contrast",
+     "G": "[[2*sqrt(3)/3, sqrt(3)/3], [sqrt(3)/3, 2*sqrt(3)/3]]",
+     "B12": "0",
+     "box": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "n_left_roots": 0,
+     "n_right_roots": 0,
+     "left_algebra": [],
+     "right_algebra": []
+    }
+   ],
+   "shared_inputs": [
+    "narain_convention",
+    "duality_group"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f1_moduli.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f1_moduli.py 6",
+   "tier": "B"
+  },
+  "F2_H2_lattice": {
+   "id": "F2_H2_lattice",
+   "quantity": "Gram of Lambda^2 Z^4, det, signature",
+   "computed": {
+    "det": -1,
+    "signature": [
+     3,
+     3,
+     0
+    ],
+    "even": true
+   },
+   "shared_inputs": [
+    "H2_A_equals_U3"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f2_abelian.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f2_abelian.py 50",
+   "tier": "B"
+  },
+  "F2_NS_T": {
+   "id": "F2_NS_T",
+   "quantity": "NS(A), T(A), T(Km A) for A=E_tau x E_tau', tau,tau' in {points of F1(a)}",
+   "computed": [
+    {
+     "tau": "i",
+     "tau'": "i",
+     "rank_NS": 4,
+     "rank_T": 2,
+     "NS_gram": [
+      [
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       -2,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       -2
+      ]
+     ],
+     "NS_signature": [
+      1,
+      3,
+      0
+     ],
+     "T_gram": [
+      [
+       2,
+       0
+      ],
+      [
+       0,
+       2
+      ]
+     ],
+     "T_signature": [
+      2,
+      0,
+      0
+     ],
+     "T_disc": 4,
+     "T_basis": [
+      [
+       0,
+       0,
+       0,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       -1,
+       0,
+       0,
+       1
+      ]
+     ],
+     "T_reduced_form": [
+      2,
+      0,
+      2
+     ],
+     "T_root_lattice_scaling": [
+      [
+       "A1+A1",
+       1
+      ]
+     ],
+     "TKm_gram": [
+      [
+       4,
+       0
+      ],
+      [
+       0,
+       4
+      ]
+     ],
+     "TKm_disc": 16,
+     "TKm_reduced_form": [
+      4,
+      0,
+      4
+     ],
+     "T_in_binary_list": true,
+     "TKm_in_binary_list": true,
+     "TKm_root_lattice_scaling": [
+      [
+       "A1+A1",
+       2
+      ]
+     ],
+     "T_evenness": true
+    },
+    {
+     "tau": "i",
+     "tau'": "e^{i pi/3}",
+     "rank_NS": 2,
+     "rank_T": 4,
+     "NS_gram": [
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       0
+      ]
+     ],
+     "NS_signature": [
+      1,
+      1,
+      0
+     ],
+     "T_gram": [
+      [
+       0,
+       0,
+       0,
+       -1
+      ],
+      [
+       0,
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       -1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "T_signature": [
+      2,
+      2,
+      0
+     ],
+     "T_disc": 1,
+     "T_basis": [
+      [
+       0,
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     ],
+     "theta_T_to_norm_8": "not definite",
+     "TKm_disc": 16,
+     "T_in_binary_list": false
+    },
+    {
+     "tau": "e^{i pi/3}",
+     "tau'": "i",
+     "rank_NS": 2,
+     "rank_T": 4,
+     "NS_gram": [
+      [
+       0,
+       1
+      ],
+      [
+       1,
+       0
+      ]
+     ],
+     "NS_signature": [
+      1,
+      1,
+      0
+     ],
+     "T_gram": [
+      [
+       0,
+       0,
+       0,
+       -1
+      ],
+      [
+       0,
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       -1,
+       0,
+       0,
+       0
+      ]
+     ],
+     "T_signature": [
+      2,
+      2,
+      0
+     ],
+     "T_disc": 1,
+     "T_basis": [
+      [
+       0,
+       0,
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       1
+      ]
+     ],
+     "theta_T_to_norm_8": "not definite",
+     "TKm_disc": 16,
+     "T_in_binary_list": false
+    },
+    {
+     "tau": "e^{i pi/3}",
+     "tau'": "e^{i pi/3}",
+     "rank_NS": 4,
+     "rank_T": 2,
+     "NS_gram": [
+      [
+       0,
+       1,
+       0,
+       0
+      ],
+      [
+       1,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       -2,
+       1
+      ],
+      [
+       0,
+       0,
+       1,
+       -2
+      ]
+     ],
+     "NS_signature": [
+      1,
+      3,
+      0
+     ],
+     "T_gram": [
+      [
+       2,
+       -1
+      ],
+      [
+       -1,
+       2
+      ]
+     ],
+     "T_signature": [
+      2,
+      0,
+      0
+     ],
+     "T_disc": 3,
+     "T_basis": [
+      [
+       0,
+       0,
+       1,
+       1,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       -1,
+       0,
+       0,
+       1
+      ]
+     ],
+     "T_reduced_form": [
+      2,
+      1,
+      2
+     ],
+     "T_root_lattice_scaling": [
+      [
+       "A2",
+       1
+      ]
+     ],
+     "TKm_gram": [
+      [
+       4,
+       -2
+      ],
+      [
+       -2,
+       4
+      ]
+     ],
+     "TKm_disc": 12,
+     "TKm_reduced_form": [
+      4,
+      2,
+      4
+     ],
+     "T_in_binary_list": true,
+     "TKm_in_binary_list": true,
+     "TKm_root_lattice_scaling": [
+      [
+       "A2",
+       2
+      ]
+     ],
+     "T_evenness": true
+    }
+   ],
+   "shared_inputs": [
+    "Nikulin_TKm",
+    "binary_form_disc_bound"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f2_abelian.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f2_abelian.py 50",
+   "tier": "B (T(Km A)=T(A)(2) is tier L)"
+  },
+  "F2_binary_forms": {
+   "id": "F2_binary_forms",
+   "quantity": "number of reduced even positive-definite binary forms of disc <= bound",
+   "computed": {
+    "count": 48,
+    "bound": 50
+   },
+   "shared_inputs": [
+    "binary_form_disc_bound"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f2_abelian.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f2_abelian.py 50",
+   "tier": "B"
+  },
+  "F2_control": {
+   "id": "F2_control",
+   "quantity": "control: E_tau x E_tau for other tau (all CM, so rank is also 4)",
+   "computed": {
+    "2i": {
+     "rank_NS": 4,
+     "rank_T": 2,
+     "T_gram": [
+      [
+       2,
+       0
+      ],
+      [
+       0,
+       8
+      ]
+     ]
+    },
+    "i+1 (T-shift of i, sanity: must reproduce T of i)": {
+     "rank_NS": 4,
+     "rank_T": 2,
+     "T_gram": [
+      [
+       2,
+       -2
+      ],
+      [
+       -2,
+       4
+      ]
+     ]
+    },
+    "3i": {
+     "rank_NS": 4,
+     "rank_T": 2,
+     "T_gram": [
+      [
+       2,
+       0
+      ],
+      [
+       0,
+       18
+      ]
+     ]
+    }
+   },
+   "shared_inputs": [],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f2_abelian.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f2_abelian.py 50",
+   "tier": "B"
+  },
+  "F3_aut_orders": {
+   "id": "F3_aut_orders",
+   "quantity": "|Aut(L)| by exact enumeration for rank-4 root lattices",
+   "computed": {
+    "per_lattice": {
+     "A4": {
+      "det": 5,
+      "n_roots": 20,
+      "Aut_order": 240,
+      "all_unimodular": true
+     },
+     "D4": {
+      "det": 4,
+      "n_roots": 24,
+      "Aut_order": 1152,
+      "all_unimodular": true
+     },
+     "A3+A1": {
+      "det": 8,
+      "n_roots": 14,
+      "Aut_order": 96,
+      "all_unimodular": true
+     },
+     "A2+A2": {
+      "det": 9,
+      "n_roots": 12,
+      "Aut_order": 288,
+      "all_unimodular": true
+     },
+     "A2+A1+A1": {
+      "det": 12,
+      "n_roots": 10,
+      "Aut_order": 96,
+      "all_unimodular": true
+     },
+     "A1^4": {
+      "det": 16,
+      "n_roots": 8,
+      "Aut_order": 384,
+      "all_unimodular": true
+     }
+    },
+    "maximal": [
+     "D4"
+    ]
+   },
+   "shared_inputs": [
+    "rank4_root_lattices"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f3_t4.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f3_t4.py",
+   "tier": "B"
+  },
+  "F3_complex_structures": {
+   "id": "F3_complex_structures",
+   "quantity": "complex structures J=g on R^4/D4 for every g in Aut with g^2=-1 or g^2+g+1=0: (kind, rank NS, reduced T(A), det T, signature NS) -> number of such g",
+   "computed": {
+    "('M^2=-1', 4, (2, 0, 2), 4, (1, 3, 0))": 6,
+    "('M^2=-1', 4, (2, 0, 2), 4, (3, 1, 0))": 6,
+    "('M^2+M+1=0', 4, (2, 1, 2), 3, (1, 3, 0))": 8,
+    "('M^2+M+1=0', 4, (2, 1, 2), 3, (3, 1, 0))": 8
+   },
+   "sign_note": "for g whose complex structure has orientation opposite to the coordinate orientation, NS has signature (3,1) and T is negative definite; T is reported after the global sign change (equivalent to reversing orientation)",
+   "aut_orders_histogram": {
+    "2": 139,
+    "4": 228,
+    "3": 80,
+    "8": 144,
+    "6": 464,
+    "12": 96,
+    "1": 1
+   },
+   "riemann_form_order4": {
+    "E_antisymmetric": true,
+    "E_integral": true,
+    "E": [
+     [
+      0,
+      -1,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      -1,
+      1
+     ],
+     [
+      0,
+      1,
+      0,
+      -2
+     ],
+     [
+      0,
+      -1,
+      2,
+      0
+     ]
+    ]
+   },
+   "shared_inputs": [
+    "rank4_root_lattices",
+    "complex_structure_J_equals_g"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f3_t4.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f3_t4.py",
+   "tier": "B"
+  },
+  "F4a_kummer_code": {
+   "id": "F4a_kummer_code",
+   "quantity": "dim and weight enumerator of the code spanned by affine hyperplanes of F_2^4",
+   "computed": {
+    "n_hyperplanes": 30,
+    "dim": 5,
+    "n_words": 32,
+    "weight_enumerator": {
+     "0": 1,
+     "8": 30,
+     "16": 1
+    }
+   },
+   "shared_inputs": [],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f4_codes.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f4_codes.py 40000",
+   "tier": "B"
+  },
+  "F4b_golay": {
+   "id": "F4b_golay",
+   "quantity": "extended Golay code from QR mod 23: weight enumerator, octads",
+   "computed": {
+    "construction_chosen": "Q",
+    "variants_tested": {
+     "Q": {
+      "n_words": 4096,
+      "weight_enumerator": {
+       "0": 1,
+       "8": 759,
+       "12": 2576,
+       "16": 759,
+       "24": 1
+      },
+      "PSL_gens_preserve": true
+     },
+     "N": {
+      "n_words": 4096,
+      "weight_enumerator": {
+       "0": 1,
+       "8": 759,
+       "12": 2576,
+       "16": 759,
+       "24": 1
+      },
+      "PSL_gens_preserve": true
+     },
+     "Q+0": {
+      "n_words": 4096,
+      "weight_enumerator": {
+       "0": 1,
+       "8": 759,
+       "12": 2576,
+       "16": 759,
+       "24": 1
+      },
+      "PSL_gens_preserve": true
+     },
+     "N+0": {
+      "n_words": 4096,
+      "weight_enumerator": {
+       "0": 1,
+       "8": 759,
+       "12": 2576,
+       "16": 759,
+       "24": 1
+      },
+      "PSL_gens_preserve": true
+     }
+    },
+    "n_words": 4096,
+    "weight_enumerator": {
+     "0": 1,
+     "8": 759,
+     "12": 2576,
+     "16": 759,
+     "24": 1
+    },
+    "n_octads": 759
+   },
+   "shared_inputs": [
+    "QR_golay_construction"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f4_codes.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f4_codes.py 40000",
+   "tier": "B"
+  },
+  "F4c_M24": {
+   "id": "F4c_M24",
+   "quantity": "<PSL(2,23), delta> order (Schreier-Sims) and cycle shapes of sampled elements",
+   "computed": {
+    "psl_order": 6072,
+    "delta_family": {
+     "parametrisation": "x->c1 x^k on QR, c2 x^k on NQR, 0 and inf fixed; k in 1..22, c1,c2 in 1..22",
+     "n_members_preserving_G24": 110,
+     "n_outside_PSL": 88,
+     "delta_chosen(k,c1,c2)": [
+      3,
+      1,
+      2
+     ]
+    },
+    "order_of_generated_group": 244823040,
+    "generators_preserve_G24": true,
+    "octad_orbit_size": 759,
+    "schreier_sims_basic_orbit_lengths": [
+     24,
+     23,
+     22,
+     21,
+     20,
+     16,
+     3
+    ],
+    "sample_size": 40000,
+    "shapes_by_order_counts": {
+     "2": {
+      "1^8 2^8": 2,
+      "2^12": 8
+     },
+     "3": {
+      "1^6 3^6": 35,
+      "3^8": 81
+     },
+     "4": {
+      "1^4 2^2 4^4": 309,
+      "2^4 4^4": 114,
+      "4^6": 393
+     },
+     "5": {
+      "1^4 5^4": 677
+     },
+     "6": {
+      "1^2 2^2 3^2 6^2": 1638,
+      "6^4": 1706
+     },
+     "7": {
+      "1^3 7^3": 1833
+     },
+     "8": {
+      "1^2 2^1 4^1 8^2": 2367
+     },
+     "10": {
+      "2^2 10^2": 2071
+     },
+     "11": {
+      "1^2 11^2": 3859
+     },
+     "12": {
+      "2^1 4^1 6^1 12^1": 3290,
+      "12^2": 3355
+     },
+     "14": {
+      "1^1 2^1 7^1 14^1": 5758
+     },
+     "15": {
+      "1^1 3^1 5^1 15^1": 5195
+     },
+     "21": {
+      "3^1 21^1": 3805
+     },
+     "23": {
+      "1^1 23^1": 3504
+     }
+    },
+    "n_distinct_cycle_types": 20,
+    "required_orders_present": {
+     "2": true,
+     "3": true,
+     "4": true,
+     "5": true,
+     "6": true,
+     "7": true,
+     "8": true,
+     "11": true,
+     "12": true,
+     "14": true,
+     "15": true,
+     "21": true,
+     "23": true
+    }
+   },
+   "shared_inputs": [
+    "delta_search_family",
+    "Aut_G24_is_M24",
+    "sampling_seed"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f4_codes.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f4_codes.py 40000",
+   "tier": "B (that this group is the full Aut(G24) is tier L)"
+  },
+  "F4d_16_subsets": {
+   "id": "F4d_16_subsets",
+   "quantity": "16-subsets S of the 24 coordinates whose shortened Golay code is equivalent to the Kummer code",
+   "computed": {
+    "n_16_subsets_total": 735471,
+    "distribution_of_number_of_octads_inside_S": {
+     "13": 637560,
+     "15": 97152,
+     "30": 759
+    },
+    "dim_of_shortened_code_distribution": {
+     "4": 734712,
+     "5": 759
+    },
+    "n_S_with_dim>=5": 759,
+    "weight_enumerators_of_those": {
+     "{0: 1, 8: 30, 16: 1}": 759
+    },
+    "n_S_equivalent_to_K": 759,
+    "n_failures": 0,
+    "test": "shortened code has dim 5, contains all-ones on S, its 16 columns (1,v_i) are distinct in F_2^4 (bijection S->F_2^4), and its 30 weight-8 words equal the 30 affine hyperplanes",
+    "S_is_complement_of_an_octad": true
+   },
+   "shared_inputs": [
+    "QR_golay_construction"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f4_codes.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f4_codes.py 40000",
+   "tier": "B"
+  },
+  "F5_lefschetz_T4": {
+   "id": "F5_lefschetz_T4",
+   "quantity": "Lefschetz numbers on H^*(T^4,Z) of translation and of -1",
+   "computed": {
+    "L": 0,
+    "traces_on_H0..H4": [
+     1,
+     4,
+     6,
+     4,
+     1
+    ],
+    "direct_fixed_points": 0,
+    "minus1": {
+     "L": 16,
+     "traces_on_H0..H4": [
+      1,
+      -4,
+      6,
+      -4,
+      1
+     ],
+     "direct_fixed_points": 16
+    }
+   },
+   "shared_inputs": [
+    "Lefschetz_fixed_point_formula"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f5_symplectic.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f5_symplectic.py",
+   "tier": "B (formula tier L)"
+  },
+  "F5_km_fixed_points": {
+   "id": "F5_km_fixed_points",
+   "quantity": "fixed points on Km(A) of translations (Lefschetz on H^*(Km)) and of x->Mx+t, by exact enumeration, keyed by order on Km",
+   "computed": {
+    "translations": [
+     8
+    ],
+    "by_order": {
+     "2": {
+      "8": 19
+     },
+     "3": {
+      "6": 32
+     },
+     "4": {
+      "4": 12
+     }
+    },
+    "table": {
+     "E_i x E_i, M=(i,-i)": [
+      {
+       "t": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 0,
+       "fixed_nodes": 4
+      },
+      {
+       "t": [
+        0,
+        0,
+        0,
+        1
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        0,
+        1,
+        0
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        0,
+        1,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 0,
+       "fixed_nodes": 4
+      },
+      {
+       "t": [
+        0,
+        1,
+        0,
+        0
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        1,
+        0,
+        1
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        1,
+        1,
+        0
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        1,
+        1,
+        1
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        0,
+        0,
+        0
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        0,
+        0,
+        1
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        0,
+        1,
+        0
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        0,
+        1,
+        1
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        1,
+        0,
+        0
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 0,
+       "fixed_nodes": 4
+      },
+      {
+       "t": [
+        1,
+        1,
+        0,
+        1
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        1,
+        1,
+        0
+       ],
+       "order_on_Km": 4,
+       "fixed_points": 4,
+       "non_node_classes": 4,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        1,
+        1,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 0,
+       "fixed_nodes": 4
+      }
+     ],
+     "E_tau x E_tau, tau=e^{i pi/3}, M=(tau^2,tau^-2) [omega, omega^2]": [
+      {
+       "t": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        0,
+        0,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        0,
+        1,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        0,
+        1,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        1,
+        0,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        1,
+        0,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        1,
+        1,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        1,
+        1,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        0,
+        0,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        0,
+        0,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        0,
+        1,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        0,
+        1,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        1,
+        0,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        1,
+        0,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        1,
+        1,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        1,
+        1,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      }
+     ],
+     "E_tau x E_tau, tau=e^{i pi/3}, M=(tau,tau^-1) [order 6 on A]": [
+      {
+       "t": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        0,
+        0,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        0,
+        1,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        0,
+        1,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        1,
+        0,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        1,
+        0,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        1,
+        1,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        0,
+        1,
+        1,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        0,
+        0,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        0,
+        0,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        0,
+        1,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        0,
+        1,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        1,
+        0,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        1,
+        0,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        1,
+        1,
+        0
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      },
+      {
+       "t": [
+        1,
+        1,
+        1,
+        1
+       ],
+       "order_on_Km": 3,
+       "fixed_points": 6,
+       "non_node_classes": 4,
+       "fixed_nodes": 1
+      }
+     ],
+     "translation only, M=1": [
+      {
+       "t": [
+        0,
+        0,
+        0,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        0,
+        1,
+        0
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        0,
+        1,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        1,
+        0,
+        0
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        1,
+        0,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        1,
+        1,
+        0
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        0,
+        1,
+        1,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        0,
+        0,
+        0
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        0,
+        0,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        0,
+        1,
+        0
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        0,
+        1,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        1,
+        0,
+        0
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        1,
+        0,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        1,
+        1,
+        0
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      },
+      {
+       "t": [
+        1,
+        1,
+        1,
+        1
+       ],
+       "order_on_Km": 2,
+       "fixed_points": 8,
+       "non_node_classes": 8,
+       "fixed_nodes": 0
+      }
+     ]
+    }
+   },
+   "shared_inputs": [
+    "Km_cohomology",
+    "hol_tangent_eigenvalues_distinct_at_nodes",
+    "Lefschetz_fixed_point_formula"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f5_symplectic.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f5_symplectic.py",
+   "tier": "B",
+   "expected_after": "Nikulin (FROM MEMORY, tier L): order 2:8, 3:6, 4:4, 6:2. Orders 5,7,8 not realised on Km of E x E' with these automorphisms"
+  },
+  "F5_M24_comparison": {
+   "id": "F5_M24_comparison",
+   "quantity": "M24 pointwise octad stabiliser 2^4 acts regularly on the 16 complementary points; nontrivial elements have shape 1^8 2^8; matches Km translations group (character 24,8,...,8)",
+   "computed": {
+    "order": 16,
+    "regular_on_complement_16_points": true,
+    "cycle_shapes_of_elements": {
+     "1^24": 1,
+     "1^8 2^8": 15
+    },
+    "elementary_abelian_rank": 4,
+    "octads_in_complement_equal_affine_hyperplanes_under_regular_action": true,
+    "n_hyperplanes": 30,
+    "n_octads_in_complement": 30,
+    "M24_fixed_points_by_order": {
+     "2": [
+      0,
+      8
+     ],
+     "3": [
+      0,
+      6
+     ],
+     "4": [
+      0,
+      4
+     ],
+     "5": [
+      4
+     ],
+     "6": [
+      0,
+      2
+     ],
+     "7": [
+      3
+     ],
+     "8": [
+      2
+     ],
+     "11": [
+      2
+     ],
+     "12": [
+      0
+     ],
+     "14": [
+      1
+     ],
+     "15": [
+      1
+     ],
+     "21": [
+      0
+     ],
+     "23": [
+      1
+     ]
+    }
+   },
+   "shared_inputs": [
+    "identification_H*(Km)_with_24_points"
+   ],
+   "script": "audit/k3t2_rigidity_v3/F-whichk3/f5_symplectic.py",
+   "command": "cd audit/k3t2_rigidity_v3/F-whichk3 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python f5_symplectic.py",
+   "tier": "B for the computed group facts; the identification with H^*(Km A) is tier C"
+  }
+ },
+ "rigidity": {
+  "F1_point": {
+   "id": "F1_point",
+   "parameter_inserted": "(tau,rho) in H x H",
+   "selecting_condition": "stabiliser in the formal full duality group is maximal (over candidate set: elliptic pairs and 30 sampled non-elliptic points)",
+   "condition_uses_true_value": false,
+   "solution_set": [
+    "(x=1/2, y^2=3/4 ; x=1/2, y^2=3/4)"
+   ],
+   "classification": "RIGID_GIVEN_DEFINITION",
+   "input_it_depends_on": "duality_group (the reflection and exchange are typed inputs; without the reflection or without the exchange the order at (omega,omega) is 72)",
+   "negative_control": "neighbouring points: (i,i) 64, (i,omega) 48, sampled generic points <= 16; all realizable points, same parameter (tau,rho)",
+   "control_perturbs_same_parameter": true
+  },
+  "F2_T": {
+   "id": "F2_T",
+   "parameter_inserted": "complex structure (tau,tau') of A=E_tau x E_tau'",
+   "selecting_condition": "NS = integral classes orthogonal to the period; T = orth complement",
+   "condition_uses_true_value": false,
+   "solution_set": "see F2_NS_T",
+   "classification": "RIGID_GIVEN_DEFINITION",
+   "input_it_depends_on": "H2_A_equals_U3, the choice of the elliptic tau values from F1(a); Nikulin_TKm for the Kummer form",
+   "negative_control": "tau=tau'=2i, 3i (realizable, other CM points): rank and disc change (see F2_control)",
+   "control_perturbs_same_parameter": true
+  },
+  "F3_maximal_aut": {
+   "id": "F3_maximal_aut",
+   "parameter_inserted": "choice of rank-4 root lattice",
+   "selecting_condition": "maximal |Aut(L)|",
+   "condition_uses_true_value": false,
+   "solution_set": [
+    "D4"
+   ],
+   "classification": "RIGID_GIVEN_DEFINITION",
+   "input_it_depends_on": "rank4_root_lattices (the list of six candidates)",
+   "negative_control": "the other five root lattices have smaller |Aut| (see F3_aut_orders); all are existing lattices",
+   "control_perturbs_same_parameter": true
+  },
+  "F4d_subset": {
+   "id": "F4d_subset",
+   "parameter_inserted": "choice of 16 of 24 coordinates",
+   "selecting_condition": "shortened code of G24 on S is equivalent to the Kummer code (dim 5, columns distinct, 30 weight-8 words = affine hyperplanes)",
+   "condition_uses_true_value": false,
+   "solution_set": "759 subsets of 735471",
+   "classification": "RIGID_GIVEN_DEFINITION",
+   "input_it_depends_on": "QR_golay_construction",
+   "negative_control": "the other 734712 16-subsets have shortened code of dimension 4 (see dim distribution); all are realizable subsets",
+   "control_perturbs_same_parameter": true
+  },
+  "F5_fixed_points": {
+   "id": "F5_fixed_points",
+   "parameter_inserted": "the automorphism (M,t) of A descending to Km A",
+   "selecting_condition": "none: fixed points are counted",
+   "condition_uses_true_value": false,
+   "solution_set": {
+    "2": {
+     "8": 19
+    },
+    "3": {
+     "6": 32
+    },
+    "4": {
+     "4": 12
+    }
+   },
+   "classification": "VERIFIED_IDENTITY",
+   "input_it_depends_on": "Km_cohomology, hol_tangent_eigenvalues_distinct_at_nodes",
+   "negative_control": "control: direct enumeration of fixed points of translations equals the Lefschetz value 8 on H^*(Km); a wrong exceptional-curve permutation (trivial action) would give 24, not 8",
+   "control_perturbs_same_parameter": true
+  }
+ },
+ "could_not_do": {
+  "F2_noncm_control": "A non-CM control (Picard number 3) cannot be represented exactly in K=Q(i,sqrt3); only other CM points (2i,3i) were used as controls.",
+  "F5_orders_5_6_7_8": "Orders 5,7,8 are not realised by any (M,t) on Km(E x E') with M in the elliptic families used (needs 5th/7th/8th roots of unity); order 6 is not realised by (tau,tau^-1)+t (g^3 = translation by 2Mt = 0). Only orders 2,3,4 were computed.",
+  "F5_M24_order_identification": "The map (symplectic Km automorphism of order n) <-> (M24 element of order n) was only compared through fixed-point counts for n=2,3,4; tier C.",
+  "F1_global_max": "The global maximum over all of H x H is argued (order <= 4ab, a,b in {2,4,6}) and checked over the elliptic pairs plus 30 sampled non-elliptic points, not by exhausting the continuum.",
+  "F3_other_J": "Only J=g (g acting as i or omega) was enumerated; other complex structures commuting with g (a continuous family for order 3, e.g. eigenvalue omega on one line and omega-bar on another) were not enumerated."
+ }
+}
