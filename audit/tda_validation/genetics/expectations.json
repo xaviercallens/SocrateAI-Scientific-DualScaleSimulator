@@ -1,0 +1,99 @@
+{
+  "_meta": {
+    "purpose": "Pre-stated expectations for validating the DualScaleSimulator TDA pipeline (audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py: alpha_persistence, top_bars, betti_curve, euler_curve) against published topology in genetics/genomics. Written and committed ALONE before any persistence or statistic is computed on the real data listed here.",
+    "written": "2026-09-19",
+    "branch": "loop/tda-validation",
+    "status_at_commit": "Data files downloaded and headers/shape inspected (column names, row counts, matrix squareness); NO statistic, PCA, distance matrix or persistence diagram has been computed on any of them.",
+    "convention_split": "For each test, 'published_claim' is what the cited paper states (quoted or paraphrased with the source named). 'our_topological_operationalization' is OUR translation of it into a persistence statistic; it is NOT a result from the paper. PASS/FAIL refers to our operationalization.",
+    "pipeline_under_test": {
+      "alpha_path": "cosmic_web_tda_scaled.alpha_persistence(xyz, max_alpha_sq=float('inf'), label, out_dir) on a 3-D embedding; bars are returned as radii sqrt(alpha). top_bars(by_dim, 1, k=5, r_trunc=<explicit>) is ALWAYS called with an explicit r_trunc (never the module default R_MAX_PERS=50 Mpc/h, which is a cosmology unit). With max_alpha_sq=inf the full Delaunay filtration is built, so H1 bars have finite deaths; r_trunc is set to the largest finite death of the diagram and any infinite H1 death is reported as an anomaly.",
+      "graph_path": "cmb_tda.betti_curves_from_topology is a lower-star filtration for a scalar field on a graph; none of the datasets below is a scalar field on a graph, so it is NOT used (stated here, not silently skipped).",
+      "rips_crosscheck": "gudhi.RipsComplex on the full-dimensional data (or full distance matrix), max_dimension=2, after SimplexTree.collapse_edges(); reported alongside, not part of the binding PASS rule unless stated.",
+      "sanity_check": "Before real data: alpha_persistence on the module's own build_circle_cloud(n=200, noise_sigma=0.05, seed=0) must give one H1 bar whose death is close to the circle radius 1 and whose persistence is >= 3x the second bar.",
+      "dominant_bar_definition": "P1 = persistence (death - birth, radius units) of the longest H1 bar; P2 = second longest. 'Dominant' means P1/P2 >= 2.0.",
+      "scale_free_statistic": "S = P1 / R_rms, R_rms = sqrt(mean squared distance of the embedded points to their centroid). Used for null comparisons so that embeddings of different variance are comparable.",
+      "p_value_convention": "p = (1 + #{null >= observed}) / (1 + n_null), one-sided.",
+      "rips_statistic": "On every Rips cross-check the scale-free statistic is S_rips = P1 / (median nearest-neighbour distance in the metric used)."
+    }
+  },
+  "test_1a_cell_cycle_U2OS_FUCCI": {
+    "data": {
+      "accession": "GEO GSE146773",
+      "files": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE146nnn/GSE146773/suppl/GSE146773_Counts.csv.gz",
+        "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE146nnn/GSE146773/suppl/GSE146773_fucci_coords.csv.gz"
+      ],
+      "citation": "Mahdessian D. et al., Spatiotemporal dissection of the cell cycle with single-cell proteogenomics, Nature 590, 649-654 (2021), doi:10.1038/s41586-021-03232-9"
+    },
+    "published_claim": "Zheng S.C. et al., Universal prediction of cell-cycle position using transfer learning, Genome Biology 23:41 (2022), doi:10.1186/s13059-021-02581-y, which uses this dataset (hU2OS, 1114 cells, FUCCI) among its validation sets, states: 'PCA of cell-cycle genes form an ellipsoid', 'The first two principal components form an ellipsoid with a sparse/empty interior', and cell-cycle position is inferred as 'the polar angle around the origin'. They note the pattern requires the first PC to be dominated by the cell cycle.",
+    "our_topological_operationalization": "In the 3-D PCA embedding of cell-cycle genes, the alpha complex has ONE dominant H1 class, significant against a gene-wise permutation null, and the polar angle atan2(PC2, PC1) is circularly correlated with the FUCCI polar angle.",
+    "preprocessing": {
+      "cells": "cells present in both the counts matrix and fucci_coords with a finite polar_coord_phi; QC: drop cells with log10(total counts) < median - 3*MAD or number of detected genes < median - 3*MAD (MAD scaled by 1.4826).",
+      "normalisation": "counts per million over all genes, then log2(CPM + 1).",
+      "genes": "cell-cycle genes = hbc/tinyatlas cell_cycle/Homo_sapiens.csv (97 Ensembl IDs with S and G2/M labels, derived from the Tirosh et al. 2016 Science 352:189 list, doi:10.1126/science.aad0501), keeping those detected (count > 0) in >= 5% of retained cells; each gene z-scored across cells.",
+      "embedding": "PCA (numpy SVD of the centred z-score matrix) to 3 components -> alpha_persistence.",
+      "rips_crosscheck": "RipsComplex on the full z-scored cell-cycle-gene matrix (Euclidean, all retained genes), on a random subsample of 400 cells (numpy seed 0)."
+    },
+    "null": "Gene-wise permutation: each gene's z-scored values permuted independently across cells (destroys gene-gene covariance, keeps marginals), then the same PCA-3 + alpha pipeline. n_null = 1000, seeds 0..999. Statistic S. Rips cross-check null: n_null = 100.",
+    "negative_control": "Same cells, cell-cycle genes replaced by the same number of randomly chosen expressed non-cell-cycle genes (detected in >= 20% of cells, not in the 97-gene list); 20 draws (seeds 0..19); draw 0 is primary and is tested against its own gene-wise permutation null (n_null = 1000). Expectation: no dominant loop (P1/P2 < 2.0 or p > 0.01).",
+    "positive_check": "theta = atan2(PC2, PC1) vs phi = polar_coord_phi (FUCCI). Jammalamadaka-SenGupta circular-circular correlation rho_cc; orientation of the loop is arbitrary so |rho_cc| is used. Label-permutation p-value (phi permuted across cells, n = 10000, seed 0). Also reported with fucci_time_hrs mapped to angle 2*pi*t/max(t).",
+    "pass_rule": "PASS iff (i) P1/P2 >= 2.0 in the data; (ii) S significant vs the gene-wise permutation null at p <= 0.01; (iii) negative control draw 0 does NOT satisfy both (i) and (ii); (iv) |rho_cc| >= 0.3 with permutation p <= 0.01. Otherwise FAIL (each sub-criterion reported).",
+    "caveat_prestated": "Random non-cell-cycle genes may still carry a weak cell-cycle signal (the cell cycle affects total mRNA content), so a loop in the negative control would be informative, not necessarily a pipeline error."
+  },
+  "test_1b_cell_cycle_mESC_Buettner": {
+    "data": {
+      "accession": "ArrayExpress / BioStudies E-MTAB-2805",
+      "files": [
+        "https://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/805/E-MTAB-2805/Files/G1_singlecells_counts.txt",
+        "https://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/805/E-MTAB-2805/Files/S_singlecells_counts.txt",
+        "https://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/805/E-MTAB-2805/Files/G2M_singlecells_counts.txt"
+      ],
+      "citation": "Buettner F. et al., Computational analysis of cell-to-cell heterogeneity in single-cell RNA-sequencing data reveals hidden subpopulations of cells, Nat Biotechnol 33, 155-160 (2015), doi:10.1038/nbt.3102 (96 Hoechst-FACS-sorted cells per phase G1, S, G2M)"
+    },
+    "published_claim": "Liu Z. et al., Reconstructing cell cycle pseudo time-series via single-cell transcriptome data (reCAT), Nat Commun 8:22 (2017), doi:10.1038/s41467-017-00039-z, reconstruct a cyclic pseudo-time ordering on this dataset ('mESC-SMARTer', 232 eligible cells) consistent with the G1/S/G2M labels; Zheng et al. 2022 (tricycle, above) use it (279 cells) and note 'some cells labeled S (but not G1 or G2M) appear outside the position expected for this stage, consistent with the gating strategy'. Neither paper reports a persistence diagram: the dominant-H1 statement is our operationalization.",
+    "our_topological_operationalization": "Same as test_1a, with the discrete phase labels placed at angles G1=0, S=2pi/3, G2M=4pi/3 for rho_cc.",
+    "preprocessing": {
+      "rows": "each row of the count files is one gene (EnsemblGeneID unique, one representative transcript); columns 5.. are cells; the 92 ERCC spike-in rows are excluded from normalisation and used only for the QC ERCC fraction.",
+      "cells": "QC as test_1a plus drop cells with ERCC fraction > median + 3*MAD.",
+      "normalisation": "CPM over endogenous genes, log2(CPM + 1).",
+      "genes": "hbc/tinyatlas cell_cycle/Mus_musculus.csv (97 Ensembl IDs), detected in >= 5% of retained cells, z-scored.",
+      "embedding": "PCA to 3 -> alpha_persistence; Rips cross-check on all retained cells (<= 288) in the full z-scored gene space."
+    },
+    "null": "Gene-wise permutation, n_null = 1000 (seeds 0..999), statistic S.",
+    "negative_control": "Random expressed non-cell-cycle genes, same count, 20 draws (seeds 0..19), draw 0 primary with its own null (n = 1000).",
+    "positive_check": "|rho_cc| between atan2(PC2, PC1) and label angle; label-permutation p (n = 10000, seed 0).",
+    "cluster_vs_loop_caveat_prestated": "With three FACS-sorted phases, three separated clusters placed non-collinearly would give an H1 bar from cluster geometry alone, and with only three labels any placement is trivially 'cyclic'. Continuity diagnostic (reported, not in the binding rule): birth/death ratio of the dominant bar (a continuously sampled loop has birth << death; three tight clusters give birth/death near 0.87), and a within-phase gene-wise permutation control (keeps the phase means, i.e. the triangle, destroys within-phase covariance; n = 200, seeds 0..199) with p_tri = fraction of controls with S >= observed. The loop is called 'continuous' only if birth/death <= 0.5 and p_tri <= 0.05. Test 1a (continuous FUCCI angle) is the stronger cell-cycle test.",
+    "pass_rule": "Same four criteria as test_1a."
+  },
+  "test_2_circular_bacterial_chromosome_HiC": {
+    "data": {
+      "accession": "GEO GSE45966, sample GSM1120445 (Laublab_BglII_HiC_NA1000_swarmer_cell_untreated_replicate1, iteratively corrected matrix, 10 kb bins)",
+      "files": [
+        "https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1120nnn/GSM1120445/suppl/GSM1120445_Laublab_BglII_HiC_NA1000_swarmer_cell_untreated_replicate1_overlap_after_normalization.txt.gz"
+      ],
+      "citation": "Le T.B.K., Imakaev M.V., Mirny L.A., Laub M.T., High-resolution mapping of the spatial organization of a bacterial chromosome, Science 342, 731-734 (2013), doi:10.1126/science.1242059"
+    },
+    "published_claim": "The C. crescentus NA1000 chromosome is a single circular molecule (GenBank CP001340, 'Caulobacter crescentus NA1000, complete genome', topology=circular, 4,042,929 bp; Nierman W.C. et al., PNAS 98:4136 (2001), doi:10.1073/pnas.061029298 for strain CB15). Le et al. 2013 map it by Hi-C and report that SMC promotes 'the colinearity of chromosomal arms' (the two arms are juxtaposed).",
+    "our_topological_operationalization": "Distances d_ij = C_ij^(-alpha) with alpha = 1/3 (ideal-chain scaling, contact probability ~ R^-3) on the 405 x 405 matrix give one dominant H1 class (the ring closed through the origin bins 0 and 404). Since a Rips filtration depends only on the order of edges, Rips bar existence and pairing are invariant to alpha > 0; alpha = 1 is reported as a sensitivity for the alpha path.",
+    "preprocessing": "Load the 405 x 405 matrix; check symmetry; drop bins whose row sum is 0 (unmappable); diagonal excluded (d_ii = 0); zero off-diagonal contacts replaced by half the smallest positive contact before the power. Alpha path: classical (Torgerson) MDS of d to 3 components -> alpha_persistence. Rips path: RipsComplex(distance_matrix=d) on all retained bins.",
+    "null": "Linear-polymer null with the data's own decay and noise: E(s) = mean contact at genomic offset s for s <= N/2 (where linear and circular offsets coincide); for s > N/2 a power law fitted to E(s) over N/8 <= s <= N/2 is extrapolated; residuals r_ij = log C_ij - log E(min(s, N-s)) from the data are permuted across pairs; C_null = E_linear(|i-j|) * exp(r_perm). n_null = 1000 for the alpha path (seeds 0..999), 200 for Rips (seeds 0..199). Statistic: S on the alpha path; on the Rips path S_rips = P1 / median nearest-neighbour distance of d.",
+    "negative_control_internal": "Cut the ring: delete 40 contiguous bins centred on the terminus (bins 182-221, ter ~ genome midpoint) and recompute; the dominant H1 must disappear (P1/P2 < 2.0 or not significant vs the linear null at 0.01). A second cut at the origin (bins 0-19 and 385-404) is reported.",
+    "negative_control_external": "A linear chromosome: human GM12878 in-situ Hi-C (Rao S.S.P. et al., Cell 159, 1665-1680 (2014), doi:10.1016/j.cell.2014.11.021, GEO GSE63525), file https://hicfiles.s3.amazonaws.com/hiseq/gm12878/in-situ/combined.hic read remotely with hic-straw, chromosome 1 q-arm 145,000,000-249,250,621 bp (hg19), 250 kb bins, KR-normalised observed contacts, same preprocessing and same linear null. Expectation: no dominant H1 (P1/P2 < 2.0 or p > 0.01).",
+    "caveat_prestated": "(a) Caulobacter arms are juxtaposed (Le et al.), so the ring is a thin folded loop and inter-arm contacts may shorten the dominant bar; (b) human chromosomes have A/B compartments whose long-range contacts may create H1 bars that are real 3-D structure, not circularity - if so the external control fails for a biological reason and this is reported as such.",
+    "pass_rule": "PASS iff (i) Caulobacter P1/P2 >= 2.0 on the alpha path; (ii) S significant vs the linear-polymer null at p <= 0.01; (iii) the internal ter-cut control does NOT satisfy both (i) and (ii); (iv) the external linear control does NOT satisfy both (i) and (ii). Rips path reported with the same criteria as a cross-check."
+  },
+  "test_3_viral_evolution_influenza": {
+    "data": {
+      "source": "NCBI Influenza Virus Resource FTP: https://ftp.ncbi.nih.gov/genomes/INFLUENZA/genomeset.dat.gz (complete genome sets grouped per virus), influenza_na.dat.gz (metadata), influenza.fna.gz (sequences).",
+      "citation": "Chan J.M., Carlsson G., Rabadan R., Topology of viral evolution, PNAS 110, 18566-18571 (2013), doi:10.1073/pnas.1313480110, PMC3831954"
+    },
+    "published_claim": "Chan et al.: 'When applied to a single viral segment unaffected by reassortment, higher-dimensional homology groups vanish'; 'For avian influenza, individual segments of HA (Fig. 3A) and neuraminidase (NA) ...' show tree-like topology, whereas 'Concatenated segments reveal rich 1D and 2D topology, indicating reassortment'. Distances are Hamming distances between aligned sequences.",
+    "our_topological_operationalization": "For avian-host influenza A complete genomes, per-segment p-distances (aligned sites) give only short H1 bars, while the concatenated 8-segment genome distance gives more and longer H1 bars.",
+    "preprocessing": "Avian-host influenza A genome sets from genomeset.dat with all 8 segments present, each segment length >= 90% of that segment's median length; one genome per identical concatenated sequence; random subsample of 300 genomes (numpy seed 20260919). Each segment aligned with FAMSA (pyfamsa 0.7.0, default parameters). Pairwise p-distance per segment = mismatches / sites where both are non-gap; concatenated distance = total mismatches / total shared non-gap sites over the 8 segments. Rips path: RipsComplex on the full distance matrix (the published method). Alpha path: classical MDS to 3-D -> alpha_persistence (a distorting embedding, stated).",
+    "statistics": "A = max H1 persistence (p-distance units); B = number of H1 bars with persistence >= 0.005.",
+    "null": "No-reassortment reference: site-bootstrap (alignment columns resampled with replacement within a segment) of each single segment, 50 replicates x 8 segments = 400 (seeds 0..399), pooled; p = (1 + #{A_null >= A_concat}) / 401. A concatenation of identically-evolving segments has the same normalised distances as one segment, so single segments are the no-reassortment reference.",
+    "negative_control": "Each single segment (HA = segment 4, NA = segment 6 as in Chan et al.; the six internal segments also reported).",
+    "pass_rule": "PASS iff (i) A_concat significant vs the pooled single-segment bootstrap null at p <= 0.01; (ii) A for HA and NA each <= 0.5 * A_concat; (iii) B_concat > max over single segments of B. Evaluated on the Rips path (the method of the paper); alpha path reported.",
+    "status": "Optional (third test). If sequences cannot be fetched or aligned within budget, marked ABSENT with URLs tried."
+  }
+}
