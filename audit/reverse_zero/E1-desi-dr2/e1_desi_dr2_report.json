@@ -1,0 +1,131 @@
+{
+ "H0_from_hubbleRadius_m_km_s_Mpc": 67.66112249493798,
+ "prereg_thresholds_quoted_from_PRE_REGISTRATION_md": {
+  "2dof_3sigma": 11.83,
+  "2dof_5sigma": 28.74,
+  "source_line": "audit/PRE_REGISTRATION.md section 2: '2 dof: Delta chi2 = 11.83 is 3 sigma, and 28.74 is 5 sigma.'"
+ },
+ "sn_cut": "zHD in (0.01, 2.4], MU_SH0ES finite, MU_SH0ES_ERR_DIAG>0 (mask only; chi2 uses full STAT+SYS off-diagonal cov restricted to mask)",
+ "sn_n_used": 1590,
+ "sn_n_full_file": 1701,
+ "sn_cov_source": "data/real2/dark_energy/Pantheon+SH0ES_STAT+SYS.cov (full 1701x1701 STAT+SYS)",
+ "DR2": {
+  "label": "DESI DR2 ALL_GCcomb (13 pts, full 13x13 cov) + Pantheon+ full cov",
+  "n_bao": 13,
+  "n_sn": 1590,
+  "frozen_omega_lambda_0.68885": {
+   "chi2": 1417.553796256854,
+   "bao": 12.669853432077725,
+   "sn": 1404.8839428247763,
+   "sn_offset": 43.053942877952025,
+   "H0_implied_by_offset": 73.45682065123168
+  },
+  "fitted_lcdm": {
+   "Om_m": 0.30402757335741043,
+   "Om_L": 0.6959724266425895,
+   "chi2": 1416.7655624643826,
+   "bao": 10.837646743046992,
+   "sn": 1405.9279157213357,
+   "sn_offset": 43.051614029548986,
+   "H0_implied_by_offset": 73.53564346542102
+  },
+  "cpl_om_frozen": {
+   "w0": -0.8800484814719165,
+   "wa": -0.3466750559988745,
+   "chi2": 1412.4211105521347,
+   "bao": 8.72276144381078,
+   "sn": 1403.698349108324,
+   "sn_offset": 43.068410191455705,
+   "H0_implied_by_offset": 72.96904538322221
+  },
+  "cpl_om_free": {
+   "Om_m": 0.30424148269086226,
+   "w0": -0.8960472097718253,
+   "wa": -0.18633395128318575,
+   "chi2": 1412.21887068509,
+   "bao": 8.747514807706102,
+   "sn": 1403.471355877384,
+   "sn_offset": 43.06605644247521,
+   "H0_implied_by_offset": 73.0481824392504
+  },
+  "delta_chi2_CPL_vs_Lambda_2dof": 4.546691779292587,
+  "sigma_equivalent_2dof": 1.6306362921461302,
+  "prereg_rule_ge_28.74_falsifies_5sigma": false,
+  "prereg_rule_ge_11.83_is_3sigma": false,
+  "quadrant_w0_gt_-1_and_wa_lt_0": true,
+  "quadrant_note": "The pre-registered rule is conditional on the w0>-1, wa<0 quadrant; only Delta chi2 found in that quadrant falsifies P1. Fitted (w0=-0.8960, wa=-0.1863) is in that quadrant.",
+  "delta_chi2_CPL_vs_Lambda_2dof_Om_m_frozen_both": 5.132685704719279,
+  "sigma_equivalent_2dof_Om_m_frozen_both": 1.7694670809334514,
+  "negative_control_Om_L_0.5": {
+   "delta_chi2_vs_fitted_lcdm": 365.25994671237504
+  },
+  "omega_lambda_profile_1sigma": {
+   "minus": 0.00803400981883029,
+   "plus": 0.007829114585485075
+  },
+  "omega_lambda_distance_from_0.68885_in_sigma": 0.8865344707316453,
+  "prereg_rule_omega_lambda_ge_5sigma_falsifies": false
+ },
+ "DR1": {
+  "label": "DESI 2024 DR1 all-tracer (12 pts, full 12x12 cov) + Pantheon+ full cov",
+  "n_bao": 12,
+  "n_sn": 1590,
+  "frozen_omega_lambda_0.68885": {
+   "chi2": 1418.9426413892966,
+   "bao": 14.058698564520256,
+   "sn": 1404.8839428247763,
+   "sn_offset": 43.053942877952025,
+   "H0_implied_by_offset": 73.45682065123168
+  },
+  "fitted_lcdm": {
+   "Om_m": 0.3094204838047223,
+   "Om_L": 0.6905795161952777,
+   "chi2": 1418.9210160950968,
+   "bao": 13.81463987525095,
+   "sn": 1405.1063762198457,
+   "sn_offset": 43.05337865920226,
+   "H0_implied_by_offset": 73.47590958842602
+  },
+  "cpl_om_frozen": {
+   "w0": -0.8779069960913546,
+   "wa": -0.468081969965909,
+   "chi2": 1415.7345910740262,
+   "bao": 12.027508565243215,
+   "sn": 1403.707082508783,
+   "sn_offset": 43.067015482185205,
+   "H0_implied_by_offset": 73.01592753267701
+  },
+  "cpl_om_free": {
+   "Om_m": 0.30979535588712237,
+   "w0": -0.8800968496562256,
+   "wa": -0.43707220600062513,
+   "chi2": 1415.7296426553369,
+   "bao": 12.055504659407719,
+   "sn": 1403.6741379959292,
+   "sn_offset": 43.066696314871145,
+   "H0_implied_by_offset": 73.0266603470162
+  },
+  "delta_chi2_CPL_vs_Lambda_2dof": 3.1913734397599,
+  "sigma_equivalent_2dof": 1.2737014707821952,
+  "prereg_rule_ge_28.74_falsifies_5sigma": false,
+  "prereg_rule_ge_11.83_is_3sigma": false,
+  "quadrant_w0_gt_-1_and_wa_lt_0": true,
+  "quadrant_note": "The pre-registered rule is conditional on the w0>-1, wa<0 quadrant; only Delta chi2 found in that quadrant falsifies P1. Fitted (w0=-0.8801, wa=-0.4371) is in that quadrant.",
+  "delta_chi2_CPL_vs_Lambda_2dof_Om_m_frozen_both": 3.208050315270384,
+  "sigma_equivalent_2dof_Om_m_frozen_both": 1.2784650906983595,
+  "negative_control_Om_L_0.5": {
+   "delta_chi2_vs_fitted_lcdm": 173.5688325273004
+  },
+  "omega_lambda_profile_1sigma": {
+   "minus": 0.011922451215627294,
+   "plus": 0.011547159497770076
+  },
+  "omega_lambda_distance_from_0.68885_in_sigma": 0.14506380978189873,
+  "prereg_rule_omega_lambda_ge_5sigma_falsifies": false
+ },
+ "DR1_to_DR2_delta_chi2_CPL_vs_Lambda_change": 1.3553183395326869,
+ "published_3.1sigma_reproduction": {
+  "reproduced": false,
+  "why_not": "The published 3.1sigma (PRE_REGISTRATION.md R4) is DESI DR2 BAO + CMB + supernovae combined. This script has no CMB likelihood (no Planck/ACT/SPT chain in the USABLE DATA list; none fetched). CMB breaks the Omega_m*h^2 vs r_d (BAO) and Omega_m vs H0 (SN) degeneracies that BAO+SN alone leave partially open, so a BAO+SN-only Delta chi2 is expected to be smaller than the published DESI+CMB+SN result, not a reproduction of it. Whatever Delta chi2/sigma this script found for DR2 is reported above as a distinct, weaker number; it is not adjusted toward 3.1sigma."
+ }
+}

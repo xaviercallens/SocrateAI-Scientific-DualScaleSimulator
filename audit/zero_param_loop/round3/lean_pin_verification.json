@@ -1,0 +1,29 @@
+{
+  "generated": "2026-09-18",
+  "purpose": "Ground-rule check: every number must come from a command run this session. round1 pinned omegaLambda/planckLength_m/hubbleRadius_m at LeanMaster tag v3.9.0; round2's skeptic commit said 'Lean pins at v3.16.1'; this round's own supplied context says LeanMaster is at v3.12.0+/587 theorems. Checked directly (LeanMaster is READ-ONLY, read commands only) whether the two constants and the two theorems mu_sym_length_bridge.py depends on have drifted.",
+  "commands_run": [
+    "cd LeanMaster && git log --oneline -1",
+    "cd LeanMaster && git tag --sort=-v:refname | head -5",
+    "cd LeanMaster && grep -n planckLength_m|hubbleRadius_m DualScaleCosmology/SelfDualCutoff.lean",
+    "cd LeanMaster && grep -n omegaLambda DualScaleCosmology/DarkEnergyScale.lean",
+    "cd LeanMaster && git diff v3.9.0 HEAD -- DualScaleCosmology/SelfDualCutoff.lean DualScaleCosmology/DarkEnergyScale.lean"
+  ],
+  "leanmaster_head": "7be7626b2d03bfcf941ae8d90202d565eadfed53 (main, origin/main -- README: Zenodo DOIs for papers 9-11)",
+  "leanmaster_head_is_ahead_of_any_tag": true,
+  "latest_tags_seen": ["v3.17.0", "v3.16.1", "v3.16.0", "v3.15.0", "v3.14.0"],
+  "diff_v3.9.0_vs_HEAD_for_the_two_relevant_files": "EMPTY (0 lines) -- planckLength_m, hubbleRadius_m, omegaLambda are byte-identical to the v3.9.0 pin used throughout this loop; the round-3 self-dual-length arithmetic is unaffected by any LeanMaster advance between v3.9.0 and HEAD",
+  "planckLength_m_current": "1.616255e-35 (SelfDualCutoff.lean:96)",
+  "hubbleRadius_m_current": "1.3672e26 (SelfDualCutoff.lean:100)",
+  "omegaLambda_current": "0.68885 (DarkEnergyScale.lean:84)",
+  "NEW_THEOREMS_FOUND_NOT_PREVIOUSLY_CITED_IN_THIS_LOOP": [
+    "DualScaleCosmology.SelfDualCutoff.selfDual_length_sq_bracket (Tier A, proved): (4e-5)^2 <= planckLength_m*hubbleRadius_m <= (7e-5)^2",
+    "DualScaleCosmology.SelfDualCutoff.cknHorizon_length_bracket (Tier A, proved): CKN's own horizon-scale cutoff length also in [40,70] micron",
+    "DualScaleCosmology.DarkEnergyScale.rhoLambda / rhoLambda_inv_eq / selfDual_lambda4_eq (Tier A, proved): the self-dual length IS the dark-energy length, s^4 = (8pi/(3*omegaLambda)) * rhoLambda^-1, exactly, up to an O(1) convention factor",
+    "DualScaleCosmology.DarkEnergyScale.darkEnergyLength4_bracket (Tier A, proved): reproduces MVV's Lambda^-1/4 ~ 88 micron as the SAME formula, not an independent number",
+    "DualScaleCosmology.DarkEnergyScale.selfDual_above_torsion_radius_bound (Tier A, proved): s >= 1.5*30 micron, an IN-REPO comparison against a REAL cited experimental bound (Lee, Adelberger, Cook, Fleischer, Heckel 2020, arXiv:2002.11761, Eot-Wash torsion balance, 30 micron toroidal-radius / 38.6 micron gravitational-strength-Yukawa-range bound)",
+    "DualScaleCosmology.DarkEnergyScale.selfDual_lambda_above_mvv_range (Tier A, proved): lambda_s ~ 0.535, inside MVV's broad range but >=5x above their central estimate"
+  ],
+  "impact_on_round3_mu_sym_length_bridge": "This round's mu_sym_length_bridge.py independently computed the SAME 47.008 micron number before this check was run. This verification shows that number is NOT a fresh coincidence discovered by this session: it is LeanMaster's own already-proved theorem, restated. mu_sym_length_bridge_report.json and ledger.json's round3 entry were corrected in place after this check (CORRECTION_post_advisor_review field) rather than left as an overclaimed independent match. The real experimental citation (Lee et al. 2020) that this loop's fifth_force_screening slot needs was ALREADY present in LeanMaster's docstring, unnoticed by this loop's own data/real/MANIFEST.json ABSENT marking until this round's cross-check.",
+  "leanmaster_own_disclosed_margin": "s is ~1.6x ABOVE the real Lee et al. torsion-balance bound and ~7% above MVV's neutron-star estimate; DarkEnergyScale.lean states this is 'disfavored by factors of a few, not orders of magnitude' -- not excluded, not confirmed.",
+  "not_re_verified_this_round": "The five NEW theorems listed above were read and quoted verbatim from the current LeanMaster source at HEAD 7be7626, but this session did not independently re-run `lake build` or the lean-proof-gate skill on LeanMaster (READ-ONLY per ground rules); their kernel-checked status is taken from LeanMaster's own repo state (proved theorem bodies visible in source), not re-verified by this worktree's own build."
+}

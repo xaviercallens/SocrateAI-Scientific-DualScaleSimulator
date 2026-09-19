@@ -1,0 +1,148 @@
+{
+  "lean_constant": {
+    "name": "dark_energy_w0, dark_energy_wa",
+    "file_line": "DualScaleValidation/Observables.lean:97-98",
+    "value": "-1, 0",
+    "grep_check_command": "grep -n 'dark_energy_w0\\|dark_energy_wa' /home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster/DualScaleValidation/Observables.lean"
+  },
+  "target": {
+    "w0": -1.0,
+    "wa": 0.0
+  },
+  "search_bounds_log10": {
+    "a_pot": [
+      -2.0,
+      2.0
+    ],
+    "b_pot": [
+      -4.0,
+      0.0
+    ]
+  },
+  "multi_start_trials": [
+    {
+      "start": [
+        -2,
+        -4
+      ],
+      "a_pot": 0.16849632899607836,
+      "b_pot": 1.1725397907588115e-05,
+      "in_searched_bounds": false,
+      "w0_achieved": -1.0,
+      "wa_achieved": 2.2315617176274717e-17,
+      "residual": 4.979867699580472e-34
+    },
+    {
+      "start": [
+        -2,
+        0
+      ],
+      "a_pot": 0.12678747784661262,
+      "b_pot": 1.0044889977116105,
+      "in_searched_bounds": false,
+      "w0_achieved": -1.0,
+      "wa_achieved": 3.6007455173152886e-17,
+      "residual": 1.2965368280466146e-33
+    },
+    {
+      "start": [
+        0,
+        -2
+      ],
+      "a_pot": 1.0040731289387805,
+      "b_pot": 0.2818333420236005,
+      "in_searched_bounds": true,
+      "w0_achieved": -1.0,
+      "wa_achieved": -1.370870762192985e-16,
+      "residual": 1.8792866466355758e-32
+    },
+    {
+      "start": [
+        2,
+        -4
+      ],
+      "a_pot": 125.73391556408991,
+      "b_pot": 0.00019771145523098907,
+      "in_searched_bounds": false,
+      "w0_achieved": -0.4027149372719375,
+      "wa_achieved": 0.4685717123033076,
+      "residual": 0.5763088957289192
+    },
+    {
+      "start": [
+        2,
+        0
+      ],
+      "a_pot": 99.28302477768372,
+      "b_pot": 1.000593811455546,
+      "in_searched_bounds": false,
+      "w0_achieved": -1.0,
+      "wa_achieved": 5.219452116889487e-17,
+      "residual": 2.724268040050215e-33
+    },
+    {
+      "start": [
+        0,
+        0
+      ],
+      "a_pot": 0.42975654909862526,
+      "b_pot": 1.419058749445431,
+      "in_searched_bounds": false,
+      "w0_achieved": -1.0,
+      "wa_achieved": -1.4007735948599624e-19,
+      "residual": 1.962166664056902e-38
+    },
+    {
+      "start": [
+        -1,
+        -1
+      ],
+      "a_pot": 0.09854852454285021,
+      "b_pot": 0.11108508793444948,
+      "in_searched_bounds": true,
+      "w0_achieved": -1.0,
+      "wa_achieved": -1.1471567004850719e-17,
+      "residual": 1.3159684954677969e-34
+    },
+    {
+      "start": [
+        1,
+        -3
+      ],
+      "a_pot": 37.73616937247033,
+      "b_pot": 0.6021261655534675,
+      "in_searched_bounds": true,
+      "w0_achieved": -1.0,
+      "wa_achieved": -4.972763409766328e-17,
+      "residual": 2.472837592951084e-33
+    }
+  ],
+  "best_trial": {
+    "start": [
+      -1,
+      -1
+    ],
+    "a_pot": 0.09854852454285021,
+    "b_pot": 0.11108508793444948,
+    "in_searched_bounds": true,
+    "w0_achieved": -1.0,
+    "wa_achieved": -1.1471567004850719e-17,
+    "residual": 1.3159684954677969e-34
+  },
+  "distance_to_target_in_w0_wa_plane": 1.1471567004850719e-17,
+  "reachable_within_searched_bounds": true,
+  "pinned_point_chi2": {
+    "a_pot": 0.09854852454285021,
+    "b_pot": 0.11108508793444948,
+    "w0_achieved": -1.0,
+    "wa_achieved": -1.1471567004850719e-17,
+    "chi2_bao": 5163.494851809985,
+    "chi2_sn": 1320.3294319482256,
+    "chi2_total": 6483.824283758211,
+    "chi2_free_bestfit_for_comparison": 703.8819057544594,
+    "delta_chi2_pinned_minus_free": 5779.942378003751,
+    "n_fewer_fitted_params": 2,
+    "verdict": "Lean-pinned (w0=-1,wa=0) point costs Delta-chi2=5779.942 for 2 fewer fitted params (threshold for '>2 per param' = 4)",
+    "supported_by_data": false
+  }
+}

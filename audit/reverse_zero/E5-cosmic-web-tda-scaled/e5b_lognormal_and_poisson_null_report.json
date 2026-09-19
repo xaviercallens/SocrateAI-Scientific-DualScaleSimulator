@@ -1,0 +1,1097 @@
+{
+  "generated": "2026-09-19",
+  "tool": "gudhi 3.13.0, camb 2.0.4, healpy 1.20.0",
+  "framing_rule": "M0 (frozen LCDM background, Omega_m=0.31115, screening/symmetron sector deleted) is a HYPOTHESIS CHANGE, not a derivation from K3xT2. Agreement below means 'consistent with M0's linear P(k) + linear bias + lognormal field at the level of this test' -- NOT a K3xT2 confirmation, and it does not touch mu_sym, c4_pta_product or any LeanMaster octad/moonshine construction (none exists as a galaxy-clustering observable; see E4's report and REPORT.md).",
+  "seeds": {
+    "mask_nside": 64,
+    "poisson_null_seeds": [
+      3000,
+      3001,
+      3002,
+      3003,
+      3004,
+      3005,
+      3006,
+      3007,
+      3008,
+      3009,
+      3010,
+      3011,
+      3012,
+      3013,
+      3014,
+      3015,
+      3016,
+      3017,
+      3018,
+      3019
+    ],
+    "lognormal_mock_seeds": [
+      4000,
+      4001,
+      4002,
+      4003,
+      4004,
+      4005,
+      4006,
+      4007,
+      4008,
+      4009,
+      4010,
+      4011,
+      4012,
+      4013,
+      4014,
+      4015,
+      4016,
+      4017,
+      4018,
+      4019,
+      4020,
+      4021
+    ],
+    "ls_random_seed": 6000,
+    "select_within_mock_seed": 777
+  },
+  "mask": {
+    "nside": 64,
+    "npix_total": 49152,
+    "npix_occupied": 4307,
+    "occupied_fraction_of_full_sky": 0.08762613932291667,
+    "note": "mask built from the OBSERVED galaxy (ra,dec), not the ra/dec bounding rectangle -- avoids this project's earlier round-1 bounding-box artifact."
+  },
+  "poisson_null_i": {
+    "method": "angles drawn uniformly (in solid angle) from the HEALPix-occupied footprint via rejection sampling; r drawn uniform-in-comoving-volume within the SAME shell window [r_lo,r_hi] used to select the data (E5's SELECTION_SHELL_IDX). Independent of the data's actual (ra,dec) pairs and independent of its actual n(z) beyond the flat-in-volume shell window -- unlike E5's z-shuffle null, this ALSO randomises angle.",
+    "n_realizations": 20,
+    "n_per_realization": 25000,
+    "per_realization_diagnostics": [
+      {
+        "seed": 3000,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.907569646835327
+      },
+      {
+        "seed": 3001,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.8423047065734863
+      },
+      {
+        "seed": 3002,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.8597769737243652
+      },
+      {
+        "seed": 3003,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.7579867839813232
+      },
+      {
+        "seed": 3004,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.7763583660125732
+      },
+      {
+        "seed": 3005,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.769737482070923
+      },
+      {
+        "seed": 3006,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.8241474628448486
+      },
+      {
+        "seed": 3007,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.7974092960357666
+      },
+      {
+        "seed": 3008,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.7776706218719482
+      },
+      {
+        "seed": 3009,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.784693956375122
+      },
+      {
+        "seed": 3010,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.791982889175415
+      },
+      {
+        "seed": 3011,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.753042221069336
+      },
+      {
+        "seed": 3012,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.7592029571533203
+      },
+      {
+        "seed": 3013,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.7957401275634766
+      },
+      {
+        "seed": 3014,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.765752077102661
+      },
+      {
+        "seed": 3015,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.810835599899292
+      },
+      {
+        "seed": 3016,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.772564649581909
+      },
+      {
+        "seed": 3017,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.773465156555176
+      },
+      {
+        "seed": 3018,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.784966230392456
+      },
+      {
+        "seed": 3019,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.805921792984009
+      }
+    ],
+    "l2_real_vs_poisson_mean": {
+      "H0": 423.16260092094836,
+      "H1": 1163.168218953912,
+      "H2": 246.13571512427907,
+      "euler": 1289.336986997178
+    },
+    "r_points_outside_95pct_envelope": {
+      "H0": {
+        "n_outside": 9,
+        "n_total": 77,
+        "r_values_outside": [
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0
+        ]
+      },
+      "H1": {
+        "n_outside": 19,
+        "n_total": 77,
+        "r_values_outside": [
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          13.0
+        ]
+      },
+      "H2": {
+        "n_outside": 24,
+        "n_total": 77,
+        "r_values_outside": [
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5
+        ]
+      }
+    }
+  },
+  "xi_r_and_bias": {
+    "estimator": "Landy-Szalay, cKDTree.count_neighbors exact pair counts",
+    "r_edges_mpc_over_h": [
+      2.0,
+      4.0,
+      6.0,
+      8.0,
+      10.0,
+      12.0,
+      14.0,
+      16.0,
+      18.0,
+      20.0,
+      22.0,
+      24.0,
+      26.0,
+      28.0,
+      30.0,
+      32.0,
+      34.0,
+      36.0,
+      38.0,
+      40.0,
+      42.0,
+      44.0,
+      46.0,
+      48.0,
+      50.0,
+      52.0,
+      54.0,
+      56.0,
+      58.0,
+      60.0,
+      62.0,
+      64.0,
+      66.0,
+      68.0,
+      70.0
+    ],
+    "xi_data": [
+      2.623030967528599,
+      1.4300313061512488,
+      0.8841364966207791,
+      0.6022466832418583,
+      0.4199060346543522,
+      0.2890659635618881,
+      0.2121593708468935,
+      0.14591043749014151,
+      0.09823482232710136,
+      0.06976960709369884,
+      0.05207879481619911,
+      0.040508984754888136,
+      0.030253724434519735,
+      0.020367658649692387,
+      0.013537742888104873,
+      0.012004765385613937,
+      0.012437248292267363,
+      0.016677717931736308,
+      0.017208617018053336,
+      0.018880840574078645,
+      0.01674360210881594,
+      0.013579383117460417,
+      0.009871440256392899,
+      0.0058396927918544,
+      0.0034242048152716667,
+      -0.0005749192127850876,
+      0.00045896955297783745,
+      0.0008759017913741078,
+      0.002844433612689353,
+      0.00036696002134477626,
+      -0.0021389886872962525,
+      -0.00488791068473991,
+      -0.003865441128887668,
+      -0.0002364707391916969
+    ],
+    "xi_lin_matter_camb": [
+      1.6824947248163946,
+      0.8991998276504597,
+      0.5598798918867922,
+      0.3788268536959467,
+      0.2708123161260126,
+      0.20115655715215808,
+      0.15343365037248863,
+      0.11946294516804876,
+      0.09489524901332798,
+      0.0768590987890589,
+      0.06291998591716925,
+      0.05080796564989106,
+      0.04010687497183585,
+      0.039832734255416336,
+      0.02519698529418179,
+      0.02416446411312643,
+      0.020997540741894163,
+      0.014771552651211477,
+      0.015250630652472414,
+      0.015728342869143437,
+      0.011231791679429491,
+      0.007233226976376009,
+      0.010763226918455965,
+      0.01116956994288696,
+      0.010188597759287429,
+      0.010066914617244209,
+      0.008533274287488646,
+      0.0019430426206081242,
+      0.0020947239897252216,
+      0.0033754149127590135,
+      0.005285899175733012,
+      0.001149671070781299,
+      0.006883658842017505,
+      -3.630994837999103e-05
+    ],
+    "fit_range_mpc_over_h": [
+      20.0,
+      60.0
+    ],
+    "fit_method": "b^2 = sum(xi_data*xi_lin)/sum(xi_lin^2) over the fit range ONLY, ordinary least squares; NEVER fit to any topological statistic (per ground rules).",
+    "b_fit": 0.8930470184710905,
+    "b2_fit": 0.7975329772001043,
+    "sanity_note": "CORRECTED after an advisor review of this run's first draft, which quoted the WRONG band (b~1.1-1.3 is for the SDSS main sample as a WHOLE; this shell, z~0.055-0.08, is flux-limited to sub-L* (M_r~-19.5), faint-dominated galaxies, for which b~0.9-1.0 is the more relevant literature range, L, quoted as a sanity band not a fetched table). b_fit=0.893 is inside that (corrected) band. SEPARATELY: xi_data here is measured in REDSHIFT SPACE (positions built from observed z, not a real-space reconstruction), while xi_lin is a REAL-SPACE model -- the Kaiser boost factor (1+2beta/3+beta^2/5) at beta=f/b~0.59 is ~1.47, so the REAL-SPACE-equivalent bias is b_fit/sqrt(1.47)~0.74, lower still than the number fit here. This mismatch (real-space model vs redshift-space measurement) is a known simplification of this pipeline, not corrected for, and is the more likely explanation for a low b_fit than a normalisation error: this run's own sigma8 self-check (computing sigma8 from the SAME kh/pk arrays and quadrature used for xi_lin, via a top-hat window, and comparing to CAMB's own reported sigma8(z=0)) matched to 0.03%, ruling out a gross normalisation bug in pk2xi/xi2pk.",
+    "camb": {
+      "z_eff_requested": 0.08,
+      "z_eff_actual_from_camb": 0.08,
+      "sigma8_z0_raw_from_As": 0.811849467065341,
+      "sigma8_z0_rescale_factor_to_hit_planck_target": 0.995940647895822,
+      "sigma8_selfcheck_own_quadrature_vs_camb_ratio": 1.0003149650471121,
+      "sigma8_selfcheck_note": "sigma8 recomputed from this script's own kh/pk(z=0) arrays with a top-hat window, R=8 Mpc/h, using the SAME trapezoidal quadrature style as pk2xi/xi2pk, and compared to CAMB's own reported sigma8. This checks ABSOLUTE normalisation, which the pk2xi<->xi2pk round-trip test elsewhere in this script cannot (a constant multiplicative error cancels in a round trip). A ratio far from 1 would mean b_fit and sigma_G^2 are both built on a mis-normalised P(k).",
+      "omega_m_arithmetic_check_ombh2_plus_omch2_over_h2": 0.310995781536746,
+      "omega_m_pars_object_incl_neutrino": 0.31240451220522536,
+      "omega_m_m0_target": 0.31115,
+      "omega_m_consistency_pct": 0.04956402482853109,
+      "planck18_params_imported": {
+        "H0": 67.66,
+        "ombh2": 0.02237,
+        "omch2": 0.12,
+        "mnu": 0.06,
+        "omk": 0.0,
+        "tau": 0.0544,
+        "As_raw": 2.1e-09,
+        "ns": 0.9649,
+        "sigma8_target": 0.8102
+      }
+    }
+  },
+  "lognormal_field": {
+    "recipe": "P_target=b^2*P_lin*exp(-(k*R_smooth)^2/2)*[k<=k_nyq], R_smooth=1 grid cell -> xi_target=pk2xi(P_target) -> xi_G=ln(1+xi_target) -> P_G=xi2pk(xi_G) -> delta_G~GRF(P_G) -> delta_LN=exp(delta_G-sigma_G^2/2)-1",
+    "sigma_g2": 2.6748881508988203,
+    "k_nyquist_band_limit_h_over_mpc": 2.5132741228718345,
+    "gaussian_smoothing_scale_mpc_over_h": 2.0,
+    "transform_method": "1D trapezoidal quadrature of the k^2 P(k) sinc(kr) Hankel integral (validated in this run's scratch calibration against a toy power-law P(k): round-trip recovery within a few percent; GRF normalisation validated the same way, measured P(k) of a realized field matched the input P(k) to <6% on a single 64^3 realization)."
+  },
+  "lognormal_grid": {
+    "cell_mpc_over_h": 2.0,
+    "shape": [
+      99,
+      174,
+      115
+    ],
+    "n_cells": 1980990,
+    "box_size_mpc_over_h": [
+      197.07097839151788,
+      347.06945550472267,
+      228.3899212967349
+    ],
+    "box_volume_mpc_over_h3": 15621257.884479579,
+    "measured_wedge_fraction_of_box": 0.20160333333333333,
+    "measured_wedge_fraction_method": "Monte Carlo, 300000 uniform probe points over the box run through the SAME mask_and_shell_keep() filter the mocks use (replaces an earlier analytic solid-angle formula that was wrong by a factor of ~3 -- see calibrate_n_bar's docstring).",
+    "n_bar_per_mpc_over_h3": 0.031753111577337914,
+    "n_expected_points_in_box": 496023.54458424967,
+    "n_target_prewedge": 100000,
+    "note": "grid covers only the survey wedge's padded bounding box (not a symmetric NxNxN cube spanning the whole survey depth), which keeps n_cells small and avoids wasting >75% of a cube's volume outside the wedge."
+  },
+  "lognormal_gate": {
+    "definition": "RMS over r in (20.0, 60.0) Mpc/h of z_i=(xi_mock_mean_i-xi_data_i)/sigma_total_i, where sigma_total_i = sqrt(sigma_mock_field_i^2*(1+1/n_gated) + sigma_data_shotnoise_i^2), sigma_mock_field is the mock-TO-MOCK (per-realization, NOT standard-error-of-the-mean) scatter over the 22 gated mocks, and sigma_data_shotnoise is the data's own Poisson shot-noise error ((1+xi)/sqrt(DD), Landy & Szalay 1993). PASS iff RMS(z) < 3.0. This gate MUST pass for the Betti-curve comparison below to be treated as diagnostic of anything (ground rules / advisor review requirement). A raw amplitude ratio is also reported for the record but is NOT the pass/fail criterion (it diverges at this fit range's zero-crossings).",
+    "n_mocks_used_for_gate": 22,
+    "r_mid_fit_range": [
+      21.0,
+      23.0,
+      25.0,
+      27.0,
+      29.0,
+      31.0,
+      33.0,
+      35.0,
+      37.0,
+      39.0,
+      41.0,
+      43.0,
+      45.0,
+      47.0,
+      49.0,
+      51.0,
+      53.0,
+      55.0,
+      57.0,
+      59.0
+    ],
+    "xi_data_fit_range": [
+      0.06976960709369884,
+      0.05207879481619911,
+      0.040508984754888136,
+      0.030253724434519735,
+      0.020367658649692387,
+      0.013537742888104873,
+      0.012004765385613937,
+      0.012437248292267363,
+      0.016677717931736308,
+      0.017208617018053336,
+      0.018880840574078645,
+      0.01674360210881594,
+      0.013579383117460417,
+      0.009871440256392899,
+      0.0058396927918544,
+      0.0034242048152716667,
+      -0.0005749192127850876,
+      0.00045896955297783745,
+      0.0008759017913741078,
+      0.002844433612689353
+    ],
+    "xi_mock_mean_fit_range": [
+      0.045693906875232976,
+      0.03514766942124747,
+      0.03625394820257236,
+      0.04076751576917565,
+      0.03303725907895274,
+      0.01799513218270232,
+      0.006543439367774603,
+      0.005474328165376381,
+      0.009686258434044682,
+      0.013071659265784947,
+      0.011941545613263911,
+      0.008118156844636416,
+      0.0001667437865150682,
+      -0.002458056404262611,
+      -0.001808817984355209,
+      0.00029107171747630163,
+      0.0021310758175211164,
+      0.0016580001379377313,
+      -0.0011640282181004213,
+      -0.003961511472038561
+    ],
+    "sigma_data_shotnoise_fit_range": [
+      0.0010911194679883826,
+      0.0010011474501778802,
+      0.0009289429416137707,
+      0.0008677637129475842,
+      0.000815878852363833,
+      0.0007727458746126197,
+      0.000737348054537773,
+      0.0007066213514718529,
+      0.0006812208037512687,
+      0.000656743132580123,
+      0.0006358443729985455,
+      0.0006161179542432436,
+      0.0005979386492100907,
+      0.0005812462195575957,
+      0.0005665162624757615,
+      0.0005536277001729394,
+      0.0005417480037527673,
+      0.0005322429865409524,
+      0.0005237201341772772,
+      0.0005173196726138946
+    ],
+    "sigma_mock_field_scatter_fit_range": [
+      0.015928641405709584,
+      0.015363837468335195,
+      0.015088668837057445,
+      0.01509461033770904,
+      0.014523821329530394,
+      0.013653899435419243,
+      0.013296908269413122,
+      0.012850884705528328,
+      0.012182463580229081,
+      0.011411580319584221,
+      0.009809221250822803,
+      0.009362671893030635,
+      0.008454874877210371,
+      0.008198637950970663,
+      0.00809457851063917,
+      0.007369371084665946,
+      0.007030463698894104,
+      0.006600706545285697,
+      0.00670313558216211,
+      0.006017009623898412
+    ],
+    "z_score_fit_range": [
+      -1.4749427809786062,
+      -1.0756063978625277,
+      -0.2753049001062555,
+      0.6801418574572324,
+      0.8518732513849193,
+      0.31879170915675187,
+      -0.4011040950284108,
+      -0.5291499009917193,
+      -0.560443262558699,
+      -0.35399397247219666,
+      -0.6904897807472336,
+      -0.8991487584538609,
+      -1.5478116902796324,
+      -1.4672685116746946,
+      -0.9219663199225756,
+      -0.41469302787714063,
+      0.37537091231126013,
+      0.17710913433691086,
+      -0.2967703120200512,
+      -1.1023644901415675
+    ],
+    "rms_z": 0.8339593979531569,
+    "ratio_mock_over_data_for_record_only": [
+      0.654925672920405,
+      0.6748940628386966,
+      0.8949606716124298,
+      1.3475205625479816,
+      1.6220450100410388,
+      1.329256459621049,
+      0.545070158190348,
+      0.44015589596132343,
+      0.580790397924439,
+      0.7595996384876043,
+      0.632468960606466,
+      0.4848512758411762,
+      0.012279187137791884,
+      -0.24900686631525074,
+      -0.30974540079886925,
+      0.08500417854041503,
+      -3.70673960815733,
+      3.6124403616328604,
+      -1.3289483245311131,
+      -1.3927241804364117
+    ],
+    "pass": true
+  },
+  "lognormal_mocks_iii": {
+    "n_requested": 22,
+    "n_succeeded": 22,
+    "n_failed": 0,
+    "per_mock_diagnostics": [
+      {
+        "seed": 4000,
+        "n_points": 25000,
+        "n_available_in_window": 81261,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.5404956340789795
+      },
+      {
+        "seed": 4001,
+        "n_points": 25000,
+        "n_available_in_window": 79719,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.53359317779541
+      },
+      {
+        "seed": 4002,
+        "n_points": 25000,
+        "n_available_in_window": 77594,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.4993722438812256
+      },
+      {
+        "seed": 4003,
+        "n_points": 25000,
+        "n_available_in_window": 76706,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.4901647567749023
+      },
+      {
+        "seed": 4004,
+        "n_points": 25000,
+        "n_available_in_window": 81919,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.490081787109375
+      },
+      {
+        "seed": 4005,
+        "n_points": 25000,
+        "n_available_in_window": 77352,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.5356409549713135
+      },
+      {
+        "seed": 4006,
+        "n_points": 25000,
+        "n_available_in_window": 80923,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.471553087234497
+      },
+      {
+        "seed": 4007,
+        "n_points": 25000,
+        "n_available_in_window": 81422,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.429215669631958
+      },
+      {
+        "seed": 4008,
+        "n_points": 25000,
+        "n_available_in_window": 78525,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.5014524459838867
+      },
+      {
+        "seed": 4009,
+        "n_points": 25000,
+        "n_available_in_window": 78098,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.499964475631714
+      },
+      {
+        "seed": 4010,
+        "n_points": 25000,
+        "n_available_in_window": 80256,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.477116823196411
+      },
+      {
+        "seed": 4011,
+        "n_points": 25000,
+        "n_available_in_window": 75346,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.464822292327881
+      },
+      {
+        "seed": 4012,
+        "n_points": 25000,
+        "n_available_in_window": 73375,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.451284170150757
+      },
+      {
+        "seed": 4013,
+        "n_points": 25000,
+        "n_available_in_window": 80187,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.5064690113067627
+      },
+      {
+        "seed": 4014,
+        "n_points": 25000,
+        "n_available_in_window": 86708,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.520707607269287
+      },
+      {
+        "seed": 4015,
+        "n_points": 25000,
+        "n_available_in_window": 76500,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.5055081844329834
+      },
+      {
+        "seed": 4016,
+        "n_points": 25000,
+        "n_available_in_window": 76252,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.4892117977142334
+      },
+      {
+        "seed": 4017,
+        "n_points": 25000,
+        "n_available_in_window": 80098,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.4767403602600098
+      },
+      {
+        "seed": 4018,
+        "n_points": 25000,
+        "n_available_in_window": 71553,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.440009355545044
+      },
+      {
+        "seed": 4019,
+        "n_points": 25000,
+        "n_available_in_window": 79520,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.4768006801605225
+      },
+      {
+        "seed": 4020,
+        "n_points": 25000,
+        "n_available_in_window": 70027,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.487617015838623
+      },
+      {
+        "seed": 4021,
+        "n_points": 25000,
+        "n_available_in_window": 74647,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ],
+        "runtime_sec": 2.4855926036834717
+      }
+    ],
+    "l2_real_vs_mock_mean": {
+      "H0": 238.8396191799614,
+      "H1": 438.7176509211762,
+      "H2": 86.57508431289271,
+      "euler": 430.7791874992646
+    },
+    "r_points_outside_95pct_envelope": {
+      "H0": {
+        "n_outside": 8,
+        "n_total": 77,
+        "r_values_outside": [
+          2.0,
+          2.5,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0
+        ]
+      },
+      "H1": {
+        "n_outside": 19,
+        "n_total": 77,
+        "r_values_outside": [
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          13.0
+        ]
+      },
+      "H2": {
+        "n_outside": 22,
+        "n_total": 77,
+        "r_values_outside": [
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5
+        ]
+      }
+    },
+    "rank_pvalue_leave_one_out": {
+      "H0": {
+        "real_l2": 238.8396191799614,
+        "n_mocks_at_least_as_extreme": 0,
+        "n_mocks": 22,
+        "p_value": 0.043478260869565216,
+        "resolution_floor": 0.043478260869565216,
+        "loo_l2_min_median_max": [
+          1.4564381625088463,
+          7.058710021308169,
+          19.620336971519844
+        ],
+        "real_l2_over_median_loo_l2": 33.83615681321018,
+        "r_split_diagnostic": {
+          "r_spacing_mpc_over_h": 5.012925310675167,
+          "r_range_below_spacing": [
+            2.0,
+            5.012925310675167
+          ],
+          "p_value_below_spacing": 0.043478260869565216,
+          "r_range_at_or_above_spacing": [
+            5.012925310675167,
+            40.0
+          ],
+          "p_value_at_or_above_spacing": 0.043478260869565216
+        }
+      },
+      "H1": {
+        "real_l2": 438.7176509211762,
+        "n_mocks_at_least_as_extreme": 0,
+        "n_mocks": 22,
+        "p_value": 0.043478260869565216,
+        "resolution_floor": 0.043478260869565216,
+        "loo_l2_min_median_max": [
+          10.048351756910073,
+          24.55035589527518,
+          43.24247203770615
+        ],
+        "real_l2_over_median_loo_l2": 17.87011368766386,
+        "r_split_diagnostic": {
+          "r_spacing_mpc_over_h": 5.012925310675167,
+          "r_range_below_spacing": [
+            2.0,
+            5.012925310675167
+          ],
+          "p_value_below_spacing": 0.043478260869565216,
+          "r_range_at_or_above_spacing": [
+            5.012925310675167,
+            40.0
+          ],
+          "p_value_at_or_above_spacing": 0.043478260869565216
+        }
+      },
+      "H2": {
+        "real_l2": 86.57508431289271,
+        "n_mocks_at_least_as_extreme": 0,
+        "n_mocks": 22,
+        "p_value": 0.043478260869565216,
+        "resolution_floor": 0.043478260869565216,
+        "loo_l2_min_median_max": [
+          4.2429773218669204,
+          8.4680481103103,
+          12.763615711558188
+        ],
+        "real_l2_over_median_loo_l2": 10.223735527374123,
+        "r_split_diagnostic": {
+          "r_spacing_mpc_over_h": 5.012925310675167,
+          "r_range_below_spacing": [
+            2.0,
+            5.012925310675167
+          ],
+          "p_value_below_spacing": 0.043478260869565216,
+          "r_range_at_or_above_spacing": [
+            5.012925310675167,
+            40.0
+          ],
+          "p_value_at_or_above_spacing": 0.043478260869565216
+        }
+      }
+    },
+    "interpretation": "THIS (not the z-shuffle or Poisson-null envelopes above) is the actual M0 test per the ground rules. p close to the resolution floor (rank=0, i.e. the real L2 exceeds every leave-one-out mock L2) is the strongest evidence THIS TEST can give against 'consistent with M0's linear P(k)+bias+lognormal field'; a mid-range p is a match at this N, this scale range, and this (approximate) mock recipe -- consistent with M0 at the level of this test, NOT a K3xT2 confirmation. A mismatch concentrated below ~4-6 Mpc/h (this sample's mean inter-galaxy spacing, ~5.0 Mpc/h) is expected: lognormal mocks reproduce the 1-point PDF and 2-point function but not higher-order correlations or true void/filament shapes, and that scale is shot-noise dominated at N=25000 in this volume regardless."
+  },
+  "total_runtime_sec": 834.7082314491272,
+  "post_hoc_advisor_review_checks": {
+    "note": "Checks run after the full 22-mock analysis (across three total runs of this script) at an independent reviewer's request, to distinguish pipeline bugs from genuine data features. GATE_Z_THRESHOLD=3.0 and STAT_R_RANGE were fixed before the FIRST full run and never changed; what changed across runs were two CODE bugs (below), fixed and verified before each rerun, not the statistic's threshold or the mocks' random seeds.",
+    "camb_sigma8_indexing_bug_found_and_fixed": {
+      "issue": "camb_linear_pk() requested TWO redshifts, [z_eff, 0.0], to get both P(k) slices in one CAMB call. get_matter_power_spectrum() returns its `zs` array SORTED (increasing), so `pk` is indexed by sorted-z position -- but CAMBdata.get_sigma8() returns values in pars.Transfer.PK_redshifts's ORIGINAL INPUT order ([0.08, 0.0], already decreasing, i.e. UNSORTED). The first two full runs of this script found sigma8(z=0) by indexing sigma8_raw with a position computed from the SORTED `zs` array -- silently pulling sigma8(z_eff=0.08)=0.778 instead of sigma8(z=0)=0.812, an 8.8% error that propagated into the P(k) rescale factor and therefore into xi_lin, b_fit and sigma_G^2.",
+      "detection": "A sigma8 self-check (recomputing sigma8 from this script's own kh/pk arrays via a top-hat window and comparing to CAMB's reported value) gave ratio=1.043 in run 2, instead of the ~1.000 a correct absolute normalisation implies. Isolating a single-redshift CAMB call (unambiguous ordering) reproduced 1.0003, pinpointing the multi-redshift indexing as the cause.",
+      "fix": "sigma8_raw is now indexed using pars.Transfer.PK_redshifts (the true input order), not the sorted `zs` from get_matter_power_spectrum, which indexes a DIFFERENT array (`pk`).",
+      "effect_of_the_fix": "sigma8 self-check ratio: 1.043 -> 1.0003. b_fit: 0.856 -> 0.893 (now inside the corrected sub-L*-sample sanity band of 0.9-1.0, not below it). sigma_G^2: 2.67 -> 2.67 (negligible change). RANK P-VALUES AND MARGINS (lognormal_mocks_iii.rank_pvalue_leave_one_out) ARE UNCHANGED across the buggy and fixed runs (p=0.043 floor, margins 33.8x/17.9x/10.2x for H0/H1/H2 in both) -- expected, since the mock generation self-consistently uses whatever P(k) amplitude the (buggy or fixed) b_fit step produced, so the mocks always end up matched to the data's OWN xi(r) regardless of this bug. The bug affected the STATED bias/sigma8 sanity numbers, not the topology comparison."
+    },
+    "gate_statistic_denominator_bug_found_and_fixed": {
+      "issue": "The first full run's xi(r) gate used sigma_total = sqrt(sigma_data_shotnoise^2 + xi_mock_SEM^2), where xi_mock_SEM = std(mocks)/sqrt(n_gated) is the STANDARD ERROR OF THE MOCK MEAN. That gate FAILED (RMS(z)=3.81, threshold 3.0). An advisor review caught that this tests only 'is the ensemble mean biased', not 'is the data (itself one realization) consistent with the ensemble' -- the correct comparison needs the mock-TO-mock (per-realization) scatter, sigma_mock_field, not its standard error, which shrinks as 1/sqrt(n) and drives z to infinity for ANY nonzero offset regardless of mock correctness. The tell was already visible before the fix: RMS(z) rose from 3.23 (a 6-mock smoke test) to 3.81 (22 mocks) -- a properly calibrated statistic should be roughly n-independent, not grow with more mocks.",
+      "fix": "sigma_total_i = sqrt(sigma_mock_field_i^2*(1+1/n_gated) + sigma_data_shotnoise_i^2), sigma_mock_field = the raw std across the n_gated mock realizations (not divided by sqrt(n_gated)).",
+      "effect_of_the_fix": "RMS(z): 3.81 -> 0.834. Gate: FAIL -> PASS. GATE_Z_THRESHOLD=3.0 was never changed; the statistic's denominator was corrected, independent of the outcome (verifiable a priori: comparing one draw to an ensemble mean's own uncertainty, rather than to the ensemble's actual spread, is wrong regardless of what number it produces)."
+    },
+    "angular_vs_3d_origin_of_the_xi_bump_at_r_37_45": {
+      "issue": "xi_data(r) is non-monotonic: declines from ~0.07 (r=21) to a local minimum near r=33, rises back to a secondary bump near r=39-45, then declines again. Smooth LCDM does not produce this shape (BAO sits at ~105 Mpc/h, not 40). At this shell's comoving distance (~200 Mpc/h), 10 degrees on the sky subtends ~35 Mpc/h transverse -- exactly this range -- so an uncorrected ANGULAR selection/completeness pattern on ~10-degree scales could produce this bump; this run's HEALPix mask (nside=64) is a binary occupied/not-occupied footprint with no completeness weighting (none is available: the catalogue has only ra, dec, z, zErr).",
+      "test": "Recomputed the DATA's own LS xi(r) (script: e5b_check_angular_vs_3d_xi_bump.py) with the RANDOM catalogue replaced by data/real2/cosmic_web/sdss_dr17_random_shuffled_z_ra140_220_dec0_50.csv (already on disk), restricted to the same shell window (57854 points, ~2.3x oversample, vs this report's main 4x mask-uniform random). That random carries the data's EXACT (ra,dec) pairs, so any PURELY angular selection/completeness effect divides out of the LS estimator by construction.",
+      "result": "The bump PERSISTS (dip near r=33, rise to ~0.010-0.012 at r=39-45) at somewhat lower overall amplitude than with the main run's mask-uniform random. NOTE (added after a further advisor review): the amplitude being LOWER with this random is EXPECTED and uninformative on its own -- an angular-position-matched random inherits part of the data's own real 3D clustering by construction, which generically suppresses the LS estimator's measured xi(r); only the PERSISTENCE of the r=37-45 shape feature, not this amplitude difference, is diagnostic.",
+      "conclusion": "Persistence under an angular-position-matched random means this bump is NOT explained by this run's coarse (nside=64, binary) angular mask -- it is a 3D (or finer-than-nside-64 angular-completeness-scale) feature. A genuine sub-nside-64 angular effect (e.g. SDSS fiber-plate boundaries, ~1-2 degree scale) is NOT ruled out by this test, since it is below this mask's own resolution.",
+      "tier": "X, single random catalogue (not the full 4x/20-seed treatment), diagnostic only."
+    },
+    "r_range_decomposition_of_the_betti_excess": {
+      "issue": "The xi(r) VALIDATION GATE only covers r in XI_FIT_RANGE_MPC_H=(20,60) Mpc/h -- the ONLY range in which the mocks are shown to reproduce the data's own two-point function. The Betti-curve comparison runs over STAT_R_RANGE=(2,40), so the r in [2,20) half is claimed diagnostic by this script's OWN stated rule ('this gate MUST pass for the Betti-curve comparison to be treated as diagnostic') without being validated there. Separately, the lognormal field is Gaussian-smoothed at R_SMOOTH=1 grid cell=2.0 Mpc/h (the fix for the sigma_G^2 blowup documented above) -- half power around r~5 Mpc/h -- so the mocks are close to Poisson (uniform-within-cell) below that scale BY CONSTRUCTION, while real galaxies have genuine small-scale clustering there.",
+      "test": "Script: e5b_check_r_range_decomposition.py. Split the SAME pre-stated leave-one-out L2 statistic into r in [2,20) ('unvalidated') and r in [20,40] ('gate_validated', the intersection of XI_FIT_RANGE and STAT_R_RANGE) using the mock Betti-curve stacks already saved by this run (e5b_mock_betti_stacks.npz) -- same 22 mocks, same seeds, no rerun.",
+      "result": {
+        "gate_validated_20_40_Mpc_over_h": "real_l2=0.0 and median_loo_l2=0.0 for H0, H1 AND H2 -- i.e. the Betti curves (real AND every single mock) are EXACTLY constant over this range at N=25000 (consistent with real_result's top bars: the longest-lived H0/H1/H2 features all die by r~13 Mpc/h). rank=22/22 (the real data is the LEAST extreme of the 23 curves compared), p=1.0. There is NO topological information left to compare in the one range the xi(r) gate actually validates.",
+        "unvalidated_2_20_Mpc_over_h": "reproduces the full-range numbers EXACTLY (margins 33.8x/17.9x/10.2x for H0/H1/H2, p=0.043 floor) -- ALL of the previously-reported Betti-curve 'excess' comes from this range."
+      },
+      "conclusion": "RETRACTS the earlier framing of this result (an earlier version of final_synthesis_added_after_run) as 'the TDA pipeline detects real structure beyond the two-point function.' That framing is not supported: the entire apparent excess lives in a range (r<20 Mpc/h) the xi(r) gate does not validate and where the mocks are, by construction, smoothed toward Poisson. The correct, honest reading is a LIMITATION -- this specific pipeline (single-linear-bias lognormal mocks, Gaussian-smoothed at the 2 Mpc/h grid scale, N=25000, alpha-complex truncated at 50 Mpc/h) provides NO information about whether the data's small-scale topology differs from a properly-resolved null, because it has none at large scale to compare (all homology dies out by r~13 Mpc/h at this N) and no validated null at small scale. A real test would need EITHER a mock recipe with genuine (not smoothed-away) small-scale power (e.g. an N-body-calibrated mock, or at minimum validating xi(r) down to r~2-5 Mpc/h rather than only [20,60]) OR enough N that the alpha complex retains real topological features out to the gate-validated r>=20 Mpc/h range -- neither is available in this run."
+    }
+  },
+  "final_synthesis_added_after_run": "SUPERSEDES an earlier version of this field, which read the Betti-curve rank p-value (p=0.043 floor, all H0/H1/H2) as evidence the TDA pipeline detects real cosmic-web structure beyond the two-point function. A further advisor-review check (post_hoc_advisor_review_checks.r_range_decomposition_of_the_betti_excess) retracts that reading: splitting the SAME statistic at r=20 Mpc/h -- the boundary of the xi(r) gate's own validated range, XI_FIT_RANGE_MPC_H=(20,60) -- shows the ENTIRE excess (margins identical to the full-range numbers, 33.8x/17.9x/10.2x for H0/H1/H2) comes from r in [2,20), a range the gate does NOT validate, while r in [20,40] (the gate-validated range) carries ZERO topological information at all: every Betti curve, real and mock alike, is exactly constant there at N=25000 (all dominant bars die by r~13 Mpc/h). The r<20 range also overlaps the lognormal field's own Gaussian smoothing scale (1 grid cell = 2.0 Mpc/h, half power at r~5), which suppresses the mocks' small-scale power BY CONSTRUCTION -- the same fix that correctly resolved this run's earlier sigma_G^2 blowup has the side effect of making the mocks close to Poisson below ~5 Mpc/h, so a real-vs-mock difference there is expected regardless of any genuine cosmic-web feature.\n\nHONEST CONCLUSION: this run's Betti-curve comparison is INCONCLUSIVE, not a detection and not a null result either. The xi(r) gate (RMS z=0.834, sigma8 self-check 0.03% agreement) validates that the mock RECIPE reproduces the data's two-point function over r in [20,60] Mpc/h -- that part of this run stands. But the Betti-curve statistic's entire signal sits outside that validated range, in a regime where the mocks are smoothed toward Poisson by construction, so the p=0.043 result cannot be attributed to real 3D topology versus a known artifact of this specific mock recipe. This is reported as a diagnosed LIMITATION of the current pipeline (see known_limitations_of_this_run), not resolved further here. The framing rule is unaffected regardless: nothing in this comparison, whatever it eventually shows once properly resolved at small scale, would touch mu_sym, c4_pta_product, or any K3xT2/octad/moonshine construction (none exists as a galaxy-clustering observable, per E4's report and REPORT.md).",
+  "known_limitations_of_this_run": "(1) THE HEADLINE LIMITATION: the Betti-curve comparison's entire statistical signal (p=0.043 for H0/H1/H2) comes from r in [2,20) Mpc/h, a range the xi(r) validation gate does not cover (XI_FIT_RANGE_MPC_H=(20,60)) and which overlaps the lognormal mock's own Gaussian smoothing scale (1 grid cell=2.0 Mpc/h) -- the mocks are close to Poisson below ~5 Mpc/h BY CONSTRUCTION, so this result cannot distinguish 'real 3D topology the mocks miss' from 'the mocks have no small-scale power by design.' At r in [20,40] Mpc/h (the gate-validated range) there is literally no topological information to compare: every Betti curve, real and mock, is constant there at N=25000 (all bars die by r~13 Mpc/h). A real test needs either an N-body-calibrated mock with genuine small-scale power, or an xi(r) gate that also validates r<20 Mpc/h, or enough N/truncation that real topological features persist out past 20 Mpc/h -- none of which this run has. (2) sigma_mock_field is estimated from only 22 single-box lognormal realizations, which are known to underestimate true non-Gaussian covariance -- conservative for the xi(r) gate (makes RMS(z)=0.834 an upper bound on confidence, not an overstatement), but not informative about limitation (1). (3) The angular-vs-3D check used a single angular-position-matched random catalogue and cannot rule out a sub-nside-64 (fiber-plate-scale) angular systematic. (4) This run found and fixed THREE code/statistical issues after the fact (CAMB sigma8 indexing, gate statistic denominator, and this r-range confound) -- each is documented with its before/after numbers in post_hoc_advisor_review_checks rather than silently corrected, per the ground rules' evidence-bound requirement."
+}

@@ -1,0 +1,70 @@
+{
+  "generated": "2026-09-18",
+  "round": 1,
+  "starting_free_params": ["a_pot", "b_pot", "mu_sym", "lambda_sym", "pta_suppression", "c4_c0_ratio"],
+  "accepted_this_round_tier_B": [
+    {
+      "params_removed": ["pta_suppression", "c4_c0_ratio"],
+      "mechanism": "absorb_combination",
+      "replacement": "single combined parameter c4_pta_product = c4_c0_ratio * pta_suppression (nominal 0.08035)",
+      "evidence": [
+        "Round-0 harness Check C: (pta_suppression=0.0005, c4_c0_ratio=160.7) vs (0.005, 16.07) gives Gamma(theta) identical to max_abs_diff=1.110e-16 (see param_loop_sim.py run_selftest Check C).",
+        "Round-1 jacobian_report.json: at ALL 6 probed points (best_fit + 5 random numerically-stable sweep points), the SVD of the standardized-observable Jacobian gives an EXACT null direction (singular value 0.0 to 3.5e-18, i.e. machine precision) with right-singular-vector loadings exactly +-0.7071 on ln(pta_suppression) and -+0.7071 on ln(c4_c0_ratio) (the ratio/difference direction). Only the sum (product) direction ever carries measurable signal, and even that is itself weak at several points (see per-point spectra) because no real PTA angular-correlation dataset exists to constrain it this round (pta_chi2: ABSENT in chi2_report.json)."
+      ],
+      "tier": "B",
+      "result": "6 -> 5 free parameters"
+    }
+  ],
+  "convention_0.5_evidence_kept_in_count": [
+    {
+      "param": "lambda_sym",
+      "mechanism": "convention",
+      "replacement": "lambda_sym := 1.0, fixed by convention (NOT derived -- ground rule (c)/(insensitivity) explicitly forbids counting this as removed)",
+      "evidence": [
+        "Round-0 Check B: x10 AND /10 both leave screening_suppression_factor changed by only ~1.2e-6 relative (1.44e-10 absolute), just under the comparator's own rtol=1e-6 threshold -- borderline, reported as 0.5-evidence, not derivation.",
+        "Round-1 jacobian_report.json: at ALL 6 probed points, lambda_sym's own ln-direction is an EXACT null direction of the standardized Jacobian (singular value 3.2e-14 down to 1.1e-19 -- consistently machine-precision zero, stronger than round-0's borderline number, but STILL insensitivity, not a derivation of a replacement value)."
+      ],
+      "tier": "0.5-evidence (convention)",
+      "result": "STAYS IN THE COUNT at 0.5 per ground rule; not one of the '6->5' or future '5->4' removals unless a real replacement VALUE is derived or cited from a Tier A/B/L source."
+    }
+  ],
+  "pending_tier_C_candidates_not_counted": [
+    {
+      "params": ["a_pot", "b_pot"],
+      "mechanism": "lean_constant (candidate only, NOT derived)",
+      "replacement": "pin the model's CPL fit to LeanMaster's dark_energy_w0 := -1, dark_energy_wa := 0 (DualScaleValidation/Observables.lean:97-98, verified present in LeanMaster this round via grep)",
+      "evidence": [
+        "chi2_report.json best_fit_model_point (idx=282): w0_cpl_latetime=-0.694, wa_cpl_latetime=0.955 at the sweep's OWN chi2-minimum (a_pot=3.471, b_pot=4.28e-4) -- NOT (-1,0); the model's best fit to real BAO+SN data does not land on the Lean-quoted values, and lands far from them (w0 off by 0.31, wa off by 0.955).",
+        "w0/wa range over the full sweep is [-1.074,-0.078]/[-0.0006,1.10] (chi2_report.json headline_finding) -- the model is emphatically NOT LCDM-pinned across its allowed range, so 'w0=-1' is one point in a landscape the data does not obviously prefer over nearby non-LCDM points (best-fit model chi2_total/dof=703.88/1596=0.4409 vs LCDM's 697.34/1598=0.4364 -- statistically indistinguishable at this sample size, Delta-chi2~6.5 for 2 fewer dof is not significant).",
+        "The Lean constant's OWN caveat (quoted verbatim in this round's task input) says it is 'Contingent on moduli stabilization scenario; in tension with DESI DR2 (3.1sigma)' -- an explicit tier-C flag from the source itself, not added here."
+      ],
+      "tier": "C",
+      "note": "NOT counted as a reduction. Listed for round 2 to test explicitly: refit the sweep with a_pot,b_pot CONSTRAINED so w0=-1,wa=0 exactly and compare chi2 to the free 2-param fit (a formal nested-model comparison), rather than asserting the identification."
+    },
+    {
+      "params": ["c4_pta_product"],
+      "mechanism": "lean_constant (candidate only, NOT derived)",
+      "replacement": "planckGmuBound := 1.5e-7 (CosmicString.lean:83, Planck XXV Nambu-Goto 95% CL bound, verified present in LeanMaster this round via grep)",
+      "evidence": [
+        "The Lean constant's OWN caveat (quoted verbatim in this round's task input) says it 'Applies to cosmic string tension, not directly to gravitational-wave suppression' -- an admitted physical-mechanism mismatch from the source itself.",
+        "No real angular-separation PTA dataset exists in the verified data this round (pta_chi2: ABSENT, chi2_report.json) to test whether 1.5e-7 is even numerically compatible with pta.max_deviation_from_hd; nominal c4_pta_product=0.0804 is ~5.4e5 times larger than 1.5e-7, an enormous mismatch that would need to be explained before this identification is taken seriously, not asserted."
+      ],
+      "tier": "C",
+      "note": "NOT counted. The magnitude mismatch (5 orders) is itself evidence AGAINST this identification as currently stated; flagged for round 2 skeptic review, not adopted."
+    }
+  ],
+  "kept_as_live_physical_parameter_not_a_reduction_candidate": [
+    {
+      "param": "mu_sym",
+      "reason": "Real, substantial, non-degenerate leverage confirmed independently three ways: round-0 Check D (ssf changes by factor ~3.6 at mu_sym/10), round-1 model-cloud PCA (raw 20-dim standardized observable vector needs only 4 PCA components for 95%+ variance -- one of those axes tracks screening, i.e. mu_sym has its own resolvable direction, not folded into another parameter), and round-1 Jacobian (mu_sym carries its own singular-vector weight at multiple probed points, e.g. best_fit's SV=1.7176e0 axis; never appears in a null direction at any of the 6 probed points)."
+    }
+  ],
+  "ladder_status": "6 -> 5 this round (one tier-B absorb_combination, independently confirmed by two methods: round-0 negative control and round-1 exact-null Jacobian direction at all 6 probed points). NOT claiming 6->4: the two tier-C candidates above are underived identifications with caveats from their own source, one of which (c4_pta_product vs planckGmuBound) is off by ~5 orders of magnitude and not supported by any real dataset this round.",
+  "next_round_priorities": [
+    "Reverse loop: take the 5-param reduced model (c4_pta_product replacing pta_suppression,c4_c0_ratio) and refit BAO+SN; check the reduced model's chi2 landscape and TDA point-cloud shape are unchanged from this round's (they must be, since the combination is an exact algebraic identity -- a good sanity check for the harness itself).",
+    "Nested-model test of the a_pot,b_pot -> (w0=-1,wa=0) tier-C identification: nested chi2 comparison (2-param free fit vs 0-param Lean-pinned fit) on the SAME BAO+SN data, reporting Delta-chi2 honestly either way.",
+    "Re-run tda_gudhi.py's null control matched to the model cloud's own per-axis (PCA) variances, not a uniform box -- the current model_vs_real_sn_H1=0.0195 < null_vs_real_sn_H1=0.0399 ordering (model 'closer' to real SN topology than the uniform null is) has NOT been checked against a variance-matched null and may be a bounding-box artifact (flagged post-advisor review in ROUND1_SUMMARY.md).",
+    "Chase down the raw NANOGrav15yr_PulsarTiming_v2.1.0 (.tim/.par files, found this round at /mnt/disks/disk-socrateai-local-1/NANOGrav15yr_PulsarTiming_v2.1.0/) as a possible real angular-correlation PTA dataset for a future round -- NOT attempted this round (would require running a full pulsar-timing pipeline, out of scope); the currently-verified ceffyl KDE product remains ABSENT for angular chi2.",
+    "lambda_sym: look for a Tier A/B/L source that could supply an actual replacement VALUE (not just confirm insensitivity again) before it can move from '0.5-evidence convention' to a real removal."
+  ]
+}

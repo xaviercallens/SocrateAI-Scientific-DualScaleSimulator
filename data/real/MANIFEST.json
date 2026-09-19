@@ -1,0 +1,51 @@
+{
+  "generated": "2026-09-18",
+  "datasets": [
+    {
+      "id": "desi_2024_bao_all",
+      "domain": "dark_energy",
+      "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_2024_gaussian_bao_ALL_GCcomb_mean.txt",
+      "sha256": "dd2873a0b88459a491af3c0c0307ba059f62df9211d5b976760f310565a1be68",
+      "rows": 13,
+      "columns": 3,
+      "licence_citation": "CobayaSampler/bao_data \u2014 CC0 (public data from DESI surveys)",
+      "description": "DESI BAO consensus cosmological distance measurements (z, DV_over_rs, DM_over_rs, DH_over_rs)"
+    },
+    {
+      "id": "pantheon_plus_sh0es",
+      "domain": "dark_energy",
+      "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2B_Data/4_DISTANCES_AND_COVAR/Pantheon%2BSH0ES.dat",
+      "sha256": "1cb0fc379ef066afdc2ffd1857681cc478024570d8a3eba284fb645775198cf8",
+      "rows": 1702,
+      "columns": 47,
+      "licence_citation": "PantheonPlusSH0ES/DataRelease \u2014 Published in Agarwal et al. 2023, ApJL 951 L6",
+      "description": "Pantheon+ SN Ia distances with SH0ES Cepheid calibration (1702 supernovae)"
+    },
+    {
+      "id": "nanograv_15yr_kde",
+      "domain": "pulsar_timing",
+      "url": "https://zenodo.org/record/21844115/files/ceffyl_data.zip",
+      "sha256": "9784c9d047f437a138bb8ede41b6a93aa87d530e9557f7225617df4cb82068a5",
+      "rows": "archived (30+ free spectrum analyses)",
+      "columns": "multiple (density.npy, freqs.npy, log10rhogrid.npy, bandwidths.npy)",
+      "licence_citation": "NANOGrav Collaboration \u2014 CC-BY-4.0, DOI 10.5281/zenodo.21844115, see also Lamb et al. 2023 PhysRevD 108.103019",
+      "description": "KDE representations of GW background free spectra from NANOGrav 15-yr pulsar timing data (Hellings-Downs + other GW correlation tests)"
+    },
+    {
+      "id": "2mrs_galactic",
+      "domain": "cosmic_web",
+      "url": "https://vizier.cds.unistra.fr/viz-bin/asu-tsv?-source=II/246&limit=5000&-out=2MASS,RAJ2000,DEJ2000,Kmag",
+      "sha256": "aaab25bf9c5a32fec4c4c3bd13ddd77f1599ba73048827d196592fa04d5c4d96",
+      "rows": 50005,
+      "columns": 4,
+      "licence_citation": "2MRS (Two Micron All-Sky Survey) \u2014 Public domain via VizieR CDS, Jarrett et al. 2000, AJ 119, 2498",
+      "description": "Galaxy sample (RA, Dec, K-magnitude) from 2MRS extended survey for TDA cosmic web analysis"
+    },
+    {
+      "id": "fifth_force_screening",
+      "domain": "fifth_force_screening",
+      "status": "ABSENT",
+      "reason": "No widely-available public machine-readable dataset for fifth force / screening mechanisms. Such data typically appears as figures in theoretical papers rather than open data tables."
+    }
+  ]
+}

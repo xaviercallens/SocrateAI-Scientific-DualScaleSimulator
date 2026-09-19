@@ -1,0 +1,32 @@
+{
+  "sampler": "scipy.stats.qmc.Sobol(scramble=True)",
+  "seed": 42,
+  "n_points": 513,
+  "n_workers": 6,
+  "elapsed_s": 350.8201804161072,
+  "n_error_or_timeout": 0,
+  "n_numerically_stable": 378,
+  "n_finite_success": 378,
+  "param_log10_bounds": {
+    "a_pot": [
+      -2.0,
+      2.0
+    ],
+    "b_pot": [
+      -4.0,
+      0.0
+    ],
+    "mu_sym": [
+      -2.0,
+      2.0
+    ],
+    "lambda_sym": [
+      -2.0,
+      2.0
+    ],
+    "c4_pta_product": [
+      -5.0,
+      3.0
+    ]
+  }
+}

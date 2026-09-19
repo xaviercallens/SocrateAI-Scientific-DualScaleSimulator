@@ -1,0 +1,30 @@
+{
+  "generated": "2026-09-18",
+  "note": "Records this round's ONE new data fetch. Does not edit the shared data/real/MANIFEST.json (another concurrent session/process also writes to this worktree; see commit 6f56bf4), to avoid clobbering a concurrent writer.",
+  "new_fetches": [
+    {
+      "id": "desi_2024_bao_all_cov",
+      "domain": "dark_energy",
+      "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_2024_gaussian_bao_ALL_GCcomb_cov.txt",
+      "sha256_command": "sha256sum data/real/dark_energy/desi_2024_bao_all_cov.txt",
+      "sha256": "bbafa9074b51cf1a45e0d10e4f37db8c0e80a5d1d1788857abb7fc49fb21abcc",
+      "fetched": "2026-09-18",
+      "rows": 12,
+      "columns": 12,
+      "licence_citation": "CobayaSampler/bao_data -- CC0 (public data from DESI surveys); same trusted repo/commit family as the already-verified desi_2024_bao_all.txt mean file",
+      "description": "Full 12x12 covariance matrix for the DESI 2024 gaussian BAO ALL_GCcomb consensus means already in data/real/dark_energy/desi_2024_bao_all.txt. Row/column order verified by direct inspection to match that file's 12 (z, quantity) rows exactly (block-diagonal per z, matching DESI's public release convention).",
+      "verification_command": "wc -l data/real/dark_energy/desi_2024_bao_all_cov.txt (12); python -c \"import numpy as np; c=np.loadtxt('data/real/dark_energy/desi_2024_bao_all_cov.txt'); print(c.shape)\" -> (12, 12)"
+    }
+  ],
+  "datasets_confirmed_absent_or_unusable_this_round": [
+    {
+      "id": "nanograv_15yr_kde_for_pta_chi2",
+      "reason": "unzip -l + inspection of ceffyl_data/*/ shows only density.npy, freqs.npy, log10rhogrid.npy, bandwidths.npy per analysis folder -- a per-frequency free-spectrum KDE, not an inter-pulsar angular-separation Gamma(theta) dataset with errors. No real angular-correlation likelihood exists in the verified data for pta.gamma_theta / pta.max_deviation_from_hd to be chi2-tested against.",
+      "command": "unzip -l data/real/pulsar_timing/nanograv_kde_freespectrum.zip; find <unzipped> -iname '*angsep*' -o -iname '*pair*' -o -iname '*corr*' -> no matches"
+    },
+    {
+      "id": "2mrs_comoving_coordinates",
+      "reason": "data/real/cosmic_web/2mrs_sample.tsv columns are 2MASS-ID, RA, Dec, Kmag only (verified by head -5 / VizieR header) -- no redshift/velocity column, so comoving 3D coordinates cannot be derived from the verified set without inventing a Kmag-to-distance relation (forbidden). Used instead as a 2D RA/Dec angular-patch cloud (known S^2 topology) for one extra real-data TDA check; NOT the comoving galaxy-catalogue analysis the task's first TDA option describes for that option."
+    }
+  ]
+}

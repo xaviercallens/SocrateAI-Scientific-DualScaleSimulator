@@ -1,0 +1,716 @@
+{
+  "param_names": [
+    "a_pot",
+    "b_pot",
+    "mu_sym",
+    "lambda_sym",
+    "pta_suppression",
+    "c4_c0_ratio"
+  ],
+  "observable_names": [
+    "w0_cpl",
+    "wa_cpl",
+    "H_z1",
+    "H_z2.3",
+    "DM_z1",
+    "DM_z2.3",
+    "log10_ssf",
+    "log10_pcr",
+    "pta_max_dev",
+    "c4_pta_prod",
+    "legacy_w0"
+  ],
+  "step_ln_param": 0.01,
+  "n_stable_sweep_points_used_for_standardization": 316,
+  "sweep_mean_raw_observables": [
+    -0.941383590746445,
+    0.15799455719548647,
+    1.1525568895640503,
+    1.4641789330297592,
+    0.9574687755645134,
+    2.1192685280184698,
+    -3.9959726668773214,
+    -13.68085280998169,
+    10.992040042577395,
+    10.992040042577395,
+    -0.9010591529048468
+  ],
+  "sweep_std_raw_observables": [
+    0.1812292605608164,
+    0.31836105776622764,
+    0.3736564506369307,
+    1.0912139396659506,
+    0.09902265380002326,
+    0.3893561530295256,
+    0.6492325490906761,
+    0.4575222703219091,
+    45.786035796757275,
+    45.786035796757275,
+    0.2652193589861641
+  ],
+  "probed_points": {
+    "best_fit": {
+      "params": {
+        "a_pot": 3.4714217520576933,
+        "b_pot": 0.0004276423734589,
+        "mu_sym": 3.754010700139543,
+        "lambda_sym": 0.0571377254127227,
+        "pta_suppression": 0.0026716274838409,
+        "c4_c0_ratio": 3.141870381770611
+      },
+      "ok": true,
+      "singular_values": [
+        4.652476542470559,
+        2.578228683971636,
+        1.7176214709200166,
+        0.00036666407194352324,
+        3.238576640251717e-14,
+        0.0
+      ],
+      "effective_dimension_at_1e-3_of_max": 3,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 0.00036666407194352324,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "pta_suppression": -0.7071067811865475,
+            "c4_c0_ratio": -0.7071067811865475
+          }
+        },
+        {
+          "singular_value": 3.238576640251717e-14,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": 1.7690794739662027e-14,
+            "lambda_sym": -1.0,
+            "pta_suppression": -0.0,
+            "c4_c0_ratio": -0.0
+          }
+        },
+        {
+          "singular_value": 0.0,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0,
+            "b_pot": 0.0,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "pta_suppression": -0.7071067811865475,
+            "c4_c0_ratio": 0.7071067811865475
+          }
+        }
+      ],
+      "right_singular_vectors_all": {
+        "sv_0": {
+          "a_pot": -0.7872250146572278,
+          "b_pot": 0.6166658546554427,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_1": {
+          "a_pot": 0.6166658546554427,
+          "b_pot": 0.7872250146572278,
+          "mu_sym": 0.0,
+          "lambda_sym": 0.0,
+          "pta_suppression": 0.0,
+          "c4_c0_ratio": 0.0
+        },
+        "sv_2": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -1.0,
+          "lambda_sym": -1.7690794739662027e-14,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_3": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.7071067811865475,
+          "c4_c0_ratio": -0.7071067811865475
+        },
+        "sv_4": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": 1.7690794739662027e-14,
+          "lambda_sym": -1.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_5": {
+          "a_pot": 0.0,
+          "b_pot": 0.0,
+          "mu_sym": 0.0,
+          "lambda_sym": 0.0,
+          "pta_suppression": -0.7071067811865475,
+          "c4_c0_ratio": 0.7071067811865475
+        }
+      }
+    },
+    "random_276": {
+      "params": {
+        "a_pot": 0.5878799812750958,
+        "b_pot": 0.0399448022702107,
+        "mu_sym": 1.9996778900162036,
+        "lambda_sym": 1.583673151957075,
+        "pta_suppression": 0.9330099403200628,
+        "c4_c0_ratio": 0.301735345850994
+      },
+      "ok": true,
+      "singular_values": [
+        1.1226229095731397,
+        0.012297494822771649,
+        0.0015514386243444345,
+        3.1653940220825204e-05,
+        4.6658883111355466e-14,
+        0.0
+      ],
+      "effective_dimension_at_1e-3_of_max": 3,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 3.1653940220825204e-05,
+          "loadings_on_ln_param": {
+            "a_pot": -0.31897165852013254,
+            "b_pot": 0.9477642539476343,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "pta_suppression": 0.0,
+            "c4_c0_ratio": 0.0
+          }
+        },
+        {
+          "singular_value": 4.6658883111355466e-14,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -4.903824700255081e-14,
+            "lambda_sym": -1.0,
+            "pta_suppression": -0.0,
+            "c4_c0_ratio": -0.0
+          }
+        },
+        {
+          "singular_value": 0.0,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0,
+            "b_pot": 0.0,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "pta_suppression": -0.7071067811865475,
+            "c4_c0_ratio": 0.7071067811865475
+          }
+        }
+      ],
+      "right_singular_vectors_all": {
+        "sv_0": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -1.0,
+          "lambda_sym": 4.903824700255081e-14,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_1": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.7071067811865475,
+          "c4_c0_ratio": -0.7071067811865475
+        },
+        "sv_2": {
+          "a_pot": -0.9477642539476343,
+          "b_pot": -0.31897165852013254,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_3": {
+          "a_pot": -0.31897165852013254,
+          "b_pot": 0.9477642539476343,
+          "mu_sym": 0.0,
+          "lambda_sym": 0.0,
+          "pta_suppression": 0.0,
+          "c4_c0_ratio": 0.0
+        },
+        "sv_4": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -4.903824700255081e-14,
+          "lambda_sym": -1.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_5": {
+          "a_pot": 0.0,
+          "b_pot": 0.0,
+          "mu_sym": 0.0,
+          "lambda_sym": 0.0,
+          "pta_suppression": -0.7071067811865475,
+          "c4_c0_ratio": 0.7071067811865475
+        }
+      }
+    },
+    "random_46": {
+      "params": {
+        "a_pot": 2.0930569112087327,
+        "b_pot": 0.0057160991075908,
+        "mu_sym": 1.5892434461277407,
+        "lambda_sym": 0.8418356588479713,
+        "pta_suppression": 0.007189998651553,
+        "c4_c0_ratio": 97.44232419207188
+      },
+      "ok": true,
+      "singular_values": [
+        0.9860699732928967,
+        0.37627496930745236,
+        0.030793463781792877,
+        0.030604171959761062,
+        3.469446951953614e-18,
+        0.0
+      ],
+      "effective_dimension_at_1e-3_of_max": 4,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 3.469446951953614e-18,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "pta_suppression": 0.7071067811865477,
+            "c4_c0_ratio": -0.7071067811865475
+          }
+        },
+        {
+          "singular_value": 0.0,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0,
+            "b_pot": 0.0,
+            "mu_sym": 0.0,
+            "lambda_sym": 1.0,
+            "pta_suppression": 0.0,
+            "c4_c0_ratio": 0.0
+          }
+        }
+      ],
+      "right_singular_vectors_all": {
+        "sv_0": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -1.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_1": {
+          "a_pot": 0.25853190542383064,
+          "b_pot": 0.9660027193946835,
+          "mu_sym": 0.0,
+          "lambda_sym": 0.0,
+          "pta_suppression": 0.0,
+          "c4_c0_ratio": 0.0
+        },
+        "sv_2": {
+          "a_pot": 0.9660027193946835,
+          "b_pot": -0.25853190542383064,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_3": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.7071067811865475,
+          "c4_c0_ratio": -0.7071067811865477
+        },
+        "sv_4": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": 0.7071067811865477,
+          "c4_c0_ratio": -0.7071067811865475
+        },
+        "sv_5": {
+          "a_pot": 0.0,
+          "b_pot": 0.0,
+          "mu_sym": 0.0,
+          "lambda_sym": 1.0,
+          "pta_suppression": 0.0,
+          "c4_c0_ratio": 0.0
+        }
+      }
+    },
+    "random_221": {
+      "params": {
+        "a_pot": 10.827851229941912,
+        "b_pot": 0.3932043426195598,
+        "mu_sym": 3.4696243668399367,
+        "lambda_sym": 0.1724113393422696,
+        "pta_suppression": 0.0181671411890216,
+        "c4_c0_ratio": 57.17093945565864
+      },
+      "ok": true,
+      "singular_values": [
+        1.6153190088579592,
+        0.04536972120666449,
+        0.0003081611155574421,
+        3.470241496540649e-13,
+        7.157308661683876e-14,
+        0.0
+      ],
+      "effective_dimension_at_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 0.0003081611155574421,
+          "loadings_on_ln_param": {
+            "a_pot": -0.9949734402504009,
+            "b_pot": 0.10013916914115985,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "pta_suppression": -0.0,
+            "c4_c0_ratio": -0.0
+          }
+        },
+        {
+          "singular_value": 3.470241496540649e-13,
+          "loadings_on_ln_param": {
+            "a_pot": 0.10013916914115985,
+            "b_pot": 0.9949734402504009,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "pta_suppression": 0.0,
+            "c4_c0_ratio": 0.0
+          }
+        },
+        {
+          "singular_value": 7.157308661683876e-14,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": 4.316368730672799e-14,
+            "lambda_sym": -1.0,
+            "pta_suppression": -0.0,
+            "c4_c0_ratio": -0.0
+          }
+        },
+        {
+          "singular_value": 0.0,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0,
+            "b_pot": 0.0,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "pta_suppression": -0.7071067811865475,
+            "c4_c0_ratio": 0.7071067811865475
+          }
+        }
+      ],
+      "right_singular_vectors_all": {
+        "sv_0": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -1.0,
+          "lambda_sym": -4.316368730672799e-14,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_1": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.7071067811865475,
+          "c4_c0_ratio": -0.7071067811865475
+        },
+        "sv_2": {
+          "a_pot": -0.9949734402504009,
+          "b_pot": 0.10013916914115985,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_3": {
+          "a_pot": 0.10013916914115985,
+          "b_pot": 0.9949734402504009,
+          "mu_sym": 0.0,
+          "lambda_sym": 0.0,
+          "pta_suppression": 0.0,
+          "c4_c0_ratio": 0.0
+        },
+        "sv_4": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": 4.316368730672799e-14,
+          "lambda_sym": -1.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_5": {
+          "a_pot": 0.0,
+          "b_pot": 0.0,
+          "mu_sym": 0.0,
+          "lambda_sym": 0.0,
+          "pta_suppression": -0.7071067811865475,
+          "c4_c0_ratio": 0.7071067811865475
+        }
+      }
+    },
+    "random_99": {
+      "params": {
+        "a_pot": 0.2300568136590192,
+        "b_pot": 0.0005619958683959,
+        "mu_sym": 8.083327177247543,
+        "lambda_sym": 12.830684076269042,
+        "pta_suppression": 0.0027432697514286,
+        "c4_c0_ratio": 8.648662985741652
+      },
+      "ok": true,
+      "singular_values": [
+        3.580861438889557,
+        0.0010363863381102068,
+        1.003066664271398e-05,
+        8.709852215586364e-11,
+        9.433825633980532e-14,
+        1.0842021724855044e-19
+      ],
+      "effective_dimension_at_1e-3_of_max": 1,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 0.0010363863381102068,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "pta_suppression": -0.7071067811865475,
+            "c4_c0_ratio": -0.7071067811865477
+          }
+        },
+        {
+          "singular_value": 1.003066664271398e-05,
+          "loadings_on_ln_param": {
+            "a_pot": 0.9999987450354051,
+            "b_pot": -0.0015842751071083031,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "pta_suppression": 0.0,
+            "c4_c0_ratio": 0.0
+          }
+        },
+        {
+          "singular_value": 8.709852215586364e-11,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": 3.8615064649928175e-11,
+            "lambda_sym": -1.0,
+            "pta_suppression": -0.0,
+            "c4_c0_ratio": -0.0
+          }
+        },
+        {
+          "singular_value": 9.433825633980532e-14,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0015842751071083031,
+            "b_pot": -0.9999987450354051,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "pta_suppression": -0.0,
+            "c4_c0_ratio": -0.0
+          }
+        },
+        {
+          "singular_value": 1.0842021724855044e-19,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "pta_suppression": 0.7071067811865477,
+            "c4_c0_ratio": -0.7071067811865475
+          }
+        }
+      ],
+      "right_singular_vectors_all": {
+        "sv_0": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -1.0,
+          "lambda_sym": -3.8615064649928175e-11,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_1": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.7071067811865475,
+          "c4_c0_ratio": -0.7071067811865477
+        },
+        "sv_2": {
+          "a_pot": 0.9999987450354051,
+          "b_pot": -0.0015842751071083031,
+          "mu_sym": 0.0,
+          "lambda_sym": 0.0,
+          "pta_suppression": 0.0,
+          "c4_c0_ratio": 0.0
+        },
+        "sv_3": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": 3.8615064649928175e-11,
+          "lambda_sym": -1.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_4": {
+          "a_pot": -0.0015842751071083031,
+          "b_pot": -0.9999987450354051,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_5": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": 0.7071067811865477,
+          "c4_c0_ratio": -0.7071067811865475
+        }
+      }
+    },
+    "random_125": {
+      "params": {
+        "a_pot": 0.9516404003292298,
+        "b_pot": 0.0870534135347739,
+        "mu_sym": 0.3874064347288354,
+        "lambda_sym": 2.835128381077407,
+        "pta_suppression": 0.0003921866240914,
+        "c4_c0_ratio": 239.20956651007535
+      },
+      "ok": true,
+      "singular_values": [
+        0.5297006080709014,
+        0.0040980335726859,
+        2.369438296207027e-05,
+        2.120623057937694e-09,
+        4.807047001922036e-14,
+        4.336808689942018e-19
+      ],
+      "effective_dimension_at_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 2.369438296207027e-05,
+          "loadings_on_ln_param": {
+            "a_pot": -0.9895381828829632,
+            "b_pot": 0.14427121894779682,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "pta_suppression": -0.0,
+            "c4_c0_ratio": -0.0
+          }
+        },
+        {
+          "singular_value": 2.120623057937694e-09,
+          "loadings_on_ln_param": {
+            "a_pot": 0.14427121894779682,
+            "b_pot": 0.9895381828829632,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "pta_suppression": 0.0,
+            "c4_c0_ratio": 0.0
+          }
+        },
+        {
+          "singular_value": 4.807047001922036e-14,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": 2.0006462129670414e-12,
+            "lambda_sym": -1.0,
+            "pta_suppression": -0.0,
+            "c4_c0_ratio": -0.0
+          }
+        },
+        {
+          "singular_value": 4.336808689942018e-19,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "pta_suppression": 0.7071067811865477,
+            "c4_c0_ratio": -0.7071067811865475
+          }
+        }
+      ],
+      "right_singular_vectors_all": {
+        "sv_0": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -1.0,
+          "lambda_sym": -2.0006462129670414e-12,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_1": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.7071067811865475,
+          "c4_c0_ratio": -0.7071067811865477
+        },
+        "sv_2": {
+          "a_pot": -0.9895381828829632,
+          "b_pot": 0.14427121894779682,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_3": {
+          "a_pot": 0.14427121894779682,
+          "b_pot": 0.9895381828829632,
+          "mu_sym": 0.0,
+          "lambda_sym": 0.0,
+          "pta_suppression": 0.0,
+          "c4_c0_ratio": 0.0
+        },
+        "sv_4": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": 2.0006462129670414e-12,
+          "lambda_sym": -1.0,
+          "pta_suppression": -0.0,
+          "c4_c0_ratio": -0.0
+        },
+        "sv_5": {
+          "a_pot": -0.0,
+          "b_pot": -0.0,
+          "mu_sym": -0.0,
+          "lambda_sym": -0.0,
+          "pta_suppression": 0.7071067811865477,
+          "c4_c0_ratio": -0.7071067811865475
+        }
+      }
+    }
+  }
+}

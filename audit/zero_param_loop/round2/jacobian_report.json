@@ -1,0 +1,312 @@
+{
+  "param_names": [
+    "a_pot",
+    "b_pot",
+    "mu_sym",
+    "lambda_sym",
+    "c4_pta_product"
+  ],
+  "observable_names": [
+    "w0_cpl",
+    "wa_cpl",
+    "H_z1",
+    "H_z2.3",
+    "DM_z1",
+    "DM_z2.3",
+    "log10_ssf",
+    "log10_pcr",
+    "pta_max_dev",
+    "legacy_w0"
+  ],
+  "zero_variance_observable_columns_guarded": [],
+  "step_ln_param": 0.01,
+  "n_stable_sweep_points_used_for_standardization": 378,
+  "probed_points": {
+    "best_fit": {
+      "params": {
+        "a_pot": 1.13955196282296,
+        "b_pot": 0.000503520484396,
+        "mu_sym": 0.516439315139834,
+        "lambda_sym": 0.0575630046681962,
+        "c4_pta_product": 0.0001884353102553
+      },
+      "ok": true,
+      "singular_values": [
+        4.1813735956838345,
+        1.6616387848307408,
+        0.5826065860421902,
+        1.2160327966803663e-06,
+        0.0
+      ],
+      "effective_dimension_at_1e-3_of_max": 3,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 1.2160327966803663e-06,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -1.0
+          }
+        },
+        {
+          "singular_value": 0.0,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0,
+            "b_pot": 0.0,
+            "mu_sym": 0.0,
+            "lambda_sym": 1.0,
+            "c4_pta_product": 0.0
+          }
+        }
+      ]
+    },
+    "random_391": {
+      "params": {
+        "a_pot": 0.1589956153496984,
+        "b_pot": 0.0003416486954474,
+        "mu_sym": 0.01545714304056,
+        "lambda_sym": 0.1512723529072895,
+        "c4_pta_product": 0.0024701634067626
+      },
+      "ok": true,
+      "singular_values": [
+        2.7119697346069924,
+        0.002765799864433382,
+        1.9366855506182616e-05,
+        1.594074760802311e-05,
+        1.4111904975797545e-13
+      ],
+      "effective_dimension_at_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 1.9366855506182616e-05,
+          "loadings_on_ln_param": {
+            "a_pot": -0.9999993640721844,
+            "b_pot": 0.0011277655904173112,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -0.0
+          }
+        },
+        {
+          "singular_value": 1.594074760802311e-05,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -1.0
+          }
+        },
+        {
+          "singular_value": 1.4111904975797545e-13,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0011277655904173112,
+            "b_pot": 0.9999993640721844,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "c4_pta_product": 0.0
+          }
+        }
+      ]
+    },
+    "random_449": {
+      "params": {
+        "a_pot": 4.644008135151086,
+        "b_pot": 0.0055210447386581,
+        "mu_sym": 0.0510540095223181,
+        "lambda_sym": 0.0797797237087187,
+        "c4_pta_product": 0.0018609972435311
+      },
+      "ok": true,
+      "singular_values": [
+        0.4774583847455228,
+        0.03729277885231093,
+        0.013634288326102325,
+        1.2009605224183595e-05,
+        0.0
+      ],
+      "effective_dimension_at_1e-3_of_max": 3,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 1.2009605224183595e-05,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -1.0
+          }
+        },
+        {
+          "singular_value": 0.0,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0,
+            "b_pot": 0.0,
+            "mu_sym": 0.0,
+            "lambda_sym": 1.0,
+            "c4_pta_product": 0.0
+          }
+        }
+      ]
+    },
+    "random_440": {
+      "params": {
+        "a_pot": 0.1499502843473509,
+        "b_pot": 0.0294145350741832,
+        "mu_sym": 0.1403091815583698,
+        "lambda_sym": 0.0829318091213668,
+        "c4_pta_product": 0.1681469585885738
+      },
+      "ok": true,
+      "singular_values": [
+        0.22271892973086843,
+        0.0010851056333111009,
+        2.4876157249547277e-05,
+        1.2214006085647377e-13,
+        0.0
+      ],
+      "effective_dimension_at_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 2.4876157249547277e-05,
+          "loadings_on_ln_param": {
+            "a_pot": -0.9956229767906724,
+            "b_pot": 0.09346062318688302,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -0.0
+          }
+        },
+        {
+          "singular_value": 1.2214006085647377e-13,
+          "loadings_on_ln_param": {
+            "a_pot": -0.09346062318688302,
+            "b_pot": -0.9956229767906724,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -0.0
+          }
+        },
+        {
+          "singular_value": 0.0,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0,
+            "b_pot": 0.0,
+            "mu_sym": 0.0,
+            "lambda_sym": 1.0,
+            "c4_pta_product": 0.0
+          }
+        }
+      ]
+    },
+    "random_198": {
+      "params": {
+        "a_pot": 1.493842878954982,
+        "b_pot": 0.1190901496724073,
+        "mu_sym": 9.659017388581882,
+        "lambda_sym": 0.2743477454798205,
+        "c4_pta_product": 1.0415629908809734
+      },
+      "ok": true,
+      "singular_values": [
+        4.678877992080067,
+        0.006721536198692202,
+        3.983806050770496e-05,
+        1.1744381416633246e-12,
+        7.222646987034191e-13
+      ],
+      "effective_dimension_at_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 3.983806050770496e-05,
+          "loadings_on_ln_param": {
+            "a_pot": -0.9892517693243739,
+            "b_pot": 0.14622221749308767,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -0.0
+          }
+        },
+        {
+          "singular_value": 1.1744381416633246e-12,
+          "loadings_on_ln_param": {
+            "a_pot": 0.14622221749308767,
+            "b_pot": 0.9892517693243739,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "c4_pta_product": 0.0
+          }
+        },
+        {
+          "singular_value": 7.222646987034191e-13,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": 2.6053462533425195e-13,
+            "lambda_sym": -1.0,
+            "c4_pta_product": -0.0
+          }
+        }
+      ]
+    },
+    "random_74": {
+      "params": {
+        "a_pot": 34.88968689369928,
+        "b_pot": 0.0869605082341918,
+        "mu_sym": 3.182382889439624,
+        "lambda_sym": 91.65490406619897,
+        "c4_pta_product": 5.302883035222783
+      },
+      "ok": true,
+      "singular_values": [
+        1.851462082198961,
+        1.4981006396348198,
+        0.03422118545949315,
+        1.1974597316063317e-11,
+        0.0
+      ],
+      "effective_dimension_at_1e-3_of_max": 3,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 1.1974597316063317e-11,
+          "loadings_on_ln_param": {
+            "a_pot": 0.08789567235043265,
+            "b_pot": 0.9961296857247381,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "c4_pta_product": 0.0
+          }
+        },
+        {
+          "singular_value": 0.0,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0,
+            "b_pot": 0.0,
+            "mu_sym": 0.0,
+            "lambda_sym": 1.0,
+            "c4_pta_product": 0.0
+          }
+        }
+      ]
+    }
+  },
+  "effective_dimension_summary": {
+    "best_fit": 3,
+    "random_391": 2,
+    "random_449": 3,
+    "random_440": 2,
+    "random_198": 2,
+    "random_74": 3
+  },
+  "effective_dimension_best_fit": 3,
+  "effective_dimension_spread_random": [
+    2,
+    3,
+    2,
+    2,
+    3
+  ]
+}

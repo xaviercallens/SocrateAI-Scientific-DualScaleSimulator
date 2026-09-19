@@ -1,0 +1,52 @@
+{
+  "n_sweep_rows": 421,
+  "n_clean": 421,
+  "n_numerically_stable": 316,
+  "datasets_used": [
+    "desi_2024_bao_all (12 pts, full 12x12 covariance)",
+    "pantheon_plus_sh0es (Hubble-flow subset, N=1590 SNe, diagonal MU_SH0ES_ERR_DIAG)"
+  ],
+  "pta_chi2": "ABSENT: NANOGrav verified product (ceffyl_data/*.npy) is a per-frequency free-spectrum KDE, no angular/pulsar-pair separation info; no real Gamma(theta) dataset exists to compare against.",
+  "dof_convention": "dof = n_data_points - (n_scanned_theory_params + n_nuisance_params); model scans (a_pot,b_pot)=2 params + 1 nuisance per sector; LCDM scans Om=1 param + 1 nuisance per sector.",
+  "best_fit_model_point": {
+    "idx": 282,
+    "a_pot": 3.4714217520576933,
+    "b_pot": 0.0004276423734589,
+    "chi2_bao": 16.672122654385387,
+    "dof_bao": 9,
+    "chi2_sn": 687.209783100074,
+    "dof_sn": 1587,
+    "chi2_total": 703.8819057544594,
+    "dof_total": 1596,
+    "w0_cpl_latetime": -0.694151106969398,
+    "wa_cpl_latetime": 0.954542950540572
+  },
+  "lcdm_baseline": {
+    "bao": {
+      "chi2": 12.740533317312385,
+      "s_fit": 0.03400242128060155,
+      "ok": true,
+      "Om_fit": 0.2938925039104002,
+      "dof": 10
+    },
+    "sn": {
+      "chi2": 684.5997648730028,
+      "offset_fit": 43.0674195975208,
+      "n_sn": 1590,
+      "ok": true,
+      "Om_fit": 0.34930040766273757,
+      "dof": 1588
+    },
+    "chi2_total": 697.3402981903151,
+    "dof_total": 1598
+  },
+  "w0_cpl_latetime_range_over_sweep": [
+    -1.0736598429881683,
+    -0.0775637342917735
+  ],
+  "wa_cpl_latetime_range_over_sweep": [
+    -0.000575021376839,
+    1.1003196165802112
+  ],
+  "headline_finding": "w0 spans [-1.0737,-0.0776], wa spans [-0.0006,1.1003] over the sweep -- NOT uniformly LCDM-pinned; see per-point chi2 for where BAO/SN prefer non-LCDM regions."
+}

@@ -1,0 +1,60 @@
+{
+  "generated": "2026-09-19",
+  "tool": "gudhi 3.13.0",
+  "seed_subsample": 42,
+  "n_target": 400,
+  "omega_m_background": 0.31115,
+  "omega_m_source": "SAME frozen M0 background as E3-M0/m0_model.py (Omega_Lambda=0.68885, LeanMaster DarkEnergyScale.lean:84); H0 is irrelevant to Betti numbers after unit-diameter rescaling.",
+  "real": {
+    "source": "data/real2/cosmic_web/sdss_dr17_galaxies_ra140_220_dec0_50.csv (fetched_verified, sha256 in data manifest)",
+    "n_rows_total": 193536,
+    "n_valid_z": 193536,
+    "n_points_used": 400,
+    "betti_numbers": [
+      1,
+      0
+    ]
+  },
+  "known_answer_control_circle": {
+    "n_points": 400,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_H1_bars": 78,
+    "dominant_to_second_H1_bar_ratio": 29.69250915957116,
+    "interpretation": "This confirms the pipeline CAN detect a topology signal at this N (a noisy circle should give one dominant, long-lived H1 bar, ratio >> 1; round2 got 62.9, round3 got 49.05 at N=300). Compare against real/null below: if the circle shows a clear dominant bar but real and null Betti numbers still tie, that supports 'no detectable clustering signal at this N', not 'the pipeline found nothing'."
+  },
+  "paired_design_note": "real and null are sampled with the SAME seed (42) from ROW-ALIGNED files (the null catalogue keeps every real RA/Dec, only z is permuted, seed=20260919 upstream) -- so the same RA/Dec indices are drawn in both subsamples. This is a paired design (a virtue: it controls for the survey footprint), not a bug.",
+  "random_null": {
+    "source": "data/real2/cosmic_web/sdss_dr17_random_shuffled_z_ra140_220_dec0_50.csv (derived_verified, RA/Dec real, z shuffled seed=20260919; destroys 3D clustering, keeps footprint+n(z))",
+    "n_rows_total": 193536,
+    "n_valid_z": 193536,
+    "n_points_used": 400,
+    "betti_numbers": [
+      1,
+      0
+    ]
+  },
+  "bottleneck_distance_real_vs_null": {
+    "H0": 0.040920051243239774,
+    "H1": 0.01530107648528703,
+    "H2": 0.0
+  },
+  "half_bar_degeneracy_check": {
+    "H1": {
+      "max_persistence_a": 0.06258009282944398,
+      "max_persistence_b": 0.06808171819571505,
+      "dominant_over_2": 0.03404085909785753,
+      "half_max_degeneracy_triggered": false
+    },
+    "H2": {
+      "max_persistence_a": 0.0,
+      "max_persistence_b": 0.0,
+      "dominant_over_2": 0.0,
+      "half_max_degeneracy_triggered": false
+    }
+  },
+  "interpretation": "This is a real-vs-null topology COMPARISON, not a test of any K3xT2 (E2/E3) prediction: LeanMaster's octad/complement split (Stream 8 E3) has NO constructed large-scale-structure observable to compare against; LeanMaster STREAM8_WHICH_K3.md states 'Observables: none' (lines 112, 153, 374 at eb791e7) and makes no TDA prediction (an earlier quoted 'TDA prediction' was not LeanMaster text; see ERRATA.md). What this script establishes is only whether real SDSS DR17 clustering differs topologically from its shuffled-z null at N=400 subsamples -- the PRE-REQUISITE for any future octad-indexed statistic, not that statistic itself. DIAGNOSIS of the real vs null tie (Betti [1,0] both): at N=400 drawn uniformly at random out of 193,536 galaxies over the survey footprint, the mean inter-galaxy separation in the subsample is far larger than the cosmic web's real correlation length (a few Mpc/h) -- random subsampling at this ratio (400/193536 ~ 0.2%) itself destroys the clustering signal before any topology computation runs, independent of GUDHI or the Rips-complex parameters. This is a stronger and more specific statement than 'underpowered': it is not a statistics-of-small-samples issue that more repeats would fix, it is that the subsample geometry itself is close to Poisson regardless of the parent catalogue's clustering. The known-answer circle control (below) confirms the PIPELINE can detect a clear topology signal at this same N; the tie is therefore attributable to the subsampling, not to pipeline insensitivity.",
+  "next_step_for_an_actual_K3xT2_topology_test": "Stream8_WHICH_K3.md's E3 octad/complement (8+16 split, M24 automorphism) has no known map from a Betti-number comparison to a group-theoretic partition of a galaxy catalogue. Designing that map (e.g. partitioning the catalogue into 24 angular or redshift bins and testing whether an 8-vs-16 sub-partition analogous to the Golay octad/complement shows a topological asymmetry the random null does not) is UNBUILT and would be a new, separately pre-registered hypothesis (H') of this project, not of LeanMaster; no such prediction is registered in PRE_REGISTRATION.md."
+}

@@ -1,0 +1,276 @@
+{
+  "param_names": [
+    "a_pot",
+    "b_pot",
+    "mu_sym",
+    "lambda_sym",
+    "c4_pta_product"
+  ],
+  "observable_names": [
+    "w0_cpl",
+    "wa_cpl",
+    "H_z1",
+    "H_z2.3",
+    "DM_z1",
+    "DM_z2.3",
+    "log10_ssf",
+    "log10_pcr",
+    "pta_max_dev",
+    "legacy_w0"
+  ],
+  "step_ln_param": 0.01,
+  "n_stable_sweep_points_used_for_standardization": 388,
+  "probed_points": {
+    "best_fit": {
+      "params": {
+        "a_pot": 3.4714217520576933,
+        "b_pot": 0.0004276423734589,
+        "mu_sym": 1.0,
+        "lambda_sym": 1.0,
+        "c4_pta_product": 0.08035
+      },
+      "ok": true,
+      "singular_values": [
+        4.177182388586046,
+        2.542645565930724,
+        0.7508061447466275,
+        0.0005024770802608547,
+        1.945502257787957e-14
+      ],
+      "effective_dimension_at_1e-3_of_max": 3,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 0.0005024770802608547,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -1.0
+          }
+        },
+        {
+          "singular_value": 1.945502257787957e-14,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": 3.713932305025562e-14,
+            "lambda_sym": -1.0,
+            "c4_pta_product": -0.0
+          }
+        }
+      ]
+    },
+    "random_181": {
+      "params": {
+        "a_pot": 0.032852014506812,
+        "b_pot": 0.3217439547792274,
+        "mu_sym": 0.0317259313803351,
+        "lambda_sym": 4.385204640537512,
+        "c4_pta_product": 20.69600067207288
+      },
+      "ok": true,
+      "singular_values": [
+        0.6716843186899653,
+        0.1294245922935186,
+        0.0003434722852771333,
+        0.0003380534934324622,
+        2.546938185134805e-07
+      ],
+      "effective_dimension_at_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 0.0003434722852771333,
+          "loadings_on_ln_param": {
+            "a_pot": -0.8541025595230346,
+            "b_pot": 0.5201046219908081,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -0.0
+          }
+        },
+        {
+          "singular_value": 0.0003380534934324622,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.022308490050120547,
+            "lambda_sym": -0.9997511346688652,
+            "c4_pta_product": -0.0
+          }
+        },
+        {
+          "singular_value": 2.546938185134805e-07,
+          "loadings_on_ln_param": {
+            "a_pot": 0.5201046219908081,
+            "b_pot": 0.8541025595230346,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "c4_pta_product": 0.0
+          }
+        }
+      ]
+    },
+    "random_383": {
+      "params": {
+        "a_pot": 3.785244364172295,
+        "b_pot": 0.0003957850134093,
+        "mu_sym": 0.0716599172620479,
+        "lambda_sym": 3.1105234811379376,
+        "c4_pta_product": 0.0019190980292661
+      },
+      "ok": true,
+      "singular_values": [
+        3.3330160251620975,
+        0.16916710682389738,
+        0.06976930948100969,
+        1.2001279084405958e-05,
+        3.4762664306379686e-12
+      ],
+      "effective_dimension_at_1e-3_of_max": 3,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 1.2001279084405958e-05,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -1.0
+          }
+        },
+        {
+          "singular_value": 3.4762664306379686e-12,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": 5.8300879383199515e-09,
+            "lambda_sym": -1.0,
+            "c4_pta_product": -0.0
+          }
+        }
+      ]
+    },
+    "random_106": {
+      "params": {
+        "a_pot": 15.2210898018371,
+        "b_pot": 0.2253545084879171,
+        "mu_sym": 0.0148880287594647,
+        "lambda_sym": 56.45330368488751,
+        "c4_pta_product": 96.0804220960905
+      },
+      "ok": true,
+      "singular_values": [
+        0.6008489105798972,
+        0.08684414178850064,
+        0.07524363340038964,
+        0.0007433550149532662,
+        1.3687028061986135e-13
+      ],
+      "effective_dimension_at_1e-3_of_max": 4,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 1.3687028061986135e-13,
+          "loadings_on_ln_param": {
+            "a_pot": 0.9674083522514068,
+            "b_pot": 0.25322140508696767,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "c4_pta_product": 0.0
+          }
+        }
+      ]
+    },
+    "random_519": {
+      "params": {
+        "a_pot": 59.13213978986769,
+        "b_pot": 0.0075398605928551,
+        "mu_sym": 0.0924670055199413,
+        "lambda_sym": 17.906202912963565,
+        "c4_pta_product": 0.6196482589620267
+      },
+      "ok": true,
+      "singular_values": [
+        4.184479761655434,
+        0.11361761803873216,
+        0.11113557346768045,
+        0.00387503482205398,
+        1.6112126472719707e-12
+      ],
+      "effective_dimension_at_1e-3_of_max": 3,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 0.00387503482205398,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -1.0
+          }
+        },
+        {
+          "singular_value": 1.6112126472719707e-12,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": 1.6783234425210232e-08,
+            "lambda_sym": -1.0,
+            "c4_pta_product": -0.0
+          }
+        }
+      ]
+    },
+    "random_59": {
+      "params": {
+        "a_pot": 0.014565454322361,
+        "b_pot": 0.0064976591315758,
+        "mu_sym": 0.201644103049991,
+        "lambda_sym": 2.071144615145779,
+        "c4_pta_product": 9.018225536294236e-05
+      },
+      "ok": true,
+      "singular_values": [
+        0.3426211364683895,
+        0.000567870788096885,
+        6.43957287394321e-06,
+        5.639641115218197e-07,
+        3.9633607919115615e-14
+      ],
+      "effective_dimension_at_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 6.43957287394321e-06,
+          "loadings_on_ln_param": {
+            "a_pot": 0.0059336387446916805,
+            "b_pot": 0.9999823958106702,
+            "mu_sym": 0.0,
+            "lambda_sym": 0.0,
+            "c4_pta_product": 0.0
+          }
+        },
+        {
+          "singular_value": 5.639641115218197e-07,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": -0.0,
+            "lambda_sym": -0.0,
+            "c4_pta_product": -1.0
+          }
+        },
+        {
+          "singular_value": 3.9633607919115615e-14,
+          "loadings_on_ln_param": {
+            "a_pot": -0.0,
+            "b_pot": -0.0,
+            "mu_sym": 3.007015259777364e-12,
+            "lambda_sym": -1.0,
+            "c4_pta_product": -0.0
+          }
+        }
+      ]
+    }
+  },
+  "comparison_to_round1_full_model": "round-1 jacobian_report.json best_fit effective_dimension_at_1e-3_of_max=3 (singular values [4.65,2.58,1.72,3.7e-4,3.2e-14,0.0]). Prediction (tda_prediction.json): should remain 3 here too, since the removed direction was already SV=0.0 in the 6-param model."
+}

@@ -1,0 +1,93 @@
+{
+  "generated": "2026-09-18",
+  "tool": "gudhi 3.13.0",
+  "model_cloud": {
+    "n_stable_sweep_rows": 381,
+    "n_zero_variance_columns": 0,
+    "columns": [
+      "log10_ssf",
+      "log10_pcr",
+      "gamma_theta_0",
+      "gamma_theta_1",
+      "gamma_theta_2",
+      "gamma_theta_3",
+      "gamma_theta_4",
+      "gamma_theta_5",
+      "gamma_theta_6",
+      "gamma_theta_7",
+      "gamma_theta_8",
+      "gamma_theta_9",
+      "gamma_theta_10",
+      "gamma_theta_11",
+      "gamma_theta_12",
+      "gamma_theta_13",
+      "gamma_theta_14",
+      "pta_max_deviation_from_hd"
+    ],
+    "pca_k": 2,
+    "pca_cumulative_variance_fraction_at_k": 0.9978691278150055,
+    "betti_numbers": [
+      2,
+      0
+    ],
+    "n_points_used": 300
+  },
+  "real_cloud": {
+    "source": "Pantheon+ SH0ES RA/DEC/zHD, flat LCDM Om=0.31115 comoving distance (sha256-verified, data/real/dark_energy/pantheon_plus_sh0es.dat)",
+    "n_sn_before_subsample": 1672,
+    "n_points_used": 300,
+    "betti_numbers": [
+      1,
+      0
+    ]
+  },
+  "known_answer_control_circle": {
+    "n_points": 300,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_H1_bars": 36,
+    "dominant_to_second_H1_bar_ratio": 49.05363270439605,
+    "passes_single_long_H1_bar_check": true
+  },
+  "null_control_poisson_matched_to_real": {
+    "n_points": 300,
+    "betti_numbers": [
+      1,
+      0
+    ]
+  },
+  "bottleneck_distances": {
+    "model_vs_real_H0": 0.12807891742435012,
+    "model_vs_real_H1": 0.00614293214930799,
+    "null_vs_real_H0": 0.09486098349878896,
+    "null_vs_real_H1": 0.03251828254007749,
+    "half_max_persistence_degeneracy_check_model_vs_real_H1": {
+      "max_persistence_a": 0.01228586429861598,
+      "max_persistence_b": 0.01120568803475069,
+      "dominant_over_2": 0.00614293214930799,
+      "half_max_degeneracy_triggered": false
+    },
+    "half_max_persistence_degeneracy_check_null_vs_real_H1": {
+      "max_persistence_a": 0.065036565080155,
+      "max_persistence_b": 0.01120568803475069,
+      "dominant_over_2": 0.0325182825400775,
+      "half_max_degeneracy_triggered": true
+    },
+    "ordering_model_closer_than_null": true
+  },
+  "prediction_check": {
+    "predicted_model_betti": [
+      1,
+      0
+    ],
+    "observed_model_betti": [
+      2,
+      0
+    ],
+    "matches_prediction": false
+  },
+  "caveat": "Per round2/ledger.json (tda.ordering_survives_variance_matching: false) and round2/reverse/tda_reduced.py's descriptive-only bottleneck comparison, TDA in this loop is a SANITY GATE, not discrimination evidence: model-cloud vs real-SN-cloud vs null-cloud bottleneck orderings have already been shown NOT to survive variance-matching once, so no reduction proposal in this round cites TDA as evidence for or against any parameter.",
+  "known_bottleneck_degeneracy_already_diagnosed_round2": "round2/ledger.json results.round2.round1_flag_unverified_resolution: gudhi.bottleneck_distance returns half a diagram's own dominant unmatched bar whenever it exceeds 2x the other diagram's max persistence in that dimension, independent of the other diagram's content. Cited, not re-investigated from scratch; re-checked per-distance above via half_max_persistence_degeneracy_check_*."
+}

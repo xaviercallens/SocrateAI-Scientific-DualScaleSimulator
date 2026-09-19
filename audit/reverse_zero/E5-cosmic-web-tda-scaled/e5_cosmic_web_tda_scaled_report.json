@@ -1,0 +1,602 @@
+{
+  "generated": "2026-09-19",
+  "tool": "gudhi 3.13.0",
+  "framing_rule": "M0 (frozen LCDM background, symmetron/screening sector deleted) is a HYPOTHESIS CHANGE, not a derivation from K3xT2. A match between real data and the null envelope below means 'no detected excess topology beyond a featureless footprint+n(z)-matched random catalogue, at this N and scale range' -- it is NOT a confirmation of K3xT2 and does not touch mu_sym, c4_pta_product, or any LeanMaster octad/moonshine construction (none exists as an observable, per E4's report and REPORT.md).",
+  "background_cosmology": {
+    "Omega_m": 0.31115,
+    "note": "Mpc/h units, H0=100 km/s/Mpc/h convention; H0 does not affect Betti numbers, only the r-axis unit label.",
+    "source": "SAME frozen M0 as E3-M0/m0_model.py, E4/cosmic_web_tda.py"
+  },
+  "sample_construction": {
+    "catalogue": "data/real2/cosmic_web/sdss_dr17_galaxies_ra140_220_dec0_50.csv",
+    "n_rows_total_file": 193536,
+    "n_valid_z_gt0": 193536,
+    "footprint": "SDSS DR17 spectroscopic, ra in [140,220] deg, dec in [0,50] deg, 0.02<=z<=0.12 (dataset selection, not a fresh cut)",
+    "equal_comoving_volume_shells": {
+      "n_shells": 20,
+      "r_shell_max_mpc_over_h": 349.4713483250929,
+      "diagnostic_counts_per_shell": {
+        "0": {
+          "r_lo": 0.0,
+          "r_hi": 128.74634551019687,
+          "count": 31741
+        },
+        "1": {
+          "r_lo": 128.74634551019687,
+          "r_hi": 162.21023080533533,
+          "count": 17817
+        },
+        "2": {
+          "r_lo": 162.21023080533533,
+          "r_hi": 185.68436149073057,
+          "count": 13862
+        },
+        "3": {
+          "r_lo": 185.68436149073057,
+          "r_hi": 204.37208429994777,
+          "count": 14967
+        },
+        "4": {
+          "r_lo": 204.37208429994777,
+          "r_hi": 220.153154044964,
+          "count": 14589
+        },
+        "5": {
+          "r_lo": 220.153154044964,
+          "r_hi": 233.9476356784604,
+          "count": 14436
+        },
+        "6": {
+          "r_lo": 233.9476356784604,
+          "r_hi": 246.2828989944435,
+          "count": 12023
+        },
+        "7": {
+          "r_lo": 246.2828989944435,
+          "r_hi": 257.4926910203937,
+          "count": 9169
+        },
+        "8": {
+          "r_lo": 257.4926910203937,
+          "r_hi": 267.8031905728116,
+          "count": 7155
+        },
+        "9": {
+          "r_lo": 267.8031905728116,
+          "r_hi": 277.3755929819988,
+          "count": 6762
+        },
+        "10": {
+          "r_lo": 277.3755929819988,
+          "r_hi": 286.329309148236,
+          "count": 5625
+        },
+        "11": {
+          "r_lo": 286.329309148236,
+          "r_hi": 294.7555507644291,
+          "count": 5406
+        },
+        "12": {
+          "r_lo": 294.7555507644291,
+          "r_hi": 302.72574811540744,
+          "count": 5667
+        },
+        "13": {
+          "r_lo": 302.72574811540744,
+          "r_hi": 310.29700867223227,
+          "count": 5333
+        },
+        "14": {
+          "r_lo": 310.29700867223227,
+          "r_hi": 317.51579182317,
+          "count": 5324
+        },
+        "15": {
+          "r_lo": 317.51579182317,
+          "r_hi": 324.42046161067066,
+          "count": 4974
+        },
+        "16": {
+          "r_lo": 324.42046161067066,
+          "r_hi": 331.0431080748937,
+          "count": 5561
+        },
+        "17": {
+          "r_lo": 331.0431080748937,
+          "r_hi": 337.4108770316936,
+          "count": 4973
+        },
+        "18": {
+          "r_lo": 337.4108770316936,
+          "r_hi": 343.54696062633445,
+          "count": 4416
+        },
+        "19": {
+          "r_lo": 343.54696062633445,
+          "r_hi": 349.4713483250929,
+          "count": 3736
+        }
+      },
+      "note": "counts decline for shell index > ~6 (flux-limited/Malmquist incompleteness, expected and not a bug); a flat 4-shell window was chosen from this profile, not tuned to the topology result."
+    },
+    "selected_shells": {
+      "shell_indices": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "r_range_mpc_over_h": [
+        162.21023080533533,
+        233.9476356784604
+      ],
+      "counts_available_per_shell": {
+        "2": 13862,
+        "3": 14967,
+        "4": 14589,
+        "5": 14436
+      },
+      "counts_available_range_pct": 7.971432693694993
+    },
+    "n_per_shell_target": 6250,
+    "n_final": 25000,
+    "n_per_shell_after_downsample_real": [
+      6250,
+      6250,
+      6250,
+      6250
+    ],
+    "residual_flatness_note": "equal counts per equal-comoving-volume shell BY CONSTRUCTION (downsampled to the common target); residual variation is only the Poisson noise of the random subsample draw, reported in n_per_shell_after_downsample_real.",
+    "seed_subsample_real": 42
+  },
+  "null_construction": {
+    "method": "SAME observed (ra,dec) pairs; z independently permuted (numpy RandomState(1000+seed).permutation) -- keeps exact angular footprint and exact marginal n(z), destroys all 3D clustering. For N>1.3e5 this permutation null is statistically equivalent to drawing r i.i.d. from the empirical n(z) (a Poisson-in-the-footprint null); it is used here to stand in for BOTH the ground rules' null (i) [Poisson in survey volume] and null (ii) [redshift-shuffled], and this equivalence is stated rather than claimed as two independent constructions. Lognormal mocks (null iii) are DEFERRED -- see docstring and improvement proposal below.",
+    "n_realizations": 20,
+    "seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019
+    ],
+    "n_per_realization": 25000,
+    "per_realization_diagnostics": [
+      {
+        "seed": 0,
+        "n_points": 25000,
+        "runtime_sec": 2.7625174522399902,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 1,
+        "n_points": 25000,
+        "runtime_sec": 2.9439003467559814,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 2,
+        "n_points": 25000,
+        "runtime_sec": 3.0006282329559326,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 3,
+        "n_points": 25000,
+        "runtime_sec": 3.0965240001678467,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 4,
+        "n_points": 25000,
+        "runtime_sec": 3.270871162414551,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 5,
+        "n_points": 25000,
+        "runtime_sec": 2.7940688133239746,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 6,
+        "n_points": 25000,
+        "runtime_sec": 2.649031400680542,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 7,
+        "n_points": 25000,
+        "runtime_sec": 2.57002329826355,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 8,
+        "n_points": 25000,
+        "runtime_sec": 2.547243356704712,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 9,
+        "n_points": 25000,
+        "runtime_sec": 2.538585901260376,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 10,
+        "n_points": 25000,
+        "runtime_sec": 2.6164286136627197,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 11,
+        "n_points": 25000,
+        "runtime_sec": 2.6612770557403564,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 12,
+        "n_points": 25000,
+        "runtime_sec": 2.748986005783081,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 13,
+        "n_points": 25000,
+        "runtime_sec": 2.760169744491577,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 14,
+        "n_points": 25000,
+        "runtime_sec": 2.9386796951293945,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 15,
+        "n_points": 25000,
+        "runtime_sec": 3.1721739768981934,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 16,
+        "n_points": 25000,
+        "runtime_sec": 3.1564509868621826,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 17,
+        "n_points": 25000,
+        "runtime_sec": 3.0913703441619873,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 18,
+        "n_points": 25000,
+        "runtime_sec": 2.7651588916778564,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "seed": 19,
+        "n_points": 25000,
+        "runtime_sec": 2.726316213607788,
+        "betti_numbers_at_truncation": [
+          1,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "alpha_complex": {
+    "library": "gudhi.AlphaComplex",
+    "max_alpha_square": 2500.0,
+    "r_max_persistence_mpc_over_h": 50.0,
+    "note": "filtration values are squared circumradii; sqrt() applied before any r is reported. Truncated to bound runtime (verified calibration: N=30000 untruncated-shape points, alpha^2<=2500 -> 3.5s build+persistence on this machine)."
+  },
+  "real_result": {
+    "n_points": 25000,
+    "runtime_sec": 2.5444703102111816,
+    "betti_numbers_at_truncation_r50": [
+      1,
+      0,
+      0
+    ],
+    "top_bars_H0": [
+      [
+        0.0,
+        50.0
+      ],
+      [
+        0.0,
+        6.177248495438981
+      ],
+      [
+        0.0,
+        5.822518775165896
+      ]
+    ],
+    "top_bars_H1": [
+      [
+        2.5991621117952133,
+        8.039666112839038
+      ],
+      [
+        2.5851805150895495,
+        8.0178436913492
+      ],
+      [
+        3.4804424909366865,
+        8.651474582494423
+      ]
+    ],
+    "top_bars_H2": [
+      [
+        7.745999701725447,
+        13.336368677979776
+      ],
+      [
+        7.4304060450663965,
+        11.912746542498583
+      ],
+      [
+        8.364489068974489,
+        12.727143789283149
+      ]
+    ]
+  },
+  "pre_stated_comparison_statistic": {
+    "definition": "L2(beta_k_real, mean(beta_k_null)) over r in (2.0, 40.0) Mpc/h, per k=0,1,2, plus the same for the Euler curve; bottleneck distance on the top-3-persistence bars per dimension, real vs each of the 20 null realizations (mean/std/min/max reported). This statistic and r-range were fixed in this script's source BEFORE it was first run (see docstring point 6).",
+    "l2_real_vs_null_mean": {
+      "H0": 355.5694105435474,
+      "H1": 977.2007225285856,
+      "H2": 198.70636824022722,
+      "euler": 1049.8451268435467
+    },
+    "r_points_outside_95pct_null_envelope": {
+      "H0": {
+        "n_r_points_outside_95pct_envelope": 9,
+        "n_r_points_total_in_range": 77,
+        "r_values_outside": [
+          2.0,
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0
+        ]
+      },
+      "H1": {
+        "n_r_points_outside_95pct_envelope": 18,
+        "n_r_points_total_in_range": 77,
+        "r_values_outside": [
+          2.5,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          13.0
+        ]
+      },
+      "H2": {
+        "n_r_points_outside_95pct_envelope": 23,
+        "n_r_points_total_in_range": 77,
+        "r_values_outside": [
+          2.0,
+          3.0,
+          3.5,
+          4.0,
+          4.5,
+          5.0,
+          5.5,
+          6.0,
+          6.5,
+          7.0,
+          7.5,
+          8.0,
+          8.5,
+          9.0,
+          9.5,
+          10.0,
+          10.5,
+          11.0,
+          11.5,
+          12.0,
+          12.5,
+          13.0,
+          13.5
+        ]
+      }
+    },
+    "bottleneck_real_vs_null_top_bars": {
+      "H0": {
+        "mean": 1.9583152763358764,
+        "std": 0.1854813673705464,
+        "min": 1.6466796814985578,
+        "max": 2.3128849957019195
+      },
+      "H1": {
+        "mean": 2.6205589611621507,
+        "std": 0.062012985838395436,
+        "min": 2.501548937411588,
+        "max": 2.716331588129825
+      },
+      "H2": {
+        "mean": 2.795184488127164,
+        "std": 4.440892098500626e-16,
+        "min": 2.7951844881271644,
+        "max": 2.7951844881271644
+      }
+    }
+  },
+  "known_answer_controls": {
+    "circle_H1": {
+      "n_points": 2000,
+      "betti_numbers": [
+        1,
+        0,
+        0
+      ],
+      "dominant_to_second_H1_ratio": 33.97432840071683,
+      "interpretation": "confirms the pipeline detects a planted loop (H1) at this alpha-complex configuration"
+    },
+    "planted_voids_H2": {
+      "n_points": 13727,
+      "n_voids_planted": 6,
+      "void_radius_mpc_or_length_unit": 15.0,
+      "betti_numbers": [
+        1,
+        0,
+        0
+      ],
+      "top_H2_bars_birth_death": [
+        [
+          4.067902946752418,
+          15.12776300966527
+        ],
+        [
+          4.039478757083866,
+          15.068472827792634
+        ],
+        [
+          4.083873563072125,
+          15.05531440173681
+        ],
+        [
+          4.507659870337222,
+          15.142233290087864
+        ],
+        [
+          5.359867077093099,
+          15.06591969843279
+        ],
+        [
+          5.726800662369912,
+          15.050371861313675
+        ],
+        [
+          3.8936760328034605,
+          6.096347793831287
+        ],
+        [
+          3.782964679633458,
+          5.8038570172338675
+        ]
+      ],
+      "gate": {
+        "n_bars_with_death_within_20pct_of_void_radius": 6,
+        "n_voids_planted": 6,
+        "persistence_gap_bar6_to_bar7": 7.120899437915938,
+        "pass": true
+      },
+      "interpretation": "each planted spherical void should produce an H2 bar that DIES near r ~ void_radius (the alpha-radius at which the Delaunay-alpha ball first spans the cavity and its boundary closes up), with a small BIRTH set by the local point spacing near the void wall, not by the void radius. Verified: the top 6 bars (matching the 6 planted voids) have death in [15.05, 15.14] against a planted radius of 15.0 (<1% error); the 7th/8th bars (death ~5.8-6.1) are smaller incidental cavities from the random fill, not planted voids -- this confirms the pipeline detects H2 (voids), which the E4 circle-only control never tested."
+    }
+  },
+  "total_runtime_sec": 76.97718167304993,
+  "interpretation": "See pre_stated_comparison_statistic for the r-ranges (if any) where the real Betti curves fall outside the 95% null envelope. A match (no r-points outside envelope) at this N=25000, this r-range (2-40 Mpc/h) and this null construction means: consistent with a featureless footprint+n(z)-matched random catalogue at the level of THIS test -- NOT a confirmation of any K3xT2 structure, and it does not by itself confirm M0's cosmological background either (that is E3-M0/m0_result.json's job, using chi2 against DESI+Pantheon+, not TDA). A mismatch at small r (below a few Mpc/h) would be unsurprising and not diagnostic on its own: fiber-collision incompleteness in SDSS spectroscopy suppresses close pairs at small angular separation, which this script does NOT correct for (no fiber-collision weights were applied -- said here rather than silently assumed away)."
+}

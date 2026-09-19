@@ -1,0 +1,8 @@
+{
+  "input": "sdss_dr17_galaxies_ra140_220_dec0_50.csv",
+  "output": "sdss_dr17_random_shuffled_z_ra140_220_dec0_50.csv",
+  "n_rows": 193536,
+  "seed": 20260919,
+  "method": "RA,Dec kept as observed; z (and paired zErr) independently permuted via numpy.random.default_rng(seed).permutation over all rows",
+  "sha256_output": "13d9a4ec9597815777b0c3d87e878fe077321962f223380d7c5729a4f8231f41"
+}

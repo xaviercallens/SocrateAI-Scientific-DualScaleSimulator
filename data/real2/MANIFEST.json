@@ -1,0 +1,132 @@
+{
+  "generated": "2026-09-19",
+  "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse",
+  "branch": "loop/reverse-zero",
+  "note_on_reuse": "data/real/ (DESI 2024 DR1 BAO, Pantheon+SH0ES.dat, NANOGrav 15yr ceffyl KDE, 2MRS RA/Dec) is reused as-is; this manifest covers only the NEW fetches under data/real2/.",
+  "datasets": [
+    {
+      "id": "desi_dr2_bao_all_and_per_tracer",
+      "domain": "dark_energy",
+      "status": "OK",
+      "source": "GitHub CobayaSampler/bao_data, folder desi_bao_dr2 (listed via GitHub Contents API: https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2)",
+      "files": [
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt", "sha256": "9ac154ab583ce759c0f7eef3c978c7c70a6ead2d18774caceadf1a350a640585", "rows": 13, "columns": 3, "size_bytes": 472},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt", "sha256": "252a143274c8a07c78694c119617d36594f6d7965d00319ca611c6ffb886e509", "shape": "13x13 covariance (whitespace-separated floats)", "size_bytes": 2547},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_mean.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_mean.txt", "sha256": "06fc72ca4f4b4a03973c514bf7568c856716ff76a8c05df02e42b93aca769d59", "rows": 1, "size_bytes": 63},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_cov.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_cov.txt", "sha256": "06d7260009fa0030171753fe2f8ece92c5e167da5fdf57f3a98aa2dfe9dc142f", "shape": "1x1", "size_bytes": 15},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_mean.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_mean.txt", "sha256": "86336445497058eee24ecf255e8a7486d8b46d709daa7a919566a58818dbed0c", "rows": 2, "size_bytes": 98},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_cov.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_cov.txt", "sha256": "1fc0b21fd34a0e194f3fce2601ea3d1f411b03c7c1006c5b865b9f66991b8740", "shape": "2x2", "size_bytes": 62},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_mean.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_mean.txt", "sha256": "6d2f38d0727b2aefcd82fdd5a1c6df5a7d34ad8459437c195d575b5ad0c6ab32", "rows": 2, "size_bytes": 98},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt", "sha256": "16fa8c323f54139ef1249a24f8f9c8663dbac7890d5a6d9c3b97e84ee89847ae", "shape": "2x2", "size_bytes": 62},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_mean.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_mean.txt", "sha256": "c34585b9afdb683e68c2522e9715950fd24b63435ceb8a94ae52acd5d2626f4a", "rows": 2, "size_bytes": 98},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_cov.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_cov.txt", "sha256": "8c8f5270dc3db24cbecd9aee1e463819a93e4fbfb0805fdf18357c39e5a8e95a", "shape": "2x2", "size_bytes": 62},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_mean.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_mean.txt", "sha256": "75d2dd246d2f17145f202fccf80da0bd723a67270a76f83b5be204161e204794", "rows": 2, "size_bytes": 98},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_cov.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_cov.txt", "sha256": "8d1afedca817a80f44c9dd492101d6653f1f353a59da6f24a6bcb0f0d80ad6bc", "shape": "2x2", "size_bytes": 62},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_QSO_GCcomb_mean.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_mean.txt", "sha256": "9bffdd0bf27615ab5225e5232fcdf53e16318bf9d06b031a2756d6e89368dadd", "rows": 2, "size_bytes": 98},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_QSO_GCcomb_cov.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_cov.txt", "sha256": "7445c6bca01e2732b15ff29e832cc7b682c27d096f3b3ae8a171b63b20e8f6da", "shape": "2x2", "size_bytes": 62},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_Lya_GCcomb_mean.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_mean.txt", "sha256": "9b4ab92080d038d0a0a5d76b9abead4e3919d7227e343d1e7feab7103e1f30cb", "rows": 2, "size_bytes": 99},
+        {"path": "dark_energy/desi_dr2/desi_gaussian_bao_Lya_GCcomb_cov.txt", "url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_cov.txt", "sha256": "02a049dbf3a1cd391189948516378a694abfd8d5b5cba1a15e97c6c5cf972357", "shape": "2x2", "size_bytes": 102}
+      ],
+      "licence_citation": "CobayaSampler/bao_data — CC0-equivalent (public re-hosting of DESI DR2 BAO consensus results, DESI Collaboration 2025, arXiv:2503.14738 / arXiv:2503.14743)",
+      "description": "DESI DR2 BAO consensus distances (DV/rs, DM/rs, DH/rs) and full covariances for the ALL_GCcomb combination and per-tracer subsamples (BGS, LRG z0.4-0.6, LRG z0.6-0.8, LRG+ELG, ELG, QSO, Lya). Sanity-checked: every file starts with numeric data, not HTML."
+    },
+    {
+      "id": "pantheon_plus_sh0es_stat_sys_cov",
+      "domain": "dark_energy",
+      "status": "OK",
+      "url": "https://raw.githubusercontent.com/PantheonPlusSH0ES/DataRelease/main/Pantheon%2B_Data/4_DISTANCES_AND_COVAR/Pantheon%2BSH0ES_STAT%2BSYS.cov",
+      "path": "dark_energy/Pantheon+SH0ES_STAT+SYS.cov",
+      "sha256": "abf806d966485e64afdb359c87bffc0ecc00d05eff0a31ced66f247385df0fdc",
+      "size_bytes": 33284960,
+      "format": "First line = matrix dimension N = 1701 (int). Remaining N*N = 2893401 lines are the flattened full STAT+SYS covariance matrix in row-major order (verified: 1 + 1701*1701 = 2893402 total lines, matches wc -l exactly).",
+      "rows": "2893402 lines total (1 dimension line + 1701^2 matrix entries)",
+      "columns": 1,
+      "licence_citation": "PantheonPlusSH0ES/DataRelease — Brout et al. 2022, ApJ 938, 110 and Scolnic et al. 2022, ApJ 938, 113",
+      "description": "Full STAT+SYS covariance matrix for the Pantheon+ SH0ES supernova compilation (N=1701; note this is 1 fewer than the 1702-row Pantheon+SH0ES.dat already in data/real/, consistent with one SN excluded from the covariance-based likelihood in the public release). NOT committed to git (33 MB, exceeds the 5 MB cap); on disk only, path recorded here."
+    },
+    {
+      "id": "nanograv_15yr_hd_angular_correlation",
+      "domain": "pulsar_timing",
+      "status": "ABSENT",
+      "reason": "No machine-readable table of Hellings-Downs angular cross-correlation (rho vs angular separation, with errors) was found. The NANOGrav 15yr Figure 1 data release (nanograv/15yr_stochastic_analysis, data_release/figure_1/) provides only: (a) posterior MCMC chains for amplitude/gamma (not angle-binned correlation), and (b) a notebook (upper_right.ipynb) that COMPUTES the binned pair-correlation from raw pulsar timing-residual data (requires a ~GB Google Drive download + enterprise/enterprise_extensions pipeline + ~18 minutes of covariance computation) rather than shipping a ready angle-vs-correlation table. Per ground rules, this pipeline output was NOT reconstructed/digitised here.",
+      "urls_tried": [
+        "https://api.github.com/repos/nanograv/15yr_stochastic_analysis/contents/data_release (listed figure_1..figure_10 directories)",
+        "https://raw.githubusercontent.com/nanograv/15yr_stochastic_analysis/main/data_release/figure_1/README.md (points to Google Drive raw-data bundle, not a table)",
+        "https://raw.githubusercontent.com/nanograv/15yr_stochastic_analysis/main/data_release/figure_1/upper_right.ipynb (inspected: computes xii_bins/rho_avg_corr/sig from a pipeline run, does not ship the resulting table)",
+        "https://api.github.com/orgs/nanograv/repos (searched org for a data/table repo; none found)",
+        "https://api.github.com/repos/nanograv/PTArcade/contents/ (404)",
+        "https://zenodo.org/api/records?q=NANOGrav%2015yr%20optimal%20statistic (no matching angular-correlation-table record)",
+        "https://zenodo.org/api/records?q=NANOGrav%2015-year%20gravitational-wave%20background (checked 'The NANOGrav 15-Year Data Set' id 16051178: only a 638 MB raw pulsar-timing tarball, no angular-correlation table)",
+        "https://zenodo.org/api/records?q=Hellings-Downs%20angular%20correlation%20table (no relevant hits)"
+      ],
+      "note": "The already-verified data/real/pulsar_timing NANOGrav 15yr ceffyl KDE dataset (id nanograv_15yr_kde) remains the pulsar-timing dataset in hand; it is a free-spectrum amplitude representation, not an angle-binned HD correlation table, and is reused as-is per the ground rules."
+    },
+    {
+      "id": "sdss_dr17_cosmic_web_galaxies",
+      "domain": "cosmic_web",
+      "status": "OK",
+      "source": "SDSS DR17 SkyServer SqlSearch, https://skyserver.sdss.org/dr17/SkyServerWS/SearchTools/SqlSearch",
+      "query": "SELECT ra,dec,z,zErr FROM SpecObj WHERE class='GALAXY' AND zWarning=0 AND z BETWEEN 0.02 AND 0.12 AND ra BETWEEN 140 AND 220 AND dec BETWEEN 0 AND 50",
+      "count_query_result": 193536,
+      "path": "cosmic_web/sdss_dr17_galaxies_ra140_220_dec0_50.csv",
+      "sha256": "81aa0a857540a53d029759d3a395143277b70402ac2f612f4e1874ac5311b3e9",
+      "rows": 193536,
+      "columns": 4,
+      "column_names": ["ra", "dec", "z", "zErr"],
+      "row_cap_check": "Full-query row count (193538 lines incl. 2 header lines) matches the independent SELECT COUNT(*) result (193536) exactly; no SkyServer row-cap truncation was hit, so no RA-strip paging was needed for this patch.",
+      "licence_citation": "SDSS DR17 — Sloan Digital Sky Survey, public data release, Abdurro'uf et al. 2022, ApJS 259, 35",
+      "description": "SDSS DR17 SpecObj spectroscopic galaxy sample (RA, Dec, z, zErr) in a contiguous patch (ra 140-220 deg, dec 0-50 deg, 0.02<=z<=0.12) for cosmic-web TDA."
+    },
+    {
+      "id": "sdss_dr17_random_shuffled_z",
+      "domain": "cosmic_web",
+      "status": "OK",
+      "source": "Derived (not fetched) from sdss_dr17_cosmic_web_galaxies: same RA,Dec footprint, z (and paired zErr) independently permuted",
+      "method": "numpy.random.default_rng(seed=20260919).permutation applied jointly to z and zErr; RA,Dec kept exactly as observed (preserves angular selection function/mask; destroys 3-D clustering). Full method documented in cosmic_web/make_random_catalogue.py.",
+      "seed": 20260919,
+      "path": "cosmic_web/sdss_dr17_random_shuffled_z_ra140_220_dec0_50.csv",
+      "sha256": "13d9a4ec9597815777b0c3d87e878fe077321962f223380d7c5729a4f8231f41",
+      "rows": 193536,
+      "columns": 4,
+      "licence_citation": "Derived from SDSS DR17 (see sdss_dr17_cosmic_web_galaxies)",
+      "description": "Random comparison catalogue for cosmic-web TDA null test, built by shuffling redshifts on the real survey footprint (task-permitted construction; angular mask proxy)."
+    },
+    {
+      "id": "wmap_ilc_9yr_v5",
+      "domain": "cmb",
+      "status": "OK",
+      "url": "https://lambda.gsfc.nasa.gov/data/map/dr5/dfp/ilc/wmap_ilc_9yr_v5.fits",
+      "path": "cmb/wmap_ilc_9yr_v5.fits",
+      "sha256": "4501090f824f9140e916339f9e8e490333f6ffe4257a6ee6a02526c8640099a9",
+      "size_bytes": 25174080,
+      "format": "FITS image, HEALPix full-sky map",
+      "licence_citation": "WMAP 9-year data release, NASA LAMBDA archive, Bennett et al. 2013, ApJS 208, 20",
+      "description": "WMAP 9-year Internal Linear Combination (ILC) full-sky CMB temperature map, for CMB TDA."
+    },
+    {
+      "id": "wmap_kq85_mask",
+      "domain": "cmb",
+      "status": "OK",
+      "url": "https://lambda.gsfc.nasa.gov/data/map/dr5/ancillary/masks/wmap_temperature_kq85_analysis_mask_r9_9yr_v5.fits",
+      "path": "cmb/wmap_temperature_kq85_analysis_mask_r9_9yr_v5.fits",
+      "sha256": "30608930b5a3a2154ff0e4d95b32dd3dcb8fda2151133153a1d59feb97ab8d63",
+      "size_bytes": 25174080,
+      "format": "FITS image, HEALPix full-sky mask",
+      "licence_citation": "WMAP 9-year data release, NASA LAMBDA archive, Bennett et al. 2013, ApJS 208, 20",
+      "description": "WMAP 9-year KQ85 temperature analysis (galactic + point-source) mask, matching wmap_ilc_9yr_v5."
+    },
+    {
+      "id": "fifth_force_eotwash_2002_11761",
+      "domain": "fifth_force_screening",
+      "status": "ABSENT",
+      "reason": "arXiv:2002.11761 (Lee et al. 2020, Eot-Wash) e-print source tarball contains only FB_ISL_pdf.tex plus 9 figure PDFs (fig1.pdf, fig2a/b.pdf, fig5a/b1.pdf, capAF.pdf, capPF.pdf, magsysZB/Zs.pdf, xyCenter.pdf). grep for tabular/table environments in the .tex found none. The alpha-lambda exclusion curve exists only as a plotted figure (fig1.pdf / fig2 series), not as a machine-readable data table. Per ground rules, the figure was NOT digitised.",
+      "urls_tried": [
+        "https://arxiv.org/e-print/2002.11761 (302 redirect to /src/2002.11761, followed with -L; valid gzip tarball, 530474 bytes, sha256 114bac164ab553858a310a569b5a165cc3a97b03285dc880288c5ecbf3284952)"
+      ],
+      "path_kept_on_disk": "fifth_force/2002.11761.tar.gz",
+      "sha256": "114bac164ab553858a310a569b5a165cc3a97b03285dc880288c5ecbf3284952",
+      "size_bytes": 530474,
+      "licence_citation": "arXiv:2002.11761, Lee, Adelberger, Cook, Fleischer, Heckel 2020, Phys. Rev. Lett. 124, 101101"
+    }
+  ]
+}

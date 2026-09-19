@@ -1,0 +1,63 @@
+{
+  "generated": "2026-09-18",
+  "datasets_used": [
+    "desi_2024_bao_all (12x12 cov)",
+    "pantheon_plus_sh0es (1590 SNe, diagonal errors)"
+  ],
+  "n_data": 1602,
+  "n_nuisance": 2,
+  "chi2_flat_verification_seed43": {
+    "probe_mu_sym": [
+      1.0,
+      0.1993045076315595,
+      0.1921385581931581
+    ],
+    "probe_c4_pta_product": [
+      0.08035,
+      0.0175212167821415,
+      371.6171877286224
+    ],
+    "chi2_total_assigned_to_each": [
+      702.9066083231721,
+      702.9066083231721,
+      702.9066083231721
+    ],
+    "note": "CAVEAT (added after advisor review, do not remove): this probe does NOT independently re-run eval_point at each (mu_sym, c4_pta_product) triple -- it reads the CSV's own mu_sym/c4_pta_product values for provenance but assigns the SAME eval_lcdm_frozen() call to all three, so the 0.0 'cross-check' below is a value compared to itself, not an independent measurement, and must not be reported as one. The actual evidence that chi2 is flat is STRUCTURAL, not this probe: reduced_model.py's frozen_lcdm_dark_energy() takes zero arguments (mu_sym and c4_pta_product are never passed to it), and de.eval_point/de.lcdm_Ez likewise take no screening/PTA argument -- confirmed by reading reduced_model.py and decisive_experiment.py directly, not by probing 3 points and getting the same cached number back three times."
+  },
+  "chi2": {
+    "full_model_round3_forward": 702.9066083231721,
+    "reduced_model_round3_reverse": 702.9066083231721,
+    "cross_check_full_vs_reduced_abs_diff": 0.0,
+    "cross_check_caveat": "0.0 by construction (same frozen dark-energy computation on both sides, no reduction was made); NOT an independent-refit agreement. See chi2_flat_verification_seed43.note for the real (structural, code-read) argument.",
+    "lcdm_om_fitted": 702.6753004830813,
+    "om_fitted": 0.3169513146908462,
+    "lcdm_frozen_lean": 702.9066083231721
+  },
+  "k_theory_params": {
+    "reduced": 2,
+    "full": 2,
+    "lcdm_om_fitted": 1,
+    "lcdm_frozen": 0,
+    "note": "reduced==full: no reduction accepted (mu_sym: tier C, no bridge; c4_pta_product: convention/scope only). Both counted as free even though untested by BAO/SN (insensitivity != derivation)."
+  },
+  "aic": {
+    "reduced": 710.9066083231721,
+    "full": 710.9066083231721,
+    "lcdm_om_fitted": 708.6753004830813,
+    "lcdm_frozen": 706.9066083231721
+  },
+  "bic": {
+    "reduced": 732.4226408336854,
+    "full": 732.4226408336854,
+    "lcdm_om_fitted": 724.8123248659662,
+    "lcdm_frozen": 717.6646245784287
+  },
+  "delta_aic_vs_full": 0.0,
+  "delta_aic_vs_lcdm_frozen": 4.0,
+  "delta_bic_vs_lcdm_frozen": 14.75801625525662,
+  "n_removed_params_this_round": 0,
+  "delta_chi2_reduced_minus_full": 0.0,
+  "fit_degraded_rule": "delta_chi2(reduced-full) > 2 per removed param; 0 removed this round, so fit_degraded is trivially False by construction (reduced IS full -- see cross_check_caveat), not from an independent refit disagreeing.",
+  "fit_degraded": false,
+  "headline": "reduced == full model (0 parameters removed this round, verified structurally: reduced_model.frozen_lcdm_dark_energy() takes zero mu_sym/c4_pta_product arguments), so fit_degraded is trivially False -- there is nothing to degrade. delta_AIC=4.0000 and delta_BIC=14.7580 against frozen Lean-pinned LCDM are DEFINITIONAL, not measured: with chi2 unchanged, 2 extra parameters cost exactly 2*2=4.0 (AIC) and 2*ln(1602)=14.758 (BIC) by the formula alone, given the k-counting convention already disclosed in k_theory_params. This restates, rather than newly tests, round 3's own finding (chi2_total_is_flat_across_sweep in ../chi2_report.json): mu_sym and c4_pta_product are invisible to every dataset this repo has verified, so any nonzero k-count for them is pure AIC/BIC penalty with no offsetting fit gain -- not independent Occam's-razor evidence, just the direct consequence of that same insensitivity, quantified."
+}

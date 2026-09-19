@@ -1,0 +1,40 @@
+{
+ "N_data": 25000,
+ "N_poisson": 25000,
+ "shell_counts_data": [
+  6250,
+  6250,
+  6250,
+  6250
+ ],
+ "shell_counts_poisson": [
+  6197,
+  6273,
+  6187,
+  6343
+ ],
+ "ks_r": {
+  "stat": 0.01472000000000001,
+  "p": 0.008793070707687627
+ },
+ "ks_ra": {
+  "stat": 0.06224000000000002,
+  "p": 1.5417531033867457e-42
+ },
+ "ks_sindec": {
+  "stat": 0.017000000000000015,
+  "p": 0.0014394089401713757
+ },
+ "frac_poisson_in_nside512_pixels_with_no_galaxy": 0.5571999999999999,
+ "frac_data_in_such_pixels": 0.0,
+ "nside64_pixel_deg": 0.9161297098179749,
+ "nside64_pixel_comoving_mpc_h_at_r_lo_r_hi": [
+  2.593657210707248,
+  3.7407009976672394
+ ],
+ "r_lo_r_hi": [
+  162.21023080533533,
+  233.9476356784604
+ ],
+ "note": "frac_poisson_in_nside512_pixels_with_no_galaxy is NOT a hole diagnostic: ~193k galaxies over the footprint give <1 galaxy per nside=512 pixel on average, so emptiness is sparsity-dominated; frac_data=0 is by construction. ks_ra/ks_sindec differences include genuine angular LSS (data are clustered), so they are not by themselves a footprint mismatch."
+}

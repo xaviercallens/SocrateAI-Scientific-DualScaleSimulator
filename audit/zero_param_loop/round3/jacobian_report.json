@@ -1,0 +1,140 @@
+{
+  "generated": "2026-09-18",
+  "method": "central difference, step=1e-2 in ln-param, standardized 18-component observable vector (log10_ssf, log10_pcr, gamma_theta x15, pta_max_dev), dark-energy block dropped (zero-variance by construction, frozen LCDM)",
+  "n_zero_variance_observable_columns_before_dropping_de": 0,
+  "n_stable_points_used_for_standardization": 381,
+  "param_names": [
+    "mu_sym",
+    "c4_pta_product"
+  ],
+  "points": [
+    {
+      "label": "nominal_flat_chi2_point",
+      "params": {
+        "mu_sym": 1.0,
+        "c4_pta_product": 0.08035
+      },
+      "ok": true,
+      "singular_values": [
+        0.7884898291086649,
+        0.0020836077670643993
+      ],
+      "effective_dimension_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [],
+      "n_finite_param_columns": 2
+    },
+    {
+      "label": "random_idx_356",
+      "params": {
+        "mu_sym": 0.01204539712883,
+        "c4_pta_product": 0.0057074631095447
+      },
+      "ok": true,
+      "singular_values": [
+        0.5024264788567226,
+        0.00014800391369418353
+      ],
+      "effective_dimension_1e-3_of_max": 1,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 0.00014800391369418353,
+          "right_singular_vector": {
+            "mu_sym": -0.0,
+            "c4_pta_product": -1.0
+          }
+        }
+      ],
+      "n_finite_param_columns": 2
+    },
+    {
+      "label": "random_idx_257",
+      "params": {
+        "mu_sym": 0.5498299681173504,
+        "c4_pta_product": 5.146663516911889
+      },
+      "ok": true,
+      "singular_values": [
+        0.6072751168028546,
+        0.13346145710399285
+      ],
+      "effective_dimension_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [],
+      "n_finite_param_columns": 2
+    },
+    {
+      "label": "random_idx_61",
+      "params": {
+        "mu_sym": 0.0157072237499872,
+        "c4_pta_product": 76.05274088222922
+      },
+      "ok": true,
+      "singular_values": [
+        1.9721727642659812,
+        0.09845830283145608
+      ],
+      "effective_dimension_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [],
+      "n_finite_param_columns": 2
+    },
+    {
+      "label": "random_idx_73",
+      "params": {
+        "mu_sym": 0.1314292329867308,
+        "c4_pta_product": 496.8342384771056
+      },
+      "ok": true,
+      "singular_values": [
+        12.88372966066666,
+        0.20570802330052448
+      ],
+      "effective_dimension_1e-3_of_max": 2,
+      "near_null_right_singular_vectors": [],
+      "n_finite_param_columns": 2
+    },
+    {
+      "label": "random_idx_76",
+      "params": {
+        "mu_sym": 0.0330380619667642,
+        "c4_pta_product": 0.0001071132553948
+      },
+      "ok": true,
+      "singular_values": [
+        0.01631202770948484,
+        2.7776230378251388e-06
+      ],
+      "effective_dimension_1e-3_of_max": 1,
+      "near_null_right_singular_vectors": [
+        {
+          "singular_value": 2.7776230378251388e-06,
+          "right_singular_vector": {
+            "mu_sym": -0.0,
+            "c4_pta_product": -1.0
+          }
+        }
+      ],
+      "n_finite_param_columns": 2
+    }
+  ],
+  "effective_dimension_summary": {
+    "best_fit": 2,
+    "random": [
+      1,
+      2,
+      2,
+      2,
+      1
+    ]
+  },
+  "prediction_check": {
+    "predicted_effective_dimension": 2,
+    "observed": [
+      2,
+      1,
+      2,
+      2,
+      2,
+      1
+    ],
+    "matches_prediction": false
+  }
+}

@@ -1,0 +1,258 @@
+[
+  {
+    "name": "desi_gaussian_bao_ALL_GCcomb_cov.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt",
+    "sha": "fd8e5697ab61379b07b52efb781ea6713417a4d9",
+    "size": 2547,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/fd8e5697ab61379b07b52efb781ea6713417a4d9",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/fd8e5697ab61379b07b52efb781ea6713417a4d9",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_cov.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_ALL_GCcomb_mean.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+    "sha": "8aff444fdb42c0946342aa0011ab287eda097c4c",
+    "size": 472,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/8aff444fdb42c0946342aa0011ab287eda097c4c",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/8aff444fdb42c0946342aa0011ab287eda097c4c",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_cov.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_cov.txt",
+    "sha": "8e5ee4cc127744bf53e66b3a7f804caa01d5d4bc",
+    "size": 15,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_cov.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_cov.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/8e5ee4cc127744bf53e66b3a7f804caa01d5d4bc",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_cov.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_cov.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/8e5ee4cc127744bf53e66b3a7f804caa01d5d4bc",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_cov.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_mean.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_mean.txt",
+    "sha": "b3819eec05b634d2c1eba6c942c1a7c1c8374cec",
+    "size": 63,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_mean.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_mean.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/b3819eec05b634d2c1eba6c942c1a7c1c8374cec",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_mean.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_mean.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/b3819eec05b634d2c1eba6c942c1a7c1c8374cec",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_BGS_BRIGHT-21.35_GCcomb_mean.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_cov.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_cov.txt",
+    "sha": "a32be7112134c6fdd4380ecb1c55d216e8a99f8a",
+    "size": 62,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_cov.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_cov.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/a32be7112134c6fdd4380ecb1c55d216e8a99f8a",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_cov.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_cov.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/a32be7112134c6fdd4380ecb1c55d216e8a99f8a",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_cov.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_mean.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_mean.txt",
+    "sha": "5b93fca30dc99c362f8c6d486e6dc0fa6c6f3147",
+    "size": 98,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_mean.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_mean.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/5b93fca30dc99c362f8c6d486e6dc0fa6c6f3147",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_mean.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_mean.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/5b93fca30dc99c362f8c6d486e6dc0fa6c6f3147",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_ELG_LOPnotqso_GCcomb_z1.1-1.6_mean.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_cov.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_cov.txt",
+    "sha": "1d02e2fa9af3c0027e9be5a0b8c988d2738cc8a8",
+    "size": 62,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG%2BELG_LOPnotqso_GCcomb_cov.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG%2BELG_LOPnotqso_GCcomb_cov.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/1d02e2fa9af3c0027e9be5a0b8c988d2738cc8a8",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_cov.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG%2BELG_LOPnotqso_GCcomb_cov.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/1d02e2fa9af3c0027e9be5a0b8c988d2738cc8a8",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG%2BELG_LOPnotqso_GCcomb_cov.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_mean.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_mean.txt",
+    "sha": "7265f9f8c18dd0665d00a20bb57d04cb28c77647",
+    "size": 98,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG%2BELG_LOPnotqso_GCcomb_mean.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG%2BELG_LOPnotqso_GCcomb_mean.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/7265f9f8c18dd0665d00a20bb57d04cb28c77647",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG+ELG_LOPnotqso_GCcomb_mean.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG%2BELG_LOPnotqso_GCcomb_mean.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/7265f9f8c18dd0665d00a20bb57d04cb28c77647",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG%2BELG_LOPnotqso_GCcomb_mean.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_cov.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_cov.txt",
+    "sha": "7c687aced6645a53f82211ac4095d99b396c7568",
+    "size": 62,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_cov.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_cov.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/7c687aced6645a53f82211ac4095d99b396c7568",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_cov.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_cov.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/7c687aced6645a53f82211ac4095d99b396c7568",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_cov.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_mean.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_mean.txt",
+    "sha": "671c65b3dc086fb821cdf245d48f3df4f6d83114",
+    "size": 98,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_mean.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_mean.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/671c65b3dc086fb821cdf245d48f3df4f6d83114",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_mean.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_mean.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/671c65b3dc086fb821cdf245d48f3df4f6d83114",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.4-0.6_mean.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt",
+    "sha": "96ec52c2238d3b2745b6672af952794336ed89e5",
+    "size": 62,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/96ec52c2238d3b2745b6672af952794336ed89e5",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/96ec52c2238d3b2745b6672af952794336ed89e5",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_cov.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_mean.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_mean.txt",
+    "sha": "d9621981d369097c4ba6901f9f8bdc907b914387",
+    "size": 98,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_mean.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_mean.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/d9621981d369097c4ba6901f9f8bdc907b914387",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_mean.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_mean.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/d9621981d369097c4ba6901f9f8bdc907b914387",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_LRG_GCcomb_z0.6-0.8_mean.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_Lya_GCcomb_cov.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_cov.txt",
+    "sha": "59d503f4c39474397f8527fb9da0ba14b03eedfe",
+    "size": 102,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_cov.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_cov.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/59d503f4c39474397f8527fb9da0ba14b03eedfe",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_cov.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_cov.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/59d503f4c39474397f8527fb9da0ba14b03eedfe",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_cov.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_Lya_GCcomb_mean.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_mean.txt",
+    "sha": "3a420c81c70fc495e5c230fa28417a05285fd1c2",
+    "size": 99,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_mean.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_mean.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/3a420c81c70fc495e5c230fa28417a05285fd1c2",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_mean.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_mean.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/3a420c81c70fc495e5c230fa28417a05285fd1c2",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_Lya_GCcomb_mean.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_QSO_GCcomb_cov.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_cov.txt",
+    "sha": "22616c9dc7acc0de1be14d8853d22d93fc98aca0",
+    "size": 62,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_cov.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_cov.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/22616c9dc7acc0de1be14d8853d22d93fc98aca0",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_cov.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_cov.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/22616c9dc7acc0de1be14d8853d22d93fc98aca0",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_cov.txt"
+    }
+  },
+  {
+    "name": "desi_gaussian_bao_QSO_GCcomb_mean.txt",
+    "path": "desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_mean.txt",
+    "sha": "7d39ad96148b6f76f5b5cc9c423c335b708248ea",
+    "size": 98,
+    "url": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_mean.txt?ref=master",
+    "html_url": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_mean.txt",
+    "git_url": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/7d39ad96148b6f76f5b5cc9c423c335b708248ea",
+    "download_url": "https://raw.githubusercontent.com/CobayaSampler/bao_data/master/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_mean.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/CobayaSampler/bao_data/contents/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_mean.txt?ref=master",
+      "git": "https://api.github.com/repos/CobayaSampler/bao_data/git/blobs/7d39ad96148b6f76f5b5cc9c423c335b708248ea",
+      "html": "https://github.com/CobayaSampler/bao_data/blob/master/desi_bao_dr2/desi_gaussian_bao_QSO_GCcomb_mean.txt"
+    }
+  }
+]

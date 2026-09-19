@@ -1,0 +1,82 @@
+{
+  "note": "PTA chi2 remains ABSENT this round for the same reason as round 1 (no real angular Gamma(theta) dataset); only BAO+SN enter chi2 here, same as round 1.",
+  "equivalence_check": {
+    "reduced_model_params_used": {
+      "a_pot": 3.4714217520576933,
+      "b_pot": 0.0004276423734589,
+      "mu_sym": 1.0,
+      "lambda_sym": 1.0,
+      "c4_pta_product": 0.08035
+    },
+    "w0_cpl_latetime": -0.6941511065861972,
+    "wa_cpl_latetime": 0.9545429502735733,
+    "abs_diff_w0_vs_forward_reported": 3.832008044213353e-10,
+    "abs_diff_wa_vs_forward_reported": 2.66998756437431e-10,
+    "chi2_bao": 16.672122190174566,
+    "s_fit_bao": 0.0332140269789906,
+    "chi2_sn": 687.2097834673496,
+    "offset_fit_sn": 43.06100310721061,
+    "n_sn": 1590,
+    "chi2_total": 703.8819056575242,
+    "abs_diff_chi2_total_vs_forward_reported": 9.693519587017363e-08,
+    "byte_level_equivalence_confirmed": true
+  },
+  "chi2_full_forward_reported": 703.8819057544594,
+  "chi2_reduced": 703.8819056575242,
+  "chi2_lcdm_independent_recompute": {
+    "bao": {
+      "chi2": 12.740533317312385,
+      "s_fit": 0.03400242128060155,
+      "ok": true,
+      "Om_fit": 0.2938925039104002
+    },
+    "sn": {
+      "chi2": 684.5997648730028,
+      "offset_fit": 43.0674195975208,
+      "n_sn": 1590,
+      "ok": true,
+      "Om_fit": 0.34930040766273757
+    },
+    "chi2_total": 697.3402981903151,
+    "consistency_vs_forward_reported_697.3402981903151": {
+      "forward_reported": 697.3402981903151,
+      "this_round_independent": 697.3402981903151,
+      "abs_diff": 0.0,
+      "consistent": true
+    }
+  },
+  "delta_chi2_reduced_minus_full": -9.693519587017363e-08,
+  "n_removed_params_this_step": 1,
+  "fit_degraded_rule": "delta_chi2(reduced-full) > 2 per removed parameter",
+  "fit_degraded": false,
+  "why_delta_chi2_is_exactly_zero": "The removed direction (pta_suppression vs c4_c0_ratio split) lives entirely in the PTA sector, and pta_chi2 is ABSENT (no real angular-correlation dataset this round, same as round 1) -- so removing it cannot change a chi2 that never depended on it. This delta_chi2=0 has ZERO discriminating power about whether the reduction is a good idea; it only shows the reduction did not break the (unrelated) dark-energy fit.",
+  "aic_bic_k_fit_convention_PRIMARY": {
+    "definition": "k_fit = n_scanned_theory_params_relevant_to_chi2 + n_nuisance (2: s_BAO, offset_SN), identical nuisance convention for all three models so only real data content survives in the deltas.",
+    "k_fit_full": 4,
+    "k_fit_reduced": 4,
+    "k_fit_lcdm": 3,
+    "aic_full": 711.8819057544594,
+    "aic_reduced": 711.8819056575242,
+    "aic_lcdm": 703.3402981903151,
+    "bic_full": 733.3979382649726,
+    "bic_reduced": 733.3979381680374,
+    "bic_lcdm": 719.4773225732,
+    "delta_aic_reduced_minus_full": -9.693519587017363e-08,
+    "delta_aic_reduced_minus_lcdm": 8.541607467209019,
+    "delta_bic_reduced_minus_full": -9.693519587017363e-08,
+    "delta_bic_reduced_minus_lcdm": 13.920615594837386,
+    "interpretation": "delta_aic_reduced_minus_full ~ 0 (expected: chi2 identical, k_fit identical -- the reduction is invisible to this data, not validated by it). delta_aic_reduced_minus_lcdm > 0 means LCDM is STILL preferred over the reduced model by ~the same margin as round 1 found for the full model (this reduction does not change that verdict either way)."
+  },
+  "aic_nominal_k_bookkeeping_SECONDARY_NOT_DATA_CONTENT": {
+    "definition": "k = total nominal theory free-parameter count (6/5/1), NOT fit-relevant. Decrementing this by construction gives ANY reduction a -2 'AIC improvement' with zero data involvement -- reported only as bookkeeping, never as evidence the reduction is supported by data.",
+    "k_nominal_full": 6,
+    "k_nominal_reduced": 5,
+    "k_nominal_lcdm": 1,
+    "aic_nominal_full": 715.8819057544594,
+    "aic_nominal_reduced": 713.8819056575242,
+    "aic_nominal_lcdm": 699.3402981903151,
+    "delta_aic_nominal_reduced_minus_full": -2.000000096935196
+  },
+  "dof_total": 1596,
+  "n_data_points_used": 1602
+}

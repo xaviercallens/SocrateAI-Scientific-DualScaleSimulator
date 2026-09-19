@@ -148,13 +148,13 @@ def get_library_axiom_status(lib_name: str, audit_report: Dict[str, Any]) -> Dic
 # REQ-COSMO-01: AXE 1 - QUINTESSENCE & MODULUS TAU DYNAMICS
 # =============================================================================
 
-def compute_potential(x: float, y: float) -> Tuple[float, float, float]:
+def compute_potential(x: float, y: float, a_pot: float = 1.0, b_pot: float = 0.01) -> Tuple[float, float, float]:
     """
     Computes potential V(x, y) and derivatives (V, dV/dx, dV/dy) on Poincaré target space.
     Saddle at Fricke point (0, 1/sqrt(12)), minimum at Orbifold point (0.5, sqrt(3)/2).
+
+    a_pot, b_pot: potential-shape parameters (defaults preserve original hard-coded values).
     """
-    a_pot = 1.0
-    b_pot = 0.01
     pi = math.pi
 
     cos_pi_x = math.cos(pi * x)
@@ -173,7 +173,7 @@ def compute_potential(x: float, y: float) -> Tuple[float, float, float]:
     return v, dv_dx, dv_dy
 
 
-def cosmology_rhs(_t: float, y_vec: np.ndarray) -> np.ndarray:
+def cosmology_rhs(_t: float, y_vec: np.ndarray, a_pot: float = 1.0, b_pot: float = 0.01) -> np.ndarray:
     """
     RHS for Einstein-Klein-Gordon system in Poincaré metric:
     y_vec = [a, x, y, u, v] where u = dx/dt, v = dy/dt.
@@ -184,7 +184,7 @@ def cosmology_rhs(_t: float, y_vec: np.ndarray) -> np.ndarray:
     u = float(y_vec[3])
     v = float(y_vec[4])
 
-    v_pot, dv_dx, dv_dy = compute_potential(x, y)
+    v_pot, dv_dx, dv_dy = compute_potential(x, y, a_pot, b_pot)
     t_kin = (u * u + v * v) / (2.0 * y * y)
 
     a3 = a * a * a
@@ -202,9 +202,14 @@ def cosmology_rhs(_t: float, y_vec: np.ndarray) -> np.ndarray:
     return np.array([da_dt, dx_dt, dy_dt, du_dt, dv_dt], dtype=np.float64)
 
 
-def run_quintessence_simulation(t_max: float = 70.0, num_points: int = 500) -> Dict[str, Any]:
+def run_quintessence_simulation(
+    t_max: float = 70.0, num_points: int = 500, a_pot: float = 1.0, b_pot: float = 0.01
+) -> Dict[str, Any]:
     """
     Solves the hyper-stiff cosmology ODE system using SciPy's Radau stiff integrator.
+
+    a_pot, b_pot: potential-shape parameters forwarded to compute_potential/cosmology_rhs
+    (defaults preserve original hard-coded values).
     """
     y0 = [1e-10, 0.001, FRICKE_Y + 0.001, 0.0, 0.0]
     t_span = (0.0, t_max)
@@ -220,6 +225,7 @@ def run_quintessence_simulation(t_max: float = 70.0, num_points: int = 500) -> D
         atol=1e-10,
         first_step=1e-22,
         max_step=0.5,
+        args=(a_pot, b_pot),
     )
 
     if not sol.success:
@@ -234,6 +240,7 @@ def run_quintessence_simulation(t_max: float = 70.0, num_points: int = 500) -> D
             atol=1e-9,
             first_step=1e-22,
             max_step=0.5,
+            args=(a_pot, b_pot),
         )
 
     t_arr = sol.t
@@ -257,7 +264,7 @@ def run_quintessence_simulation(t_max: float = 70.0, num_points: int = 500) -> D
         u_val = u_arr[i]
         v_val = v_arr[i]
 
-        v_pot, _, _ = compute_potential(x_val, y_val)
+        v_pot, _, _ = compute_potential(x_val, y_val, a_pot, b_pot)
         t_kin = (u_val * u_val + v_val * v_val) / (2.0 * y_val * y_val)
 
         a3 = a_val ** 3
@@ -311,20 +318,27 @@ def run_symmetron_screening_simulation(
     rho_in: float = 1000.0,
     rho_out: float = 0.01,
     mu_sym: float = 1.0,
-    lambda_sym: float = 1.0,
     m_scale: float = 1.0,
 ) -> Dict[str, Any]:
     """
-    Solves the non-linear radial Symmetron equation:
-    d²phi/dr² + (2/r) dphi/dr = dV_eff/dphi
-    V_eff(phi) = 0.5 * (rho(r)/M² - mu²) phi² + 0.25 * lambda * phi⁴
+    Solves the non-linear radial Symmetron equation in dimensionless form.
 
-    Inside body (r <= 1.0): rho = rho_in >> mu² M² => phi -> 0 (symmetry restored).
-    Outside body (r > 1.0): rho = rho_out << mu² M² => phi -> phi_0 = mu/sqrt(lambda).
-    Boundary conditions: dphi/dr(0) = 0, phi(r_max) = phi_0.
+    With V_eff(phi) = 0.5 * (rho(r)/M² - mu²) phi² + 0.25 * lambda * phi⁴ and the
+    vacuum value phi_0 = mu/sqrt(lambda), write phi = phi_0 * psi. Then
+    lambda * phi³ = phi_0 * mu² * psi³, and dividing the field equation by phi_0 gives
+
+        d²psi/dr² + (2/r) dpsi/dr = (rho(r)/M² - mu²) psi + mu² psi³,
+        dpsi/dr(0) = 0,  psi(r_max) = 1.
+
+    lambda does not appear: it only sets the units of phi. Every observable returned
+    here is a ratio phi/phi_0 = psi, so lambda is not a parameter of this model.
+    (The phi-form with lambda is kept, for the equivalence test only, in
+    audit/zero_param_loop/lambda_deletion/legacy_phi_form.py.)
+
+    Inside body (r <= 1.0): rho = rho_in >> mu² M² => psi -> 0 (symmetry restored).
+    Outside body (r > 1.0): rho = rho_out << mu² M² => psi -> 1.
     """
     r_core = 1.0
-    phi_0 = mu_sym / math.sqrt(lambda_sym)  # vacuum expectation value (VEV)
 
     # Regularized radial coordinate to avoid 1/r singularity at r=0
     eps = 1e-4
@@ -341,54 +355,49 @@ def run_symmetron_screening_simulation(
         return rho_out + (rho_in - rho_out) / (1.0 + np.exp((r - r_core) / width))
 
     def ode_system(r: np.ndarray, y: np.ndarray) -> np.ndarray:
-        phi = y[0]
-        dphi_dr = y[1]
+        psi = y[0]
+        dpsi_dr = y[1]
         rho = rho_profile(r)
-        # dV_eff/dphi = (rho/M² - mu²) phi + lambda * phi³
-        dv_dphi = ((rho / (m_scale ** 2)) - (mu_sym ** 2)) * phi + lambda_sym * (phi ** 3)
-        d2phi_dr2 = dv_dphi - (2.0 / r) * dphi_dr
-        return np.vstack((dphi_dr, d2phi_dr2))
+        rhs = ((rho / (m_scale ** 2)) - (mu_sym ** 2)) * psi + (mu_sym ** 2) * (psi ** 3)
+        d2psi_dr2 = rhs - (2.0 / r) * dpsi_dr
+        return np.vstack((dpsi_dr, d2psi_dr2))
 
     def bc(ya: np.ndarray, yb: np.ndarray) -> np.ndarray:
-        # At r = eps: dphi/dr = 0
-        # At r = r_max: phi = phi_0
-        return np.array([ya[1], yb[0] - phi_0])
+        # At r = eps: dpsi/dr = 0 ; at r = r_max: psi = 1
+        return np.array([ya[1], yb[0] - 1.0])
 
-    # Initial guess
+    # Initial guess: step from ~0 inside the core to 1 outside
     y_guess = np.zeros((2, n_points))
-    # Step function transition from 0 to phi_0 outside core
-    y_guess[0] = np.where(r_grid < r_core, 0.001 * phi_0, phi_0 * (1.0 - np.exp(-(r_grid - r_core))))
+    y_guess[0] = np.where(r_grid < r_core, 0.001, 1.0 - np.exp(-(r_grid - r_core)))
     y_guess[1] = np.gradient(y_guess[0], r_grid)
 
     res = solve_bvp(ode_system, bc, r_grid, y_guess, max_nodes=5000, tol=1e-4)
 
     if not res.success:
         # Refined relaxation fallback
-        phi_sol = y_guess[0]
+        psi_sol = y_guess[0]
         for _ in range(50):
-            dphi = np.gradient(phi_sol, r_grid)
-            d2phi = np.gradient(dphi, r_grid)
+            dpsi = np.gradient(psi_sol, r_grid)
+            d2psi = np.gradient(dpsi, r_grid)
             rho = rho_profile(r_grid)
-            res_val = d2phi + (2.0 / r_grid) * dphi - (((rho / (m_scale ** 2)) - (mu_sym ** 2)) * phi_sol + lambda_sym * (phi_sol ** 3))
-            phi_sol -= 0.01 * res_val
-            phi_sol[0] = phi_sol[1]
-            phi_sol[-1] = phi_0
+            res_val = d2psi + (2.0 / r_grid) * dpsi - (((rho / (m_scale ** 2)) - (mu_sym ** 2)) * psi_sol + (mu_sym ** 2) * (psi_sol ** 3))
+            psi_sol -= 0.01 * res_val
+            psi_sol[0] = psi_sol[1]
+            psi_sol[-1] = 1.0
         r_eval = r_grid
-        phi_eval = np.clip(phi_sol, 0.0, phi_0)
-        dphi_eval = np.gradient(phi_eval, r_eval)
+        psi_eval = np.clip(psi_sol, 0.0, 1.0)
+        dpsi_eval = np.gradient(psi_eval, r_eval)
     else:
         r_eval = res.x
-        phi_eval = res.y[0]
-        dphi_eval = res.y[1]
+        psi_eval = res.y[0]
+        dpsi_eval = res.y[1]
 
-    # Compute physical screening parameters
+    # Compute physical screening parameters (all are ratios phi/phi_0 = psi)
     idx_center = 0
     idx_surface = int(np.argmin(np.abs(r_eval - r_core)))
-    phi_center_ratio = float(phi_eval[idx_center] / phi_0)
-    phi_surface_ratio = float(phi_eval[idx_surface] / phi_0)
+    phi_center_ratio = float(psi_eval[idx_center])
+    phi_surface_ratio = float(psi_eval[idx_surface])
 
-    # Fifth force ratio F_phi / F_N = (dphi/dr * phi / M) / (G M_enc / r²)
-    # For thin-shell screening: Delta R / R = (phi_out - phi_in) / (6 beta M_Pl Phi_N)
     # Fifth-force suppression factor ~ (phi_surface / phi_0)²
     screening_factor = float(phi_surface_ratio ** 2)
     is_screened = (phi_center_ratio < 0.05) and (screening_factor < 5e-4)
@@ -396,9 +405,8 @@ def run_symmetron_screening_simulation(
     return {
         "success": True,
         "r": r_eval.tolist(),
-        "phi_ratio": (phi_eval / phi_0).tolist(),
-        "dphi_dr": dphi_eval.tolist(),
-        "phi_0": phi_0,
+        "phi_ratio": psi_eval.tolist(),
+        "dphi_dr_over_phi0": dpsi_eval.tolist(),
         "phi_center_ratio": phi_center_ratio,
         "phi_surface_ratio": phi_surface_ratio,
         "screening_suppression_factor": screening_factor,
@@ -1504,9 +1512,9 @@ def main():
     # Export Symmetron CSV
     symm_csv_path = _output_path("symmetron_screening_profile.csv")
     with open(symm_csv_path, "w", encoding="utf-8") as f:
-        f.write("r,phi_ratio,dphi_dr\n")
+        f.write("r,phi_ratio,dphi_dr_over_phi0\n")
         for i in range(len(symm_res["r"])):
-            f.write(f"{symm_res['r'][i]:.5e},{symm_res['phi_ratio'][i]:.5e},{symm_res['dphi_dr'][i]:.5e}\n")
+            f.write(f"{symm_res['r'][i]:.5e},{symm_res['phi_ratio'][i]:.5e},{symm_res['dphi_dr_over_phi0'][i]:.5e}\n")
     print("    -> Exported: symmetron_screening_profile.csv")
 
     # Check rusty-SUNDIALS Symmetron CSV

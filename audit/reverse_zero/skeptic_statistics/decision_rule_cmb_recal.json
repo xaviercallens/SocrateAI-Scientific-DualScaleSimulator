@@ -1,0 +1,6 @@
+{
+ "written_before_results": "2026-09-19, before check_cmb_null_spectrum.py step-B p-values existed",
+ "rule_superlevel_b1": "If the recalibrated-null chi2 p for superlevel b1 lies outside [0.005, 0.03], the committed p=0.0109 and its 'real localized excursion' reading depend on the null's spectrum misspecification and do not stand as reported; if inside, they stand with the spectrum mismatch as a documented caveat.",
+ "rule_verdict": "If any recalibrated statistic has 6 x p_chi2 < 0.05 (Bonferroni, as the item used), E5-CMB's 'M0 Gaussianity not rejected' verdict does not stand; otherwise it stands.",
+ "rule_gate": "If the recalibrated spectrum fails its own all-bands |z|<3 gate, no recalibrated p-values are reported and the item is judged on the step-A spectrum mismatch alone."
+}

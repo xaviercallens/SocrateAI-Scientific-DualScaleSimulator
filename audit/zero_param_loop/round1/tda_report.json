@@ -1,0 +1,122 @@
+{
+  "model": {
+    "label": "model",
+    "n_points": 316,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 18.41169603917606,
+    "median_pairwise_dist_after_rescale": 0.15709656125598692,
+    "max_edge_length_used": 0.31419312251197384,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 60,
+      "2": 0
+    },
+    "pca_raw_dim": 20,
+    "pca_reduced_dim": 4,
+    "pca_cumulative_variance_fraction": [
+      0.766048137549222,
+      0.8667067084758158,
+      0.9382030663520743,
+      0.9732023186897557
+    ]
+  },
+  "real_sn": {
+    "label": "real_sn",
+    "n_points": 316,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 9.577177230579107,
+    "median_pairwise_dist_after_rescale": 0.2610430791187328,
+    "max_edge_length_used": 0.5220861582374656,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 168,
+      "2": 0
+    },
+    "lcdm_Om_used_for_residual": 0.34930040766273757,
+    "lcdm_offset_used_for_residual": 43.0674195975208
+  },
+  "real_2mrs": {
+    "label": "real_2mrs",
+    "n_points": 316,
+    "dim": 3,
+    "rescale_factor_to_unit_diam": 0.148376501769898,
+    "median_pairwise_dist_after_rescale": 0.3170421047863255,
+    "max_edge_length_used": 0.634084209572651,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 73,
+      "2": 0
+    },
+    "n_total_catalogue_before_subsample": 50000,
+    "caveat": "RA/Dec only, no redshift; angular S^2 patch, NOT comoving coordinates"
+  },
+  "circle_control": {
+    "label": "circle",
+    "n_points": 316,
+    "dim": 2,
+    "rescale_factor_to_unit_diam": 2.2222802291000336,
+    "median_pairwise_dist_after_rescale": 0.6365204104640476,
+    "max_edge_length_used": 1.2730408209280952,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 35,
+      "2": 0
+    }
+  },
+  "circle_control_assertion": {
+    "n_H1_bars": 35,
+    "top_persistence": 0.6435376507319541,
+    "second_persistence": 0.010228153503195496,
+    "ratio": 62.91826286444558,
+    "ASSERTION_one_dominant_H1_bar": true
+  },
+  "null_control": {
+    "label": "null",
+    "n_points": 316,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 3.2995389683809733,
+    "median_pairwise_dist_after_rescale": 0.4695975894356744,
+    "max_edge_length_used": 0.9391951788713488,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 315,
+      "1": 193,
+      "2": 0
+    }
+  },
+  "bottleneck_distances_qualitative": {
+    "note": "Clouds are pre-rescaled to max pairwise distance=1; still label these qualitative -- model and real_sn live in different native dimensions/semantics before PCA/standardization.",
+    "model_vs_real_sn_H0": 0.13542459827989733,
+    "model_vs_real_sn_H1": 0.01950388386546148,
+    "null_vs_real_sn_H0": 0.15435121459342865,
+    "null_vs_real_sn_H1": 0.03986231134912241,
+    "circle_vs_real_sn_H1": 0.32176882536597706,
+    "model_vs_real_2mrs_H1": 0.029082739105358017,
+    "null_vs_real_2mrs_H1": 0.04034199267549718
+  },
+  "interpretation_caveat": "Betti numbers of the model cloud (beta0=1, beta1=beta2=0 expected for a smooth image of a box) are NOT a parameter count. They describe global shape (one connected contractible blob) which is uninformative about effective dimension here. Effective dimension comes from jacobian_report.json's singular-value spectrum, not from this file."
+}

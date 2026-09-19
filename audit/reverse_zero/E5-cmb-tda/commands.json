@@ -1,0 +1,9 @@
+[
+  "prlimit --as=8589934592 -- .venv-tda/bin/python audit/reverse_zero/E5-cmb-tda/cmb_tda.py --n-sims 25 --seed-offset 0 --dump-npz audit/reverse_zero/E5-cmb-tda/chunks/null_chunk0.npz --out chunks/null_chunk0_summary.json",
+  "prlimit --as=8589934592 -- .venv-tda/bin/python audit/reverse_zero/E5-cmb-tda/cmb_tda.py --n-sims 25 --seed-offset 25 --dump-npz audit/reverse_zero/E5-cmb-tda/chunks/null_chunk1.npz --out chunks/null_chunk1_summary.json",
+  "prlimit --as=8589934592 -- .venv-tda/bin/python audit/reverse_zero/E5-cmb-tda/cmb_tda.py --n-sims 25 --seed-offset 50 --dump-npz audit/reverse_zero/E5-cmb-tda/chunks/null_chunk2.npz --out chunks/null_chunk2_summary.json",
+  "prlimit --as=8589934592 -- .venv-tda/bin/python audit/reverse_zero/E5-cmb-tda/cmb_tda.py --n-sims 25 --seed-offset 75 --dump-npz audit/reverse_zero/E5-cmb-tda/chunks/null_chunk3.npz --out chunks/null_chunk3_summary.json",
+  "prlimit --as=8589934592 -- .venv-tda/bin/python audit/reverse_zero/E5-cmb-tda/merge_null.py audit/reverse_zero/E5-cmb-tda/chunks/null_chunk0.npz audit/reverse_zero/E5-cmb-tda/chunks/null_chunk1.npz audit/reverse_zero/E5-cmb-tda/chunks/null_chunk2.npz audit/reverse_zero/E5-cmb-tda/chunks/null_chunk3.npz --out-npz audit/reverse_zero/E5-cmb-tda/chunks/null_merged.npz --out-json audit/reverse_zero/E5-cmb-tda/null_report.json",
+  "prlimit --as=8589934592 -- .venv-tda/bin/python audit/reverse_zero/E5-cmb-tda/cmb_tda.py --skip-null --null-cache audit/reverse_zero/E5-cmb-tda/chunks/null_merged.npz --gmu 3e-7,1e-6,3e-6,1e-5 --n-inj-sims 20 --n-segments-inj 30 --out sensitivity_report.json",
+  "prlimit --as=8589934592 -- .venv-tda/bin/python audit/reverse_zero/E5-cmb-tda/merge_final.py --null-report audit/reverse_zero/E5-cmb-tda/null_report.json --sens audit/reverse_zero/E5-cmb-tda/sensitivity_report.json --commands audit/reverse_zero/E5-cmb-tda/commands.json --out audit/reverse_zero/E5-cmb-tda/e5_cmb_tda_report.json"
+]

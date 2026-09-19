@@ -27,3 +27,9 @@ token
 lean_foundation/.lake
 .paperwork/
 .venv-tda/
+
+# real2 data: files >5MB kept out of git (on disk only, see data/real2/MANIFEST.json)
+data/real2/cmb/*.fits
+data/real2/dark_energy/*.cov
+data/real2/cosmic_web/*.csv
+

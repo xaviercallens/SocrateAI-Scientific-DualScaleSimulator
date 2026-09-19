@@ -1,0 +1,29 @@
+{
+  "generated": "2026-09-18",
+  "inputs_quoted_verbatim": {
+    "planckLength_m": {
+      "value": 1.616255e-35,
+      "file_line": "SelfDualCutoff.lean:96"
+    },
+    "hubbleRadius_m": {
+      "value": 1.3672e+26,
+      "file_line": "SelfDualCutoff.lean:100"
+    }
+  },
+  "self_dual_length_m": 4.700791248290016e-05,
+  "self_dual_length_micron": 47.00791248290016,
+  "named_reference_short_range_gravity_micron": 47.0,
+  "ratio_computed_to_reference": 1.0001683507000034,
+  "agreement_within_10pct": true,
+  "identification_tier": "C",
+  "CORRECTION_post_advisor_review": {
+    "finding": "This arithmetic is NOT a new discovery: it restates a kernel-checked LeanMaster theorem, verified against LeanMaster HEAD (7be7626, main, ahead of any tag; the two source defs are byte-identical to the v3.9.0 pin used elsewhere in this loop -- `git diff v3.9.0 HEAD -- DualScaleCosmology/SelfDualCutoff.lean DualScaleCosmology/DarkEnergyScale.lean` is empty). The '47 micron' reference this loop's own absent-list already named is traceable to SelfDualCutoff.lean's own docstring, not to an independent experimental source -- the agreement computed above is therefore CIRCULAR (same two constants, same formula, restated), not evidence.",
+    "leanmaster_theorem_tier_A": "DualScaleCosmology.SelfDualCutoff.selfDual_length_sq_bracket (SelfDualCutoff.lean, proved): (4e-5)^2 <= planckLength_m*hubbleRadius_m <= (7e-5)^2, i.e. s=sqrt(l_P*L_H) in [40,70] micron. Kernel-checked, Tier A.",
+    "leanmaster_theorem_tier_A_2": "DualScaleCosmology.DarkEnergyScale.selfDual_above_torsion_radius_bound (DarkEnergyScale.lean, proved): s >= 1.5*30 micron = 45 micron, i.e. s IS COMPARED, in-repo, against a REAL experimental short-range-gravity bound: Lee, Adelberger, Cook, Fleischer, Heckel 2020 (arXiv:2002.11761, Eot-Wash torsion balance), 30 micron toroidal-radius bound / 38.6 micron gravitational-strength-Yukawa range (cited lines 285-289 of 2002_11761.txt per the Lean docstring). This means fifth_force_screening is NOT fully ABSENT as a citation any more: a real paper and real bound numbers (30um / 38.6um) exist in LeanMaster's docstring, even though no machine-readable data TABLE for a chi2 fit was fetched into data/real/ this round.",
+    "leanmaster_own_caveat_quoted": "SelfDualCutoff.lean docstring, added 2026-09-18: 'this cross-check is a consistency check, not independent corroboration ... it is algebra, not three independent confirmations, and no document should cite it as such.' DarkEnergyScale.lean: the self-dual length s sits ABOVE the torsion-balance bound by a factor ~1.6 and is 'disfavored by factors of a few, not orders of magnitude' as a large-extra-dimension radius -- explicitly NOT excluded, but NOT a clean confirmation either.",
+    "revised_status": "mu_sym is still NOT reduced or identified: (1) LeanMaster's own theorem is about a cosmological/CKN self-dual length, not about mu_sym, which remains an uncalibrated dimensionless BVP coefficient in workshopcosmo.py with no length bridge in this codebase; (2) even a hypothetical bridge mu_sym <-> 1/s would inherit LeanMaster's own disclosed margin (s is ~1.6x ABOVE the real Lee et al. bound, an O(1) tension not a match); (3) no chi2-fittable dataset exists. Tier stays C, now for the correct reason (no bridge + a real but marginal comparison already made by LeanMaster, not a fresh 0.017%-precision coincidence)."
+  },
+  "status": "NOT a reduction. mu_sym has no length calibration anywhere in workshopcosmo.py's symmetron ODE or param_loop_sim.py (it is a bare dimensionless coefficient of the BVP); this number restates LeanMaster's own selfDual_length_sq_bracket/selfDual_above_torsion_radius_bound theorems (Tier A), not a value FOR mu_sym, and the '47 micron agreement' is circular per CORRECTION_post_advisor_review above.",
+  "missing_bridge": "A formula relating mu_sym (dimensionless, current model) to 1/self_dual_length_m (or any other physical inverse-length) does not exist in this codebase; would need to be constructed and then tested against a real torsion-balance/short-range-gravity NUMERIC TABLE, which remains ABSENT from data/real/MANIFEST.json (fifth_force_screening entry) even though the Lee et al. 2020 bound NUMBER (30/38.6 micron) is now available via LeanMaster's citation.",
+  "absent_dataset_needed_to_test": "fifth_force_screening machine-readable table (data/real/MANIFEST.json: status ABSENT); the bound NUMBER (Lee et al. 2020, arXiv:2002.11761, 30um/38.6um) is available via LeanMaster DarkEnergyScale.lean's citation, not independently fetched by this session."
+}

@@ -1,0 +1,153 @@
+{
+  "seed": 42,
+  "model": {
+    "label": "model",
+    "n_points": 300,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 21.630301094927948,
+    "median_pairwise_dist_after_rescale": 0.13291456210315156,
+    "max_edge_length_used": 0.2658291242063031,
+    "sparse": 0.2,
+    "betti_numbers": [
+      2,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 298,
+      "1": 57,
+      "2": 0
+    }
+  },
+  "model_n_before_subsample": 378,
+  "model_pca_reduced_dim": 4,
+  "model_pca_cumulative_variance_fraction": [
+    0.755362110708864,
+    0.8528024084231127,
+    0.929638975981883,
+    0.9727368506834273
+  ],
+  "real_3d_sn_comoving": {
+    "label": "real_3d_sn_comoving",
+    "n_points": 300,
+    "dim": 3,
+    "rescale_factor_to_unit_diam": 2.062779156299168,
+    "median_pairwise_dist_after_rescale": 0.13357245463550216,
+    "max_edge_length_used": 0.2671449092710043,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 294,
+      "1": 62,
+      "2": 0
+    }
+  },
+  "real_n_before_subsample": 1672,
+  "real_cloud_construction": "3D comoving Cartesian from Pantheon+ SH0ES RA/DEC/zHD, flat LCDM comoving distance, Om=0.31115 (frozen Lean omegaLambda value, this round's decisive-experiment result), dimensionless units of c/H0.",
+  "circle_control": {
+    "label": "circle",
+    "n_points": 300,
+    "dim": 2,
+    "rescale_factor_to_unit_diam": 2.214207594961845,
+    "median_pairwise_dist_after_rescale": 0.6412871912302451,
+    "max_edge_length_used": 1.2825743824604903,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 299,
+      "1": 25,
+      "2": 0
+    }
+  },
+  "circle_control_assertion": {
+    "n_H1_bars": 25,
+    "top_persistence": 0.6908642127722296,
+    "second_persistence": 0.019617954474628108,
+    "ratio": 35.21591477163045,
+    "ASSERTION_one_dominant_H1_bar": true
+  },
+  "null_box_model": {
+    "label": "null_box_model",
+    "n_points": 300,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 20.571625356503336,
+    "median_pairwise_dist_after_rescale": 0.4271270694113737,
+    "max_edge_length_used": 0.8542541388227474,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 299,
+      "1": 176,
+      "2": 0
+    }
+  },
+  "null_variance_matched_model": {
+    "label": "null_variance_matched_model",
+    "n_points": 300,
+    "dim": 4,
+    "rescale_factor_to_unit_diam": 13.967223038849372,
+    "median_pairwise_dist_after_rescale": 0.36174871704134137,
+    "max_edge_length_used": 0.7234974340826827,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 299,
+      "1": 148,
+      "2": 0
+    }
+  },
+  "null_poisson_real": {
+    "label": "null_poisson_real",
+    "n_points": 300,
+    "dim": 3,
+    "rescale_factor_to_unit_diam": 1.9221655990323534,
+    "median_pairwise_dist_after_rescale": 0.4098787638201762,
+    "max_edge_length_used": 0.8197575276403524,
+    "sparse": 0.2,
+    "betti_numbers": [
+      1,
+      0
+    ],
+    "n_finite_bars": {
+      "0": 299,
+      "1": 128,
+      "2": 0
+    }
+  },
+  "betti_numbers": {
+    "model": [
+      2,
+      0
+    ],
+    "real": [
+      1,
+      0
+    ]
+  },
+  "bottleneck_distances": {
+    "model_vs_real_H0": 0.06208773186098465,
+    "model_vs_real_H1": 0.011094914869650904,
+    "null_box_model_vs_real_H1": 0.03871767485515332,
+    "null_variance_matched_model_vs_real_H1": 0.027568786206406695,
+    "null_poisson_real_vs_real_H1": 0.03563970809302948,
+    "model_vs_null_variance_matched_model_H1": 0.02603139385883675
+  },
+  "max_persistence_diagnostic": {
+    "model_H1": 0.02218982973930181,
+    "real_H1": 0.013562438580832562,
+    "null_box_model_H1": 0.07743534971030665,
+    "null_vm_model_H1": 0.05513757241281339
+  },
+  "round1_identical_bottleneck_mystery_resolution": "Independently re-derived (not asserted) in lambda-adjacent audit of round1/reverse/reduced_tda_report.json: model_vs_real_sn_H1 == model_reduced_vs_model_round1_H1 to 16 digits because BOTH equal exactly half the MODEL diagram's own largest H1 persistence bar (0.027069824244136675 = 0.05413964848827335/2), since that bar exceeded twice the max H1 persistence in both comparison diagrams -- a real mathematical property of bottleneck distance (largest unmatched bar sent to the diagonal), NOT a copy-paste bug in reduced_tda.py. It DOES mean those two round-1 numbers were topologically uninformative about proximity to the real-data cloud; they only measured the model cloud's own largest feature. Checked this round's own numbers in max_persistence_diagnostic above for the same degeneracy."
+}
