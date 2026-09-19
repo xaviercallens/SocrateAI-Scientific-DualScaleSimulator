@@ -1,0 +1,17 @@
+{
+ "QCHK": 10,
+ "QMAX_40_cache": {
+  "QMAX": 40,
+  "m1_holds": true,
+  "m2_holds": true
+ },
+ "QMAX_60_cache_available": true,
+ "QMAX_60_cache": {
+  "QMAX": 60,
+  "m1_holds": true,
+  "m2_holds": true
+ },
+ "stable_across_QMAX_40_vs_60": true,
+ "prior_finding_QMAX16_insufficient_QMAX24_sufficient_at_QCHK8": true,
+ "conclusion": "QMAX=40 (4x QCHK=10) reproduces the same identity outcomes as an independently rebuilt QMAX=60 (6x QCHK=10) cache; no further truncation drift detected at this QCHK. Combined with the earlier QMAX=16-vs-24 finding (which DID show drift, and pinpointed a real margin insufficiency), this is treated as adequate (not proven asymptotic) evidence that the QMAX=40 results reported for QCHK=10 are stable."
+}

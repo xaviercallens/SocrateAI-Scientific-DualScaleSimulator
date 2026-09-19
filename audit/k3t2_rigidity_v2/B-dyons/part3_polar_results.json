@@ -1,0 +1,201 @@
+{
+ "QCHK": 8,
+ "YCAP": 60,
+ "QMAX_theta_cache": 40,
+ "margin_note": "QMAX=40 is 5x QCHK=8; see part2's QMAX16-vs-24 finding and margin_stability_check.py for the empirical margin-adequacy evidence this track relies on (same theta cache, same construction).",
+ "invA0_times_A0_correct_near_low_l": true,
+ "regression_check_v1_bug": {
+  "A21_fixed_at_(4,-5)": "3",
+  "A21_v1_buggy_at_(4,-5)": "4",
+  "expected": "fixed=3, v1_buggy=4 (v1 double-counted a spurious s=-2,k=0 term at n=4 instead of the correct n=6)"
+ },
+ "N_M_joint_grid": {
+  "N_window": [
+   310,
+   339
+  ],
+  "M_window": [
+   620,
+   678,
+   "step2"
+  ],
+  "num_pairs_scanned": 900,
+  "solutions_found (N,M) matching on drop_top2_keep_l20_no_D_filter": [
+   [
+    324,
+    648
+   ]
+  ]
+ },
+ "structural_D_leq_-2_test": {
+  "324": {
+   "remainder_nonzero_at_D_leq_-2": {},
+   "target_3E4A_nonzero_at_D_leq_-2 (should be empty, M-independent)": {},
+   "structural_D_leq_-2_test_passes": true
+  }
+ },
+ "tail_slope_structural_N_check": {
+  "slopes_G2_over_A_q0 (l -> l+1 diffs, should be constant)": {
+   "10": "324",
+   "11": "324",
+   "12": "324",
+   "13": "324",
+   "14": "324",
+   "15": "324",
+   "16": "324",
+   "17": "324",
+   "18": "324",
+   "19": "324",
+   "20": "324",
+   "21": "324",
+   "22": "324",
+   "23": "324",
+   "24": "324",
+   "25": "324",
+   "26": "324",
+   "27": "324",
+   "28": "324"
+  },
+  "slopes_A21_q0": {
+   "10": "1",
+   "11": "1",
+   "12": "1",
+   "13": "1",
+   "14": "1",
+   "15": "1",
+   "16": "1",
+   "17": "1",
+   "18": "1",
+   "19": "1",
+   "20": "1",
+   "21": "1",
+   "22": "1",
+   "23": "1",
+   "24": "1",
+   "25": "1",
+   "26": "1",
+   "27": "1",
+   "28": "1"
+  },
+  "N_from_tail_slope_ratio": "324",
+  "note": "Structural, target-free determination of N from the q^0-slice linear tail alone; compared below against the (N,M)-grid solution set."
+ },
+ "negative_control_M0": {
+  "N_used": 324,
+  "num_mismatches_with_M=0": 45,
+  "num_keys_checked": 51,
+  "fails_as_expected": true
+ },
+ "negative_control_joint_perturb_c3_c4": {
+  "QCHK_used": 5,
+  "N_M_tested": [
+   324,
+   648
+  ],
+  "grid": {
+   "(-2,-2)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(-2,-1)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(-2,0)": {
+    "num_mismatches": 53,
+    "breaks": true
+   },
+   "(-2,1)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(-2,2)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(-1,-2)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(-1,-1)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(-1,0)": {
+    "num_mismatches": 53,
+    "breaks": true
+   },
+   "(-1,1)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(-1,2)": {
+    "num_mismatches": 40,
+    "breaks": true
+   },
+   "(0,-2)": {
+    "num_mismatches": 51,
+    "breaks": true
+   },
+   "(0,-1)": {
+    "num_mismatches": 51,
+    "breaks": true
+   },
+   "(0,0)": {
+    "num_mismatches": 0,
+    "breaks": false
+   },
+   "(0,1)": {
+    "num_mismatches": 51,
+    "breaks": true
+   },
+   "(0,2)": {
+    "num_mismatches": 51,
+    "breaks": true
+   },
+   "(1,-2)": {
+    "num_mismatches": 40,
+    "breaks": true
+   },
+   "(1,-1)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(1,0)": {
+    "num_mismatches": 53,
+    "breaks": true
+   },
+   "(1,1)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(1,2)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(2,-2)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(2,-1)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(2,0)": {
+    "num_mismatches": 53,
+    "breaks": true
+   },
+   "(2,1)": {
+    "num_mismatches": 54,
+    "breaks": true
+   },
+   "(2,2)": {
+    "num_mismatches": 54,
+    "breaks": true
+   }
+  },
+  "survivors (expect only (0,0))": [
+   "(0,0)"
+  ]
+ }
+}

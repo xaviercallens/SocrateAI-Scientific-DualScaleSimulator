@@ -1,0 +1,230 @@
+{
+ "QCHK": 10,
+ "QMAX_theta_cache": 40,
+ "dmz_5_16_source": "arXiv:1208.4074v2 (Dabholkar-Murthy-Zagier), eq. (5.16), p.36 -- fetched from https://people.mpim-bonn.mpg.de/zagier/files/arxiv/1208.4074/1208.4074v2.pdf and located by text search for '5.16'. Quoted formulas used as tier-L ansatz only.",
+ "G1_equals_2B_exactly": true,
+ "m_minus1": {
+  "statement": "Delta*psi_{-1} = A^{-1} (G_0=1 since Sym^0(K3)=point)",
+  "status": "definitional (G_0 by construction of the DMVV product); no further identity to test"
+ },
+ "m_0": {
+  "statement": "Delta*psi_0 = 2*A^{-1}*B  <=>  G_1 = 2B",
+  "status": "holds identically BY CONSTRUCTION: c(D) is defined as the Fourier coefficients of 2B, and G_1 = P_1^{(1)} = sum c(4s-t^2)q^sy^t is 2B term-for-term. Not an independent test (flagged, as in v1)."
+ },
+ "m_1": {
+  "statement": "4*Delta*psi_1 = 9*A^{-1}*B^2 + 3*E4*A  <=>  4*G_2 = 9*B^2 + 3*E4*A^2 (A cleared)",
+  "holds_to_order_q^QCHK": true,
+  "mismatches": {}
+ },
+ "m_2": {
+  "statement": "27*Delta*psi_2 = 50*A^{-1}*B^3 + 48*E4*A*B + 10*E6*A^2  <=>  27*G_3 = 50*B^3 + 48*E4*A^2*B + 10*E6*A^3 (A cleared)",
+  "G3_derivation": "G_3 built from the exp-of-power-series recurrence above, from A_r(1,QCHK), A_r(2,QCHK), A_r(3,QCHK) (r-graded pieces of the DMVV product), NOT copied from the paper.",
+  "holds_to_order_q^QCHK": true,
+  "mismatches": {},
+  "sample_G3_terms_n_leq_3": {
+   "(0, -3)": "4",
+   "(0, -2)": "64",
+   "(0, -1)": "508",
+   "(0, 0)": "2048",
+   "(0, 1)": "508",
+   "(0, 2)": "64",
+   "(0, 3)": "4",
+   "(1, -4)": "64",
+   "(1, -3)": "800",
+   "(1, -2)": "3840",
+   "(1, -1)": "-42784",
+   "(1, 0)": "76160",
+   "(1, 1)": "-42784",
+   "(1, 2)": "3840",
+   "(1, 3)": "800",
+   "(1, 4)": "64",
+   "(2, -5)": "508",
+   "(2, -4)": "3840",
+   "(2, -3)": "-95124",
+   "(2, -2)": "634624",
+   "(2, -1)": "-1814120",
+   "(2, 0)": "2540544",
+   "(2, 1)": "-1814120",
+   "(2, 2)": "634624",
+   "(2, 3)": "-95124",
+   "(2, 4)": "3840",
+   "(2, 5)": "508",
+   "(3, -6)": "2048",
+   "(3, -5)": "-42784",
+   "(3, -4)": "634624",
+   "(3, -3)": "-4674080",
+   "(3, -2)": "17976320",
+   "(3, -1)": "-39073472",
+   "(3, 0)": "50354688",
+   "(3, 1)": "-39073472",
+   "(3, 2)": "17976320",
+   "(3, 3)": "-4674080",
+   "(3, 4)": "634624",
+   "(3, 5)": "-42784",
+   "(3, 6)": "2048"
+  }
+ },
+ "negative_control_joint_perturb_c3_c4": {
+  "QCHK_used_for_this_grid": 5,
+  "grid": "delta3,delta4 in {-2,-1,0,1,2} x {-2,-1,0,1,2}, 25 joint combinations",
+  "results": {
+   "(-2,-2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(-2,-1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(-2,0)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(-2,1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(-2,2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(-1,-2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(-1,-1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(-1,0)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(-1,1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(-1,2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(0,-2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(0,-1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(0,0)": {
+    "m1_num_mismatches": 0,
+    "m1_breaks": false,
+    "m2_num_mismatches": 0,
+    "m2_breaks": false
+   },
+   "(0,1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(0,2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(1,-2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(1,-1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(1,0)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(1,1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(1,2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(2,-2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(2,-1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(2,0)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(2,1)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   },
+   "(2,2)": {
+    "m1_num_mismatches": 45,
+    "m1_breaks": true,
+    "m2_num_mismatches": 55,
+    "m2_breaks": true
+   }
+  },
+  "combinations_where_m1_identity_survives (expect only (0,0))": [
+   "(0,0)"
+  ],
+  "combinations_where_m2_identity_survives (expect only (0,0))": [
+   "(0,0)"
+  ],
+  "purpose": "Demonstrates the m=1 and m=2 DMZ (5.16) identities are genuine, non-tautological consistency checks: the ONLY joint (delta3,delta4) that preserves either identity is (0,0), i.e. no 1- or multi-unit deformation of c(3) or c(4), singly or jointly, survives."
+ }
+}
