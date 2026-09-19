@@ -1,0 +1,108 @@
+{
+  "experiment": "E2_pta_sector_GR_test",
+  "branch": "NO_DATA",
+  "ground_rule_evidence": {
+    "find_hellings_or_angular_in_data": {
+      "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse && find data -iname *hellings* -o -iname *angular*",
+      "stdout": "",
+      "stderr": ""
+    },
+    "ls_pulsar_timing_dir": {
+      "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse && ls -la data/real/pulsar_timing/",
+      "stdout": "total 2916\ndrwxrwxr-x 2 callensxavier_gmail_com callensxavier_gmail_com    4096 Sep 19 05:43 .\ndrwxrwxr-x 5 callensxavier_gmail_com callensxavier_gmail_com    4096 Sep 19 05:43 ..\n-rw-rw-r-- 1 callensxavier_gmail_com callensxavier_gmail_com 2975291 Sep 19 05:43 nanograv_kde_freespectrum.zip",
+      "stderr": ""
+    }
+  },
+  "manifest_absent_entry_quoted": "nanograv_15yr_hd_angular_correlation status=ABSENT: '3+ sources checked (nanograv/15yr_stochastic_analysis figure_1, PTArcade, Zenodo searches). Only posterior chains and a pipeline notebook exist that COMPUTES the binned correlation from a ~GB raw dataset (~18min enterprise_extensions run); not reconstructed per ground rules.'",
+  "preregistration_line_quoted": "PRE_REGISTRATION.md:65 -- 'c4_pta_product (l=4 term in the PTA angular correlation) | bound it; a measured correlation consistent with pure Hellings-Downs would exclude large values | NANOGrav, IPTA, then SKA'",
+  "what_would_decide_it": {
+    "required_product": "A binned angular two-point pulsar-timing correlation table: bin centers in angular separation theta (degrees), the correlation estimate rho(theta) or Gamma(theta) per bin, AND the bin-to-bin covariance matrix (HD-curve estimators from a fixed pulsar array are correlated across angular bins; diagonal errors alone would understate chi2 and bias the c4 interval).",
+    "named_candidates": [
+      "NANOGrav 15yr stochastic-analysis release: the exact table underlying its published Hellings-Downs figure (rho vs angle with uncertainties/covariance), if released as data rather than only as a plotted figure -- checked, not found as of this session (see manifest URL trail).",
+      "IPTA DR3 (or DR2) combined angular-correlation data product, if/when released with covariance.",
+      "Running the enterprise_extensions binned-correlation pipeline on the full NANOGrav 15yr raw dataset ourselves (~1 GB, ~18 min per the manifest) -- NOT done here because it is a multi-step derived computation, not a fetch of an existing public product; flagged as a concrete follow-up."
+    ],
+    "sufficiency_note": "The NANOGrav/IPTA table would be sufficient ALONE only if published with its covariance; a figure-only release (points with error bars, no covariance) is usable for a rough diagonal-only chi2 but not for a defensible 68/95% interval on c4_pta_product."
+  },
+  "sensitivity_scan": {
+    "grid_rows": [
+      {
+        "c4_pta_product": 0.0001,
+        "max_deviation_from_hd": 9.999999999998899e-05,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.00015427792398510972
+      },
+      {
+        "c4_pta_product": 0.001,
+        "max_deviation_from_hd": 0.0010000000000000009,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.0015427792398512684
+      },
+      {
+        "c4_pta_product": 0.01,
+        "max_deviation_from_hd": 0.010000000000000009,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.015427792398512684
+      },
+      {
+        "c4_pta_product": 0.03,
+        "max_deviation_from_hd": 0.030000000000000027,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.04628337719553805
+      },
+      {
+        "c4_pta_product": 0.05,
+        "max_deviation_from_hd": 0.04999999999999999,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.07713896199256333
+      },
+      {
+        "c4_pta_product": 0.1,
+        "max_deviation_from_hd": 0.09999999999999998,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.15427792398512666
+      },
+      {
+        "c4_pta_product": 0.15,
+        "max_deviation_from_hd": 0.15000000000000002,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.23141688597769008
+      },
+      {
+        "c4_pta_product": 0.2,
+        "max_deviation_from_hd": 0.2,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.3085558479702534
+      },
+      {
+        "c4_pta_product": 0.3,
+        "max_deviation_from_hd": 0.30000000000000004,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.46283377195538017
+      },
+      {
+        "c4_pta_product": 0.5,
+        "max_deviation_from_hd": 0.5,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 0.7713896199256335
+      },
+      {
+        "c4_pta_product": 1.0,
+        "max_deviation_from_hd": 1.0,
+        "hd_curve_dynamic_range": 0.648180876543559,
+        "fractional_perturbation_of_hd_range": 1.542779239851267
+      }
+    ],
+    "linearity_check": {
+      "note": "compute_pta_observable's gamma_theta is exactly linear in c4_c0_ratio at fixed pta_suppression (l4_response does not depend on c4); slope = max_deviation_from_hd / c4",
+      "slope_max_dev_per_unit_c4": 0.9999999999999903,
+      "fractional_spread_of_slope_across_grid": 1.1102230246251673e-13
+    },
+    "procurement_thresholds": {
+      "c4_for_1pct_of_HD_dynamic_range": 0.006481808765435653,
+      "c4_for_5pct_of_HD_dynamic_range": 0.03240904382717827,
+      "c4_for_10pct_of_HD_dynamic_range": 0.06481808765435654
+    }
+  },
+  "parameter_effect": "none -- free-parameter count stays at 2 (mu_sym, c4_pta_product). No angular-correlation dataset exists to fit, so c4_pta_product is neither constrained nor removed by data this round. Setting c4_pta_product = 0 in the M0 hypothesis is a HYPOTHESIS CHANGE (the PTA sector set to its GR/pure-Hellings-Downs value), tier L for GR itself, NOT a derivation from K3xT2 and NOT a data-driven reduction. LeanMaster Streams 6-8 (E2-E4) confirm mu_sym and c4_pta_product are unchanged by every result reviewed there."
+}
