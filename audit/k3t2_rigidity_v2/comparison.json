@@ -4,6 +4,7 @@
   "sealed_file": "/mnt/disks/disk-socrateai-local-1/k3t2-sealed-v2/targets_sealed_v2.json",
   "sealed_leanmaster_version": "v3.20.0",
   "sealed_leanmaster_head": "b9ce414430eac6e8ac946017e06e57690ab3e3f0",
+  "headline": "All 271 track targets (plus 41 extra sealed statements) are rowed. 0 DISAGREE among the 271 track targets. 3 DISAGREE, all in the orientifold group (sealed v3.20.0 TadpoleCancellation.lean: O7 total -64, D7 total 64, D3 target 1). The sealed corpus itself is inconsistent on the D3 budget (Flux/Tadpole.lean uses 24); the blind value 24 sides with it. All three DISAGREEs were changed to the blind values by LeanMaster commit adc85e7 (v3.21.0), which the blind tracks never saw.",
   "leanmaster_drift_note": "LeanMaster HEAD at comparison time is 52ce329 (v3.21.0-1). Commit adc85e7 ('Tadpole correction: K3 x T2/Z2 has 4 O7-planes and 16 D7-branes; D3 budget is chi(K3 x K3)/24 = 24') changed exactly the orientifold rows found DISAGREE here (orientifold#8, #9, #11) in the direction of the blind values. lean_value in every row is the SEALED (v3.20.0) value; post-seal values appear only inside notes, labelled.",
   "commands": [
    "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python audit/k3t2_rigidity_v2/comparison/third_computation_orientifold.py",
@@ -54,6 +55,9 @@
   "AGREE_full_coverage": 70,
   "AGREE_partial_coverage": 23,
   "NOT_COMPARABLE_matching_under_conversion": 7,
+  "TOTAL_distinct_targets": 311,
+  "DISAGREE_within_271_track_targets": 0,
+  "DISAGREE_in_orientifold_group": 3,
   "rows_with_2plus_independent_routes": 13
  },
  "counts_by_group": {
@@ -100,7 +104,7 @@
   "A: rigidity scan of the mu-term multiplicity N in 20..28 (Lean decomposition_pins_chi tests only 23, 25)",
   "B: DMZ (5.16) m=1, m=2 identities to q^10 (Lean dmz_516_q1/_q2 go to q^1/q^2) with a joint (c3,c4) negative control",
   "B: immortal m=1 identity through q^8 (Lean immortal_m1 through q^3) and the joint (N,M) = (324,648) uniqueness over a 900-pair grid",
-  "B: Hurwitz class numbers H(D) for D in 16..40 with reduced forms, whole-table Kronecker-Hurwitz validated n=1..10",
+  "B: Hurwitz class-number TABLE values H(D) for D = 16..40 with reduced forms, Kronecker-Hurwitz validated n=1..10 (Lean asserts individual values only for D <= 15; B-dyons#51 moore_vs_hurwitz asserts a relation over D < 401, not the values)",
   "B: Goettsche Euler numbers G_k(z=0) for k = 6,7,8 (1073720, 5930496, 30178575)",
   "C: 240 E8 roots by Weyl-reflection closure; Sturm-sequence second signature method; chained topology -> (m,n)=(3,2) selection with chi perturbation control",
   "D: GUDHI Betti numbers of resolved Kummer K3 (1,0,22,0,1) at N=6,8 over Z/3,Z/5; RP^3 link mod-2 torsion jump; translation-quotient control; N=4 premise failure",
@@ -4122,7 +4126,7 @@
    "coverage": "full",
    "blind_value": "-16",
    "status": "DISAGREE",
-   "note": "DISAGREE. Sealed TadpoleCancellation.lean (v3.20.0) puts an O7 at each of the 16 fixed points of T^4/Z2 with Q = -4 D7 units (-64). The O7 planes of K3xT2/Z2 sit at the 4 fixed points of T^2/Z2 (TT lines 160-163, and the third computation's fixed-point count), giving -16. No unit conversion reconciles it: both sides use Q(O7^-) = -4 per plane; the plane COUNT differs (16 vs 4). The negative control in the third computation reproduces -64 exactly from the T^4 count. Post-seal LeanMaster (adc85e7, v3.21.0) changed this to numO7Planes = 4, total_O7_charge_is_minus_16.",
+   "note": "DISAGREE. Sealed TadpoleCancellation.lean (v3.20.0) puts an O7 at each of the 16 fixed points of T^4/Z2 with Q = -4 D7 units (-64). The O7 planes of K3xT2/Z2 sit at the 4 fixed points of T^2/Z2 (TT lines 160-163, and the third computation's fixed-point count), giving -16. No unit conversion reconciles it: the plane COUNT differs (16 vs 4) and the sealed file's charge ratio Q(O7)/Q(D7) = -4/2 = -2 differs from the required -4 (a rescaling preserves ratios). The negative control in the third computation reproduces -64 exactly from the T^4 count. Post-seal LeanMaster (adc85e7, v3.21.0) changed this to numO7Planes = 4, total_O7_charge_is_minus_16.",
    "investigation": "third minimal computation: comparison/third_computation_orientifold.py"
   },
   {
@@ -4136,7 +4140,7 @@
    "coverage": "full",
    "blind_value": "16",
    "status": "DISAGREE",
-   "note": "DISAGREE. Sealed: 32 D7 x charge 2 = 64. Required: 16 D7 x 1 = 16 (TT; third computation). Counting 16 D7 plus 16 images as 32 would need charge 1/2 each, not 2, so no counting convention reproduces 64 with Q(O7^-) = -4. Post-seal LeanMaster (adc85e7) changed to 16 D7 x 1 = 16.",
+   "note": "DISAGREE. Sealed: 32 D7 x charge 2 = 64. Required: 16 D7 x 1 = 16 (TT; third computation). Discriminator is the charge RATIO: sealed TadpoleCancellation has Q(O7)/Q(D7) = -4/2 = -2, whereas TT and the third computation have -4/1 = -4 (and sealed KummerTadpole has -16/4 = -4, which is why orientifold#6/#7 are NOT_COMPARABLE-matching). A unit rescaling preserves the ratio, so no rescaling reconciles -2 with -4. Post-seal LeanMaster (adc85e7) changed to 16 D7 x 1 = 16.",
    "investigation": "third minimal computation: comparison/third_computation_orientifold.py"
   },
   {
@@ -4163,7 +4167,7 @@
    "coverage": "full",
    "blind_value": "24",
    "status": "DISAGREE",
-   "note": "DISAGREE. Sealed d3TadpoleTarget = chi(K3)/24 = 1. Blind: 24 (E: 4*2+16*1 = 24 and 24 (p,q) 7-branes x 1). Third computation: chi(K3xK3)/24 = 24 via Kunneth on Track D's blind K3 Betti numbers; chi(K3)/24 = 1 is reproduced only by using K3 instead of the F-theory 4-fold K3xK3. Post-seal LeanMaster (adc85e7) changed to d3_tadpole_target_is_24.",
+   "note": "DISAGREE. Sealed d3TadpoleTarget = chi(K3)/24 = 1. Blind: 24 (E: 4*2+16*1 = 24 and 24 (p,q) 7-branes x 1). Third computation: chi(K3xK3)/24 = 24 via Kunneth on Track D's blind K3 Betti numbers; chi(K3)/24 = 1 is reproduced only by using K3 instead of the F-theory 4-fold K3xK3. The sealed corpus is internally inconsistent here: sealed DualScaleStream2/Flux/Tadpole.lean:99 (k3k3_anomaly, chiK3K3/24 = 24; row E-flux#6 AGREE) and :116 (tadpole_budget, flux+n = 24; E-flux#8 AGREE) use 24, this file uses 1; the blind value sides with the former. Post-seal LeanMaster (adc85e7) changed to d3_tadpole_target_is_24.",
    "investigation": "third minimal computation: comparison/third_computation_orientifold.py"
   },
   {
