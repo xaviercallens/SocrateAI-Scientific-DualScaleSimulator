@@ -1,0 +1,56 @@
+{
+ "gate": "P2 regression (sphere S2 through the alpha path)",
+ "numbers_produced_by": "cosmic_web_tda_scaled.alpha_persistence (the ORIGINAL pipeline function)",
+ "n_points": 5000,
+ "expected_betti": [
+  1,
+  0,
+  1
+ ],
+ "observed_betti_vector": [
+  1,
+  0,
+  1
+ ],
+ "betti_numbers_at_truncation_original": [
+  1,
+  0,
+  0
+ ],
+ "betti_numbers_at_truncation_wrapper": [
+  1,
+  0,
+  0
+ ],
+ "top_persistence_H0": [
+  0.9364162388866805,
+  0.04832203235607325,
+  0.04413504050422667
+ ],
+ "top_persistence_H1": [
+  0.05506578791746649,
+  0.05303562604773513,
+  0.0524862024756247
+ ],
+ "top_persistence_H2": [
+  0.8474091674282411,
+  0.0037958023612173555,
+  0.0028884112470426437
+ ],
+ "cap": 0.9364162388866805,
+ "P_all": 0.8474091674282411,
+ "wrapper_bars_identical_to_original": true,
+ "committed_suite_observed_betti_vector": [
+  1,
+  0,
+  1
+ ],
+ "matches_committed": true,
+ "wall_sec_original": 0.49776124954223633,
+ "wall_sec_wrapper": 0.42428135871887207,
+ "pass": true,
+ "tier": "X",
+ "_peak_rss_mb": 185.859375,
+ "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step p2",
+ "_generated": "2026-09-19T22:33:54"
+}

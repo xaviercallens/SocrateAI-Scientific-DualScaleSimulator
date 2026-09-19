@@ -1,0 +1,138 @@
+{
+ "what": "audit/reverse_zero/E5-cmb-tda committed run, statistics recomputed",
+ "ensemble": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdasimple/audit/reverse_zero/E5-cmb-tda/chunks/null_merged.npz",
+ "n_sims": 100,
+ "nside_of_that_run": 128,
+ "mask": "WMAP KQ85 (ud_graded, >= 0.5)",
+ "SCOPE": "ONLY the statistics defect (D1) is recomputed. The curves themselves were produced by the DEFECTIVE build_topology at nside 128; recomputing them means regenerating 100 synfast sims x 2 filtration directions at nside 128 and is NOT done here. This is not a revalidation of E5.",
+ "tier": "X",
+ "statistics": {
+  "sublevel_b0": {
+   "OLD_chi2": 14.71185701669927,
+   "OLD_p_chi2": 0.06499639606895025,
+   "OLD_rank_p": 0.10891089108910891,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.06499637995404177,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 14.512716731335262,
+   "NEW_p_chi2": 0.04277840805200376,
+   "NEW_rank_p": 0.0594059405940594,
+   "NEW_df": 7,
+   "NEW_n_bins_kept": 7,
+   "NEW_dropped_bin_indices": [
+    7
+   ],
+   "NEW_dropped_bin_reasons": {
+    "7": "atomic_modal_mass"
+   },
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -0.022217988016946487,
+   "crosses_0.05": true
+  },
+  "sublevel_b1": {
+   "OLD_chi2": 8.01443787455672,
+   "OLD_p_chi2": 0.43206105375586523,
+   "OLD_rank_p": 0.31683168316831684,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.4320609688241323,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 8.075913326501961,
+   "NEW_p_chi2": 0.32594759316921107,
+   "NEW_rank_p": 0.31683168316831684,
+   "NEW_df": 7,
+   "NEW_n_bins_kept": 7,
+   "NEW_dropped_bin_indices": [
+    0
+   ],
+   "NEW_dropped_bin_reasons": {
+    "0": "atomic_modal_mass"
+   },
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -0.10611346058665416,
+   "crosses_0.05": false
+  },
+  "sublevel_euler_chi": {
+   "OLD_chi2": 9.45832956965054,
+   "OLD_p_chi2": 0.30511774079840176,
+   "OLD_rank_p": 0.31683168316831684,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.30511774067774344,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 9.458329571200194,
+   "NEW_p_chi2": 0.30511774067774344,
+   "NEW_rank_p": 0.3069306930693069,
+   "NEW_df": 8,
+   "NEW_n_bins_kept": 8,
+   "NEW_dropped_bin_indices": [],
+   "NEW_dropped_bin_reasons": {},
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -1.20658316671296e-10,
+   "crosses_0.05": false
+  },
+  "superlevel_b0": {
+   "OLD_chi2": 13.785246083000494,
+   "OLD_p_chi2": 0.08753749457073727,
+   "OLD_rank_p": 0.06930693069306931,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.08753749206207369,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 13.828013518772492,
+   "NEW_p_chi2": 0.054326229017447984,
+   "NEW_rank_p": 0.039603960396039604,
+   "NEW_df": 7,
+   "NEW_n_bins_kept": 7,
+   "NEW_dropped_bin_indices": [
+    7
+   ],
+   "NEW_dropped_bin_reasons": {
+    "7": "atomic_modal_mass"
+   },
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -0.033211265553289286,
+   "crosses_0.05": false
+  },
+  "superlevel_b1": {
+   "OLD_chi2": 19.850822707752386,
+   "OLD_p_chi2": 0.010915414537970534,
+   "OLD_rank_p": 0.019801980198019802,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.005417534168924314,
+   "MINIMAL_df": 7,
+   "NEW_chi2": 20.071387515928087,
+   "NEW_p_chi2": 0.005417534168924314,
+   "NEW_rank_p": 0.019801980198019802,
+   "NEW_df": 7,
+   "NEW_n_bins_kept": 7,
+   "NEW_dropped_bin_indices": [
+    0
+   ],
+   "NEW_dropped_bin_reasons": {
+    "0": "zero_variance"
+   },
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -0.005497880369046221,
+   "crosses_0.05": false
+  },
+  "superlevel_euler_chi": {
+   "OLD_chi2": 10.948865631763358,
+   "OLD_p_chi2": 0.20461341215597223,
+   "OLD_rank_p": 0.25742574257425743,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.20461341213894021,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 10.948865632060485,
+   "NEW_p_chi2": 0.20461341213894021,
+   "NEW_rank_p": 0.2376237623762376,
+   "NEW_df": 8,
+   "NEW_n_bins_kept": 8,
+   "NEW_dropped_bin_indices": [],
+   "NEW_dropped_bin_reasons": {},
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -1.7032014687501373e-11,
+   "crosses_0.05": false
+  }
+ },
+ "_peak_rss_mb": 144.265625,
+ "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step e5",
+ "_generated": "2026-09-19T22:39:57"
+}

@@ -1,0 +1,3289 @@
+{
+ "title": "Before/after for the two TDA defects found by the known-answer suite",
+ "generated_by": "audit/tda_validation/tda_fixed/run_validation.py --step assemble",
+ "pre_registration": "audit/tda_validation/tda_fixed/fix_expectations.json (commit 1bc7ebc, written before any number here)",
+ "git_head_at_assemble": "7479aed6c3fb7d0fe0852c607b951cf7f48f5db6",
+ "tier_of_every_observed_number": "X (numerics)",
+ "never_claimed": "no result here is 'proved'; the acceptances are numerical checks against pre-declared gates, each with a negative control",
+ "code_under_test_sha256": {
+  "audit/reverse_zero/E5-cmb-tda/cmb_tda.py (now, with the defect comment blocks)": "a3f8a9639929965d8b052e45092eefe62dd1942f6400712a62e7d69cd158ab9b",
+  "audit/reverse_zero/E5-cmb-tda/cmb_tda.py (at the suite run, from the committed case JSONs)": "a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d",
+  "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py (now)": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95"
+ },
+ "fixed_library_sha256": {
+  "__init__.py": "1ef7b4b5dac2486a512ddce0ae5189c8d043afcd77e5f1196236d68802c9e36e",
+  "cmb_topology.py": "1f21825c75e560b98f7cc5546178aeb23db9cffb4b2ee29db44555f09dbc5a39",
+  "pointcloud.py": "57c8525891c8696d51cbf0c0b1149476fa8f4166d78dbf33727577b4ad8a8ed3",
+  "run_validation.py": "726254568eb67fafff3d0014b4befa7c47cc150c3874c676d524294d8d1b1449",
+  "stats.py": "9ae09e5489a3d1d474c4d2be44d341a968b26d049e76a9b1e791021545af8a61"
+ },
+ "versions": {
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "gudhi": "3.13.0",
+  "healpy": "1.20.0"
+ },
+ "parts": {
+  "calibcheck": {
+   "question": "is #{rank p < 0.05} = 11-12 of 100 a broken exchangeability, or the spread from 100 test vectors sharing ONE 100-member ensemble?",
+   "construction": "multivariate normal, p = 6, ensemble n = 100, 100 test vectors per ensemble, 100 INDEPENDENT ensembles, np.random.default_rng(777); same fs.conditioned_inverse / Hartlap / pooled-exchangeable code path",
+   "exact_uniform_target_P_rank_p_below_0.05": 0.04950495049504951,
+   "pooled_rate_over_all_10000_test_vectors": 0.0511,
+   "per_ensemble_count_mean": 5.11,
+   "per_ensemble_count_sd": 2.8635465754722746,
+   "binomial_sd_if_independent": 2.1691982475452125,
+   "variance_inflation_factor": 1.7426493665824918,
+   "per_ensemble_count_quantiles_5_50_90_95_99": [
+    1.0,
+    5.0,
+    9.0,
+    10.0,
+    11.010000000000005
+   ],
+   "per_ensemble_count_max": 12,
+   "empirical_P_count_ge_11": 0.04,
+   "empirical_P_count_ge_12": 0.01,
+   "empirical_P_count_ge_13": 0.0,
+   "counts": [
+    4,
+    8,
+    4,
+    6,
+    0,
+    2,
+    10,
+    7,
+    8,
+    9,
+    5,
+    4,
+    3,
+    9,
+    11,
+    7,
+    9,
+    6,
+    11,
+    5,
+    9,
+    2,
+    6,
+    1,
+    6,
+    7,
+    6,
+    4,
+    6,
+    7,
+    5,
+    6,
+    4,
+    6,
+    9,
+    2,
+    5,
+    2,
+    8,
+    2,
+    3,
+    2,
+    1,
+    5,
+    4,
+    1,
+    7,
+    6,
+    4,
+    1,
+    3,
+    10,
+    7,
+    1,
+    6,
+    2,
+    5,
+    8,
+    8,
+    7,
+    9,
+    3,
+    2,
+    2,
+    1,
+    6,
+    7,
+    5,
+    7,
+    1,
+    2,
+    6,
+    7,
+    0,
+    8,
+    5,
+    5,
+    4,
+    3,
+    5,
+    11,
+    1,
+    6,
+    3,
+    3,
+    3,
+    1,
+    1,
+    6,
+    6,
+    6,
+    2,
+    12,
+    6,
+    6,
+    9,
+    5,
+    4,
+    1,
+    9
+   ],
+   "chi2_p_branch": {
+    "note": "the branch the acceptance gate actually uses: ONE ensemble mean/cov per ensemble, chi2 survival with df = retained rank, Gaussian data so the reference distribution is exact",
+    "pooled_rate_P_chi2_p_below_0.05": 0.0577,
+    "per_ensemble_count_mean": 5.77,
+    "per_ensemble_count_sd": 2.81717316586408,
+    "binomial_sd_if_independent": 2.179449471770337,
+    "variance_inflation_factor": 1.6708346624136088,
+    "per_ensemble_count_quantiles_5_50_90_95_99": [
+     1.0,
+     5.0,
+     9.0,
+     10.0,
+     12.010000000000005
+    ],
+    "per_ensemble_count_max": 13,
+    "empirical_P_count_ge_10": 0.08,
+    "empirical_P_count_ge_11": 0.04,
+    "empirical_P_count_ge_12": 0.02,
+    "counts": [
+     5,
+     9,
+     12,
+     4,
+     0,
+     3,
+     10,
+     8,
+     8,
+     9,
+     7,
+     4,
+     5,
+     13,
+     8,
+     8,
+     9,
+     9,
+     11,
+     5,
+     9,
+     3,
+     6,
+     3,
+     4,
+     7,
+     7,
+     6,
+     5,
+     8,
+     5,
+     5,
+     5,
+     8,
+     8,
+     2,
+     5,
+     2,
+     8,
+     3,
+     2,
+     2,
+     4,
+     6,
+     5,
+     1,
+     7,
+     9,
+     5,
+     2,
+     9,
+     10,
+     9,
+     1,
+     6,
+     2,
+     5,
+     10,
+     10,
+     7,
+     7,
+     4,
+     3,
+     5,
+     1,
+     8,
+     7,
+     5,
+     7,
+     4,
+     2,
+     6,
+     4,
+     3,
+     4,
+     5,
+     4,
+     4,
+     3,
+     5,
+     8,
+     1,
+     7,
+     4,
+     3,
+     3,
+     1,
+     2,
+     9,
+     7,
+     9,
+     7,
+     9,
+     6,
+     8,
+     6,
+     5,
+     4,
+     8,
+     11
+    ],
+    "implication_for_the_gate": "this is the false-failure rate of the declared #{p<0.05} <= 9 clause for a PERFECTLY calibrated statistic, caused by the 100 test maps sharing one ensemble; it is a property of the F3 design, not of the fix"
+   },
+   "wall_sec": 71.55355381965637,
+   "tier": "X",
+   "verdict": "pooled rate matches the exact uniform target to within Monte-Carlo error, so the pooled-exchangeable rank p is calibrated; the per-ensemble count is over-dispersed relative to binomial by the stated factor because the 100 test vectors share one ensemble",
+   "_peak_rss_mb": 91.37890625,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step calibcheck",
+   "_generated": "2026-09-19T22:44:58"
+  },
+  "d1new": {
+   "case": "F3 (nside 64), curves recomputed with the FIXED topology",
+   "curves_from": "parts/f3curves_*.json",
+   "tier": "X",
+   "columns": {
+    "D_full_fixed_pipeline": {
+     "column": "D: fixed topology + fixed statistic",
+     "mode": "C",
+     "keys": {
+      "b0": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.30401109234534107,
+        "ks_stat": 0.09531909675279893,
+        "n_below_0.05": 3,
+        "min_p": 0.02375156536611723,
+        "median_p": 0.41633852020513,
+        "deciles": [
+         0.02375156536611723,
+         0.09230493192324263,
+         0.1419952557314678,
+         0.265651276950223,
+         0.3637394135412573,
+         0.41633852020513,
+         0.5178350579879413,
+         0.6331768822590694,
+         0.7141384199997217,
+         0.8624838669927832,
+         0.9919247691852697
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.09556051377860277,
+        "ks_stat": 0.12158415841584161,
+        "n_below_0.05": 8,
+        "min_p": 0.009900990099009901,
+        "median_p": 0.44554455445544555
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 6,
+        "n_bins_kept": 6,
+        "dropped_bin_indices": [
+         6,
+         7
+        ],
+        "dropped_bin_reasons": {
+         "6": "atomic_modal_mass",
+         "7": "zero_variance"
+        },
+        "kept_block_condition_number": 393.6665648140078,
+        "identical_for_all_test_maps": true
+       }
+      },
+      "b1": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.38637775072102826,
+        "ks_stat": 0.08883579942783121,
+        "n_below_0.05": 11,
+        "min_p": 0.00040623716981152454,
+        "median_p": 0.49814783832959664,
+        "deciles": [
+         0.00040623716981152454,
+         0.04846127462426288,
+         0.14364077418773769,
+         0.37931852186108844,
+         0.45579777262334625,
+         0.49814783832959664,
+         0.6286056765244569,
+         0.7022498287395942,
+         0.8000784258467469,
+         0.8956904481594955,
+         0.9954930666885233
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.24566941656343544,
+        "ks_stat": 0.1006930693069307,
+        "n_below_0.05": 12,
+        "min_p": 0.019801980198019802,
+        "median_p": 0.5
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": false,
+       "bin_selection": {
+        "df": 6,
+        "n_bins_kept": 6,
+        "dropped_bin_indices": [
+         0,
+         1
+        ],
+        "dropped_bin_reasons": {
+         "0": "zero_variance",
+         "1": "atomic_modal_mass"
+        },
+        "kept_block_condition_number": 452.33672914003483,
+        "identical_for_all_test_maps": true
+       }
+      },
+      "chi": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.24530716748702935,
+        "ks_stat": 0.10072921209242292,
+        "n_below_0.05": 6,
+        "min_p": 0.006966732750861797,
+        "median_p": 0.49164985719402876,
+        "deciles": [
+         0.006966732750861797,
+         0.07830781285963376,
+         0.12666054708527388,
+         0.2084594719038558,
+         0.3381447714696725,
+         0.49164985719402876,
+         0.5990281181529011,
+         0.6714553316335357,
+         0.7324403734301943,
+         0.8817597846951427,
+         0.9940776460529023
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.2245403644422798,
+        "ks_stat": 0.10287128712871291,
+        "n_below_0.05": 7,
+        "min_p": 0.019801980198019802,
+        "median_p": 0.49504950495049505
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 8,
+        "n_bins_kept": 8,
+        "dropped_bin_indices": [],
+        "dropped_bin_reasons": {},
+        "kept_block_condition_number": 1224.619402816919,
+        "identical_for_all_test_maps": true
+       }
+      }
+     },
+     "atomic_threshold_sensitivity": {
+      "0.3": {
+       "b0": {
+        "ks_p": 0.30401109234534107,
+        "n_below_0.05": 3,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.38637775072102826,
+        "n_below_0.05": 11,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": false
+       },
+       "chi": {
+        "ks_p": 0.24530716748702935,
+        "n_below_0.05": 6,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.4": {
+       "b0": {
+        "ks_p": 0.30401109234534107,
+        "n_below_0.05": 3,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.38637775072102826,
+        "n_below_0.05": 11,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": false
+       },
+       "chi": {
+        "ks_p": 0.24530716748702935,
+        "n_below_0.05": 6,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.5": {
+       "b0": {
+        "ks_p": 0.30401109234534107,
+        "n_below_0.05": 3,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.38637775072102826,
+        "n_below_0.05": 11,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": false
+       },
+       "chi": {
+        "ks_p": 0.24530716748702935,
+        "n_below_0.05": 6,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.6": {
+       "b0": {
+        "ks_p": 0.30401109234534107,
+        "n_below_0.05": 3,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.38637775072102826,
+        "n_below_0.05": 11,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": false
+       },
+       "chi": {
+        "ks_p": 0.24530716748702935,
+        "n_below_0.05": 6,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.7": {
+       "b0": {
+        "ks_p": 0.5980961747281416,
+        "n_below_0.05": 5,
+        "n_bins_kept": 7,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.38637775072102826,
+        "n_below_0.05": 11,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": false
+       },
+       "chi": {
+        "ks_p": 0.24530716748702935,
+        "n_below_0.05": 6,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.9": {
+       "b0": {
+        "ks_p": 0.5980961747281416,
+        "n_below_0.05": 5,
+        "n_bins_kept": 7,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.20012071986650878,
+        "n_below_0.05": 11,
+        "n_bins_kept": 7,
+        "kept_bin_indices": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": false
+       },
+       "chi": {
+        "ks_p": 0.24530716748702935,
+        "n_below_0.05": 6,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "1.0": {
+       "b0": {
+        "ks_p": 0.5980961747281416,
+        "n_below_0.05": 5,
+        "n_bins_kept": 7,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.20012071986650878,
+        "n_below_0.05": 11,
+        "n_bins_kept": 7,
+        "kept_bin_indices": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": false
+       },
+       "chi": {
+        "ks_p": 0.24530716748702935,
+        "n_below_0.05": 6,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      }
+     }
+    },
+    "D0_fixed_topology_old_stats": {
+     "column": "D0: fixed topology + ORIGINAL coarse_stats (isolates the topology change)",
+     "mode": "A",
+     "keys": {
+      "b0": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.11709125624955669,
+        "ks_stat": 0.1174076876670837,
+        "n_below_0.05": 4,
+        "min_p": 0.0,
+        "median_p": 0.594320777430562,
+        "deciles": [
+         0.0,
+         0.1516172475102242,
+         0.2507054955913118,
+         0.32403406749879565,
+         0.4918263653137445,
+         0.594320777430562,
+         0.6876715330386545,
+         0.7888771489891587,
+         0.8687811158491633,
+         0.9417606906226225,
+         0.9976422983934758
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.055274641392596344,
+        "ks_stat": 0.13217821782178216,
+        "n_below_0.05": 6,
+        "min_p": 0.009900990099009901,
+        "median_p": 0.504950495049505
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 8,
+        "note": "original: df = n_bins always"
+       }
+      },
+      "b1": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.00012758155157638858,
+        "ks_stat": 0.21717764715856147,
+        "n_below_0.05": 8,
+        "min_p": 1.0783239911738414e-07,
+        "median_p": 0.6677143118322395,
+        "deciles": [
+         1.0783239911738414e-07,
+         0.07911574461432286,
+         0.17180647251048356,
+         0.4001455611725824,
+         0.6085809957212536,
+         0.6677143118322395,
+         0.7329262210242278,
+         0.8191120673182938,
+         0.9071301032179809,
+         0.9512501787350661,
+         0.9973779936154011
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.15707831525839644,
+        "ks_stat": 0.11108910891089109,
+        "n_below_0.05": 14,
+        "min_p": 0.009900990099009901,
+        "median_p": 0.5346534653465347
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": false,
+       "bin_selection": {
+        "df": 8,
+        "note": "original: df = n_bins always"
+       }
+      },
+      "chi": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.24530720631753003,
+        "ks_stat": 0.10072920821605419,
+        "n_below_0.05": 6,
+        "min_p": 0.006966734860695211,
+        "median_p": 0.49164986695832574,
+        "deciles": [
+         0.006966734860695211,
+         0.07830781762527247,
+         0.12666055066990223,
+         0.20845947544769974,
+         0.33814478180610724,
+         0.49164986695832574,
+         0.5990281222298812,
+         0.6714553375057392,
+         0.732440386139983,
+         0.8817597858041647,
+         0.9940776463083064
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.2245403644422798,
+        "ks_stat": 0.10287128712871291,
+        "n_below_0.05": 6,
+        "min_p": 0.019801980198019802,
+        "median_p": 0.49504950495049505
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 8,
+        "note": "original: df = n_bins always"
+       }
+      }
+     }
+    },
+    "E_true_euler_curve": {
+     "column": "E: TRUE Euler characteristic curve, fixed statistic",
+     "mode": "C",
+     "keys": {
+      "euler_char_true": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.40302921585943463,
+        "ks_stat": 0.08763601152493111,
+        "n_below_0.05": 6,
+        "min_p": 0.009650824051643934,
+        "median_p": 0.4938870241827595,
+        "deciles": [
+         0.009650824051643934,
+         0.08142567248255778,
+         0.1415496085716695,
+         0.23123224907804876,
+         0.3351520197261434,
+         0.4938870241827595,
+         0.571591056895882,
+         0.650906159556535,
+         0.7371297583724761,
+         0.8801293970236502,
+         0.9967223946622116
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.23782126608906437,
+        "ks_stat": 0.10148514851485149,
+        "n_below_0.05": 7,
+        "min_p": 0.019801980198019802,
+        "median_p": 0.5396039603960396
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 8,
+        "n_bins_kept": 8,
+        "dropped_bin_indices": [],
+        "dropped_bin_reasons": {},
+        "kept_block_condition_number": 1022.0456651639035,
+        "identical_for_all_test_maps": true
+       }
+      }
+     }
+    }
+   },
+   "_peak_rss_mb": 145.1875,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step d1new",
+   "_generated": "2026-09-19T22:39:52"
+  },
+  "d1old": {
+   "case": "F3 (nside 64), curves as committed by the suite (OLD build_topology)",
+   "curves_from": "audit/tda_validation/simple_suite/cases/F3chunk_*.json",
+   "tier": "X",
+   "columns": {
+    "A_before": {
+     "column": "A: before (original coarse_stats)",
+     "mode": "A",
+     "keys": {
+      "b0": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.02052679244545007,
+        "ks_stat": 0.14944185044912617,
+        "n_below_0.05": 3,
+        "min_p": 0.014988846079287214,
+        "median_p": 0.588206496764124,
+        "deciles": [
+         0.014988846079287214,
+         0.17777896563996248,
+         0.23981712542752745,
+         0.4073630493749214,
+         0.5059272886275606,
+         0.588206496764124,
+         0.7398362692302128,
+         0.8049368629393534,
+         0.8712773961105087,
+         0.9428080687718887,
+         0.9955089101509587
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.6311706961290715,
+        "ks_stat": 0.07316831683168318,
+        "n_below_0.05": 4,
+        "min_p": 0.0297029702970297,
+        "median_p": 0.4900990099009901
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": false,
+       "bin_selection": {
+        "df": 8,
+        "note": "original: df = n_bins always"
+       }
+      },
+      "b1": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.00010907605871558121,
+        "ks_stat": 0.21892609390831563,
+        "n_below_0.05": 9,
+        "min_p": 9.378721983686216e-07,
+        "median_p": 0.6935366899592366,
+        "deciles": [
+         9.378721983686216e-07,
+         0.08684510894270496,
+         0.2013615003458554,
+         0.4580847018576552,
+         0.6098443461796499,
+         0.6935366899592366,
+         0.7689166143358981,
+         0.8299997896232297,
+         0.9201210205453132,
+         0.9516875446611349,
+         0.998542182881197
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.24566941656343658,
+        "ks_stat": 0.10069306930693078,
+        "n_below_0.05": 12,
+        "min_p": 0.009900990099009901,
+        "median_p": 0.5643564356435643
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": false,
+       "bin_selection": {
+        "df": 8,
+        "note": "original: df = n_bins always"
+       }
+      },
+      "chi": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.39745050547226574,
+        "ks_stat": 0.08803457196059988,
+        "n_below_0.05": 9,
+        "min_p": 0.0018162279476343585,
+        "median_p": 0.5438982679417621,
+        "deciles": [
+         0.0018162279476343585,
+         0.06112108894008865,
+         0.1590730780462417,
+         0.23289297067525588,
+         0.3837775287864624,
+         0.5438982679417621,
+         0.6327299184311213,
+         0.7111964518224888,
+         0.7593504327719347,
+         0.8533846103041511,
+         0.9856491430528335
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.3274437920989475,
+        "ks_stat": 0.09336633663366345,
+        "n_below_0.05": 9,
+        "min_p": 0.019801980198019802,
+        "median_p": 0.5594059405940595
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 8,
+        "note": "original: df = n_bins always"
+       }
+      }
+     }
+    },
+    "B_minimal": {
+     "column": "B: dead-bin drop + df=kept + eigen conditioning",
+     "mode": "B",
+     "keys": {
+      "b0": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.9378179043965706,
+        "ks_stat": 0.05186973915926624,
+        "n_below_0.05": 4,
+        "min_p": 0.007621911453413182,
+        "median_p": 0.4715532644448665,
+        "deciles": [
+         0.007621911453413182,
+         0.11557392478301215,
+         0.16255210848113857,
+         0.30160328329275055,
+         0.3915574970264339,
+         0.4715532644448665,
+         0.6329141370573946,
+         0.7092219755725331,
+         0.7932077170103532,
+         0.8947924222345472,
+         0.9879489850097024
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.6311706961290715,
+        "ks_stat": 0.07316831683168318,
+        "n_below_0.05": 4,
+        "min_p": 0.019801980198019802,
+        "median_p": 0.49504950495049505
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 7,
+        "n_bins_kept": 7,
+        "dropped_bin_indices": [
+         7
+        ],
+        "dropped_bin_reasons": {
+         "7": "zero_variance"
+        },
+        "kept_block_condition_number": 4042.3984013780637,
+        "identical_for_all_test_maps": true
+       }
+      },
+      "b1": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.22444435793419948,
+        "ks_stat": 0.10288152957835339,
+        "n_below_0.05": 10,
+        "min_p": 2.886546434385966e-07,
+        "median_p": 0.5814354715340949,
+        "deciles": [
+         2.886546434385966e-07,
+         0.0518951865155483,
+         0.13312622483375117,
+         0.3471286933805642,
+         0.493373736896655,
+         0.5814354715340949,
+         0.6663597380766314,
+         0.7401284952068563,
+         0.8608404539752061,
+         0.908703566428579,
+         0.9954324483240103
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.3549886098141686,
+        "ks_stat": 0.09118811881188116,
+        "n_below_0.05": 13,
+        "min_p": 0.009900990099009901,
+        "median_p": 0.5643564356435643
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": false,
+       "bin_selection": {
+        "df": 7,
+        "n_bins_kept": 7,
+        "dropped_bin_indices": [
+         0
+        ],
+        "dropped_bin_reasons": {
+         "0": "zero_variance"
+        },
+        "kept_block_condition_number": 9470.435891470033,
+        "identical_for_all_test_maps": true
+       }
+      },
+      "chi": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.39745042907861006,
+        "ks_stat": 0.08803457744135368,
+        "n_below_0.05": 9,
+        "min_p": 0.001816227283799834,
+        "median_p": 0.5438982656612251,
+        "deciles": [
+         0.001816227283799834,
+         0.06112108379175825,
+         0.15907307595356773,
+         0.23289296068939613,
+         0.3837775144193783,
+         0.5438982656612251,
+         0.632729912923202,
+         0.7111964428405496,
+         0.7593504296146717,
+         0.8533846061997545,
+         0.9856491427212052
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.21720719381569453,
+        "ks_stat": 0.10366336633663364,
+        "n_below_0.05": 10,
+        "min_p": 0.019801980198019802,
+        "median_p": 0.5693069306930693
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 8,
+        "n_bins_kept": 8,
+        "dropped_bin_indices": [],
+        "dropped_bin_reasons": {},
+        "kept_block_condition_number": 1212.7892130132439,
+        "identical_for_all_test_maps": true
+       }
+      }
+     }
+    },
+    "C_full": {
+     "column": "C: B + atomic-bin drop (the declared fix)",
+     "mode": "C",
+     "keys": {
+      "b0": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.3864327482281339,
+        "ks_stat": 0.08883178528859437,
+        "n_below_0.05": 4,
+        "min_p": 0.013885022563216094,
+        "median_p": 0.4588555831180656,
+        "deciles": [
+         0.013885022563216094,
+         0.08180471701756048,
+         0.17845374695105848,
+         0.24061279085759965,
+         0.3548055018592708,
+         0.4588555831180656,
+         0.5463612087809949,
+         0.6274668359278716,
+         0.7350847983014303,
+         0.8526531005308637,
+         0.9898437793987237
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.40599112767580536,
+        "ks_stat": 0.08742574257425739,
+        "n_below_0.05": 4,
+        "min_p": 0.009900990099009901,
+        "median_p": 0.49504950495049505
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 6,
+        "n_bins_kept": 6,
+        "dropped_bin_indices": [
+         6,
+         7
+        ],
+        "dropped_bin_reasons": {
+         "6": "atomic_modal_mass",
+         "7": "zero_variance"
+        },
+        "kept_block_condition_number": 364.26259283067316,
+        "identical_for_all_test_maps": true
+       }
+      },
+      "b1": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.22175940331702038,
+        "ks_stat": 0.10316932594731543,
+        "n_below_0.05": 9,
+        "min_p": 0.0005214813451918574,
+        "median_p": 0.5517927394277237,
+        "deciles": [
+         0.0005214813451918574,
+         0.0528506332557262,
+         0.1664784979608593,
+         0.3944766091592587,
+         0.4766944087294026,
+         0.5517927394277237,
+         0.6546253635256298,
+         0.7546471588182754,
+         0.8443828970013515,
+         0.8963221287084665,
+         0.9950291851563866
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.0775054636387025,
+        "ks_stat": 0.12574257425742574,
+        "n_below_0.05": 12,
+        "min_p": 0.019801980198019802,
+        "median_p": 0.5148514851485149
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 6,
+        "n_bins_kept": 6,
+        "dropped_bin_indices": [
+         0,
+         1
+        ],
+        "dropped_bin_reasons": {
+         "0": "zero_variance",
+         "1": "atomic_modal_mass"
+        },
+        "kept_block_condition_number": 473.8152517586475,
+        "identical_for_all_test_maps": true
+       }
+      },
+      "chi": {
+       "n_test_maps": 100,
+       "chi2_p": {
+        "ks_p_vs_uniform": 0.39745042907861006,
+        "ks_stat": 0.08803457744135368,
+        "n_below_0.05": 9,
+        "min_p": 0.001816227283799834,
+        "median_p": 0.5438982656612251,
+        "deciles": [
+         0.001816227283799834,
+         0.06112108379175825,
+         0.15907307595356773,
+         0.23289296068939613,
+         0.3837775144193783,
+         0.5438982656612251,
+         0.632729912923202,
+         0.7111964428405496,
+         0.7593504296146717,
+         0.8533846061997545,
+         0.9856491427212052
+        ]
+       },
+       "rank_p": {
+        "ks_p_vs_uniform": 0.21720719381569453,
+        "ks_stat": 0.10366336633663364,
+        "n_below_0.05": 10,
+        "min_p": 0.019801980198019802,
+        "median_p": 0.5693069306930693
+       },
+       "gate_ks_gt_0.05_and_n05_le_9": true,
+       "bin_selection": {
+        "df": 8,
+        "n_bins_kept": 8,
+        "dropped_bin_indices": [],
+        "dropped_bin_reasons": {},
+        "kept_block_condition_number": 1212.7892130132439,
+        "identical_for_all_test_maps": true
+       }
+      }
+     },
+     "atomic_threshold_sensitivity": {
+      "0.3": {
+       "b0": {
+        "ks_p": 0.3864327482281339,
+        "n_below_0.05": 4,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.22175940331702038,
+        "n_below_0.05": 9,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       },
+       "chi": {
+        "ks_p": 0.39745042907861006,
+        "n_below_0.05": 9,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.4": {
+       "b0": {
+        "ks_p": 0.3864327482281339,
+        "n_below_0.05": 4,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.22175940331702038,
+        "n_below_0.05": 9,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       },
+       "chi": {
+        "ks_p": 0.39745042907861006,
+        "n_below_0.05": 9,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.5": {
+       "b0": {
+        "ks_p": 0.3864327482281339,
+        "n_below_0.05": 4,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.22175940331702038,
+        "n_below_0.05": 9,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       },
+       "chi": {
+        "ks_p": 0.39745042907861006,
+        "n_below_0.05": 9,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.6": {
+       "b0": {
+        "ks_p": 0.3864327482281339,
+        "n_below_0.05": 4,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.22175940331702038,
+        "n_below_0.05": 9,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       },
+       "chi": {
+        "ks_p": 0.39745042907861006,
+        "n_below_0.05": 9,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.7": {
+       "b0": {
+        "ks_p": 0.3864327482281339,
+        "n_below_0.05": 4,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.22175940331702038,
+        "n_below_0.05": 9,
+        "n_bins_kept": 6,
+        "kept_bin_indices": [
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       },
+       "chi": {
+        "ks_p": 0.39745042907861006,
+        "n_below_0.05": 9,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "0.9": {
+       "b0": {
+        "ks_p": 0.9378179043965706,
+        "n_below_0.05": 4,
+        "n_bins_kept": 7,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.22444435793419948,
+        "n_below_0.05": 10,
+        "n_bins_kept": 7,
+        "kept_bin_indices": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": false
+       },
+       "chi": {
+        "ks_p": 0.39745042907861006,
+        "n_below_0.05": 9,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      },
+      "1.0": {
+       "b0": {
+        "ks_p": 0.9378179043965706,
+        "n_below_0.05": 4,
+        "n_bins_kept": 7,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6
+        ],
+        "gate_pass": true
+       },
+       "b1": {
+        "ks_p": 0.22444435793419948,
+        "n_below_0.05": 10,
+        "n_bins_kept": 7,
+        "kept_bin_indices": [
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": false
+       },
+       "chi": {
+        "ks_p": 0.39745042907861006,
+        "n_below_0.05": 9,
+        "n_bins_kept": 8,
+        "kept_bin_indices": [
+         0,
+         1,
+         2,
+         3,
+         4,
+         5,
+         6,
+         7
+        ],
+        "gate_pass": true
+       }
+      }
+     }
+    }
+   },
+   "reproduces_committed_before_numbers": {
+    "b0": {
+     "committed_ks_p": 0.02052679244545007,
+     "recomputed_ks_p": 0.02052679244545007,
+     "match": true
+    },
+    "b1": {
+     "committed_ks_p": 0.00010907605871558121,
+     "recomputed_ks_p": 0.00010907605871558121,
+     "match": true
+    },
+    "chi": {
+     "committed_ks_p": 0.39745050547226574,
+     "recomputed_ks_p": 0.39745050547226574,
+     "match": true
+    }
+   },
+   "_peak_rss_mb": 146.30078125,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python audit/tda_validation/tda_fixed/run_validation.py --step d1old",
+   "_generated": "2026-09-19T22:56:17"
+  },
+  "e5": {
+   "what": "audit/reverse_zero/E5-cmb-tda committed run, statistics recomputed",
+   "ensemble": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdasimple/audit/reverse_zero/E5-cmb-tda/chunks/null_merged.npz",
+   "n_sims": 100,
+   "nside_of_that_run": 128,
+   "mask": "WMAP KQ85 (ud_graded, >= 0.5)",
+   "SCOPE": "ONLY the statistics defect (D1) is recomputed. The curves themselves were produced by the DEFECTIVE build_topology at nside 128; recomputing them means regenerating 100 synfast sims x 2 filtration directions at nside 128 and is NOT done here. This is not a revalidation of E5.",
+   "tier": "X",
+   "statistics": {
+    "sublevel_b0": {
+     "OLD_chi2": 14.71185701669927,
+     "OLD_p_chi2": 0.06499639606895025,
+     "OLD_rank_p": 0.10891089108910891,
+     "OLD_df": 8,
+     "MINIMAL_p_chi2": 0.06499637995404177,
+     "MINIMAL_df": 8,
+     "NEW_chi2": 14.512716731335262,
+     "NEW_p_chi2": 0.04277840805200376,
+     "NEW_rank_p": 0.0594059405940594,
+     "NEW_df": 7,
+     "NEW_n_bins_kept": 7,
+     "NEW_dropped_bin_indices": [
+      7
+     ],
+     "NEW_dropped_bin_reasons": {
+      "7": "atomic_modal_mass"
+     },
+     "NEW_test_differs_in_dropped_bin": {},
+     "delta_p_chi2": -0.022217988016946487,
+     "crosses_0.05": true
+    },
+    "sublevel_b1": {
+     "OLD_chi2": 8.01443787455672,
+     "OLD_p_chi2": 0.43206105375586523,
+     "OLD_rank_p": 0.31683168316831684,
+     "OLD_df": 8,
+     "MINIMAL_p_chi2": 0.4320609688241323,
+     "MINIMAL_df": 8,
+     "NEW_chi2": 8.075913326501961,
+     "NEW_p_chi2": 0.32594759316921107,
+     "NEW_rank_p": 0.31683168316831684,
+     "NEW_df": 7,
+     "NEW_n_bins_kept": 7,
+     "NEW_dropped_bin_indices": [
+      0
+     ],
+     "NEW_dropped_bin_reasons": {
+      "0": "atomic_modal_mass"
+     },
+     "NEW_test_differs_in_dropped_bin": {},
+     "delta_p_chi2": -0.10611346058665416,
+     "crosses_0.05": false
+    },
+    "sublevel_euler_chi": {
+     "OLD_chi2": 9.45832956965054,
+     "OLD_p_chi2": 0.30511774079840176,
+     "OLD_rank_p": 0.31683168316831684,
+     "OLD_df": 8,
+     "MINIMAL_p_chi2": 0.30511774067774344,
+     "MINIMAL_df": 8,
+     "NEW_chi2": 9.458329571200194,
+     "NEW_p_chi2": 0.30511774067774344,
+     "NEW_rank_p": 0.3069306930693069,
+     "NEW_df": 8,
+     "NEW_n_bins_kept": 8,
+     "NEW_dropped_bin_indices": [],
+     "NEW_dropped_bin_reasons": {},
+     "NEW_test_differs_in_dropped_bin": {},
+     "delta_p_chi2": -1.20658316671296e-10,
+     "crosses_0.05": false
+    },
+    "superlevel_b0": {
+     "OLD_chi2": 13.785246083000494,
+     "OLD_p_chi2": 0.08753749457073727,
+     "OLD_rank_p": 0.06930693069306931,
+     "OLD_df": 8,
+     "MINIMAL_p_chi2": 0.08753749206207369,
+     "MINIMAL_df": 8,
+     "NEW_chi2": 13.828013518772492,
+     "NEW_p_chi2": 0.054326229017447984,
+     "NEW_rank_p": 0.039603960396039604,
+     "NEW_df": 7,
+     "NEW_n_bins_kept": 7,
+     "NEW_dropped_bin_indices": [
+      7
+     ],
+     "NEW_dropped_bin_reasons": {
+      "7": "atomic_modal_mass"
+     },
+     "NEW_test_differs_in_dropped_bin": {},
+     "delta_p_chi2": -0.033211265553289286,
+     "crosses_0.05": false
+    },
+    "superlevel_b1": {
+     "OLD_chi2": 19.850822707752386,
+     "OLD_p_chi2": 0.010915414537970534,
+     "OLD_rank_p": 0.019801980198019802,
+     "OLD_df": 8,
+     "MINIMAL_p_chi2": 0.005417534168924314,
+     "MINIMAL_df": 7,
+     "NEW_chi2": 20.071387515928087,
+     "NEW_p_chi2": 0.005417534168924314,
+     "NEW_rank_p": 0.019801980198019802,
+     "NEW_df": 7,
+     "NEW_n_bins_kept": 7,
+     "NEW_dropped_bin_indices": [
+      0
+     ],
+     "NEW_dropped_bin_reasons": {
+      "0": "zero_variance"
+     },
+     "NEW_test_differs_in_dropped_bin": {},
+     "delta_p_chi2": -0.005497880369046221,
+     "crosses_0.05": false
+    },
+    "superlevel_euler_chi": {
+     "OLD_chi2": 10.948865631763358,
+     "OLD_p_chi2": 0.20461341215597223,
+     "OLD_rank_p": 0.25742574257425743,
+     "OLD_df": 8,
+     "MINIMAL_p_chi2": 0.20461341213894021,
+     "MINIMAL_df": 8,
+     "NEW_chi2": 10.948865632060485,
+     "NEW_p_chi2": 0.20461341213894021,
+     "NEW_rank_p": 0.2376237623762376,
+     "NEW_df": 8,
+     "NEW_n_bins_kept": 8,
+     "NEW_dropped_bin_indices": [],
+     "NEW_dropped_bin_reasons": {},
+     "NEW_test_differs_in_dropped_bin": {},
+     "delta_p_chi2": -1.7032014687501373e-11,
+     "crosses_0.05": false
+    }
+   },
+   "_peak_rss_mb": 144.265625,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step e5",
+   "_generated": "2026-09-19T22:39:57"
+  },
+  "f1": {
+   "gate": "D2 gate 5: F1 (256x256 grid, Freudenthal, 7 Gaussian wells, seed 21)",
+   "committed_suite_result": {
+    "max_nu_b0": 7,
+    "b0_at_max_nu": 1,
+    "b1_at_max_nu": 0,
+    "max_nu_b1": 1,
+    "n_edges": 195585,
+    "n_triangles": 130050,
+    "nu_points": 4001
+   },
+   "original_function_rerun": {
+    "max_nu_b0": 7,
+    "b0_at_max_nu": 1,
+    "b1_at_max_nu": 0,
+    "max_nu_b1": 1,
+    "wall_sec": 0.8900823593139648
+   },
+   "fixed_function": {
+    "max_nu_b0": 7,
+    "b0_at_max_nu": 1,
+    "b1_at_max_nu": 0,
+    "max_nu_b1": 1,
+    "wall_sec": 0.45632195472717285
+   },
+   "curves_identical_b0": true,
+   "curves_identical_b1": true,
+   "euler_char_true_at_final_nu": 1,
+   "b0_minus_b1_at_final_nu": 1,
+   "euler_note": "a 256x256 disc has chi = 1 and b0-b1 = 1; both agree here because b2 = 0",
+   "gate_5_pass": true,
+   "tier": "X",
+   "_peak_rss_mb": 197.02734375,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step f1",
+   "_generated": "2026-09-19T22:33:51"
+  },
+  "guard": {
+   "gate": "regression guard: the tests must FAIL on the originals and PASS on the fix",
+   "tests": "audit/tda_validation/tda_fixed/tests",
+   "tier": "X",
+   "modes": {
+    "against_fixed_library": {
+     "command": " OMP_NUM_THREADS=1 /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python -m pytest audit/tda_validation/tda_fixed/tests -q",
+     "exit_code": 0,
+     "summary_line": "============================= 30 passed in 28.78s ==============================",
+     "n_failed": 0,
+     "failed_tests": [],
+     "wall_sec": 29.3733012676239
+    },
+    "against_original_implementations": {
+     "command": "TDA_GUARD_AGAINST_ORIGINAL=1 OMP_NUM_THREADS=1 /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python -m pytest audit/tda_validation/tda_fixed/tests -q",
+     "exit_code": 1,
+     "summary_line": "======================== 19 failed, 11 passed in 43.37s ========================",
+     "n_failed": 19,
+     "failed_tests": [
+      "test_F3_acceptance_on_the_committed_curves[b0]",
+      "test_F3_acceptance_on_the_committed_curves[b1]",
+      "test_FIXED_reports_the_dead_bin_instead_of_inverting_it",
+      "test_dead_and_atomic_bins_are_both_dropped_with_a_reason",
+      "test_df_is_the_retained_rank_not_the_nominal_bin_count",
+      "test_disk_mask_gives_a_disc",
+      "test_euler_key_is_the_true_euler_characteristic_not_b0_minus_b1",
+      "test_fail_closed_when_no_bin_survives",
+      "test_fixed_complex_is_a_surface_every_edge_in_at_most_two_triangles",
+      "test_fixed_full_sky_betti_is_1_0_1[16]",
+      "test_fixed_full_sky_betti_is_1_0_1[32]",
+      "test_fixed_full_sky_betti_is_1_0_1[8]",
+      "test_fixed_full_sky_has_euler_characteristic_2[16]",
+      "test_fixed_full_sky_has_euler_characteristic_2[32]",
+      "test_fixed_full_sky_has_euler_characteristic_2[8]",
+      "test_negative_control_the_statistic_does_reject",
+      "test_no_four_clique_is_completely_filled",
+      "test_pvalues_are_uniform_after_the_fix_and_were_not_before",
+      "test_rank_p_kept_bin_set_is_symmetric_in_the_data_and_the_sims"
+     ],
+     "wall_sec": 45.45077085494995
+    }
+   },
+   "guard_pass": true,
+   "verdict": "the guard is green on the fixed library and fails on 19 tests when the original implementations are substituted",
+   "_peak_rss_mb": 89.42578125,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step guard",
+   "_generated": "2026-09-19T22:54:30"
+  },
+  "negctrl": {
+   "gate": "D1 negative control",
+   "construction": "20 maps, same C_l form with Gaussian beam FWHM 6.0 deg (F3 uses 3.0), np.random.seed(40000 + i), i = 0..19, nside 64, FIXED complex, scored against the same 100-map 3-deg ensemble",
+   "declared_gate": "at least 15 of 20 control maps have chi2 p < 0.05 under the FIXED statistic",
+   "tier": "X",
+   "keys": {
+    "b0": {
+     "n_control_maps": 20,
+     "chi2_p_values": [
+      8.269471171269884e-44,
+      7.178666738701656e-48,
+      4.3347239348481e-49,
+      1.0941770492406669e-48,
+      1.3075206303480182e-46,
+      4.302108410770037e-42,
+      3.9907621261918485e-51,
+      4.614726049135006e-42,
+      8.918035279857188e-47,
+      1.0726096760445913e-46,
+      5.906751666844208e-47,
+      9.865595895292176e-39,
+      1.2422306462726796e-38,
+      2.7277547765991787e-43,
+      2.9199745169918014e-38,
+      1.7586660024581396e-46,
+      5.380224571385583e-44,
+      4.8839503960595935e-50,
+      4.029278027399346e-37,
+      1.693762966201605e-44
+     ],
+     "rank_p_values": [
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901
+     ],
+     "median_chi2_p": 8.556748131130931e-45,
+     "n_chi2_p_below_0.05": 20,
+     "n_rank_p_below_0.05": 20,
+     "ks_p_vs_uniform": 0.0,
+     "gate_pass_15_of_20": true
+    },
+    "b1": {
+     "n_control_maps": 20,
+     "chi2_p_values": [
+      4.1671660066372425e-47,
+      1.1047609527073217e-47,
+      2.0808167404654505e-52,
+      3.4216550728212535e-45,
+      4.464992534054714e-46,
+      1.7440670461393941e-47,
+      9.016948973649536e-43,
+      2.006035464679445e-48,
+      4.53170325067235e-46,
+      3.2397258137985316e-47,
+      2.1843531026185066e-45,
+      2.6375680141056766e-42,
+      4.409324404052445e-41,
+      4.691417368966812e-47,
+      5.701196582842053e-41,
+      5.69723102348229e-49,
+      8.401133799723568e-46,
+      1.4766173565724943e-45,
+      1.7670989716686738e-44,
+      6.642066283638531e-42
+     ],
+     "rank_p_values": [
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901,
+      0.009900990099009901
+     ],
+     "median_chi2_p": 6.466418525197959e-46,
+     "n_chi2_p_below_0.05": 20,
+     "n_rank_p_below_0.05": 20,
+     "ks_p_vs_uniform": 0.0,
+     "gate_pass_15_of_20": true
+    },
+    "chi": {
+     "n_control_maps": 20,
+     "chi2_p_values": [
+      1.9641019963223193e-06,
+      9.504263901895119e-05,
+      7.907827149794053e-05,
+      8.084251345123894e-06,
+      7.807962863380512e-05,
+      2.4028327824437868e-05,
+      5.250959657447151e-06,
+      0.0001503340395415184,
+      2.6182507541972772e-05,
+      1.4069424529383647e-05,
+      2.6937695729334315e-05,
+      9.046167802909445e-06,
+      0.00015997940475340756,
+      0.00015457423607239307,
+      0.0019310514440605132,
+      4.4225820129125715e-06,
+      5.024383445559766e-06,
+      4.307967340870547e-06,
+      9.084989924498458e-05,
+      0.00010024796268046623
+     ],
+     "rank_p_values": [
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802,
+      0.019801980198019802
+     ],
+     "median_chi2_p": 2.6560101635653544e-05,
+     "n_chi2_p_below_0.05": 20,
+     "n_rank_p_below_0.05": 20,
+     "ks_p_vs_uniform": 1.039697190133664e-54,
+     "gate_pass_15_of_20": true
+    }
+   },
+   "_peak_rss_mb": 92.02734375,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step negctrl",
+   "_generated": "2026-09-19T22:39:55"
+  },
+  "p2": {
+   "gate": "P2 regression (sphere S2 through the alpha path)",
+   "numbers_produced_by": "cosmic_web_tda_scaled.alpha_persistence (the ORIGINAL pipeline function)",
+   "n_points": 5000,
+   "expected_betti": [
+    1,
+    0,
+    1
+   ],
+   "observed_betti_vector": [
+    1,
+    0,
+    1
+   ],
+   "betti_numbers_at_truncation_original": [
+    1,
+    0,
+    0
+   ],
+   "betti_numbers_at_truncation_wrapper": [
+    1,
+    0,
+    0
+   ],
+   "top_persistence_H0": [
+    0.9364162388866805,
+    0.04832203235607325,
+    0.04413504050422667
+   ],
+   "top_persistence_H1": [
+    0.05506578791746649,
+    0.05303562604773513,
+    0.0524862024756247
+   ],
+   "top_persistence_H2": [
+    0.8474091674282411,
+    0.0037958023612173555,
+    0.0028884112470426437
+   ],
+   "cap": 0.9364162388866805,
+   "P_all": 0.8474091674282411,
+   "wrapper_bars_identical_to_original": true,
+   "committed_suite_observed_betti_vector": [
+    1,
+    0,
+    1
+   ],
+   "matches_committed": true,
+   "wall_sec_original": 0.49776124954223633,
+   "wall_sec_wrapper": 0.42428135871887207,
+   "pass": true,
+   "tier": "X",
+   "_peak_rss_mb": 185.859375,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step p2",
+   "_generated": "2026-09-19T22:33:54"
+  },
+  "smooth": {
+   "gate": "D2 gate 4: smooth-field b0/b1 regression",
+   "map": "hp.synfast(cl(FWHM 3 deg), nside=64, new=True), np.random.seed(30000)",
+   "nu_grid": [
+    -4.0,
+    -3.8,
+    -3.6,
+    -3.4,
+    -3.2,
+    -3.0,
+    -2.8,
+    -2.5999999999999996,
+    -2.4,
+    -2.2,
+    -2.0,
+    -1.7999999999999998,
+    -1.5999999999999996,
+    -1.4,
+    -1.1999999999999997,
+    -1.0,
+    -0.7999999999999998,
+    -0.5999999999999996,
+    -0.3999999999999999,
+    -0.19999999999999973,
+    0.0,
+    0.20000000000000018,
+    0.40000000000000036,
+    0.6000000000000005,
+    0.8000000000000007,
+    1.0,
+    1.2000000000000002,
+    1.4000000000000004,
+    1.6000000000000005,
+    1.8000000000000007,
+    2.0,
+    2.2,
+    2.4000000000000004,
+    2.6000000000000005,
+    2.8000000000000007,
+    3.0,
+    3.2,
+    3.4000000000000004,
+    3.6000000000000005,
+    3.8000000000000007,
+    4.0
+   ],
+   "old": {
+    "b0": [
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     5,
+     9,
+     20,
+     30,
+     43,
+     60,
+     80,
+     102,
+     96,
+     106,
+     92,
+     85,
+     71,
+     60,
+     53,
+     38,
+     31,
+     18,
+     17,
+     5,
+     6,
+     4,
+     2,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "b1": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     5,
+     10,
+     26,
+     24,
+     29,
+     43,
+     56,
+     76,
+     96,
+     102,
+     103,
+     108,
+     88,
+     94,
+     76,
+     57,
+     41,
+     30,
+     21,
+     14,
+     6,
+     3,
+     2,
+     0,
+     0,
+     0,
+     0
+    ],
+    "euler_chi_as_returned_b0_minus_b1": [
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     5,
+     9,
+     20,
+     30,
+     43,
+     60,
+     79,
+     101,
+     91,
+     96,
+     66,
+     61,
+     42,
+     17,
+     -3,
+     -38,
+     -65,
+     -84,
+     -86,
+     -103,
+     -82,
+     -90,
+     -74,
+     -56,
+     -40,
+     -29,
+     -20,
+     -13,
+     -5,
+     -2,
+     -1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "n_edges": 196596,
+    "n_triangles": 196592,
+    "wall_sec": 2.944671392440796
+   },
+   "fixed": {
+    "b0": [
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     5,
+     11,
+     20,
+     30,
+     45,
+     62,
+     84,
+     104,
+     101,
+     114,
+     97,
+     88,
+     73,
+     64,
+     54,
+     42,
+     35,
+     19,
+     18,
+     7,
+     7,
+     5,
+     3,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "b1": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     3,
+     10,
+     24,
+     23,
+     29,
+     43,
+     50,
+     74,
+     90,
+     98,
+     99,
+     106,
+     88,
+     92,
+     75,
+     57,
+     41,
+     30,
+     20,
+     14,
+     6,
+     3,
+     2,
+     0,
+     0,
+     0,
+     0
+    ],
+    "b0_minus_b1": [
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     5,
+     11,
+     20,
+     30,
+     45,
+     62,
+     83,
+     103,
+     98,
+     104,
+     73,
+     65,
+     44,
+     21,
+     4,
+     -32,
+     -55,
+     -79,
+     -81,
+     -99,
+     -81,
+     -87,
+     -72,
+     -56,
+     -40,
+     -29,
+     -19,
+     -13,
+     -5,
+     -2,
+     -1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "euler_char_true": [
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     5,
+     11,
+     20,
+     30,
+     45,
+     62,
+     83,
+     103,
+     98,
+     104,
+     73,
+     65,
+     44,
+     21,
+     4,
+     -32,
+     -55,
+     -79,
+     -81,
+     -99,
+     -81,
+     -87,
+     -72,
+     -56,
+     -40,
+     -29,
+     -19,
+     -13,
+     -5,
+     -2,
+     -1,
+     2,
+     2,
+     2,
+     2
+    ],
+    "b2_implied": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1,
+     1,
+     1
+    ],
+    "n_edges": 147450,
+    "n_triangles": 98300,
+    "wall_sec": 1.5393686294555664
+   },
+   "max_abs_delta_b0": 8.0,
+   "max_abs_delta_b1": 6.0,
+   "max_b0_old": 106.0,
+   "max_b1_old": 108.0,
+   "declared_tolerance_0.15_of_peak": {
+    "b0": 15.899999999999999,
+    "b1": 16.2
+   },
+   "rms_delta_b0": 2.3005831710306124,
+   "rms_delta_b1": 1.759988913490581,
+   "peak_nu_b0_old": -1.0,
+   "peak_nu_b0_fixed": -1.0,
+   "peak_nu_b1_old": 1.0,
+   "peak_nu_b1_fixed": 1.0,
+   "grid_step": 0.20000000000000018,
+   "gate_4_pass": true,
+   "euler_check_at_final_nu": {
+    "old_euler_chi_key_b0_minus_b1": 1,
+    "fixed_b0_minus_b1": 1,
+    "fixed_euler_char_true": 2,
+    "note": "the full sphere has chi = 2 and b0-b1 = 1; the original returned 1 under the name euler_chi"
+   },
+   "tier": "X",
+   "_peak_rss_mb": 246.1875,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step smooth",
+   "_generated": "2026-09-19T22:33:48"
+  },
+  "topology": {
+   "gate": "D2 gates 1-3",
+   "levels": {
+    "8": {
+     "npix": 768,
+     "n_missing_neighbour_entries": 24,
+     "missing_neighbour_entries_by_direction": {
+      "SW": 0,
+      "W": 8,
+      "NW": 0,
+      "N": 4,
+      "NE": 0,
+      "E": 8,
+      "SE": 0,
+      "S": 4
+     },
+     "n_missing_at_edge_sharing_positions": 0,
+     "n_quad_corners": 762,
+     "n_tri_corners": 8,
+     "predicted_n_quad_corners_V_minus_6": 762,
+     "predicted_n_tri_corners": 8,
+     "predicted_full_sky_edges_2V_plus_Q": 2298,
+     "predicted_full_sky_faces_2Q_plus_T3": 1532,
+     "degenerate_quad_rows": 0,
+     "degenerate_tri_rows": 0,
+     "dedup_factor_quads": 4.0,
+     "dedup_factor_tris": 3.0,
+     "n_vertices": 768,
+     "n_edges": 2298,
+     "n_triangles": 1532,
+     "euler_char_V_minus_E_plus_F": 2,
+     "gate_1_combinatorial_pass": true,
+     "build_sec": 0.024948596954345703
+    },
+    "16": {
+     "npix": 3072,
+     "n_missing_neighbour_entries": 24,
+     "missing_neighbour_entries_by_direction": {
+      "SW": 0,
+      "W": 8,
+      "NW": 0,
+      "N": 4,
+      "NE": 0,
+      "E": 8,
+      "SE": 0,
+      "S": 4
+     },
+     "n_missing_at_edge_sharing_positions": 0,
+     "n_quad_corners": 3066,
+     "n_tri_corners": 8,
+     "predicted_n_quad_corners_V_minus_6": 3066,
+     "predicted_n_tri_corners": 8,
+     "predicted_full_sky_edges_2V_plus_Q": 9210,
+     "predicted_full_sky_faces_2Q_plus_T3": 6140,
+     "degenerate_quad_rows": 0,
+     "degenerate_tri_rows": 0,
+     "dedup_factor_quads": 4.0,
+     "dedup_factor_tris": 3.0,
+     "n_vertices": 3072,
+     "n_edges": 9210,
+     "n_triangles": 6140,
+     "euler_char_V_minus_E_plus_F": 2,
+     "gate_1_combinatorial_pass": true,
+     "build_sec": 0.07267379760742188
+    },
+    "32": {
+     "npix": 12288,
+     "n_missing_neighbour_entries": 24,
+     "missing_neighbour_entries_by_direction": {
+      "SW": 0,
+      "W": 8,
+      "NW": 0,
+      "N": 4,
+      "NE": 0,
+      "E": 8,
+      "SE": 0,
+      "S": 4
+     },
+     "n_missing_at_edge_sharing_positions": 0,
+     "n_quad_corners": 12282,
+     "n_tri_corners": 8,
+     "predicted_n_quad_corners_V_minus_6": 12282,
+     "predicted_n_tri_corners": 8,
+     "predicted_full_sky_edges_2V_plus_Q": 36858,
+     "predicted_full_sky_faces_2Q_plus_T3": 24572,
+     "degenerate_quad_rows": 0,
+     "degenerate_tri_rows": 0,
+     "dedup_factor_quads": 4.0,
+     "dedup_factor_tris": 3.0,
+     "n_vertices": 12288,
+     "n_edges": 36858,
+     "n_triangles": 24572,
+     "euler_char_V_minus_E_plus_F": 2,
+     "gate_1_combinatorial_pass": true,
+     "build_sec": 0.341902494430542,
+     "gudhi_betti": [
+      1,
+      0,
+      1
+     ],
+     "gate_2_betti_1_0_1_pass": true,
+     "betti_sec": 0.07335162162780762,
+     "OLD_build_topology": {
+      "n_vertices": 12288,
+      "n_edges": 49140,
+      "n_triangles": 49136,
+      "euler_char_V_minus_E_plus_F": 12284,
+      "gudhi_betti": [
+       1,
+       0,
+       12283
+      ],
+      "wall_sec": 0.6530416011810303,
+      "note": "original cmb_tda.build_topology, unchanged, for the before column"
+     }
+    },
+    "64": {
+     "npix": 49152,
+     "n_missing_neighbour_entries": 24,
+     "missing_neighbour_entries_by_direction": {
+      "SW": 0,
+      "W": 8,
+      "NW": 0,
+      "N": 4,
+      "NE": 0,
+      "E": 8,
+      "SE": 0,
+      "S": 4
+     },
+     "n_missing_at_edge_sharing_positions": 0,
+     "n_quad_corners": 49146,
+     "n_tri_corners": 8,
+     "predicted_n_quad_corners_V_minus_6": 49146,
+     "predicted_n_tri_corners": 8,
+     "predicted_full_sky_edges_2V_plus_Q": 147450,
+     "predicted_full_sky_faces_2Q_plus_T3": 98300,
+     "degenerate_quad_rows": 0,
+     "degenerate_tri_rows": 0,
+     "dedup_factor_quads": 4.0,
+     "dedup_factor_tris": 3.0,
+     "n_vertices": 49152,
+     "n_edges": 147450,
+     "n_triangles": 98300,
+     "euler_char_V_minus_E_plus_F": 2,
+     "gate_1_combinatorial_pass": true,
+     "build_sec": 1.7584679126739502,
+     "gudhi_betti": [
+      1,
+      0,
+      1
+     ],
+     "gate_2_betti_1_0_1_pass": true,
+     "betti_sec": 0.23077750205993652,
+     "OLD_build_topology": {
+      "n_vertices": 49152,
+      "n_edges": 196596,
+      "n_triangles": 196592,
+      "euler_char_V_minus_E_plus_F": 49148,
+      "gudhi_betti": [
+       1,
+       0,
+       49147
+      ],
+      "wall_sec": 2.985222816467285,
+      "note": "original cmb_tda.build_topology, unchanged, for the before column"
+     }
+    }
+   },
+   "tier": "X",
+   "gate_3_disk_mask": {
+    "mask": "nside 32, pixels with z >= cos(30 deg) (a polar cap)",
+    "n_unmasked": 840,
+    "n_edges": 2361,
+    "n_triangles": 1522,
+    "euler_char_V_minus_E_plus_F": 1,
+    "expected_betti_disc": [
+     1,
+     0,
+     0
+    ],
+    "gudhi_betti_fixed": [
+     1,
+     0,
+     0
+    ],
+    "gate_3_pass": true,
+    "OLD_build_topology_betti": [
+     1,
+     0,
+     761
+    ],
+    "OLD_n_edges": 3198,
+    "OLD_n_triangles": 3120,
+    "OLD_euler_char": 762
+   },
+   "_peak_rss_mb": 260.01171875,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step topology",
+   "_generated": "2026-09-19T22:33:27"
+  }
+ },
+ "f3_curve_chunks": {
+  "f3curves_000": {
+   "start": 0,
+   "count": 50,
+   "nside": 64,
+   "fwhm_deg": 3.0,
+   "seed_base": 30000,
+   "n_edges": 147450,
+   "n_triangles": 98300,
+   "euler_char_V_minus_E_plus_F": 2,
+   "wall_sec": 16.27914309501648,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step f3curves --start 0 --count 50"
+  },
+  "f3curves_050": {
+   "start": 50,
+   "count": 50,
+   "nside": 64,
+   "fwhm_deg": 3.0,
+   "seed_base": 30000,
+   "n_edges": 147450,
+   "n_triangles": 98300,
+   "euler_char_V_minus_E_plus_F": 2,
+   "wall_sec": 16.202064752578735,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step f3curves --start 50 --count 50"
+  },
+  "f3curves_100": {
+   "start": 100,
+   "count": 50,
+   "nside": 64,
+   "fwhm_deg": 3.0,
+   "seed_base": 30000,
+   "n_edges": 147450,
+   "n_triangles": 98300,
+   "euler_char_V_minus_E_plus_F": 2,
+   "wall_sec": 15.978924036026001,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step f3curves --start 100 --count 50"
+  },
+  "f3curves_150": {
+   "start": 150,
+   "count": 50,
+   "nside": 64,
+   "fwhm_deg": 3.0,
+   "seed_base": 30000,
+   "n_edges": 147450,
+   "n_triangles": 98300,
+   "euler_char_V_minus_E_plus_F": 2,
+   "wall_sec": 15.710586071014404,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step f3curves --start 150 --count 50"
+  },
+  "negctrl_000": {
+   "start": 0,
+   "count": 20,
+   "nside": 64,
+   "fwhm_deg": 6.0,
+   "seed_base": 40000,
+   "n_edges": 147450,
+   "n_triangles": 98300,
+   "euler_char_V_minus_E_plus_F": 2,
+   "wall_sec": 6.80482816696167,
+   "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step negctrl_curves --start 0 --count 20"
+  }
+ },
+ "D1_summary_table": {
+  "b0": {
+   "A_before": {
+    "ks_p": 0.02052679244545007,
+    "n_below_0.05": 3,
+    "df": 8,
+    "rank_ks_p": 0.6311706961290715,
+    "rank_n_below_0.05": 4,
+    "gate_pass": false
+   },
+   "B_minimal": {
+    "ks_p": 0.9378179043965706,
+    "n_below_0.05": 4,
+    "df": 7,
+    "rank_ks_p": 0.6311706961290715,
+    "rank_n_below_0.05": 4,
+    "gate_pass": true
+   },
+   "C_full": {
+    "ks_p": 0.3864327482281339,
+    "n_below_0.05": 4,
+    "df": 6,
+    "rank_ks_p": 0.40599112767580536,
+    "rank_n_below_0.05": 4,
+    "gate_pass": true
+   },
+   "D0_fixed_topology_old_stats": {
+    "ks_p": 0.11709125624955669,
+    "n_below_0.05": 4,
+    "df": 8,
+    "rank_ks_p": 0.055274641392596344,
+    "rank_n_below_0.05": 6,
+    "gate_pass": true
+   },
+   "D_full_fixed_pipeline": {
+    "ks_p": 0.30401109234534107,
+    "n_below_0.05": 3,
+    "df": 6,
+    "rank_ks_p": 0.09556051377860277,
+    "rank_n_below_0.05": 8,
+    "gate_pass": true
+   }
+  },
+  "b1": {
+   "A_before": {
+    "ks_p": 0.00010907605871558121,
+    "n_below_0.05": 9,
+    "df": 8,
+    "rank_ks_p": 0.24566941656343658,
+    "rank_n_below_0.05": 12,
+    "gate_pass": false
+   },
+   "B_minimal": {
+    "ks_p": 0.22444435793419948,
+    "n_below_0.05": 10,
+    "df": 7,
+    "rank_ks_p": 0.3549886098141686,
+    "rank_n_below_0.05": 13,
+    "gate_pass": false
+   },
+   "C_full": {
+    "ks_p": 0.22175940331702038,
+    "n_below_0.05": 9,
+    "df": 6,
+    "rank_ks_p": 0.0775054636387025,
+    "rank_n_below_0.05": 12,
+    "gate_pass": true
+   },
+   "D0_fixed_topology_old_stats": {
+    "ks_p": 0.00012758155157638858,
+    "n_below_0.05": 8,
+    "df": 8,
+    "rank_ks_p": 0.15707831525839644,
+    "rank_n_below_0.05": 14,
+    "gate_pass": false
+   },
+   "D_full_fixed_pipeline": {
+    "ks_p": 0.38637775072102826,
+    "n_below_0.05": 11,
+    "df": 6,
+    "rank_ks_p": 0.24566941656343544,
+    "rank_n_below_0.05": 12,
+    "gate_pass": false
+   }
+  },
+  "chi": {
+   "A_before": {
+    "ks_p": 0.39745050547226574,
+    "n_below_0.05": 9,
+    "df": 8,
+    "rank_ks_p": 0.3274437920989475,
+    "rank_n_below_0.05": 9,
+    "gate_pass": true
+   },
+   "B_minimal": {
+    "ks_p": 0.39745042907861006,
+    "n_below_0.05": 9,
+    "df": 8,
+    "rank_ks_p": 0.21720719381569453,
+    "rank_n_below_0.05": 10,
+    "gate_pass": true
+   },
+   "C_full": {
+    "ks_p": 0.39745042907861006,
+    "n_below_0.05": 9,
+    "df": 8,
+    "rank_ks_p": 0.21720719381569453,
+    "rank_n_below_0.05": 10,
+    "gate_pass": true
+   },
+   "D0_fixed_topology_old_stats": {
+    "ks_p": 0.24530720631753003,
+    "n_below_0.05": 6,
+    "df": 8,
+    "rank_ks_p": 0.2245403644422798,
+    "rank_n_below_0.05": 6,
+    "gate_pass": true
+   },
+   "D_full_fixed_pipeline": {
+    "ks_p": 0.24530716748702935,
+    "n_below_0.05": 6,
+    "df": 8,
+    "rank_ks_p": 0.2245403644422798,
+    "rank_n_below_0.05": 7,
+    "gate_pass": true
+   }
+  }
+ },
+ "D1_acceptance": {
+  "gate": "KS of the 100 chi2 p-values against U(0,1) has p > 0.05 AND #{p<0.05} <= 9, for b0, b1 and the Euler curve",
+  "column_C_pass": {
+   "b0": true,
+   "b1": true,
+   "chi": true
+  },
+  "column_D_pass": {
+   "b0": true,
+   "b1": false,
+   "chi": true
+  },
+  "binomial_context": "P(X >= 10 | p = 0.05, n = 100) = 0.0282; P(X >= 6) = 0.384",
+  "known_caveat": "the 100 test p-values share one 100-sim ensemble, so they are correlated; KS against uniform assumes independence and is anti-conservative here. This is a property of the F3 design (commit 033f017), not of the fix."
+ },
+ "headline_findings": {
+  "1_D1_acceptance_met_on_the_declared_case": "column C (fixed statistic on the suite's committed F3 curves, which is the case the acceptance names) passes for b0, b1 and the Euler curve: KS p = 0.3864 / 0.2218 / 0.3975, #{p<0.05} = 4 / 9 / 9",
+  "2_the_minimal_enumerated_fix_is_not_sufficient": "column B (dead-bin drop + df = kept bins + eigen conditioning, i.e. exactly the three steps enumerated in the defect report) leaves b1 at #{p<0.05} = 10 > 9, KS p = 0.2244. The atomic-bin rule of column C is what closes it. Reported as its own column rather than merged into a single 'after'.",
+  "3_full_fixed_pipeline_b1_still_exceeds_the_count_clause": "column D (fixed topology AND fixed statistic) gives b1 KS p = 0.3864 (passes) but #{p<0.05} = 11 (the gate allows 9), so the gate as declared is NOT met for b1 on the recomputed curves. The threshold is not moved: --step calibcheck measures, on exactly Gaussian data with the same code path, P(#{p<0.05} >= 11) = 0.04 for a PERFECTLY calibrated statistic, because the 100 test maps share one 100-member ensemble.",
+  "4_residual_limitation_of_the_chi2_branch": "even after the fix the chi2 branch is mildly anti-conservative: on exactly Gaussian data it rejects at 0.0577 instead of 0.05, because with an ESTIMATED covariance the exact small-sample reference is Hotelling's T^2 (an F distribution), not chi2, and the Hartlap factor corrects the mean of the inverse covariance rather than the whole distribution. The pooled-exchangeable rank p-value has no such residual (0.0511 against an exact 0.0495) and is the one to prefer.",
+  "5_the_gate_itself_has_a_false_failure_rate": "the declared '#{p<0.05} <= 9 of 100' clause fails with probability 0.08 per curve for a perfectly calibrated statistic under the F3 design (variance inflation 1.67 from the shared ensemble). This is a property of the F3 design (commit 033f017), not of the fix.",
+  "6_negative_controls_do_reject": "20 maps drawn at beam FWHM 6 deg against the 3 deg ensemble: #{chi2 p < 0.05} = 20/20, 20/20, 20/20 for b0, b1, Euler (median p 8.56e-45, 6.47e-46, 2.66e-05). The statistic can fail.",
+  "7_regression_guard_fails_on_the_originals": "the guard is green on the fixed library and fails on 19 tests when the original implementations are substituted"
+ },
+ "regression_guard": {
+  "gate": "regression guard: the tests must FAIL on the originals and PASS on the fix",
+  "tests": "audit/tda_validation/tda_fixed/tests",
+  "tier": "X",
+  "modes": {
+   "against_fixed_library": {
+    "command": " OMP_NUM_THREADS=1 /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python -m pytest audit/tda_validation/tda_fixed/tests -q",
+    "exit_code": 0,
+    "summary_line": "============================= 30 passed in 28.78s ==============================",
+    "n_failed": 0,
+    "failed_tests": [],
+    "wall_sec": 29.3733012676239
+   },
+   "against_original_implementations": {
+    "command": "TDA_GUARD_AGAINST_ORIGINAL=1 OMP_NUM_THREADS=1 /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python -m pytest audit/tda_validation/tda_fixed/tests -q",
+    "exit_code": 1,
+    "summary_line": "======================== 19 failed, 11 passed in 43.37s ========================",
+    "n_failed": 19,
+    "failed_tests": [
+     "test_F3_acceptance_on_the_committed_curves[b0]",
+     "test_F3_acceptance_on_the_committed_curves[b1]",
+     "test_FIXED_reports_the_dead_bin_instead_of_inverting_it",
+     "test_dead_and_atomic_bins_are_both_dropped_with_a_reason",
+     "test_df_is_the_retained_rank_not_the_nominal_bin_count",
+     "test_disk_mask_gives_a_disc",
+     "test_euler_key_is_the_true_euler_characteristic_not_b0_minus_b1",
+     "test_fail_closed_when_no_bin_survives",
+     "test_fixed_complex_is_a_surface_every_edge_in_at_most_two_triangles",
+     "test_fixed_full_sky_betti_is_1_0_1[16]",
+     "test_fixed_full_sky_betti_is_1_0_1[32]",
+     "test_fixed_full_sky_betti_is_1_0_1[8]",
+     "test_fixed_full_sky_has_euler_characteristic_2[16]",
+     "test_fixed_full_sky_has_euler_characteristic_2[32]",
+     "test_fixed_full_sky_has_euler_characteristic_2[8]",
+     "test_negative_control_the_statistic_does_reject",
+     "test_no_four_clique_is_completely_filled",
+     "test_pvalues_are_uniform_after_the_fix_and_were_not_before",
+     "test_rank_p_kept_bin_set_is_symmetric_in_the_data_and_the_sims"
+    ],
+    "wall_sec": 45.45077085494995
+   }
+  },
+  "guard_pass": true,
+  "verdict": "the guard is green on the fixed library and fails on 19 tests when the original implementations are substituted",
+  "_peak_rss_mb": 89.42578125,
+  "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step guard",
+  "_generated": "2026-09-19T22:54:30"
+ },
+ "e5_impact": {
+  "sublevel_b0": {
+   "OLD_chi2": 14.71185701669927,
+   "OLD_p_chi2": 0.06499639606895025,
+   "OLD_rank_p": 0.10891089108910891,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.06499637995404177,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 14.512716731335262,
+   "NEW_p_chi2": 0.04277840805200376,
+   "NEW_rank_p": 0.0594059405940594,
+   "NEW_df": 7,
+   "NEW_n_bins_kept": 7,
+   "NEW_dropped_bin_indices": [
+    7
+   ],
+   "NEW_dropped_bin_reasons": {
+    "7": "atomic_modal_mass"
+   },
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -0.022217988016946487,
+   "crosses_0.05": true
+  },
+  "sublevel_b1": {
+   "OLD_chi2": 8.01443787455672,
+   "OLD_p_chi2": 0.43206105375586523,
+   "OLD_rank_p": 0.31683168316831684,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.4320609688241323,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 8.075913326501961,
+   "NEW_p_chi2": 0.32594759316921107,
+   "NEW_rank_p": 0.31683168316831684,
+   "NEW_df": 7,
+   "NEW_n_bins_kept": 7,
+   "NEW_dropped_bin_indices": [
+    0
+   ],
+   "NEW_dropped_bin_reasons": {
+    "0": "atomic_modal_mass"
+   },
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -0.10611346058665416,
+   "crosses_0.05": false
+  },
+  "sublevel_euler_chi": {
+   "OLD_chi2": 9.45832956965054,
+   "OLD_p_chi2": 0.30511774079840176,
+   "OLD_rank_p": 0.31683168316831684,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.30511774067774344,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 9.458329571200194,
+   "NEW_p_chi2": 0.30511774067774344,
+   "NEW_rank_p": 0.3069306930693069,
+   "NEW_df": 8,
+   "NEW_n_bins_kept": 8,
+   "NEW_dropped_bin_indices": [],
+   "NEW_dropped_bin_reasons": {},
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -1.20658316671296e-10,
+   "crosses_0.05": false
+  },
+  "superlevel_b0": {
+   "OLD_chi2": 13.785246083000494,
+   "OLD_p_chi2": 0.08753749457073727,
+   "OLD_rank_p": 0.06930693069306931,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.08753749206207369,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 13.828013518772492,
+   "NEW_p_chi2": 0.054326229017447984,
+   "NEW_rank_p": 0.039603960396039604,
+   "NEW_df": 7,
+   "NEW_n_bins_kept": 7,
+   "NEW_dropped_bin_indices": [
+    7
+   ],
+   "NEW_dropped_bin_reasons": {
+    "7": "atomic_modal_mass"
+   },
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -0.033211265553289286,
+   "crosses_0.05": false
+  },
+  "superlevel_b1": {
+   "OLD_chi2": 19.850822707752386,
+   "OLD_p_chi2": 0.010915414537970534,
+   "OLD_rank_p": 0.019801980198019802,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.005417534168924314,
+   "MINIMAL_df": 7,
+   "NEW_chi2": 20.071387515928087,
+   "NEW_p_chi2": 0.005417534168924314,
+   "NEW_rank_p": 0.019801980198019802,
+   "NEW_df": 7,
+   "NEW_n_bins_kept": 7,
+   "NEW_dropped_bin_indices": [
+    0
+   ],
+   "NEW_dropped_bin_reasons": {
+    "0": "zero_variance"
+   },
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -0.005497880369046221,
+   "crosses_0.05": false
+  },
+  "superlevel_euler_chi": {
+   "OLD_chi2": 10.948865631763358,
+   "OLD_p_chi2": 0.20461341215597223,
+   "OLD_rank_p": 0.25742574257425743,
+   "OLD_df": 8,
+   "MINIMAL_p_chi2": 0.20461341213894021,
+   "MINIMAL_df": 8,
+   "NEW_chi2": 10.948865632060485,
+   "NEW_p_chi2": 0.20461341213894021,
+   "NEW_rank_p": 0.2376237623762376,
+   "NEW_df": 8,
+   "NEW_n_bins_kept": 8,
+   "NEW_dropped_bin_indices": [],
+   "NEW_dropped_bin_reasons": {},
+   "NEW_test_differs_in_dropped_bin": {},
+   "delta_p_chi2": -1.7032014687501373e-11,
+   "crosses_0.05": false
+  }
+ },
+ "calibration_context": {
+  "question": "is #{rank p < 0.05} = 11-12 of 100 a broken exchangeability, or the spread from 100 test vectors sharing ONE 100-member ensemble?",
+  "construction": "multivariate normal, p = 6, ensemble n = 100, 100 test vectors per ensemble, 100 INDEPENDENT ensembles, np.random.default_rng(777); same fs.conditioned_inverse / Hartlap / pooled-exchangeable code path",
+  "exact_uniform_target_P_rank_p_below_0.05": 0.04950495049504951,
+  "pooled_rate_over_all_10000_test_vectors": 0.0511,
+  "per_ensemble_count_mean": 5.11,
+  "per_ensemble_count_sd": 2.8635465754722746,
+  "binomial_sd_if_independent": 2.1691982475452125,
+  "variance_inflation_factor": 1.7426493665824918,
+  "per_ensemble_count_quantiles_5_50_90_95_99": [
+   1.0,
+   5.0,
+   9.0,
+   10.0,
+   11.010000000000005
+  ],
+  "per_ensemble_count_max": 12,
+  "empirical_P_count_ge_11": 0.04,
+  "empirical_P_count_ge_12": 0.01,
+  "empirical_P_count_ge_13": 0.0,
+  "chi2_p_branch": {
+   "note": "the branch the acceptance gate actually uses: ONE ensemble mean/cov per ensemble, chi2 survival with df = retained rank, Gaussian data so the reference distribution is exact",
+   "pooled_rate_P_chi2_p_below_0.05": 0.0577,
+   "per_ensemble_count_mean": 5.77,
+   "per_ensemble_count_sd": 2.81717316586408,
+   "binomial_sd_if_independent": 2.179449471770337,
+   "variance_inflation_factor": 1.6708346624136088,
+   "per_ensemble_count_quantiles_5_50_90_95_99": [
+    1.0,
+    5.0,
+    9.0,
+    10.0,
+    12.010000000000005
+   ],
+   "per_ensemble_count_max": 13,
+   "empirical_P_count_ge_10": 0.08,
+   "empirical_P_count_ge_11": 0.04,
+   "empirical_P_count_ge_12": 0.02,
+   "counts": [
+    5,
+    9,
+    12,
+    4,
+    0,
+    3,
+    10,
+    8,
+    8,
+    9,
+    7,
+    4,
+    5,
+    13,
+    8,
+    8,
+    9,
+    9,
+    11,
+    5,
+    9,
+    3,
+    6,
+    3,
+    4,
+    7,
+    7,
+    6,
+    5,
+    8,
+    5,
+    5,
+    5,
+    8,
+    8,
+    2,
+    5,
+    2,
+    8,
+    3,
+    2,
+    2,
+    4,
+    6,
+    5,
+    1,
+    7,
+    9,
+    5,
+    2,
+    9,
+    10,
+    9,
+    1,
+    6,
+    2,
+    5,
+    10,
+    10,
+    7,
+    7,
+    4,
+    3,
+    5,
+    1,
+    8,
+    7,
+    5,
+    7,
+    4,
+    2,
+    6,
+    4,
+    3,
+    4,
+    5,
+    4,
+    4,
+    3,
+    5,
+    8,
+    1,
+    7,
+    4,
+    3,
+    3,
+    1,
+    2,
+    9,
+    7,
+    9,
+    7,
+    9,
+    6,
+    8,
+    6,
+    5,
+    4,
+    8,
+    11
+   ],
+   "implication_for_the_gate": "this is the false-failure rate of the declared #{p<0.05} <= 9 clause for a PERFECTLY calibrated statistic, caused by the 100 test maps sharing one ensemble; it is a property of the F3 design, not of the fix"
+  },
+  "wall_sec": 71.55355381965637,
+  "tier": "X",
+  "verdict": "pooled rate matches the exact uniform target to within Monte-Carlo error, so the pooled-exchangeable rank p is calibrated; the per-ensemble count is over-dispersed relative to binomial by the stated factor because the 100 test vectors share one ensemble"
+ },
+ "D2_acceptance": {
+  "gate_1_combinatorial": {
+   "8": true,
+   "16": true,
+   "32": true,
+   "64": true
+  },
+  "gate_2_betti_1_0_1": {
+   "32": true,
+   "64": true
+  },
+  "gate_3_disk_mask": true,
+  "gate_4_smooth_field": true,
+  "gate_5_f1_untouched": true,
+  "before": {
+   "32": {
+    "n_vertices": 12288,
+    "n_edges": 49140,
+    "n_triangles": 49136,
+    "euler_char_V_minus_E_plus_F": 12284,
+    "gudhi_betti": [
+     1,
+     0,
+     12283
+    ],
+    "wall_sec": 0.6530416011810303,
+    "note": "original cmb_tda.build_topology, unchanged, for the before column"
+   },
+   "64": {
+    "n_vertices": 49152,
+    "n_edges": 196596,
+    "n_triangles": 196592,
+    "euler_char_V_minus_E_plus_F": 49148,
+    "gudhi_betti": [
+     1,
+     0,
+     49147
+    ],
+    "wall_sec": 2.985222816467285,
+    "note": "original cmb_tda.build_topology, unchanged, for the before column"
+   }
+  }
+ }
+}
