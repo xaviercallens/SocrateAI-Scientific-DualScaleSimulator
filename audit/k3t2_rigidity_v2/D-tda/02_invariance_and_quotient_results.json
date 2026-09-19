@@ -5,7 +5,7 @@
     8
   ],
   "excluded_N": {
-    "4": "fails closed-star-disjointness premise, see 00_premise_checks_results.json"
+    "4": "fails PREMISE_VALID_FOR_MV (star disjointness and/or nonsingular-link-S3 check), see 00_premise_checks_results.json"
   },
   "N=6": {
     "N": 6,
@@ -110,7 +110,7 @@
       ]
     ],
     "action_free_on_top_4simplices": true,
-    "runtime_setup_sec": 0.6214704513549805,
+    "runtime_setup_sec": 0.5812373161315918,
     "quotient_T4_mod_Z2": {
       "num_top_simplices_input": 31104,
       "num_degenerate_after_quotient": 0,
@@ -145,7 +145,7 @@
           "euler_characteristic_from_betti": 8
         }
       },
-      "runtime_sec": 1.1698598861694336,
+      "runtime_sec": 1.1097753047943115,
       "exact_halving_check_dims_1_to_4": {
         "0": {
           "quotient": 656,
@@ -223,7 +223,7 @@
             "euler_characteristic_from_betti": 0
           }
         },
-        "runtime_sec": 1.4689879417419434,
+        "runtime_sec": 1.3318688869476318,
         "exact_halving_check_all_dims_incl_0": {
           "0": {
             "quotient": 648,
@@ -370,7 +370,7 @@
       ]
     ],
     "action_free_on_top_4simplices": true,
-    "runtime_setup_sec": 1.973792314529419,
+    "runtime_setup_sec": 1.9459784030914307,
     "quotient_T4_mod_Z2": {
       "num_top_simplices_input": 98304,
       "num_degenerate_after_quotient": 0,
@@ -405,7 +405,7 @@
           "euler_characteristic_from_betti": 8
         }
       },
-      "runtime_sec": 4.3575921058654785,
+      "runtime_sec": 4.231626987457275,
       "exact_halving_check_dims_1_to_4": {
         "0": {
           "quotient": 2056,
@@ -483,7 +483,7 @@
             "euler_characteristic_from_betti": 0
           }
         },
-        "runtime_sec": 4.567017316818237,
+        "runtime_sec": 4.28133749961853,
         "exact_halving_check_all_dims_incl_0": {
           "0": {
             "quotient": 2048,

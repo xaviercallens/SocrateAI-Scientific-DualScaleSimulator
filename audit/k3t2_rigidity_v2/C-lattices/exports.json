@@ -1,0 +1,19 @@
+{
+  "track": "C",
+  "derived_b2": 22,
+  "derived_signature_p_q": [
+    3,
+    19
+  ],
+  "selected_mn": [
+    [
+      3,
+      2
+    ]
+  ],
+  "chi_top_used": 24,
+  "chi_top_source_file": "D-tda/exports.json",
+  "classification": "RIGID-CONDITIONAL",
+  "e8_cartan_det": "1",
+  "e8_num_roots": 240
+}

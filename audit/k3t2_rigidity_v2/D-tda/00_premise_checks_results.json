@@ -157,7 +157,7 @@
       "matches_S3_no_mod2_jump": true
     },
     "PREMISE_VALID_FOR_MV": false,
-    "runtime_sec": 0.11167478561401367
+    "runtime_sec": 0.11218667030334473
   },
   "N=6": {
     "N": 6,
@@ -206,7 +206,7 @@
       "matches_S3_no_mod2_jump": true
     },
     "PREMISE_VALID_FOR_MV": true,
-    "runtime_sec": 0.5292308330535889
+    "runtime_sec": 0.5281577110290527
   },
   "N=8": {
     "N": 8,
@@ -255,8 +255,8 @@
       "matches_S3_no_mod2_jump": true
     },
     "PREMISE_VALID_FOR_MV": true,
-    "runtime_sec": 1.7289719581604004
+    "runtime_sec": 1.7498042583465576
   },
-  "total_runtime_sec": 2.3699581623077393,
+  "total_runtime_sec": 2.3902111053466797,
   "note_N4_numerics": "N=4 fails the closed-star-disjointness premise (see star_disjointness_check above). If the raw quotient Betti numbers at N=4 nonetheless numerically agree with N=6/N=8 (they were observed to in the v1 run), that agreement is NOT evidence the N=4 premise held -- it is not used as supporting evidence anywhere downstream. Only N with PREMISE_VALID_FOR_MV=true are used in 03_resolution_hybrid.py."
 }

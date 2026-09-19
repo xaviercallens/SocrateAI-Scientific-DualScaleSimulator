@@ -32,7 +32,7 @@
       ],
       "expected_source": "b_k(T^n)=C(n,k), n=4 (standard torus cohomology)"
     },
-    "runtime_sec": 0.0017237663269042969
+    "runtime_sec": 0.001524209976196289
   },
   "freudenthal_simplicial_T4": {
     "4": {
@@ -66,7 +66,7 @@
         "3": 15360,
         "4": 6144
       },
-      "runtime_sec": 0.19374513626098633,
+      "runtime_sec": 0.18416810035705566,
       "matches_control": true,
       "note": "reference only, quotient premise not applicable to raw T^4"
     },
@@ -101,7 +101,7 @@
         "3": 77760,
         "4": 31104
       },
-      "runtime_sec": 1.0634689331054688,
+      "runtime_sec": 1.0045404434204102,
       "matches_control": true,
       "note": "used downstream (valid N)"
     },
@@ -136,7 +136,7 @@
         "3": 245760,
         "4": 98304
       },
-      "runtime_sec": 4.1771323680877686,
+      "runtime_sec": 4.057513236999512,
       "matches_control": true,
       "note": "used downstream (valid N)"
     }

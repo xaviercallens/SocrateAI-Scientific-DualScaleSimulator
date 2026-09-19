@@ -43,7 +43,17 @@ from lib_freudenthal import (
 
 FIELDS = (3, 5)
 D = 4
-VALID_N = (6, 8)  # from 00_premise_checks_results.json: N=4 fails star-disjointness
+BASE = "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda"
+
+with open(f"{BASE}/00_premise_checks_results.json") as _f:
+    _premise = json.load(_f)
+VALID_N = tuple(sorted(
+    N for N in (4, 6, 8)
+    if _premise[f"N={N}"]["PREMISE_VALID_FOR_MV"]
+))  # derived from the premise check, not hardcoded
+
+with open(f"{BASE}/01_controls_results.json") as _f:
+    _controls = json.load(_f)
 
 
 def check_action_invariance(top, action):
@@ -100,8 +110,11 @@ def quotient_betti(top, action, fields):
     }
 
 
-OUT = {"D": D, "valid_N_used": list(VALID_N),
-       "excluded_N": {"4": "fails closed-star-disjointness premise, see 00_premise_checks_results.json"}}
+_excluded_N = {
+    str(N): "fails PREMISE_VALID_FOR_MV (star disjointness and/or nonsingular-link-S3 check), see 00_premise_checks_results.json"
+    for N in (4, 6, 8) if N not in VALID_N
+}
+OUT = {"D": D, "valid_N_used": list(VALID_N), "excluded_N": _excluded_N}
 
 for N in VALID_N:
     t0 = time.time()
@@ -129,7 +142,7 @@ for N in VALID_N:
     q["runtime_sec"] = time.time() - t1
     entry["quotient_T4_mod_Z2"] = q
 
-    chi_T4 = 0  # computed in 01_controls_results.json (Freudenthal T4 at this N: chi=0)
+    chi_T4 = _controls["freudenthal_simplicial_T4"][str(N)]["euler_characteristic_from_simplex_counts"]
     F = len(fixed_pts)
     chi_predicted = (chi_T4 - F) // 2 + F
     entry["chi_predicted_from_orbit_counting"] = chi_predicted

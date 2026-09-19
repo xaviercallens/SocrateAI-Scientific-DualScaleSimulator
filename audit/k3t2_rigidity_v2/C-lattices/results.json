@@ -1,0 +1,818 @@
+{
+  "track": "C",
+  "version": "v2",
+  "title": "K3 x T2 lattice/T-duality mathematics: symbolic exact-arithmetic checks and a CHAINED (topology -> Noether -> Hodge index -> lattice enumeration) structural rigidity test, no literal K3 numbers typed into any selecting condition",
+  "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python",
+  "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2",
+  "branch": "loop/k3t2-rigidity",
+  "items": {
+    "01_e8_result.json": {
+      "track": "C",
+      "version": "v2",
+      "item": "1_e8_cartan",
+      "method": "Cartan matrix built from Dynkin-diagram adjacency (Bourbaki labeling); det/minors via sympy exact rationals; roots via exact Weyl-reflection closure c -> c - (Cc)_i e_i on integer coefficient vectors (no R^8 embedding).",
+      "cartan_matrix": [
+        [
+          2,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -1,
+          0,
+          2,
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          -1,
+          2,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          2,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -1,
+          2,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          2,
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          2
+        ]
+      ],
+      "determinant": {
+        "value": "1",
+        "exact": true
+      },
+      "is_even": true,
+      "leading_principal_minors": [
+        "2",
+        "4",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "is_positive_definite": true,
+      "root_enumeration": {
+        "num_roots_found": 240,
+        "all_have_norm2_exactly_2": true,
+        "num_bad_norm2_during_bfs": 0
+      },
+      "negative_control": {
+        "description": "coefficient vector 2*e_1: has norm^2 = 8 != 2, and was checked to be absent from the reflection-closure set generated above",
+        "vector": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "norm2": 8,
+        "in_generated_root_set": false,
+        "control_passes": true
+      },
+      "expected": {
+        "determinant": 1,
+        "num_roots": 240,
+        "source": "standard E8 root-system facts (determinant of E8 Cartan matrix = 1, 240 roots), from memory, unverified prior to this computation -- filled in AFTER computing the fields above"
+      }
+    },
+    "02_k3_mukai_gamma_result.json": {
+      "track": "C",
+      "version": "v2",
+      "item": "2_k3_mukai_gamma622",
+      "method": "Explicit block-diagonal Gram matrices from U=[[0,1],[1,0]] and the E8 Cartan matrix (rebuilt from Dynkin adjacency); rank/det/evenness read off the assembled matrix; signature computed by two independent exact methods (congruence diagonalization over Q, and Sturm-sequence real-root counting on the exact characteristic polynomial) on the FULL matrix, not assumed additive.",
+      "results": {
+        "K3_3U_2negE8": {
+          "name": "K3 = 3U + 2(-E8)",
+          "rank": 22,
+          "determinant": "-1",
+          "is_even": true,
+          "is_unimodular": true,
+          "signature_method_A_congruence_diagonalization": {
+            "p": 3,
+            "q": 19,
+            "zero": 0
+          },
+          "signature_method_B_sturm_charpoly": {
+            "p": 3,
+            "q": 19,
+            "zero": 0
+          },
+          "methods_agree": true,
+          "expected": {
+            "signature": [
+              3,
+              19
+            ],
+            "det": 1,
+            "even": true,
+            "source": "standard K3 lattice fact, from memory, unverified prior to computation; NOT used to select (m,n) -- that selection is chained to topology independently in 06_chained_rigidity.py"
+          }
+        },
+        "Mukai_K3_plus_U": {
+          "name": "Mukai = K3 + U",
+          "rank": 24,
+          "determinant": "1",
+          "is_even": true,
+          "is_unimodular": true,
+          "signature_method_A_congruence_diagonalization": {
+            "p": 4,
+            "q": 20,
+            "zero": 0
+          },
+          "signature_method_B_sturm_charpoly": {
+            "p": 4,
+            "q": 20,
+            "zero": 0
+          },
+          "methods_agree": true,
+          "expected": {
+            "signature": [
+              4,
+              20
+            ],
+            "det": 1,
+            "even": true,
+            "source": "standard Mukai lattice fact, from memory, unverified prior to computation"
+          }
+        },
+        "Gamma_6_22": {
+          "name": "Gamma^{6,22} = 6U + 2(-E8)",
+          "rank": 28,
+          "determinant": "1",
+          "is_even": true,
+          "is_unimodular": true,
+          "signature_method_A_congruence_diagonalization": {
+            "p": 6,
+            "q": 22,
+            "zero": 0
+          },
+          "signature_method_B_sturm_charpoly": {
+            "p": 6,
+            "q": 22,
+            "zero": 0
+          },
+          "methods_agree": true,
+          "expected": {
+            "signature": [
+              6,
+              22
+            ],
+            "det": 1,
+            "even": true,
+            "source": "task statement / standard K3xT2 heterotic-type-II charge lattice fact, from memory, unverified prior to computation"
+          }
+        }
+      }
+    },
+    "03_symbolic_tduality_proofs_result.json": {
+      "track": "C",
+      "version": "v2",
+      "item": "3_symbolic_tduality_proofs",
+      "method": "sympy proof-by-computation with generic symbols/MatrixSymbols (no numeric sampling) for d = 1,2,3,4",
+      "by_dimension": {
+        "1": {
+          "A_factorized_duality": {
+            "all_squares_to_identity": true,
+            "all_preserve_eta": true,
+            "per_i": [
+              {
+                "i": 0,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              }
+            ]
+          },
+          "B_basis_change_preserves_eta": {
+            "claim": "P(A)^T eta P(A) == eta for P(A)=diag(A, A^-T), generic symbolic invertible A",
+            "holds": true
+          },
+          "C_eta_H_eta_eq_Hinv": {
+            "claim": "eta * H(G,0) * eta == H(G^-1,0), generic symbolic invertible G",
+            "holds": true
+          },
+          "D1_minimizer_identity_in_eigenvalues": {
+            "symbols": [
+              "x1"
+            ],
+            "claim": "sum_i (x_i + 1/x_i - 2) == sum_i (x_i-1)^2/x_i, generic positive symbols",
+            "difference_simplifies_to_zero": true,
+            "structural_nonnegativity": "each term (x_i-1)^2/x_i is a square divided by a symbol assumed positive, hence >=0, with equality iff x_i==1 -- true for every value of x_i, not checked pointwise"
+          }
+        },
+        "2": {
+          "A_factorized_duality": {
+            "all_squares_to_identity": true,
+            "all_preserve_eta": true,
+            "per_i": [
+              {
+                "i": 0,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              },
+              {
+                "i": 1,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              }
+            ]
+          },
+          "B_basis_change_preserves_eta": {
+            "claim": "P(A)^T eta P(A) == eta for P(A)=diag(A, A^-T), generic symbolic invertible A",
+            "holds": true
+          },
+          "C_eta_H_eta_eq_Hinv": {
+            "claim": "eta * H(G,0) * eta == H(G^-1,0), generic symbolic invertible G",
+            "holds": true
+          },
+          "D1_minimizer_identity_in_eigenvalues": {
+            "symbols": [
+              "x1",
+              "x2"
+            ],
+            "claim": "sum_i (x_i + 1/x_i - 2) == sum_i (x_i-1)^2/x_i, generic positive symbols",
+            "difference_simplifies_to_zero": true,
+            "structural_nonnegativity": "each term (x_i-1)^2/x_i is a square divided by a symbol assumed positive, hence >=0, with equality iff x_i==1 -- true for every value of x_i, not checked pointwise"
+          }
+        },
+        "3": {
+          "A_factorized_duality": {
+            "all_squares_to_identity": true,
+            "all_preserve_eta": true,
+            "per_i": [
+              {
+                "i": 0,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              },
+              {
+                "i": 1,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              },
+              {
+                "i": 2,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              }
+            ]
+          },
+          "B_basis_change_preserves_eta": {
+            "claim": "P(A)^T eta P(A) == eta for P(A)=diag(A, A^-T), generic symbolic invertible A",
+            "holds": true
+          },
+          "C_eta_H_eta_eq_Hinv": {
+            "claim": "eta * H(G,0) * eta == H(G^-1,0), generic symbolic invertible G",
+            "holds": true
+          },
+          "D1_minimizer_identity_in_eigenvalues": {
+            "symbols": [
+              "x1",
+              "x2",
+              "x3"
+            ],
+            "claim": "sum_i (x_i + 1/x_i - 2) == sum_i (x_i-1)^2/x_i, generic positive symbols",
+            "difference_simplifies_to_zero": true,
+            "structural_nonnegativity": "each term (x_i-1)^2/x_i is a square divided by a symbol assumed positive, hence >=0, with equality iff x_i==1 -- true for every value of x_i, not checked pointwise"
+          }
+        },
+        "4": {
+          "A_factorized_duality": {
+            "all_squares_to_identity": true,
+            "all_preserve_eta": true,
+            "per_i": [
+              {
+                "i": 0,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              },
+              {
+                "i": 1,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              },
+              {
+                "i": 2,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              },
+              {
+                "i": 3,
+                "K_i_squares_to_identity": true,
+                "K_i_preserves_eta": true
+              }
+            ]
+          },
+          "B_basis_change_preserves_eta": {
+            "claim": "P(A)^T eta P(A) == eta for P(A)=diag(A, A^-T), generic symbolic invertible A",
+            "holds": true
+          },
+          "C_eta_H_eta_eq_Hinv": {
+            "claim": "eta * H(G,0) * eta == H(G^-1,0), generic symbolic invertible G",
+            "holds": true
+          },
+          "D1_minimizer_identity_in_eigenvalues": {
+            "symbols": [
+              "x1",
+              "x2",
+              "x3",
+              "x4"
+            ],
+            "claim": "sum_i (x_i + 1/x_i - 2) == sum_i (x_i-1)^2/x_i, generic positive symbols",
+            "difference_simplifies_to_zero": true,
+            "structural_nonnegativity": "each term (x_i-1)^2/x_i is a square divided by a symbol assumed positive, hence >=0, with equality iff x_i==1 -- true for every value of x_i, not checked pointwise"
+          }
+        }
+      },
+      "D2_fully_symbolic_d2_spd_check": {
+        "matrix": "G = [[a,b],[b,c]], a,b,c abstract sympy symbols (SPD region: a>0, a*c-b**2>0, i.e. Sylvester's criterion for n=2, computed here not asserted)",
+        "det_G_symbolic": "a*c - b**2",
+        "eigenvalues_symbolic": [
+          "a/2 + c/2 - sqrt(a**2 - 2*a*c + 4*b**2 + c**2)/2",
+          "a/2 + c/2 + sqrt(a**2 - 2*a*c + 4*b**2 + c**2)/2"
+        ],
+        "sum_of_eigenvalues_minus_trace_simplifies_to_zero": true,
+        "product_of_eigenvalues_minus_det_simplifies_to_zero": true,
+        "f_entries_symbolic": "(a + c + (a*c - b**2)*(a + c - 4))/(a*c - b**2)",
+        "f_eigs_symbolic": "(a**2*c - a*b**2 + a*c**2 - 4*a*c + a - b**2*c + 4*b**2 + c)/(a*c - b**2)",
+        "f_entries_minus_f_eigs_simplifies_to_zero": true,
+        "conclusion": "the entry-level function f(a,b,c)=trG+trG^-1-4 and the eigenvalue-level function (x1-1)^2/x1+(x2-1)^2/x2 are the SAME symbolic function of (a,b,c) for a generic 2x2 symmetric matrix -- ties D1's abstract eigenvalue argument to the explicit SPD entry family."
+      },
+      "implicit_structural_inputs_for_D1_general_d": {
+        "note": "D1 proves sum_i(x_i+1/x_i-2) == sum_i(x_i-1)^2/x_i as a symbol identity in x_1..x_d, and D2 ties this to an explicit symmetric-matrix family ONLY for d=2 (entry-level check). Extending D2's entry-level tie-back to d=3,4 relies on two further standard linear-algebra facts, named here explicitly rather than left implicit, since neither is re-derived from more primitive data in this script:",
+        "inputs": [
+          "tr(G) is conjugation-invariant / equals the sum of eigenvalues with multiplicity, for ANY symmetric (real, diagonalizable) matrix G, any d -- standard fact, used to identify tr(G) with sum_i x_i for d=3,4 as well as d=2.",
+          "if G has eigenvalues x_1..x_d (all nonzero, since G is SPD), then G^{-1} has eigenvalues 1/x_1..1/x_d -- standard fact (eigenvectors of G are eigenvectors of G^{-1} with reciprocal eigenvalues), used to identify tr(G^{-1}) with sum_i 1/x_i for d=3,4 as well as d=2."
+        ],
+        "entry_level_symbolic_verification_done_for": "d=2 only (D2, above)",
+        "entry_level_symbolic_verification_not_done_for": "d=3, d=4 (would require symbolic eigenvalues of a generic 3x3/4x4 symmetric matrix, i.e. roots of a cubic/quartic characteristic polynomial in radicals -- left out of this run; see could_not_do)"
+      },
+      "all_claims_hold_for_all_d_1_to_4": true,
+      "negative_control": {
+        "description": "a 'broken' 2d x 2d matrix with an extra off-diagonal 1 added to the identity WITHOUT zeroing the matching diagonal entries (i.e. NOT the coordinate-swap K_i) must fail to square to the identity",
+        "d": 2,
+        "squares_to_identity": false,
+        "control_passes_i_e_correctly_fails": true
+      }
+    },
+    "04_tadpole_budget_result.json": {
+      "track": "C",
+      "version": "v2",
+      "item": "4_tadpole_budget",
+      "method": "budget = chi_top, READ from the same provenance file as 06_chained_rigidity.py (no typed Betti numbers, no literal 24); mechanical enumeration of all natural (flux, n) with flux + n == budget, using the read-in budget as a variable inside the selecting condition.",
+      "provenance": {
+        "chi_top_read_from_file": "D-tda/exports.json",
+        "chi_top_read_from_key": "chi_K3_resolved",
+        "chi_top_value": 24
+      },
+      "budget_used_in_enumeration": 24,
+      "num_solutions_enumerated": 25,
+      "all_n_le_budget": true,
+      "flux_zero_implies_n_eq_budget": true,
+      "flux_zero_solution": {
+        "flux": 0,
+        "n": 24
+      },
+      "negative_control": {
+        "description": "(flux, n) = (1, budget) must fail flux + n == budget",
+        "flux": 1,
+        "n": 24,
+        "flux_plus_n": 25,
+        "budget": 24,
+        "control_passes": true
+      },
+      "solutions_sample_head_and_tail": {
+        "first_5": [
+          {
+            "flux": 0,
+            "n": 24
+          },
+          {
+            "flux": 1,
+            "n": 23
+          },
+          {
+            "flux": 2,
+            "n": 22
+          },
+          {
+            "flux": 3,
+            "n": 21
+          },
+          {
+            "flux": 4,
+            "n": 20
+          }
+        ],
+        "last_5": [
+          {
+            "flux": 20,
+            "n": 4
+          },
+          {
+            "flux": 21,
+            "n": 3
+          },
+          {
+            "flux": 22,
+            "n": 2
+          },
+          {
+            "flux": 23,
+            "n": 1
+          },
+          {
+            "flux": 24,
+            "n": 0
+          }
+        ]
+      },
+      "classification": "NORMALISATION: budget = chi_top is fixed once chi_top is read from Track A's file (an external input, stated as such above); GIVEN that budget, the constraint n<=budget and (flux=0 => n=budget) are trivial arithmetic facts about the linear relation flux+n=budget, not rigidity results -- reported here as the plain arithmetic content of the tadpole condition, per the ground rules' 'trivial but state it' instruction.",
+      "expected": {
+        "chi_top": 24,
+        "source": "standard K3 fact, from memory, unverified prior to computation -- filled in AFTER reading/computing budget above"
+      }
+    },
+    "06_chained_rigidity_result.json": {
+      "track": "C",
+      "version": "v2",
+      "item": "6_chained_rigidity",
+      "provenance": {
+        "d_tda_exports_checked": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/exports.json",
+        "d_tda_exports_existed_at_this_run": true,
+        "a_genus_exports_checked": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/A-genus/exports.json",
+        "a_genus_exports_existed_at_this_run": true,
+        "chi_top_read_from_file": "D-tda/exports.json",
+        "chi_top_read_from_key": "chi_K3_resolved",
+        "chi_top_value": 24,
+        "b2_b0_b1_b3_b4_read_from_same_file": {
+          "b2": 22,
+          "b0": 1,
+          "b1": 0,
+          "b3": 0,
+          "b4": 1
+        },
+        "chi_top_source_snapshot": {
+          "source": "03_resolution_hybrid.py, N=6 (premise-valid), field Z/3",
+          "chi_K3_resolved": 24,
+          "b2_K3_resolved": 22,
+          "b0": 1,
+          "b1": 0,
+          "b3": 0,
+          "b4": 1,
+          "cross_field_Z5_agrees": true,
+          "num_fixed_points_computed": 16,
+          "chi_fvector_betti_cross_check": true
+        },
+        "chi_cross_track_corroboration": {
+          "a_genus_present": true,
+          "d_tda_present": true,
+          "chi_from_A_genus_elliptic_genus_method": 24,
+          "chi_from_D_tda_gudhi_resolution_method": 24,
+          "two_independent_methods_agree": true
+        },
+        "poll_history": "an initial background poller (poll_exports.sh in this directory, log poll_exports.log), run for up to 1200s (20 min) BEFORE any chain computation, polled both D-tda/exports.json and A-genus/exports.json every 15s; in that window D-tda's directory existed but had no exports.json yet, and A-genus/exports.json appeared and was recorded. By the time this script's FINAL run executed (after later revisions to this script), D-tda/exports.json HAD appeared (with a richer schema: chi_K3_resolved, b2_K3_resolved, and the individual Betti numbers b0,b1,b3,b4, source 'a GUDHI-based resolution of a Kummer-type orbifold, field Z/3, cross-checked against field Z/5'); topology_from_provenance() prefers D-tda whenever it exists, so THIS run's numbers are read from D-tda/exports.json, not A-genus -- an independent second source has since become available for the SAME chi_top value (24), which is itself an agreement-of-two-independent-computations check reported below."
+      },
+      "named_definitional_inputs": {
+        "c1_squared": 0,
+        "c1_squared_meaning": "Calabi-Yau condition (trivial canonical class) for K3",
+        "kahler_input_used_in": "step 8 (b2_plus = 2*h^{2,0}+1 formula, valid for Kahler surfaces)",
+        "note": "b1 (simply connected) and b0/b3/b4 (connectedness + Poincare duality) are used as READ values from the provenance file when it supplies them (see derivation_chain steps 5 and 9 for which source applied in this run), falling back to the named definitional inputs only when the file does not supply them."
+      },
+      "derivation_chain": {
+        "1_chi_top": 24,
+        "2_c2_eq_chi_top": 24,
+        "3_c1_squared_input_calabi_yau": 0,
+        "4_chi_O_noether": "2",
+        "5_b1": {
+          "value": 0,
+          "source": "read_from_provenance_file"
+        },
+        "5b_h01_eq_b1_over_2": "0",
+        "6_h02_from_hodge_decomposition": "1",
+        "7_h20_eq_h02_hodge_symmetry": "1",
+        "8_b2_plus_input_kahler": "3",
+        "9_b0_b3_b4": {
+          "b0": {
+            "value": 1,
+            "source": "read_from_provenance_file"
+          },
+          "b3": {
+            "value": 0,
+            "source": "read_from_provenance_file"
+          },
+          "b4": {
+            "value": 1,
+            "source": "read_from_provenance_file"
+          }
+        },
+        "10_b2_from_betti_alternating_sum": 22,
+        "10b_b2_cross_check": {
+          "b2_read_from_provenance_file": 22,
+          "b2_derived_from_alternating_sum": 22,
+          "two_independent_computations_agree": true
+        },
+        "11_b2_minus": "19",
+        "12_signature_p_q": [
+          3,
+          19
+        ]
+      },
+      "derived_b2": 22,
+      "derived_signature_p_q": [
+        3,
+        19
+      ],
+      "lattice_mn_scan": {
+        "b2_used_in_scan": 22,
+        "target_signature_used_in_scan": [
+          3,
+          19
+        ],
+        "scan_set": [
+          [
+            11,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "full_scan_results": [
+          {
+            "m": 11,
+            "n": 0,
+            "rank": 22,
+            "determinant": "-1",
+            "is_even": true,
+            "is_unimodular": true,
+            "signature_p_q_zero": [
+              11,
+              11,
+              0
+            ],
+            "methods_agree": true,
+            "p_minus_q_mod_8": 0,
+            "intrinsic_conditions_hold": true,
+            "matches_derived_signature": false,
+            "all_conditions_hold": false
+          },
+          {
+            "m": 7,
+            "n": 1,
+            "rank": 22,
+            "determinant": "-1",
+            "is_even": true,
+            "is_unimodular": true,
+            "signature_p_q_zero": [
+              7,
+              15,
+              0
+            ],
+            "methods_agree": true,
+            "p_minus_q_mod_8": 0,
+            "intrinsic_conditions_hold": true,
+            "matches_derived_signature": false,
+            "all_conditions_hold": false
+          },
+          {
+            "m": 3,
+            "n": 2,
+            "rank": 22,
+            "determinant": "-1",
+            "is_even": true,
+            "is_unimodular": true,
+            "signature_p_q_zero": [
+              3,
+              19,
+              0
+            ],
+            "methods_agree": true,
+            "p_minus_q_mod_8": 0,
+            "intrinsic_conditions_hold": true,
+            "matches_derived_signature": true,
+            "all_conditions_hold": true
+          }
+        ],
+        "intrinsic_solution_set": [
+          [
+            11,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "intrinsic_fixes_mn_uniquely": false,
+        "final_solution_set": [
+          [
+            3,
+            2
+          ]
+        ],
+        "final_fixes_mn_uniquely": true,
+        "negative_control_present": true,
+        "failing_candidates": [
+          [
+            11,
+            0,
+            [
+              11,
+              11,
+              0
+            ]
+          ],
+          [
+            7,
+            1,
+            [
+              7,
+              15,
+              0
+            ]
+          ]
+        ]
+      },
+      "chained_negative_control": {
+        "description": "re-run the ENTIRE chain with chi_top perturbed by +/-2 and +/-24; the derived b2/signature/(m,n) must all change, OR the chain must fail to close (non-integral h^{0,2}), for every perturbation",
+        "perturbations": {
+          "chi_top_-2": {
+            "chi_top_perturbed": 22,
+            "chain_broke": true,
+            "break_reason": "b2_plus did not come out integral: 8/3",
+            "differs_from_baseline": true,
+            "degenerate": false
+          },
+          "chi_top_+2": {
+            "chi_top_perturbed": 26,
+            "chain_broke": true,
+            "break_reason": "b2_plus did not come out integral: 10/3",
+            "differs_from_baseline": true,
+            "degenerate": false
+          },
+          "chi_top_-24": {
+            "chi_top_perturbed": 0,
+            "chain_broke": false,
+            "derived_b2": -2,
+            "derived_signature": [
+              -1,
+              -1
+            ],
+            "final_solution_set": [],
+            "differs_from_baseline": true,
+            "degenerate": true,
+            "degenerate_reason": "negative derived b2/signature -- not a meaningful lattice, an artifact of chi_top < 2 rather than an informative control"
+          },
+          "chi_top_+24": {
+            "chi_top_perturbed": 48,
+            "chain_broke": false,
+            "derived_b2": 46,
+            "derived_signature": [
+              7,
+              39
+            ],
+            "final_solution_set": [
+              [
+                7,
+                4
+              ]
+            ],
+            "differs_from_baseline": true,
+            "degenerate": false,
+            "degenerate_reason": null
+          },
+          "chi_top_eq_12": {
+            "chi_top_perturbed": 12,
+            "chain_broke": false,
+            "derived_b2": 10,
+            "derived_signature": [
+              1,
+              9
+            ],
+            "final_solution_set": [
+              [
+                1,
+                1
+              ]
+            ],
+            "differs_from_baseline": true,
+            "degenerate": false,
+            "degenerate_reason": null
+          },
+          "chi_top_eq_36": {
+            "chi_top_perturbed": 36,
+            "chain_broke": false,
+            "derived_b2": 34,
+            "derived_signature": [
+              5,
+              29
+            ],
+            "final_solution_set": [
+              [
+                5,
+                3
+              ]
+            ],
+            "differs_from_baseline": true,
+            "degenerate": false,
+            "degenerate_reason": null
+          }
+        },
+        "control_passes": true
+      },
+      "classification": {
+        "label": "RIGID-CONDITIONAL",
+        "conditioned_on": [
+          "chi_top=24 (read from D-tda/exports.json, key 'chi_K3_resolved' -- the single external DATA input the whole chain hangs on)",
+          "c1=0 (Calabi-Yau)",
+          "b1=0 (simply connected)",
+          "Kahler"
+        ],
+        "statement": "Given those three named structural/definitional inputs and the single number chi_top (read from Track A's independently-computed elliptic-genus file, not from memory), (m,n) is forced to exactly one value in the mechanical rank-b2 scan, with a demonstrated negative control both within the (m,n) scan (other candidates fail) and across the whole chain (perturbing chi_top changes the forced answer). This is NOT an unconditional rigidity claim: drop Calabi-Yau, simply-connected, or Kahler and the chain either fails to close (non-integral intermediate values) or computes a different (b2_plus) formula, so the conditioning is load-bearing, not decorative.",
+        "final_solution_set_mn": [
+          [
+            3,
+            2
+          ]
+        ],
+        "final_fixes_mn_uniquely": true
+      }
+    }
+  },
+  "could_not_do": [
+    "Symbolic T-duality involution/spectrum check for the radius map R -> lambda*alpha'/R (v1 item 'rigidity_b') was not redone in v2: v1's 07_rigidity_b_tduality_radius.py already used fully symbolic sympy symbols (R,n,w,alpha') with no numeric sampling and had no literal-answer defect flagged for it, so it was left as a v1 result rather than duplicated; not re-verified independently in this v2 pass for time-budget reasons.",
+    "D-tda/exports.json had NOT appeared during the initial 20-minute poll window (only A-genus/exports.json had); it appeared later, before this track's final run, and 06_chained_rigidity.py's final result DOES use it (with a chi-value cross-check against A-genus's independent elliptic-genus computation, both giving chi=24) -- recorded here only to be explicit that the two-source corroboration was not available for the entire duration of this track's work, only from partway through.",
+    "The Kahler hypothesis used in the chained derivation (step 8 of 06_chained_rigidity.py, b2_plus = 2*h^{2,0}+1) is stated as a named input, not independently verified computationally in this track (it is a standard K3 fact, but no script here checks it from more primitive data). Simply-connectedness (b1=0) is, as of D-tda's later export, READ from an independent GUDHI computation rather than assumed, and cross-checked against the Betti alternating sum for b2 -- see 06_chained_rigidity_result.json 'derivation_chain' step 5 and '10b_b2_cross_check'.",
+    "The entry-level symbolic tie-back between the eigenvalue-formula minimizer proof (D1 in 03_symbolic_tduality_proofs.py) and an explicit symmetric-matrix family (D2) was done only for d=2; d=3,4 would need symbolic roots of a cubic/quartic characteristic polynomial, left out for time-budget reasons (see 03's 'implicit_structural_inputs_for_D1_general_d' field for exactly what is and isn't covered)."
+  ]
+}

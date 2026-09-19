@@ -111,7 +111,6 @@ t_start = time.time()
 for N in (4, 6, 8):
     t0 = time.time()
     quot_top, fixed_pts, n_deg = build_quotient_top(N)
-    assert len(fixed_pts) == 16 or True  # count is reported, not assumed elsewhere
     star_check = star_disjointness_check(quot_top, fixed_pts)
 
     # non-singular link validity: pick the first quotient vertex that is

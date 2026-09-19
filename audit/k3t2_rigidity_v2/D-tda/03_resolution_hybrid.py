@@ -44,11 +44,18 @@ from lib_freudenthal import freudenthal_top_simplices, negate_mod
 
 FIELDS = (2, 3, 5)
 D = 4
-VALID_N = (6, 8)
+BASE = "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda"
 TIME_BUDGET_SEC = 13 * 60  # keep the whole script well under 15 min; abort remaining N if exceeded
 
-EXPORTS_PATH = "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/exports.json"
-OUT_PATH = "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/03_resolution_hybrid_results.json"
+EXPORTS_PATH = f"{BASE}/exports.json"
+OUT_PATH = f"{BASE}/03_resolution_hybrid_results.json"
+
+with open(f"{BASE}/00_premise_checks_results.json") as _f:
+    _premise = json.load(_f)
+VALID_N = tuple(sorted(
+    N for N in (4, 6, 8)
+    if _premise[f"N={N}"]["PREMISE_VALID_FOR_MV"]
+))  # derived from the premise check, not hardcoded
 
 
 def build_quotient_top(N):
@@ -99,7 +106,19 @@ def betti_of_top_simplices(top_simplices, fields):
     for field in fields:
         st2, _ = simplex_tree_from_top(top_simplices)
         st2.compute_persistence(homology_coeff_field=field, min_persistence=0, persistence_dim_max=True)
-        out["betti_by_field"][f"Z{field}"] = st2.betti_numbers()
+        betti = st2.betti_numbers()
+        out["betti_by_field"][f"Z{field}"] = betti
+    # FIX(4), applied to EVERY complex this helper builds (U, every link, the
+    # S^2 control), not only the final resolved K3: chi from the f-vector vs
+    # chi from each field's Betti numbers must agree, checked here, not just
+    # asserted at the top level. Uses the LAST field computed in `fields`
+    # (all fields agree with each other by all_16_links_agree checks
+    # elsewhere, so any one field suffices for this particular guard).
+    if fields:
+        last_field = f"Z{fields[-1]}"
+        chi_from_betti_last_field = sum((-1) ** k * b for k, b in enumerate(out["betti_by_field"][last_field]))
+        out["chi_from_betti_matches_fvector"] = (chi_from_betti_last_field == chi)
+        out["chi_from_betti_last_field_used"] = last_field
     return out
 
 

@@ -72,12 +72,21 @@
     "chi_equals_24_solution_set": [
       16
     ],
-    "manifoldness_condition_classification": "REJECTED as an independent rigid criterion",
-    "parity_condition_classification": "STRUCTURAL but WEAK (does not use the literal target 24 anywhere)",
-    "parity_solution_set_size": 9,
-    "conclusion": "NO RIGID selecting condition for k=16 was found in this track's own data. chi(X_k)==24 is NORMALISATION (external target). The only condition found that avoids referencing the target value (chi parity) is structural but WEAK: it narrows k to a 9-element set, not a single point. This is a materially different, more conservative conclusion than v1's claim of a rigid, two-independent-criteria result.",
+    "b1_selector_classification": "NON-DISCRIMINATING: b1(X_k)=b1(U) is independent of k in this MV model, so b1=0 selects all of k=0..16, not a point",
+    "b1_selector_solution_set_size": 17,
+    "even_intersection_form_criterion_status": "NOT EVALUATED -- the intersection form is a pairing on H_2 that GUDHI Betti numbers do not supply; this track builds no such pairing. See could_not_do.",
+    "manifoldness_condition_classification": "REJECTED as an independent rigid criterion -- DEFINITIONAL given the X_k construction (X_k is DEFINED to have 16-k unresolved cone points), not an independent GUDHI computation",
+    "conclusion": "NO RIGID, target-value-free selecting condition for k=16 was found in this track's own data. chi(X_k)==24 is NORMALISATION (external target). The task's own suggested b1=0 criterion is COMPUTED but NON-DISCRIMINATING. The even-intersection-form criterion could not be evaluated with the tools available. This is a materially more conservative conclusion than v1's claim of a rigid, two-independent-criteria result.",
     "agrees_at_N8": true,
     "source": "05_rigidity_scan_results.json"
+  },
+  "rigidity_over_N": {
+    "parameter": "grid size N (discretization of the Freudenthal triangulation)",
+    "selecting_condition": "closed stars of the 16 fixed points pairwise disjoint in the quotient complex (structural, computed in 00_premise_checks.py; does NOT reference chi=24 or b2=22 or any other target value)",
+    "negative_control": "N=4: premise fails, demonstrated programmatically in 00_premise_checks_results.json",
+    "invariant_across_premise_valid_N": true,
+    "classification": "RIGID (structural selecting condition, computed at each N, target-value-free) -- but the rigid statement is INVARIANCE of the answer under N, not a claim that N itself is uniquely determined to be 6 or 8 (both pass; larger N was not exhaustively tried)",
+    "source": "05_rigidity_scan_results.json (rigidity_over_N)"
   },
   "translation_negative_control": {
     "N=6": {

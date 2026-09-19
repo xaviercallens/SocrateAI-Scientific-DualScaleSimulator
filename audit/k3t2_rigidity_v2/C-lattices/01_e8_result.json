@@ -1,0 +1,130 @@
+{
+  "track": "C",
+  "version": "v2",
+  "item": "1_e8_cartan",
+  "method": "Cartan matrix built from Dynkin-diagram adjacency (Bourbaki labeling); det/minors via sympy exact rationals; roots via exact Weyl-reflection closure c -> c - (Cc)_i e_i on integer coefficient vectors (no R^8 embedding).",
+  "cartan_matrix": [
+    [
+      2,
+      0,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      2,
+      0,
+      -1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      -1,
+      0,
+      2,
+      -1,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      -1,
+      -1,
+      2,
+      -1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      -1,
+      2,
+      -1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      -1,
+      2,
+      -1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      2,
+      -1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      2
+    ]
+  ],
+  "determinant": {
+    "value": "1",
+    "exact": true
+  },
+  "is_even": true,
+  "leading_principal_minors": [
+    "2",
+    "4",
+    "6",
+    "5",
+    "4",
+    "3",
+    "2",
+    "1"
+  ],
+  "is_positive_definite": true,
+  "root_enumeration": {
+    "num_roots_found": 240,
+    "all_have_norm2_exactly_2": true,
+    "num_bad_norm2_during_bfs": 0
+  },
+  "negative_control": {
+    "description": "coefficient vector 2*e_1: has norm^2 = 8 != 2, and was checked to be absent from the reflection-closure set generated above",
+    "vector": [
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "norm2": 8,
+    "in_generated_root_set": false,
+    "control_passes": true
+  },
+  "expected": {
+    "determinant": 1,
+    "num_roots": 240,
+    "source": "standard E8 root-system facts (determinant of E8 Cartan matrix = 1, 240 roots), from memory, unverified prior to this computation -- filled in AFTER computing the fields above"
+  }
+}
