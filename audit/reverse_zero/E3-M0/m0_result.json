@@ -1,0 +1,138 @@
+{
+ "data": {
+  "desi_dr2_all_gccomb": {
+   "path": "data/real2/dark_energy/desi_dr2/desi_gaussian_bao_ALL_GCcomb_{mean,cov}.txt",
+   "n_rows": 13,
+   "z_unique": [
+    0.295,
+    0.51,
+    0.706,
+    0.934,
+    1.321,
+    1.484,
+    2.33
+   ]
+  },
+  "pantheon_plus_full_cov": {
+   "sn_path": "data/real/dark_energy/pantheon_plus_sh0es.dat",
+   "cov_path": "data/real2/dark_energy/Pantheon+SH0ES_STAT+SYS.cov",
+   "n_sn_primary_cosmology_cut": 1580,
+   "cut": "zHD>0.01 & zHD<=2.4 & IS_CALIBRATOR==0, applied identically to the data vector and the 1701x1701 covariance",
+   "n_sn_full_1701_disclosed_variant": 1701,
+   "note": "PRIMARY uses the full STAT+SYS covariance (upgrade from round2/3's diagonal-only errors) sliced to a cosmology-only 1580-SN sample (round2/3 used 1590 with the same z-cut but no IS_CALIBRATOR filter, and diagonal errors only). The full 1701-row variant (including 77 Cepheid-host calibrators) is reported separately as a disclosed, non-primary comparison -- see variant_full_1701_including_calibrators."
+  },
+  "n_total": 1593
+ },
+ "parameters": {
+  "M0": {
+   "Omega_Lambda": {
+    "value": 0.68885,
+    "source": "LeanMaster DarkEnergyScale.lean:84 (Planck 2018; kernel-fixed Lean def, tier L as physics)",
+    "status": "FROZEN"
+   },
+   "Omega_m": {
+    "value": 0.31115000000000004,
+    "source": "= 1 - Omega_Lambda (flat FRW)",
+    "status": "FROZEN"
+   },
+   "c4_pta_product": {
+    "value": 0.0,
+    "source": "GR value: PTA angular correlation = Hellings-Downs exactly, no l=4 excess",
+    "status": "FROZEN (sector present, value = GR)"
+   },
+   "mu_sym / symmetron sector": {
+    "value": null,
+    "source": "sector deleted entirely (ground-rule wording: 'NO symmetron sector ... removed with the sector')",
+    "status": "REMOVED"
+   },
+   "H0 (equiv. u_star, sn_offset)": {
+    "value": "fitted analytically per-dataset",
+    "source": "nuisance, marginalized in closed form (same convention as round2/round3 chi2_bao_given_base/chi2_sn_given_mu)",
+    "status": "NUISANCE, not a theory parameter"
+   }
+  },
+  "M0_free_theory_parameter_count": 0,
+  "M0_free_theory_parameter_count_note": "Omega_Lambda is frozen (not fitted); c4_pta_product is frozen at the GR value 0; mu_sym has no value because its sector is removed. H0/amplitude/offset are nuisances by the same convention already used and disclosed in round2/round3 (they marginalize identically regardless of Omega_m, so 'freezing H0' changes nothing in this fit, as flagged in round2/decisive_experiment.py).",
+  "M2": {
+   "description": "M0 with mu_sym and c4_pta_product reinstated as FREE (fitted) parameters -- but no fifth-force/screening or PTA-angular dataset enters this chi2 (both ABSENT per the data manifest), so their best-fit values are UNCONSTRAINED and the minimized chi2 on this data is numerically identical to M0's.",
+   "k_theory": 2
+  },
+  "LCDM_fitted": {
+   "description": "Omega_m free (fitted), c4_pta_product=0, no symmetron sector -- same sectors as M0, but Omega_m no longer frozen.",
+   "k_theory": 1
+  }
+ },
+ "M0_result": {
+  "chi2": 1401.0709554851699,
+  "bao": {
+   "chi2": 12.669853432077614,
+   "u_star": 29.834833921189645
+  },
+  "sn": {
+   "chi2": 1388.4011020530922,
+   "offset_fit": 43.05358021151749
+  },
+  "k": 0,
+  "AIC": 1401.0709554851699,
+  "BIC": 1401.0709554851699
+ },
+ "M2_result": {
+  "chi2": 1401.0709554851699,
+  "k": 2,
+  "note": "chi2 identical to M0 because mu_sym, c4_pta_product enter no term in this data's likelihood (no fifth-force/screening or PTA-angular dataset present; both ABSENT).",
+  "AIC": 1405.0709554851699,
+  "BIC": 1415.81770410499
+ },
+ "LCDM_fitted_result": {
+  "Omega_m": 0.30421804078389963,
+  "chi2": 1400.3253509823753,
+  "bao_chi2": 10.87057221271555,
+  "sn_chi2": 1389.4547787696597,
+  "k": 1,
+  "AIC": 1402.3253509823753,
+  "BIC": 1407.6987252922854
+ },
+ "delta_chi2_M0_minus_LCDM_fitted": 0.7456045027945493,
+ "delta_AIC_M0_minus_LCDM_fitted": -1.2543954972054507,
+ "delta_BIC_M0_minus_LCDM_fitted": -6.6277698071155555,
+ "delta_AIC_M2_minus_M0": 4.0,
+ "delta_BIC_M2_minus_M0": 14.74674861982021,
+ "threshold_preregistered_quote": "PRE_REGISTRATION.md Sec 2: 'Thresholds (computed with scipy.stats.chi2.isf): 1 dof: Delta chi2 = 9.00 is 3sigma, and 25.00 is 5sigma; 2 dof: Delta chi2 = 11.83 is 3sigma, and 28.74 is 5sigma.'",
+ "threshold_1dof_3sigma": 9.0,
+ "threshold_2dof_3sigma": 11.83,
+ "M0_vs_LCDM_fitted_1dof_verdict": "NOT REJECTED",
+ "negative_controls": {
+  "Omega_L=0.50": {
+   "chi2": 1764.3161247812109,
+   "delta_vs_fitted": 363.99077379883556
+  },
+  "Omega_L=0.72": {
+   "chi2": 1410.4229183032817,
+   "delta_vs_fitted": 10.097567320906364
+  },
+  "Omega_L=0.65": {
+   "chi2": 1429.220954697449,
+   "delta_vs_fitted": 28.895603715073776
+  }
+ },
+ "variant_full_1701_including_calibrators": {
+  "note": "DISCLOSED VARIANT, NOT PRIMARY: includes 77 IS_CALIBRATOR==1 Cepheid-host SNe, whose MU_SH0ES is tied to CEPH_DIST (a distance-ladder anchor), not a Hubble-flow distance modulus; fitting them with the same shape+offset model is a likelihood error. Reported only to show the headline result is stable either way.",
+  "n_sn": 1701,
+  "n_total": 1714,
+  "M0_chi2": 1772.8699350347426,
+  "LCDM_fitted_Omega_m": 0.3103620994471283,
+  "LCDM_fitted_chi2": 1772.8605404973748,
+  "delta_chi2_M0_minus_LCDM_fitted": 0.00939453736782525
+ },
+ "screening_section": {
+  "fifth_force_data_status": "ABSENT: 2002.11761 e-print tarball fetched and inspected (data/real2/fifth_force/2002.11761.tar.gz, sha256 in data manifest) -- contains only FB_ISL_pdf.tex + 9 figure PDFs, NO tabular alpha-lambda exclusion data (grep for tabular/table environments returned nothing). The Eot-Wash exclusion curve exists only as a plotted figure; it was not digitised, per ground rules.",
+  "unit_bridge_status": "NO BRIDGE. The harness's mu_sym is a dimensionless BVP parameter in workshopcosmo.run_symmetron_screening_simulation with no documented map to a physical mass, length, or coupling scale. Confirmed by grep: `grep -n mu_sym workshopcosmo.py` -> lines 320 (default arg mu_sym: float = 1.0), 361 and 383 (used directly, dimensionless, inside `((rho/(m_scale**2)) - mu_sym**2)*psi + mu_sym**2*psi**3`); no unit-conversion code for mu_sym exists anywhere in that file or in scripts/param_loop_sim.py. Therefore even if a machine-readable Eot-Wash alpha-lambda table existed, it could not be mapped to a bound on mu_sym today -- 'cannot map' (exactly as pre-flagged in the ground rules).",
+  "does_any_data_prefer_the_symmetron_sector": "No. No fifth-force dataset and no other dataset in this session's manifest tests mu_sym at all (round3 chi2_independent.json probes_note, reconfirmed by this script's M2 vs M0 identical chi2). The symmetron sector is UNCONSTRAINED by every dataset in hand, so its removal in M0 costs nothing and is preferred on parsimony (AIC/BIC) alone."
+ },
+ "leanmaster_P2_note": {
+  "quote_p62": "Within the programme's own T-duality R -> alpha'/R with alpha' = s^2, the self-dual radius is the unique positive fixed point R = s (p62_selfdual_fixed_point), where the KK and winding scales coincide (p62_towers_coincide). With the standard KK normalisation m_n = n/R, this gives kappa = 1: P1 is the programme's prediction, not one convention among several. (LEANMASTER_CONSTRAINTS, item 'P6.2: T-duality fixes kappa = 1')",
+  "quote_p1_excluded": "P1 is excluded. R exceeds each of the three bounds. By the pre-registered decision rule (T1 fails), P1 is excluded. The failure is not a rounding effect: R > 1.5 x 30 um and R > 1.06 x 44 um. (LEANMASTER_CONSTRAINTS, item 'P1: Extra-dimension prediction')",
+  "meaning_for_pre_registered_[21,105]um_bracket": "PRE_REGISTRATION.md P2 registers the bracket [21.0, 105.3] um for s = sqrt(l_P * c/H0), explicitly because 'the O(1) factor is not derived' (reduced vs non-reduced Planck-mass convention contributes (8*pi)^(1/4) = 2.239). LeanMaster's p62_selfdual_fixed_point now shows that WITHIN the programme's OWN T-duality (once alpha' = s^2 is assumed -- itself a Tier C hypothesis change per the framing rule, not a K3xT2 derivation), kappa is NOT a free O(1) convention choice: self-duality forces kappa = 1 exactly. This does not shrink the registered [21,105] um bracket (that bracket already comes from an independent, unrelated O(1) ambiguity -- the reduced/non-reduced Planck-mass convention, (8*pi)^(1/4) -- which T-duality's kappa=1 result does not touch or resolve). What it DOES change: it removes the 'is kappa a free tuning knob within T-duality' escape route -- P1's central value (kappa=1, R=s=47.008 um) is THE unique T-duality prediction, and LeanMaster separately proves that value is excluded by all three cited bounds (Eot-Wash 30um, Yukawa-range 38.6um, MVV 44um). The [21,105] um bracket itself is untouched: its lower half (21.0-38.6 um approx, up to the tightest cited bound) still formally survives per PRE_REGISTRATION.md's own P2 language ('Only the lower part of the bracket survives'), but only as a Planck-mass-convention artifact, not as anything T-duality favors -- T-duality's OWN preferred point (kappa=1, 47.008 um) sits OUTSIDE the surviving lower half. PRE_REGISTRATION.md is NOT edited by this script, per ground rules; this is a read-only report of what the two independent facts (the Lean kappa=1 result and the pre-registered bracket) jointly imply."
+ },
+ "framing_rule_compliance": "M0 is a HYPOTHESIS CHANGE: Omega_Lambda is frozen at an imported Planck value (not derived from K3xT2), c4_pta_product is set to the GR value 0 (not derived), and the symmetron sector is removed by fiat (not derived). No statement in this script or its output claims K3xT2 predicts or fixes mu_sym, c4, or Omega_Lambda."
+}
