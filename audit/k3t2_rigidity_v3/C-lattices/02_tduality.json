@@ -1,0 +1,88 @@
+{
+  "by_d": {
+    "1": {
+      "A_K_i_involution_and_preserves_eta": true,
+      "B_basis_change_preserves_eta_generic_A": true,
+      "C_eta_H_eta_eq_H_Ginv_generic_G": true
+    },
+    "2": {
+      "A_K_i_involution_and_preserves_eta": true,
+      "B_basis_change_preserves_eta_generic_A": true,
+      "C_eta_H_eta_eq_H_Ginv_generic_G": true
+    },
+    "3": {
+      "A_K_i_involution_and_preserves_eta": true,
+      "B_basis_change_preserves_eta_generic_A": true,
+      "C_eta_H_eta_eq_H_Ginv_generic_G": true
+    },
+    "4": {
+      "A_K_i_involution_and_preserves_eta": true,
+      "B_basis_change_preserves_eta_generic_A": true,
+      "C_eta_H_eta_eq_H_Ginv_generic_G": true
+    }
+  },
+  "neg_control_K": {
+    "broken_K_squares_to_identity": false
+  },
+  "lambda_in_R": {
+    "1": {
+      "P_lambda_preserves_eta": true,
+      "P_lambda^T H(G) P_lambda == H(lambda^2 G)": true,
+      "eta_H_eta == H(G^-1)": true
+    },
+    "2": {
+      "P_lambda_preserves_eta": true,
+      "P_lambda^T H(G) P_lambda == H(lambda^2 G)": true,
+      "eta_H_eta == H(G^-1)": true
+    },
+    "d1_R_to_1_over_R": true,
+    "f_invariant_under_swap": true,
+    "f_invariant_under_lambda_scaling": false,
+    "integral_lambda_among_reduced_p/q_p,q<=200": [
+      "1",
+      "-1"
+    ]
+  },
+  "entry_level_bound": {
+    "1": {
+      "n_symbols": 1,
+      "identity_difference_zero": true,
+      "G_inverse_computed_directly_from_G": true,
+      "note_if_not_direct": null,
+      "broken_control_difference_nonzero": false,
+      "broken_control_note": "at d=1 the broken form coincides with the true one (scalar L: L^-T = L^-1), so d=1 is not discriminating for this control",
+      "seconds": 0.0,
+      "consequence": "tr G + tr G^-1 - 2d = sum of squares of entries of L - L^-T >= 0, zero iff L = L^-T iff G = I"
+    },
+    "2": {
+      "n_symbols": 3,
+      "identity_difference_zero": true,
+      "G_inverse_computed_directly_from_G": true,
+      "note_if_not_direct": null,
+      "broken_control_difference_nonzero": true,
+      "broken_control_note": "at d=1 the broken form coincides with the true one (scalar L: L^-T = L^-1), so d=1 is not discriminating for this control",
+      "seconds": 0.0,
+      "consequence": "tr G + tr G^-1 - 2d = sum of squares of entries of L - L^-T >= 0, zero iff L = L^-T iff G = I"
+    },
+    "3": {
+      "n_symbols": 6,
+      "identity_difference_zero": true,
+      "G_inverse_computed_directly_from_G": true,
+      "note_if_not_direct": null,
+      "broken_control_difference_nonzero": true,
+      "broken_control_note": "at d=1 the broken form coincides with the true one (scalar L: L^-T = L^-1), so d=1 is not discriminating for this control",
+      "seconds": 0.1,
+      "consequence": "tr G + tr G^-1 - 2d = sum of squares of entries of L - L^-T >= 0, zero iff L = L^-T iff G = I"
+    },
+    "4": {
+      "n_symbols": 10,
+      "identity_difference_zero": true,
+      "G_inverse_computed_directly_from_G": true,
+      "note_if_not_direct": null,
+      "broken_control_difference_nonzero": true,
+      "broken_control_note": "at d=1 the broken form coincides with the true one (scalar L: L^-T = L^-1), so d=1 is not discriminating for this control",
+      "seconds": 0.9,
+      "consequence": "tr G + tr G^-1 - 2d = sum of squares of entries of L - L^-T >= 0, zero iff L = L^-T iff G = I"
+    }
+  }
+}

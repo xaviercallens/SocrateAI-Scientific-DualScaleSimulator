@@ -1,0 +1,33 @@
+{
+  "chi_top": {
+    "value": 24,
+    "shared_inputs": [
+      "K_trivial",
+      "hodge_h0_O",
+      "hodge_h1_O_from_b1",
+      "serre_duality",
+      "noether_formula"
+    ],
+    "path": "audit/k3t2_rigidity_v3/C-lattices/results.json",
+    "label": "RIGID_GIVEN_DEFINITION"
+  },
+  "signature": {
+    "value": [
+      3,
+      19
+    ],
+    "b2": 22,
+    "shared_inputs": [
+      "K_trivial",
+      "hodge_h0_O",
+      "hodge_h1_O_from_b1",
+      "serre_duality",
+      "noether_formula",
+      "hirzebruch_signature",
+      "hodge_index",
+      "betti_odd_vanish"
+    ],
+    "path": "audit/k3t2_rigidity_v3/C-lattices/results.json",
+    "label": "RIGID_GIVEN_DEFINITION"
+  }
+}

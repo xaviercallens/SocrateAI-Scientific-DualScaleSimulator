@@ -1,0 +1,140 @@
+{
+  "e8": {
+    "n_roots": 240,
+    "n_positive": 120,
+    "n_simple": 8,
+    "gram": "[[2, -1, 0, 0, 0, 0, 0, 0], [-1, 2, -1, 0, 0, 0, 0, 0], [0, -1, 2, -1, 0, 0, 0, 0], [0, 0, -1, 2, -1, 0, 0, 0], [0, 0, 0, -1, 2, -1, -1, 0], [0, 0, 0, 0, -1, 2, 0, 0], [0, 0, 0, 0, -1, 0, 2, -1], [0, 0, 0, 0, 0, 0, -1, 2]]",
+    "det": 1,
+    "diag": [
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2,
+      2
+    ],
+    "even": true,
+    "signature_ldl": [
+      8,
+      0,
+      0
+    ],
+    "expected_from_literature": {
+      "det": 1,
+      "n_roots": 240,
+      "source": "FROM MEMORY"
+    }
+  },
+  "controls_rank8": {
+    "Z8": {
+      "det": 1,
+      "even": false
+    },
+    "D8_from_roots_+-ei+-ej": {
+      "det": 4,
+      "even": true
+    }
+  },
+  "candidates_mU_nE8_rank_b2": [
+    {
+      "m": 3,
+      "n": 2,
+      "rank": 22,
+      "det": -1,
+      "even": true,
+      "signature_ldl": [
+        3,
+        19
+      ],
+      "signature_charpoly": [
+        "3",
+        "19"
+      ],
+      "routes_agree": true,
+      "matches_hodge_signature": true
+    },
+    {
+      "m": 7,
+      "n": 1,
+      "rank": 22,
+      "det": -1,
+      "even": true,
+      "signature_ldl": [
+        7,
+        15
+      ],
+      "signature_charpoly": [
+        "7",
+        "15"
+      ],
+      "routes_agree": true,
+      "matches_hodge_signature": false
+    },
+    {
+      "m": 11,
+      "n": 0,
+      "rank": 22,
+      "det": -1,
+      "even": true,
+      "signature_ldl": [
+        11,
+        11
+      ],
+      "signature_charpoly": [
+        "11",
+        "11"
+      ],
+      "routes_agree": true,
+      "matches_hodge_signature": false
+    }
+  ],
+  "selected": [
+    {
+      "m": 3,
+      "n": 2,
+      "rank": 22,
+      "det": -1,
+      "even": true,
+      "signature_ldl": [
+        3,
+        19
+      ],
+      "signature_charpoly": [
+        "3",
+        "19"
+      ],
+      "routes_agree": true,
+      "matches_hodge_signature": true
+    }
+  ],
+  "all_mn_0_30_with_signature_equal_hodge": [
+    [
+      3,
+      2
+    ]
+  ],
+  "typed_gram_3U_2mE8": {
+    "rank": 22,
+    "det": -1,
+    "signature_ldl": [
+      3,
+      19
+    ],
+    "signature_charpoly": [
+      "3",
+      "19"
+    ],
+    "note": "typed input (decl.py typed_gram_3U_2mE8): rank/signature are consequences of the typed matrix, NOT independent of it"
+  },
+  "mukai": {
+    "rank": 24,
+    "signature": [
+      4,
+      20
+    ],
+    "rank_equals_chi_top": true,
+    "note": "rank 24 = sum b_i is chi_top by chi_top = sum(-1)^i b_i with odd Betti zero; the Gram is typed"
+  }
+}
