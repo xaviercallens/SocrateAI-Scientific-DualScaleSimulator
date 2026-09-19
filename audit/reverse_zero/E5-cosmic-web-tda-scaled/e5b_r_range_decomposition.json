@@ -1,0 +1,80 @@
+{
+  "H0": {
+    "unvalidated_2_20": {
+      "r_range": [
+        2.0,
+        20.0
+      ],
+      "real_l2": 344.548902273143,
+      "rank": 0,
+      "n_mocks": 22,
+      "median_loo_l2": 10.182861610885595,
+      "margin": 33.83615681321018,
+      "p_value": 0.043478260869565216
+    },
+    "gate_validated_20_40": {
+      "r_range": [
+        20.0,
+        40.0
+      ],
+      "real_l2": 0.0,
+      "rank": 22,
+      "n_mocks": 22,
+      "median_loo_l2": 0.0,
+      "margin": null,
+      "p_value": 1.0
+    }
+  },
+  "H1": {
+    "unvalidated_2_20": {
+      "r_range": [
+        2.0,
+        20.0
+      ],
+      "real_l2": 632.8920032268478,
+      "rank": 0,
+      "n_mocks": 22,
+      "median_loo_l2": 35.41622701951512,
+      "margin": 17.87011368766386,
+      "p_value": 0.043478260869565216
+    },
+    "gate_validated_20_40": {
+      "r_range": [
+        20.0,
+        40.0
+      ],
+      "real_l2": 0.0,
+      "rank": 22,
+      "n_mocks": 22,
+      "median_loo_l2": 0.0,
+      "margin": null,
+      "p_value": 1.0
+    }
+  },
+  "H2": {
+    "unvalidated_2_20": {
+      "r_range": [
+        2.0,
+        20.0
+      ],
+      "real_l2": 124.892806171057,
+      "rank": 0,
+      "n_mocks": 22,
+      "median_loo_l2": 12.215966056306488,
+      "margin": 10.223735527374123,
+      "p_value": 0.043478260869565216
+    },
+    "gate_validated_20_40": {
+      "r_range": [
+        20.0,
+        40.0
+      ],
+      "real_l2": 0.0,
+      "rank": 22,
+      "n_mocks": 22,
+      "median_loo_l2": 0.0,
+      "margin": null,
+      "p_value": 1.0
+    }
+  }
+}
