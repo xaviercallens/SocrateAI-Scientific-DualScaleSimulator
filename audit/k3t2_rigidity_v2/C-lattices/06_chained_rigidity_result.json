@@ -72,10 +72,11 @@
       }
     },
     "10_b2_from_betti_alternating_sum": 22,
-    "10b_b2_cross_check": {
+    "10b_b2_internal_consistency_recheck_same_source": {
       "b2_read_from_provenance_file": 22,
-      "b2_derived_from_alternating_sum": 22,
-      "two_independent_computations_agree": true
+      "b2_derived_here_from_that_same_files_b0_b1_b3_b4_via_alternating_sum": 22,
+      "same_source_agree": true,
+      "honesty_note": "both numbers are downstream of ONE provenance file (D-tda/exports.json), which already ships its own chi_fvector_betti_cross_check=true flag; this is a recheck of that source's internal bookkeeping, NOT an independent-computation agreement. The genuine cross-track corroboration in this run is chi_cross_track_corroboration (Track A elliptic genus vs. Track D GUDHI resolution), reported in the top-level provenance block."
     },
     "11_b2_minus": "19",
     "12_signature_p_q": [
@@ -303,7 +304,7 @@
       "b1=0 (simply connected)",
       "Kahler"
     ],
-    "statement": "Given those three named structural/definitional inputs and the single number chi_top (read from Track A's independently-computed elliptic-genus file, not from memory), (m,n) is forced to exactly one value in the mechanical rank-b2 scan, with a demonstrated negative control both within the (m,n) scan (other candidates fail) and across the whole chain (perturbing chi_top changes the forced answer). This is NOT an unconditional rigidity claim: drop Calabi-Yau, simply-connected, or Kahler and the chain either fails to close (non-integral intermediate values) or computes a different (b2_plus) formula, so the conditioning is load-bearing, not decorative.",
+    "statement": "Given those three named structural/definitional inputs and the single number chi_top (read from D-tda/exports.json, not from memory), (m,n) is forced to exactly one value in the mechanical rank-b2 scan, with a demonstrated negative control both within the (m,n) scan (other candidates fail) and across the whole chain (perturbing chi_top changes the forced answer). This is NOT an unconditional rigidity claim: drop Calabi-Yau, simply-connected, or Kahler and the chain either fails to close (non-integral intermediate values) or computes a different (b2_plus) formula, so the conditioning is load-bearing, not decorative.",
     "final_solution_set_mn": [
       [
         3,

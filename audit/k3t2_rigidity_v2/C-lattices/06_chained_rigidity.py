@@ -124,12 +124,19 @@ def derive_signature_chain(chi_top, b0=None, b1=None, b3=None, b4=None, b2_read=
     "read"; if None, fall back to the standard definitional inputs
     (b0=1 connected, b1=0 simply connected, b3=b1 & b4=b0 Poincare duality)
     and label them "definitional_input".
-    b2_read: if given (e.g. Track D's b2_K3_resolved, an INDEPENDENT
-    computation, not derived from chi_top via this chain), used as a
-    CROSS-CHECK against b2 derived here from the Betti alternating sum --
-    both are reported, and the derived signature uses the read value when
-    the two agree (an agreement-of-two-independent-computations check,
-    exactly the kind the ground rules ask a RIGID label to rest on)."""
+    b2_read: if given (e.g. Track D's b2_K3_resolved), used as a RECHECK
+    against b2 derived here from the Betti alternating sum. IMPORTANT
+    HONESTY NOTE: when b2_read and b0/b1/b3/b4 all come from the SAME
+    provenance file (as they currently do -- all from D-tda/exports.json),
+    this is NOT an agreement of two independent computations: b2_read and
+    the alternating-sum b2 are both downstream of that one file's own
+    internal bookkeeping (which already ships its own
+    "chi_fvector_betti_cross_check": true flag). It is only an internal
+    self-consistency recheck of that source, labeled as such below. The
+    genuinely independent cross-track corroboration in this script is the
+    chi_top agreement between Track A (elliptic genus) and Track D (GUDHI
+    resolution) -- see "chi_cross_track_corroboration" in the provenance
+    block, computed from TWO physically different methods."""
     steps = {}
     steps["1_chi_top"] = chi_top
     c2 = chi_top
@@ -166,17 +173,24 @@ def derive_signature_chain(chi_top, b0=None, b1=None, b3=None, b4=None, b2_read=
     b2_derived = chi_top - b0_used + b1_used + b3_used - b4_used
     steps["10_b2_from_betti_alternating_sum"] = b2_derived
 
-    b2_cross_check = None
+    b2_internal_consistency_recheck = None
     if b2_read is not None:
-        b2_cross_check = {
+        b2_internal_consistency_recheck = {
             "b2_read_from_provenance_file": b2_read,
-            "b2_derived_from_alternating_sum": b2_derived,
-            "two_independent_computations_agree": (b2_read == b2_derived),
+            "b2_derived_here_from_that_same_files_b0_b1_b3_b4_via_alternating_sum": b2_derived,
+            "same_source_agree": (b2_read == b2_derived),
+            "honesty_note": "both numbers are downstream of ONE provenance file (D-tda/"
+                             "exports.json), which already ships its own "
+                             "chi_fvector_betti_cross_check=true flag; this is a recheck of "
+                             "that source's internal bookkeeping, NOT an independent-computation "
+                             "agreement. The genuine cross-track corroboration in this run is "
+                             "chi_cross_track_corroboration (Track A elliptic genus vs. Track D "
+                             "GUDHI resolution), reported in the top-level provenance block.",
         }
         b2_final = b2_read if b2_read == b2_derived else b2_derived
     else:
         b2_final = b2_derived
-    steps["10b_b2_cross_check"] = b2_cross_check
+    steps["10b_b2_internal_consistency_recheck_same_source"] = b2_internal_consistency_recheck
 
     b2_minus = b2_final - b2_plus
     steps["11_b2_minus"] = str(b2_minus)
@@ -188,8 +202,9 @@ def derive_signature_chain(chi_top, b0=None, b1=None, b3=None, b4=None, b2_read=
     q = int(b2_minus)
     steps["12_signature_p_q"] = [p, q]
     return {"steps": steps, "b2": int(b2_final), "p": p, "q": q,
-            "b2_cross_check_agrees": (b2_cross_check["two_independent_computations_agree"]
-                                       if b2_cross_check else None)}
+            "b2_internal_consistency_recheck_agrees": (
+                b2_internal_consistency_recheck["same_source_agree"]
+                if b2_internal_consistency_recheck else None)}
 
 
 def scan_and_select(b2_derived, p_derived, q_derived):
@@ -282,6 +297,15 @@ scan = scan_and_select(chain["b2"], chain["p"], chain["q"])
 # --- chained negative control: perturb chi_top by +/-2 (stay even so the
 # chain completes without a fractional h^{0,2}) and show the whole derived
 # (m,n) selection changes ---
+# NOTE ON WHAT THE CONTROL VARIES: each call below is derive_signature_chain(chi_pert)
+# with NO b0/b1/b3/b4/b2_read arguments, i.e. it deliberately uses the
+# DEFINITIONAL FALLBACK path (b0=1, b1=0, b3=0, b4=1, no b2 recheck), not
+# the baseline run's READ-from-D-tda path, since there is no provenance file
+# for a hypothetical "K3 with chi_top = 12" etc. This is the right thing to
+# hold fixed (it isolates sensitivity to chi_top alone); it is stated here so
+# the difference from the baseline call is not silently different in two
+# ways (chi_top AND provenance-vs-fallback) at once.
+#
 # Perturbation set: +/-2 (breaks integrality -- chain fails to close), +/-24
 # (one of these, chi_top=0, is DEGENERATE -- negative Betti number, an
 # artifact of Python floor-division in the scan loop rather than a
@@ -401,8 +425,8 @@ result = {
             "Kahler",
         ],
         "statement": "Given those three named structural/definitional inputs and the single "
-                      "number chi_top (read from Track A's independently-computed elliptic-genus "
-                      "file, not from memory), (m,n) is forced to exactly one value in the "
+                      f"number chi_top (read from {provenance_file}, not from memory), (m,n) "
+                      "is forced to exactly one value in the "
                       "mechanical rank-b2 scan, with a demonstrated negative control both within "
                       "the (m,n) scan (other candidates fail) and across the whole chain "
                       "(perturbing chi_top changes the forced answer). This is NOT an "

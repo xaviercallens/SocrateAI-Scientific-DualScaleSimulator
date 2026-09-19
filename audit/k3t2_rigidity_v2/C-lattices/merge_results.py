@@ -45,6 +45,12 @@ merged = {
         "as of D-tda's later export, READ from an independent GUDHI computation rather than "
         "assumed, and cross-checked against the Betti alternating sum for b2 -- see "
         "06_chained_rigidity_result.json 'derivation_chain' step 5 and '10b_b2_cross_check'.",
+        "b2's cross-check in 06_chained_rigidity.py ('10b_b2_internal_consistency_recheck_same_"
+        "source') is NOT an independent-computation agreement: b2_read and the alternating-sum "
+        "b2 are both derived from the SAME provenance file (D-tda/exports.json's b2_K3_resolved "
+        "and its own b0/b1/b3/b4), which already flags its own internal consistency. Only "
+        "chi_top is corroborated by two independently-computed sources (Track A elliptic genus, "
+        "Track D GUDHI resolution, both giving 24) -- see 'chi_cross_track_corroboration'.",
         "The entry-level symbolic tie-back between the eigenvalue-formula minimizer proof (D1 "
         "in 03_symbolic_tduality_proofs.py) and an explicit symmetric-matrix family (D2) was "
         "done only for d=2; d=3,4 would need symbolic roots of a cubic/quartic characteristic "
