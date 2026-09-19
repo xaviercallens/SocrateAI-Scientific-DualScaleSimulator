@@ -332,6 +332,21 @@ def main():
         "numbers, only as statements about their own signal models."]
 
     rep["limitations"] = [
+        "m_G and r_G are exactly orthogonal over the FULL sphere by "
+        "construction, but the reported overlap is computed over unmasked "
+        "pixels only, where that orthogonality does not hold: the measured "
+        "normalised overlap is 6.66e-2 (A_4) and 3.29e-2 (C_12) on WMAP.  This "
+        "is the mask restricting the inner product, not a failure of the "
+        "projector; the harmonic-space identity ||T||^2 = ||m_G||^2 + "
+        "||r_G||^2 holds to machine precision.",
+        "The push of branch loop/tda-validation to GitHub at commit 33e4bca was "
+        "NOT made by this work.  A bulk push of every branch (main, "
+        "loop/reverse-zero, loop/k3t2-rigidity, loop/tda-validation, "
+        "loop/tda-k3t2, loop/tda-simple) by some other process at "
+        "2026-09-19 22:30:23-29 UTC carried the then-current head of this "
+        "branch, which happened to be the pre-registration commit.  No git "
+        "push was issued here; the remaining commits of this series are local "
+        "to the worktree.",
         "The orientation grid has 192 points and the normaliser of A_4 in SO(3) "
         "is S_4 (order 24), so of order 8 effectively independent placements "
         "cover SO(3)/N(A_4).  A signal at an orientation far from every grid "
