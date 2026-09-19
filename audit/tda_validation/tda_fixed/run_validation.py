@@ -701,6 +701,62 @@ def step_calibcheck():
     write("calibcheck", out)
 
 
+def step_gate4full():
+    """D2 gate 4 over all 200 maps instead of one.
+
+    The committed suite curves (cases/F3chunk_*.json, OLD complex) and the
+    recomputed ones (parts/f3curves_*.json, FIXED complex) use the SAME seeds
+    30000+i, i = 0..199, the same C_ell and the same nside, so they are the
+    same 200 realisations through the two complexes.  No simulation is
+    re-run here; this is arithmetic on committed numbers.
+    """
+    old = {m["i"]: m for m in load_committed_f3_curves()}
+    new = {m["i"]: m for m in _load_parts("f3curves")}
+    common = sorted(set(old) & set(new))
+    assert len(common) == 200, len(common)
+    rows = []
+    for i in common:
+        assert old[i]["seed"] == new[i]["seed"], (i, old[i]["seed"], new[i]["seed"])
+        b0o = np.array(old[i]["b0"], float); b0n = np.array(new[i]["b0"], float)
+        b1o = np.array(old[i]["b1"], float); b1n = np.array(new[i]["b1"], float)
+        nu = nu_grid()
+        rows.append({
+            "i": i, "seed": old[i]["seed"],
+            "max_abs_delta_b0": float(np.abs(b0n - b0o).max()),
+            "max_abs_delta_b1": float(np.abs(b1n - b1o).max()),
+            "max_b0_old": float(b0o.max()), "max_b1_old": float(b1o.max()),
+            "frac_b0": float(np.abs(b0n - b0o).max() / b0o.max()) if b0o.max() else 0.0,
+            "frac_b1": float(np.abs(b1n - b1o).max() / b1o.max()) if b1o.max() else 0.0,
+            "peak_nu_shift_b0": float(nu[int(np.argmax(b0n))] - nu[int(np.argmax(b0o))]),
+            "peak_nu_shift_b1": float(nu[int(np.argmax(b1n))] - nu[int(np.argmax(b1o))]),
+        })
+    f0 = np.array([r["frac_b0"] for r in rows])
+    f1 = np.array([r["frac_b1"] for r in rows])
+    s0 = np.array([abs(r["peak_nu_shift_b0"]) for r in rows])
+    s1 = np.array([abs(r["peak_nu_shift_b1"]) for r in rows])
+    step = float(nu_grid()[1] - nu_grid()[0])
+    out = {
+        "gate": "D2 gate 4, all 200 maps (the pre-registered version ran on 1 map, seed 30000)",
+        "n_maps": len(rows),
+        "same_seeds_verified": True,
+        "declared_tolerance": "max |delta| <= 0.15 * peak of the old curve, and the peak nu within "
+                              "one grid step (%.2f sigma)" % step,
+        "frac_delta_b0": {"max": float(f0.max()), "mean": float(f0.mean()),
+                          "p50": float(np.percentile(f0, 50)), "p95": float(np.percentile(f0, 95)),
+                          "n_over_0.15": int((f0 > 0.15).sum())},
+        "frac_delta_b1": {"max": float(f1.max()), "mean": float(f1.mean()),
+                          "p50": float(np.percentile(f1, 50)), "p95": float(np.percentile(f1, 95)),
+                          "n_over_0.15": int((f1 > 0.15).sum())},
+        "peak_shift_b0": {"max_abs": float(s0.max()), "n_over_one_grid_step": int((s0 > step + 1e-9).sum())},
+        "peak_shift_b1": {"max_abs": float(s1.max()), "n_over_one_grid_step": int((s1 > step + 1e-9).sum())},
+        "gate_4_all_maps_pass": bool((f0 <= 0.15).all() and (f1 <= 0.15).all()
+                                     and (s0 <= step + 1e-9).all() and (s1 <= step + 1e-9).all()),
+        "per_map": rows,
+        "tier": "X",
+    }
+    write("gate4full", out)
+
+
 def step_guard():
     """Run the regression guard BOTH ways and record the outcome.
 
@@ -862,6 +918,25 @@ def step_assemble():
                     + [neg.get("keys", {}).get(k, {}).get("median_chi2_p", float("nan")) for k in ("b0", "b1", "chi")])
             if neg.get("keys") else "negative control missing"),
         "7_regression_guard_fails_on_the_originals": guard.get("verdict", "guard not run"),
+        "8_gate_4_is_n_equals_1_as_pre_registered_and_the_200_map_extension_is_not_uniform": (
+            "the declared gate 4 compares the old and fixed complexes on ONE map (seed 30000) and "
+            "passes. Extending it to all 200 F3 realisations (same seeds through both complexes, "
+            "arithmetic on committed curves): the b0 difference exceeds the 15%% tolerance for "
+            "%s of 200 maps (max %.3f, median %.3f) and b1 for %s of 200 (max %.3f); the peak nu "
+            "moves by more than one grid step for %s maps in b0 and %s in b1 (max %.1f sigma). "
+            "The 1-skeleton genuinely changed - one diagonal per quad instead of two - so exact "
+            "agreement was never expected; and the peak-location clause is brittle because argmax "
+            "on a nearly flat maximum jumps for small changes. Reported rather than absorbed into "
+            "the n=1 gate."
+            % (parts["gate4full"]["frac_delta_b0"]["n_over_0.15"],
+               parts["gate4full"]["frac_delta_b0"]["max"],
+               parts["gate4full"]["frac_delta_b0"]["p50"],
+               parts["gate4full"]["frac_delta_b1"]["n_over_0.15"],
+               parts["gate4full"]["frac_delta_b1"]["max"],
+               parts["gate4full"]["peak_shift_b0"]["n_over_one_grid_step"],
+               parts["gate4full"]["peak_shift_b1"]["n_over_one_grid_step"],
+               parts["gate4full"]["peak_shift_b0"]["max_abs"])
+            if "gate4full" in parts else "gate4full not run"),
     }
     res["regression_guard"] = guard
     res["e5_impact"] = parts.get("e5", {}).get("statistics", {})
@@ -876,6 +951,15 @@ def step_assemble():
                                for n, v in top.get("levels", {}).items() if "gudhi_betti" in v},
         "gate_3_disk_mask": top.get("gate_3_disk_mask", {}).get("gate_3_pass"),
         "gate_4_smooth_field": parts.get("smooth", {}).get("gate_4_pass"),
+        "gate_4_note": "the pre-registered gate 4 is n = 1 (seed 30000) and it passes: "
+                       "max |delta b0| = 8 against a tolerance of 15.9, max |delta b1| = 6 "
+                       "against 16.2, both peaks unmoved. The post-hoc 200-map extension "
+                       "(step gate4full, arithmetic on committed curves, no simulation) is "
+                       "stronger and does NOT hold for every realisation - see "
+                       "gate_4_all_200_maps.",
+        "gate_4_all_200_maps": {k: parts.get("gate4full", {}).get(k) for k in
+                                ("n_maps", "frac_delta_b0", "frac_delta_b1", "peak_shift_b0",
+                                 "peak_shift_b1", "gate_4_all_maps_pass")},
         "gate_5_f1_untouched": parts.get("f1", {}).get("gate_5_pass"),
         "before": {n: v.get("OLD_build_topology") for n, v in top.get("levels", {}).items()
                    if "OLD_build_topology" in v},
@@ -898,5 +982,5 @@ if __name__ == "__main__":
         step_f3curves(ARGS.start, ARGS.count, fwhm=NEG_FWHM_DEG, seed_base=NEG_SEED_BASE, tag="negctrl")
     else:
         {"topology": step_topology, "smooth": step_smooth, "f1": step_f1, "p2": step_p2,
-         "d1old": step_d1old, "d1new": step_d1new, "negctrl": step_negctrl, "calibcheck": step_calibcheck, "guard": step_guard,
+         "d1old": step_d1old, "d1new": step_d1new, "negctrl": step_negctrl, "calibcheck": step_calibcheck, "guard": step_guard, "gate4full": step_gate4full,
          "e5": step_e5, "assemble": step_assemble}[ARGS.step]()
