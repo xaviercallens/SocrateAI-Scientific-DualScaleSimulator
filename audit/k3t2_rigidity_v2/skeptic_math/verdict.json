@@ -303,5 +303,5 @@
    "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
   }
  ],
- "commit": "0cc264c (verdict and new scripts); amended in the follow-up commit that fixes the command strings"
+ "commit": "0cc264c + d0e8078 (loop/k3t2-rigidity)"
 }
