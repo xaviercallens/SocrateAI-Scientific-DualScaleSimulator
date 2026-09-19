@@ -1,0 +1,161 @@
+{
+ "stage": "data",
+ "tier": "X",
+ "map": "wmap",
+ "meta": {
+  "map_path": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse/data/real2/cmb/wmap_ilc_9yr_v5.fits",
+  "mask_path": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse/data/real2/cmb/wmap_temperature_kq85_analysis_mask_r9_9yr_v5.fits",
+  "native_nside_map": 512,
+  "native_nside_mask": 512,
+  "downgrade": "hp.ud_grade to NSIDE_WORK=128; mask ud_graded as float then thresholded at >= 0.5 to a binary mask; no extra smoothing",
+  "fsky_work": 0.7521158854166666,
+  "map_sha256": "4501090f824f9140e916339f9e8e490333f6ffe4257a6ee6a02526c8640099a9",
+  "mask_sha256": "30608930b5a3a2154ff0e4d95b32dd3dcb8fda2151133153a1d59feb97ab8d63"
+ },
+ "bands": [
+  [
+   2,
+   8
+  ],
+  [
+   9,
+   16
+  ],
+  [
+   17,
+   32
+  ],
+  [
+   33,
+   64
+  ]
+ ],
+ "lmax": 64,
+ "n_orient": 192,
+ "orientation_seed": 20260919,
+ "n_null": 200,
+ "null_base_seed": 900000,
+ "p_floor": 0.004975124378109453,
+ "alpha_family": 0.05,
+ "n_tests": 4,
+ "alpha_bonferroni": 0.0125,
+ "tests": {
+  "A4": {
+   "C_b_max_data": [
+    0.24516344182200364,
+    0.1994255964897942,
+    0.12128477990754909,
+    0.1007420668371068
+   ],
+   "C_b_max_null_mean": [
+    0.22327299278544474,
+    0.18283789846831733,
+    0.12477428378165037,
+    0.10524745153347262
+   ],
+   "C_b_max_null_std": [
+    0.04421676196995526,
+    0.021791230822965673,
+    0.006998850058390513,
+    0.003097685377713281
+   ],
+   "z_per_band": [
+    0.49507128204985223,
+    0.7612097800366175,
+    -0.4985824592595636,
+    -1.4544358600070932
+   ],
+   "Z_max_over_bands": 0.7612097800366175,
+   "argmax_band": [
+    9,
+    16
+   ],
+   "best_orientation_index_per_band": [
+    52,
+    15,
+    17,
+    3
+   ],
+   "rank_p": 0.6268656716417911,
+   "detection_at_bonferroni": false,
+   "invariant_dims_l0_to_l16": [
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    2,
+    1,
+    1,
+    2,
+    2,
+    1,
+    3,
+    2,
+    2,
+    3,
+    3
+   ]
+  },
+  "C12": {
+   "C_b_max_data": [
+    0.20902607181963867,
+    0.2002375704803062,
+    0.12451212345444715,
+    0.10266256300405488
+   ],
+   "C_b_max_null_mean": [
+    0.27850920009692176,
+    0.17212646599054957,
+    0.12782049430341128,
+    0.1050796442600854
+   ],
+   "C_b_max_null_std": [
+    0.04363374153851945,
+    0.016786680209007514,
+    0.007912608610405072,
+    0.0034339698996365495
+   ],
+   "z_per_band": [
+    -1.5924173776375343,
+    1.6746077330211229,
+    -0.41811379936240267,
+    -0.703873745744347
+   ],
+   "Z_max_over_bands": 1.6746077330211229,
+   "argmax_band": [
+    9,
+    16
+   ],
+   "best_orientation_index_per_band": [
+    49,
+    127,
+    145,
+    59
+   ],
+   "rank_p": 0.22388059701492538,
+   "detection_at_bonferroni": false,
+   "invariant_dims_l0_to_l16": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    3,
+    3,
+    3,
+    3
+   ]
+  }
+ },
+ "peak_rss_mb": 297.890625
+}

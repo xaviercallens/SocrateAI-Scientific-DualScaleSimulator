@@ -23,6 +23,7 @@ def main():
     data = {w: load("real_map_result_%s.json" % w) for w in ("wmap", "planck")}
     tda = {w: load("tda_secondary_%s.json" % w) for w in ("wmap", "planck")}
     pc = load("pointcloud_kat.json")
+    probe = load("probe_wmap.json")
 
     rep = {
         "title": "Discrete-symmetry (crystallinity) lens for the CMB and the "
@@ -53,6 +54,7 @@ def main():
             "discrete_symmetry_lens.py --stage nulls --map wmap",
             "discrete_symmetry_lens.py --stage injection --map wmap",
             "discrete_symmetry_lens.py --stage injection_ext --map wmap",
+            "discrete_symmetry_lens.py --stage probe --map wmap",
             "discrete_symmetry_lens.py --stage data --map wmap",
             "discrete_symmetry_lens.py --stage tda --map wmap",
             "discrete_symmetry_lens.py --stage pointcloud",
@@ -220,6 +222,50 @@ def main():
                         "(Taormina-Wendland, order 40320) and not A_8 (the octad "
                         "stabiliser).  Neither appears anywhere in this work.",
         "never_proved": "the word 'proved' is not used for any result here."}
+
+    if probe:
+        rep["fixed_orientation_probe"] = {
+            "why": probe["why"],
+            "pattern_power_per_l_preregistered_draw": probe[
+                "pattern_power_per_l_preregistered_draw"],
+            "pattern_power_per_l_equal_power_draw": probe[
+                "pattern_power_per_l_equal_power_draw"],
+            "amplitude_scan_at_fixed_identity_orientation": probe[
+                "amplitude_scan_at_fixed_identity_orientation"],
+            "analytic_null_level_band1": probe["analytic_null_level_band1"],
+            "reading": probe["reading"]}
+
+    rep["corrections_to_earlier_commit_messages"] = [
+        {"commit_subject": "audit(crystallography): pre-registered injection "
+                           "ladder (no sensitivity), point-set known-answer "
+                           "test, nulls",
+         "what_it_said": "it gave two causes for the pre-registered ladder "
+                         "finding nothing and listed the uneven per-l pattern "
+                         "draw (0.007/0.214/0.779 at l = 3/4/6) as cause (2), "
+                         "with equal weight.",
+         "correction": "the DOMINANT cause is neither of those: the "
+                       "pre-registered ladder simply stopped at f = 0.2, about "
+                       "25x below the 95% threshold.  The two ladders agree "
+                       "where they overlap -- pre-registered f = 0.2 gave power "
+                       "0.09, the extended equal-power-per-l ladder gives 0.12 "
+                       "at the same f -- so the uneven draw is a secondary "
+                       "effect, not the explanation.  The linear-interference "
+                       "floor (cause 1) is real and is why the threshold is so "
+                       "high in the first place."}]
+
+    rep["caveats_on_the_sensitivity_numbers"] = [
+        "Each scenario/group uses ONE pattern vector (a single seed); only the "
+        "host realisation and the injection orientation vary across the 100 "
+        "realisations.  The quoted threshold is therefore the threshold for that "
+        "direction in the invariant subspace.  At l = 3, 4, 6 that subspace is "
+        "1 + 1 + 2 = 4-dimensional, so direction-to-direction variation is "
+        "plausible and the threshold should be read as indicative, not exact.",
+        "Power is estimated from 100 realisations, so a quoted power of 0.95 "
+        "carries a binomial standard error of about 0.022.",
+        "The amplitude f is a fraction of the host's power in the INJECTION "
+        "multipoles, which is not the same denominator across the narrow and "
+        "broadband scenarios; the two thresholds are not directly comparable as "
+        "numbers, only as statements about their own signal models."]
 
     rep["limitations"] = [
         "The orientation grid has 192 points and the normaliser of A_4 in SO(3) "

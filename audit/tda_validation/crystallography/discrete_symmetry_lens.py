@@ -97,9 +97,15 @@ def peak_rss_mb():
     return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0
 
 
-def sha256_of(path):
+def sha256_of(path, chunk=1 << 22):
+    """Chunked: the Planck SMICA map is 2.0 GB and a single .read() would add a
+    2 GB bytes object on top of the downgraded map and the ~150 MB operator
+    dict, under the 8 GiB `prlimit --as` cap."""
+    h = hashlib.sha256()
     with open(path, "rb") as f:
-        return hashlib.sha256(f.read()).hexdigest()
+        for blk in iter(lambda: f.read(chunk), b""):
+            h.update(blk)
+    return h.hexdigest()
 
 
 def jdump(obj, path):
@@ -1236,6 +1242,57 @@ def stage_injection_ext(args):
     jdump(out, os.path.join(HERE, "injection_ext_%s.json" % which))
 
 
+def stage_probe(args):
+    """Fixed-orientation amplitude probe.  This exists so that the numbers cited
+    in report.json for the linear-interference effect and for the uneven pattern
+    draw come from a COMMITTED script and not from an inline `python -c`
+    (LeanFlow CLAUDE.md section 6: no numbers without a script).
+
+    It injects the PRE-REGISTERED pattern (uneven per-l draw, seed
+    INJ_PATTERN_SEED) UNROTATED into one fixed Gaussian host (seed 1) and reads
+    the crystallinity at grid element 0, which is the identity orientation, so
+    the group is exactly where the pattern is.  Any failure to rise is then a
+    property of the statistic, not a misalignment.
+    """
+    which = args.map
+    m, mask, meta = load_map_and_mask(which)
+    cl = estimate_cl(m, mask, 3 * NSIDE_WORK - 1)
+    del m
+    ops = load_ops("A4")
+    ells = [3, 4, 6]
+    pat = symmetric_pattern(ops, ells, INJ_PATTERN_SEED)
+    pat_eq = symmetric_pattern(ops, ells, INJ_PATTERN_SEED, per_l_equal=True)
+    host = map_to_full(gaussian_sim(cl, 1), mask)
+    rows = []
+    for f in [0.0, 0.05, 0.2, 1.0, 5.0, 50.0]:
+        C = crystallinity(ops, inject(host, pat, ells, f))
+        rows.append({"f": f, "C_at_identity_orientation": C[0].tolist(),
+                     "C_b_max_over_grid": C.max(axis=0).tolist()})
+        log("probe f=%g C[k=0]=%s" % (f, np.round(C[0], 4)))
+    out = {"stage": "probe", "tier": "X", "why": stage_probe.__doc__,
+           "host_sim_seed": 1, "pattern_seed": INJ_PATTERN_SEED,
+           "injection_ells": ells,
+           "pattern_power_per_l_preregistered_draw":
+               {str(l): float(np.sum(np.abs(pat[l]) ** 2)) for l in ells},
+           "pattern_power_per_l_equal_power_draw":
+               {str(l): float(np.sum(np.abs(pat_eq[l]) ** 2)) for l in ells},
+           "amplitude_scan_at_fixed_identity_orientation": rows,
+           "analytic_null_level_band1": {
+               "sum_d_l_over_band": int(sum(ops["dims"][2:9])),
+               "sum_2l+1_over_band": int(sum(2 * l + 1 for l in range(2, 9))),
+               "ratio": float(sum(ops["dims"][2:9])
+                              / sum(2 * l + 1 for l in range(2, 9)))},
+           "reading": "the machinery is correct -- at large f the crystallinity "
+                      "at the identity orientation tends to 1 -- but at small f "
+                      "it can FALL, because the cross term 2Re<P a, s p> "
+                      "dominates s^2 and is destructive as often as "
+                      "constructive.  That is the sensitivity floor of a "
+                      "power-FRACTION statistic: it is set by the sample "
+                      "variance of the invariant subspace's own random content."}
+    out["peak_rss_mb"] = peak_rss_mb()
+    jdump(out, os.path.join(HERE, "probe_%s.json" % which))
+
+
 def stage_data(args):
     which = args.map
     m, mask, meta = load_map_and_mask(which)
@@ -1394,14 +1451,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", required=True,
                     choices=["groups", "operators", "nulls", "injection",
-                             "injection_ext", "data", "tda", "pointcloud"])
+                             "injection_ext", "probe", "data", "tda",
+                             "pointcloud"])
     ap.add_argument("--map", default="wmap", choices=["wmap", "planck"])
     args = ap.parse_args()
     log("stage=%s map=%s python=%s host=%s"
         % (args.stage, args.map, sys.version.split()[0], platform.node()))
     {"groups": stage_groups, "operators": stage_operators,
      "nulls": stage_nulls, "injection": stage_injection,
-     "injection_ext": stage_injection_ext, "data": stage_data,
+     "injection_ext": stage_injection_ext, "probe": stage_probe,
+     "data": stage_data,
      "tda": stage_tda, "pointcloud": stage_pointcloud}[args.stage](args)
     log("done, peak RSS %.0f MB" % peak_rss_mb())
 
