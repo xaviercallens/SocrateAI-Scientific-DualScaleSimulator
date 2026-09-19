@@ -1,0 +1,38 @@
+{
+ "gate_threshold_from_source": 3.0,
+ "committed_rms_z": 0.8339593979531569,
+ "recomputed_rms_z": 0.8339593979531569,
+ "rms_z_poisson_xi0": 1.727812043328385,
+ "poisson_passes_gate": true,
+ "rms_z_vs_scale_of_mock_xi": {
+  "0": 1.727812043328385,
+  "0.25": 1.4374267727212076,
+  "0.5": 1.1739570351101871,
+  "1": 0.8339593979531569,
+  "1.5": 0.9681290867026368,
+  "2": 1.4503558437640645,
+  "2.5": 2.0479899200184217,
+  "3": 2.685044849790995,
+  "3.5": 3.3390330145443055,
+  "4": 4.0016608543178815,
+  "5": 5.339944130448697
+ },
+ "passing_scale_range": [
+  0,
+  0.25,
+  0.5,
+  1,
+  1.5,
+  2,
+  2.5,
+  3
+ ],
+ "median_sigma_total": 0.010868167952946208,
+ "median_sigma_mock_field": 0.010610400785203512,
+ "median_sigma_shot": 0.0006462937527893342,
+ "max_xi_data_fit_range": 0.06976960709369884,
+ "chi2_diag_committed_mock": 13.909765548687838,
+ "chi2_diag_poisson": 59.706689141412184,
+ "n_bins": 20,
+ "note": "RMS-z ignores bin-to-bin correlation; the counterfactuals use the committed sigma arrays unchanged."
+}

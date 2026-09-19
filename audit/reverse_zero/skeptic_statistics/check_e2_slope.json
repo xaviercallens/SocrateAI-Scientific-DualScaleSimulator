@@ -1,0 +1,10 @@
+{
+ "slope_recomputed": 0.9999999999999998,
+ "slope_committed_json": 0.9999999999999903,
+ "E2_RESULT_md_line78": "`max_deviation_from_hd / c4_pta_product = 6.171` (spread across the",
+ "hd_dynamic_range": 0.648180876543559,
+ "argmax_deviation_theta_deg": [
+  180.0
+ ],
+ "threshold_1pct_recomputed": 0.006481808765435592
+}
