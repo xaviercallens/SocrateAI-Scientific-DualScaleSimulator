@@ -1,0 +1,48 @@
+{
+ "function": "gudhi.RipsComplex with vs without SimplexTree.collapse_edges",
+ "no_collapse": {
+  "L": 1.2,
+  "n_points": 300,
+  "graph_simplices": 2439,
+  "after_collapse_simplices": 2439,
+  "collapse_iterations": 0,
+  "expanded_simplices": 18441,
+  "expansion_dim": 3
+ },
+ "collapse": {
+  "L": 1.2,
+  "n_points": 300,
+  "graph_simplices": 2439,
+  "after_collapse_simplices": 942,
+  "collapse_iterations": 4,
+  "expanded_simplices": 1270,
+  "expansion_dim": 3
+ },
+ "bottleneck_by_dim": {
+  "0": 1.6352831518821627e-308,
+  "1": 1.232629207480757e-308,
+  "2": 0.0
+ },
+ "pass": true,
+ "status": "ok",
+ "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case C0",
+ "started": "2026-09-19T19:08:51",
+ "loadavg_start": [
+  9.12158203125,
+  9.9228515625,
+  11.44091796875
+ ],
+ "wall_sec_total": 0.5047211647033691,
+ "peak_rss_mb": 157.08984375,
+ "git_head": "9da59549e958d7b0a9df7350f6e27cfc28d163fa",
+ "script_sha256": "cb16c4300e2d283b8b7b685c3a3b09464713d93dc78d103a31d53cc3a4629d0c",
+ "code_under_test_sha256": {
+  "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
+  "audit/reverse_zero/E5-cmb-tda/cmb_tda.py": "a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d"
+ },
+ "versions": {
+  "python": "3.10.12",
+  "gudhi": "3.13.0",
+  "numpy": "2.2.6"
+ }
+}

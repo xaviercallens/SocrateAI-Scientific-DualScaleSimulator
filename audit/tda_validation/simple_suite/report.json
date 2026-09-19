@@ -1,0 +1,1151 @@
+{
+ "title": "TDA known-answer suite on simple spaces (LeanFlow TEST_USE_CASES section 2)",
+ "generated_by": "make_report.py from results.json",
+ "tiers": "expected topology: L (Hatcher 2002; Kunneth; construction). Every observed number: X (numerics). Nothing here is proved.",
+ "hardware": "Intel Xeon @ 2.20GHz, 8 cores, 29 GB RAM, shared; 1-min load average at case start ranged 1.83-16.1 over the recorded runs (per-case loadavg_start in results.json). Every process: prlimit --as=6442450944, timeout <= 590 s, OMP_NUM_THREADS=1. Wall times are under contention and are not benchmarks.",
+ "code_under_test_sha256": {
+  "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
+  "audit/reverse_zero/E5-cmb-tda/cmb_tda.py": "a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d"
+ },
+ "summary": [
+  {
+   "id": "P1",
+   "pass": true
+  },
+  {
+   "id": "P2",
+   "pass": true
+  },
+  {
+   "id": "P3a",
+   "pass": true
+  },
+  {
+   "id": "P3b",
+   "pass": true
+  },
+  {
+   "id": "P4",
+   "pass": true
+  },
+  {
+   "id": "P5",
+   "pass": true
+  },
+  {
+   "id": "P6",
+   "pass": false
+  },
+  {
+   "id": "P7",
+   "pass": false
+  },
+  {
+   "id": "P8",
+   "pass": true
+  },
+  {
+   "id": "P9a",
+   "pass": true
+  },
+  {
+   "id": "P9b",
+   "pass": true
+  },
+  {
+   "id": "P9c",
+   "pass": true
+  },
+  {
+   "id": "P10a",
+   "pass": true
+  },
+  {
+   "id": "P10b",
+   "pass": true
+  },
+  {
+   "id": "F1",
+   "pass": true
+  },
+  {
+   "id": "F2",
+   "pass": true
+  },
+  {
+   "id": "F3",
+   "pass": false
+  },
+  {
+   "id": "N1",
+   "pass": true
+  },
+  {
+   "id": "N2",
+   "pass": false
+  },
+  {
+   "id": "C0",
+   "pass": true
+  },
+  {
+   "id": "F1shuf",
+   "pass": true
+  }
+ ],
+ "table": [
+  {
+   "id": "P1",
+   "expected": [
+    1,
+    1,
+    0
+   ],
+   "observed_pipeline": [
+    1,
+    1,
+    0
+   ],
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf) [pipeline, Z/2]",
+   "dominance_rules": {
+    "0": "p_1 / p_2 = 17.6 (required >= 5)",
+    "1": "p_1 / p_2 = 47.86 (required >= 5)",
+    "2": "p_1 / P_all = 0.00862 (required < 0.2)"
+   },
+   "p_values_vs_matched_poisson": {
+    "H1_bar_1": 0.0196078431372549
+   },
+   "rips_reference_observed": [
+    1,
+    1,
+    0
+   ],
+   "rips_reference_pass": true,
+   "wall_sec": 0.7903785705566406,
+   "peak_rss_mb": 173.76953125
+  },
+  {
+   "id": "P2",
+   "expected": [
+    1,
+    0,
+    1
+   ],
+   "observed_pipeline": [
+    1,
+    0,
+    1
+   ],
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf) [pipeline, Z/2]",
+   "dominance_rules": {
+    "0": "p_1 / p_2 = 19.38 (required >= 5)",
+    "1": "p_1 / P_all = 0.06498 (required < 0.2)",
+    "2": "p_1 / p_2 = 223.2 (required >= 5)"
+   },
+   "p_values_vs_matched_poisson": {
+    "H2_bar_1": 0.0196078431372549
+   },
+   "rips_reference_observed": [
+    144,
+    16,
+    1
+   ],
+   "rips_reference_pass": false,
+   "wall_sec": 1.0813822746276855,
+   "peak_rss_mb": 190.76953125
+  },
+  {
+   "id": "P3a",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "observed_pipeline": [
+    1,
+    2,
+    1
+   ],
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf) [pipeline, Z/2]",
+   "dominance_rules": {
+    "0": "p_1 / p_2 = 15.09 (required >= 5)",
+    "1": "p_2 / p_3 = 6.013 (required >= 5)",
+    "2": "p_1 / p_2 = 27.26 (required >= 5)"
+   },
+   "p_values_vs_matched_poisson": {
+    "H1_bar_2": 0.0196078431372549,
+    "H2_bar_1": 0.0196078431372549
+   },
+   "rips_reference_observed": [
+    630,
+    64,
+    1
+   ],
+   "rips_reference_pass": false,
+   "wall_sec": 1.5720372200012207,
+   "peak_rss_mb": 216.01953125
+  },
+  {
+   "id": "P3b",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "observed_pipeline": [
+    1,
+    2,
+    1
+   ],
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf) [pipeline, Z/2]",
+   "dominance_rules": {
+    "0": "p_1 / p_2 = 22.65 (required >= 5)",
+    "1": "p_2 / p_3 = 11.56 (required >= 5)",
+    "2": "p_1 / p_2 = 6.056e+04 (required >= 5)"
+   },
+   "p_values_vs_matched_poisson": null,
+   "rips_reference_observed": [
+    155,
+    22,
+    1
+   ],
+   "rips_reference_pass": false,
+   "wall_sec": 111.10877227783203,
+   "peak_rss_mb": 778.859375
+  },
+  {
+   "id": "P4",
+   "expected": [
+    1,
+    2,
+    0
+   ],
+   "observed_pipeline": [
+    1,
+    2,
+    0
+   ],
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf) [pipeline, Z/2]",
+   "dominance_rules": {
+    "0": "p_1 / p_2 = 13.16 (required >= 5)",
+    "1": "p_2 / p_3 = 33.58 (required >= 5)",
+    "2": "p_1 / P_all = 0.01016 (required < 0.2)"
+   },
+   "p_values_vs_matched_poisson": null,
+   "rips_reference_observed": [
+    1,
+    2,
+    0
+   ],
+   "rips_reference_pass": true,
+   "wall_sec": 0.46791577339172363,
+   "peak_rss_mb": 173.44921875
+  },
+  {
+   "id": "P10a",
+   "expected": [
+    2,
+    0,
+    2
+   ],
+   "observed_pipeline": [
+    2,
+    0,
+    2
+   ],
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf) [pipeline, Z/2]",
+   "dominance_rules": {
+    "0": "p_2 / p_3 = 6.248 (required >= 5)",
+    "1": "p_1 / P_all = 0.1801 (required < 0.2)",
+    "2": "p_2 / p_3 = 21.11 (required >= 5)"
+   },
+   "p_values_vs_matched_poisson": null,
+   "rips_reference_observed": [
+    464,
+    59,
+    1
+   ],
+   "rips_reference_pass": false,
+   "wall_sec": 1.505791187286377,
+   "peak_rss_mb": 201.64453125
+  },
+  {
+   "id": "P10b",
+   "expected": [
+    2,
+    1,
+    1
+   ],
+   "observed_pipeline": [
+    2,
+    1,
+    1
+   ],
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf) [pipeline, Z/2]",
+   "dominance_rules": {
+    "0": "p_2 / p_3 = 17.63 (required >= 5)",
+    "1": "p_1 / p_2 = 12.1 (required >= 5)",
+    "2": "p_1 / p_2 = 231 (required >= 5)"
+   },
+   "p_values_vs_matched_poisson": null,
+   "rips_reference_observed": [
+    89,
+    10,
+    1
+   ],
+   "rips_reference_pass": false,
+   "wall_sec": 0.8982028961181641,
+   "peak_rss_mb": 186.828125
+  },
+  {
+   "id": "P5[preregistered]",
+   "expected": {
+    "Z/2": [
+     1,
+     2,
+     1
+    ],
+    "Z/3": [
+     1,
+     1,
+     0
+    ]
+   },
+   "pass": true,
+   "parts": {
+    "direct": {
+     "status": "ok",
+     "error": null,
+     "wall_sec_total": 158.35343408584595,
+     "peak_rss_mb": 5250.12109375,
+     "direct_alpha_Z/2": [
+      1,
+      2,
+      1,
+      0
+     ],
+     "direct_alpha_Z/3": [
+      1,
+      1,
+      0,
+      0
+     ]
+    },
+    "pipeline": {
+     "status": "ok",
+     "error": null,
+     "wall_sec_total": 139.84611678123474,
+     "peak_rss_mb": 5267.171875,
+     "pipeline_Z2": [
+      1,
+      2,
+      1
+     ]
+    },
+    "rips": {
+     "status": "ok",
+     "error": null,
+     "wall_sec_total": 0.07903122901916504,
+     "peak_rss_mb": 160.91015625,
+     "rips_Z/2": [
+      442,
+      45,
+      0
+     ],
+     "rips_Z/3": [
+      442,
+      45,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "id": "P6[N1000]",
+   "expected": {
+    "Z/2": [
+     1,
+     1,
+     1
+    ],
+    "Z/3": [
+     1,
+     0,
+     0
+    ]
+   },
+   "pass": false,
+   "parts": {
+    "pipeline": {
+     "status": "ok",
+     "error": null,
+     "wall_sec_total": 67.56320786476135,
+     "peak_rss_mb": 1265.18359375,
+     "pipeline_Z2": [
+      1,
+      5,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "id": "P6[N2000]",
+   "expected": {
+    "Z/2": [
+     1,
+     1,
+     1
+    ],
+    "Z/3": [
+     1,
+     0,
+     0
+    ]
+   },
+   "pass": true,
+   "parts": {
+    "direct": {
+     "status": "ok",
+     "error": null,
+     "wall_sec_total": 420.54739713668823,
+     "peak_rss_mb": 4577.16015625,
+     "direct_alpha_Z/2": [
+      1,
+      1,
+      1,
+      0
+     ],
+     "direct_alpha_Z/3": [
+      1,
+      0,
+      0,
+      0
+     ]
+    },
+    "pipeline": {
+     "status": "ok",
+     "error": null,
+     "wall_sec_total": 327.16216230392456,
+     "peak_rss_mb": 4578.42578125,
+     "pipeline_Z2": [
+      1,
+      1,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "id": "P6[N3000]",
+   "expected": {
+    "Z/2": [
+     1,
+     1,
+     1
+    ],
+    "Z/3": [
+     1,
+     0,
+     0
+    ]
+   },
+   "pass": false,
+   "parts": {
+    "pipeline": {
+     "status": "error",
+     "error": "MemoryError('std::bad_alloc')",
+     "wall_sec_total": 245.87866401672363,
+     "peak_rss_mb": 5588.0
+    }
+   }
+  },
+  {
+   "id": "P6[preregistered]",
+   "expected": {
+    "Z/2": [
+     1,
+     1,
+     1
+    ],
+    "Z/3": [
+     1,
+     0,
+     0
+    ]
+   },
+   "pass": false,
+   "parts": {
+    "rips": {
+     "status": "ok",
+     "error": null,
+     "wall_sec_total": 0.35529422760009766,
+     "peak_rss_mb": 164.20703125,
+     "rips_Z/2": [
+      1,
+      2,
+      1
+     ],
+     "rips_Z/3": [
+      1,
+      0,
+      0
+     ]
+    }
+   },
+   "killed_runs": [
+    {
+     "status": "killed_or_crashed",
+     "exit_code": 124,
+     "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case P6 --part pipeline"
+    }
+   ]
+  },
+  {
+   "id": "P7",
+   "expected": [
+    1,
+    3,
+    3,
+    1
+   ],
+   "pass": false,
+   "function": "gudhi.RipsComplex(L=1.6) + collapse_edges + expansion(4), Z/2 (pipeline alpha_persistence cannot report H3)",
+   "sweep": [
+    {
+     "N": 250,
+     "observed": [
+      248,
+      74,
+      0,
+      0
+     ],
+     "pass": false,
+     "rules": {
+      "0": "p_1 / p_2 = 1.541 (required >= 5)",
+      "1": "p_3 / p_4 = 1.135 (required >= 5)",
+      "2": "p_3 / p_4 = 1.059 (required >= 5)",
+      "3": "p_1 / p_2 = inf (required >= 5)"
+     },
+     "wall_sec": 0.015156030654907227,
+     "peak_rss_mb": 156.14453125,
+     "simplices_after_expansion": 3504
+    },
+    {
+     "N": 500,
+     "observed": [
+      481,
+      104,
+      18,
+      0
+     ],
+     "pass": false,
+     "rules": {
+      "0": "p_1 / p_2 = 1.684 (required >= 5)",
+      "1": "p_3 / p_4 = 1.514 (required >= 5)",
+      "2": "p_3 / p_4 = 1.013 (required >= 5)",
+      "3": "p_1 / p_2 = inf (required >= 5)"
+     },
+     "wall_sec": 0.1699528694152832,
+     "peak_rss_mb": 157.0859375,
+     "simplices_after_expansion": 13708
+    },
+    {
+     "N": 1000,
+     "observed": [
+      914,
+      133,
+      21,
+      0
+     ],
+     "pass": false,
+     "rules": {
+      "0": "p_1 / p_2 = 2.002 (required >= 5)",
+      "1": "p_3 / p_4 = 2.106 (required >= 5)",
+      "2": "p_3 / p_4 = 1.255 (required >= 5)",
+      "3": "p_1 / p_2 = 3.915 (required >= 5)"
+     },
+     "wall_sec": 0.2849414348602295,
+     "peak_rss_mb": 160.5546875,
+     "simplices_after_expansion": 31679
+    },
+    {
+     "N": 2000,
+     "observed": [
+      1595,
+      138,
+      15,
+      1
+     ],
+     "pass": false,
+     "rules": {
+      "0": "p_1 / p_2 = 2.631 (required >= 5)",
+      "1": "p_3 / p_4 = 2.609 (required >= 5)",
+      "2": "p_3 / p_4 = 1.841 (required >= 5)",
+      "3": "p_1 / p_2 = 6.017 (required >= 5)"
+     },
+     "wall_sec": 1.7659835815429688,
+     "peak_rss_mb": 172.7734375,
+     "simplices_after_expansion": 66568
+    },
+    {
+     "N": 4000,
+     "observed": [
+      2172,
+      114,
+      8,
+      1
+     ],
+     "pass": false,
+     "rules": {
+      "0": "p_1 / p_2 = 3.056 (required >= 5)",
+      "1": "p_3 / p_4 = 3.597 (required >= 5)",
+      "2": "p_3 / p_4 = 3.046 (required >= 5)",
+      "3": "p_1 / p_2 = 14.65 (required >= 5)"
+     },
+     "wall_sec": 10.9325430393219,
+     "peak_rss_mb": 220.48046875,
+     "simplices_after_expansion": 138766
+    },
+    {
+     "N": 8000,
+     "observed": [
+      1272,
+      12,
+      4,
+      1
+     ],
+     "pass": false,
+     "rules": {
+      "0": "p_1 / p_2 = 3.966 (required >= 5)",
+      "1": "p_3 / p_4 = 4.657 (required >= 5)",
+      "2": "p_3 / p_4 = 3.913 (required >= 5)",
+      "3": "p_1 / p_2 = 25.84 (required >= 5)"
+     },
+     "wall_sec": 62.37812876701355,
+     "peak_rss_mb": 417.265625,
+     "simplices_after_expansion": 294376
+    },
+    {
+     "N": 16000,
+     "observed": [
+      67,
+      3,
+      3,
+      1
+     ],
+     "pass": false,
+     "rules": {
+      "0": "p_1 / p_2 = 4.776 (required >= 5)",
+      "1": "p_3 / p_4 = 5.94 (required >= 5)",
+      "2": "p_3 / p_4 = 4.168 (required >= 5)",
+      "3": "p_1 / p_2 = 24.14 (required >= 5)"
+     },
+     "wall_sec": 428.576060295105,
+     "peak_rss_mb": 1178.4921875,
+     "simplices_after_expansion": 572106
+    }
+   ],
+   "smallest_N_recovered": null,
+   "post_hoc_landmarks": [
+    {
+     "n_landmarks": 8000,
+     "pool": 48000,
+     "observed": [
+      4603,
+      3,
+      3,
+      1
+     ],
+     "pass": false,
+     "rules": {
+      "0": "p_1 / p_2 = 4.34 (required >= 5)",
+      "1": "p_3 / p_4 = 7.612 (required >= 5)",
+      "2": "p_3 / p_4 = 5.99 (required >= 5)",
+      "3": "p_1 / p_2 = 34.16 (required >= 5)"
+     },
+     "wall_sec": 58.872488498687744,
+     "peak_rss_mb": 422.02734375
+    },
+    {
+     "n_landmarks": 16000,
+     "pool": 48000,
+     "observed": [
+      15,
+      3,
+      3,
+      1
+     ],
+     "pass": false,
+     "rules": {
+      "0": "p_1 / p_2 = 5.438 (required >= 5)",
+      "1": "p_3 / p_4 = 8.193 (required >= 5)",
+      "2": "p_3 / p_4 = 6.553 (required >= 5)",
+      "3": "p_1 / p_2 = 26.32 (required >= 5)"
+     },
+     "wall_sec": 330.41535115242004,
+     "peak_rss_mb": 1173.375
+    }
+   ]
+  },
+  {
+   "id": "P8",
+   "expected": "6 H2 bars, death within 5% of 15",
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.build_planted_void_cloud + alpha_persistence(37.5^2) + top_bars(2, k=8, r_trunc=37.5)",
+   "top8_H2_deaths": [
+    15.12776300966527,
+    15.068472827792634,
+    15.05531440173681,
+    15.142233290087864,
+    15.06591969843279,
+    15.050371861313675,
+    6.096347793831287,
+    5.8038570172338675
+   ],
+   "death_rel_err_top6": [
+    0.008517533977684622,
+    0.0045648551861756205,
+    0.0036876267824540085,
+    0.009482219339190934,
+    0.0043946465621859925,
+    0.003358124087578318
+   ],
+   "ratio_p6_over_p7_not_gated": 4.23284638406275,
+   "robustness_seeds_passing_of_5": 5,
+   "wall_sec": 12.714583396911621,
+   "peak_rss_mb": 297.6171875
+  },
+  {
+   "id": "P9a",
+   "expected": "no dominant bar (>= 48/50 seeds)",
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf)",
+   "N": 2000,
+   "matched_to": "P1",
+   "seeds_without_dominant_bar": 50,
+   "max_persistence_H1": {
+    "min": 0.050078018435277274,
+    "p5": 0.05132777429331693,
+    "median": 0.05746916721947523,
+    "p95": 0.06598640826707233,
+    "max": 0.07457390358820817
+   },
+   "max_persistence_H2": {
+    "min": 0.021963822622055068,
+    "p5": 0.023755203536233147,
+    "median": 0.0301470836242535,
+    "p95": 0.037219177931787376,
+    "max": 0.04241300099369347
+   },
+   "max_ratio_p1_p2_H1": 1.3044832961103139,
+   "max_ratio_p1_p2_H2": 1.6990910999127327,
+   "wall_sec": 12.667267084121704,
+   "peak_rss_mb": 176.140625
+  },
+  {
+   "id": "P9b",
+   "expected": "no dominant bar (>= 48/50 seeds)",
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf)",
+   "N": 5000,
+   "matched_to": "P2",
+   "seeds_without_dominant_bar": 50,
+   "max_persistence_H1": {
+    "min": 0.0597266419576203,
+    "p5": 0.06022049044667143,
+    "median": 0.06569762788602068,
+    "p95": 0.07425808650167087,
+    "max": 0.0822009335241588
+   },
+   "max_persistence_H2": {
+    "min": 0.04626777116519702,
+    "p5": 0.048985312074476234,
+    "median": 0.0552695763808601,
+    "p95": 0.06668898424470068,
+    "max": 0.06771532241383924
+   },
+   "max_ratio_p1_p2_H1": 1.3073943957035714,
+   "max_ratio_p1_p2_H2": 1.3517204918987007,
+   "wall_sec": 56.69782304763794,
+   "peak_rss_mb": 207.49609375
+  },
+  {
+   "id": "P9c",
+   "expected": "no dominant bar (>= 48/50 seeds)",
+   "pass": true,
+   "function": "cosmic_web_tda_scaled.alpha_persistence(max_alpha_sq=inf)",
+   "N": 8000,
+   "matched_to": "P3a",
+   "seeds_without_dominant_bar": 50,
+   "max_persistence_H1": {
+    "min": 0.12146095274040147,
+    "p5": 0.12299399016898896,
+    "median": 0.129711818483459,
+    "p95": 0.14134724852664848,
+    "max": 0.1475778442859017
+   },
+   "max_persistence_H2": {
+    "min": 0.0918819784489679,
+    "p5": 0.09928583832924934,
+    "median": 0.11076612723377274,
+    "p95": 0.1388987794995381,
+    "max": 0.1437419800846461
+   },
+   "max_ratio_p1_p2_H1": 1.158249751174959,
+   "max_ratio_p1_p2_H2": 1.2469564000988367,
+   "wall_sec": 88.3957200050354,
+   "peak_rss_mb": 234.07421875
+  },
+  {
+   "id": "F1",
+   "expected": 7,
+   "pass": true,
+   "cubical_H0_bars": 7,
+   "direct_local_minima": 7,
+   "pipeline_max_nu_b0": 7,
+   "pipeline_b0_b1_at_top": [
+    1,
+    0
+   ],
+   "function": [
+    "gudhi.CubicalComplex(top_dimensional_cells=f)",
+    "cmb_tda.betti_curves_from_topology (Freudenthal grid triangulation, sublevel)"
+   ],
+   "wall_sec": 2.338898181915283,
+   "peak_rss_mb": 220.21484375
+  },
+  {
+   "id": "F1shuf (post hoc, TDA-N3)",
+   "expected": "!= 7",
+   "pass": true,
+   "cubical_H0_bars": 7341,
+   "direct_local_minima": 7341,
+   "pipeline_max_nu_b0": 6340
+  },
+  {
+   "id": "F2",
+   "expected": "binomial(n,k)",
+   "pass": true,
+   "function": "gudhi.PeriodicCubicalComplex / gudhi.CubicalComplex",
+   "tori": {
+    "T1": {
+     "infinite_bars": [
+      1,
+      1
+     ],
+     "nonperiodic_control": [
+      1,
+      0
+     ]
+    },
+    "T2": {
+     "infinite_bars": [
+      1,
+      2,
+      1
+     ],
+     "nonperiodic_control": [
+      1,
+      0,
+      0
+     ]
+    },
+    "T3": {
+     "infinite_bars": [
+      1,
+      3,
+      3,
+      1
+     ],
+     "nonperiodic_control": [
+      1,
+      0,
+      0,
+      0
+     ]
+    },
+    "T4": {
+     "infinite_bars": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "nonperiodic_control": [
+      1,
+      0,
+      0,
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "id": "F3",
+   "expected": "uniform p-values (KS p >= 0.01, #{p<0.05} <= 9/100) for b0, b1, chi",
+   "pass": false,
+   "function": "cmb_tda.build_topology(full-sky mask, 64) + betti_curves_from_topology(sublevel) + cmb_tda.coarse_stats",
+   "hartlap": {
+    "b0": {
+     "ks_p": 0.02052679244545007,
+     "n_below_0.05": 3,
+     "gate_pass": true,
+     "literal_TDA7_le5": true
+    },
+    "b1": {
+     "ks_p": 0.00010907605871558121,
+     "n_below_0.05": 9,
+     "gate_pass": false,
+     "literal_TDA7_le5": false
+    },
+    "chi": {
+     "ks_p": 0.39745050547226574,
+     "n_below_0.05": 9,
+     "gate_pass": true,
+     "literal_TDA7_le5": false
+    }
+   },
+   "empirical_rank": {
+    "b0": {
+     "ks_stat": 0.07316831683168318,
+     "ks_p": 0.6311706961290715,
+     "n_below_0.05": 4
+    },
+    "b1": {
+     "ks_stat": 0.10069306930693078,
+     "ks_p": 0.24566941656343658,
+     "n_below_0.05": 12
+    },
+    "chi": {
+     "ks_stat": 0.09336633663366345,
+     "ks_p": 0.3274437920989475,
+     "n_below_0.05": 9
+    }
+   },
+   "topology_diagnostic_betti_full_sky": [
+    1,
+    0,
+    49147
+   ]
+  },
+  {
+   "id": "N1",
+   "expected": "no dominant H1/H2",
+   "pass": true,
+   "H1_p1_over_p2": 1.1595354195748704,
+   "H2_p1_over_p2": 1.3705162288337611
+  },
+  {
+   "id": "N2",
+   "expected": "P3a H1 destroyed",
+   "pass": false,
+   "H1_p2_over_p3": 1.0240297944616428,
+   "p_value_second_H1_bar_vs_P9c": 0.0196078431372549
+  },
+  {
+   "id": "C0",
+   "expected": "collapse_edges preserves the diagram",
+   "pass": true,
+   "bottleneck_by_dim": {
+    "0": 1.6352831518821627e-308,
+    "1": 1.232629207480757e-308,
+    "2": 0.0
+   }
+  }
+ ],
+ "pipeline_function_findings": [
+  {
+   "function": "cosmic_web_tda_scaled.alpha_persistence",
+   "kind": "capability gap (read from source, confirmed by use)",
+   "finding": "homology_coeff_field=2 is hard-coded, so the coefficient-field checks (P5, P6 over Z/3) cannot run through it; they ran through gudhi.AlphaComplex directly on the same points. Over Z/2 the pipeline and the direct run have the same bar counts in dims 0-2 and identical top-6 H1/H2 persistences and finite H0 bars (only the cap of the essential H0 bar differs, because the direct run also sees H3): {'P5 N=8000': True, 'P6 N=2000': True}.",
+   "consequence": "a torsion-sensitive result (anything that differs between Z/2 and Z/3) cannot be produced by the pipeline as written"
+  },
+  {
+   "function": "cosmic_web_tda_scaled.alpha_persistence / betti_curve / euler_curve",
+   "kind": "capability gap",
+   "finding": "by_dim keeps dimensions 0, 1, 2 only; H3 and above are dropped without warning. P7 (beta_3 = 1) had to use gudhi.RipsComplex directly.",
+   "consequence": "any 4-D or higher analysis through this function silently loses H3"
+  },
+  {
+   "function": "cmb_tda.coarse_stats (with betti_curves_from_topology on the default nu grid [-4, 4])",
+   "kind": "calibration FAILURE (F3)",
+   "finding": "for the sublevel b1 curve the Hartlap chi2 p-values of 100 independent Gaussian maps against a 100-map ensemble are not uniform: KS p = 0.000109, 9 of 100 below 0.05. Cause (post-hoc diagnostic): the first coarse bin (nu in [-4, -3]) of b1 is exactly 0 in a fraction 1 of the 100 ensemble maps (std 0), and the second is a rare-count bin (fraction 0.74 of maps exactly 0, std 0.12); coarse_stats keeps df = N_BINS = 8 and a 1e-8 ridge, so one degenerate bin shifts the chi2(8) reference and a single loop in the rare-count bin gives a single-bin |z| up to 6.12. The smallest Hartlap p-values are [0.0, 0.0003, 0.0019]. The empirical rank p-value is closer to uniform for b1 (KS p = 0.246) but has 12 of 100 below 0.05.",
+   "not_affected": "b0 (KS p = 0.0205) and chi (KS p = 0.397) pass the pre-registered gate",
+   "consequence": "b1 chi2 p-values from the CMB TDA run (same coarse_stats, same nu grid, nside 128 masked) should not be read at face value; drop zero-variance bins (and set df to the number kept), restrict the nu range to where the curve varies, or use the rank p-value with its own calibration"
+  },
+  {
+   "function": "cmb_tda.build_topology",
+   "kind": "construction defect with no effect on b0/b1 (predicted in expectations.json before running)",
+   "finding": "the full-sky nside-64 complex (V=49152, E=196596, T=196592) has Betti numbers [1, 0, 49147] instead of (1, 0, 1) for a triangulated S2: every set of 4 mutually 8-adjacent pixels around a pixel corner gives 4 triangles and no tetrahedron (a hollow tetrahedron).",
+   "consequence": "b0 and b1 are unaffected (F3 topology check b0 = 1, b1 = 0 passes). The curve the pipeline labels 'euler_chi' is b0 - b1, not the Euler characteristic of the complex it builds (b2 is ignored), and persistence spends work on tens of thousands of spurious H2 classes"
+  }
+ ],
+ "other_failures": [
+  {
+   "case": "P6 (RP2), pre-registered design",
+   "result": "FAIL (over budget)",
+   "cause": "alpha in R4 on the (xy, xz, y^2 - z^2, 2yz) embedding does not fit the 6 GiB / 590 s cap at N = 6000 (the recorded run hit the 590 s timeout, exit 124; an earlier identical attempt, before error capture was added, ended in std::bad_alloc) nor at N = 3000 (std::bad_alloc, peak RSS 5588 MB). This is a Delaunay-size limit of gudhi/CGAL in R4 for this point set, not pipeline logic.",
+   "post_hoc": "N = 2000 (first 2000 of the same draw): pipeline Z/2 [1, 1, 1], direct alpha Z/2 [1, 1, 1, 0] and Z/3 [1, 0, 0, 0], all PASS (13879307 simplices, peak RSS 4577 MB). N = 1000: pipeline Z/2 observed [1, 5, 1], FAIL (H1 rule p_1 / p_2 = 4.297 (required >= 5))."
+  },
+  {
+   "case": "P7 (T3 in R6)",
+   "result": "not recovered within budget",
+   "sweep": {
+    "250": {
+     "observed": [
+      248,
+      74,
+      0,
+      0
+     ],
+     "rules": {
+      "0": "p_1 / p_2 = 1.541 (required >= 5)",
+      "1": "p_3 / p_4 = 1.135 (required >= 5)",
+      "2": "p_3 / p_4 = 1.059 (required >= 5)",
+      "3": "p_1 / p_2 = inf (required >= 5)"
+     },
+     "wall_sec": 0.015156030654907227
+    },
+    "500": {
+     "observed": [
+      481,
+      104,
+      18,
+      0
+     ],
+     "rules": {
+      "0": "p_1 / p_2 = 1.684 (required >= 5)",
+      "1": "p_3 / p_4 = 1.514 (required >= 5)",
+      "2": "p_3 / p_4 = 1.013 (required >= 5)",
+      "3": "p_1 / p_2 = inf (required >= 5)"
+     },
+     "wall_sec": 0.1699528694152832
+    },
+    "1000": {
+     "observed": [
+      914,
+      133,
+      21,
+      0
+     ],
+     "rules": {
+      "0": "p_1 / p_2 = 2.002 (required >= 5)",
+      "1": "p_3 / p_4 = 2.106 (required >= 5)",
+      "2": "p_3 / p_4 = 1.255 (required >= 5)",
+      "3": "p_1 / p_2 = 3.915 (required >= 5)"
+     },
+     "wall_sec": 0.2849414348602295
+    },
+    "2000": {
+     "observed": [
+      1595,
+      138,
+      15,
+      1
+     ],
+     "rules": {
+      "0": "p_1 / p_2 = 2.631 (required >= 5)",
+      "1": "p_3 / p_4 = 2.609 (required >= 5)",
+      "2": "p_3 / p_4 = 1.841 (required >= 5)",
+      "3": "p_1 / p_2 = 6.017 (required >= 5)"
+     },
+     "wall_sec": 1.7659835815429688
+    },
+    "4000": {
+     "observed": [
+      2172,
+      114,
+      8,
+      1
+     ],
+     "rules": {
+      "0": "p_1 / p_2 = 3.056 (required >= 5)",
+      "1": "p_3 / p_4 = 3.597 (required >= 5)",
+      "2": "p_3 / p_4 = 3.046 (required >= 5)",
+      "3": "p_1 / p_2 = 14.65 (required >= 5)"
+     },
+     "wall_sec": 10.9325430393219
+    },
+    "8000": {
+     "observed": [
+      1272,
+      12,
+      4,
+      1
+     ],
+     "rules": {
+      "0": "p_1 / p_2 = 3.966 (required >= 5)",
+      "1": "p_3 / p_4 = 4.657 (required >= 5)",
+      "2": "p_3 / p_4 = 3.913 (required >= 5)",
+      "3": "p_1 / p_2 = 25.84 (required >= 5)"
+     },
+     "wall_sec": 62.37812876701355
+    },
+    "16000": {
+     "observed": [
+      67,
+      3,
+      3,
+      1
+     ],
+     "rules": {
+      "0": "p_1 / p_2 = 4.776 (required >= 5)",
+      "1": "p_3 / p_4 = 5.94 (required >= 5)",
+      "2": "p_3 / p_4 = 4.168 (required >= 5)",
+      "3": "p_1 / p_2 = 24.14 (required >= 5)"
+     },
+     "wall_sec": 428.576060295105
+    }
+   },
+   "reading": "the three H1 bars, three H2 bars and the H3 bar are the three to four longest bars from N = 2000 up, but the 5x rule needs the noise bars to shrink below 1/5 of the capped true bars. At N = 16000 (429 s, 1178 MB) H1 (p_3 / p_4 = 5.94 (required >= 5)) and H3 (p_1 / p_2 = 24.14 (required >= 5)) pass; H0 (p_1 / p_2 = 4.776 (required >= 5)) and H2 (p_3 / p_4 = 4.168 (required >= 5)) do not. N = 32000 was not attempted: wall time grew from 62.4 s (N = 8000) to 429 s (N = 16000), so N = 32000 is projected far beyond the 590 s cap.",
+   "post_hoc_landmarks": "farthest-point landmarks from a 48000-point pool (not pre-registered): 8000 landmarks give [4603, 3, 3, 1] (H0 p_1 / p_2 = 4.34 (required >= 5)); 16000 landmarks pass every 5x rule (H0 p_1 / p_2 = 5.438 (required >= 5), H1 p_3 / p_4 = 8.193 (required >= 5), H2 p_3 / p_4 = 6.553 (required >= 5), H3 p_1 / p_2 = 26.32 (required >= 5)) but observed beta_0 = 15 because that many H0 bars (the second is 0.294, near the landmark spacing) are >= 0.2 x P_all = 0.276; so FAIL under the pre-registered observed-beta rule."
+  },
+  {
+   "case": "N2 (shuffled torus)",
+   "result": "FAIL of the p-value half; the ratio half passes",
+   "cause": "shuffling the columns destroys the two dominant H1 bars (p2/p3 = 1.02) but keeps the torus marginals, so the cloud is structureless but NOT uniform in its bounding box. Its 2nd H1 bar (0.149) exceeds the maximum H1 persistence of all 50 uniform-box nulls (P9c max 0.148), p = 0.0196. The pre-registered uniform null is mismatched for a non-uniform density; this is a null-design lesson (match the marginals or density), not a pipeline defect."
+  },
+  {
+   "case": "Rips reference paths (P2, P3a, P3b, P5, P10a, P10b)",
+   "result": "FAIL on the pre-registered subsample sizes; P1, P4 and P6 Z/3 pass; P6 Z/2 fails the H1 rule (p_1 / p_2 = 4.918 (required >= 5))",
+   "cause": "subsamples of 400-1000 points are too sparse: the longest H0 bar beyond the expected components (nearest-neighbour connection scale) is {'P2': '0.263', 'P3a': '0.466', 'P3b': '0.314', 'P10a': '0.59', 'P10b': '0.232'}, which exceeds 0.2 x P_all, and in several cases the noise H1 bars are within 5x of the true ones (rules: {'P3a': 'p_2 / p_3 = 1.409 (required >= 5)', 'P3b': 'p_2 / p_3 = 2.578 (required >= 5)', 'P10b': 'p_1 / p_2 = 2.852 (required >= 5)'}). Pipeline alpha on the full clouds passes the same cases. These are sample-size failures of the reference design, not gudhi or pipeline defects."
+  }
+ ],
+ "narrow_margins": {
+  "P3a_H1": "p_2 / p_3 = 6.013 (required >= 5)",
+  "P10a_H1_zero_rule": "p_1 / P_all = 0.1801 (required < 0.2)",
+  "P5_Z3_H1": "p_1 / p_2 = 5.16 (required >= 5)",
+  "P6_N2000_Z2_H1": "p_1 / p_2 = 5.699 (required >= 5)",
+  "P8_ratio_p6_over_p7_not_gated": 4.23284638406275,
+  "note": "these cases pass with modest margins against the 5x or 0.2 thresholds"
+ },
+ "p_value_note": "P1, P2, P3a p-values compare the weakest expected bar to the MAX bar of each of 50 matched uniform-box nulls; the minimum attainable p is 1/51 = 0.0196, and all three reached it: {'H1_bar_1': 0.0196078431372549}, {'H2_bar_1': 0.0196078431372549}, {'H1_bar_2': 0.0196078431372549, 'H2_bar_1': 0.0196078431372549}.",
+ "deviations_from_expectations": [
+  "evaluate() first lacked the pre-registered clause 'if the case expects no bar in any dim >= 1, use p_1 < 5 p_2'; it was added before any affected case was aggregated and P6 Rips was rerun (only P6 over Z/3 expects no bar in dims >= 1).",
+  "P6 post-hoc N = 1000, 2000 (and a failed N = 3000) after N = 6000 exceeded the budget; the pre-registered result stays FAIL.",
+  "P7 extended past the pre-registered N list (8000, 16000), following the task's 'N as large as fits the budget'; post-hoc landmark runs P7lm are labelled and do not change the P7 result.",
+  "F1shuf (shuffled-site control) added post hoc because TEST_USE_CASES gained TDA-N3 during this run.",
+  "F3 per-bin diagnostic added post hoc after the b1 KS failure; it does not change the gate.",
+  "The P5 direct run frees the AlphaComplex object before persistence (memory); the complex is unchanged.",
+  "All cheap and medium cases were rerun at the committed script (9da5954); outputs matched the earlier runs exactly apart from timing fields. P6 N-variants, P7 and F3 chunks were run with the pre-commit working copy (same code path for those cases)."
+ ],
+ "killed_or_crashed_runs": [
+  {
+   "status": "killed_or_crashed",
+   "exit_code": 124,
+   "args": "--case P6 --part pipeline",
+   "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case P6 --part pipeline",
+   "pass": false
+  }
+ ]
+}
