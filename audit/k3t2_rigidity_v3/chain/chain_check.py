@@ -113,6 +113,16 @@ def rigidity_entry(results_json, needle):
     return None
 
 
+def input_by_name(inputs_json, name):
+    """Look an input up BY NAME (never positionally) from a track's own
+    inputs.json (a list of {name, value, tier, why} dicts)."""
+    if isinstance(inputs_json, list):
+        for x in inputs_json:
+            if isinstance(x, dict) and x.get("name") == name:
+                return x
+    return None
+
+
 def main():
     links = []
 
@@ -153,6 +163,7 @@ def main():
     k_entry = rigidity_entry(A_results, "k (overall factor")
     k_solution_ints = extract_ints(k_entry["solution_set"]) if k_entry else []
     k_non_unique = len(set(k_solution_ints)) > 1
+    k_input = input_by_name(A_inputs, "k")
     links.append({
         "link": "A.chi_from_genus (Z(tau,0) at declared k) == D.chi",
         "A_value": str(a_chi), "A_source": A_exports_p,
@@ -166,11 +177,14 @@ def main():
             "A's own rigidity table classifies k as NORMALISATION with a "
             "non-unique admissible solution set (%s); k=%s was one admissible "
             "choice, informed by k=2 being the literature K3 elliptic-genus "
-            "factor (see A/inputs.json 'k'.why), not uniquely forced by "
+            "factor (see A/inputs.json 'k'.why: %r), not uniquely forced by "
             "Track A's internal tests. So agreement with D, though not a "
             "file-level POINTER, is not full independent corroboration of "
-            "the numeral 24." % (k_entry["solution_set"] if k_entry else "?",
-                                  A_inputs[0].get("value") if isinstance(A_inputs, list) else "?")
+            "the numeral 24." % (
+                k_entry["solution_set"] if k_entry else "?",
+                k_input.get("value") if k_input else "?",
+                k_input.get("why") if k_input else "?",
+            )
             if k_non_unique else None
         ),
     })
@@ -221,6 +235,12 @@ def main():
     consistent3b = (c_b2 == d_b2)
     pointer3 = find_file_pointer(C_DIR, "D-tda")
     shared3 = sorted(input_names(C_inputs) & input_names(D_inputs))
+    # Read each end's OWN admission of internal (non-)independence, rather
+    # than asserting it: C's C1_chi_top result and D's exports.status.
+    C_results, C_results_p = load(f"{C_DIR}/results.json")
+    c1_note = next((r.get("note") for r in C_results.get("results", [])
+                     if r.get("id") == "C1_chi_top"), None)
+    d_status_note = D_exports.get("status")
     links.append({
         "link": "C.chi_top (Noether) == D.chi, and C.b2 (Hodge index) == D.b2",
         "C_chi_top": str(c_chi_top), "C_b2": str(c_b2), "C_source": C_exports_p,
@@ -230,9 +250,54 @@ def main():
         "method": "POINTER" if pointer3 else "CROSS_METHOD",
         "shared_declared_inputs": shared3,
         "independent_corroboration": consistent3a and consistent3b and not pointer3 and not shared3,
-        "caveat": None if not pointer3 else (
-            "C's scripts reference D-tda directly: %s" % pointer3
+        "caveat": (
+            ("C's scripts reference D-tda directly: %s. " % pointer3 if pointer3 else "")
+            + "Neither end is unconditional even though no shared declared "
+              "input or file pointer was found between them: C's own note on "
+              "C1_chi_top reads %r (a typed-constant x computed-number "
+              "pattern, not a free derivation of 24), and D's own exports.json "
+              "'status' field reads %r (a declared local-model input, tier L). "
+              "C.b2=22 also follows arithmetically from C's own chi_top=24 "
+              "given b0=b4=1, b1=b3=0 (not a second independent number)."
+            % (c1_note, d_status_note)
         ),
+    })
+
+    # ================================================================
+    # LINK 3b: C's LATTICE SELECTION (m,n) in the mU+n(-E8) family --
+    # its signature must equal C's own derived Hodge-index signature, and
+    # its rank must equal D.b2. Read from C-lattices/01_lattices.json's
+    # structured fields (not from prose), per the task's own chain spec:
+    # "C gives chi_top, then the signature, THEN THE LATTICE."
+    # ================================================================
+    C_lat, C_lat_p = load(f"{C_DIR}/01_lattices.json")
+    selected = C_lat["selected"][0]
+    c_sig = (rat(selected["signature_ldl"][0]), rat(selected["signature_ldl"][1]))
+    c_derived_sig = tuple(rat(x) for x in C_exports["signature"]["value"])
+    consistent3c = (c_sig == c_derived_sig)
+    consistent3d = (rat(selected["rank"]) == d_b2)
+    pointer3b = find_file_pointer(C_DIR, "D-tda")
+    typed_gram_note = C_lat.get("typed_gram_3U_2mE8", {}).get("note")
+    links.append({
+        "link": "C's SELECTED lattice m*U+n(-E8) signature == C's own Hodge-index "
+                "signature, and its rank == D.b2",
+        "selected_m_n": [selected["m"], selected["n"]],
+        "selected_lattice_signature": [str(c_sig[0]), str(c_sig[1])],
+        "C_derived_hodge_signature": [str(c_derived_sig[0]), str(c_derived_sig[1])],
+        "selected_lattice_rank": str(selected["rank"]), "D_b2": str(d_b2),
+        "C_source": C_lat_p, "D_source": D_exports_p,
+        "consistent": consistent3c and consistent3d,
+        "file_pointer_C_to_D": pointer3b,
+        "method": "POINTER",
+        "shared_declared_inputs": ["k3_lattice_identification"],
+        "independent_corroboration": False,
+        "caveat": "the lattice FAMILY mU+n(-E8) is itself a declared input "
+                  "(k3_lattice_identification, tier L, FROM MEMORY); given that "
+                  "family, (m,n)=(3,2) is picked because it is the only one in "
+                  "0<=m,n<=30 whose signature matches C's own Hodge-index result "
+                  "-- a within-Track-C selection, not a second independent route "
+                  "to chi=24. C's typed-Gram cross-check note reads %r."
+                  % typed_gram_note,
     })
 
     # ================================================================
@@ -290,24 +355,33 @@ def main():
     pointer5a = find_file_pointer(A_DIR, "F-whichk3")
     pointer5b = find_file_pointer(F_DIR, "A-genus")
     shared5 = sorted(input_names(A_inputs) & input_names(F_inputs))
+    a_sample_size = A_m24.get("n_random_samples")
+    f_sample_size = F_results["results"]["F4c_M24"]["computed"].get("sample_size")
     links.append({
         "link": "F.M24_cycle_shapes_all_orders (+order) == A.m24_shapes classes (+order)",
         "F_n_shapes": len(f_shapes), "F_order": str(f_order), "F_source": F_exports_p,
+        "F_sample_size": f_sample_size,
         "A_n_shapes": len(a_shapes), "A_order": str(a_order), "A_source": A_m24_p,
+        "A_sample_size": a_sample_size,
         "shapes_match": set(f_shapes) == set(a_shapes),
         "consistent": consistent5,
         "file_pointer_A_to_F": pointer5a, "file_pointer_F_to_A": pointer5b,
         "method": "POINTER" if (pointer5a or pointer5b) else "CROSS_METHOD",
         "shared_declared_inputs": shared5,
+        "shared_unnamed_premise": "Golay code from QR mod 23, Aut(G24)=M24 (each FROM MEMORY, "
+                                   "under differently named inputs: A='golay_and_generators', "
+                                   "F='QR_golay_construction'/'Aut_G24_is_M24')",
         "independent_corroboration": consistent5 and not pointer5a and not pointer5b,
         "caveat": (
-            "no shared declared-input NAME, but both tracks assume the same "
-            "unnamed literature premise (Golay code from QR mod 23, Aut(G24)=M24), "
-            "each FROM MEMORY under a differently named input "
-            "(A: 'golay_and_generators'; F: 'QR_golay_construction'/'Aut_G24_is_M24'). "
-            "The two implementations were written independently (A-genus/m24_shapes.py, "
+            "the two implementations were written independently (A-genus/m24_shapes.py, "
             "F-whichk3/f4_codes.py) and neither script's source references the other "
-            "track's directory."
+            "track's directory, so this IS independent corroboration of the group's "
+            "structure -- but the cycle-SHAPE SETS were each built from a finite random "
+            "sample (A: %s elements, F: %s elements), not an exhaustive class enumeration, "
+            "so 'all shapes agree' means 'every shape either sampler happened to hit agrees', "
+            "not 'the full conjugacy-class list was independently enumerated twice'. Both "
+            "ends also share the unnamed literature premise above (see "
+            "'shared_unnamed_premise')." % (a_sample_size, f_sample_size)
         ),
     })
 
@@ -348,10 +422,13 @@ def main():
         "n_links": len(links),
         "n_independent_corroborations": len(independent_links),
         "independent_link_names": [l["link"] for l in independent_links],
+        "command": "cd audit/k3t2_rigidity_v3/chain && "
+                   "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python "
+                   "chain_check.py",
         "files_read": [
             A_exports_p, A_results_p, A_inputs_p, A_m24_p,
             B_exports_p, B_part1_p, B_inputs_p,
-            C_exports_p, C_inputs_p,
+            C_exports_p, C_inputs_p, C_results_p, C_lat_p,
             D_exports_p, D_inputs_p,
             E_poll_p, E_inputs_p,
             F_exports_p, F_results_p, F_inputs_p,
