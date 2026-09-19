@@ -16,6 +16,23 @@
   ],
   "import": "loaded by path with importlib; the module only runs under __main__, so main() is not executed"
  },
+ "commands": {
+  "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python (gudhi 3.13), every call wrapped as: timeout 590 prlimit --as=8589934592 -- <python> <script> <args>; OMP/OPENBLAS/MKL threads = 1",
+  "python_alignment_and_hic_fetch": "/mnt/disks/disk-socrateai-local-1/venv-tdaval/bin/python (hic-straw, pyfamsa 0.7.0, biopython)",
+  "runs": [
+   "sanity_circle.py",
+   "test1_cellcycle.py --dataset u2os --n-null 1000 --n-rips-null 100 --n-neg 20 --n-perm 10000 --budget-sec 540 (re-invoked until complete; cached seeds)",
+   "test1_cellcycle.py --dataset mesc --n-null 1000 --n-rips-null 100 --n-neg 20 --n-perm 10000 --n-tri 200 --budget-sec 530",
+   "fetch_gm12878_chr1q.py (venv-tdaval)",
+   "test2_hic.py --n-null 500 --n-rips-null 50 --budget-sec 530 --cases <case> (one process per case, re-invoked until complete), then test2_hic.py --n-null 500 --n-rips-null 50 --budget-sec 580",
+   "test3_influenza.py prep (venv-tdaval); test3_influenza.py boot --segment s --budget-sec 530 for s = 1..8; test3_influenza.py final",
+   "posthoc_diagnostics.py",
+   "assess_local_datasets.py",
+   "write_data_manifest.py",
+   "make_report.py"
+  ],
+  "seeds": "see each script docstring: nulls use seeds 0..n-1; subsample seeds 0 (Rips cells), 20260919 (influenza genomes)"
+ },
  "preregistration": {
   "expectations.json": "commit 440d371 (alone, before any computation)",
   "expectations_addendum_ecoli.json": "commit 5363e54 (alone, after the Caulobacter result, before any E. coli computation)"
