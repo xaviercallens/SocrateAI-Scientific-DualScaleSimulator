@@ -324,6 +324,16 @@ def main(cache_dir=None, out_name="x3_pta_result.json", log10a_label=LOG10A_CURN
         ],
         wall_seconds=time.time() - t0,
     )
+    out["verdict"] = (
+        ("CONDITIONAL bound only. " if gate_pass else "NO BOUND (registered gate fails). ")
+        + f"Computed at log10_A_CURN={log10a_label} (NOT ATTEMPTED to verify against the NANOGrav "
+        + "15-yr paper this round). A second full run at a different fixed amplitude lands on the "
+        + "opposite side of the registered sky-scramble gate (see the SENSITIVITY deviation and "
+        + "x3_diag_covariance_ratio_result.json): X3 does NOT deliver an amplitude-independent bound "
+        + "on c4_pta_product. Where the gate passes, 0 lying inside the Fieller interval means "
+        + "'M0 (c4=0) is consistent with the data at that confidence, conditional on this amplitude' "
+        + "-- never 'confirms' or an unconditional statement."
+    )
     (HERE / out_name).write_text(json.dumps(out, indent=1))
     print(json.dumps({k: v for k, v in out.items() if k not in
                        ("jackknife_covariance", "rho_bin", "design_HD_bin", "design_P4_bin", "bin_edges_rad")}, indent=1))

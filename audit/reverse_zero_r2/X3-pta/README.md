@@ -103,27 +103,32 @@ the raw `.tim` files.
   (0.0 max relative difference), and confirms no `"<param> not set!"` warnings were silently
   swallowed by earlier output filtering.
 
-## Result
+## Result: CONDITIONAL — no unconditional bound
 
-- `c4_pta_product = -0.187` (**conditional on `log10_A_CURN=-14.62`** — see Sensitivity below)
-- 95% Fieller interval: **[-0.841, 0.101]** — contains 0. The HD amplitude itself is only
-  `a_hat_snr_sigma = 2.42 sigma` from zero, so this bound is marginal: a modestly weaker HD
-  detection here would flip the registered rule to "no bound" instead of an interval.
-- 68% Fieller interval: [-0.351, -0.063] — does not contain 0.
-- Monopole negative control (marginalized over HD+P4): amplitude z = 1.05 sigma (not significant).
-- Dipole negative control (marginalized over HD+P4): amplitude z = 0.60 sigma (not significant).
-  (Unmarginalized single-regressor z: monopole 1.11 sigma, dipole 1.83 sigma — confounded by HD,
-  reported for comparison only, see above.)
+**At `log10_A_CURN = -14.62`**: sky-scramble gate passes (mean chi2/7 = 0.931),
+`c4_pta_product = -0.187`, 95% Fieller interval **[-0.841, 0.101]** (contains 0; HD amplitude is
+only `a_hat_snr_sigma = 2.42 sigma` from zero, so even this conditional bound is marginal), 68%
+interval [-0.351, -0.063] (does not contain 0). Monopole/dipole negative controls (marginalized
+over HD+P4): z = 1.05 sigma / 0.60 sigma (neither significant; the unmarginalized single-regressor
+dipole z = 1.83 sigma is HD leakage, not a real dipole, see below).
 
-Per the registered decision rule: **M0 (c4 = 0) is consistent with the data at 95%** (0 lies
-inside the 95% interval), but this is a marginal result (2.4 sigma HD detection with 66/67
-pulsars, one high-precision pulsar excluded — see Sensitivity and the J1713+0747 deviation). The
-68% interval excluding 0 is reported as-is and is not, by the registered rule, a rejection — no
-claim of "confirms" or "rejects" is made. This is a data fit (Tier X); nothing here is a K3xT2
-prediction, and LeanMaster makes no statement about `c4_pta_product` (re-verified at LeanMaster's
-true current HEAD — see below).
+**At `log10_A_CURN = -14.0`** (a full 66-pulsar rerun, everything else identical — see
+Sensitivity): the sky-scramble gate **fails** (mean chi2/7 = 0.424, outside [0.8,1.2]). Per the
+registered decision rule ("Gate fails: no p-values / no bound is reported"), **X3 reports no bound
+at this amplitude.**
 
-## Sensitivity (log10_A_CURN) — result is NOT amplitude-independent
+**Conclusion: X3 does not deliver an amplitude-independent bound on `c4_pta_product`.** The CURN
+amplitude `log10_A_CURN=-14.62` was **NOT ATTEMPTED** to verify against the NANOGrav 15-yr paper
+this round (see `x3_common.py`), and the two representative values tried land on opposite sides of
+the registered gate. The `[-0.841, 0.101]` interval is reported **only as conditional on
+`log10_A_CURN = -14.62`**, not as an unconditional statement about M0. A diagnostic ruled out the
+simplest artifact explanation for the gate's amplitude-sensitivity (see below), so this looks like
+a genuine calibration difference between the two runs, not a normalization bug.
+
+This is a data fit (Tier X); nothing here is a K3xT2 prediction, and LeanMaster makes no statement
+about `c4_pta_product` (re-verified at LeanMaster's true current HEAD — see below).
+
+## Sensitivity (log10_A_CURN) — full comparison and a diagnostic
 
 A full 66-pulsar rerun at `log10_A=-14.0` instead of `-14.62` (`x3_persr.py --log10a -14.0
 --outdir cache_alt_amp` then `x3_combine.py --alt` -> `x3_pta_result_alt_amp.json`) gives:
@@ -132,13 +137,21 @@ A full 66-pulsar rerun at `log10_A=-14.0` instead of `-14.62` (`x3_persr.py --lo
 |---|---|---|
 | `c4_pta_product` | -0.187 | -0.324 |
 | 95% Fieller interval | [-0.841, 0.101] (bounded) | **unbounded** |
-| sky-scramble gate (chi2/7) | 0.931 (pass) | 0.424 (**fail**) |
+| sky-scramble gate (chi2/7) | 0.931 (pass) | 0.424 (**fail** -> no bound, registered rule) |
 
 `c4_pta_product` is **not invariant** to the assumed fixed CURN amplitude — contrary to a naive
 expectation that `c4=b_hat/a_hat` would cancel a common rescaling (the amplitude enters the
-per-pulsar Sigma-marginalization, not just an overall normalization of `rho`). The base-run bound
-should be read as conditional on `log10_A_CURN=-14.62`, which was itself **NOT ATTEMPTED** to
-verify against the NANOGrav 15-yr paper this round.
+per-pulsar Sigma-marginalization, not just an overall normalization of `rho`).
+
+**Diagnostic** (checks whether the gate's amplitude-sensitivity is just a frozen-covariance
+normalization artifact, since `C` is the jackknife covariance of the same `rho_ij` the scramble
+re-bins): compared `mean(diag(C))` to the variance of the 1000 scrambled `rho_bin` vectors, in
+each run separately. Ratio is **3.30** (base) vs **3.09** (alt) — essentially the same in both
+runs. If the gate's pass/fail difference were a simple diagonal-scale artifact tracking the
+assumed amplitude, this ratio should have shifted sharply between the two runs; it did not. The
+gate failure at `log10_A=-14.0` is therefore read as a genuine covariance-calibration difference
+between the two amplitude choices, not an artifact of the frozen-`C` deviation — which makes the
+"no bound" reading at that amplitude the honest one, not a discardable technicality.
 
 ## Commands (from repo root, `dualscale-wt-reverse`)
 
