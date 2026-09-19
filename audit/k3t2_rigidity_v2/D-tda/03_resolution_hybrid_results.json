@@ -1,0 +1,1488 @@
+{
+  "S2_control": {
+    "euler_characteristic_from_fvector": 2,
+    "simplex_counts_by_dim": {
+      "0": 4,
+      "1": 6,
+      "2": 4
+    },
+    "num_vertices": 4,
+    "num_top_simplices": 4,
+    "betti_by_field": {
+      "Z2": [
+        1,
+        0,
+        1
+      ],
+      "Z3": [
+        1,
+        0,
+        1
+      ],
+      "Z5": [
+        1,
+        0,
+        1
+      ]
+    },
+    "chi_from_betti_matches_fvector": true,
+    "chi_from_betti_last_field_used": "Z5"
+  },
+  "N=6": {
+    "N": 6,
+    "num_singular_vertices_computed": 16,
+    "link_results_per_vertex": [
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          0,
+          0,
+          3
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          0,
+          3,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          0,
+          3,
+          3
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          3,
+          0,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          3,
+          0,
+          3
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          3,
+          3,
+          3
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          3,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          3,
+          0,
+          0,
+          3
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          3,
+          0,
+          3,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          3,
+          0,
+          3,
+          3
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          3,
+          3,
+          0,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          3,
+          3,
+          0,
+          3
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          3,
+          3,
+          3,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          3,
+          3,
+          3,
+          3
+        ]
+      }
+    ],
+    "all_16_links_agree_Z2": true,
+    "all_16_links_agree_Z3": true,
+    "all_16_links_agree_Z5": true,
+    "link_representative_betti_Z2": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "link_representative_betti_Z3_Z5(odd)": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "link_expected_betti_RP3_odd_field": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "link_expected_betti_RP3_Z2": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "torsion_control_shows_mod2_jump": true,
+    "U_complement_result": {
+      "euler_characteristic_from_fvector": -8,
+      "simplex_counts_by_dim": {
+        "0": 640,
+        "1": 9480,
+        "2": 31200,
+        "3": 36960,
+        "4": 14592
+      },
+      "num_vertices": 640,
+      "num_top_simplices": 29184,
+      "betti_by_field": {
+        "Z2": [
+          1,
+          5,
+          11,
+          15,
+          0
+        ],
+        "Z3": [
+          1,
+          0,
+          6,
+          15,
+          0
+        ],
+        "Z5": [
+          1,
+          0,
+          6,
+          15,
+          0
+        ]
+      },
+      "chi_from_betti_matches_fvector": true,
+      "chi_from_betti_last_field_used": "Z5"
+    },
+    "resolved_K3_betti_Z3": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1,
+      "b0_b4_status": "STATED (connectedness/orientability/Poincare duality), NOT computed",
+      "b3_status": "STATED via Poincare duality (b3=b1), NOT independently computed",
+      "b1_b2_status": "COMPUTED from U via Mayer-Vietoris (b1=b1(U), b2=b2(U)+num_fixed*b2(S2))",
+      "chi_from_betti_numbers": 24,
+      "chi_from_MV_fvector(chi(U)+k*(chi(S2)-chi(RP3)))": 24,
+      "chi_cross_check_matches": true,
+      "chi_RP3_computed": 0,
+      "chi_S2_computed": 2,
+      "num_fixed_used": 16
+    },
+    "resolved_K3_betti_Z5": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1,
+      "b0_b4_status": "STATED (connectedness/orientability/Poincare duality), NOT computed",
+      "b3_status": "STATED via Poincare duality (b3=b1), NOT independently computed",
+      "b1_b2_status": "COMPUTED from U via Mayer-Vietoris (b1=b1(U), b2=b2(U)+num_fixed*b2(S2))",
+      "chi_from_betti_numbers": 24,
+      "chi_from_MV_fvector(chi(U)+k*(chi(S2)-chi(RP3)))": 24,
+      "chi_cross_check_matches": true,
+      "chi_RP3_computed": 0,
+      "chi_S2_computed": 2,
+      "num_fixed_used": 16
+    },
+    "runtime_sec": 1.1659495830535889
+  },
+  "N=8": {
+    "N": 8,
+    "num_singular_vertices_computed": 16,
+    "link_results_per_vertex": [
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          0,
+          0,
+          4
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          0,
+          4,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          0,
+          4,
+          4
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          4,
+          0,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          4,
+          0,
+          4
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          0,
+          4,
+          4,
+          4
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          4,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          4,
+          0,
+          0,
+          4
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          4,
+          0,
+          4,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          4,
+          0,
+          4,
+          4
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          4,
+          4,
+          0,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          4,
+          4,
+          0,
+          4
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          4,
+          4,
+          4,
+          0
+        ]
+      },
+      {
+        "euler_characteristic_from_fvector": 0,
+        "simplex_counts_by_dim": {
+          "0": 15,
+          "1": 75,
+          "2": 120,
+          "3": 60
+        },
+        "num_vertices": 15,
+        "num_top_simplices": 120,
+        "betti_by_field": {
+          "Z2": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "Z3": [
+            1,
+            0,
+            0,
+            1
+          ],
+          "Z5": [
+            1,
+            0,
+            0,
+            1
+          ]
+        },
+        "chi_from_betti_matches_fvector": true,
+        "chi_from_betti_last_field_used": "Z5",
+        "singular_vertex": [
+          4,
+          4,
+          4,
+          4
+        ]
+      }
+    ],
+    "all_16_links_agree_Z2": true,
+    "all_16_links_agree_Z3": true,
+    "all_16_links_agree_Z5": true,
+    "link_representative_betti_Z2": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "link_representative_betti_Z3_Z5(odd)": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "link_expected_betti_RP3_odd_field": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "link_expected_betti_RP3_Z2": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "torsion_control_shows_mod2_jump": true,
+    "U_complement_result": {
+      "euler_characteristic_from_fvector": -8,
+      "simplex_counts_by_dim": {
+        "0": 2040,
+        "1": 30480,
+        "2": 101200,
+        "3": 120960,
+        "4": 48192
+      },
+      "num_vertices": 2040,
+      "num_top_simplices": 96384,
+      "betti_by_field": {
+        "Z2": [
+          1,
+          5,
+          11,
+          15,
+          0
+        ],
+        "Z3": [
+          1,
+          0,
+          6,
+          15,
+          0
+        ],
+        "Z5": [
+          1,
+          0,
+          6,
+          15,
+          0
+        ]
+      },
+      "chi_from_betti_matches_fvector": true,
+      "chi_from_betti_last_field_used": "Z5"
+    },
+    "resolved_K3_betti_Z3": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1,
+      "b0_b4_status": "STATED (connectedness/orientability/Poincare duality), NOT computed",
+      "b3_status": "STATED via Poincare duality (b3=b1), NOT independently computed",
+      "b1_b2_status": "COMPUTED from U via Mayer-Vietoris (b1=b1(U), b2=b2(U)+num_fixed*b2(S2))",
+      "chi_from_betti_numbers": 24,
+      "chi_from_MV_fvector(chi(U)+k*(chi(S2)-chi(RP3)))": 24,
+      "chi_cross_check_matches": true,
+      "chi_RP3_computed": 0,
+      "chi_S2_computed": 2,
+      "num_fixed_used": 16
+    },
+    "resolved_K3_betti_Z5": {
+      "b0": 1,
+      "b1": 0,
+      "b2": 22,
+      "b3": 0,
+      "b4": 1,
+      "b0_b4_status": "STATED (connectedness/orientability/Poincare duality), NOT computed",
+      "b3_status": "STATED via Poincare duality (b3=b1), NOT independently computed",
+      "b1_b2_status": "COMPUTED from U via Mayer-Vietoris (b1=b1(U), b2=b2(U)+num_fixed*b2(S2))",
+      "chi_from_betti_numbers": 24,
+      "chi_from_MV_fvector(chi(U)+k*(chi(S2)-chi(RP3)))": 24,
+      "chi_cross_check_matches": true,
+      "chi_RP3_computed": 0,
+      "chi_S2_computed": 2,
+      "num_fixed_used": 16
+    },
+    "runtime_sec": 3.927901029586792
+  },
+  "total_runtime_sec": 5.097695350646973
+}

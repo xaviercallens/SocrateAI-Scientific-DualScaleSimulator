@@ -1,0 +1,59 @@
+{
+ "QMAX_used": 40,
+ "c0": "20",
+ "cm1": "2",
+ "chi_computed_c0_plus_2cm1": "24",
+ "expected": {
+  "value": 24,
+  "source": "Euler characteristic of K3 (standard fact, e.g. chi(K3)=24); NOT used anywhere in the computation above -- chi_computed is read from c0,cm1 only."
+ },
+ "D_leq_-2_present_in_table (should be empty)": {},
+ "Gk_z0_k0_8_DMVV_restriction": {
+  "0": "1",
+  "1": "24",
+  "2": "324",
+  "3": "3200",
+  "4": "25650",
+  "5": "176256",
+  "6": "1073720",
+  "7": "5930496",
+  "8": "30178575"
+ },
+ "gottsche_target_k0_8_using_chi_computed_not_literal_24": {
+  "0": "1",
+  "1": "24",
+  "2": "324",
+  "3": "3200",
+  "4": "25650",
+  "5": "176256",
+  "6": "1073720",
+  "7": "5930496",
+  "8": "30178575"
+ },
+ "match_for_k_0_to_8": true,
+ "kappa_rigidity_scan": {
+  "grid": "n/12 for n=0..36 (0 to 3)",
+  "solution_set (kappa matching ALL k=0..8)": [
+   "1"
+  ]
+ },
+ "negative_control_near_kappa_1": {
+  "25/24": {
+   "matches_all_k_0_8": false,
+   "k1": "25",
+   "target_k1": "24"
+  },
+  "23/24": {
+   "matches_all_k_0_8": false,
+   "k1": "23",
+   "target_k1": "24"
+  }
+ },
+ "kappa_integrality_lattice_step_1_over_chi": "1/24",
+ "rigidity_classification": {
+  "parameter": "kappa (exponent multiplier on chi in the Goettsche-form target)",
+  "classification": "NORMALISATION",
+  "reason": "kappa is selected as =1 ONLY by matching the specific Euler-number target series gottsche_at_chi_computed, which is itself built from chi_computed=c0+2cm1 -- the SAME quantity that also parametrizes the scanned family. Integrality alone (Hilb^k Euler numbers being integers) permits kappa in the whole lattice (1/chi_computed)*Z, not a single point; only the target -- which encodes the true value -- singles out kappa=1. Per the task's rule this is NORMALISATION (chi_computed fixes it), not a RIGID structural result."
+ },
+ "honesty_note": "This q^0,y=1 restriction of DMVV collapses analytically (derived in the module docstring, not assumed) to prod_r (1-p^r)^{-chi_computed}. Comparing that restriction against a target built from the SAME chi_computed is a self-consistency check on the analytic derivation and the c(D) table's D<=-2 vanishing (checked above), not an independent test of chi(K3)=24 -- that literal fact appears only in the 'expected' field, sourced, and plays no role upstream. Part 2's G_2/G_3 identities (which use c(D) for D>4 as well) are the structural tests with real discriminating power."
+}

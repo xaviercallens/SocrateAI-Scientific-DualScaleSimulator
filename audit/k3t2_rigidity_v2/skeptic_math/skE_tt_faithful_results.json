@@ -1,0 +1,146 @@
+{
+ "1_T4_lattice": {
+  "Gram_elementary_forms": [
+   [
+    0,
+    0,
+    0,
+    0,
+    0,
+    -1
+   ],
+   [
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   [
+    0,
+    0,
+    0,
+    -1,
+    0,
+    0
+   ],
+   [
+    0,
+    0,
+    -1,
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   [
+    -1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  ],
+  "det_elementary": -1,
+  "Gram_A6_combos_no_sqrt2": [
+   2,
+   2,
+   2,
+   -2,
+   -2,
+   -2
+  ],
+  "A6_Gram_offdiagonal_all_zero": true,
+  "det_A6_Gram": -64,
+  "index_of_A6_span_in_H2(T4,Z)": 8,
+  "reading": "TT's (A.6) combos have Gram 2*eta33 but span an index-|det C| sublattice of H^2(T^4,Z) (unimodular, det -1); 'form a basis of H^2(T^4,Z)' and 'change of basis such that H33 = 2 eta33' hold over Q only."
+ },
+ "2_TT_examples_by_Gram": {
+  "diag_2eta_(A.6-A.7)": {
+   "(4.15)-(4.16)": {
+    "alpha_x^2": 8,
+    "beta_x^2": 8,
+    "alpha.beta": 0,
+    "N_D3_from_(4.14)": 16
+   },
+   "(4.31)-(4.32)": {
+    "alpha_xx": 16,
+    "alpha_yy": 8,
+    "N_flux_(4.32)=ax.by-bx.ay": 32
+   },
+   "sec5_lines1185-1198": {
+    "N_flux_(2.8)=-bx.ay+by.ax": 8
+   }
+  },
+  "hyperbolic_H33_(A.3)": {
+   "(4.15)-(4.16)": {
+    "alpha_x^2": 0,
+    "beta_x^2": 0,
+    "alpha.beta": 4,
+    "N_D3_from_(4.14)": 24
+   },
+   "(4.31)-(4.32)": {
+    "alpha_xx": -8,
+    "alpha_yy": 8,
+    "N_flux_(4.32)=ax.by-bx.ay": 0
+   },
+   "sec5_lines1185-1198": {
+    "N_flux_(2.8)=-bx.ay+by.ax": 0
+   }
+  }
+ },
+ "3_eight_divides_alpha_sq": {
+  "det_E8_(A.4)": 1,
+  "E8_(A.4)_positive_definite": true,
+  "det_Gamma319": -1,
+  "Gamma319_diagonal_all_even": true,
+  "v^2/2_has_integer_coefficients": true,
+  "alpha=2v_=>_alpha^2=8*(integer_form)": true,
+  "negative_control_odd_lattice_I(3,3)": {
+   "Gram": "diag(1,1,1,-1,-1,-1)",
+   "v": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "alpha=2v_alpha_sq": 4,
+   "divisible_by_8": false
+  },
+  "alpha_sq_realised_in_2(U+U)_coeff_|c|<=4": [
+   8,
+   16,
+   24
+  ]
+ },
+ "4_tadpole": {
+  "(4.13)_N_flux_symbolic": "2*ax.ax",
+  "(2.3)_N_D3_for_N_flux=16,32,48": [
+   "16",
+   "8",
+   "0"
+  ],
+  "line941_claim_N_flux=24_and_N_D3=0_consistent_with_(2.3)": false,
+  "N_flux_required_for_N_D3=0": "48",
+  "line1197_N_flux=8(sec5_example,diag Gram)_gives_N_D3": "20",
+  "line1197_text_says": "N_flux/2 = 4, so that 20 D3-branes",
+  "(4.32)_N_flux=32_gives_N_D3": "8",
+  "(4.32)_text_says": "8 D3 branes"
+ },
+ "5_orbit_group": {
+  "order": 64,
+  "elements_reversing_positive_block_orientation": 32,
+  "reading": "these are products with an odd number of reflections in norm +2 vectors; tier-L (from memory, Borcea/Donaldson): diffeomorphisms of K3 act through O^+(H^2), which preserves the orientation of positive-definite 3-planes. So E's group is not shown to lie in the physical identification group and its orbit counts are not certified upper bounds."
+ }
+}

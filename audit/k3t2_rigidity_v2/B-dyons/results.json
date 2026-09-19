@@ -1,0 +1,98 @@
+{
+ "track": "B - quarter-BPS dyons on K3 x T2 (DMVV product; Dabholkar-Murthy-Zagier)",
+ "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2",
+ "branch": "loop/k3t2-rigidity",
+ "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python",
+ "reproduce_in_order": [
+  "python theta_forms.py 40   # builds theta_forms_cache.json (QMAX=40; margin note below)",
+  "python hurwitz_class_numbers.py   # builds hurwitz_class_numbers_results.json (D<=40)",
+  "python part1_euler_numbers.py   # Goettsche/kappa check, k=0..8",
+  "python part2_psi_m.py   # Delta*psi_m, m=-1,0,1,2 identity checks + joint negative control",
+  "python part3_polar.py   # m=1 immortal polar subtraction, joint (N,M) rigidity",
+  "cd margin_check_QMAX60 && python theta_forms.py 60 && cd ..   # independent QMAX=60 cache",
+  "python margin_stability_check.py   # QMAX=40 vs QMAX=60 stability cross-check"
+ ],
+ "methodology_notes": [
+  "DMZ eq (5.16)'s m=2 line was mis-extracted by plain pdftotext (it printed '48E4 AB2 + 10E6 A2B', i.e. with a spurious exponent 2 on B and A on the wrong terms); this was caught because the m=2 identity failed to close under that reading while m=1 and m=3 (independently cross-checked against the paper's own worked eq.(5.17) example) closed exactly. Resolved by rendering the arXiv PDF page to a PNG (pdftoppm) and reading the true typeset formula directly: the correct line is 27*Delta*psi_2 = 50*A^-1*B^3 + 48*E4*A*B + 10*E6*A^2 (no exponent on B in the 2nd term, no B at all in the 3rd). A later reader should not re-trust plain pdftotext extraction of this paper's eq.(5.16) block for m=2 without this image cross-check.",
+  "A second, independent defect was found and fixed beyond the 4 the task listed: the theta cache's QMAX must be a healthy multiple of QCHK (empirically >=3x), not merely >=QCHK. QMAX=16 (2x QCHK=8) gave a spurious mismatch in the m=2 identity at n=6,7,8 while n=0..5 matched exactly with the unique forced integer coefficients (over-determined solve). QMAX=24+ resolved it; QMAX=40 is used for the reported results, cross-validated against an independent QMAX=60 rebuild via margin_stability_check.py."
+ ],
+ "v1_defects_fixed": {
+  "1_polar_s_leq_-1_branch": "part3_polar.py build_A2m(): general-m derivation n=m*s^2-s-s*k, l=2ms-1-k for s<=-1 (v1 used n=-2s-sk, missing the q^{ms^2+s} prefactor). Regression check: {\"A21_fixed_at_(4,-5)\": \"3\", \"A21_v1_buggy_at_(4,-5)\": \"4\", \"expected\": \"fixed=3, v1_buggy=4 (v1 double-counted a spurious s=-2,k=0 term at n=4 instead of the correct n=6)\"}",
+  "2_documented_args": "every QMAX/QCHK/YCAP stated in each script's docstring + exact reproduce command above",
+  "3_joint_not_coordinatewise_scans": "part2: joint (delta_c3,delta_c4) in {-2..2}^2 (25 combos) for m=1,m=2 identities; part3: joint (N,M) 2D grid (900 pairs) for the immortal check, plus joint (delta_c3,delta_c4) negative control on (N,M) -- fixed after review to use a consistent truncation order throughout (see methodology_notes)",
+  "4_goettsche_not_literal_24": "part1: exponent in the Goettsche-type comparison target is chi_computed = c0+2cm1, read from THIS run's own theta series, never the literal integer 24 (24 appears only in an 'expected' field with source, per the ground rules). kappa classified NORMALISATION, reason given in part1's own rigidity_classification.reason field."
+ },
+ "key_results": {
+  "chi_K3_computed": "24",
+  "kappa_classification": "NORMALISATION",
+  "kappa_solution_set": [
+   "1"
+  ],
+  "G_k_z0_restriction_equals_gottsche_at_chi_computed": [
+   true,
+   "TAUTOLOGICAL BY CONSTRUCTION (both sides are the SAME function call with the same chi_computed argument -- see part1's own honesty_note; this is a self-consistency check on chi_computed and the analytic q^0,y=1 derivation, not an independent test)"
+  ],
+  "delta_psi_m1_holds": true,
+  "delta_psi_m2_holds": true,
+  "delta_psi_m1_m2_joint_negcontrol_survivors": {
+   "m1": [
+    "(0,0)"
+   ],
+   "m2": [
+    "(0,0)"
+   ]
+  },
+  "hurwitz_DMAX": 40,
+  "kronecker_hurwitz_whole_table_check_all_match": true,
+  "kronecker_hurwitz_negative_control_breaks": true,
+  "immortal_NM_solutions": [
+   [
+    324,
+    648
+   ]
+  ],
+  "immortal_structural_D_leq_-2_test_passes": {
+   "324": true
+  },
+  "immortal_N_from_independent_tail_slope": "324",
+  "immortal_M0_negative_control_fails_as_expected": true,
+  "immortal_joint_perturb_survivors": [
+   "(0,0)"
+  ],
+  "immortal_joint_perturb_zero_point_sanity_mismatches (must be 0)": 0,
+  "margin_stability_QMAX40_vs_60_stable": true
+ },
+ "rigidity_classifications": [
+  {
+   "parameter_inserted": "kappa (exponent multiplier in Goettsche-type Euler-number target, part1)",
+   "selecting_condition": "match euler_numbers_from_chi(kappa*chi_computed) against euler_numbers_from_chi(chi_computed) for k=0..8",
+   "condition_uses_true_value": true,
+   "solution_set": "{1} (grid n/12, n=0..36)",
+   "classification": "NORMALISATION",
+   "input_it_depends_on": "chi(K3)=c(0)+2c(-1) computed from own theta series (equals 24)"
+  },
+  {
+   "parameter_inserted": "N (polar subtraction coefficient, Delta*psi_1 - N*A_{2,1}, part3)",
+   "selecting_condition": "(a) joint (N,M) grid, 900 pairs, no literal target; (b) target-free structural D<=-2 vanishing (3E4A-M*Hhat=0 there for ANY M); (c) independent q^0 tail-slope ratio, computed not hardcoded",
+   "condition_uses_true_value": false,
+   "solution_set": "{324} (unique in N in [310,340) x M in [620,680,step2))",
+   "classification": "RIGID",
+   "input_it_depends_on": "A, B, E4 theta series (own construction) + A_{2,1} (own, bug-fixed) construction",
+   "negative_control": "joint (delta_c3,delta_c4) in {-2..2}^2, same QCHK throughout: only (0,0) survives"
+  },
+  {
+   "parameter_inserted": "M (Hurwitz-class-number coefficient, 3E4A - M*Hhat, part3)",
+   "selecting_condition": "agreement of two independently built series: G2/A-N*A21 (DMVV+invA route) vs 3E4A-M*Hhat (modular forms + independently-counted Hurwitz class numbers), joint with N",
+   "condition_uses_true_value": false,
+   "solution_set": "{648} (unique jointly with N=324)",
+   "classification": "RIGID",
+   "input_it_depends_on": "Hurwitz class numbers H(D), D<=40, from independent reduced-form counting (own hurwitz_class_numbers.py, whole-table Kronecker-Hurwitz-validated, itself a tier-L relation used as an external check)",
+   "negative_control": "M=0 (no class numbers) fails; joint (delta_c3,delta_c4) in {-2..2}^2: only (0,0) survives"
+  }
+ ],
+ "could_not_do": [
+  "m>=3 Delta*psi_m identities (DMZ gives closed forms up to m=4) were not checked -- out of the task's requested range (m=-1..2) and left undone to keep the script fast.",
+  "The Hurwitz-Kronecker whole-table check and the reduced-form counting are themselves a tier-L ansatz (classical relation) used as an external structural check, not independently re-derived from a modular-forms first-principles argument in this script.",
+  "No access to LeanMaster/sealed targets per BLINDNESS rules; no comparison to those values was attempted or is claimed."
+ ]
+}

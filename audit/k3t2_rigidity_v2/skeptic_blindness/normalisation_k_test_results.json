@@ -1,0 +1,40 @@
+{
+  "phi01_tau_z0_constant_computed": "12",
+  "rows": {
+    "1": {
+      "typed_factor_k": 1,
+      "N_window": [
+        8,
+        16
+      ],
+      "N_passing_slice_agreement": [
+        12
+      ],
+      "Z_k(tau,0)": "12"
+    },
+    "2": {
+      "typed_factor_k": 2,
+      "N_window": [
+        20,
+        28
+      ],
+      "N_passing_slice_agreement": [
+        24
+      ],
+      "Z_k(tau,0)": "24"
+    },
+    "3": {
+      "typed_factor_k": 3,
+      "N_window": [
+        32,
+        40
+      ],
+      "N_passing_slice_agreement": [
+        36
+      ],
+      "Z_k(tau,0)": "36"
+    }
+  },
+  "conclusion": "slice agreement selects N = Z(tau,0) = k*phi01(tau,0) for every typed k; it pins N to the normalisation, so N=24 is conditional on the typed k=2",
+  "conclusion_holds": true
+}

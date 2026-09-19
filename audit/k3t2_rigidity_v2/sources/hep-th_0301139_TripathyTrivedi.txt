@@ -1,0 +1,2219 @@
+                                                                                                                 hep-th/0301139
+                                                                                                                 TIFR/TH/02-34
+
+
+
+
+                                             Compactification with Flux on K3 and Tori
+arXiv:hep-th/0301139v3 17 Jun 2003
+
+
+
+
+                                                                Prasanta K. Tripathy 1 and Sandip P. Trivedi 2
+
+                                                                   Tata Institute of Fundamental Research
+                                                                Homi Bhabha Road, Mumbai 400 005, INDIA
+
+                                           We study compactifications of Type IIB string theory on a K3 × T 2 /Z2 orientifold
+                                     in the presence of RR and NS flux. We find the most general supersymmetry preserving,
+                                     Poincare invariant, vacua in this model. All the complex structure moduli and some of
+                                     the Kähler moduli are stabilised in these vacua. We obtain in an explicit fashion the
+                                     restrictions imposed by supersymmetry on the flux, and the values of the fixed moduli.
+                                     Some T-duals and Heterotic duals are also discussed, these are non-Calabi-Yau spaces. A
+                                     superpotential is constructed describing these duals.
+
+
+
+
+                                     February 2003
+                                       1
+                                           prasanta@theory.tifr.res.in
+                                       2
+                                           sandip@tifr.res.in
+1. Introduction
+
+    Compactifications of String Theory in the presence of flux have attracted considerable
+attention lately [1–27]. These compactifications are of interest from several different points
+of view. Phenomenologically they are attractive because turning on flux typically leads to
+fewer moduli, and also because flux leads to warping which is of interest in the Randall
+Sundrum scenario, [28,14]. Cosmologically they are worth studying because the resulting
+potential in moduli space could lead to interesting dynamics. From a more theoretical
+view point these models enlarge the class of susy preserving vacua in string theory and
+one hopes this will improve our understanding of N = 1 string theory.
+    In this paper, we will study type IIB string theory in the presence of flux. General
+considerations pertaining to this case were discussed in [6]. Subsequently, a concrete
+example was studied in [9] involving flux compactifications of IIB on an T 6 /Z2 orientifold.
+In many ways this paper can be thought of as an continuation of the investigation begun in
+[9]. Here we study the next simplest case, where the compactification is on a K3 × T 2 /Z2
+orientifold. The purpose behind these investigations is two fold. Qualitatively, one would
+like to gain some appreciation for how easy it is to obtain stable supersymmetric vacua
+after flux is turned on. This is important, in view of the discussion in [6] which shows
+that supersymmetry is generically broken once flux is turned on, and also bearing in mind
+that previous attempts to turn on flux have usually lead to unstable vacua with runaway
+behaviour [29–31]. Quantitatively, one would like to know how much information can be
+obtained about the susy preserving vacua, whether the required non-genericity of the flux
+can be spelt out in an explicit manner, and whether the location of the minimum in moduli
+space can be determined and the resulting masses of moduli be obtained.
+    We will carry out this investigation in detail in this paper. We solve the supersym-
+metry conditions explicitly to obtain the general susy preserving vacua in this model. The
+main point worth emphasising about our analysis is that we obtain our result without
+having to explicitly parametrise the moduli space of complex and Kähler deformations on
+K3. Such a parametrisation would both be inelegant and impractical. Instead, by using an
+important theorem, called Torelli’s theorem [32], which pertains to the complex structure
+of K3, we are able to map the problem of finding susy preserving vacua into a question
+of Linear Algebra in the second cohomology group H 2 (K3, R) of K3. This question turns
+out to be easy to answer and yields the general susy preserving vacua mentioned above.
+    Our analysis allows us to state the required conditions on the flux for a susy preserving
+vacuum in a fairly explicit manner. We find that, qualitatively speaking, these conditions
+
+                                              1
+are easy to meet, so that several susy preserving vacua exist. The complex structure moduli
+are generically completely frozen in these vacua and some but not all of the Kähler moduli
+are also fixed. It is quite straightforward to determine in a quantitatively precise manner
+the location of the vacua in moduli space.
+    This paper is organised as follows. §2 discusses some important preliminary material.
+§3 which contains some of the key results of the paper, describes the general strategy
+mentioned above for finding supersymmetry preserving vacua. This general discussion is
+illustrated by examples in §4 where two cases are discussed in some length.
+    The case of N = 2 supersymmetry does not fall within the general discussion of §3
+and is analysed in §5 with an example. The resulting moduli spaces of complex and Kähler
+deformations are also determined.
+    In §6 we construct an interesting infinite family of fluxes, unrelated by duality, all of
+which require the same number of D3 branes for tadpole cancellation. We find however
+that only one member of this family gives rise to an allowed vacuum.
+    Various dual descriptions of the K3×T 2 /Z2 model are discussed in in §7. One and two
+                              ′
+T-dualities give rise to Type I and Type I descriptions. The latter in turn, after S-duality,
+gives rise to models in heterotic string theory. The resulting compactifications are non-
+Calabi-Yau spaces in general. An explicit superpotential, which is valid quite generally, is
+constructed in these dual descriptions. It depends on various fluxes and certain twists in
+the geometry.
+    Our methods can be used to provide a general solution for flux compactifications on
+T 6 /Z2 considered in [9] as well (building on an approach discussed in that paper). This is
+discussed in §8 briefly.
+    Finally, some details are discussed in the appendices A, B and C.
+    Let us end by commenting that the K3×T 2 /Z2 model with flux, studied in this paper,
+has also been analysed in [22]. Various features of the compactification were deduced in
+that paper by considering an M-theory lift, and also the heterotic dual was discussed in
+some detail [24]. While this manuscript was in preparation we became aware of [33], which
+discusses various aspects of Heterotic compactifications with flux in some depth. We thank
+the authors for discussion and for keeping us informed of their results prior to publication.
+
+                                             2
+2. Background
+
+    Some background material for our investigation is discussed in this section. §2.1
+discusses some of the essential features of IIB compactifications with flux, §2.2 gives more
+details relevant to the K3 × T 2 /Z2 case. §2.3 discusses some basic facts about K3 that
+will be relevant in the discussion below. Finally §2.4 briefly discusses the lifting of open
+string moduli.
+
+2.1. IIB compactifications with Flux
+
+    Our starting point is a compactification of IIB string theory on a K3 × T 2 /Z2 orien-
+tifold. The orientifold Z2 group is given by {1, Ω(−1)FL R} where R is a reflection which
+inverts the two coordinates of the T 2 and Ω and FL stand for orientation reversal in the
+world sheet theory and fermion number in the left moving sector respectively. This model
+is T-dual to Type I theory on K3 × T 2 which in turn is S-dual to Heterotic on K3 × T 2 .
+    The main aim of this paper is to study supersymmetric compactifications after turning
+on various NS-NS and R-R fluxes in this background. The general analysis of such flux
+compactifications was carried out in [6]. Let us summarise some of their main results here.
+    Turning on flux alters the metric of the internal space by an overall warp factor. For
+the case at hand this means upto a conformal factor the internal space is still K3 × T 2 /Z2 .
+    Define
+                                       G3 = F3 − φH3 ,                                   (2.1)
+
+where F3 = dC2 , H3 = dB2 denote the RR and NS three forms and φ = a+i/gs denotes the
+axion-dilaton. (Our notation closely follows that of [6], see also [9]). N = 1 supersymmetry
+requires that G3 is of type (2, 1) with respect to the complex structure of K3 × T 2 /Z2 ,
+i.e. it has index structure [G3 ]ij k̄ where i, j denote holomorphic indices and k̄ an anti
+holomorphic index. Furthermore for supersymmetry one needs G3 to be primitive, that is
+
+                                         J ∧ G3 = 0                                      (2.2)
+
+, where J denotes the Kähler two-form on K3 × T 2 /Z2 .
+    One of the main motivations for studying compactifications with flux is moduli stabil-
+isation. The requirement that G3 is (2, 1) typically completely fixes the complex structure
+for the compactification, we will see this in the analysis below for the example at hand. The
+primitivity condition (2.2) is automatically met if the compactification is a (conformally)
+Calabi-Yau threefold (CY3 ), since there are no non-trivial 5-forms on a CY3 . For K3 × T 2
+
+                                              3
+in contrast this condition is not automatic and does impose some restriction on the Kähler
+moduli. An important Kähler modulus which is left unfixed is the overall volume. Since
+the primitivity condition is unchanged by an overall rescaling J → λJ, it does not lift this
+modulus.
+      One comment about non-susy vacua is also worth making at this stage. The low-
+energy supergravity obtained after turning on flux is of the no-scale type. The flux gives
+rise to a potential for the moduli with minima at zero energy. The requirements imposed
+by minimising the potential are less restrictive than those imposed by supersymmetry. To
+minimise the potential G3 can have components of (2, 1), (0, 3) and (1, 2) type. The (2, 1)
+component must be primitive and the (1, 2) component must be of the form J ∧ α where
+α is a non-trivial (0, 1) form. We will have more to say about non-susy vacua and the
+primitivity condition in §6.
+
+2.2. The K3 × T 2 /Z2 case in more detail.
+
+      It is worth commenting more on some details relevant to the K3 × T 2 /Z2 compactifi-
+cation we will study in this paper.
+      The first comment relates to tadpole cancellation for various RR fields. Consider first
+the 7-brane tadpole. The Z2 orientifold symmetry has 4 fixed points on the T 2 , an O7-
+plane is located at each of these fixed points. To cancel the resulting 7−brane charge 16
+D7-branes need to be added.
+      Next consider the 3-brane tadpole [34]. Both the O7-planes and the D7-branes wrap
+the K3 (besides filling spacetime). As a result, it turns out, 2 units of D3 brane charge are
+induced on the world volume of each O7-plane and one units of D3 brane charge in each
+D7-brane, 1 giving rise to a total of 24 units of three brane charge. This charge needs to
+be canceled by adding D3-branes and flux. The relevant formula for tadpole cancellation
+then takes the form:
+                                      1
+                                        Nf lux + ND3 = 24 ,                                (2.3)
+                                      2
+where
+                                         1
+                                                    Z
+                            Nf lux =                             H3 ∧ F3 .                 (2.4)
+                                     (2π)4 (α′ )2       K3×T 2
+
+Note in particular that with our normalisations the integral in (2.4) is over the covering
+manifold, before identification under the orientifold Z2 symmetry. Actually, (2.3) is not the
+  1
+      The simplest way to see this is the following: in F-theory there are no O7 planes. Instead
+there are 24 (p, q) 7-branes each of which acquires one unit of 3-brane charge on wrapping K3.
+
+                                               4
+most general expression for the tadpole condition, instantons excited in the world volume
+of the 7-branes will give rise to 3-brane charge in general. In this paper we will only deal
+with the case where these instantons are not excited.
+       The second comment pertains to the number of moduli from the closed string sec-
+tor present in the model before flux is turned on. In the closed string sector the fields
+gM N , C4 , C0 , φ are even under the action of Ω(−1)FL , while B2 , C2 are odd. This means
+one gets 4 gauge bosons from B2 and C2 . In addition the metric, and C4 give rise to 61 and
+25 scalars respectively, yielding a total of 86 scalars. The resulting compactification has
+N = 2 supersymmetry (before flux is turned on) with the gravity multiplet, three vector
+multiplets and twenty hypermultiplets. In addition, while we do not provide a precise
+count here, there are moduli that arise from the open string sector. These include moduli
+due to exciting the gauge fields on the 7 branes, the location of the 7-branes on the T 2
+and the locations of the D3 branes in the K3 × T 2 /Z2 .
+       Finally, we discuss the quantisation conditions which must be met by the H3 and F3
+flux. Due to the discrete identification in the compactification this condition is a bit subtle.
+The orientifold K3 × T 2 /Z2 has additional ‘half’ three-cycles not present in the covering
+manifold K3 × T 2 . To satisfy the quantisation condition on these three-cycles one requires
+that
+                             1                          1
+                                     Z                          Z
+                                           F3 = 2Z ,                    H3 = 2Z,             (2.5)
+                          (2π)2 α′       γ           (2π)2 α′       γ
+
+where γ is an arbitrary class of H3 (K3 × T 2 , Z). Other possibilities which include turning
+on exotic flux at the O planes were discussed in [10] but will not be explored further here.
+       In the discussion below we will explicitly parametrise the fluxes as follows. Choose
+coordinate x, y for the T 2 , with 0 ≤ x, y ≤ 1. The flux which is turned on must be
+consistent with the orientifold Z2 symmetry. Since B2 and C2 are odd under Ω(−1)FL this
+means the allowed F3 and H3 must have two legs along the K3 and one along the T 2 .
+That is
+                                   1
+                                         F3 = αx ∧ dx + αy ∧ dy                              (2.6)
+                                (2π)2 α′
+                                  1
+                                        H3 = βx ∧ dx + βy ∧ dy,                              (2.7)
+                               (2π)2 α′
+where αx , αy , βx , βy ∈ H 2 (K3, Z). If ei is a basis of H 2 (K3, Z) and αx = αix ei we have tak-
+ing into account the quantisation condition that αix is even integer, similarly for αy , βx , βy .
+
+                                                    5
+Finally, we note that with our choice of orientation, as explained in App. A, Nf lux (2.4),
+takes the form
+             Z
+    Nf lux = (βx ∧ αy ∧ dx ∧ dy + βy ∧ αx ∧ dy ∧ dx) = (−βx · αy + βy · αx ) .            (2.8)
+
+2.3. Some essential facts about K3
+
+      K3 is the two (complex) dimensional Calabi-Yau manifold. It is Kähler and has SU (2)
+holonomy. For an excellent review, see [32] .
+      H 2 (K3, R) is 22 dimensional. An inner product can be defined in H 2 (K3, R) as
+follows. If ei , ej ∈ H 2 (K3, R)                       Z
+                                         (ei , ej ) ≡        ei ∧ ej .                    (2.9)
+                                                        K3
+
+This inner product matrix can be shown to have signature (3, 19). H 2 (K3, R) with this
+metric can be naturally embedded in R3,19 .
+      H 2 (K3, Z), can be thought of as a lattice. It is known to be even and self dual. These
+two conditions are highly restrictive. In a particular basis ei (discussed in App. A) the
+inner product matrix (2.9), can be shown to have the form, eq. A.3 (App. A) consistent
+with these restrictions. We will refer to the lattice, together with this inner product, as
+Γ3,19 , below.
+      The moduli space of complex structures on K3 is particularly relevant for this paper
+since many directions lifted by flux lie in this moduli space. Torelli’s theorem is important
+in this context. It says that, upto discrete identifications, the moduli space of complex
+structures on K3 is given by the space of possible periods of the holomorphic two-form Ω.
+      Decomposing Ω into its real and imaginary parts we have
+
+                                               Ω = x + iy                               (2.10)
+
+where x, y ∈ H 2 (K3, R). Ω satisfies two conditions
+                             Z
+                                 Ω ∧ Ω = x · x − y · y + 2ix · y = 0 ,                  (2.11)
+
+and                                 Z
+                                        Ω ∧ Ω̄ = x · x + y · y > 0 .                    (2.12)
+
+      From (2.11) we see that x, y are orthogonal and from (2.12) that both x, y are spacelike.
+So x, y span a space-like two-plane in H 2 (K3, R) or equivalently R3,19 . Changing the
+
+                                                        6
+orientation of the two-plane corresponds to taking Ω ↔ Ω̄. The space of possible periods
+is then the space of oriented two-planes in R3,19 . This space is called the Grassmanian,
+
+                                G = O(3, 19)+/(O(2) × O(1, 19))+.                           (2.13)
+
+It is twenty (complex) dimensional.
+      Next, let us consider the Kähler two-form, J˜ on K3. Since K3 is Kähler, J˜ ∈ H 2 (K3, R).
+In addition it satisfies two conditions:
+                                             Z
+                                                 J˜ ∧ Ω = 0,                                (2.14)
+
+and                                          Z
+                                                 J˜ ∧ J˜ > 0.                               (2.15)
+
+With respect to the inner product, (2.9), the first condition tells us that J˜ is orthogonal
+to Ω, while the second says that it is a space-like two-form.
+      Putting this together with what we learnt above, we see that the choice of a complex
+structure and Kähler two-form on K3 specifies an oriented space-like three-plane Σ in
+H 2 (K3, R) ∈ R3,19 . The Einstein metric is completely specified once this choice is made.
+It is then easy to see that the moduli space of Einstein metrics on K3, upto discrete
+identifications, is of the form
+
+                             ME ≃ O + (3, 19)/(SO(3) × O(19)) × R+ .                        (2.16)
+
+This is 58 real dimensional 2 .
+      Finally, we will work in the supergravity approximation in this paper. With that
+in mind, it will be useful to know in the following discussion when the the moduli are
+stabilised at a point away from an orbifold singularity of K3. Theorem 4 in [32] tells us
+that this condition is met if the space-like three plane Σ is not orthogonal to any Lattice
+Vector 3 of Γ3,19 .
+  2
+      Different choices of an oriented two-plane in the chosen three-plane give rise to different
+complex structures consistent with the same Einstein metric. This is a reflection of the underlying
+Hyper Kähler geometry.
+  3
+      In terms of the basis ei , a Lattice Vector is of form, ni ei , ni ∈ Z.
+
+                                                    7
+2.4. Open String Moduli
+
+     Most of this paper deals with closed string moduli. Before going on though it is worth
+briefly commenting on open string moduli. These moduli are of two kinds. If D3-branes
+are present, their location in the K3 × T 2 /Z2 space gives rise to moduli. Turning on flux
+does not freeze these fields as long as the conditions for supersymmetry are met, this can
+be easily seen from the supersymmetry analysis, [35].
+     The second kind of open string moduli are the location of the D7- branes in the
+transverse T 2 directions. There are 16 such branes present. In the analysis below we take
+them to be symmetrically distributed so that each O7 plane has 4 D7 branes on it. As a
+result the dilaton will be constant (except for the singularities at the D7/O7 planes). We
+then consistently seek solutions which meet the conditions for supersymmetry, discussed
+in §2.1.
+     Perturbing around such a solution, one can show that generically the 7-brane moduli
+are lifted. There are two ways to see this. From the point of view of ten-dimensional IIB
+theory, this happens because of the restrictive nature of the (2, 1) condition that G3 must
+satisfy. Note that this condition must be met at every point in the compactification. Once
+the D7-branes move away from the O7-planes, the dilaton varies and the (2, 1) condition
+will not be met generically. From the F-theory viewpoint this can be understood similarly
+as a consequence of the restrictive nature of the (2, 2) condition that G4 must satisfy. It
+is easy to see that any susy solution with constant dilaton in the IIB theory lifts to a susy
+preserving solution of F-theory with G4 being of type (2, 2) and primitive. Now the (2, 2)
+condition imposes strong constraints on the complex structure moduli and in fact over
+determines them. As a result, perturbing around a given solution we generically do not
+expect any complex structure moduli to survive. From the IIB perspective this means all
+the D7-brane moduli as well as the dilaton and the complex structure of the T 2 should be
+fixed.
+     Let us end by commenting that some of these issues are discussed in more detail, from
+the perspective of the Heterotic theory, in [33].
+
+
+3. Supersymmetric Vacua
+
+     In the following two sections we solve the conditions imposed by supersymmetry and
+find the general supersymmetric vacua for flux compactifications on K3 × T 2 /Z2 . Since
+the discussion is quite technical it is helpful to first summarise the key ideas.
+
+                                              8
+    The conditions imposed by supersymmetry are well known. The flux, G3 , should be
+of type (2, 1) and it should satisfy the requirement of primitivity.
+    The main challenge is to explicitly implement these conditions and find susy preserving
+vacua. The (2, 1) condition in particular is very restrictive, and, as we shall see below,
+cannot be met for generic fluxes. In finding the general supersymmetric solutions we will
+determine both the allowed flux and the resulting susy vacua. A brute force approach,
+relying on an explicit parametrisation of moduli space, is not practical for this purpose.
+For example, the complex structure moduli space of K3 is 20 dimensional and not easy to
+explicitly parametrise.
+    The key to making progress is Torelli’s theorem for K3, which we discussed in §2.3
+above. This theorem allows us to restate the search for susy solutions as a problem in
+Linear Algebra in H 2 (K3, R). Seeking a complex structure in which the flux is of type
+(2, 1) translates to searching for an appropriate space-like two-plane in H 2 (K3, R). The
+restrictive nature of the (2, 1) condition, which we mentioned above, can now be turned
+into an advantage. The flux defines a four dimensional subspace of H 2 (K3, R), which we
+denote as Vf lux . Susy requires that the two-plane must lie in Vf lux . This is itself a big
+simplification since it narrows the search from the 22 dimensional space, H 2 (K3, R), to a
+four dimensional one. But in fact one can do even better. One finds that the (2, 1) con-
+dition determines the two-plane completely in terms of the dilaton-axion and the complex
+structure modulus of the T 2 . The remaining conditions then determine these two moduli
+and provide some of the required conditions on the flux.
+    Turning next to the requirement of primitivity, which is a condition on the Kähler
+two-form, one finds it maps to the search for a space-like vector in H 2 (K3, R) which
+is orthogonal to Vf lux . Unlike in the case of the complex structure, this is not a very
+restrictive condition. It does impose some additional conditions on the flux, but once
+these conditions are met, many solutions exist in which some but not all Kähler moduli
+are frozen.
+    In this way we determine the most general susy preserving solutions for flux compact-
+ifications on K3 × T 2 /Z2 .
+    The rest of this section will present the analysis sketched out above in more detail.
+In §3.1 we discuss the (2, 1) condition. We show that it determines the complex structure
+of K3 in terms of the dilaton-axion and the complex structure of the T 2 . We also find
+the constraints it imposes on these two moduli and on the flux. In §3.2 we solve these
+
+                                              9
+constraints explicitly and determine the complex structure of K3, T 2 and the dilaton-
+axion. We also make the constraints on the flux explicit. In §3.3 we discuss the primitivity
+condition. We determine the restrictions it imposes on the Kähler moduli and on the flux.
+Finally, we summarise the results of this section in §3.4 stating the resulting values of
+the complex structure moduli, the restrictions on the Kähler moduli, and the conditions
+imposed on the flux for susy preserving vacua.
+
+3.1. The (2, 1) Condition
+
+     We start by considering the restrictions imposed by the condition that G3 is of type
+(2, 1).
+     One way to formulate these conditions is to construct the superpotential [1,6],
+                                           Z
+                                     W =        G3 ∧ Ω3                                (3.1)
+
+which is a function of all the complex structure moduli and also of the axion-dilaton. One
+can show then that imposing the conditions:
+
+                                      W = ∂i W = 0,                                    (3.2)
+
+where i denotes any complex structure modulus or the dilaton field, ensures that G3 is
+purely of type (2, 1). Notice that we have one more condition than variables in (3.2) .
+Two conclusions follow from this. First, as was mentioned above, we see that for generic
+fluxes there are no susy preserving minima. Second, we learn that in the class of fluxes
+which preserve susy generically all complex structure moduli are stabilised. In finding
+susy solutions we will determine below what conditions the flux must satisfy along with
+the resulting values for the complex structure moduli and the dilaton.
+     A straightforward way to proceed, as followed in [9], is to explicitly parametrise the
+complex structure moduli space, determine W , and then search for solutions. For the
+case at hand, this is not very practical. The main complication is the complex structure
+moduli space of K3. An explicit parametrisation of the twenty dimensional Grassmanian
+is possible, but the resulting expressions are quite unwieldy.
+     The crucial idea which allows us to make progress is Torelli’s theorem, as was men-
+tioned above. We are seeking a complex structure, with respect to which G3 is of type
+(2, 1). Torelli’s theorem states that the complex structure is specified by a space-like two
+
+                                               10
+plane in H 2 (K3, R). We can think of this two-plane as determining the holomorphic two-
+form Ω and from it the complex structure. With this in mind we recast the search for
+the required complex structure in terms of conditions on the two-plane. Fortunately, as
+we see below, these conditions are simple to state and restrictive enough to determine the
+two-plane without requiring an explicit parametrisation of the complex structure moduli
+space of K3.
+       We begin by choosing the complex structure modulus on the T 2 to be τ , so that we
+can define complex coordinates on it of the form,
+
+
+                                  z = x + τ y , z̄ = x + τ̄ y .                           (3.3)
+
+
+In (2.6),(2.7), we defined four vectors, {αx , αy , βx , βy } ∈ H 2 (K3, Z) ⊂ H 2 (K3, R) which
+specify the three-form flux completely. We will refer to these as the flux vectors below.
+Together they define a subspace of H 2 (K3, R) which we call Vf lux . G3 can then be written
+as
+                                     G3 = nx dx + ny dy ,                                 (3.4)
+
+where the 2-forms nx , ny are given by
+
+
+                              nx ≡ αx − φβx , ny ≡ αy − φβy .                             (3.5)
+
+
+In terms of the complex coordinates on the T 2 , (3.3), we can express G3 as
+
+                                          1
+                                G3 =          (Gz dz + Gz̄ dz̄)                           (3.6)
+                                       τ̄ − τ
+
+with
+                                       Gz = (nx τ̄ − ny )                                 (3.7)
+
+and
+                                     Gz̄ = −(nx τ − ny ) .                                (3.8)
+
+       For G3 to be of (2, 1)-type the two form Gz̄ in K3 must be of type (2, 0). Since the
+Holomorphic two-form is unique we learn that
+
+
+                                          Gz̄ = c Ω,                                      (3.9)
+
+                                               11
+where c is a constant. We must emphasise that (3.9) determines the complex structure of
+K3 completely in terms of the flux, and the moduli, φ, τ (which enter in (3.8)) 4 . Eq.(3.9),
+will play a central role in the discussion below.
+      Now we can use the remaining conditions imposed by susy and consistency to de-
+termine the remaining two moduli, the dilaton-axion and τ , and also obtain the required
+conditions which should be satisfied by the non-generic flux for a susy condition to exist.
+      From (2.11) we see that the following condition must hold:
+
+                                            Gz̄ · Gz̄ = 0.                                     (3.10)
+
+      Two other conditions arise as follows. For G3 to be of type (2, 1) we see from (3.7),
+that Gz must be of type (1, 1). This means
+
+                                            Ω · Gz = 0 ,                                       (3.11)
+
+and
+                                            Ω · Ḡz = 0 ,                                      (3.12)
+
+which can be reexpresed as
+                                            Gz̄ · Gz = 0                                       (3.13)
+
+and
+                                            Gz̄ · Ḡz = 0.                                     (3.14)
+
+      One final condition arises from the requirement that the two-plane defining Ω is space-
+like, (2.12). From (3.9), it takes the form:
+
+                                            Gz̄ · Ḡz̄ > 0.                                    (3.15)
+
+      We see that, (3.10),(3.13), and, (3.14), are three polynomial equations in two variables,
+φ and τ . Generically they will not have a solution. This was expected from our discussion
+of the superpotential at the beginning of this section. Two of these equations can be used
+to solve for φ, and τ . The third equation then gives two real conditions on the flux. Finally,
+we also need to ensure that the flux meets the inequality (3.15).
+
+  4
+      We will assume in this section that Gz̄ is non-zero, so that the constant c in (3.9)is non-zero.
+The case where Gz̄ = 0 is dealt with separately in §5.
+
+                                                  12
+3.2. Solving the Equations
+
+      In this section we discuss in more detail how to explicitly solve the three equations,
+(3.14),(3.10), (3.15), which were obtained above from the (2, 1) requirement.
+      These equations can be written as
+
+                                   (n̄x τ − n̄y ) · (nx τ − ny ) = 0                           (3.16a)
+
+                                   (nx τ̄ − ny ) · (nx τ − ny ) = 0                             (3.16b)
+
+                                   (nx τ − ny ) · (nx τ − ny ) = 0 .                            (3.16c)
+
+      We will in particular be interested in non-singular solutions for which Imφ, Imτ 6= 0.
+Since, Imτ 6= 0, (3.16b), (3.16c), give
+
+                                        nx · (nx τ − ny ) = 0,                                   (3.17)
+
+and
+                                        ny · (nx τ − ny ) = 0.                                   (3.18)
+
+Similarly, since, Imφ 6= 0 (3.16a), (3.16c), give
+
+                                  (αx τ − αy ) · (nx τ − ny ) = 0 .                              (3.19)
+
+      Using (3.17) we can eliminate τ from the remaining two equations to get,
+
+
+                                (nx · nx )(ny · ny ) − (nx · ny )2 = 0                         (3.20a)
+
+ (αx · nx )(nx · ny )2 − (nx · nx )(nx · ny ) (αx · ny + αy · nx ) + (αy · ny )(nx · nx )2 = 0 . (3.20b)
+
+      Using the expressions for nx and ny from (3.5) this yields two polynomials, one quartic
+and the other quintic in φ, of the form:
+
+
+                               q1 φ4 + q2 φ3 + q3 φ2 + q4 φ + q5 = 0 ,                         (3.21a)
+
+                          p1 φ5 + p2 φ4 + p3 φ3 + p4 φ2 + p5 φ + p6 = 0,                        (3.21b)
+
+where the coefficients qi , pi , are real and can be expressed in terms of inner products of
+the flux vectors, as is discussed in App. B.
+
+                                                  13
+    For a non-singular solution, φ, must be complex. Since the coefficients of the two
+polynomials are real this means that (3.21a), (3.21b), must share a common quadratic
+factor.
+    In general, as is discussed in App. B this happens when the following condition is
+met: Define the matrix
+
+                                p1    0    0    −q1    0      0     0
+                                                                      
+                               p2    p1   0    −q2   −q1     0     0 
+                                p3    p2   p1   −q3   −q2    −q1    0 
+                                                                      
+                       
+                                p4    p3   p2   −q4   −q3    −q2   −q1 
+                                                                      
+                    M ≡                                                .             (3.22)
+                       
+                               p5    p4   p3   −q5   −q4    −q3   −q2 
+                                p6    p5   p4    0    −q5    −q4   −q3 
+                                                                      
+                       
+                                0     p6   p5    0     0     −q5   −q4
+                                                                      
+                                0     0    p6    0     0      0    −q5
+
+    Then (3.21a),(3.21b), have a common quadratic factor, if M has a zero eigenvalue.
+That is if a non-zero column vector X exists such that
+
+                                      M · X ≡ Mji X j = 0.                             (3.23)
+
+Note that since M is an 8 × 7 matrix, each column of M can be thought of as a vector in
+an 8 dimensional vector space. Then (3.23), is equivalent to requiring that only 6 of these
+7 vectors, in the 8 dimensional space, are linearly independent.
+    Before proceeding let us emphasise that the matrix M depends only on the flux vectors,
+so the requirement of a zero eigenvalue gives rise to restrictions on the flux which must be
+met for a susy solution to exist.
+    Once condition (3.23) is met, the resulting common quadratic factor has the form
+
+                                    W (φ) = w1 φ2 + w2 φ + w3                          (3.24)
+
+where
+                                q1        s1 q2 − s2 q1        q5
+                         w1 =      , w2 =        2      , w3 =    ,                    (3.25)
+                                s1              s1             s3
+and s1 , s2 , s3 refer to the first three components of X as is explained in App. B.
+    We can now finally solve for φ by setting W (φ) = 0. This gives,
+                                                p
+                                       −w2 ±      w22 − 4w1 w3
+                                 φ=                            .                       (3.26)
+                                                 2w1
+
+                                                14
+    For a nonsingular solution, the imaginary part of φ, must not vanish. This gives the
+following additional conditions on the flux,
+
+
+                                             w22 < 4w1 w3 .                                    (3.27)
+
+
+    Once φ is determined, τ can be obtained from (3.17). It is given by
+
+                                                   nx · ny
+                                              τ=           .                                   (3.28)
+                                                   nx · nx
+
+We should note that in case nx · nx = 0, (3.28), is not valid. Instead one can use (3.16a),
+which yields,
+
+
+                                        p
+             (n̄x · ny + n̄y · nx ) ±    (n̄x · ny + n̄y · nx )2 − 4(n̄x · nx )(n̄y · ny )
+        τ=                                                                                 .   (3.29)
+                                             2(n̄x · nx )
+
+(Requiring Im(τ ) > 0 fixes the sign ambiguity in (3.29).) Eq. (3.29), is also useful for
+stating an additional condition on the flux which arises from the requirement that Imτ 6= 0.
+This condition takes the form
+
+
+                          (n̄x · ny + n̄y · nx )2 < 4(n̄x · nx )(n̄y · ny ) ,                  (3.30)
+
+where φ, is given in (3.26).
+    Finally a condition on the flux arises from (3.15). Using (3.9), this takes the form,
+
+
+                                  (nx τ − ny ) · (n̄x τ̄ − n̄y ) > 0 ,                         (3.31)
+
+
+with τ and φ given in terms of the flux, in (3.28), (3.26).
+    In summary, the (2, 1) condition determines the complex structure of the K3 × T 2 /Z2
+space completely in a susy preserving solution. The dilaton-axion, φ, and the complex
+structure modulus of the T 2 , τ , are given by (3.26), (3.28). The complex structure of K3
+is determined implicitly by Ω which is given by (3.9). In addition the following conditions
+are imposed on the flux: the matrix M (3.22) must have a zero eigenvector, and the
+conditions (3.27), (3.30), and (3.31), must hold.
+
+                                                    15
+3.3. Primitivity
+
+      We turn next to the requirements imposed by the primitivity condition.
+      On K3 × T 2 , the Kähler two-form, J, is given by 5
+
+                                                            ¯
+                                        J = J˜ + gz z̄ dz ∧ dz,                          (3.32)
+
+where z, z̄ denote coordinates on the T 2 and J˜ ∈ H (1,1) (K3).
+    The primitivity condition is (2.2). From the form of G3 we see that there are no
+                                                                                          ˜ in
+constraints on gz z̄ , so the Kähler modulus of the T 2 is not fixed. The constraints on J,
+terms of the inner product, (2.9), take the form,
+
+                                        J˜ · Gz = J˜ · Gz̄ = 0.                          (3.33)
+
+Since Im(τ ), Im(φ) 6= 0, for a non-singular solution, we learn from (3.5) that
+
+                               J˜ · αx = J˜ · αy = J˜ · βx = J˜ · βy = 0.                (3.34)
+
+Thus J˜ must be orthogonal to the vector space Vf lux .
+    An acceptable J˜ must meet the following two additional conditions. It should be a
+space-like, i.e., positive norm vector in H 2 (K3, R). And, it should be of type (1, 1). This
+latter condition can be stated as follows:
+
+                                         J˜ · Ω = J˜ · Ω̄ = 0.                           (3.35)
+
+From (3.9), we see that (3.35), is automatically met if (3.34), is true. This leaves the
+two conditions of J˜ being space-like and orthogonal to Vf lux . Since H 2 (K3, R) is 22
+dimensional, at first glance, it would seem that these conditions can be met for generic
+fluxes, leaving 18 of the K3 Kähler moduli unfixed.
+      Some thought shows that this is not true and that in fact the flux must meet some
+conditions in general. The metric on H 2 (K3, R) gives rise to an inner product matrix
+in Vf lux in an obvious manner. It is convenient to state the restrictions on the flux, in
+terms of the number of non-trivial eigenvectors, with positive, negative and null norm,
+of this matrix. One can show, as we will argue below, that the number of positive norm
+  5
+      For ease in subsequent discussion, we drop the overall factor of i, that is conventionally
+present in the definition of J .
+
+                                                  16
+eigenvectors must be 2 and the number of null eigenvectors must be 0, for a non-trivial
+space-like J˜ to exist that meets, (3.34). This leaves the following three possibilities:
+      a) dim Vf lux = 2, (2+, 0−)
+      b) dim Vf lux = 3, (2+, 1−)
+      c) dim Vf lux = 4, (2+, 2−),
+where in our notation (2+, 1−) means two eigenvectors of positive norm and one of negative
+norm etc.
+      In the next two paragraphs we pause to discuss how this conclusion comes about.
+Thereafter we return to the main thread of the argument again. Since Ω lies in Vf lux and
+is space-like, the number of positive-norm eigenvectors must be at least two. Since the
+signature of H 2 (K3, R) is (3, 19) the maximum number of positive norm eigenvectors can
+be three. But if it is three then J˜ cannot be orthogonal to Vf lux and still be spacelike 6 .
+Thus, there must be exactly two spacelike eigenvectors in Vf lux .
+      Next, we turn to the number of eigenvectors with null norm. Any such eigenvector
+must be orthogonal to the two eigenvectors with positive eigenvalues. So if such an eigen-
+vector exists, and J˜ is orthogonal to it, besides being orthogonal to the two space-like
+vectors, one can again show that it cannot be space-like 7 .
+      The argument in the previous two paragraphs shows that Vf lux must meet one of the
+three possibilities discussed above. Once the flux meets this requirement, the condition
+                                         ˜ Since (3.34), imposes 4 conditions this leaves 18
+(3.34), can be satisfied by a space-like J.
+moduli in the K3 Kähler moduli space, besides the Kähler modulus of the T 2 , unfixed.
+      Orbifold Singularities
+      There is one final point we should discuss in this section. This is concerned with
+the existence of an orbifold singularity on the K3 surface. At such a singularity various
+two-cycles shrink to zero size and additional light states obtained by branes wrapping
+such cycles can enter the low energy theory. Since we work with a supergravity theory
+without these states, our analysis of the resulting vacuum is self-consistent only if it does
+not contain any such light state.
+  6
+    One can construct a basis of H 2 (K3, R), starting from these three spacelike vectors and
+appending 19 time-like vectors to them. Then if J˜ is orthogonal to the three spacelike ones it
+must be purely time like.
+  7
+     Let the two spacelike vectors be v1 , v2 and the null vector be vN = v3 + v4 , where v3 is
+spacelike and v4 is time like. Then orthogonality would require that J˜ = vN + vt , where vt is a
+time like vector orthogonal to v1 , v2 , vN . This makes J˜ time-like.
+
+                                                  17
+        Usually in string theory at an orbifold point additional light states are avoided by
+giving an expectation value to the axionic partner of the blow-up mode of the vanishing
+two-cycle. In our constructions we do not always have the freedom to turn on such an ex-
+pectation value, since the Kähler mode corresponding to blowing up the cycle is sometimes
+lifted. In such cases the axionic partner is also lifted, typically this happens because it is
+eaten by some Gauge Boson, in the low-energy gauged supergravity. It is an interesting
+question to ask what are the masses of states which arise from wrapped branes in such a
+case, but we have not investigated this yet.
+        To avoid these complications we will mainly only consider vacua below which lie away
+from an orbifold singularity or if at an orbifold, where the relevant blow up modes are not
+lifted. Two exceptions to this are the discussion towards the end of §4.1 which describes a
+solution generating technique that could have wider applicability, and §5 which discusses
+N = 2 solutions. The N = 2 vacua could prove useful in determining modifications to the
+BPS formulae for wrapped branes in the gauged supergravity obtained after turning on
+flux.
+        The rest of this subsection analyses how to determine if a solution contains an orbifold
+singularity.
+        One can show that the susy preserving conditions discussed above result in an orbifold
+singularity iff Vf lux contains a Lattice Vector v of Γ3,19 , which is orthogonal to Ω. If no
+such Lattice Vector exists, one can always choose the Kähler two form J˜ consistent with
+the primitivity conditions, to avoid an orbifold.
+        To see this we recall from §2 that the K3 surface is at an orbifold point in its moduli
+space if a Lattice Vector of Γ3,19 exists which is orthogonal to the three plane Σ, that
+determines the Einstein Metric. Now if a Lattice Vector v exists which is orthogonal to
+Ω and v ∈ Vf lux , it must be orthogonal to J˜ (due to the primitivity condition (3.34) ).
+Thus it must be orthogonal to Σ, so as claimed above the K3 surface is at an orbifold
+singularity. For the converse we need to consider two possibilities. Either there exists no
+Lattice Vector orthogonal to Ω, in this case we are done. Or there is such a Lattice Vector
+                                                                           ˜ consistent with
+v but it does not lie in Vf lux . In this case one can always arrange that J,
+the condition, (3.34), is not orthogonal to v, so again an orbifold is avoided 8 .
+
+  8
+      Decompose v = vk +v⊥ , where vk lies in Vf lux , and v⊥ is perpendicular to Vf lux . By orienting
+J˜ to have a (”small enough”) component along v⊥ one can then ensure that J˜· v 6= 0, while (3.34),
+and positivity of J˜ are met.
+
+                                                  18
+3.4. Summary of Conditions Leading to Susy Solutions
+
+     The discussion of this section has been quite technical and detailed. It is therefore
+useful to summarise the main results here for further reference.
+     Susy is generically broken for flux compactifications of IIB theory on K3 × T 2 /Z2 . To
+preserve susy the flux must meet the following conditions: First, the vector space Vf lux
+spanned by the flux must be of one of the three classes, a,b,or c, discussed above in the
+primitivity section. Second, the matrix M , (3.22), formed from the flux, must have a zero
+eigenvalue.
+     Once these conditions are met a solution exists. The dilaton, φ, is given by (3.26), and
+in terms of φ the complex structure modulus of the T 2 , τ , is given by (3.28). The complex
+structure of the K3 is implicitly determined by Ω which is give by (3.9) in terms of φ, τ .
+Unlike the complex structure, the Kähler moduli are not completely determined. Instead
+the Kähler two-form of K3 must meet four conditions, (3.34). This generically leaves an
+18 dimensional subspace of the K3 Kähler moduli space, and the Kähler modulus of the
+T 2 , unfixed.
+     Finally, in order to ensure that the resulting solution is non-singular some additional
+conditions must be met by the flux. To ensure that the complex structure moduli are
+stabilised at non-singular values, the inequalities, (3.31), (3.27), and (3.30), must be met.
+And to ensure that orbifold singularities are avoided in the resulting solution, Vf lux must
+not contain any Lattice Vector of Γ3,19 , which is orthogonal to Ω.
+     One final comment. Our approach to finding susy preserving solutions above relied
+crucially on the fact that the constant c in (3.9), did not vanish. If this constant is zero
+the holomorphic two-form of K3 is not constrained to lie in Vf lux . This second branch of
+solutions will be considered further in §5, it gives rise to N = 2 susy preserving vacua.
+
+
+
+4. Some Examples
+
+     Here we will illustrate the general discussion of the preceding section with a few
+examples. §4.1 discusses the case where Vf lux is two dimensional. We consider the general
+solution, some examples and also discuss a method of generating additional susy preserving
+solutions starting from an existing one. §4.2 applies the general discussion above to an
+example where Vf lux is four dimensional.
+
+                                             19
+4.1. Vf lux has Dimension 2:
+
+    In this case only two of the four flux vectors are linearly independent. Since Ω must be
+a two-plane contained in Vf lux , this means both vectors spanning Vf lux must be spacelike,
+so that Vf lux is of type (2+, 0−). In this case the two-plane defined by Ω must be Vf lux .
+    Going back to the conditions for G3 to be of type (2, 1) one finds from (3.11), and
+(3.12), that
+                                      Gz · Ω = Gz · Ω̄ = 0 .                             (4.1)
+
+Since, in this case, Vf lux is spanned by Ω, Ω̄, this means from (4.1), that
+
+                                       Gz = nx τ̄ − ny = 0.                              (4.2)
+
+Since Imτ 6= 0 for a non-singular solution, we learn from (3.10), that
+
+                                           nx · nx = 0,                                  (4.3)
+
+which can be rewritten as
+
+                           (αx · αx ) − 2(αx · βx )φ + (βx · βx )φ2 = 0 .
+
+Solving for φ we obtain
+                         1                   p
+                                                         2
+                                                                                 
+                  φ=              (αx · βx ) ± (αx · βx ) − (αx · αx )(βx · βx )         (4.4)
+                     (βx · βx )
+
+Imφ 6= 0 implies (αx · βx )2 < (αx · αx )(βx · βx ) . So the vectors αx and βx must be linearly
+independent.
+    With φ fixed, (4.2), is two complex equations in τ , one of these can be used to
+determine τ , the other then gives two real conditions on the flux. Multiplying both sides
+of (4.2) by n̄x we have that
+                                                  ny · n̄x
+                                           τ̄ =            ,                             (4.5)
+                                                  nx · n̄x
+or equivalently
+                                                  n̄y · nx
+                                           τ=              .                             (4.6)
+                                                  nx · n̄x
+Multiplying (4.2) by nx gives
+                                           nx · ny = 0 ,                                 (4.7)
+
+substituting for φ, τ from (4.4), (4.6), in (4.7), we get the two conditions on the flux
+mentioned above. Finally we note that since Ω, is a spacelike two plane by construction in
+
+                                                  20
+this case, the inequality (3.31) is automatically met. Also since Ω spans Vf lux , the moduli
+of K3 can be chosen to be away from an orbifold point.
+      Next we turn to primitivity (3.34), which requires that J˜ is orthogonal to the vector
+space Vf lux . In the present example, this condition does not yield any extra restrictions
+on the flux. It can be met easily. H 2 (K3, R) is 22 dimensional. (3.34), imposes two
+conditions allowing for all twenty Kähler moduli of K3, and the one Kähler modulus of
+the T 2 , to vary.
+      As a concrete example consider the case where αx , βx are the two linearly independent
+flux vectors, with
+                                  αy = −βx and βy = αx .                                (4.8)
+
+In addition take the flux to satisfy the conditions
+
+                                          α2x = βx2 ,                                   (4.9)
+
+and
+                                         αx · βx = 0 .                                (4.10)
+
+      From (4.4), one finds then that the dilaton is stabilised at the value
+
+                                           φ = ±i .                                   (4.11)
+
+Taking φ = i from (4.6), we have that
+
+                                            τ =i.                                     (4.12)
+
+We see that with this choice of flux, (4.7), is automatically met. As mentioned above in
+this case, Ω corresponds to the two plane spanned by αx , βx .
+      Next we come to the tadpole conditions. From (2.8), and (4.8), we see that Nf lux is
+given by
+                                        Nf lux = 2α2x ,                               (4.13)
+
+so that the D3 brane tadpole condition takes the form
+
+                                      α2x + ND3 = 24 .                                (4.14)
+
+This condition can be easily met.
+
+                                              21
+    As a specific illustration, we take, in the notation of App. A,
+
+                                    αx = 2e1 , βx = 2e2 ,                               (4.15)
+
+so that conditions (4.9),(4.10), are met (the even coefficients in (4.15), ensure the correct
+quantisation conditions). We then have that
+
+                                       ND3 = 24 − 8 = 16,                               (4.16)
+
+number of branes must be added in the compactification. Let us end by mentioning that
+in this example, (4.15), primitivity requires the Kähler two-form of K3 to be of the form
+                                                 22
+                                                 X
+                                          J˜ =         ti ei ,
+                                                 i=3
+
+where the real parameters ti are chosen to make J · J > 0. This is a twenty dimensional
+space, as was mentioned above.
+    New Solutions from Old
+    The case where dim(Vf lux ) = 2 also allows us to illustrate a trick which is sometimes
+helpful in finding additional solutions to the susy conditions. The idea is as follows: Given
+a set of flux vectors which give rise to a susy solution, one can try to alter the flux vectors
+in such a manner that we keep the dilaton and complex structure of both the K3 and T 2
+unchanged. In particular this means keeping Gz̄ unchanged (3.9). Let the αx → αx + δαx
+etc. Then we have that
+                                   δGz̄ = δnx τ − δny = 0.                              (4.17)
+
+Since Gz must still be of type (1, 1) for preserving susy we have that
+
+                                   δGz · Ω = δGz · Ω̄ = 0.                              (4.18)
+
+This yields from (3.9), (4.17), that
+
+                                   δnx · Ω = δnx · Ω̄ = 0.                              (4.19)
+
+If a δnx can be found, consistent with the quantisation conditions on the flux, (2.5), that
+satisfies (4.19), then (4.17)can be solved for δny . In some cases, as we now illustrate, δny
+is also consistent with the quantisation conditions. In this case, subject to the primitiv-
+ity condition and the D3 brane tadpole condition (2.3) also being met, one can obtain
+additional susy preserving solutions.
+
+                                                 22
+        As an example consider the set of flux, (4.8), discussed in the previous section. In this
+example to begin with, dim.Vf lux = 2, and φ = τ = i in the susy vacuum. Now suppose
+the flux is changed so that δαx , δβx are both orthogonal to αx , βx . In addition we assume
+that
+                                            δαy = δβx ,                                   (4.20)
+
+and
+                                           δβy = −δαx .                                   (4.21)
+
+It is easy to then see that both (4.17) and (4.18) are met. For the new flux dimVf lux > 2,
+so the primitivity condition can also be met if δαx , δβx are both time like.
+        Let us end with two comments.
+        First, the change in Nf lux is given by
+
+                                δNf lux = −(δβx · δαy ) + δβy · δαx                       (4.22)
+
+i.e.,
+                                      δNf lux = −δβx2 − δα2x .                            (4.23)
+
+For time like δβx , δαx this is positive. So by altering the flux in this manner the number
+of D3 branes that need to be added can be reduced, (2.3). In particular one can easily find
+choices of δαx , δβx which give rise to a vacuum where Nf lux = 24 and no D3-branes need
+be added.
+        Second, the above examples with dimVf lux > 2, which are generated from the old
+solutions by altering the flux vectors, correspond to orbifold singularities. This follows
+from the discussions on orbifold singularities in §3.3 and because of the fact that the
+lattice vectors δαx , δαy ∈ Vf lux are orthogonal to Ω.
+
+4.2. A solution with common quadratic
+
+        We now find some solutions of the quartic (3.21a) and quintic (3.21b) . For simplicity
+we restrict the flux vectors to satisfy
+
+                         (αx · αy ) = (βx · βy ) = (αx · βy + αy · βx ) = 0 .             (4.24)
+
+We further assume
+                               (βx · βx ) = 2(αx · αx ) = 2(αx · βx )
+                                                                                          (4.25)
+                               (βy · βy ) = 2(αy · αy ) = 2(αy · βy ) .
+
+                                                  23
+With this assumption the quartic and quintic reduces to
+
+                 αxx αyy 4φ4 − 8φ3 + 8φ2 − 4φ + 1 = 0 ,
+                                                   
+                                                                                         (4.26)
+                    α2xx αyy −4φ5 + 12φ4 − 16φ3 + 12φ2 − 5φ + 1 = 0 ,
+                                                               
+
+
+where αxx and αyy are defined in App. B. The above polynomials can be rewritten as
+                                                   2
+                            αxx αyy 2φ2 − 2φ + 1     =0,
+                                                         2                              (4.27)
+                            α2xx αyy (1 − φ) 2φ2 − 2φ + 1 = 0 .
+
+Clearly, they share a common quadratic
+
+                                         2φ2 − 2φ + 1                                    (4.28)
+
+which can be set to zero to obtain solution for φ as
+                                             1
+                                        φ=     (1 ± i) .                                 (4.29)
+                                             2
+From (3.29) and on using the assumptions (4.24),(4.25) the expression for τ becomes
+                                         r
+                                            αyy
+                                    τ =i         .                                (4.30)
+                                            αxx
+
+The conditions (4.24),(4.25) can be met by some suitable choice of the flux vectors. For
+example consider
+                                   αx = 2(e1 − e2 ) ,
+                                   αy = 2(e1 + e2 + e4 ) ,
+                                                                                         (4.31)
+                                   βx = −4e2 ,
+                                   βy = 2(2e1 + e4 + e5 ) .
+This is a solution of (2+, 2−)-type. For these flux vectors αxx = 16 and αyy = 8. Hence,
+               √
+we have τ = i/ 2 . The resulting solution is non-singular. Im(φ), Im(τ ) 6= 0, and one can
+show that (3.31), is also met. One can also show that orbifold singularities are avoided.
+Since Im(τ ) is irrational, there is no element of Γ3,19 contained in Vf lux which is orthogonal
+to Ω.
+    Finally, we note that the contribution due to the flux to the D3-brane tadpole condi-
+tion, (2.8), is given by
+                                Nf lux = αx .βy − βx .αy = 32 .                          (4.32)
+
+As a result 8 D3 branes need to be added for a consistent solution.
+
+                                              24
+5. The Second Branch and N = 2 Supersymmetry
+
+    As was mentioned at the very end of §3 the general strategy discussed therein for
+finding susy solutions is applicable only if the constant c , (3.9), is non-zero. In section
+§5.1 we discuss how to find solutions for which this constant vanishes, by formulating both
+the conditions on the flux for such solutions to exist and determining the constraints on
+the moduli in the resulting vacua. We will refer to these solutions as lying in the “second
+branch”. In §5.2 we show that the second branch in fact meets the necessary and sufficient
+conditions for preserving N = 2 supersymmetry. In §5.3 we give an example of such a
+solution.
+
+5.1. The Second Branch
+
+    We begin by noting that if c, the constant in (3.9), vanishes, then
+
+                                     Gz̄ = nx τ − ny = 0 .                                (5.1)
+
+Equating the real and imaginary parts of (5.1) separately to zero we obtain
+
+                           αx Re(τ ) − βx Re(τ φ) = αy − βy Re(φ) ,
+
+                             αx Im(τ ) − βx Im(τ φ) = −βy Im(φ) .
+
+Thus only two of the flux vectors αx , αy , βx , βy , at best, are linearly independent. So the
+first thing we learn is that for a solution of this kind, dim Vf lux ≤ 2. Since in a nonsingular
+solution, Im(φ), does not vanish we can take these two independent flux vectors to be αx ,
+and βx .
+    Next let us consider the constraints coming from primitivity. For the solutions of §3
+this was discussed in §3.3 and much of that analysis goes over to the present case as well.
+In particular, one finds again that J˜ must be spacelike and orthogonal to Vf lux .
+    The remaining constraints come from the (2, 1) condition. This takes the form of the
+following equations:
+                                  Gz · Ω = 0 , Gz · Ω̄ = 0 ,                             (5.2a)
+
+                                    Ω · Ω = 0 , Ω · Ω̄ > 0 .                             (5.2b)
+
+    From (5.2a) get
+
+                         (nx τ̄ − ny ) · Ω = 0 , (nx τ̄ − ny ) · Ω̄ = 0 .
+
+                                               25
+Using the fact, (5.1) that ny = τ nx , and Im(τ ) 6= 0, the above conditions can be written
+as
+                                         nx · Ω = 0 , n̄x · Ω = 0
+
+or equivalently
+                                        αx · Ω = 0 , βx · Ω = 0 .                                          (5.3)
+
+As a result we see that Ω must be orthogonal to Vf lux .
+         In §3.3 we found it useful to classify Vf lux by the number of positive, negative, and
+null norm eigenvectors of the inner product matrix. In the present case, putting the
+constraints from the primitivity and the (2, 1) conditions together one can show that Vf lux
+cannot contain any eigenvectors of positive, or null norm.
+         The argument is as follows. We saw in §2.3 that Ω, J˜ together define a space-like three-
+plane, Σ, in H 2 (K3, R). Now let v1 ∈ Vf lux be a positive norm eigenvector, then Ω and
+J˜ and therefore Σ, must be orthogonal to it. But since H 2 (K3, R) has signature (3, 19),
+                                                        ˜ requires that Vf lux contains no
+such a three-plane cannot exist. Thus a non-singular Ω, J,
+positive norm eigenvector. A similar argument shows that Vf lux cannot contain any null
+norm eigenvector either 9 .
+         The only possibilities we are then left with is that Vf lux is of dim. 2 and type (0+, 2−),
+or of dim 1 and type (0+, 1−). Once the flux meets these conditions susy preserving vacua
+can be found. The complex structure and Kähler two-form are somewhat constrained in
+these vacua but not completely fixed. Ω is orthogonal to Vf lux and is defined by an oriented
+spacelike two plane in the subspace V⊥ orthogonal to Vf lux , while Ω, J˜ together define a
+space-like three plane in V⊥ . E.g., in the case where dim. Vf lux = 2, the space of complex
+structures of K3 is given (upto discrete identifications) by the Grassmanian
+
+
+                                  G = O + (3, 17)/(O(2) × O(1, 17))+,                                      (5.4)
+
+     9
+         If vN ∈ Vf lux is a null eigenvector, we can write vN = v1 + v4 , where v1 · v1 > 0, v4 ·
+v4 < 0, v1 · v4 = 0. A basis of orthogonal vectors in H (K3,R) can be now constructed, B =
+{v1 , v4 , v2 , v3 , v5 · · · v22 }, where v1 , v2 , v3 are spacelike and the rest are timelike. Define V̂ as the
+subspace spanned by the basis elements {v2 , v3 , v5 , · · · v22 }. One can show that the existence of
+                ˜ requires the existence of a spacelike three-plane in V̂ . This is impossible since
+non-singular Ω, J,
+V̂ has signature (2, 18).
+
+                                                       26
+which is 36 dimensional, while the moduli space of Einstein metrics has the form (again
+upto discrete identifications),
+
+
+                           ME = O + (3, 17)/(SO(3) × O(17)) × R+ ,                          (5.5)
+
+
+which is 52 dimensional.
+       Also, while the Kähler modulus of the T 2 is not constrained. the dilaton φ and the
+complex structure of the T 2 , τ , can be determined from (5.1). For example, by taking the
+projections of (5.1), along αx , we find τ is given by
+
+                                                (αx · ny )
+                                          τ=               .                                (5.6)
+                                                (αx · nx )
+
+Taking a projection of (5.1) along βx and using (5.6), we then get,
+
+
+                           (βx · nx )(αx · ny ) − (βx · ny )(αx · nx ) = 0,                 (5.7)
+
+
+which is a quadratic equation in φ that can be solved.
+       To summarise, for a solution along this second branch to exist, the following conditions
+must be met by the flux: dim. Vf lux ≤ 2, and Vf lux must be spanned by time like vectors
+10
+     . The dilaton and τ are then determined by (5.7), (5.6). The complex structure and
+Kähler moduli of K3 are somewhat constrained but not determined completely, and the
+Kähler modulus of the T 2 is not constrained at all.
+       Before proceeding further, we would like to mention that all the solutions in the second
+branch correspond to orbifold singularities. From §2.3 we learn that there exists an orbifold
+singularity when ever the space like three plane Σ is orthogonal to a lattice vector of Γ3,19 .
+                                                                           ˜ From (5.3) we
+Primitivity requires the flux vectors to be orthogonal to the Kähler form J.
+find that they are also orthogonal to Ω. Hence the three plane Σ is orthogonal to Vf lux ,
+resulting in orbifold singularities.
+
+ 10
+       There are some additional constraints on the flux which come from requiring that Im(φ) and
+Im(τ ) are non zero, these can be deduced in a straightforward manner and we will not determine
+them explicitly here.
+
+                                                 27
+5.2. N = 2 Supersymmetry
+
+       We will now show that solutions in the second branch discussed above meet the nec-
+essary and sufficient conditions for N = 2 supersymmetry.
+       These conditions were discussed for the T 6 /Z2 case in [9]. A similar analysis can be
+carried out for K3 × T 2 /Z2 as well. Here we will skip some of the details and state the
+main results. The necessary and sufficient conditions for N = 2 susy are the following: An
+SO(4)×U (1) group of rotations acts on the tangent space of K3×T 2 . For preserving N = 2
+susy G3 must transform as a (3, 0)+2 representation under SU (2)L × SU (2)R × U (1) ≃
+SO(4) × U (1). This means in the notation of this paper that Gz̄ must vanish and Gz must
+transform as the anti self-dual representation of SO(4) 11 .
+       Since Gz̄ must vanish we see that all N = 2 preserving solutions must lie in the second
+branch. We now show that all solutions in the second branch also meet the requirement
+of Gz being anti-self dual. To see this, we have to simply note that any vector belonging
+to H 2 (K3, R) which is orthogonal to both Ω and J˜ must be an anti-self dual two-form
+12
+     . We saw above that Gz meets this condition in the second branch. This proves that
+all solutions in the second branch meet the necessary and sufficient conditions for N = 2
+supersymmetry.
+       A final comment. One should be able to associate more than one complex structure,
+which still keeps G3 of type (2, 1), with a solution of N = 2 susy. For solutions in the
+second branch such an additional complex structure is given by taking Ω ↔ Ω̄. This clearly
+changes the complex structure. And from the discussion of the second branch above it is
+easy to see that G3 still continues to meet the (2, 1) condition 13 (primitivity is of course
+still true, since J˜ is unchanged).
+
+ 11
+        In [9] this representation was referred to as the self-dual representation. The discrepancy is
+due to an opposite choice of orientation, or equivalently opposite choice of sign for ǫabcd (notation
+of [9]), in the two papers. The choice in this paper agrees with the conventional one, [32] for K3.
+ 12
+     H 2 (K3, R) can be decomposed into, H + + H − , the self-dual and anti self-dual subspace. Σ,
+                             ˜ is identical to H + . Thus any vector orthogonal to Ω, J,
+the three plane formed by Ω, J,                                                         ˜ must be
+anti self-dual.
+ 13
+       Gz is orthogonal to Ω̄ and Gz̄ vanishes.
+
+                                                  28
+5.3. An Example
+
+     For an example we consider the case where
+
+                                      1
+                                            F3 =2e4 ∧ dy ,
+                                   (2π)2 α′
+                                                                                        (5.8)
+                                     1
+                                           H3 =2e4 ∧ dx .
+                                  (2π)2 α′
+
+where e4 ∈ Γ3,3 ⊂ Γ3,19 (see App. A). And e4 · e4 = −2, so that e4 is a time-like vector.
+     From, (2.6), (2.7), we see that αx = 0, βx = 2e4 , αy = 2e4 , βy = 0. So Vf lux is one
+dimensional and is of type (0, 1−), i.e., it is spanned by a time like vector. Thus the
+required conditions for a solution in the second branch are met. It is easy to see that in
+this simple case, φ, τ are not completely fixed. Rather, (5.1) imposes one condition on
+them
+                                         φτ = −1.                                       (5.9)
+
+     The moduli space of complex structure of K3, is now the Grassmanian O(3, 18)/(O(2)×
+O(1, 18)) (upto discrete identifications), which is 38 dimensional and the moduli space of
+Einstein metrics on K3 has the form O(3, 18)/(O(3) × O(18)) × R+ , ( again upto discrete
+identifications), which is 55 dimensional.
+     The flux contribution to three brane charge is Nf lux /2 = 4, (2.8), (2.3), so that 20
+D3-branes need to be added in this case. It follows from the discussion in the previous
+subsection that this model has N = 2 supersymmetry.
+
+
+
+6.   “Large” Flux
+
+     In the study of flux vacua it is important to find out how many distinct fluxes there
+are (not related by duality) which give rise to allowed vacua. In particular one would like
+to know if this number is finite or infinite. A related question is to ask if the flux can be
+made “large” subject to the restriction that the total D3-brane charge is fixed. In this
+section we examine this question for the K3 × T 2 /Z2 case. We construct a one parameter
+family of fluxes which are inequivalent, all of which have the same contribution to the D3
+brane charge, (2.4). However only one of these sets of fluxes gives rise to a vacuum, for all
+the other values of the parameter one can show that there is no susy preserving or susy
+breaking vacuum.
+
+                                             29
+    The idea behind the construction is as follows. Consider starting with a case where
+the flux vectors αx , αy , βx , βy , yield a consistent susy solution. Suppose a null vector,
+v ∈ H 2 (K3, Z), v · v = 0, exists which is orthogonal to all four of these flux vectors. Then
+one can consider modifying the flux vectors by adding arbitrary (even integer) multiples
+of the null vector v. E.g αx → αx + nx v etc. As a concrete example consider starting with
+the flux, (4.8), with dimVf lux = 2, discussed in §4.1. A null vector v can always be found
+in this case orthogonal to Vf lux . We can now modify the flux vectors as follows, αy , βx , βy
+are unchanged, while,
+                                       αx → αx + 2nv.                                     (6.1)
+
+It is quite straightforward to show that the resulting family consists of distinct fluxes not
+related by U duality transformations. E.g. large coordinate transformations on K3 cannot
+turn the starting flux, to (6.1). This is because to begin, αx = βy , but only αx varies as
+n is changed. Similarly S duality which exchanges H3 and F3 and T-duality on the T 2
+also do not relate these different choices. Thus we see that as n is varied we have a one
+parameter family of different fluxes with the same value of Nf lux .
+    Let us now examine if the modified fluxes lead to allowed vacua. For a susy pre-
+serving vacuum the flux must be of type (2, 1) and primitive. Clearly the equations
+(3.13),(3.14),(3.10), still continue to hold for the same values of φ, τ as before and the
+inequality (3.15) is still met. So with τ and φ fixed at the same value as before the (2, 1)
+condition is met for the new fluxes as well. Note that the new complex structure of K3
+will change on modifying the flux vectors. From (3.9) we see that Gz̄ and therefore Ω will
+be different.
+    Next let us consider the primitivity condition. It is easy to see that this cannot be met
+for the modified flux vectors. This follows from the discussion in §3.3. The inner product
+matrix in Vf lux , after the modification, will have one null eigenvector. As a result, one
+cannot find a spacelike Kähler two-form in K3 orthogonal to Vf lux .
+    So we see that for n 6= 0 there is no susy preserving solution.
+    Next let us ask about susy breaking vacua. In this case the flux can be a sum of type
+(2, 1) and primitive, (0, 3) and (1, 2). The (1, 2) term must be of the type, J ∧ α, where
+J is the Kähler two form and α is a non-trivial one form of type (0, 1). It is easy to see
+that this implies that, Gz , is of type, (1, 1), and satisfies the condition, Gz · J = 0, while,
+Gz̄ can be expressed as, Gz̄ = c1 Ω + c2 Ω̄ + c3 J. Note that, Ω · J = Ω̄ · J = 0, so that Ω, J
+together define a spacelike three plane. As a result, the conditions, (3.13), (3.14), must
+
+                                              30
+still hold. Together with the condition, J · Gz , these imply that the real and imaginary
+parts of Gz must be time like vectors. But this condition cannot be met for a non-zero
+Gz since Vf lux is spanned by two spacelike vectors, (4.8), and one null vector, v. Finally,
+it is also easy to show that for the modified flux, (6.1), and nonsingular values of φ, τ , Gz
+cannot vanish. Thus we conclude that for n 6= 0 there are no susy breaking solution.
+    In summary we have constructed a one parameter family of fluxes in this section, all
+of which correspond to the same value of Nf lux , (2.4). However, only one of them leads to
+an allowed vacuum.
+
+
+
+7. Duality
+
+    In this section we will study various dual descriptions of the IIB theory on K3×T 2 /Z2
+in the presence of flux.
+                                                          ′
+    One T-duality will take us to Type IIA (or Type I ) with O8 planes. Two T-dualities
+will lead to a Type I description. Finally a further S-duality will give rise to a Heterotic
+description. The dual descriptions are not (conformally) Calabi-Yau spaces, in fact they
+are not even Kähler manifolds. They are related to compactifications of the Heterotic string
+with Torsion, [36,22] and the more recent constructions in [23–25]. A general understanding
+of such compactifications is still not available in the literature. Our discussion will parallel
+that of [25], and we will use similar notation below.
+    The supergravity backgrounds for the three duals mentioned above can be explicitly
+constructed for all IIB flux compactifications on K3 × T 2 /Z2 . The H3 flux in the starting
+theory must have two legs along the K3 and one along the T 2 , see (2.7). The isometries
+along both the directions of the T 2 can be then made manifest by choosing a gauge where
+the two-form NS gauge potential, B, has no dependence on the two T 2 directions. One
+and two T-dualities along these directions can then be explicitly carried out and the su-
+pergravity backgrounds can be obtained using [37–39]. Following this it is straightforward
+to carry out the S-duality as well.
+    However, since several moduli are fixed in the starting description, it is not always
+possible to go to a region of moduli space where the sugra description is valid in the dual
+theory. This problem can be avoided in cases where the moduli are only partially lifted, in
+such situations the dual sugra description can sometimes be reliable. An example of such
+a compactification for the T 6 /Z2 case was explored in [25], similar examples for K3 × T 2
+can also be constructed, but we will not elaborate on them here.
+
+                                              31
+      We will also construct a superpotential in the dual theories below. It will involve the
+appropriate RR and NS fluxes as well as certain “twists” in the geometry.
+      One comment about notation. In this section µ, ν, ... denotes all the compact direc-
+tions. The two directions of the T 2 are denoted by x, y. We will carry out T-duality along
+the x direction first and then along the y direction. α, β, ... will denote compact directions
+other than x and α̂, β̂, ... compact directions other than x and y.
+
+7.1. One T-duality
+
+      We carry out the T-duality along the x direction of the T 2 . As was mentioned above
+one can always choose a gauge in which Bxα̂ is independent of the T 2 directions.
+      We denote the metric of IIB theory before duality by jµν , and the metric in the IIA
+theory after T-duality by gµν . The metric of the resulting manifold M′ is given by
+
+                                 1                1
+                       ds2M′ =         ηx ηx +         (detxy j) dy 2 + jα̂β̂ dxα̂ dxβ̂      (7.1)
+                                 jxx             jxx
+
+where the one form η x = dx − Bxα̂ dxα̂ , which can also be written as η x = gxµ dxµ /gxx and
+                     2
+detxy j = jxx jyy − jxy . Note that Bxα̂ dxα̂ varies non-trivially along the K3. As a result
+the resulting compactification is a sort of “twisted” analogue of the K3 × T 2 space 14 . It
+would be quite useful to have a more complete understanding of such compactifications.
+In [25], it was shown that the dual compactifications could be thought of as cosets which
+are generalisations of the nilmanifold. It would be interesting to ask if there is a similar
+description in the present case.
+      Two more comments are in order at this stage. First, besides the metric, the RR
+forms F4 , F2 , and the NS form H3 , are also excited in this background. Their values can
+be determined using the formulae in App.C, [38], [39], but we will not do so here. Second,
+one can define a two form
+                                       ω(x) = −d(gxα dxα /gxx ) .                            (7.2)
+
+This is the x component of the antisymmetrised spin connection. The x direction is an
+isometry of the IIA metric and ω(x) is the field strength of the Kaluza Klein gauge symmetry
+associated with this isometry. It will enter our discussion of the superpotential below.
+      Superpotential
+ 14
+      It can be shown by an explicit calculation that due to the non-trivial twist, M′ is not Ricci
+flat. It follows then that it cannot be a Calabi Yau manifold.
+
+                                                       32
+    In writing down a superpotential in the dual theory which is the analogue of (3.1), it
+is first convenient to define an almost complex structure (ACS) as follows.
+    Define the one-form
+                                  η z = η x + i detxy jdy .
+                                               p
+                                                                                          (7.3)
+The metric (7.1) can then be written as
+                                            1
+                                 ds2M′ =         η z η̄ z̄ + ds2K3 ,                      (7.4)
+                                           jxx
+with ds2K3 denoting the metric over K3,
+
+                                    ds2K3 = jα̂β̂ dxα̂ dxβ̂ .                             (7.5)
+    Consider a complex structure on K3 compatible with the metric, (7.5). Let dz 1 , dz 2
+be holomorphic one forms (in the space spanned by dxα̂ , α̂, 1, · · · 4) with respect to this
+complex structure. Then the required almost complex structure we use below is defined by
+specifying a basis of holomorphic one forms to be η z , dz 1 , dz 2 . A holomorphic (3, 0) form
+ΩIIA can be constructed, it is
+                                       ΩIIA = Ω ∧ η z ,                                   (7.6)
+where Ω ∼ dz 1 ∧ dz 2 is the holomorphic (2, 0) form on K3. This ACS is analogous to that
+used in [25]. While we omit the details here, the spinor conditions take a convenient form
+with this choice of ACS and as a result a superpotential can also be easily constructed.
+    The superpotential is given by
+                                           Z
+                                 WIIA =           GIIA ∧ ΩIIA                             (7.7)
+                                            M′
+where                                  √
+                                x
+           GIIA = F̃4(x) + gxx η ∧ F2 − i gxx /gsIIA H3 − gxx η x ∧ ω(x) .
+                                                                       
+                                                                                          (7.8)
+    Here we have used the definitions
+                                              h      i
+                        F̃4 = dC3 + A1 ∧ H3 , F̃4(x)               = F̃xαβγ .             (7.9)
+                                                             αβγ
+The last term of the superpotential contains a component of the spin connection which
+was discussed above in (7.2). It arises from the term in the starting IIB superpotential
+(3.1), proportional to H3 with one leg along the x direction.
+    Evidence in support for this superpotential includes the following. First, susy requires
+that GIIA is of type (2, 1) with respect to the ACS defined above. This condition is obtained
+by varying the superpotential (7.7). Second, the various terms in the superpotential (7.7),
+correctly account for the tension of various BPS domain walls in the theory. In particular
+the last term, involving the spin connection, gives the tension of a KK monopole related
+to the x isometry direction.
+
+                                                 33
+7.2. Two T-dualities
+
+       We can now further T-dualise along the y direction to obtain a type I compactification
+with F3 flux and twists in the geometry. We denote the dual manifold as M. The metric
+on M is                                                                        
+                        ds2M = ĵxx η̂ x η̂ x + ĵyy η̂ y η̂ y + 2ĵxy η̂ x η̂ y + ds2K3           (7.10)
+
+with
+                                   jyy              jxx                jxy
+                         ĵxx =           , ĵyy =         , ĵxy = −         ,                    (7.11)
+                                  detxy j          detxy j            detxy j
+and
+                                                  ĵyy                          
+                               η̂ x = dx +                ĵxx ĵ(x) − ĵxy ĵ(y) ,                (7.12)
+                                                 detxy ĵ
+
+                                                  ĵxx                           
+                                η̂ y = dy +               ĵyy ĵ(y) − ĵxy ĵ(x)                  (7.13)
+                                                 detxy ĵ
+Note, we use ‘ˆ’ to denote quantities in the type I theory.
+       A superpotential can be defined in this case as well. The metric (7.10) can be rewritten
+as
+                                                                 z̄
+                                          ds2M = ĵxx η̂ z η̄ˆ + ds2K3                             (7.14)
+
+An almost complex structure can be now be specified by defining one holomorphic one-form
+to be
+                                                 η̂ z = η̂ x + τ̂ η̂ y ,
+
+and two additional holomorphic one-forms to be compatible with the complex structure of
+K3.
+       A (3, 0) form Ω̂ is then defined by
+
+                                                     Ω̂ = Ω ∧ η̂ z .                               (7.15)
+
+where Ω is the holomorphic two-form of K3.
+       The resulting superpotential is
+                                                         Z
+                                                 Ŵ =           Ĝ ∧ Ω̂                            (7.16)
+                                                           M
+
+where                                                                              
+                                  x          y                             x      y
+                    Ĝ = ĵxx η̂ + ĵxy η̂ ∧ F̂3(y) − ĵxy η̂ + ĵyy η̂ ∧ F̂3(x)
+                            q
+                               i                                                                 (7.17)
+                                                          x                       y
+                        −             det xy ĵ  ĵ xx η̂   ∧ d ĵ (x) + ĵ yy η̂   ∧ d ĵ (y)
+                             gsI
+
+                                                           34
+Some additional notation used in the above formula is as follows. The one and two forms
+ĵ(x) , Ĥ3(x) , F̂3(x) are given as
+
+                                        1                  h      i              h i
+                            ĵ(x) =           ĵxα̂ dxα̂ , F̂3(x)               = F̂3       ,         (7.18)
+                                       ĵxx                              α̂β̂       xα̂β̂
+
+
+and similar expressions for the quantities carrying the index ‘y’. Also we have used the
+definition                                                          
+                                                                  2
+                                         detxy ĵ = ĵxx ĵyy − ĵxy   ,                              (7.19)
+                                                   I
+and the type I string coupling gsI = eφ                15
+                                                            .
+
+7.3. Heterotic Dual
+
+       Making a further S-duality we obtain heterotic theory on a manifold Mhet whose
+metric (in string frame) is given by
+
+                                       ds2het = jxx
+                                                 h z z̄
+                                                    ηh η̄h + gshet ds2K3 .                            (7.20)
+
+We denote the metric components in the heterotic theory with a superscript ‘ h ’ , which
+are related to the type I metric by a factor of the string coupling gshet :
+
+                                                                 1 h
+                                                  ĵµν =             j .
+                                                                gs µν
+                                                                 het
+
+
+       We choose an almost complex structure in the heterotic theory, which agrees with the
+one described above for the Type I case. The corresponding (3, 0) form is then given by
+Ω̂, (7.15), and the superpotential is the same as (7.16). Expressed in heterotic language
+this takes the form,                                    Z
+                                              Whet =                 Ghet ∧ Ω̂                        (7.21)
+                                                            Mhet
+
+with
+                           h x      h y              h x      h y
+                                                                    
+                   Ghet = jxx η̂ + jxy η̂ ∧ H3(y) − jxy η̂ + jyy η̂ ∧ H3(x)
+                            q                                                                       (7.22)
+                                      h     h x   h      h y       h
+                         − i detxy j jxx η̂ ∧ dj(x) + jyy η̂ ∧ dj(y) .
+
+ 15
+     Note that The general expression for the superpotential in [25] after T-dualizing along
+                                            ˆ
+both x and y appears with terms containing F̃     , F̂ and Ĥ but are absent here in the
+                                                                 5(xy)          1       3
+
+superpotential (7.16) . This is due to the fact that terms containing the above quantities arise
+from [F3 ]α̂β̂ γ̂ , [F3 ]xyα̂ , [H3 ]α̂β̂γ̂ of the original type IIB theory. However they are projected out in
+K3 × T 2 /Z2 compactification of IIB.
+
+                                                                35
+    The two forms H3(x) , H3(y) , above are given by
+
+                                                   
+                       H3(x) α̂β̂ = [H3 ]xα̂β̂ , H3(y) α̂β̂ = [H3 ]yα̂β̂ .           (7.23)
+
+
+    Before closing let us note that heterotic compactifications with H3 flux have been
+considered in [40,36,22,33,24]. The ACS we have defined above is not integrable in general.
+However, the heterotic compactifications, and also the Type I models of the preceding
+section, are in fact complex manifolds, as can be shown from the analysis in [36], and
+admit an integrable ACS. It would be interesting to ask what form the superpotential
+takes in terms of this complex structure.
+
+
+
+8. The T 6 /Z2 orientifold
+
+    In this section we will discuss two aspects of flux compactifications on T 6 /Z2 . §8.1
+presents general susy preserving solutions for the T 6 /Z2 compactification, in analogy with
+the discussion in §3 for K3 × T 2 /Z2 . §8.2 deals with a family of susy breaking solutions,
+similar to the one in §6 with complex structure stabilised at extreme values for large flux.
+
+
+8.1. General Susy Solutions
+
+    Here we discuss general susy preserving solutions in the T 6 /Z2 model. We will build
+on the discussion in [9]. The essential idea is similar to §3 above. The requirements on the
+flux for the existence of susy solutions can be stated in terms of simultaneous solutions to
+two polynomial equations. Once these requirements are met the complex structure moduli
+can be determined in terms of the flux.
+    We start with the superpotential,
+                                            Z
+                                      W =       G3 ∧ Ω3 .                              (8.1)
+
+
+We will use the notation of [9], below. In particular,
+
+                          1
+                                F3 = a0 α0 + aij αij + bij β ij + b0 β 0
+                       (2π)2 α′
+                                                                                       (8.2)
+                          1
+                                H3 = c0 α0 + cij αij + dij β ij + d0 β 0 ,
+                       (2π)2 α′
+
+                                                36
+where the three forms αij and β ij are defined in [9]. Susy solutions satisfy the conditions
+W = ∂i W = 0, where i denotes all complex structure moduli. It was shown in Sec. §4.4
+of [9], that the equation ∂τ ij W = 0 can be used to solve for τ ij in terms of φ as
+                                                   
+                               cof(τ − Ã)   = cof Ã   + B̃ij                          (8.3)
+                                                ij             ij
+
+
+where we define A0 = a0 − φc0 , Aij = aij − φcij and Ãij = Aij /A0 and similar definitions
+for B0 , Bij and B̃ij . Solving (8.3) for τ ij we get
+                                                               ij
+                                                   (cofµ)
+                                     τ ij = Ãij + p                                    (8.4)
+                                                     det(µ)
+
+where we define µij as                           
+                                     µij = cof Ã   + B̃ij                              (8.5)
+                                                          ij
+
+Thus once we know φ for a given flux we can determine τ ij . The conditions for φ are
+obtained from the remaining two equations W = 0 and ∂φ W = 0. Combining W = 0 and
+∂τ ij W = 0 gives a quartic for φ
+                                                    1
+             B0 detA − A0 detB + (cofA)ij (cofB)ij + (A0 B0 + Aij Bij )2 = 0            (8.6)
+                                                    4
+The derivation of this equation is given in App. B of [9]. In addition we need ∂φ W to be
+zero, which combined with W = 0 gives
+
+                           a0 det(τ ) − aij (cofτ )ij − bij τ ij − b0 = 0
+
+Eliminating τ ij from above we get
+                                           1
+                                  ∆+ √          (cofµ)ij Σij = 0                        (8.7)
+                                          det µ
+
+where Σij and ∆ are defined as
+
+                        1 0          1
+                   Σij ≡ a cof Ã     + a0 B̃ij − ǫikm ǫjln akl Ãmn − bij              (8.8)
+                        3          ij  3
+and
+                                          2
+                            ∆ ≡ Ãij Σij + Ãij B̃ij − aij B̃ij − b0                    (8.9)
+                                          3
+We take the square of (8.7) to obtain a polynomial in φ :
+                                                2
+                                 Σij (cofµ)ij        − det(µ)∆2 = 0                    (8.10)
+
+                                                     37
+The equations (8.6) and (8.10) can be rewritten as
+
+                          F4 (φ) ≡ fˆ0 + fˆ1 φ + fˆ2 φ2 + fˆ3 φ3 + fˆ4 φ4 = 0               (8.11)
+
+and
+                         G12 (φ) ≡ ĝ0 + ĝ1 φ + ĝ2 φ2 + ... + ĝ12 φ12 = 0 .              (8.12)
+
+It is straightforward to obtain the coefficients fˆi and ĝi . They are determined in terms of
+the integers a0 , aij , b0 , bij · · · appearing in the expressions of F3 and H3 as given in (8.2).
+However, the expressions are quite lengthy and hence and we will not write the precise
+formulae for them here.
+      As before, in order to have a nonsingular solution, the polynomials F4 (φ) and G12 (φ)
+must admit a common quadratic (say W2 (φ)) . Thus,
+
+                         F4 (φ) = F2 (φ)W2 (φ) , G12 (φ) = G10 (φ)W2 (φ)                    (8.13)
+
+where F2 (φ) and G10 (φ) are polynomials in φ with coefficients ui and vi respectively. Note
+that here the subscripts in F , G and W denotes the degree of the polynomial.
+     The general solution can be stated in terms of a 15 × 14 matrix M̂ defined interms of
+the quantities fˆi and ĝi as
+
+                           fˆ0
+                                                                                      
+                                  0     0    . .   .  0     0    −ĝ0     0       0
+                          fˆ1   fˆ0    0    . .   .  0     0    −ĝ1    −ĝ0     0 
+                           fˆ2   fˆ1   fˆ0
+                                                                                      
+                   
+                                            . .   .  0     0    −ĝ2    −ĝ1    −ĝ0 
+                   
+                           .     .     .             .     .      .       .       .  
+              M̂ = 
+                           .     .     .             .     .      .       .       .      (8.14)
+                           .     .     .             .     .      .       .       . 
+                                                      ˆ     ˆ
+                                                                                      
+                           0     0     0    . .   . f3    f2    −ĝ12   −ĝ11   −ĝ10 
+                                                   . fˆ4   fˆ3
+                                                                                      
+                           0     0     0    . .                  0      −ĝ12   −ĝ11 
+                            0     0     0    . .   . 0     fˆ4    0       0      −ĝ12
+
+and a column vector X defined as
+                                                        u0
+                                                           
+                                                       u1 
+                                                        u2 
+                                                           
+                                                
+                                                        v0 
+                                                           
+                                                
+                                             X =       v1                                 (8.15)
+                                                           
+                                                         . 
+                                                           
+                                                
+                                                         . 
+                                                           
+                                                
+                                                         .
+                                                           
+                                                        v12
+
+                                                   38
+The column vector must satisfy
+                                            M̂X = 0                                    (8.16)
+
+In addition the solution obtained for φ must be complex. The coefficients ŵi in the poly-
+nomial W2 (φ) can be obtained from (8.13) in terms of ui and vi , which themselves are
+solved in terms of fˆi , ĝi from (8.15) . They must obey
+
+                                          ŵ12 < 4ŵ0 ŵ2
+
+In addition the imaginary part of τij as given in (8.4) also must be non zero.
+
+8.2. Large Flux on Tori
+
+     Here we construct a one parameter family of flux for the T 6 /Z2 case analogous to the
+one discussed in the §6 for K3 × T 2 /Z2 . The family consists of fluxes unrelated by duality,
+but with a fixed, Nf lux , (2.4). As in §6, we find there is an allowed vacuum for only one
+value of the parameter.
+     We will consider tori of the form T 4 × T 2 and turn on three-form flux with two legs
+along the T 4 and one leg along the T 2 (this is consistent with the Z2 orientifolding). The
+discussion of §6 can now be largely carried over to this case with the T 4 replacing K3.
+     As a concrete example, we consider the case where the three-flux takes the form
+
+                                  1
+                                        F3 = 2e1 ∧ dx + 2e2 ∧ dy
+                               (2π)2 α′
+                                                                                       (8.17)
+                                 1
+                                       H3 = −2e2 ∧ dx + 2e1 ∧ dy,
+                              (2π)2 α′
+
+where in our notation 0 ≤ x, y ≤ 1 are coordinate on the T 2 and e1 , e2 , · · · are two -
+forms on T 4 as discussed in App.A. In the notation of §3, §6, this corresponds to taking,
+αx = βy = 2e1 , and, αy = −βx = 2e2 .
+     It is straightforward to show that in this case a susy preserving solution exists where
+φ = τ = i, with τ being the complex structure of the T 2 , and, where the T 4 = T 2 × T 2
+with the complex structure of both T 2 ’s being stabilised at the same point in moduli space,
+τ 1 = τ 2 = i. The Primitivity condition can also then be easily met by a Kähler two-form,
+                                            X
+                                       J=         giī dz i dz ī ,                    (8.18)
+                                              i
+
+where i = 1, · · · 3, refers to the three two-tori respectively .
+
+                                                  39
+     Now consider the vector
+                                          v = e3 + e4 ,                                 (8.19)
+
+valued in H 2 (T 4 , Z) (again we refer the Reader to App.A for definitions). It is null, i.e.,
+v · v = 0, and orthogonal to e1 , e2 .
+     We can now modify the flux vectors as follows. Keep, αy , βx , βy , the same and take
+
+                                         αx → αx + 2nv.                                 (8.20)
+
+The (2, 1) condition can then be met if φ = τ = i and Ω (the holomorphic two-form of T 4
+) meets the condition
+                                Ω = (αx − φβx )τ − (αy − φβy ).                         (8.21)
+
+The primitivity condition however cannot be satisfied. As a result no susy preserving
+solution exists for the modified flux, (8.20). An argument quite similar to the one in §6
+also shows that no supersymmetry breaking solution exists. Hence we conclude that for
+the modified flux, (8.20), there are are no allowed vacua.
+
+
+9. Discussion
+
+     In this paper we have discussed flux compactifications of IIB string theory. Our
+emphasis was on the K3 × T 2 /Z2 compactification, we also discussed some aspects of the
+T 6 /Z2 case.
+     There are several open questions which remain.
+     The K3 × T 2 /Z2 compactification has D7-branes present in it. Our analysis did
+not consider the effects of exciting the gauge fields on these seven branes. It would be
+interesting to do so, both in the supersymmetry conditions and the resulting superpotential.
+We mentioned in §2.4, that generically one expects the moduli associated with the locations
+of the D7-branes on the T 2 to be lifted, once flux is turned on. With gauge fields excited
+one expects this to continue to be true. For example, the D7-branes can acquire D5-brane
+charge, if the gauge field which is excited has non-trivial first Chern class. In the presence
+of a magnetic F3 flux the seven branes will then experience a force along the T 2 directions.
+     We formulated in our discussion above the conditions which must be satisfied by the
+flux for susy preserving solutions to exist. It would be interesting to determine how many
+distinct fluxes (unrelated by duality) there are which meet these conditions. In particular,
+one would like to know if this number is finite or infinite and if the fluxes can be made
+
+                                               40
+large subject to the restriction of total D3-brane charge being held fixed. We saw above
+by constructing explicit examples that this restriction does allow for an infinite number of
+distinct fluxes, and therefore to large flux. However, even allowing for susy breaking we
+found that only one set of fluxes, in the one parameter family we constructed, gave rise
+to a stable vacuum. In fact, so far, by varying the flux, we have been unable to construct
+am infinite family of vacua with broken or unbroken susy. It will be useful to settle this
+issue conclusively in the future. This will be a useful step in addressing the question of
+how may N = 1 vacua there are in string theory.
+      The next logical step in the study of flux vacua, in continuation of [9] and this paper,
+would be to consider (orientifolds of) Calabi-Yau threefolds with flux. At the moment, we
+do not see how to directly generalise the techniques devised for K3 to Calabi Yau threefolds.
+Perhaps, the best approach might be to consider a simple case with few complex structure
+moduli and explicitly evaluate the superpotential 16 .
+      We examined some dual theories related to the flux compactifications of IIB string
+theory above, and saw that they are not Calabi-Yau spaces. We also obtained a super-
+potential in these dual descriptions. Much more can be done along this direction. For
+example, one would like to construct examples which cannot be related to Calabi-Yau
+compactifications via duality.
+      Finally, from the viewpoint of moduli stabilisation, the most serious limitation of these
+models is that the volume modulus (in the IIB description) is not stabilised. It would
+be illuminating to consider various additional effects which could lift this direction. Non-
+perturbative gauge dynamics on the world volume of D7-branes, present in the K3×T 2 /Z2
+example considered above, might provide a tractable example.
+
+                                     Acknowledgements
+
+      It is a great pleasure to thank S. Kachru for extensive discussions. We are also
+grateful to K. Dasgupta for discussion and for sharing results prior to publication. We
+also thank A. Dabholkar, M. Douglas, and N. Fakhruddin, J. Maldacena, S. Mukhi, G. V.
+Ravindra, M. Schulz and A. Sen for their comments. S.P.T. acknowledges support from the
+Swarnajayanti Fellowship, Department of Science and Technology, Government of India.
+The work of P.K.T. and S.P.T. was supported by the DAE, Government of India. Most of
+all, we thank the people of India for enthusiastically supporting research in string theory.
+
+ 16
+      We thank S. Kachru for preliminary discussions on this.
+
+                                               41
+Appendix A. Γ3,19 Lattice
+
+      In this appendix we give some details about the integral cohomology of K3. Our
+conventions for orientation etc on K3 × T 2 /Z2 are also explained. Towards the end we
+discuss the four-torus, T 4 , this is relevant to the discussion in §8.2.
+      The integral cohomology H 2 (K3, Z) has the structure of an even self-dual lattice of
+Γ3,19 of signature (3, 19). We can choose a basis {ei } for Γ3,19 such that the inner products
+of the basis vectors 17                                   Z
+                                     gij = (ei , ej ) =         ei ∧ ej                 (A.1)
+                                                           K3
+
+is given by the following matrix
+                                                                     
+                                               H3,3        0       0
+                                  gij =        0         −E8      0                   (A.2)
+                                                0          0      −E8
+
+where the matrix H3,3 is defined as
+
+                                               0   1      0   0    0   0
+                                                                        
+                                              1   0      0   0    0   0
+                                               0   0      0   1    0   0
+                                                                        
+                                H3,3 =                                                 (A.3)
+                                       
+                                               0   0      1   0    0   0
+                                                                         
+                                       
+                                               0   0      0   0    0   1
+                                                                        
+                                               0   0      0   0    1   0
+
+and E8 is the Catran matrix of E8 algebra :
+
+                                   2 −1 0 0 0 0 0 0
+                                                    
+                                 −1 2 −1 0 0 0 0 0 
+                                 0 −1 2 −1 0 0 0 −1 
+                                                    
+                                 0 0 −1 2 −1 0 0 0 
+                                                    
+                           E8 =                      .                                (A.4)
+                                 0 0 0 −1 2 −1 0 0 
+                                 0 0 0 0 −1 2 −1 0 
+                                                    
+                                   0 0 0 0 0 −1 2 0
+                                                    
+                                   0 0 −1 0 0 0 0 2
+
+The basis vectors (e1 , e2 , · · · e6 ) span a subspace of H 2 (K3, Z) (which we denote as
+Γ3,3 ) with the metric given by H3,3 . Note that we can make a change of basis such that
+H3,3 = 2η3,3 with η3,3 = diag(1, 1, 1, −1, −1, −1) where as E8 remains the same.
+
+ 17
+      We denote the inner product of lattice vectors by a dot i.e. (α, β) = α · β.
+
+                                                   42
+     Let γ2 be an element of the integral homology H2 (K3, Z). Integrating an arbitrary
+two form α2 ∈ H 2 (K3, Z) over γ2 results in an integer. In particular we have
+                                       Z
+                                           ei ∈ Z .                                                       (A.5)
+                                                      γ2
+
+We turn on H3 and F3 fluxes over three cycles which are of the type γ2 × γ1 where γ2 is
+defined earlier and γ1 ∈ H1 (T 2 /Z2 , Z). Integrating ei ∧ dx and ei ∧ dy over γ2 × γ1 results
+in integers if γ1 is a ‘full cycle’ of T 2 . However if γ1 is a ‘half cycle’ of T 2 (a cycle which
+is closed in T 2 /Z2 but not in T 2 ) then the result is a half integers. It was pointed out by
+Frey and Polchinski [10] that in order to satisfy the Dirac quantization conditions in these
+cases one needs to turn on fluxes due to exotic orientifold planes. As in [9], here we avoid
+these complications by choosing the fluxes corresponding to the lattice vectors with even
+coefficients in Γ3,19 .
+     It is helpful to describe the cohomology basis above in detail in the T 4 /Z2 limit of K3.
+The E8 × E8 lattice vectors correspond to the 16 blow up modes of the orbifold. Choosing
+coordinates xi , y i , 0 ≤ xi , y i ≤ 1, i = 1, 2, for the T 4 , a basis of Z2 invariant two-forms is
+given by
+               √                                                  √
+                   2 dx1 ∧ dx2 − dy 1 ∧ dy 2                          2 dx1 ∧ dy 2 − dx2 ∧ dy 1
+                                                                                                 
+        e1 =                                               e2 =
+               √                                                  √
+                   2 dx1 ∧ dy 1 + dx2 ∧ dy 2                          2 dx1 ∧ dx2 + dy 1 ∧ dy 2
+                                                                                                 
+        e3 =                                               e4 =                                           (A.6)
+               √                                                  √
+                   2 dx1 ∧ dy 2 + dx2 ∧ dy      1
+                                                                      2 dx1 ∧ dy 1 − dx2 ∧ dy   2
+                                                                                                 
+        e5 =                                               e6 =                                       .
+
+With a choice of normalization,
+                                                                                1
+                          Z
+                                           dx1 ∧ dx2 ∧ dy 1 ∧ dy 2 = −            ,                       (A.7)
+                                 T 4 /Z2                                        2
+
+these obey the conditions,
+
+                                  (e1 , e1 ) = (e2 , e2 ) = (e3 , e3 ) = 2
+
+                                 (e4 , e4 ) = (e5 , e5 ) = (e6 , e6 ) = −2,
+
+with all other inner products being zero. We see then that e1 , ..., e6 form a basis for Γ3,3 .
+     For completeness let us also note that in the notation of this paper, our choice of
+orientation on the T 2 is given by
+                                            Z
+                                                   dx ∧ dy = −1 .                                         (A.8)
+                                              T2
+
+                                                           43
+   Finally we discuss the T 4 case. The six one forms e1 , · · · e6 defined above (without
+   √
+the 2 prefactor in normalisation), (A.6), form a basis of H 2 (T 4 , Z). We can define an
+inner product in this vector space analogous to (A.1). Holomorphic coordinates on T 4 can
+be defined by
+                                    z i = xi + τji y j , i = 1, 2.                           (A.9)
+The complex structure is completely specified by the period matrix τji . The holomorphic
+two-form Ω = λ(dz 1 ∧ dz 2 ) (λ is a constant) can be expressed in terms of the basis e1 , · · · e6
+as follows:
+                         1                1               1
+                      Ω = (1 − detτ )e1 + (τ22 + τ11 )e2 + (τ12 − τ21 )e3
+                         2                2               2                                 (A.10)
+                         1                1 2             1
+                           (1 + detτ )e4 + (τ2 − τ11 )e5 + (τ12 + τ21 )e6 .
+                         2                2               2
+
+Appendix B. Solving the Quartic and Quintic Polynomials
+      In this appendix we discuss in more detail the conditions leading to the two polyno-
+mials, (3.21a) and (3.21b), having a common quadratic factor.
+      The polynomials are given by
+
+                      P (φ) ≡ p1 φ5 + p2 φ4 + p3 φ3 + p4 φ2 + p5 φ + p6 = 0                 (B.1a)
+
+                         Q(φ) ≡ q1 φ4 + q2 φ3 + q3 φ2 + q4 φ + q5 = 0 ,                   (B.1b) .
+where the coefficients pi and qi are
+                    2                       2
+        p1 = − γxx βxy + βxx βxy γxy − γyy βxx ,
+                 2     2                                           2
+        p2 =αxx βxy + βxx αyy − 2αxy βxy βxx + 4γxx γyy βxx − βxx γxy ,
+                 2
+        p3 = − 4γxx γyy − 2αxx βxx γyy − 4γxx βxx αyy + 2γxx αxy βxy
+                     2
+              + γxx γxy − αxx βxy γxy + 3αxy βxx γxy ,                                       (B.2)
+        p4 = − 2α2xy βxx + 4γxx
+                             2
+                                αyy + 2αxx βxx αyy + 4αxx γxx γyy − 4γxx αxy γxy ,
+        p5 = − α2xx γyy + 3γxx α2xy − 4αxx γxx αyy + αxx αxy γxy ,
+        p6 =α2xx αyy − αxx α2xy .
+and
+                          2
+                    q1 = βxy − βxx βyy ,
+                    q2 = 2γxx βyy − 2βxy γxy + 2βxx γyy ,
+                                                                     2
+                    q3 = −αyy βxx + 2αxy βxy − αxx βyy − 4γxx γyy + γxy ,                    (B.3)
+                    q4 = 2αyy γxx + 2αxx γyy − 2αxy γxy ,
+                    q5 = α2xy − αxx αyy
+
+                                                 44
+Here we have used the notation
+
+                                    αij ≡ αi .αj , βij ≡ βi .βj ,                      (B.4)
+
+with i, j = {x, y}, and
+
+                 γxx ≡ αx .βx , γyy ≡ αy .βy , and γxy ≡ αx .βy + αy .βx .             (B.5)
+
+    Assume the quadratic factor of the form
+
+                                    W (φ) ≡ w1 φ2 + w2 φ + w3
+
+is the common factor of P (φ) and Q(φ) . Then
+
+                             P (φ) = (r1 φ3 + r2 φ2 + r3 φ + r4 )W (φ)                (B.6a)
+
+                                 Q(φ) = (s1 φ2 + s2 φ + s3 )W (φ)                     (B.6b)
+
+for some ri and si . This gives in particular
+
+                  (s1 φ2 + s2 φ + s3 )P (φ) = (r1 φ3 + r2 φ2 + r3 φ + r4 )Q(φ)         (B.7)
+
+Equating the coefficients of φn from both sides we get
+
+                    p1 s1 − q1 r1 = 0
+                    (p1 s2 + p2 s1 ) − (q1 r2 + q2 r1 ) = 0
+                    (p1 s3 + p2 s2 + p3 s1 ) − (q1 r3 + q2 r2 + q3 r1 ) = 0
+                    (p2 s3 + p3 s2 + p4 s1 ) − (q1 r4 + q2 r3 + q3 r2 + q4 r1 ) = 0
+                                                                                       (B.8)
+                    (p3 s3 + p4 s2 + p5 s1 ) − (q2 r4 + q3 r3 + q4 r2 + q5 r1 ) = 0
+                    (p4 s3 + p5 s2 + p6 s1 ) − (q3 r4 + q4 r3 + q5 r2 ) = 0
+                    (p5 s3 + p6 s2 ) − (q4 r4 + q5 r3 ) = 0
+                    p6 s3 − q5 r4 = 0
+
+Define the matrix
+                                   p1   0    0     −q1     0      0      0
+                                                                           
+                                  p2   p1   0     −q2    −q1     0      0 
+                                   p3   p2   p1    −q3    −q2    −q1     0 
+                                                                           
+                          
+                                   p4   p3   p2    −q4    −q3    −q2    −q1 
+                                                                           
+                       M ≡                                                            (B.9)
+                          
+                                   p5   p4   p3    −q5    −q4    −q3    −q2 
+                                                                            
+                          
+                                   p6   p5   p4     0     −q5    −q4    −q3 
+                                                                           
+                          
+                                   0    p6   p5     0      0     −q5    −q4
+                                                                           
+                                   0    0    p6     0      0      0     −q5
+
+                                                  45
+And the column vector
+                                                        s1
+                                                            
+                                                       s2   
+                                                        s3
+                                                            
+                                                            
+                                         X=            r1                           (B.10)
+                                                            
+                                                             
+                                                        r2
+                                                            
+                                                            
+                                                        r3
+                                                            
+                                                        r4
+
+Then (B.8), can be restated as
+
+                                             M ·X =0                                 (B.11)
+
+which is eq. (3.23). Thus the condition for the two polynomials sharing a common
+quadratic factor is that a non-zero vector X exists satisfying (B.10).
+    In terms of the components of X, we find, from (B.6b), by comparing powers of φ that
+W (φ) is given by (3.24),(3.25).
+
+
+
+
+Appendix C. Duality Maps
+
+    Here we use the notation of [25] . In particular, we define the four form field strength
+F̃4 = dC3 + A1 ∧ F3 in IIA theory and the five form field strength
+
+                                         1         1
+                              F̃5 = dC4 − C2 ∧ H3 + B2 ∧ F3 .
+                                         2         2
+
+We denote the T dual direction as x and also we define the one forms
+
+                                     1                         1
+                          j(x) =         jxα dxα , g(x) =         gxα dxα             (C.1)
+                                   jxx                        gxx
+
+and the exterior derivative
+
+                                          ω(x) = −dg(x) .                             (C.2)
+
+In addition Fn(x) denotes an n − 1 form whose components are given by:
+
+
+                                [Fn(x) ]i1 ,···in−1 = [Fn ]xi1 ···in−1 .              (C.3)
+
+                                                   46
+    The Neveu-Schwarz fields transform as
+                                1
+                        gxx =
+                               jxx
+                                 Bxα
+                        gxα = −
+                                  jxx
+                                         1
+                        gαβ = jαβ −          (jxα jxβ − Bxα Bxβ )
+                                        jxx
+                                                                                        (C.4)
+                                  jxα
+                        Bxα = −
+                                   jxx
+                                           1
+                        Bαβ = Bαβ −           (jxα Bxβ − Bxα jxβ )
+                                         jxx
+                                 g IIB
+                        gsIIA = √s
+                                    jxx
+Here the left hand refers to fields in the IIA theory and the right hand side to fields in the
+IIB theory. For the three form field strength, H3 this takes the form,
+                           H3(x) = dj(x)
+                                                                                        (C.5)
+                           H3 = H3 − H3(x) ∧ j(x) − B(x) ∧ dj(x)
+The Ramond fields transform as
+                          F2(x) = F1
+                          F2 = F̃3(x) − B(x) ∧ F1
+                                                                                        (C.6)
+                          F̃4(x) = F̃3 − j(x) ∧ F̃3(x)
+                                                                   
+                          F̃4 = F̃5(x) − B(x) ∧ F̃3 − j(x) ∧ F̃3(x)
+    In the formulae above, a field strength with and without a leg along the x direction
+are denoted as Fn(x) , and Fn respectively.
+    The inverse of these expressions is given by
+                                  1
+                          jxx =
+                                 gxx
+                                   Bxα
+                          jxα = −
+                                    gxx
+                                          1
+                          jαβ = gαβ −         (gxα gxβ − Bxα Bxβ )
+                                         gxx
+                                    gxα                                                 (C.7)
+                          Bxα = −
+                                    gxx
+                                            1
+                          Bαβ = Bαβ −          (gxα Bxβ − Bxα gxβ )
+                                          gxx
+                                   g IIA
+                          gsIIB = √s
+                                     gxx
+
+                                              47
+                           H3(x) = −ω(x)
+                                                                                        (C.8)
+                           H3 = H3 + ω(x) ∧ B(x) − g(x) ∧ H3(x)
+and
+                           F1 = F2(x)
+                           F̃3(x) = F2 − gx ∧ F2(x)
+                                                                                       (C.9)
+                           F̃3 = F̃4(x) − B(x) ∧ F2 − gx ∧ F2(x)
+                           F̃5(x) = F̃4 − g(x) ∧ F̃4(x)
+      The type I theory is equivalent to the heterotic theory by a S duality under which the
+fields are related as
+                                                1
+                                         gshet =
+                                               gsI
+                                          h    1                                       (C.10)
+                                         jµν = I ĵµν
+                                              gs
+                                         H3 = F̂3 .
+                                                   h
+Here we denoted the metric in heterotic theory as jµν and the NS field strength H3 = dB2 .
+gshet heterotic string coupling. Similarly, we denoted the type I metric and RR field strength
+with a ‘ˆ’ where as the string coupling is denoted by a superscript I.
+
+
+
+
+                                               48
+                                      References
+
+ [1] S. Gukov, C. Vafa and E. Witten, “CFTs from Calabi-Yau Fourfolds,” Nucl. Phys.
+     B584, 69 (2000) [arXiv:hep-th/9906070]
+ [2] K. Dasgupta, G. Rajesh and S. Sethi, “M-theory, Orientifolds and G-flux,” JHEP
+     9908, 023 (1999) [arXiv:hep-th/9908088].
+ [3] T. Taylor and C. Vafa, “RR flux on Calabi-Yau and Partial Supersymmetry Breading,”
+     Phys. Lett. B474, 130 (2000) [arXiv:hep-th/9912152].
+ [4] G. Curio, A. Klemm, D. Lust and S. Theisen, “On the Vacuum Structure of Type II
+     String Compactifications on Calabi-Yau Spaces with H Fluxes,” Nucl. Phys. B609, 3
+     (2001) [arXiv: hep-th/0012213].
+ [5] M. Haack and J. Louis, “M-theory Compactified on a Calabi-Yau Fourfold with Back-
+     ground Flux,” Phys. Lett. B507, 296 (2001) [arXiv:hep-th/0103068].
+ [6] S. B. Giddings, S. Kachru and J. Polchinski, “Hierarchies from fluxes in string com-
+     pactifications,” [arXiv:hep-th/0105097].
+ [7] E. Silverstein, “(A)dS Backgrounds from Asymmetric Orientifolds,” [arXiv:hep-
+     th/0106209].
+ [8] K. Becker and M. Becker, “Supersymmetry Breaking, M-theory and Fluxes,” JHEP
+     0107, 038 (2001) [arXiv:hep-th/0107044].
+ [9] S. Kachru, M. B. Schulz and S. P. Trivedi, “Moduli Stabilization From Fluxes in a
+     Simple IIB Orientifold,” [arXiv:hep-th/0201028].
+[10] A. Frey and J. Polchinski, “N = 3 Warped Compactifications,” [arXiv:hep-th/0201029].
+[11] R. Argurio, V. Campos, G. Ferretti and R. Heise, “Freezing of Moduli with Fluxes in
+     Three-Dimensions,” Nucl. Phys. B640, 351 (2002) [arXiv: hep-th/0205295].
+[12] K. Becker and M. Becker, “M-theory on Eight Manifolds,” Nucl. Phys. B477, 155
+     (1996) [arXiv:hep-th/9605053].
+[13] B. Greene, K. Schalm and G. Shiu, “Warped Compactifications in M and F-theory,”
+     Nucl. Phys. B584, 480 (2000) [arXiv:hep-th/0004103].
+[14] H. Verlinde, “Holography and Compactification,” Nucl. Phys. B580, 264 (2000)
+     [arXiv:hep-th/9906182];
+     C. Chan, P. Paul and H. Verlinde, “A Note on Warped String Compactification,”
+     Nucl. Phys. B581, 156 (2000) [arXiv:hep-th/0003236].
+[15] P. Mayr, “On Supersymmetry Breaking in String Theory and its Realization in Brane
+     Worlds,” Nucl. Phys. B593, 99 (2001) [arXiv:hep-th/0003198];
+     P. Mayr, “Stringy Brane Worlds and Exponential Hierarchies,” JHEP 0011, 013
+     (2000), [arXiv:hep-th/0006204].
+[16] J. de Boer, R. Dijkgraaf, K. Hori, A. Keurentjes, J. Morgan, D. R. Morrison and
+     S. Sethi, “Triples, fluxes, and strings,” Adv. Theor. Math. Phys. 4, 995 (2002)
+     [arXiv:hep-th/0103170].
+
+                                           49
+[17] S. Ferrara and M. Porrati, “N=1 No Scale Supergravity From IIB Orientifolds,” Phys.
+     Lett. 545, 411 (2002) [arXiv:hep-th/0207135].
+[18] R. D’Auria, S. Ferrara and S. Vaula, “N=4 Gauged Supergravity And a IIB Orientifold
+     With Fluxes,” New J. Phys. 4, 71 (2002) [arXiv:hep-th/0206241].
+[19] L. Andrianopoli, R. D’Auria, S. Ferrara and M. A. Lledo, “Gauging of Flat Groups
+     in Four Dimensional Supergravity,” JHEP 0207 010 (2002) [arXiv:hep-th/0203206].
+[20] S. Kachru, X. Liu, M. Schulz and S. P. Trivedi, “Supersymmetry Changing Bubbles
+     in String Theory,” [arXiv:hep-th/0205108].
+[21] A. Dabholkar and C. Hull, “Duality Twists, Orbifolds, and Fluxes,” [arXiv:hep-
+     th/0210209].
+[22] K. Becker and K. Dasgupta, “Heterotic Strings with Torsion,” [arXiv:hep-th/0209077]
+[23] S. Gurrieri, J. Louis, A. Micu and D. Waldram, “Mirror Symmetry in Generalized
+     Calabi-Yau Compactifications,” [arXiv:hep-th/0211102].
+[24] G. Cardoso, G. Curio, G. Dall’Agata, D. Lüst, P. Manousselis and G. Zoupanos, “Non-
+     Kähler String Backgrounds and their Five Torsion Classes,” [arXiv:hep-th/0211118].
+[25] S. Kachru, M. B. Schulz, P. K. Tripathy and S. P. Trivedi, “New Supersymmetric
+     String Compactifications,” [arXiv:hep-th/0211182].
+[26] S. Gurrieri and A. Micu, “Type IIB theory on half-flat manifolds,” [arXiv:hep-
+     th/0212278].
+[27] E. Goldstein and S. Prokushkin, “Geometric Model for Complex non-Kaehler Mani-
+     folds with SU(3) Structure,” [arXiv:hep-th/0212307].
+[28] L. Randall and R. Sundrum, “A Large Mass Hierarchy from a Small Extra Dimension,”
+     Phys. Rev. Lett. 83, 3370 (1999) [arXiv:hep-ph/9905221].
+[29] J. Polchinski and A. Strominger, “New Vacua for Type II String Theory,” Phys. Lett.
+     B 388, 736 (1996) [arXiv:hep-th/9510227].
+[30] J. Michelson, “Compactifications of type IIB strings to four dimensions with non-
+     trivial classical potential,” Nucl. Phys. B 495, 127 (1997) [arXiv:hep-th/9610151].
+[31] G. Dall’Agata, “Type IIB Supergravity Compactified on a Calabi-Yau Manifold with
+     H Fluxes,” JHEP 0111 005 (2001) [arXiv: hep-th/0107264].
+[32] P. S. Aspinwall, “K3 Surfaces and String Duality,” [arXiv:hep-th/9611137].
+[33] K. Becker, M. Becker, K. Dasgupta and P. Green, “Compactifications of Heterotic
+     Theory on Non-Kähler Complex Manifolds: I”, [arXiv: hep-th/0301161].
+[34] K. Dasgupta, D. P. Jatkar and S. Mukhi, “Gravitational Couplings and Z2 Orien-
+     tifolds,” Nucl. Phys. B523, 465 (1998) [arXiv:hep-th/9707224] ;
+     B. Stefanski, “Gravitational Couplings of D-branes and O-planes,” Nucl. Phys. B548,
+     275 (1999) [arXiv:hep-th/9812088] ;
+     J. F. Morales, C. A. Scrucca and M. Serone, “Anomalous Couplings for D-branes and
+     O-planes,” Nucl. Phys. B552, 291 (1999) [arXiv:hep-th/9812071].
+
+                                           50
+[35] M. Grana and J. Polchinski, “Supersymmetric three-form flux perturbations on
+     AdS(5),” Phys. Rev. D 63, 026001 (2001) [arXiv:hep-th/0009211].
+[36] A. Strominger, “Superstrings With Torsion”, Nucl. Phys. B274 (1986) 253.
+[37] T. Buscher, “Quantum Corrections and Extended Supersymmetry in New Sigma Mod-
+     els”, Phys. Lett. B159 (1985) 127; “A Symmetry Of The String Background Field
+     Equations”, Phys. Lett. B194 (1987) 59; “Path Integral Derivation of Quantum Du-
+     ality in Nonlinear Sigma Models”, Phys. Lett. B201 (1988) 466.
+[38] S. F. Hassan, “T-duality, space-time spinors and R-R fields in curved backgrounds,”
+     Nucl. Phys. B 568, 145 (2000) [arXiv:hep-th/9907152].
+[39] E. Bergshoeff, C. Hull and T. Ortin, “Duality in the type-II superstring effective
+     action,” Nucl. Phys. B 451, 547 (1995).
+[40] B. de Wit, D. J. Smit and N. D. Hari Dass, “Residual Supersymmetry Of Compactified
+     D = 10 Supergravity”, Nucl. Phys. B283 (1987) 165 (1987).
+
+
+
+
+                                           51
+

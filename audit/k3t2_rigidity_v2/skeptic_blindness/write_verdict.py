@@ -1,0 +1,111 @@
+import json, os
+HERE = os.path.dirname(os.path.abspath(__file__))
+PY = "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python"
+V = {
+ "lens": "BLINDNESS AND CIRCULARITY",
+ "scope": "committed tree at d845b9b (tracks A-E + chain); comparison/ and reverse/ read only for disputed rows",
+ "forbidden_path_scan": {
+  "method": "grep -rnE 'LeanMaster|k3t2-sealed|sealed|PAPER_FACTS|lean_foundation|proofs/|k3t2_rigidity/' over *.py/*.sh in A-genus,B-dyons,C-lattices,D-tda,E-flux,chain; plus git log -p d98445f..d845b9b for added lines with those paths or .lean; plus every open()/json.load()/sys.path in those scripts",
+  "result": "CLEAN. The only hits are prose disclaimers (D-tda/06_master_summary.py:28-32) and docstrings naming the licensed v1 code dirs (A-genus/run_track_a_v2.py:7, C-lattices/01_e8.py:7, 02_k3_mukai_gamma.py:5). No script opens a LeanMaster, sealed-v2, proofs/, lean_foundation/, PAPER_FACTS or v1 sealed-comparison file. Cross-track reads are only: C reads D-tda/exports.json and A-genus/exports.json; chain reads each track's own outputs. Ordering: `git log 3a5096c^..HEAD -- A-genus B-dyons C-lattices D-tda E-flux chain` is empty, so no blind-track file was modified at or after the comparison commit 3a5096c (blind-then-compare ordering verified by commit topology). comparison/ and reverse/ were left out of the blindness scan on purpose: they are the post-blind stage and read sealed targets legitimately."
+ },
+ "literal_scan": {
+  "method": "grep -rnwE for 24|22|16|32|324|648|90|462|45|231|3200|25650|176256|128|216|240|19|770|2277 in non-comment lines (196 hits, mostly docstrings/honesty notes), each hit read in context",
+  "answer_literals_in_computation_paths": [
+   "A-genus/run_track_a_v2.py:81 and :209  ZK3 = scal(phi01, 2)  -- typed overall factor 2; chi_from_genus = 2*phi01(tau,0) = 2*12 is therefore the normalisation input, not a computed 24 (Track A itself classifies k as NORMALISATION, but its export and the chain/comparison treat 24 as independent).",
+   "A-genus/run_track_a_v2.py:322,325,334,337,527,530  extract_H(24, ...) / multiply_back_check(..., 24, ...)  -- literal 24 as the mu-term coefficient for the reported H, A_n and every twined H_g. Mitigated (scan 20..28 admits only 24), but the code types 24 rather than taking the scan's solution, and per skeptic_blindness/normalisation_k_test.py the scan selects 12*k for the typed k.",
+   "B-dyons/theta_forms.py:135  twoB = scal(2, B)  -- same typed factor 2; B's chi = c(0)+2c(-1) = 24 and everything built from c(D) (G_2, G_3, N=324, M=648) inherit it.",
+   "E-flux/scripts/tadpole_bookkeeping.py:72-76,151-155  4*2+16*1, 24*1, instantons_expected=24, orbifold_singularities=16  -- every operand is a typed quotation from TT/BLPSSW; the 'computed' equalities are literal-vs-literal (tier L quotation arithmetic, not B). orbifold_singularities=16 could have been read from D-tda's computed fixed-point count and was not.",
+   "E-flux/scripts/tt_metric_checks.py:42  n_d3 = 24 - ax2  and flux_enumeration.py:147,185  tadpole_bound=24, N_D3 = 24 - 8*k  -- literal tadpole 24 as input (acknowledged NORMALISATION / tier-L input).",
+   "C-lattices/02_k3_mukai_gamma.py:78,94  signature [3,19] / [6,22] expected for the TYPED Gram matrices 3U+2(-E8) and 6U+2(-E8): a check of an assumed lattice, not a derivation."
+  ],
+  "exonerated_definitional_or_expected": [
+   "D-tda/01_controls.py:70  (N**4)*24 = 4! Freudenthal simplices per cube (definitional)",
+   "B-dyons/series.py:115,125  comb(24,j): Delta = eta^24 (definitional weight-12 cusp form; not used for chi)",
+   "B-dyons/theta_forms.py:93  240*sigma_3(n): E4 normalisation (definitional)",
+   "A-genus/run_track_a_v2.py:134,189  N(N-1)/24: eta log-derivative constant (definitional); :404-407 chi(g), F_factor: declared tier-L CDH inputs; :426 chi_g/24: CDH twining formula constant",
+   "C-lattices/01_e8.py:126, B-dyons/part1_euler_numbers.py:126, C-lattices/04_tadpole_budget.py:87  'expected' fields filled after computing (compliant)",
+   "A-genus/run_track_a_v2.py:364  z0 == {0: Fr(24)} in scan (b), which Track A itself labels NORMALISATION (compliant)",
+   "chain/chain_check.py:208  descriptive string"
+  ]
+ },
+ "rigidity_verdicts": [],
+ "reruns": [],
+ "chain_assessment": "All 9 links reproduce as CONSISTENT, but links 5, 6, 8 are pointer checks by construction (C reads chi_top and b0/b1/b3/b4 from D-tda/exports.json and derives b2 from them); links 2, 3 compare part1 against the hand-written B-dyons/results.json; links 7, 9 are definitional lattice arithmetic. Only links 1 and 4 (A or B vs D) are cross-method, and A and B share the same theta route and the same typed factor 2, so they are one normalisation-conditional route, not two. At most one link carries independent information (D's GUDHI chi agreeing with 2*phi01(tau,0)), and that agreement is exactly the normalisation choice k=2.",
+ "math_errors_checked_none_found": "Checked by hand: 4*2+16*1=24; 3*2+2*8=22; (3-19) mod 8=0; (1,0,22,0,1)*(1,2,1)=(1,2,23,44,23,2,1), chi=0; Noether chi(O)=(0+24)/12=2 -> h20=1 -> b2+=3 -> b2-=19; p24(k)=1,24,324,3200,25650,176256; 54*12=648; chi(X_k)=8+k. No arithmetic error found; all objections are circularity/labeling/reproducibility.",
+ "process_concern": "orientifold#8,#9,#11 DISAGREE rows record the sealed Lean values being changed post-seal (adc85e7); that weakens the seal for those three targets (not a blind-track code violation)."
+}
+R = V["rigidity_verdicts"]
+def rv(p, g, r): R.append({"parameter": p, "genuinely_rigid": g, "reason": r})
+rv("A: mu-term coefficient N in Z_K3*eta^3 = N*y^{1/2}Psi - H*theta1^2 (claimed RIGID {24})", False,
+   "CONDITIONAL on the typed factor k=2 (run_track_a_v2.py:81,209). skeptic_blindness/normalisation_k_test.py reruns Track A's own extract_H selector with ZK3=k*phi01: k=1 selects N=12, k=2 selects 24, k=3 selects 36. The selector is structural but pins N = Z(tau,0), i.e. it proves N equals the (normalisation-fixed) Euler number, not that it equals 24. 'condition_uses_true_value: false' is technically true of the selector but the target enters through the typed normalisation.")
+rv("A: overall factor k in Z_K3 = k*phi01 (both selectors)", False, "NORMALISATION, agreed; self-declared by Track A (targets 24 and 2 on the RHS).")
+rv("B: kappa (Goettsche exponent multiplier)", False,
+   "Weaker than NORMALISATION: part1_euler_numbers.py:88,90 compute Gk_z0 and gottsche_at_chi_computed with the SAME call euler_numbers_from_chi(chi_computed, KMAX), so match_k0_8 is a tautology and the kappa scan only shows the function is injective in its exponent. 'Gk_z0_k0_8_DMVV_restriction' is mislabeled: no DMVV product is evaluated at z=0 in part1.")
+rv("B: N (A_{2,1} coefficient, m=1 polar subtraction) = 324", True,
+   "Genuinely rigid in the structural sense: part3_polar.py:291-317 fixes N from the q^0 large-l tail-slope ratio with no target, and the D<=-2 vanishing test is target-free. Conditional on the typed Z_K3 normalisation (c(D) from 2B, theta_forms.py:135) and on the DMVV/DMZ setup; the (N,M) window 310..339 x 620..678 step 2 is centred on the answer (odd M never tried), so the grid 'uniqueness' adds little beyond the slope selector. Why this differs from Track A's N (not rigid): in A the scanned parameter IS the target (N is the Euler characteristic, so recovering N=Z(tau,0) only recovers the typed normalisation); in B the scanned N is not a target value, and the target-free q^0 tail-slope ratio fixes it from the series themselves, a legitimate structural determination under any consistent normalisation of the model.")
+rv("B: M (Hhat coefficient) = 648", True,
+   "Rigid as agreement of two independently built series (DMVV/1/A route vs 3*E4*A - M*Hhat with independently counted Hurwitz numbers), jointly with the slope-fixed N. Conditional on the tier-L DMZ form 3*E4*A - M*Hhat and on the same typed normalisation 2.")
+rv("C: (m,n) in m*U + n*(-E8), selected (3,2)", False,
+   "CONDITIONAL, as Track C says. Conditions: (1) chi_top=24 read from D-tda/exports.json; (2) c1=0 (Calabi-Yau) typed at 06_chained_rigidity.py step 3; (3) b1=0 (read from D, where it is computed b1(U)) and b3=b1, b0=b4=1 which D only STATES; (4) the Kahler identity b2+=2h20+1 and Noether's formula (tier L); (5) the ansatz that the lattice is of the form mU+n(-E8) (Milnor classification, tier L). Given these, (3,19) and (3,2) follow arithmetically. The claimed extra corroboration from Track A's chi is normalisation-conditional (see A verdict).")
+rv("C: tadpole budget flux+n=budget", False, "NORMALISATION, agreed: once budget=chi_top is read, the enumerated facts are trivial arithmetic.")
+rv("C: generic invertible A, G (T-duality identities, claimed RIGID)", False,
+   "Category error: universal symbolic identities with no parameter to select. They are correct VERIFIED_IDENTITY results (d=1..4), not rigidity results.")
+rv("D: grid size N (premise-valid discretisation)", True,
+   "Accepted only as invariance: the premise (closed-star disjointness) is structural and target-free, and N=6 and N=8 give the same Betti numbers. It does not select N and fixes no physical quantity; N=4 happens to give the same numbers, so the premise has no discriminating effect on the answer.")
+rv("D: k resolved points, chi(X_k)==24", False, "NORMALISATION, agreed (literal target on a monotone affine function).")
+rv("D: k resolved points, b1(X_k)==0", False, "NON-DISCRIMINATING, agreed.")
+rv("E: tadpole total 24 -> alpha_x^2 in {8,16,24}", False, "NORMALISATION, agreed (literal TT input).")
+rv("E: 8 | alpha_x^2 (claimed RIGID)", False,
+   "Holds by construction of the chosen model: lattice.py:norm returns 8*sum(s_i n_i^2) because the model fixes even coefficients and the diagonal (A.6)-(A.7) basis with norms +-2. lattice.py's docstring says this basis was adopted because it reproduces TT's own (4.15)-(4.16) numbers, and under TT's unimodular (A.2)-(A.3) U+U+U presentation the divisibility does not hold. The negative control (rank-2 signature (1,1) empty) tests the signature requirement p>=2, not the factor 8. Not a rigidity result: the rigidity entry leaves out the basis dependence.")
+
+RR = V["reruns"]
+def rr(c, ok, n): RR.append({"command": c, "reproduced": ok, "note": n})
+base = "clean copy = git archive d845b9b audit/k3t2_rigidity_v2 into scratchpad, ALL *.json outputs deleted (except E-flux/quotes.json input), absolute /mnt/... worktree paths sed-rewritten to the copy (needed because C-lattices, D-tda, E-flux and chain scripts hard-code the worktree path and would otherwise overwrite committed files; this is itself a clean-checkout reproducibility defect), outputs diffed against the committed JSON ignoring runtime fields"
+rr(f"cd A-genus && {PY} run_track_a_v2.py", True, "results.json, exports.json byte-equivalent (JSON-identical). " + base)
+rr(f"cd B-dyons && {PY} theta_forms.py 40", True, "theta_forms_cache.json identical. The stated command uses bare 'python', not the venv interpreter; part1_euler_numbers.py:33 and part2_psi_m.py:38 docstrings still say 'theta_forms.py 16' (documentation drift, the v1 failure mode)")
+rr(f"cd B-dyons && {PY} hurwitz_class_numbers.py", True, "identical")
+rr(f"cd B-dyons && {PY} part1_euler_numbers.py", True, "identical")
+rr(f"cd B-dyons && {PY} part2_psi_m.py", True, "identical")
+rr(f"cd B-dyons && {PY} part3_polar.py", True, "identical")
+rr(f"cd B-dyons/margin_check_QMAX60 && {PY} theta_forms.py 60 && cd .. && {PY} margin_stability_check.py", True, "both outputs identical")
+rr("B-dyons/results.json", False, "NOT generated by any script (hand-authored summary); cannot be reproduced; consumed by chain_check.py:53,63")
+rr(f"{PY} D-tda/00_premise_checks.py ... 06_master_summary.py (in order 00,01,02,03,04,05,06)", True, "all 8 D-tda JSON outputs identical; hard-coded absolute worktree paths (BASE/OUT_PATH) required rewriting")
+rr(f"{PY} C-lattices/01_e8.py, 02_k3_mukai_gamma.py, 03_symbolic_tduality_proofs.py, 04_tadpole_budget.py, 06_chained_rigidity.py, merge_results.py", True, "all 7 C JSON outputs identical (06 run after D regenerated exports.json); HERE and D_TDA_EXPORTS hard-coded absolute")
+rr(f"{PY} E-flux/scripts/tadpole_bookkeeping.py; tt_metric_checks.py; flux_enumeration.py", True, "outputs identical apart from the self-recorded 'command' string (committed run used 'python scripts/flux_enumeration.py', relative); flux_enumeration ~56 s")
+rr("E-flux/results.json", False, "NOT generated by any script (hand-authored summary)")
+rr(f"cd chain && {PY} chain_check.py", False, "From the clean state it FAILS: FileNotFoundError on B-dyons/results.json (chain_check.py:53). After copying the committed hand-written B-dyons/results.json and E-flux/results.json back in, it reruns and chain_check_results.json is identical.")
+rr(f"cd skeptic_blindness && {PY} normalisation_k_test.py", True, "new skeptic test: slice agreement selects N=12k for typed k=1,2,3")
+
+V["disputed_rows"] = [
+ {"target_id": "A-genus#63:decomposition_pins_chi", "reason": "Called 'blind RIGID', but the selector pins N to k*phi01(tau,0) for the typed k=2 (normalisation_k_test.py: k=3 -> N=36). The values agree; the independence claim does not hold."},
+ {"target_id": "A-genus#60:ellipticGenus_z0", "reason": "Value agrees, but blind 24 = typed 2 x computed 12. It is the normalisation input, not independent evidence (also cited as the second route for chi rows below)."},
+ {"target_id": "D-tda#51:k3_euler_characteristic", "reason": "independent_routes=2 overcounts: the A-genus route's 24 is the typed normalisation Z=2*phi01. Only D's GUDHI route is independent -> 1."},
+ {"target_id": "E-flux#5:euler_K3", "reason": "Same as D-tda#51: routes 2 -> 1."},
+ {"target_id": "elsewhere#9:k3_euler_characteristic", "reason": "Same: A-genus route is normalisation-conditional; routes 2 -> 1."},
+ {"target_id": "elsewhere#15:euler_char_K3", "reason": "Same: routes 2 -> 1."},
+ {"target_id": "elsewhere#17:k3_euler_eq_24", "reason": "Same: routes 2 -> 1."},
+ {"target_id": "elsewhere#24:atlas_k3_euler_characteristic", "reason": "blind_source lists D-tda only but independent_routes=2; should be 1."},
+ {"target_id": "C-lattices#18:sigK3_eq", "reason": "routes=2 overcounts: C/02 computes the signature of the TYPED Gram matrix 3U+2(-E8) (an assumed lattice); only C/06 derives (3,19), and conditionally on D's chi. One route plus one assumption."},
+ {"target_id": "C-lattices#21:rank_K3", "reason": "routes=2: C/02 rank is of the typed lattice (22 by construction). D's b2 is the only computed route."},
+ {"target_id": "D-tda#52:k3_hirzebruch_signature", "reason": "routes=2 but the sole blind_source is C-lattices/02, the signature of a typed lattice; routes should be 1 at most, and it is an assumed-lattice check."},
+ {"target_id": "B-dyons#6:goettsche", "reason": "The blind side never computed the DMVV restriction at z=0: part1 compares euler_numbers_from_chi(chi) with itself (tautology, self-declared). The Goettsche identity is NOT_COMPUTED; only the p24 values exist."},
+ {"target_id": "B-dyons#36:twined_goettsche_identity", "reason": "Same source (part1 Gk_z0 = Goettsche formula, not DMVV) -> the identity is not computed blind."},
+ {"target_id": "orientifold#3:tadpole_cancellation", "reason": "routes=2: the E-flux route is typed TT quotation arithmetic (4*2+16*1, 24*1), and the third computation chi(K3xK3)/24 uses the literature F-theory formula. Tier L plus one computation, not two blind computations."}
+]
+V["violations"] = [
+ "A-genus/run_track_a_v2.py:81,209: typed factor 2 in ZK3=scal(phi01,2) makes chi_from_genus=24 a normalisation. The export ('computed constant term ..., not asserted') and the chain/comparison use of it as independent corroboration are overclaims.",
+ "A-genus/run_track_a_v2.py:322 et seq.: literal 24 passed as the mu coefficient in the reported H/A_n/H_g path instead of the scan's solution; the RIGID label on the N scan leaves out the dependence on the typed normalisation k=2 (normalisation_k_test.py).",
+ "B-dyons/theta_forms.py:135: typed factor 2 (twoB) feeds chi, c(D), G_k and N=324/M=648. No condition on it is stated.",
+ "B-dyons/part1_euler_numbers.py:88-90: the 'DMVV restriction' and the Goettsche target are the same call. It is labeled as DMVV data, and comparison rows B-dyons#5/#6/#36 cite it as DMVV evidence.",
+ "C-lattices/03 T-duality identities labeled RIGID: universal identities, not parameter-fixing (category error).",
+ "E-flux 8|alpha_x^2 labeled RIGID: true by construction of the chosen basis (lattice.py norm = 8*sum), a basis adopted because it reproduces TT's numbers; the negative control tests a different property.",
+ "E-flux/scripts/tadpole_bookkeeping.py: literal-vs-literal quotation arithmetic reported under 'computed'; it should be tier L.",
+ "Reproducibility: B-dyons/results.json and E-flux/results.json have no generating script; chain_check.py fails from a clean checkout (FileNotFoundError) and needs the hand-written B summary.",
+ "Reproducibility: C-lattices, D-tda, E-flux and chain scripts hard-code /mnt/disks/.../dualscale-wt-k3t2 absolute paths. They are not runnable from a clean checkout at another location, and a rerun elsewhere silently writes into the worktree.",
+ "B-dyons/part3_polar.py:260-261: the (N,M) grid is centred on the answer (N 310..339, M 620..678 step 2, so odd M is never sampled). M's uniqueness rests on over-determination of the series match, not on the grid; the '900-pair unique' claim overstates the grid.",
+ "Command documentation: B stated commands use bare 'python' (not the mandated venv), and part1/part2 docstrings say 'theta_forms.py 16' while the committed run used 40.",
+ "Independence overcount in comparison: 11 rows claim 2 independent routes where one route is normalisation-conditional (A) or an assumed typed lattice (C/02); see disputed_rows."
+]
+V["math_errors"] = []
+json.dump(V, open(os.path.join(HERE, "verdict.json"), "w"), indent=2)
+print("ok", len(V["rigidity_verdicts"]), len(V["reruns"]), len(V["disputed_rows"]), len(V["violations"]))

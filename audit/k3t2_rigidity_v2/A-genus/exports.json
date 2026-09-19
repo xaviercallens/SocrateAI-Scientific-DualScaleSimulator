@@ -1,0 +1,5 @@
+{
+  "chi_from_genus": "24",
+  "source": "Z_K3(tau,0), computed constant term of Z_K3=2*phi_{0,1}(tau,z) at z=0, from results.json:ZK3_tau0_const",
+  "cutoff_q_used": 10
+}

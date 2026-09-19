@@ -1,0 +1,107 @@
+{
+  "cubical": {
+    "method": "gudhi.PeriodicCubicalComplex, all dims periodic, 3 cells/dim, filtration=0 everywhere",
+    "homology_coeff_field": 3,
+    "T2": {
+      "betti": [
+        1,
+        2,
+        1
+      ],
+      "expected": [
+        1,
+        2,
+        1
+      ],
+      "expected_source": "b_k(T^n)=C(n,k), n=2 (standard torus cohomology)"
+    },
+    "T4": {
+      "betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+      ],
+      "expected": [
+        1,
+        4,
+        6,
+        4,
+        1
+      ],
+      "expected_source": "b_k(T^n)=C(n,k), n=4 (standard torus cohomology)"
+    },
+    "runtime_sec": 0.0019631385803222656
+  },
+  "freudenthal_simplicial_T4": {
+    "4": {
+      "N": 4,
+      "num_top_4simplices_built": 6144,
+      "num_top_4simplices_expected_formula": 6144,
+      "degenerate_simplices_dropped": 0,
+      "num_vertices": 256,
+      "simplex_tree_num_simplices": 38400,
+      "betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+      ],
+      "expected_betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+      ],
+      "expected_source": "b_k(T^4)=C(4,k), standard torus cohomology",
+      "euler_characteristic_from_simplex_counts": 0,
+      "euler_characteristic_from_betti_numbers": 0,
+      "simplex_counts_by_dim": {
+        "0": 256,
+        "1": 3840,
+        "2": 12800,
+        "3": 15360,
+        "4": 6144
+      },
+      "runtime_sec": 0.31957221031188965,
+      "matches_control": true
+    },
+    "6": {
+      "N": 6,
+      "num_top_4simplices_built": 31104,
+      "num_top_4simplices_expected_formula": 31104,
+      "degenerate_simplices_dropped": 0,
+      "num_vertices": 1296,
+      "simplex_tree_num_simplices": 194400,
+      "betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+      ],
+      "expected_betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+      ],
+      "expected_source": "b_k(T^4)=C(4,k), standard torus cohomology",
+      "euler_characteristic_from_simplex_counts": 0,
+      "euler_characteristic_from_betti_numbers": 0,
+      "simplex_counts_by_dim": {
+        "0": 1296,
+        "1": 19440,
+        "2": 64800,
+        "3": 77760,
+        "4": 31104
+      },
+      "runtime_sec": 1.7551710605621338,
+      "matches_control": true
+    }
+  }
+}

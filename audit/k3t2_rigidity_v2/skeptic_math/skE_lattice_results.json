@@ -1,0 +1,71 @@
+{
+ "det_U3": -1,
+ "det_diag_2eta": -64,
+ "index_of_diag_sublattice": 8,
+ "rank4_hyperbolic_coefficient_bound_(even_entries_2c,|c|<=)": 3,
+ "all_alpha_sq_divisible_by_8": true,
+ "alpha_sq_values_realised": [
+  8,
+  16,
+  24
+ ],
+ "pairs_by_alpha_sq": {
+  "24": {
+   "TT_admissible_pairs": 1728,
+   "of_which_in_trackE_family": 192
+  },
+  "16": {
+   "TT_admissible_pairs": 1384,
+   "of_which_in_trackE_family": 72
+  },
+  "8": {
+   "TT_admissible_pairs": 1096,
+   "of_which_in_trackE_family": 136
+  }
+ },
+ "total_pairs": 4208,
+ "in_trackE_family": 400,
+ "example_TT_admissible_pair_missed_by_trackE": {
+  "alpha_hyperbolic_coords": [
+   -6,
+   -6,
+   -6,
+   4
+  ],
+  "beta_hyperbolic_coords": [
+   -6,
+   4,
+   6,
+   6
+  ],
+  "alpha_diag_coords": [
+   "-6",
+   "-1",
+   "0",
+   "-5"
+  ],
+  "beta_diag_coords": [
+   "-1",
+   "6",
+   "-5",
+   "0"
+  ],
+  "alpha_sq": 24
+ },
+ "TT_4.15_example_2e1diag_in_hyperbolic_coords": [
+  2,
+  2,
+  0,
+  0
+ ],
+ "reading": "E's diagonal-basis family is a proper subfamily (index-8 sublattice) of TT's integral flux lattice; 8|alpha^2 and the admissible set {8,16,24} survive (Gamma even), but E's counts undercount TT-admissible flux pairs at any stated bound.",
+ "tadpole": {
+  "n_O7_T2_fixed_points": 4,
+  "n_D7": 16,
+  "D3_total": 24,
+  "chi_K3xK3_over_24": 24,
+  "chi_K3xK3": 576,
+  "TT_4.15_N_flux": 16,
+  "TT_4.16_N_D3": 16
+ }
+}

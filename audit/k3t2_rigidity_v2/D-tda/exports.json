@@ -1,0 +1,12 @@
+{
+  "source": "03_resolution_hybrid.py, N=6 (premise-valid), field Z/3",
+  "chi_K3_resolved": 24,
+  "b2_K3_resolved": 22,
+  "b0": 1,
+  "b1": 0,
+  "b3": 0,
+  "b4": 1,
+  "cross_field_Z5_agrees": true,
+  "num_fixed_points_computed": 16,
+  "chi_fvector_betti_cross_check": true
+}

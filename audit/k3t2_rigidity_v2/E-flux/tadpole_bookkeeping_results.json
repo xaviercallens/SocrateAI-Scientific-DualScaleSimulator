@@ -1,0 +1,82 @@
+{
+  "track": "E-flux",
+  "part": "1-and-2-bookkeeping",
+  "command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python scripts/tadpole_bookkeeping.py",
+  "source_files": {
+    "TT": "audit/k3t2_rigidity_v2/sources/hep-th_0301139_TripathyTrivedi.txt",
+    "BLPSSW": "audit/k3t2_rigidity_v2/sources/hep-th_9605184_BLPSSW.txt"
+  },
+  "part1": {
+    "id": "TT-part1-D3-tadpole",
+    "quotes": [
+      {
+        "lines": "160-163",
+        "text": "The first comment relates to tadpole cancellation for various RR fields. Consider first the 7-brane tadpole. The Z2 orientifold symmetry has 4 fixed points on the T2, an O7-plane is located at each of these fixed points. To cancel the resulting 7-brane charge 16 D7-branes need to be added."
+      },
+      {
+        "lines": "164-171",
+        "text": "Next consider the 3-brane tadpole [34]. Both the O7-planes and the D7-branes wrap the K3 (besides filling spacetime). As a result, it turns out, 2 units of D3 brane charge are induced on the world volume of each O7-plane and one units of D3 brane charge in each D7-brane, 1 giving rise to a total of 24 units of three brane charge. This charge needs to be canceled by adding D3-branes and flux. The relevant formula for tadpole cancellation then takes the form:\n        (1/2) N_flux + N_D3 = 24 ,                (2.3)",
+        "note": "Printed as a two-line fraction '1' over '2' multiplying N_flux; transcribed here as (1/2) N_flux. Confirmed by the worked example (4.14): alpha_x^2 + N_D3 = 24, which is (2.3) with N_flux = 2 alpha_x^2 substituted (eq 4.13) -- see tt_metric_checks_results.json, TT-4.15-4.16 and TT-4.13-symbolic."
+      },
+      {
+        "lines": "180-183 (footnote 1)",
+        "text": "The simplest way to see this is the following: in F-theory there are no O7 planes. Instead there are 24 (p, q) 7-branes each of which acquires one unit of 3-brane charge on wrapping K3."
+      }
+    ],
+    "arithmetic": {
+      "orientifold_side": "4 O7-planes * 2 units + 16 D7-branes * 1 unit",
+      "computed_orientifold_side": 24,
+      "f_theory_side": "24 (p,q) 7-branes * 1 unit each",
+      "computed_f_theory_side": 24
+    },
+    "expected": {
+      "orientifold_bookkeeping_total": 24,
+      "f_theory_total": 24
+    },
+    "computed": {
+      "orientifold_bookkeeping_total": 24,
+      "f_theory_total": 24
+    },
+    "match": true,
+    "tier": "L (identification) + B (arithmetic)"
+  },
+  "part2": {
+    "id": "BLPSSW-part2-fivebrane",
+    "quotes": [
+      {
+        "lines": "200-205",
+        "text": "By integrating the Bianchi identity over K3 one learns that, of n1 and n2 are the number of instantons in the two factors, then E8 x E8 compactifications must satisfy n1 + n2 + n5 = 24. As we have already said, setting n5, the number of E8 x E8 fivebranes, to zero ensures that there is just one tensor multiplet. The DMW models correspond to the symmetric embedding n1 = n2 = 12. In the case of the SO(32) theory compactified on K3, there is a similar requirement, namely n1 + n5 = 24, where n1 is the number of instantons embedded in the SO(32) group and n5 is the number of SO(32) five-branes."
+      },
+      {
+        "lines": "211-215",
+        "text": "It turns out that the 16 orbifold singularities each contain a “hidden” instanton, a fact that we will demonstrate by studying the behavior upon blowing up the singularity. The models constructed by GP satisfy the counting rule by introducing eight five-branes in addition to the hidden instantons."
+      },
+      {
+        "lines": "961-969",
+        "text": "A smooth K3 compactification needs a vacuum SO(32) gauge bundle with instanton number 24, to make it possible to obey the familiar equation dH = tr R ^ R - tr F ^ F. The GP model does not have any explicit instantons in the vacuum. Rather than instantons, the model has five-branes; there are eight five-branes, at arbitrary positions on T4/Z2. Since a Type I five-brane is equivalent to the small size limit of an instanton [1], eight instantons are implicit in the five-branes of the GP model. Since 24 are expected, 24-8=16 seem to be missing."
+      },
+      {
+        "lines": "970-973",
+        "text": "As there are 16 Z2 orbifold singularities in T4/Z2, one might intuitively think that one instanton is “hiding” at each singularity, and that blowing up one of these singularities will bring an instanton out into the open."
+      }
+    ],
+    "arithmetic": {
+      "instantons_expected_from_Bianchi": 24,
+      "fivebranes_stated": 8,
+      "hidden_instantons_by_subtraction_24_minus_8": 16,
+      "matches_stated_orbifold_singularity_count": true
+    },
+    "expected": {
+      "hidden_instantons": 16,
+      "orbifold_singularities": 16
+    },
+    "computed": {
+      "hidden_instantons": 16,
+      "orbifold_singularities": 16
+    },
+    "match": true,
+    "literal_vs_inference": "BLPSSW do NOT literally write '16 + 8 = 24' anywhere in the text. What they literally state is: (a) n1+n5=24 from the Bianchi identity (line 205); (b) there are eight five-branes, each equivalent to a small instanton (lines 964-966); (c) 'Since 24 are expected, 24-8=16 seem to be missing' (line 968) -- a SUBTRACTION, not an addition; (d) there are 16 Z2 orbifold singularities (line 970) and 'one might intuitively think that one instanton is hiding at each singularity' (lines 970-972, explicitly hedged with 'might intuitively think', i.e. presented as a plausibility argument, not a proof). The equality '16 (hidden) + 8 (explicit) = 24' is an INFERENCE assembled from (a)-(d) by us, matching their own subtraction (c) against their own singularity count (d); it is not a sentence that appears in the paper.",
+    "tier": "L (identification) + B (arithmetic)"
+  },
+  "all_checks_pass": true
+}

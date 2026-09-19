@@ -1,0 +1,93 @@
+{
+ "chi_top_D": 24,
+ "chi_top_A": "24",
+ "agree": true,
+ "chain_24": {
+  "chi_O": "2",
+  "h02": "1",
+  "b2": 22,
+  "b2_plus": "3",
+  "b2_minus": "19",
+  "integral": true
+ },
+ "chain_perturbed": {
+  "0": {
+   "chi_O": "0",
+   "h02": "-1",
+   "b2": -2,
+   "b2_plus": "-1",
+   "b2_minus": "-1",
+   "integral": false
+  },
+  "12": {
+   "chi_O": "1",
+   "h02": "0",
+   "b2": 10,
+   "b2_plus": "1",
+   "b2_minus": "9",
+   "integral": true
+  },
+  "22": {
+   "chi_O": "11/6",
+   "h02": "5/6",
+   "b2": 20,
+   "b2_plus": "8/3",
+   "b2_minus": "52/3",
+   "integral": false
+  },
+  "26": {
+   "chi_O": "13/6",
+   "h02": "7/6",
+   "b2": 24,
+   "b2_plus": "10/3",
+   "b2_minus": "62/3",
+   "integral": false
+  },
+  "36": {
+   "chi_O": "3",
+   "h02": "2",
+   "b2": 34,
+   "b2_plus": "5",
+   "b2_minus": "29",
+   "integral": true
+  },
+  "48": {
+   "chi_O": "4",
+   "h02": "3",
+   "b2": 46,
+   "b2_plus": "7",
+   "b2_minus": "39",
+   "integral": true
+  }
+ },
+ "reverse_chain_no_chi_input": {
+  "chi_O": 2,
+  "chi_top_forced": 24,
+  "note": "chi_top is fixed by K trivial + b1=0 + Noether; C's chain could run this way (RIGID given the definition of K3) instead of reading 24 from a file"
+ },
+ "E8_det": 1,
+ "E8_signature": [
+  8,
+  0,
+  0
+ ],
+ "sig_3U+2(-E8)": [
+  3,
+  19,
+  0
+ ],
+ "det_3U+2(-E8)": -1,
+ "sig_7U+1(-E8)": [
+  7,
+  15,
+  0
+ ],
+ "det_7U+1(-E8)": -1,
+ "sig_11U+0(-E8)": [
+  11,
+  11,
+  0
+ ],
+ "det_11U+0(-E8)": -1,
+ "even_diag_all": true
+}

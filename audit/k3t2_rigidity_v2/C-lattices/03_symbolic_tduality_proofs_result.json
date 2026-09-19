@@ -1,0 +1,190 @@
+{
+  "track": "C",
+  "version": "v2",
+  "item": "3_symbolic_tduality_proofs",
+  "method": "sympy proof-by-computation with generic symbols/MatrixSymbols (no numeric sampling) for d = 1,2,3,4",
+  "by_dimension": {
+    "1": {
+      "A_factorized_duality": {
+        "all_squares_to_identity": true,
+        "all_preserve_eta": true,
+        "per_i": [
+          {
+            "i": 0,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          }
+        ]
+      },
+      "B_basis_change_preserves_eta": {
+        "claim": "P(A)^T eta P(A) == eta for P(A)=diag(A, A^-T), generic symbolic invertible A",
+        "holds": true
+      },
+      "C_eta_H_eta_eq_Hinv": {
+        "claim": "eta * H(G,0) * eta == H(G^-1,0), generic symbolic invertible G",
+        "holds": true
+      },
+      "D1_minimizer_identity_in_eigenvalues": {
+        "symbols": [
+          "x1"
+        ],
+        "claim": "sum_i (x_i + 1/x_i - 2) == sum_i (x_i-1)^2/x_i, generic positive symbols",
+        "difference_simplifies_to_zero": true,
+        "structural_nonnegativity": "each term (x_i-1)^2/x_i is a square divided by a symbol assumed positive, hence >=0, with equality iff x_i==1 -- true for every value of x_i, not checked pointwise"
+      }
+    },
+    "2": {
+      "A_factorized_duality": {
+        "all_squares_to_identity": true,
+        "all_preserve_eta": true,
+        "per_i": [
+          {
+            "i": 0,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          },
+          {
+            "i": 1,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          }
+        ]
+      },
+      "B_basis_change_preserves_eta": {
+        "claim": "P(A)^T eta P(A) == eta for P(A)=diag(A, A^-T), generic symbolic invertible A",
+        "holds": true
+      },
+      "C_eta_H_eta_eq_Hinv": {
+        "claim": "eta * H(G,0) * eta == H(G^-1,0), generic symbolic invertible G",
+        "holds": true
+      },
+      "D1_minimizer_identity_in_eigenvalues": {
+        "symbols": [
+          "x1",
+          "x2"
+        ],
+        "claim": "sum_i (x_i + 1/x_i - 2) == sum_i (x_i-1)^2/x_i, generic positive symbols",
+        "difference_simplifies_to_zero": true,
+        "structural_nonnegativity": "each term (x_i-1)^2/x_i is a square divided by a symbol assumed positive, hence >=0, with equality iff x_i==1 -- true for every value of x_i, not checked pointwise"
+      }
+    },
+    "3": {
+      "A_factorized_duality": {
+        "all_squares_to_identity": true,
+        "all_preserve_eta": true,
+        "per_i": [
+          {
+            "i": 0,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          },
+          {
+            "i": 1,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          },
+          {
+            "i": 2,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          }
+        ]
+      },
+      "B_basis_change_preserves_eta": {
+        "claim": "P(A)^T eta P(A) == eta for P(A)=diag(A, A^-T), generic symbolic invertible A",
+        "holds": true
+      },
+      "C_eta_H_eta_eq_Hinv": {
+        "claim": "eta * H(G,0) * eta == H(G^-1,0), generic symbolic invertible G",
+        "holds": true
+      },
+      "D1_minimizer_identity_in_eigenvalues": {
+        "symbols": [
+          "x1",
+          "x2",
+          "x3"
+        ],
+        "claim": "sum_i (x_i + 1/x_i - 2) == sum_i (x_i-1)^2/x_i, generic positive symbols",
+        "difference_simplifies_to_zero": true,
+        "structural_nonnegativity": "each term (x_i-1)^2/x_i is a square divided by a symbol assumed positive, hence >=0, with equality iff x_i==1 -- true for every value of x_i, not checked pointwise"
+      }
+    },
+    "4": {
+      "A_factorized_duality": {
+        "all_squares_to_identity": true,
+        "all_preserve_eta": true,
+        "per_i": [
+          {
+            "i": 0,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          },
+          {
+            "i": 1,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          },
+          {
+            "i": 2,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          },
+          {
+            "i": 3,
+            "K_i_squares_to_identity": true,
+            "K_i_preserves_eta": true
+          }
+        ]
+      },
+      "B_basis_change_preserves_eta": {
+        "claim": "P(A)^T eta P(A) == eta for P(A)=diag(A, A^-T), generic symbolic invertible A",
+        "holds": true
+      },
+      "C_eta_H_eta_eq_Hinv": {
+        "claim": "eta * H(G,0) * eta == H(G^-1,0), generic symbolic invertible G",
+        "holds": true
+      },
+      "D1_minimizer_identity_in_eigenvalues": {
+        "symbols": [
+          "x1",
+          "x2",
+          "x3",
+          "x4"
+        ],
+        "claim": "sum_i (x_i + 1/x_i - 2) == sum_i (x_i-1)^2/x_i, generic positive symbols",
+        "difference_simplifies_to_zero": true,
+        "structural_nonnegativity": "each term (x_i-1)^2/x_i is a square divided by a symbol assumed positive, hence >=0, with equality iff x_i==1 -- true for every value of x_i, not checked pointwise"
+      }
+    }
+  },
+  "D2_fully_symbolic_d2_spd_check": {
+    "matrix": "G = [[a,b],[b,c]], a,b,c abstract sympy symbols (SPD region: a>0, a*c-b**2>0, i.e. Sylvester's criterion for n=2, computed here not asserted)",
+    "det_G_symbolic": "a*c - b**2",
+    "eigenvalues_symbolic": [
+      "a/2 + c/2 - sqrt(a**2 - 2*a*c + 4*b**2 + c**2)/2",
+      "a/2 + c/2 + sqrt(a**2 - 2*a*c + 4*b**2 + c**2)/2"
+    ],
+    "sum_of_eigenvalues_minus_trace_simplifies_to_zero": true,
+    "product_of_eigenvalues_minus_det_simplifies_to_zero": true,
+    "f_entries_symbolic": "(a + c + (a*c - b**2)*(a + c - 4))/(a*c - b**2)",
+    "f_eigs_symbolic": "(a**2*c - a*b**2 + a*c**2 - 4*a*c + a - b**2*c + 4*b**2 + c)/(a*c - b**2)",
+    "f_entries_minus_f_eigs_simplifies_to_zero": true,
+    "conclusion": "the entry-level function f(a,b,c)=trG+trG^-1-4 and the eigenvalue-level function (x1-1)^2/x1+(x2-1)^2/x2 are the SAME symbolic function of (a,b,c) for a generic 2x2 symmetric matrix -- ties D1's abstract eigenvalue argument to the explicit SPD entry family."
+  },
+  "implicit_structural_inputs_for_D1_general_d": {
+    "note": "D1 proves sum_i(x_i+1/x_i-2) == sum_i(x_i-1)^2/x_i as a symbol identity in x_1..x_d, and D2 ties this to an explicit symmetric-matrix family ONLY for d=2 (entry-level check). Extending D2's entry-level tie-back to d=3,4 relies on two further standard linear-algebra facts, named here explicitly rather than left implicit, since neither is re-derived from more primitive data in this script:",
+    "inputs": [
+      "tr(G) is conjugation-invariant / equals the sum of eigenvalues with multiplicity, for ANY symmetric (real, diagonalizable) matrix G, any d -- standard fact, used to identify tr(G) with sum_i x_i for d=3,4 as well as d=2.",
+      "if G has eigenvalues x_1..x_d (all nonzero, since G is SPD), then G^{-1} has eigenvalues 1/x_1..1/x_d -- standard fact (eigenvectors of G are eigenvectors of G^{-1} with reciprocal eigenvalues), used to identify tr(G^{-1}) with sum_i 1/x_i for d=3,4 as well as d=2."
+    ],
+    "entry_level_symbolic_verification_done_for": "d=2 only (D2, above)",
+    "entry_level_symbolic_verification_not_done_for": "d=3, d=4 (would require symbolic eigenvalues of a generic 3x3/4x4 symmetric matrix, i.e. roots of a cubic/quartic characteristic polynomial in radicals -- left out of this run; see could_not_do)"
+  },
+  "all_claims_hold_for_all_d_1_to_4": true,
+  "negative_control": {
+    "description": "a 'broken' 2d x 2d matrix with an extra off-diagonal 1 added to the identity WITHOUT zeroing the matching diagonal entries (i.e. NOT the coordinate-swap K_i) must fail to square to the identity",
+    "d": 2,
+    "squares_to_identity": false,
+    "control_passes_i_e_correctly_fails": true
+  }
+}

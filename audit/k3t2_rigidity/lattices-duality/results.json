@@ -1,0 +1,812 @@
+{
+  "track": "C",
+  "title": "K3 x T2 lattice/T-duality mathematics: exact-arithmetic checks and zero-free-parameter rigidity tests",
+  "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python",
+  "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2",
+  "branch": "loop/k3t2-rigidity",
+  "items": {
+    "01_e8_result.json": {
+      "track": "C",
+      "item": "1_e8_cartan",
+      "method": "Cartan matrix built from Dynkin-diagram adjacency (Bourbaki labeling); det/minors via sympy exact rationals; roots via exact Weyl-reflection closure c -> c - (Cc)_i e_i on integer coefficient vectors (no R^8 embedding).",
+      "cartan_matrix": [
+        [
+          2,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          -1,
+          0,
+          2,
+          -1,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          -1,
+          -1,
+          2,
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          -1,
+          2,
+          -1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          -1,
+          2,
+          -1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          2,
+          -1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -1,
+          2
+        ]
+      ],
+      "determinant": {
+        "value": "1",
+        "exact": true
+      },
+      "is_even": true,
+      "leading_principal_minors": [
+        "2",
+        "4",
+        "6",
+        "5",
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "is_positive_definite": true,
+      "root_enumeration": {
+        "num_roots_found": 240,
+        "all_have_norm2_exactly_2": true,
+        "num_bad_norm2_during_bfs": 0
+      },
+      "negative_control": {
+        "description": "coefficient vector 2*e_1: has norm^2 = 8 != 2, and was checked to be absent from the reflection-closure set generated above",
+        "vector": [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "norm2": 8,
+        "in_generated_root_set": false,
+        "control_passes": true
+      },
+      "expected": {
+        "determinant": 1,
+        "num_roots": 240,
+        "source": "standard E8 root-system facts (determinant of E8 Cartan matrix = 1, 240 roots), from memory, unverified prior to this computation -- filled in AFTER computing the fields above"
+      }
+    },
+    "02_k3_mukai_gamma_result.json": {
+      "track": "C",
+      "item": "2_k3_mukai_gamma622",
+      "method": "Explicit block-diagonal Gram matrices from U=[[0,1],[1,0]] and the E8 Cartan matrix (rebuilt from Dynkin adjacency); rank/det/evenness read off the assembled matrix; signature computed by two independent exact methods (congruence diagonalization over Q, and Sturm-sequence sign counting on the exact characteristic polynomial) on the FULL matrix, not assumed additive.",
+      "results": {
+        "K3_3U_2negE8": {
+          "name": "K3 = 3U + 2(-E8)",
+          "rank": 22,
+          "determinant": "-1",
+          "is_even": true,
+          "is_unimodular": true,
+          "signature_method_A_congruence_diagonalization": {
+            "p": 3,
+            "q": 19,
+            "zero": 0
+          },
+          "signature_method_B_sturm_charpoly": {
+            "p": 3,
+            "q": 19,
+            "zero": 0
+          },
+          "methods_agree": true,
+          "expected": {
+            "signature": [
+              3,
+              19
+            ],
+            "det": 1,
+            "even": true,
+            "source": "standard K3 lattice fact, from memory, unverified prior to computation"
+          }
+        },
+        "Mukai_K3_plus_U": {
+          "name": "Mukai = K3 + U",
+          "rank": 24,
+          "determinant": "1",
+          "is_even": true,
+          "is_unimodular": true,
+          "signature_method_A_congruence_diagonalization": {
+            "p": 4,
+            "q": 20,
+            "zero": 0
+          },
+          "signature_method_B_sturm_charpoly": {
+            "p": 4,
+            "q": 20,
+            "zero": 0
+          },
+          "methods_agree": true,
+          "expected": {
+            "signature": [
+              4,
+              20
+            ],
+            "det": 1,
+            "even": true,
+            "source": "standard Mukai lattice fact, from memory, unverified prior to computation"
+          }
+        },
+        "Gamma_6_22": {
+          "name": "Gamma^{6,22} = 6U + 2(-E8)",
+          "rank": 28,
+          "determinant": "1",
+          "is_even": true,
+          "is_unimodular": true,
+          "signature_method_A_congruence_diagonalization": {
+            "p": 6,
+            "q": 22,
+            "zero": 0
+          },
+          "signature_method_B_sturm_charpoly": {
+            "p": 6,
+            "q": 22,
+            "zero": 0
+          },
+          "methods_agree": true,
+          "expected": {
+            "signature": [
+              6,
+              22
+            ],
+            "det": 1,
+            "even": true,
+            "source": "task statement / standard K3xT2 heterotic-type-II charge lattice fact, from memory, unverified prior to computation"
+          }
+        }
+      }
+    },
+    "03_oddz_checks_result.json": {
+      "track": "C",
+      "item": "3_oddz_checks",
+      "method": "Exact sympy Rational/Integer arithmetic; eta=[[0,I],[I,0]] block form; 200 seeded random samples per check per d (seed=20260918+d, python random.Random, reproducible); GL(d,Z) elements built by composing random unimodular row operations onto the identity (guarantees exact det=+-1, not sampled-and-filtered).",
+      "n_samples_per_check": 200,
+      "results_by_d": {
+        "2": {
+          "d": 2,
+          "theta_shift_preserves_eta": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          },
+          "negative_control_symmetric_theta": {
+            "num_samples": 200,
+            "num_correctly_failing": 200,
+            "control_passes": true
+          },
+          "basis_change_preserves_eta": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          },
+          "factorized_duality_preserves_eta": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          },
+          "factorized_duality_squares_to_identity": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          },
+          "full_eta_squares_to_identity": true,
+          "generalized_metric_identity_eta_H_eta_eq_H_Ginv": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          }
+        },
+        "3": {
+          "d": 3,
+          "theta_shift_preserves_eta": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          },
+          "negative_control_symmetric_theta": {
+            "num_samples": 200,
+            "num_correctly_failing": 200,
+            "control_passes": true
+          },
+          "basis_change_preserves_eta": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          },
+          "factorized_duality_preserves_eta": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          },
+          "factorized_duality_squares_to_identity": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          },
+          "full_eta_squares_to_identity": true,
+          "generalized_metric_identity_eta_H_eta_eq_H_Ginv": {
+            "passed": 200,
+            "total": 200,
+            "all_passed": true
+          }
+        }
+      }
+    },
+    "04_dual_scale_bound_result.json": {
+      "track": "C",
+      "item": "4_dual_scale_bound",
+      "method": "Exact sympy Rational for random-SPD-sample bound (tr G + tr G^-1 - 2d >= 0, each sample checked exactly); algebraic identity x+1/x-2=(x-1)^2/x checked exactly via sympy; equality-iff-G=I demonstrated by a float perturbation scan around G=I (explicitly marked non-exact -- eigenvalue signs / trace bound are the only floats in this run, per ground rules).",
+      "algebraic_identity_x_plus_1_over_x_minus_2_eq_square_over_x": true,
+      "by_dimension": {
+        "1": {
+          "random_spd_sample_bound": {
+            "n_samples": 2000,
+            "all_f_nonnegative": true,
+            "min_f_observed_exact": "1/2",
+            "exact": true
+          },
+          "perturbation_scan_equality_check": {
+            "f_at_identity_exact_formula": 0.0,
+            "n_perturbations_checked": 180,
+            "min_f_for_eps_neq_0": 5.98775695692666e-09,
+            "violations": [],
+            "equality_iff_G_eq_I_supported": true,
+            "exact": false
+          }
+        },
+        "2": {
+          "random_spd_sample_bound": {
+            "n_samples": 2000,
+            "all_f_nonnegative": true,
+            "min_f_observed_exact": "8/3",
+            "exact": true
+          },
+          "perturbation_scan_equality_check": {
+            "f_at_identity_exact_formula": 0.0,
+            "n_perturbations_checked": 180,
+            "min_f_for_eps_neq_0": 2.867761225466836e-05,
+            "violations": [],
+            "equality_iff_G_eq_I_supported": true,
+            "exact": false
+          }
+        },
+        "3": {
+          "random_spd_sample_bound": {
+            "n_samples": 2000,
+            "all_f_nonnegative": true,
+            "min_f_observed_exact": "463/40",
+            "exact": true
+          },
+          "perturbation_scan_equality_check": {
+            "f_at_identity_exact_formula": 0.0,
+            "n_perturbations_checked": 180,
+            "min_f_for_eps_neq_0": 5.236803264629941e-05,
+            "violations": [],
+            "equality_iff_G_eq_I_supported": true,
+            "exact": false
+          }
+        },
+        "4": {
+          "random_spd_sample_bound": {
+            "n_samples": 2000,
+            "all_f_nonnegative": true,
+            "min_f_observed_exact": "274818/7529",
+            "exact": true
+          },
+          "perturbation_scan_equality_check": {
+            "f_at_identity_exact_formula": 0.0,
+            "n_perturbations_checked": 180,
+            "min_f_for_eps_neq_0": 0.00039224629586342985,
+            "violations": [],
+            "equality_iff_G_eq_I_supported": true,
+            "exact": false
+          }
+        },
+        "5": {
+          "random_spd_sample_bound": {
+            "n_samples": 2000,
+            "all_f_nonnegative": true,
+            "min_f_observed_exact": "7956599/127334",
+            "exact": true
+          },
+          "perturbation_scan_equality_check": {
+            "f_at_identity_exact_formula": 0.0,
+            "n_perturbations_checked": 180,
+            "min_f_for_eps_neq_0": 0.0007258337069835363,
+            "violations": [],
+            "equality_iff_G_eq_I_supported": true,
+            "exact": false
+          }
+        },
+        "6": {
+          "random_spd_sample_bound": {
+            "n_samples": 2000,
+            "all_f_nonnegative": true,
+            "min_f_observed_exact": "1747937976/16576805",
+            "exact": true
+          },
+          "perturbation_scan_equality_check": {
+            "f_at_identity_exact_formula": 0.0,
+            "n_perturbations_checked": 180,
+            "min_f_for_eps_neq_0": 0.0014747950929976383,
+            "violations": [],
+            "equality_iff_G_eq_I_supported": true,
+            "exact": false
+          }
+        }
+      }
+    },
+    "05_tadpole_arithmetic_result.json": {
+      "track": "C",
+      "item": "5_tadpole_arithmetic",
+      "method": "Euler characteristic from given Betti numbers via alternating sum; Kunneth formula for products verified two ways (direct Betti-number convolution vs. the chi(X)*chi(Y) factorization) and shown to agree, rather than assuming multiplicativity.",
+      "K3": {
+        "betti_numbers_b0_b4": [
+          1,
+          0,
+          22,
+          0,
+          1
+        ],
+        "euler_characteristic": 24,
+        "expected": {
+          "value": 24,
+          "source": "standard K3 fact, from memory, unverified prior to computation"
+        }
+      },
+      "T2": {
+        "betti_numbers_b0_b2": [
+          1,
+          2,
+          1
+        ],
+        "euler_characteristic": 0,
+        "expected": {
+          "value": 0,
+          "source": "standard T^2 fact (torus Euler char = 0), from memory, unverified prior to computation"
+        }
+      },
+      "K3_x_K3": {
+        "betti_numbers_via_kunneth": [
+          1,
+          0,
+          44,
+          0,
+          486,
+          0,
+          44,
+          0,
+          1
+        ],
+        "chi_direct_from_kunneth_betti": 576,
+        "chi_via_multiplicativity_chiX_times_chiY": 576,
+        "two_methods_agree": true,
+        "chi_over_24_exact": "24"
+      },
+      "K3_x_T2": {
+        "betti_numbers_via_kunneth": [
+          1,
+          2,
+          23,
+          44,
+          23,
+          2,
+          1
+        ],
+        "chi_direct_from_kunneth_betti": 0,
+        "chi_via_multiplicativity_chiX_times_chiY": 0,
+        "two_methods_agree": true,
+        "chi_over_24_exact": "0",
+        "note": "chi(K3 x T2) = chi(K3) * chi(T2) = chi(K3) * 0 = 0, since T2 has vanishing Euler characteristic (it is a group manifold / has a nowhere-vanishing vector field); this is exact, not a numerical coincidence, and follows directly from Kunneth applied to the given Betti numbers."
+      },
+      "negative_control": {
+        "description": "perturbing K3's b2 from 22 to 23 (not the real K3 Hodge number) must change chi",
+        "chi_with_perturbed_betti": 25,
+        "chi_with_true_betti": 24,
+        "control_passes": true
+      }
+    },
+    "06_rigidity_a_result.json": {
+      "track": "C",
+      "item": "rigidity_a_lattice_mn_enum",
+      "rigidity_test": {
+        "parameter_inserted": "(m, n) = number of U copies, number of (-E8) copies",
+        "scanned": "all (m,n) with m,n>=0 and 2m+8n=22 (mechanically generated, 3 candidates: [(11, 0), (7, 1), (3, 2)])",
+        "conditions_checked_intrinsic": [
+          "rank == 22 (by construction of the scan, always true)",
+          "even (all diagonal Gram entries even)",
+          "unimodular (|det| == 1)",
+          "signature has zero-dimensional radical (no null vectors, z==0)",
+          "(p - q) mod 8 == 0 (even-unimodular-lattice constraint, computed not assumed)"
+        ],
+        "condition_checked_external_input": "signature equals (3,19) -- NOT derived in this script; this is the K3 signature computed independently in item 2 from K3's given Betti/Hodge numbers (Hodge index theorem), taken here as an external target, not re-derived from (m,n) alone",
+        "solution_set_from_intrinsic_conditions_alone": [
+          [
+            11,
+            0
+          ],
+          [
+            7,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "intrinsic_conditions_fix_mn_uniquely": false,
+        "solution_set_after_also_requiring_target_signature": [
+          [
+            3,
+            2
+          ]
+        ],
+        "negative_control": {
+          "present": true,
+          "failing_candidates_under_full_condition_set": [
+            [
+              11,
+              0,
+              [
+                11,
+                11,
+                0
+              ],
+              0
+            ],
+            [
+              7,
+              1,
+              [
+                7,
+                15,
+                0
+              ],
+              0
+            ]
+          ]
+        },
+        "zero_free_parameters_supported_by_intrinsic_lattice_conditions_alone": false,
+        "zero_free_parameters_supported_conditional_on_target_signature_3_19": true,
+        "honest_summary": "Rank-22 + even + unimodular + no-radical + (p-q mod 8 == 0) does NOT fix (m,n): 3 candidates satisfy all of these intrinsic conditions ([(11, 0), (7, 1), (3, 2)]), each with a DIFFERENT signature ([[11, 11], [7, 15], [3, 19]]). Only after ALSO requiring the target signature (3,19) -- an input taken from K3's known Hodge numbers, not derived here from (m,n) -- does the solution set collapse to the single point (m,n)=(3,2)."
+      },
+      "full_scan_results": [
+        {
+          "m": 11,
+          "n": 0,
+          "rank": 22,
+          "determinant": "-1",
+          "is_even": true,
+          "is_unimodular": true,
+          "signature_p_q_zero": [
+            11,
+            11,
+            0
+          ],
+          "methods_agree": true,
+          "p_minus_q_mod_8": 0,
+          "intrinsic_conditions_hold": true,
+          "is_signature_3_19": false,
+          "all_consistency_conditions_hold": false
+        },
+        {
+          "m": 7,
+          "n": 1,
+          "rank": 22,
+          "determinant": "-1",
+          "is_even": true,
+          "is_unimodular": true,
+          "signature_p_q_zero": [
+            7,
+            15,
+            0
+          ],
+          "methods_agree": true,
+          "p_minus_q_mod_8": 0,
+          "intrinsic_conditions_hold": true,
+          "is_signature_3_19": false,
+          "all_consistency_conditions_hold": false
+        },
+        {
+          "m": 3,
+          "n": 2,
+          "rank": 22,
+          "determinant": "-1",
+          "is_even": true,
+          "is_unimodular": true,
+          "signature_p_q_zero": [
+            3,
+            19,
+            0
+          ],
+          "methods_agree": true,
+          "p_minus_q_mod_8": 0,
+          "intrinsic_conditions_hold": true,
+          "is_signature_3_19": true,
+          "all_consistency_conditions_hold": true
+        }
+      ],
+      "expected": {
+        "solution": [
+          3,
+          2
+        ],
+        "source": "standard K3 = 3U + 2(-E8) decomposition (task statement / memory), unverified prior to this computation -- filled in AFTER the scan above"
+      }
+    },
+    "07_rigidity_b_result.json": {
+      "track": "C",
+      "item": "rigidity_b_tduality_radius_map",
+      "rigidity_test": {
+        "parameter_inserted": "lambda in R -> lambda*alpha'/R",
+        "scanned": "12 rationals p/q, p in -4..4 (p!=0), q in {1,2}: ['-4', '-3', '-2', '-3/2', '-1', '-1/2', '1/2', '1', '3/2', '2', '3', '4']",
+        "conditions_checked": [
+          "(I) involution: f(f(R)) == R identically (symbolic)",
+          "(II) spectrum preservation: m^2 formula invariant under R->f(R), (n,w)->(w,n), identically (symbolic)",
+          "(III) positivity: lambda > 0 (R>0 must map to R'>0)"
+        ],
+        "solution_set_under_task_literal_conditions_I_and_II_only": [
+          "-1",
+          "1"
+        ],
+        "task_literal_conditions_fix_lambda_uniquely": false,
+        "solution_set_with_added_physical_positivity_condition_III": [
+          "1"
+        ],
+        "negative_control_failing_candidates_under_full_condition_set": [
+          {
+            "lambda": "-4",
+            "involution": true,
+            "spectrum": false,
+            "positivity": false
+          },
+          {
+            "lambda": "-3",
+            "involution": true,
+            "spectrum": false,
+            "positivity": false
+          },
+          {
+            "lambda": "-2",
+            "involution": true,
+            "spectrum": false,
+            "positivity": false
+          },
+          {
+            "lambda": "-3/2",
+            "involution": true,
+            "spectrum": false,
+            "positivity": false
+          },
+          {
+            "lambda": "-1",
+            "involution": true,
+            "spectrum": true,
+            "positivity": false
+          },
+          {
+            "lambda": "-1/2",
+            "involution": true,
+            "spectrum": false,
+            "positivity": false
+          },
+          {
+            "lambda": "1/2",
+            "involution": true,
+            "spectrum": false,
+            "positivity": true
+          },
+          {
+            "lambda": "3/2",
+            "involution": true,
+            "spectrum": false,
+            "positivity": true
+          },
+          {
+            "lambda": "2",
+            "involution": true,
+            "spectrum": false,
+            "positivity": true
+          },
+          {
+            "lambda": "3",
+            "involution": true,
+            "spectrum": false,
+            "positivity": true
+          },
+          {
+            "lambda": "4",
+            "involution": true,
+            "spectrum": false,
+            "positivity": true
+          }
+        ],
+        "zero_free_parameters_supported_by_task_literal_conditions_alone": false,
+        "zero_free_parameters_supported_with_added_positivity_condition": true,
+        "honest_summary": "The task's two literal conditions (involution + spectrum preservation) leave 2 solutions: ['-1', '1'] (lambda^2=1, a discrete Z2 sign ambiguity -- NOT a single point). Condition (III), radius positivity, is an ADDED physical input beyond what the task names; only with it does the solution set collapse to the single point lambda=+1."
+      },
+      "full_scan": [
+        {
+          "lambda": "-4",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "-15*R**2*w**2/(16*alpha_prime**2) + 15*n**2/R**2",
+          "positivity_holds": false,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "-3",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "-8*R**2*w**2/(9*alpha_prime**2) + 8*n**2/R**2",
+          "positivity_holds": false,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "-2",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "-3*R**2*w**2/(4*alpha_prime**2) + 3*n**2/R**2",
+          "positivity_holds": false,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "-3/2",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "-5*R**2*w**2/(9*alpha_prime**2) + 5*n**2/(4*R**2)",
+          "positivity_holds": false,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "-1",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": true,
+          "spectrum_residual": "0",
+          "positivity_holds": false,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "-1/2",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "3*R**2*w**2/alpha_prime**2 - 3*n**2/(4*R**2)",
+          "positivity_holds": false,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "1/2",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "3*R**2*w**2/alpha_prime**2 - 3*n**2/(4*R**2)",
+          "positivity_holds": true,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "1",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": true,
+          "spectrum_residual": "0",
+          "positivity_holds": true,
+          "all_conditions_hold": true
+        },
+        {
+          "lambda": "3/2",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "-5*R**2*w**2/(9*alpha_prime**2) + 5*n**2/(4*R**2)",
+          "positivity_holds": true,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "2",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "-3*R**2*w**2/(4*alpha_prime**2) + 3*n**2/R**2",
+          "positivity_holds": true,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "3",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "-8*R**2*w**2/(9*alpha_prime**2) + 8*n**2/R**2",
+          "positivity_holds": true,
+          "all_conditions_hold": false
+        },
+        {
+          "lambda": "4",
+          "involution_holds": true,
+          "involution_residual": "0",
+          "spectrum_preservation_holds": false,
+          "spectrum_residual": "-15*R**2*w**2/(16*alpha_prime**2) + 15*n**2/R**2",
+          "positivity_holds": true,
+          "all_conditions_hold": false
+        }
+      ],
+      "note": "Condition (I) holds algebraically for EVERY nonzero lambda (f(f(R))=lambda*alpha'/(lambda*alpha'/R)=R identically) -- it does not by itself constrain lambda. Condition (II), the closed-string spectrum identity, holds exactly for lambda=+1 and lambda=-1 (both make (n/R)^2+(wR/ap)^2 symmetric), i.e. the physics only fixes lambda^2=1. Condition (III), radius positivity, then breaks the +-1 degeneracy and leaves the single physical solution lambda=+1 (the standard R -> alpha'/R self-T-duality map).",
+      "expected": {
+        "lambda": 1,
+        "source": "standard bosonic-string T-duality self-dual map R -> alpha'/R (memory, unverified prior to computation)"
+      }
+    }
+  },
+  "could_not_do": []
+}

@@ -1,0 +1,78 @@
+{
+  "track": "C",
+  "version": "v2",
+  "item": "4_tadpole_budget",
+  "method": "budget = chi_top, READ from the same provenance file as 06_chained_rigidity.py (no typed Betti numbers, no literal 24); mechanical enumeration of all natural (flux, n) with flux + n == budget, using the read-in budget as a variable inside the selecting condition.",
+  "provenance": {
+    "chi_top_read_from_file": "D-tda/exports.json",
+    "chi_top_read_from_key": "chi_K3_resolved",
+    "chi_top_value": 24
+  },
+  "budget_used_in_enumeration": 24,
+  "num_solutions_enumerated": 25,
+  "all_n_le_budget": true,
+  "flux_zero_implies_n_eq_budget": true,
+  "flux_zero_solution": {
+    "flux": 0,
+    "n": 24
+  },
+  "negative_control": {
+    "description": "(flux, n) = (1, budget) must fail flux + n == budget",
+    "flux": 1,
+    "n": 24,
+    "flux_plus_n": 25,
+    "budget": 24,
+    "control_passes": true
+  },
+  "solutions_sample_head_and_tail": {
+    "first_5": [
+      {
+        "flux": 0,
+        "n": 24
+      },
+      {
+        "flux": 1,
+        "n": 23
+      },
+      {
+        "flux": 2,
+        "n": 22
+      },
+      {
+        "flux": 3,
+        "n": 21
+      },
+      {
+        "flux": 4,
+        "n": 20
+      }
+    ],
+    "last_5": [
+      {
+        "flux": 20,
+        "n": 4
+      },
+      {
+        "flux": 21,
+        "n": 3
+      },
+      {
+        "flux": 22,
+        "n": 2
+      },
+      {
+        "flux": 23,
+        "n": 1
+      },
+      {
+        "flux": 24,
+        "n": 0
+      }
+    ]
+  },
+  "classification": "NORMALISATION: budget = chi_top is fixed once chi_top is read from Track A's file (an external input, stated as such above); GIVEN that budget, the constraint n<=budget and (flux=0 => n=budget) are trivial arithmetic facts about the linear relation flux+n=budget, not rigidity results -- reported here as the plain arithmetic content of the tadpole condition, per the ground rules' 'trivial but state it' instruction.",
+  "expected": {
+    "chi_top": 24,
+    "source": "standard K3 fact, from memory, unverified prior to computation -- filled in AFTER reading/computing budget above"
+  }
+}

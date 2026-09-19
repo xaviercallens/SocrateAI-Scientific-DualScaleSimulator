@@ -1,0 +1,98 @@
+{
+  "track": "E-flux",
+  "title": "Flux vacua on Type IIB K3 x T2/Z2 orientifold (Tripathy-Trivedi hep-th/0301139, cross-checked against BLPSSW hep-th/9605184)",
+  "tier": "L (physics identification / literature quotation) + B (exact integer arithmetic within a stated finite truncation)",
+  "sources": {
+    "TT": {
+      "file": "audit/k3t2_rigidity_v2/sources/hep-th_0301139_TripathyTrivedi.txt",
+      "sha256_of_pdf": "ee30a5aa021708a9d340864dcb071651b2e0f366578cedfc81b570f9c2838f18 (per sources/SHA256SUMS)"
+    },
+    "BLPSSW": {
+      "file": "audit/k3t2_rigidity_v2/sources/hep-th_9605184_BLPSSW.txt",
+      "sha256_of_pdf": "7c2dc68aa0492a29dbcb53fad2a098441684abcf825320158835ec88722cff6b (per sources/SHA256SUMS)"
+    }
+  },
+  "scripts_and_commands": [
+    {
+      "script": "scripts/tt_metric_checks.py",
+      "command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/E-flux/scripts/tt_metric_checks.py",
+      "output": "tt_metric_checks_results.json",
+      "purpose": "Validate the (A.6)-(A.7) diagonal lattice basis and the N_flux=2*alpha_x^2 formula against TT's own worked examples (4.15)-(4.16), (4.31)-(4.32); flags a possible factor-of-2 slip in the prose remark at line 941.",
+      "result": "all_numeric_checks_pass = true (all 4 checks pass)"
+    },
+    {
+      "script": "scripts/tadpole_bookkeeping.py",
+      "command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/E-flux/scripts/tadpole_bookkeeping.py",
+      "output": "tadpole_bookkeeping_results.json",
+      "purpose": "Part 1 (TT D3/D7/O7 bookkeeping, F-theory count) and Part 2 (BLPSSW five-brane/hidden-instanton count) with quotes and exact arithmetic.",
+      "result": "all_checks_pass = true (4*2+16*1=24=24*1; 24-8=16=16 orbifold singularities). BLPSSW's '16+8=24' is confirmed to be an INFERENCE we assembled, not a literal sentence in the paper (see part2.literal_vs_inference in the output and in quotes.json)."
+    },
+    {
+      "script": "scripts/flux_enumeration.py",
+      "command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/E-flux/scripts/flux_enumeration.py",
+      "output": "flux_enumeration_results.json",
+      "purpose": "Part 3: enumerate TT section-4.1 family flux vacua in truncations of Gamma_{3,3} (basis A.6-A.7), count (alpha_x,beta_x) pairs with/without the tadpole bound, orbit-canonicalise under a stated finite automorphism subgroup.",
+      "wall_time_s": 54.61
+    }
+  ],
+  "part1_D3_tadpole_bookkeeping": {
+    "orientifold_side": "4 O7-planes x 2 units + 16 D7-branes x 1 unit = 24 (TT lines 160-167)",
+    "F_theory_side": "24 (p,q) 7-branes x 1 unit = 24 (TT lines 180-183, footnote 1)",
+    "tadpole_equation_2_3": "(1/2) N_flux + N_D3 = 24  (TT line 171)",
+    "verified": true,
+    "detail": "see tadpole_bookkeeping_results.json:part1"
+  },
+  "part2_BLPSSW_fivebrane_count": {
+    "n1_plus_n5_eq_24": "BLPSSW line 205, from the Bianchi identity, LITERAL",
+    "eight_fivebranes": "BLPSSW lines 213-215, 964-966, LITERAL",
+    "subtraction_24_minus_8_eq_16": "BLPSSW line 968, LITERAL ('Since 24 are expected, 24-8=16 seem to be missing')",
+    "sixteen_orbifold_singularities": "BLPSSW line 970, LITERAL",
+    "the_sum_16_plus_8_eq_24": "INFERENCE assembled by us from the above four literal statements; BLPSSW never write it as an addition. Their own language around the singularity/hidden-instanton correspondence ('one might intuitively think') hedges it as a plausibility argument at the point it is introduced.",
+    "detail": "see tadpole_bookkeeping_results.json:part2 and quotes.json:part2"
+  },
+  "part3_flux_enumeration_summary": {
+    "family_used": "TT section 4.1: alpha_y=-beta_x, beta_y=alpha_x (eq 4.8); alpha_x^2=beta_x^2>0 (eq 4.9 + spacelike condition 3.31); alpha_x.beta_x=0 (eq 4.10); N_flux=2*alpha_x^2 (eq 4.13); tadpole alpha_x^2+N_D3=24, N_D3>=0 (eq 4.14/2.3).",
+    "basis": "TT App. A eqs (A.6)-(A.7): diagonal metric diag(+2,+2,+2,-2,-2,-2) on (e1,...,e6). NOTE: this is a DIFFERENT integral lattice presentation from TT's own (A.2)-(A.3) hyperbolic 'U+U+U' basis (det -1 vs -64); we use (A.6)-(A.7) because it is the ONLY one of the two that reproduces TT's own checked numbers (4.15)-(4.16); see lattice.py module docstring and tt_metric_checks_results.json.",
+    "structural_fact_independent_of_24": "Even flux coefficients (eq 2.5) + metric entries +-2 force alpha_x^2 = 8*sum(+-n_i^2) always a multiple of 8, for EVERY flux vector, regardless of any tadpole bound.",
+    "applying_the_24_input": "Combined with TT's tadpole bound alpha_x^2<=24 (itself derived from the D7/O7 count, part 1), the admissible alpha_x^2 is restricted to the 3-element set {8,16,24}, i.e. N_flux in {16,32,48}, N_D3 in {16,8,0}.",
+    "truncations": {
+      "rank2_e1e4_signature_1_1": {
+        "predicted": "EMPTY. Proof: for a real quadratic space of signature (p,q), if alpha_x^2>0 then the orthogonal complement alpha_x^perp has signature (p-1,q). At p=1 (our rank-2, signature-(1,1) truncation), alpha_x^perp is 1-dimensional with signature (0,1), i.e. NEGATIVE-SEMIDEFINITE, so any beta_x orthogonal to alpha_x has beta_x^2<=0. This contradicts eq (4.9)+the spacelike requirement (3.31), beta_x^2=alpha_x^2>0. Hence no rank-2, signature-(1,1) truncation of any positive-norm alpha_x can support an orthogonal, equal-positive-norm beta_x. This argument needs p>=2, which is exactly why rank-4 (signature (2,2)) succeeds and rank-2 (signature (1,1)) fails -- a genuine structural, dimension-driven statement, not merely an empirical non-observation up to N=4.",
+        "checked": "CONFIRMED computationally as well: 0 valid pairs at bounds N=1,2,3,4, with or without the tadpole bound (consistent with, and not merely coincidental given, the proof above).",
+        "note": "This is the required 'neighbouring value demonstrably fails' check: rank-4 (p=2) succeeds, rank-2 (p=1) fails, for a structural (signature) reason independent of the tadpole value 24."
+      },
+      "rank4_e1e2e4e5_signature_2_2_PRIMARY": {
+        "bounds_N": [1, 2, 3, 4],
+        "with_tadpole_pair_counts": {"N=1": 80, "N=2": 656, "N=3": 1616, "N=4": 3280},
+        "without_tadpole_pair_counts_negative_control": {"N=1": 80, "N=2": 1136, "N=3": 5600, "N=4": 18592},
+        "orbit_counts_under_order_64_automorphism_subgroup_tadpole_on": {"N=1": 3, "N=2": 13, "N=3": 30, "N=4": 57},
+        "per_k_at_N4": {"k=1_(N_flux=16,N_D3=16)": 1032, "k=2_(N_flux=32,N_D3=8)": 520, "k=3_(N_flux=48,N_D3=0)": 1728}
+      },
+      "rank6_full_signature_3_3_SECONDARY": {
+        "bounds_N": [1, 2],
+        "with_tadpole_pair_counts": {"N=1": 6960, "N=2": 339600},
+        "without_tadpole_pair_counts_negative_control": {"N=1": 6960, "N=2": 556944},
+        "orbit_counts_under_order_2304_automorphism_subgroup_tadpole_on": {"N=1": 15},
+        "N2_orbit_not_computed": "Profiled at >20 minutes (339600 valid pairs x 2304 group elements), exceeds ~15min per-script budget; reported in could_not_do. Raw pair/vector counts at N=2 ARE reported above."
+      }
+    },
+    "negative_control_result": "CONFIRMED as designed, but with an important refinement flagged by the advisor and verified here: dropping the tadpole bound (without_tadpole columns) grows faster than keeping it, but BOTH grow without limit as N grows (rank4 with-tadpole PAIR counts: 80,656,1616,3280; orbit counts: 3,13,30,57 -- neither plateaus over N=1..4). This is because alpha_x^2<=24 does NOT bound the lattice coefficients n_i in indefinite signature (e.g. n=(3,0,2,2) gives alpha_x^2=8*(9-4-4)=8, well within bound, at larger entries). CONCLUSION: the finite list of flux vacua reported here is finite ONLY because of the STATED ENTRY BOUND N, not because of the tadpole condition by itself. The tadpole condition's real, N-independent structural content is the discrete 3-element admissible set {N_D3=16,8,0} derived above from 8|alpha_x^2, not a finite count of flux vectors."
+  },
+  "part4_unfixed_moduli": {
+    "summary": "TT abstract (lines 16-19): 'All the complex structure moduli and SOME of the Kahler moduli are stabilised.' In their worked example (4.15): TWENTY of the 22 Kahler directions of K3 (t_3,...,t_22, lines 884-890) plus the one Kahler modulus of T2 remain UNFIXED (only the 2-plane spanned by alpha_x,beta_x is constrained by primitivity, lines 841-846). Also unanalysed: 7-brane gauge-field moduli, 7-brane positions on T2, D3-brane positions (lines 195-198, 1718-1723).",
+    "detail": "see quotes.json:part4_unfixed_moduli"
+  },
+  "could_not_do": [
+    "Rank-6 orbit counts at N=2 (order-2304 automorphism subgroup applied to ~339,600 tadpole-satisfying pairs): profiled at >20 minutes, exceeds the ~15min per-script time budget. Raw (non-orbit) pair and vector counts at rank-6, N=2 ARE reported.",
+    "No quotient by the full (infinite, arithmetic) automorphism group Aut(Gamma_{3,3}) was computed anywhere -- only a stated FINITE subgroup (coordinate permutation within each signature block + independent sign flips, order 64 for rank-4, order 2304 for rank-6). Reported orbit counts are upper bounds on the number of physically distinct configurations and are NOT expected to converge as the entry bound N grows (confirmed: rank-4 orbit counts 3,13,30,57 for N=1..4, still growing at N=4).",
+    "The (A.2)-(A.3) TT hyperbolic 'U+U+U' basis presentation of Gamma_{3,3} was not used and its relation to the (A.6)-(A.7) diagonal basis used here was not reconciled beyond noting the two Gram matrices are not integrally equivalent (det -1 vs -64) -- this looks like an internal inconsistency in the source paper's own Appendix A, not something we can resolve from outside; every count in this track is stated as conditional on the (A.6)-(A.7) basis choice.",
+    "Only the TT section-4.1 flux family (eqs 4.8-4.10) was enumerated. TT's section 4.2 'common quadratic' family (eqs 4.24-4.32) and section 5's second branch (N=2 supersymmetry case) were used only as fixed-number metric-convention checks (tt_metric_checks.py) and were NOT enumerated over a truncation.",
+    "Primitivity (TT eq 3.34) and orbifold-singularity avoidance were taken on TT's own prose assurance ('It can be met easily', lines 841-843) for the section-4.1 family; we did not independently verify primitivity or singularity-avoidance for each individually enumerated (alpha_x,beta_x) pair.",
+    "The TT line-941 factor-of-2 discrepancy (flagged below) was not resolved -- we do not have grounds from the text alone to decide whether it is a typo or a different, unstated convention."
+  ],
+  "flagged_discrepancy_not_resolved": {
+    "location": "TT line 941 (prose, not a numbered equation)",
+    "statement": "'...choices of delta alpha_x, delta beta_x which give rise to a vacuum where N_flux=24 and no D3-branes need be added.'",
+    "issue": "Applying the numbered eq (2.3) as printed, (1/2)N_flux+N_D3=24, N_D3=0 saturation requires N_flux=48, not 24. Checked in tt_metric_checks_results.json (TT-line-941-remark-check). This affects only this prose aside; the numbered equations (4.14),(4.16),(4.32) all reproduce exactly."
+  }
+}

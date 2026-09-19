@@ -1,0 +1,63 @@
+{
+ "QCHK": 10,
+ "m_minus1": {
+  "statement": "Delta*psi_{-1} = G_0/A = 1/A (G_0=1 since Sym^0(K3)=point)",
+  "status": "definitional; no further identity to test per problem statement"
+ },
+ "m_0": {
+  "statement": "Delta*psi_0 = G_1/A =?= 2B/A",
+  "status": "holds identically BY CONSTRUCTION (c(D) were defined as the Fourier coefficients of 2B, so G_1:=sum_{s,t} c(4s-t^2) q^s y^t is 2B term-for-term)",
+  "note": "definitional: c(D) was extracted FROM B, so G_1 := sum c(D) q^n y^l == 2B identically; not an independent test."
+ },
+ "m_1": {
+  "statement": "4*Delta*psi_1 = 9*B^2/A + 3*E4*A  <=>  4*G_2 = 9*B^2 + 3*E4*A^2  (cleared A)",
+  "G2_derivation": "G_2 = 2*B^2 + B(q^2,y^2) + C2,  C2 = sum_{s,t} c(8s-t^2) q^s y^t  (from DMVV r=1,2 expansion to p^2, derived in module docstring)",
+  "identity_holds_to_order_q^QCHK": true,
+  "mismatches": {},
+  "sample_G2_terms (n,l)->coeff, n<=3": {
+   "(0, -2)": "3",
+   "(0, -1)": "42",
+   "(0, 0)": "234",
+   "(0, 1)": "42",
+   "(0, 2)": "3",
+   "(1, -3)": "42",
+   "(1, -2)": "360",
+   "(1, -1)": "-3114",
+   "(1, 0)": "5424",
+   "(1, 1)": "-3114",
+   "(1, 2)": "360",
+   "(1, 3)": "42",
+   "(2, -4)": "234",
+   "(2, -3)": "-3114",
+   "(2, -2)": "22752",
+   "(2, -1)": "-70614",
+   "(2, 0)": "101484",
+   "(2, 1)": "-70614",
+   "(2, 2)": "22752",
+   "(2, 3)": "-3114",
+   "(2, 4)": "234",
+   "(3, -5)": "42",
+   "(3, -4)": "5424",
+   "(3, -3)": "-70614",
+   "(3, -2)": "348384",
+   "(3, -1)": "-851028",
+   "(3, 0)": "1135584",
+   "(3, 1)": "-851028",
+   "(3, 2)": "348384",
+   "(3, 3)": "-70614",
+   "(3, 4)": "5424",
+   "(3, 5)": "42"
+  }
+ },
+ "negative_control_perturb_cD_by_1": {
+  "perturb_c(3)_by_+1": {
+   "num_mismatched_coeffs": 122,
+   "identity_breaks": true
+  },
+  "perturb_c(4)_by_+1": {
+   "num_mismatched_coeffs": 122,
+   "identity_breaks": true
+  },
+  "purpose": "Shows the m=1 identity 4G2=9B^2+3E4A^2 is a genuine, non-tautological consistency check: an arbitrary +1 shift in a single Fourier coefficient c(D) of the K3 elliptic genus breaks it. This is the rigidity evidence for TRACK B: the c(D) table (hence the DMVV structure built from it) admits no 1-integer deformation at D=3 or D=4 that preserves the m=1 identity."
+ }
+}

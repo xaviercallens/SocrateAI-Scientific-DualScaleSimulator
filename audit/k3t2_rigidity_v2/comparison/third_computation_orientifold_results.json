@@ -1,0 +1,86 @@
+{
+ "script": "comparison/third_computation_orientifold.py",
+ "command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python audit/k3t2_rigidity_v2/comparison/third_computation_orientifold.py",
+ "fixed_points_T2": {
+  "count": 4,
+  "points": [
+   [
+    "0",
+    "0"
+   ],
+   [
+    "0",
+    "1/2"
+   ],
+   [
+    "1/2",
+    "0"
+   ],
+   [
+    "1/2",
+    "1/2"
+   ]
+  ],
+  "grid_scanned": "(1/4)Z^2/Z^2 (16 points)"
+ },
+ "fixed_points_T4": {
+  "count": 16,
+  "grid_scanned": "(1/4)Z^4/Z^4 (256 points)"
+ },
+ "seven_brane_charge": {
+  "inputs_tier_L": {
+   "Q_O7_minus_in_D7_units": -4,
+   "Q_D7": 1,
+   "O7_location": "fixed points of z->-z on T^2 (O7 wraps K3)"
+  },
+  "n_O7_computed": 4,
+  "total_O7_charge_D7_units": -16,
+  "n_D7_needed_for_cancellation_computed": "16",
+  "total_D7_charge_D7_units": 16,
+  "net": 0
+ },
+ "negative_control_wrong_torus_T4": {
+  "n_O7_if_T4_fixed_points_used": 16,
+  "total_O7_charge_D7_units": -64,
+  "D7_needed_in_unit_charge": 64,
+  "reading": "the sealed LeanMaster TadpoleCancellation value -64 equals the T^4 (Kummer) fixed-point count x (-4); the orientifold of K3 x T^2 has its O7 planes at the T^2 fixed points"
+ },
+ "d3_tadpole": {
+  "input_betti_K3_from": "D-tda/results.json resolved_K3_betti_numbers (N=6 == N=8)",
+  "betti_K3": [
+   1,
+   0,
+   22,
+   0,
+   1
+  ],
+  "chi_K3": 24,
+  "betti_K3xK3_kunneth": [
+   1,
+   0,
+   44,
+   0,
+   486,
+   0,
+   44,
+   0,
+   1
+  ],
+  "chi_K3xK3": 576,
+  "chi_K3xK3_mod_24": 0,
+  "target_chi_K3xK3_over_24": "24",
+  "target_chi_K3_over_24_as_in_sealed_lean": "1",
+  "orientifold_D3_bookkeeping_tier_L": {
+   "induced_D3_per_O7": 2,
+   "induced_D3_per_D7": 1,
+   "total": 24,
+   "note": "per-object induced charges are tier-L inputs (TT lines 164-171); the counts n_O7, n_D7 are the ones computed above"
+  }
+ },
+ "verdicts": {
+  "d3_target_from_K3xK3": 24,
+  "d3_target_from_bookkeeping": 24,
+  "two_routes_agree": true,
+  "sealed_lean_d3_target_is_one_reproduced_only_by_chi_K3_over_24": true
+ }
+}

@@ -1,0 +1,133 @@
+{
+  "links": [
+    {
+      "link": "A.chi_from_genus == D.chi_K3_resolved",
+      "A_value": 24,
+      "A_source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/A-genus/exports.json",
+      "D_value": 24,
+      "D_source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/exports.json",
+      "consistent": true
+    },
+    {
+      "link": "B.c0 + 2*B.cm1 == B.chi_computed_c0_plus_2cm1 (internal)",
+      "c0": 20,
+      "cm1": 2,
+      "computed": 24,
+      "reported": 24,
+      "source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/B-dyons/part1_euler_numbers_results.json",
+      "consistent": true
+    },
+    {
+      "link": "B.part1.chi_computed == B.results.key_results.chi_K3_computed (internal)",
+      "part1_value": 24,
+      "part1_source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/B-dyons/part1_euler_numbers_results.json",
+      "results_value": 24,
+      "results_source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/B-dyons/results.json",
+      "consistent": true
+    },
+    {
+      "link": "B.chi_K3_computed == D.chi_K3_resolved (cross-track)",
+      "B_value": 24,
+      "B_source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/B-dyons/results.json",
+      "D_value": 24,
+      "D_source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/exports.json",
+      "consistent": true
+    },
+    {
+      "link": "C.chi_top_used == D.chi_K3_resolved (provenance pointer verified)",
+      "C_chi_top_used": 24,
+      "C_declared_source_file": "D-tda/exports.json",
+      "D_actual_value": 24,
+      "D_actual_source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/exports.json",
+      "named_path_matches_actual_D_file": true,
+      "consistent": true
+    },
+    {
+      "link": "C.(p+q) == D.b2_K3_resolved (rank agreement)",
+      "p": 3,
+      "q": 19,
+      "p_plus_q": 22,
+      "D_b2": 22,
+      "D_source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/exports.json",
+      "consistent": true
+    },
+    {
+      "link": "selected (m,n)=(3,2): m*U + n*(-E8) signature == C.derived_signature_p_q",
+      "computed_signature": [
+        3,
+        19
+      ],
+      "C_derived_signature": [
+        3,
+        19
+      ],
+      "consistent": true
+    },
+    {
+      "link": "selected (m,n) rank == D.b2_K3_resolved",
+      "computed_rank": 22,
+      "D_b2": 22,
+      "consistent": true
+    },
+    {
+      "link": "(C.p - C.q) mod 8 == 0 (even-unimodular necessary condition)",
+      "p_minus_q": -16,
+      "mod8": 0,
+      "consistent": true
+    }
+  ],
+  "all_consistent": true,
+  "definitional_inputs_not_computed_by_any_track": [
+    {
+      "quantity": "signature(U)",
+      "value": [
+        1,
+        1
+      ],
+      "reason": "definition of the hyperbolic lattice U"
+    },
+    {
+      "quantity": "signature(-E8)",
+      "value": [
+        0,
+        8
+      ],
+      "reason": "definition of the negative-definite E8 root lattice"
+    },
+    {
+      "quantity": "rank(U), rank(E8)",
+      "value": [
+        2,
+        8
+      ],
+      "reason": "standard rank of the hyperbolic plane / E8 root lattice"
+    },
+    {
+      "quantity": "even-unimodular signature rule (p-q) mod 8 == 0",
+      "reason": "classical lattice-theory fact (Milnor-Husemoller), used as an acceptance criterion, not computed by any track"
+    },
+    {
+      "quantity": "c1(K3) = 0",
+      "reason": "Calabi-Yau condition, assumed by Track C, not computed",
+      "source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/C-lattices/exports.json"
+    },
+    {
+      "quantity": "b1(K3) = 0",
+      "reason": "simply-connectedness, read from D-tda/exports.json (D.b1) and assumed by Track C",
+      "source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/exports.json",
+      "D_b1_value": 0
+    },
+    {
+      "quantity": "chi_top = 24 used by Track C's Kahler formula b2+ = 2*h^{2,0}+1",
+      "reason": "the formula itself (not just its numeric input chi_top) is a standard Hodge-theory identity assumed, not derived, by Track C",
+      "source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/C-lattices/exports.json"
+    }
+  ],
+  "files_read": [
+    "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/A-genus/exports.json",
+    "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/B-dyons/results.json",
+    "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/B-dyons/part1_euler_numbers_results.json",
+    "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/C-lattices/exports.json",
+    "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/exports.json"
+  ]
+}

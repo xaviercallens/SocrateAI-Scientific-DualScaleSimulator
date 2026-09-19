@@ -1,0 +1,180 @@
+{
+ "prediction": {
+  "claim": "(psi_{0,5}^opt - 12^5*A*A_{2,4})/A == -12^5*Phi_{2,4}^opt == 12^5*(H|V4_full) - 2*12^5*(H|U2), with H|V4_full the FULL divisor-sum Hecke-like operator (d in {1,2,4}, not just {1,4}), computed independently from G_5 = [p^5] of the DMVV product (K3 elliptic genus alone).",
+  "source": "Dabholkar-Murthy-Zagier arXiv:1208.4074, papers/foundations/1208_4074.txt, quoted line 'Phi_2,4^opt = -H|V4+2H|U2' (~l.3851) and Table 2 col '5' (~l.3899-3907) for psi_{0,5}^opt.",
+  "lean_gap_closed": "DualScaleDyons/ImmortalHigher.lean states m=2,3 only ('Not proved: m>=4'); this tests the paper's own explicit m=4 fix."
+ },
+ "validation_gate": {
+  "G5_at_q0_y1": "176256",
+  "p24_5_independently_computed": "176256",
+  "matches_known_p24_5_176256 (Lean p24_values, v1's already-established range)": true
+ },
+ "computed": {
+  "QCHK": 6,
+  "QMAX_theta": 40,
+  "DMAX_hurwitz": 40,
+  "num_keys_compared": 68,
+  "num_keys_skipped_out_of_hurwitz_range": 42,
+  "holds_correct_formula_via_G5_DMVV": false,
+  "holds_correct_formula_via_psi05opt_ansatz": true,
+  "mismatches_correct_via_G5_sample": {
+   "(0, -4)": [
+    "6",
+    "0"
+   ],
+   "(0, -3)": [
+    "120",
+    "0"
+   ],
+   "(0, -2)": [
+    "1296",
+    "0"
+   ],
+   "(0, -1)": [
+    "9600",
+    "0"
+   ],
+   "(0, 0)": [
+    "51396",
+    "103680"
+   ],
+   "(0, 1)": [
+    "-62976",
+    "0"
+   ],
+   "(0, 2)": [
+    "-143856",
+    "0"
+   ],
+   "(0, 3)": [
+    "-217608",
+    "0"
+   ],
+   "(0, 4)": [
+    "-290298",
+    "0"
+   ],
+   "(0, 5)": [
+    "-362880",
+    "0"
+   ]
+  },
+  "holds_naive_two_term_wrong_generalisation": false,
+  "mismatches_naive_sample": {
+   "(0, -4)": [
+    "6",
+    "0"
+   ],
+   "(0, -3)": [
+    "120",
+    "0"
+   ],
+   "(0, -2)": [
+    "1296",
+    "0"
+   ],
+   "(0, -1)": [
+    "9600",
+    "0"
+   ],
+   "(0, 0)": [
+    "51396",
+    "62208"
+   ],
+   "(0, 1)": [
+    "-62976",
+    "0"
+   ],
+   "(0, 2)": [
+    "-143856",
+    "0"
+   ],
+   "(0, 3)": [
+    "-217608",
+    "0"
+   ],
+   "(0, 4)": [
+    "-290298",
+    "0"
+   ],
+   "(0, 5)": [
+    "-362880",
+    "0"
+   ]
+  },
+  "holds_paper_eq_9_14_style_factor2_variant": false,
+  "honesty_note_on_9_14_ambiguity": "DMZ's own eq. (9.14), Phi_2,m^opt = -2*H|V^{(1)}_{2,m} for prime powers, expands at m=4 (V^{(1)}_{2,4} = V_{2,4} - 2*U_2 by (4.38) with mu(2)=-1, s^{k-1}=2^1) to -2*H|V4+4*H|U2 -- twice the m=4-specific formula quoted just above it in the same paper. We test both; the computation, not either quote, decides which normalisation is the one that actually matches the K3-elliptic-genus side."
+ },
+ "negative_controls": {
+  "naive_two_term_generalisation_fails": true,
+  "d2_term_matters_examples (full formula's d=2 contribution is nonzero and the two formulas differ there)": [
+   {
+    "n": 0,
+    "r": 0,
+    "full": "-7/12",
+    "naive_two_term": "-5/12"
+   },
+   {
+    "n": 2,
+    "r": -4,
+    "full": "5/2",
+    "naive_two_term": "0"
+   },
+   {
+    "n": 2,
+    "r": -2,
+    "full": "4",
+    "naive_two_term": "1/2"
+   },
+   {
+    "n": 2,
+    "r": 0,
+    "full": "5",
+    "naive_two_term": "1"
+   },
+   {
+    "n": 2,
+    "r": 2,
+    "full": "4",
+    "naive_two_term": "1/2"
+   },
+   {
+    "n": 2,
+    "r": 4,
+    "full": "5/2",
+    "naive_two_term": "0"
+   },
+   {
+    "n": 4,
+    "r": -8,
+    "full": "-7/12",
+    "naive_two_term": "0"
+   },
+   {
+    "n": 4,
+    "r": -6,
+    "full": "4",
+    "naive_two_term": "0"
+   },
+   {
+    "n": 4,
+    "r": 6,
+    "full": "4",
+    "naive_two_term": "0"
+   },
+   {
+    "n": 4,
+    "r": 8,
+    "full": "-7/12",
+    "naive_two_term": "0"
+   }
+  ],
+  "num_examples_where_d2_matters": 10
+ },
+ "tier": "B (arithmetic) / L (the two quoted ansatze themselves)",
+ "command": "cd audit/k3t2_rigidity_v2/reverse && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python item3_immortal_m4_hecke.py",
+ "prerequisite_data_regeneration_commands": [
+  "cd audit/k3t2_rigidity_v2/B-dyons && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python theta_forms.py 40",
+  "cd audit/k3t2_rigidity_v2/B-dyons && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python hurwitz_class_numbers.py"
+ ]
+}

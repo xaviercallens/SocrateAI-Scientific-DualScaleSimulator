@@ -1,0 +1,76 @@
+{
+ "N": 4,
+ "command": "cd audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_premises.py 4",
+ "quotient_top_simplices": 3072,
+ "P1_simplices_containing_two_fixed_vertices": 0,
+ "P1_open_stars_disjoint": true,
+ "closed_star_overlapping_pairs_(Track_D_criterion,_sufficient_not_necessary)": 120,
+ "P2_all_16_links_have_RP3_homology_Z2_Z3": true,
+ "P2_link_betti_sample": {
+  "Z2": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "Z3": [
+   1,
+   0,
+   0,
+   1
+  ]
+ },
+ "P3": {
+  "Z3": {
+   "betti_X": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "betti_U": [
+    1,
+    0,
+    6,
+    15,
+    0
+   ],
+   "rank_H3(links)->H3(U)": 15,
+   "consistency_b3U_eq_rank_plus_b3X": true,
+   "K3_betti_from_MV": [
+    1,
+    0,
+    22,
+    0,
+    1
+   ]
+  },
+  "Z5": {
+   "betti_X": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "betti_U": [
+    1,
+    0,
+    6,
+    15,
+    0
+   ],
+   "rank_H3(links)->H3(U)": 15,
+   "consistency_b3U_eq_rank_plus_b3X": true,
+   "K3_betti_from_MV": [
+    1,
+    0,
+    22,
+    0,
+    1
+   ]
+  }
+ },
+ "reading": "MV b2(K3)=b2(U)+16 is the exact output of the Z/3 MV sequence (H_1, H_2 of the gluing locus vanish mod 3); the only nontrivial map, H_3(links)->H_3(U), has its rank computed from X's Betti numbers. Premises P1,P2 are what is needed; closed-star disjointness is not."
+}

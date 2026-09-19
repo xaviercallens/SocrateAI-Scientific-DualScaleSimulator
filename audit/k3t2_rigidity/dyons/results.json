@@ -1,0 +1,150 @@
+{
+ "track": "B - quarter-BPS dyons on K3 x T2 (DMVV product; Dabholkar-Murthy-Zagier)",
+ "tier": "B (exact rational arithmetic with negative controls). L/C claims (that these numbers mean dyons/moonshine) are literature identification, not computed here. Nothing in this file is 'proved'.",
+ "top_line_honesty_note": "Track B reproduces ESTABLISHED DMVV/DMZ mathematics (Goettsche's Euler-number formula, the p_24(2)=324 polar multiplicity, the 648*Hhat identity). Agreement with known results validates that THIS COMPUTATIONAL LOOP is implemented correctly -- it is a check on the loop, not independent evidence for the dual-scale model. A second track re-deriving the same literature facts does not compound into stronger support for the theory.",
+ "strongest_evidence": "The single most convincing rigidity result is the negative control in part 2: perturbing a K3 elliptic-genus Fourier coefficient c(3) or c(4) BY +1 (an input, not a prefactor we inserted) breaks the identity 4*G_2=9*B^2+3*E4*A^2 at 122 of the checked coefficients. kappa/N/M are each a single linear equation in an inserted multiplier with a one-line solve; the c(D) perturbation is the only test here that deforms the actual mathematical input.",
+ "commands_to_reproduce": [
+  "cd audit/k3t2_rigidity/dyons",
+  "python theta_forms.py 22   # builds A,B,E4,E6,Delta and the c(D) table, QMAX=22",
+  "python part1_euler_numbers.py",
+  "python part2_psi_m.py",
+  "python hurwitz_class_numbers.py",
+  "python part3_polar.py"
+ ],
+ "1_theta_forms": {
+  "checks": {
+   "A_index1_structure_holds": true,
+   "B_index1_structure_holds": true,
+   "A_q0_leading_term_y_minus2_plus_yinv": {
+    "y^1": "1",
+    "const": "-2",
+    "y^-1": "1",
+    "expected_pattern": "1, -2, 1 (i.e. A|q0 = y - 2 + 1/y)"
+   },
+   "e_K3_from_c0_plus_2cm1": {
+    "c(0)": "20",
+    "c(-1)": "2",
+    "note": "e(K3) = c(0) + 2*c(-1); expect 24 (Euler characteristic of K3) but this is COMPUTED not assumed"
+   },
+   "cD_no_index1_conflict": true
+  },
+  "cD_table_sample": {
+   "-1": "2",
+   "87": "-118164347946",
+   "88": "138210142752",
+   "84": "73470825024",
+   "80": "38508444960",
+   "79": "-32689375200",
+   "76": "19880131104",
+   "72": "10097415792",
+   "71": "-8501335066",
+   "68": "5039175744"
+  },
+  "expected_from_literature_UNVERIFIED": {
+   "note": "from memory, Dabholkar-Murthy-Zagier / Eguchi-Ooguri-Taormina K3 elliptic genus table",
+   "c(-1)": "2",
+   "c(0)": "20",
+   "c(3)": "-128",
+   "c(4)": "216",
+   "matches_computed": true
+  }
+ },
+ "2_part1_euler_numbers": {
+  "euler_numbers_k0_5": {
+   "0": "1",
+   "1": "24",
+   "2": "324",
+   "3": "3200",
+   "4": "25650",
+   "5": "176256"
+  },
+  "match_gottsche": true,
+  "kappa_rigidity_solution_set": [
+   "1"
+  ],
+  "honesty_note": "This q^0,y=1 restriction of DMVV collapses ANALYTICALLY (derived above, not assumed) to prod_r (1-p^r)^{-kappa*(c0+2*cm1)}, i.e. a single linear equation kappa*(c0+2*cm1)=24 in kappa. It is tier B exact arithmetic but constrains only the ONE combination c(0)+2*c(-1), not the full DMVV structure. Do not oversell this as testing 'the whole product'; Part 2's G_2 identity (4*Delta*psi_1 = 9B^2/A + 3E4*A) is the structural test that uses c(D) for D>4 as well. This kappa test and the N/M tests in part 3 are each a SINGLE linear equation in an inserted multiplier -- report as one-line solves, not as independent structural confirmations."
+ },
+ "3_part2_psi_m": {
+  "m_minus1": {
+   "statement": "Delta*psi_{-1} = G_0/A = 1/A (G_0=1 since Sym^0(K3)=point)",
+   "status": "definitional; no further identity to test per problem statement"
+  },
+  "m_0": {
+   "statement": "Delta*psi_0 = G_1/A =?= 2B/A",
+   "status": "holds identically BY CONSTRUCTION (c(D) were defined as the Fourier coefficients of 2B, so G_1:=sum_{s,t} c(4s-t^2) q^s y^t is 2B term-for-term)",
+   "note": "definitional: c(D) was extracted FROM B, so G_1 := sum c(D) q^n y^l == 2B identically; not an independent test."
+  },
+  "m_1_identity_holds_to_q10": true,
+  "negative_control_perturb_cD": {
+   "perturb_c(3)_by_+1": {
+    "num_mismatched_coeffs": 122,
+    "identity_breaks": true
+   },
+   "perturb_c(4)_by_+1": {
+    "num_mismatched_coeffs": 122,
+    "identity_breaks": true
+   },
+   "purpose": "Shows the m=1 identity 4G2=9B^2+3E4A^2 is a genuine, non-tautological consistency check: an arbitrary +1 shift in a single Fourier coefficient c(D) of the K3 elliptic genus breaks it. This is the rigidity evidence for TRACK B: the c(D) table (hence the DMVV structure built from it) admits no 1-integer deformation at D=3 or D=4 that preserves the m=1 identity."
+  }
+ },
+ "4_hurwitz_class_numbers": {
+  "3": "1/3",
+  "4": "1/2",
+  "7": "1",
+  "8": "1",
+  "11": "1",
+  "12": "4/3",
+  "15": "2"
+ },
+ "5_part3_polar_subtraction": {
+  "joint_finding": "N and M were NOT found independently: N was scanned first (with M fixed at the literal problem value 648), giving unique N=324; M was then scanned AT THAT N=324. Report this as ONE joint result -- (N,M)=(324,648) is the unique solution of the affine system in the scanned box -- not as two separate rigidity confirmations.",
+  "N_rigidity_scan_320_328": {
+   "320": false,
+   "321": false,
+   "322": false,
+   "323": false,
+   "324": true,
+   "325": false,
+   "326": false,
+   "327": false,
+   "328": false
+  },
+  "M_rigidity_scan_640_656_at_N324": {
+   "640": false,
+   "641": false,
+   "642": false,
+   "643": false,
+   "644": false,
+   "645": false,
+   "646": false,
+   "647": false,
+   "648": true,
+   "649": false,
+   "650": false,
+   "651": false,
+   "652": false,
+   "653": false,
+   "654": false,
+   "655": false,
+   "656": false
+  },
+  "joint_solution": {
+   "N": 324,
+   "M": 648
+  },
+  "expected_from_literature_UNVERIFIED": {
+   "note": "from memory, Dabholkar-Murthy-Zagier polar-term multiplicity p_24(2)",
+   "p24(2)": 324,
+   "matches_computed_N": true
+  },
+  "support_filter_used": "n<=QCHK-2, |l|<=20, D=4n-l^2>=-4 (excludes finite-YCAP-truncation noise in the deep-negative-D tail of 1/A; see note) -- this filter EXCLUDES an unresolved point at (n,l)=(4,-5), D=-9, where the remainder is exactly -324 and stays exactly -324 when YCAP is doubled (60->120, checked explicitly) -- so it is NOT window truncation noise, it is a genuine unexplained discrepancy outside D>=-4. The N=324/M=648 solution is therefore verified on D>=-4 only, not unconditionally.",
+  "caveat": "Truncated at QCHK=6 in q, YCAP=60 in y, to keep the invA recursion and A_{2,1}/Hhat construction well inside runtime budget. The comparison window (n<=QCHK-2, |l|<=20, D=4n-l^2>=-4) was chosen to avoid the top q-order (genuine truncation boundary of the invA recursion) AND to exclude a specific unresolved point at (n,l)=(4,-5), D=-9: there the remainder is exactly -324 and STAYS exactly -324 when YCAP is doubled to 120 (checked explicitly), so it is NOT a finite-window artifact -- it is a genuine, unexplained discrepancy outside the D>=-4 region this script actually verifies. The N=324 / M=648 solutions below are therefore reported as holding on D>=-4 only, not unconditionally; the D<-4 tail of the polar-subtraction identity was left unresolved (see could_not_do)."
+ },
+ "could_not_do": [
+  "The D<-4 tail of the m=1 polar-subtraction identity (Delta*psi_1 - N*A_2,1 = 3E4A - M*Hhat) was NOT reconciled: at (n,l)=(4,-5), D=-9, the remainder is exactly -324 for N=324, independent of YCAP (checked at 60 and 120) -- a genuine unresolved discrepancy, not a truncation artifact. N=324, M=648 are reported as the unique solution on D>=-4 only.",
+  "The m=1 identity and the N/M polar scans were verified only to q^4-q^6 (part 3) and q^10 (part 2) within the time budget; no claim is made about higher orders.",
+  "psi_{-1} (m=-1) was only recorded definitionally (Delta*psi_{-1}=1/A); the problem statement gives no further identity to test for it, so none was attempted.",
+  "The m=0 check (Delta*psi_0=2B/A) is tautological given how c(D) was extracted from B itself; flagged, not presented as independent confirmation.",
+  "N and M (part 3) were scanned sequentially (N first, M second at that N), so they constitute one joint affine solve, not two independent rigidity findings; see '5_part3_polar_subtraction'."
+ ]
+}

@@ -1,0 +1,89 @@
+{
+  "track": "C",
+  "version": "v2",
+  "item": "2_k3_mukai_gamma622",
+  "method": "Explicit block-diagonal Gram matrices from U=[[0,1],[1,0]] and the E8 Cartan matrix (rebuilt from Dynkin adjacency); rank/det/evenness read off the assembled matrix; signature computed by two independent exact methods (congruence diagonalization over Q, and Sturm-sequence real-root counting on the exact characteristic polynomial) on the FULL matrix, not assumed additive.",
+  "results": {
+    "K3_3U_2negE8": {
+      "name": "K3 = 3U + 2(-E8)",
+      "rank": 22,
+      "determinant": "-1",
+      "is_even": true,
+      "is_unimodular": true,
+      "signature_method_A_congruence_diagonalization": {
+        "p": 3,
+        "q": 19,
+        "zero": 0
+      },
+      "signature_method_B_sturm_charpoly": {
+        "p": 3,
+        "q": 19,
+        "zero": 0
+      },
+      "methods_agree": true,
+      "expected": {
+        "signature": [
+          3,
+          19
+        ],
+        "det": 1,
+        "even": true,
+        "source": "standard K3 lattice fact, from memory, unverified prior to computation; NOT used to select (m,n) -- that selection is chained to topology independently in 06_chained_rigidity.py"
+      }
+    },
+    "Mukai_K3_plus_U": {
+      "name": "Mukai = K3 + U",
+      "rank": 24,
+      "determinant": "1",
+      "is_even": true,
+      "is_unimodular": true,
+      "signature_method_A_congruence_diagonalization": {
+        "p": 4,
+        "q": 20,
+        "zero": 0
+      },
+      "signature_method_B_sturm_charpoly": {
+        "p": 4,
+        "q": 20,
+        "zero": 0
+      },
+      "methods_agree": true,
+      "expected": {
+        "signature": [
+          4,
+          20
+        ],
+        "det": 1,
+        "even": true,
+        "source": "standard Mukai lattice fact, from memory, unverified prior to computation"
+      }
+    },
+    "Gamma_6_22": {
+      "name": "Gamma^{6,22} = 6U + 2(-E8)",
+      "rank": 28,
+      "determinant": "1",
+      "is_even": true,
+      "is_unimodular": true,
+      "signature_method_A_congruence_diagonalization": {
+        "p": 6,
+        "q": 22,
+        "zero": 0
+      },
+      "signature_method_B_sturm_charpoly": {
+        "p": 6,
+        "q": 22,
+        "zero": 0
+      },
+      "methods_agree": true,
+      "expected": {
+        "signature": [
+          6,
+          22
+        ],
+        "det": 1,
+        "even": true,
+        "source": "task statement / standard K3xT2 heterotic-type-II charge lattice fact, from memory, unverified prior to computation"
+      }
+    }
+  }
+}

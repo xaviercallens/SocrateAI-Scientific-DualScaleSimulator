@@ -1,0 +1,307 @@
+{
+ "lens": "MATHEMATICAL CORRECTNESS",
+ "run": "wf_ca8ac00f-275 (resumed after the 06:16 UTC crash), skeptic session 2026-09-19",
+ "tiers": "B = exact arithmetic + negative control; L = literature identification; C = conjecture. Nothing here is 'proved'.",
+ "scripts": [
+  {
+   "script": "skA_twining.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skA_twining.py",
+   "prior_incarnation": true,
+   "rerun_byte_identical": true
+  },
+  {
+   "script": "skA_scan_depends_on_k.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skA_scan_depends_on_k.py",
+   "prior_incarnation": true,
+   "rerun_byte_identical": true
+  },
+  {
+   "script": "skB_immortal.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skB_immortal.py",
+   "prior_incarnation": true,
+   "rerun_byte_identical": true
+  },
+  {
+   "script": "skC_chain.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skC_chain.py",
+   "prior_incarnation": true,
+   "rerun_byte_identical": true
+  },
+  {
+   "script": "skD_kummer.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 4 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 6",
+   "prior_incarnation": true,
+   "rerun_byte_identical": true
+  },
+  {
+   "script": "skE_lattice.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skE_lattice.py",
+   "prior_incarnation": true,
+   "rerun_byte_identical": true
+  },
+  {
+   "script": "skD_premises.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_premises.py 4 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_premises.py 6",
+   "prior_incarnation": false
+  },
+  {
+   "script": "skB_hurwitz_dirichlet.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skB_hurwitz_dirichlet.py",
+   "prior_incarnation": false
+  },
+  {
+   "script": "skE_tt_faithful.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skE_tt_faithful.py",
+   "prior_incarnation": false
+  },
+  {
+   "script": "skX_rows_orientifold_dirac.py",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skX_rows_orientifold_dirac.py",
+   "prior_incarnation": false
+  }
+ ],
+ "independent_rederivation_per_track": {
+  "A": "skA_twining: H via eta^3 H = -2E2 + 48F2 (not Track A's Appell-Lerch route); A_1..A_10 = 45,...,260568 agree; twining H_g for 2A,3A,5A,7A rebuilt from frame shapes 1^k N^k (k = 24/(N+1)) + the unique weight-2 form on Gamma0(N) + the 2 ground states, WITHOUT the from-memory F_g table; raw coefficients agree with Track A for all four classes; negative control t -> t+1/3 fails.",
+  "B": "skB_immortal: exact overdetermined solve (58 equations) B^2 = 144 A*A21 + E4*A^2 - 288 A*Hhat, strip-independent treatment of the s=0 term, gives (N, E4A coefficient, M) = (324, 3, 648); H(3) + 1/6 control has no solution. skB_hurwitz_dirichlet: H(D) for D = 0..40 via Dirichlet's class number formula + conductor formula agrees with Track B's reduced-form table at all 21 tabulated D; two negative controls (drop 2/w, drop conductor correction) change the values.",
+  "C": "skC_chain: Noether/Hodge chain reproduces chi(O)=2, h02=1, b2=22, (3,19); own E8 Cartan det 1; signatures of mU + n(-E8) by Descartes: (3,19), (7,15), (11,11). skX: sigma = -16 from C's derived signature equals Hirzebruch (c1^2 - 2c2)/3 = -16.",
+  "D": "skD_kummer (own Kuhn triangulation, own quotient) at N=4 and N=6: X Z/3 Betti (1,0,6,0,1), U (1,0,6,15,0), MV K3 Betti (1,0,22,0,1), chi 24. skD_premises: premises checked at each N (see item c).",
+  "E": "skE_lattice + skE_tt_faithful: index-8 claim re-derived directly from TT's own (A.6) forms by wedge products (det of the coefficient matrix = 8); tadpole arithmetic (4.13)/(4.14)/(4.16)/(4.32) and the section-5 example reproduced; 8 | alpha^2 shown in the literal unimodular reading as well."
+ },
+ "a_conventions": {
+  "A_n_vs_2A_n": "OK. H = 2 q^{-1/8}(-1 + sum A_n q^n), A_1 = 45; skA's raw coefficients are 2*A_n^(g) and Track A halves them consistently (7A's -1/2 at n=1 is raw -1 = chi_45(7A) + conj, a real integer; not a defect).",
+  "H0": "OK. H(0) = -1/12 in Track B and in the independent Dirichlet route; Lean's h12 = 12H makes h12(0) = -1.",
+  "A21_strips": "OK. skB treats the s=0 term y/(1-y)^2 exactly (A's q^n coefficients are divisible by (1-y)^2), so no strip convention enters, and it lands on the same (N, M) as Track B's bug-fixed s <= -1 branch.",
+  "signature_sign": "OK. K3 lattice 3U + 2(-E8), signature (3,19); TT (A.2)-(A.4) typed from the pinned text: det E8 = 1, positive definite, Gamma_{3,19} det -1, even.",
+  "twining_Fg_chi_from_memory": "Structurally verified, tier B + L: chi(g) = k from the balanced frame shapes 1^8 2^8, 1^6 3^6, 1^4 5^4, 1^3 7^3; F_g is fixed up to one constant by dim M_2(Gamma0(N)) = 1 for N = 2,3,5,7, and that constant is fixed by the 2 invariant ground states. The resulting H_g agree with Track A's from-memory table; integrality and the mod-N congruence hold, and t + 1/3 fails."
+ },
+ "b_trackC_chain": {
+  "c1_zero_use": "Only c1^2 = 0 enters (Noether chi(O) = (c1^2 + c2)/12). This is weaker than K = O. With K = O (the definition of K3), Serre duality gives h^{2,0} = h^0(K) = 1, so chi(O) = 2 and c2 = 24 are forced (skC reverse_chain). chi_top is therefore not an independent input.",
+  "b1_zero_and_h01": "Legitimate. For any compact complex surface b1 = h^{1,0} + h^{0,1} (Froelicher degeneration, tier L), so b1 = 0 gives h^{0,1} = 0 without the Kaehler assumption. b2+ = 2 p_g + 1 needs only b1 even (tier L, BHPV IV.2.7). Kaehler is true for K3 (Siu) but is not what the step needs.",
+  "negative_control_defect": "C's chained control (chi_top in {12, 36, 48} gives a different unique (m,n)) uses values that no compact complex surface with c1_R = 0 and b1 = 0 realises except chi = 12 (Enriques, where K is not trivial and h^{2,0} = 0). By the Enriques-Kodaira classification (tier L) chi = 36 and chi = 48 are not realised. Those (m,n) are therefore not alternatives. The real discriminant is intrinsic: (11,0) and (7,1) are even unimodular of rank 22 but have signatures (11,11) and (7,15).",
+  "hodge_index_crosscheck": "sigma = b+ - b- = -16 equals Hirzebruch (c1^2 - 2c2)/3 = -16. This is a consistency check, not an independent confirmation: with b1 = 0 both reduce to 4 chi(O) - c2."
+ },
+ "c_trackD_mayer_vietoris": {
+  "premises_per_N": "Checked at N = 4 and N = 6 (skD_premises). P1: no quotient simplex contains two fixed vertices, so open stars are disjoint at both N. P2: all 16 fixed-vertex links have RP^3 homology (Z/2: 1,1,1,1; Z/3: 1,0,0,1) at both N. P3: the rank of H_3(links) -> H_3(U) is computed from X's MV sequence as 16 - b4(X) = 15, consistently with b3(U) = 15 + b3(X).",
+  "MV_step_correct": "Yes. Over Z/3 the gluing locus has H_1 = H_2 = 0, so the MV sequence splits in degree 2 and gives b2(K3) = b2(U) + 16 exactly. This is the sequence's output, not an additive ansatz. b3(U) = 15 is the image of the 16 boundary 3-classes, whose one relation is the fundamental class, and it dies in K3, giving b3(K3) = 0 and b4(K3) = 1. chi(RP^3) = 0 is the correct value, not a vacuous term.",
+  "premise_criterion_note": "Track D's criterion, closed-star disjointness, is sufficient but not necessary. Its rejection of N = 4 is over-conservative: at N = 4 the closed stars overlap (120 pairs) but open stars are disjoint, and the MV output is identical (1,0,22,0,1). This is not an error in D's result.",
+  "tier_L_inputs": "The resolved K3 is U glued to 16 disk bundles D(O(-2)), each homotopic to S^2 with boundary RP^3. The link homology is consistent with RP^3, but the diffeomorphism of the link with RP^3 is not checked. The integral statement b2(K3; Q) = 22 needs no 3-torsion; Z/3 and Z/5 agree."
+ },
+ "d_trackE_flux": {
+  "parametrisation_vs_TT": "Faithful to TT as TT wrote it, not to TT's stated integrality. TT's own worked examples reproduce only with the diagonal Gram 2*eta33 of (A.6)-(A.7). In (A.3)'s hyperbolic Gram, (4.15) gives alpha^2 = 0, (4.31) gives alpha_xx = -8 and N_flux = 0, and the section-5 example gives N_flux = 0 instead of 8 (skE_tt_faithful item 2). E's stated reason for choosing (A.6)-(A.7) is therefore valid.",
+  "TT_appendix_error": "TT lines 1821-1822 ('change of basis such that H33 = 2 eta33'), line 1872 and lines 1881-1882 ('e1..e6 form a basis for Gamma33 / of H^2(T^4,Z)') are false over Z. The (A.6) combinations span an index-8 sublattice of the unimodular H^2(T^4,Z) (|det C| = 8, Gram det -64 vs -1). Track E flagged the det mismatch but left it unreconciled; this settles it.",
+  "consequence_for_counts": "E's flux family 2*L_diag is an index-8 (rank 6) and index-4 (rank 4) subfamily of the literal quantisation (2.5)/line 223, which is even coefficients in a Z-basis of the unimodular lattice, i.e. 2*U^3. All of E's pair and orbit counts are counts of TT's worked-example family, not of the (2.5) family. For example, at alpha^2 = 24 the prior skE_lattice box has 1728 (2.5)-admissible pairs, of which 192 are in E's family. All counts also depend on the stated box, as E says.",
+  "structural_result_survives": "8 | alpha^2 holds in both readings: alpha = 2v with v in an even lattice gives alpha^2 = 4 v^2 in 8Z, checked symbolically on the whole of Gamma_{3,19} typed from (A.2)-(A.4). The admissible set alpha^2 in {8,16,24} (N_D3 in {16,8,0}) is realised in both. Negative control: the odd unimodular I(3,3) allows alpha^2 = 4.",
+  "susy_conditions": "Correct for the family encoded. (4.8) alpha_y = -beta_x, beta_y = alpha_x; (4.9)-(4.10) plus alpha^2 > 0 make V_flux a positive 2-plane, which gives phi = tau = i. (4.13) N_flux = 2 alpha_x^2 is re-derived symbolically from (2.8). Scope: this is TT's (4.8)-(4.10) sub-family ('As a concrete example', line 846), not all dim V_flux = 2 SUSY vacua. E's label 'TT sec-4.1 flux vacua' overstates the scope. Primitivity and singularity avoidance were not checked per pair, which E declared.",
+  "tadpole": "Correct. (1/2) N_flux + N_D3 = 24 with 4x2 + 16x1 = 24. TT line 941 ('N_flux = 24 and no D3-branes') is a prose slip: (2.3) needs N_flux = 48, and TT's own line 1197 (N_flux/2 = 4, so 20 D3) and (4.32) (N_flux = 32, so 8 D3) both apply the 1/2. E left this unresolved; it is resolvable.",
+  "truncation": "Stated: rank 2/4/6 sub-blocks of Gamma33, coefficient box N, no E8 directions. The rank-2 emptiness argument (alpha-perp has signature (0,1)) is correct.",
+  "symmetry_quotient": "Not justified. E's order-64 group (and the order-2304 group) is a group of lattice isometries, but 32 of its 64 elements reverse the orientation of the positive block (odd products of reflections in norm +2 vectors). By Borcea/Donaldson (tier L, from memory), diffeomorphisms act through O^+, and E names no physical identification group (K3 mapping classes, SL(2,Z) of T^2, S-duality). E's statement that the orbit counts are 'upper bounds' is therefore unsupported. Only the raw pair counts inside the box are tier B.",
+  "BLPSSW_16_plus_8": "The inference holds, and E's hedge is overstated. BLPSSW lines 204-214 (and 229) state n1 + n5 = 24 for SO(32) on K3, that 'the 16 orbifold singularities each contain a hidden instanton, a fact that we will demonstrate', and that 'the models constructed by GP satisfy the counting rule by introducing eight five-branes in addition to the hidden instantons'. That is 16 + 8 = 24 in words, asserted and not merely conjectured. The 'one might intuitively think' wording (line 970) is section 4's motivation. Caveat: this is heterotic/Type I on K3. Identifying BLPSSW's 16 with TT's 16 D7 would be numerology; both 24s are chi(K3)."
+ },
+ "e_row_adjudication": [
+  {
+   "target_id": "orientifold#8:total_O7_charge_is_minus_64",
+   "status": "DISAGREE",
+   "who_is_right": "BLIND (-16). Sealed v3.20.0 is wrong.",
+   "why": "The O7 planes of K3 x T^2/Z2 sit at the 4 fixed points of z -> -z on T^2, since the fixed locus has dimension 8, which makes them O7s. The involution on T^4 would fix 16 points x T^2, which are O5 planes, not O7 planes. Independently, in F-theory each O7 is one I_0* fibre of the elliptic K3 with e = 6, and sum e = e(K3) = 24 allows exactly 4. Sixteen would need sum e = 96. The sealed -64 is the T^4 count x (-4). Post-seal LeanMaster adc85e7 agrees with the blind value."
+  },
+  {
+   "target_id": "orientifold#9:total_D7_charge_is_64",
+   "status": "DISAGREE",
+   "who_is_right": "BLIND (16 D7 x 1). Sealed v3.20.0 is wrong.",
+   "why": "Each I_0* = O7^- (2 seven-branes) + 4 D7, so 4 x 4 = 16 D7 and Q(O7) = -4 D7 units. The sealed 32 x 2 has per-object ratio -4/2 = -2, and a unit rescaling cannot repair a ratio."
+  },
+  {
+   "target_id": "orientifold#11:d3_tadpole_target_is_one",
+   "status": "DISAGREE",
+   "who_is_right": "BLIND (24). Sealed v3.20.0 is wrong.",
+   "why": "chi(K3)/24 = 1 is the D3 charge induced on ONE 7-brane wrapping K3. The target is 24 seven-branes x 1 = 24 = chi(K3 x K3)/24 = 576/24, with 8 from the O7s and 16 from the D7s. TT (2.3) states 24 literally. The sealed corpus is internally inconsistent: Flux/Tadpole.lean uses 24. This is an error, not a convention."
+  },
+  {
+   "target_id": "orientifold#6:d7_positive_charge",
+   "status": "NOT_COMPARABLE",
+   "who_is_right": "BOTH; the conversion is valid.",
+   "why": "Sealed KummerTadpole has the right counts (16 D7, 4 O7) and ratio -16/4 = -4 in a unit 4x the D7 unit. So the sealed corpus is correct here and wrong in TadpoleCancellation. The x4 unit has no stated physical meaning, and the statement carries content only up to scale."
+  },
+  {
+   "target_id": "orientifold#7:o7_negative_charge",
+   "status": "NOT_COMPARABLE",
+   "who_is_right": "BOTH; the conversion is valid.",
+   "why": "As for orientifold#6: 4 O7 x (-16) = -64 = 4 x (-16 D7 units)."
+  },
+  {
+   "target_id": "B-dyons#13:hurwitz_values",
+   "status": "NOT_COMPARABLE",
+   "who_is_right": "BOTH; h12 = 12H is exact.",
+   "why": "The independent Dirichlet/conductor route gives 12H = [-1,4,6,12,12,12,16,24] for D = 0,3,4,7,8,11,12,15 and agrees with Track B's whole table for D <= 40."
+  },
+  {
+   "target_id": "B-dyons#15:immortal_m1",
+   "status": "NOT_COMPARABLE",
+   "who_is_right": "BOTH. (N, M) = (324, 648) = (324, 54 x 12).",
+   "why": "The comparator says the E4*A coefficient 3 is 'ansatz, not compared'. That is too weak. Track B part2 checks 4 G_2 = 9B^2 + 3 E4 A^2 against the DMVV-computed G_2 through q^10, and E4 A^2 is nonzero, so any other coefficient fails. skB's exact solve then gives b = 1, and 9/4 + 3/4 = 3. So the whole numeric content (3, 324, 54) of the Lean statement is matched."
+  },
+  {
+   "target_id": "B-dyons#18:dmz_911_table",
+   "status": "NOT_COMPARABLE",
+   "who_is_right": "BOTH.",
+   "why": "Values re-derived independently. The row checks Lean's table arithmetic with Lean's combination formula, not DMZ (9.11) itself; the comparator's note is correct."
+  },
+  {
+   "target_id": "B-dyons#19:dmz_912_table",
+   "status": "NOT_COMPARABLE",
+   "who_is_right": "BOTH.",
+   "why": "As B-dyons#18, with -(H(D) + 3H(D/9))."
+  },
+  {
+   "target_id": "D-tda#56:k3_atiyah_singer_dirac_index",
+   "status": "NOT_COMPARABLE",
+   "who_is_right": "BOTH. The row should be AGREE.",
+   "why": "The Lean statement is DiracIndex(-16) = 2 with DiracIndex(s) = -s/8. Track C's derived signature (3,19) gives sigma = -16, so the same quantity is available blind and needs no identification. The comparator's identification Todd = chi(O) = A-hat is also correct: Todd - A-hat = c1^2/8 (symbolic), which is 0 here."
+  },
+  {
+   "target_id": "elsewhere#16 / orientifold#2 / out_of_scope#0 / out_of_scope#1",
+   "status": "OUT_OF_SCOPE",
+   "who_is_right": "Agree with OUT_OF_SCOPE.",
+   "why": "These are simulator constants (Mapper graph, swampland flag, sdc/bounce). orientifold#2's tadpole conjunct is covered by orientifold#1."
+  }
+ ],
+ "notes_on_prior_skeptic_findings": [
+  "The prior skE_lattice reading 'E undercounts TT-admissible pairs' is right relative to the literal (2.5) quantisation. It needs one qualification: E is faithful to TT's own worked examples and to TT's (wrong) claim that the diagonal e_i form a Z-basis. The error originates in TT's appendix.",
+  "skD_kummer.py (prior incarnation) types the MV inputs b2(S^2) = 1, chi(S^2) = 2 and chi(RP^3) = 0 as literals in its last lines. skD_premises.py supersedes it: it checks the premises and computes the H_3 map rank from data. Cite skD_premises for the MV step. The remaining '+16' in skD_premises is 16 fixed points (computed) x b2(D(O(-2))) = 1 (tier L).",
+  "Independence of skX_rows_orientifold_dirac from comparison/third_computation_orientifold.py: both take the 4 T^2 fixed points as the O7 count. What skX adds independently is the closure constraint. Sum of Kodaira fibre Euler numbers = 4 x 6 = 24 = e(K3), with e(K3) from Track D's blind Betti numbers, and the control that 16 O7 would need 96 > 24. The D7 count (4 per I_0*) and Q(O7) = -4 are derived from the fibre content, not taken from TT.",
+  "Command strings: the prior incarnation's docstrings used the placeholder '<venv python>'. All skeptic scripts now state the full interpreter path, and skD_premises emits the full command in its JSON."
+ ],
+ "violations": [
+  "Ground rule 'never write proved': E-flux/results.json:60 ('EMPTY. Proof: ...') and the E-flux return value ('structurally empty, proved'; 'proved via the orthogonal-complement signature argument'). The argument itself is correct, so this is labelling only.",
+  "Ground rule 'never write proved': C-lattices return value ('proved for the whole family via A*A^-1=I block algebra') and C-lattices/results.json:232 ('sympy proof-by-computation').",
+  "Ground rule 'never write proved': B-dyons return value ('proved zero there for ANY M').",
+  "Reproducibility rule 'state the exact command including all arguments': the B-dyons return value gives 'python theta_forms.py 40', 'python part3_polar.py', etc. These omit the interpreter path and the working directory. The argument 40 is now stated, which fixes the v1 defect, but the commands are still not runnable verbatim from a clean checkout.",
+  "Rigidity labelling: C-lattices classifies the T-duality identities as 'RIGID', but they are universal identities with no parameter selected. E-flux classifies 8 | alpha^2 as 'RIGID' with a negative control (rank-2 emptiness) about a different parameter. The fact is correct; the control does not test it. skE_tt_faithful supplies a proper one: an odd lattice gives 4."
+ ],
+ "math_errors": [
+  "Sealed LeanMaster v3.20.0 TadpoleCancellation.lean (orientifold#8, #9, #11) is wrong. It has 16 O7 planes (the T^4 fixed-point count, which would give O5 planes), 32 D7 x charge 2 (ratio -2 instead of -4) and a D3 target chi(K3)/24 = 1 (the per-7-brane charge, not the total). The correct values are 4 O7, 16 D7, Q(O7) = -4, and D3 = 24 = chi(K3xK3)/24. This is re-derived independently from Kodaira fibre Euler numbers: 4 I_0* x 6 = 24, and 16 I_0* would give 96 > 24.",
+  "Tripathy-Trivedi App. A (lines 1821-1822, 1872, 1881-1882): the claim that the (A.6) forms are a Z-basis of Gamma33 / H^2(T^4,Z) with H33 = 2 eta33 after a change of basis is false over Z. Their span has index 8 (|det| = 8; Gram det -64 vs -1). Track E inherited this, flagged it and left it unreconciled. Consequence: all of E's flux pair and orbit counts are counts of an index-8 (rank 6) or index-4 (rank 4) subfamily of the (2.5) quantisation. The structural result 8 | alpha^2 and the admissible N_D3 in {16,8,0} survive in both readings.",
+  "Tripathy-Trivedi line 941 ('N_flux = 24 and no D3-branes') contradicts (2.3), which needs N_flux = 48. TT's own line 1197 and (4.32) apply the 1/2, so line 941 is a prose slip. E called this unresolvable; it is resolvable.",
+  "Track C chained negative control: chi_top in {36, 48}, and in {12} under K = O, are not realised by any compact complex surface with c1_R = 0 and b1 = 0 (Enriques-Kodaira classification, tier L). The 'different unique (m,n)' reported for them is not a real alternative. Only the intrinsic rejection of (11,0) and (7,1) by signature discriminates. Under K = O, chi_top = 24 is forced (skC reverse chain).",
+  "Track A 'RIGID {24}' for N in Z eta^3 = N y^{1/2} Psi - H theta_1^2: skA_scan_depends_on_k shows that slice agreement selects N = 12k = Z(tau,0) for Z = k phi_{0,1}. The scan recovers the constant term of the input genus, whose normalisation k = 2 Track A itself classifies as NORMALISATION. It is not an independent derivation of 24.",
+  "Track E orbit counts are described as 'upper bounds on the number of physically distinct configurations'. This is unsupported: half of the order-64 group reverses the orientation of the positive block, and no physical identification group is specified."
+ ],
+ "disputed_rows": [
+  {
+   "target_id": "orientifold#8:total_O7_charge_is_minus_64",
+   "reason": "Sealed value -64 is wrong (16 = T^4 fixed points; those would be O5 planes). Blind -16 is right: 4 O7 at the T^2 fixed points, and in F-theory 4 I_0* x e = 6 gives 24 = e(K3). skX_rows_orientifold_dirac."
+  },
+  {
+   "target_id": "orientifold#9:total_D7_charge_is_64",
+   "reason": "Sealed 32 D7 x 2 is wrong (ratio -2). Blind 16 D7 x 1 is right: 4 per I_0* fibre, Q(O7) = -4."
+  },
+  {
+   "target_id": "orientifold#11:d3_tadpole_target_is_one",
+   "reason": "Sealed 1 = chi(K3)/24 is the per-7-brane induced charge. The target is 24 x 1 = chi(K3xK3)/24 = 24 (TT eq 2.3). Blind 24 is right, and the sealed corpus contradicts itself (Flux/Tadpole.lean uses 24)."
+  },
+  {
+   "target_id": "D-tda#56:k3_atiyah_singer_dirac_index",
+   "reason": "Mislabelled NOT_COMPARABLE; should be AGREE. Track C's derived signature gives sigma = -16, which is the Lean argument itself, and -sigma/8 = 2. The Todd = A-hat identification is also valid (difference c1^2/8 = 0)."
+  },
+  {
+   "target_id": "B-dyons#15:immortal_m1",
+   "reason": "The value comparison stands (both right). Dispute only the note that the E4*A coefficient 3 is uncompared: part2's DMVV check of 4G_2 = 9B^2 + 3E4A^2 and skB's exact solve (b = 1) fix it, so the full content (3, 324, 54) matches."
+  }
+ ],
+ "rigidity_verdicts": [
+  {
+   "parameter": "A: N in Z eta^3 = N y^(1/2) Psi - H theta_1^2",
+   "genuinely_rigid": false,
+   "reason": "The selected N = 12k tracks the genus normalisation k (skA_scan_depends_on_k: k = 1,2,3 gives 12, 24, 36). It recovers Z(tau,0) and is rigid only relative to k = 2, which A itself calls NORMALISATION."
+  },
+  {
+   "parameter": "A: k in Z = k phi_{0,1}",
+   "genuinely_rigid": false,
+   "reason": "Correctly labelled NORMALISATION by A; no literal-free selector exists in A's data."
+  },
+  {
+   "parameter": "B: N (coefficient of A_{2,1}) = 324",
+   "genuinely_rigid": true,
+   "reason": "Unique exact solution of an overdetermined linear system (skB: 58 equations, independent of B's grid), with a negative control. It is conditional on the DMVV input built from the elliptic genus 2 phi_{0,1}, which carries the k = 2 normalisation."
+  },
+  {
+   "parameter": "B: M (coefficient of Hhat) = 648",
+   "genuinely_rigid": true,
+   "reason": "Fixed jointly with N by the same exact solve. The H(3) + 1/6 control has no solution, and the Hurwitz table is confirmed by the independent Dirichlet route. Same condition as N."
+  },
+  {
+   "parameter": "B: kappa (Goettsche exponent)",
+   "genuinely_rigid": false,
+   "reason": "Correctly NORMALISATION: both sides of the comparison are the same function call."
+  },
+  {
+   "parameter": "C: (m,n) in mU + n(-E8)",
+   "genuinely_rigid": true,
+   "reason": "Rigid given the definition of K3 (K = O, b1 = 0): Serre duality plus Noether force chi(O) = 2 and c2 = 24, hence (3,19), and among rank-22 even unimodular lattices only (3,2) has that signature. This upgrades C's CONDITIONAL_ON_INPUT. C's chi-perturbation controls at 36 and 48 are invalid (non-existent surfaces), but the intrinsic rejection of (11,0) and (7,1) stands."
+  },
+  {
+   "parameter": "C: tadpole budget",
+   "genuinely_rigid": false,
+   "reason": "Correctly NORMALISATION."
+  },
+  {
+   "parameter": "C: T-duality identities (A, G generic)",
+   "genuinely_rigid": false,
+   "reason": "These are universal identities with no parameter selected, so 'RIGID' is a misapplied label. They are correct symbolic identities (tier B)."
+  },
+  {
+   "parameter": "D: k (number of resolved points), chi(X_k) = 8 + k",
+   "genuinely_rigid": false,
+   "reason": "Correctly NORMALISATION; b1 = 0 is non-discriminating (as D says)."
+  },
+  {
+   "parameter": "E: tadpole total 24",
+   "genuinely_rigid": false,
+   "reason": "Correctly NORMALISATION (input from 4x2 + 16x1)."
+  },
+  {
+   "parameter": "E: 8 | alpha_x^2",
+   "genuinely_rigid": true,
+   "reason": "Structural and basis-independent: evenness of Gamma_{3,19} plus even flux coefficients, checked in both the diagonal and the unimodular readings. Proper negative control: an odd unimodular lattice gives alpha^2 = 4 (skE_tt_faithful). E's own control (rank-2 emptiness) tests a different parameter."
+  }
+ ],
+ "overall": "No DISAGREE row goes against the blind tracks. The three orientifold DISAGREEs are errors in the sealed v3.20.0 file, re-derived independently from F-theory fibre Euler numbers and matching post-seal LeanMaster adc85e7. All seven NOT_COMPARABLE rows match under valid conversions; D-tda#56 should be AGREE. Track D's Mayer-Vietoris step is sound, with premises verified at N = 4 and N = 6. The main mathematical findings are: (i) Track A's rigid 24 is a normalisation echo; (ii) Track E's counts are of TT's index-8 worked-example family because TT's appendix basis claim is false over Z, while 8 | alpha^2 and N_D3 in {16,8,0} survive; (iii) Track C's chi-perturbation controls use non-existent surfaces, but its (3,2) selection is rigid given K = O and b1 = 0; (iv) E's orbit-count 'upper bounds' are unsupported.",
+ "reruns": [
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skA_twining.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skA_scan_depends_on_k.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skB_immortal.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skC_chain.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 4",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 6",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skE_lattice.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  }
+ ],
+ "commit": "0cc264c + d0e8078 (loop/k3t2-rigidity)"
+}

@@ -1,0 +1,530 @@
+{
+  "D": 4,
+  "valid_N_used": [
+    6,
+    8
+  ],
+  "excluded_N": {
+    "4": "fails PREMISE_VALID_FOR_MV (star disjointness and/or nonsingular-link-S3 check), see 00_premise_checks_results.json"
+  },
+  "N=6": {
+    "N": 6,
+    "negation_action_invariant_on_top_simplices": true,
+    "num_fixed_vertices_computed": 16,
+    "fixed_vertices": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        3
+      ],
+      [
+        0,
+        0,
+        3,
+        0
+      ],
+      [
+        0,
+        0,
+        3,
+        3
+      ],
+      [
+        0,
+        3,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        0,
+        3
+      ],
+      [
+        0,
+        3,
+        3,
+        0
+      ],
+      [
+        0,
+        3,
+        3,
+        3
+      ],
+      [
+        3,
+        0,
+        0,
+        0
+      ],
+      [
+        3,
+        0,
+        0,
+        3
+      ],
+      [
+        3,
+        0,
+        3,
+        0
+      ],
+      [
+        3,
+        0,
+        3,
+        3
+      ],
+      [
+        3,
+        3,
+        0,
+        0
+      ],
+      [
+        3,
+        3,
+        0,
+        3
+      ],
+      [
+        3,
+        3,
+        3,
+        0
+      ],
+      [
+        3,
+        3,
+        3,
+        3
+      ]
+    ],
+    "action_free_on_top_4simplices": true,
+    "runtime_setup_sec": 0.5812373161315918,
+    "quotient_T4_mod_Z2": {
+      "num_top_simplices_input": 31104,
+      "num_degenerate_after_quotient": 0,
+      "num_vertices_quotient": 656,
+      "euler_characteristic_from_simplex_counts": 8,
+      "simplex_counts_by_dim": {
+        "0": 656,
+        "1": 9720,
+        "2": 32400,
+        "3": 38880,
+        "4": 15552
+      },
+      "betti_by_field": {
+        "Z3": {
+          "betti": [
+            1,
+            0,
+            6,
+            0,
+            1
+          ],
+          "euler_characteristic_from_betti": 8
+        },
+        "Z5": {
+          "betti": [
+            1,
+            0,
+            6,
+            0,
+            1
+          ],
+          "euler_characteristic_from_betti": 8
+        }
+      },
+      "runtime_sec": 1.1097753047943115,
+      "exact_halving_check_dims_1_to_4": {
+        "0": {
+          "quotient": 656,
+          "T4": 1296,
+          "note": "vertices: not expected to halve (16 fixed vertices don't pair up)"
+        },
+        "1": {
+          "quotient": 9720,
+          "T4": 19440,
+          "exactly_half": true
+        },
+        "2": {
+          "quotient": 32400,
+          "T4": 64800,
+          "exactly_half": true
+        },
+        "3": {
+          "quotient": 38880,
+          "T4": 77760,
+          "exactly_half": true
+        },
+        "4": {
+          "quotient": 15552,
+          "T4": 31104,
+          "exactly_half": true
+        }
+      },
+      "all_dims_1_to_4_exactly_half": true
+    },
+    "chi_predicted_from_orbit_counting": 8,
+    "chi_predicted_formula": "(chi(T4) - F)/2 + F, F = COMPUTED fixed vertex count",
+    "chi_predicted_matches_simplex_count": true,
+    "negative_control_free_translation_quotient": {
+      "shift": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "translation_invariant_on_top_simplices": true,
+      "num_fixed_vertices_computed": 0,
+      "expected_fixed_vertices": 0,
+      "action_free_on_top_4simplices": true,
+      "quotient_result": {
+        "num_top_simplices_input": 31104,
+        "num_degenerate_after_quotient": 0,
+        "num_vertices_quotient": 648,
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 648,
+          "1": 9720,
+          "2": 32400,
+          "3": 38880,
+          "4": 15552
+        },
+        "betti_by_field": {
+          "Z3": {
+            "betti": [
+              1,
+              4,
+              6,
+              4,
+              1
+            ],
+            "euler_characteristic_from_betti": 0
+          },
+          "Z5": {
+            "betti": [
+              1,
+              4,
+              6,
+              4,
+              1
+            ],
+            "euler_characteristic_from_betti": 0
+          }
+        },
+        "runtime_sec": 1.3318688869476318,
+        "exact_halving_check_all_dims_incl_0": {
+          "0": {
+            "quotient": 648,
+            "T4": 1296,
+            "exactly_half": true
+          },
+          "1": {
+            "quotient": 9720,
+            "T4": 19440,
+            "exactly_half": true
+          },
+          "2": {
+            "quotient": 32400,
+            "T4": 64800,
+            "exactly_half": true
+          },
+          "3": {
+            "quotient": 38880,
+            "T4": 77760,
+            "exactly_half": true
+          },
+          "4": {
+            "quotient": 15552,
+            "T4": 31104,
+            "exactly_half": true
+          }
+        },
+        "all_dims_incl_0_exactly_half": true
+      },
+      "passes_same_halving_check_as_negation_quotient": true,
+      "DROPPED": false,
+      "expected_betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+      ],
+      "expected_source": "free Z2 quotient of T^4 by a translation is again a smaller-period 4-torus",
+      "matches_expected_Z3": true,
+      "matches_expected_Z5": true
+    }
+  },
+  "N=8": {
+    "N": 8,
+    "negation_action_invariant_on_top_simplices": true,
+    "num_fixed_vertices_computed": 16,
+    "fixed_vertices": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        4
+      ],
+      [
+        0,
+        0,
+        4,
+        0
+      ],
+      [
+        0,
+        0,
+        4,
+        4
+      ],
+      [
+        0,
+        4,
+        0,
+        0
+      ],
+      [
+        0,
+        4,
+        0,
+        4
+      ],
+      [
+        0,
+        4,
+        4,
+        0
+      ],
+      [
+        0,
+        4,
+        4,
+        4
+      ],
+      [
+        4,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        0,
+        0,
+        4
+      ],
+      [
+        4,
+        0,
+        4,
+        0
+      ],
+      [
+        4,
+        0,
+        4,
+        4
+      ],
+      [
+        4,
+        4,
+        0,
+        0
+      ],
+      [
+        4,
+        4,
+        0,
+        4
+      ],
+      [
+        4,
+        4,
+        4,
+        0
+      ],
+      [
+        4,
+        4,
+        4,
+        4
+      ]
+    ],
+    "action_free_on_top_4simplices": true,
+    "runtime_setup_sec": 1.9459784030914307,
+    "quotient_T4_mod_Z2": {
+      "num_top_simplices_input": 98304,
+      "num_degenerate_after_quotient": 0,
+      "num_vertices_quotient": 2056,
+      "euler_characteristic_from_simplex_counts": 8,
+      "simplex_counts_by_dim": {
+        "0": 2056,
+        "1": 30720,
+        "2": 102400,
+        "3": 122880,
+        "4": 49152
+      },
+      "betti_by_field": {
+        "Z3": {
+          "betti": [
+            1,
+            0,
+            6,
+            0,
+            1
+          ],
+          "euler_characteristic_from_betti": 8
+        },
+        "Z5": {
+          "betti": [
+            1,
+            0,
+            6,
+            0,
+            1
+          ],
+          "euler_characteristic_from_betti": 8
+        }
+      },
+      "runtime_sec": 4.231626987457275,
+      "exact_halving_check_dims_1_to_4": {
+        "0": {
+          "quotient": 2056,
+          "T4": 4096,
+          "note": "vertices: not expected to halve (16 fixed vertices don't pair up)"
+        },
+        "1": {
+          "quotient": 30720,
+          "T4": 61440,
+          "exactly_half": true
+        },
+        "2": {
+          "quotient": 102400,
+          "T4": 204800,
+          "exactly_half": true
+        },
+        "3": {
+          "quotient": 122880,
+          "T4": 245760,
+          "exactly_half": true
+        },
+        "4": {
+          "quotient": 49152,
+          "T4": 98304,
+          "exactly_half": true
+        }
+      },
+      "all_dims_1_to_4_exactly_half": true
+    },
+    "chi_predicted_from_orbit_counting": 8,
+    "chi_predicted_formula": "(chi(T4) - F)/2 + F, F = COMPUTED fixed vertex count",
+    "chi_predicted_matches_simplex_count": true,
+    "negative_control_free_translation_quotient": {
+      "shift": [
+        4,
+        0,
+        0,
+        0
+      ],
+      "translation_invariant_on_top_simplices": true,
+      "num_fixed_vertices_computed": 0,
+      "expected_fixed_vertices": 0,
+      "action_free_on_top_4simplices": true,
+      "quotient_result": {
+        "num_top_simplices_input": 98304,
+        "num_degenerate_after_quotient": 0,
+        "num_vertices_quotient": 2048,
+        "euler_characteristic_from_simplex_counts": 0,
+        "simplex_counts_by_dim": {
+          "0": 2048,
+          "1": 30720,
+          "2": 102400,
+          "3": 122880,
+          "4": 49152
+        },
+        "betti_by_field": {
+          "Z3": {
+            "betti": [
+              1,
+              4,
+              6,
+              4,
+              1
+            ],
+            "euler_characteristic_from_betti": 0
+          },
+          "Z5": {
+            "betti": [
+              1,
+              4,
+              6,
+              4,
+              1
+            ],
+            "euler_characteristic_from_betti": 0
+          }
+        },
+        "runtime_sec": 4.28133749961853,
+        "exact_halving_check_all_dims_incl_0": {
+          "0": {
+            "quotient": 2048,
+            "T4": 4096,
+            "exactly_half": true
+          },
+          "1": {
+            "quotient": 30720,
+            "T4": 61440,
+            "exactly_half": true
+          },
+          "2": {
+            "quotient": 102400,
+            "T4": 204800,
+            "exactly_half": true
+          },
+          "3": {
+            "quotient": 122880,
+            "T4": 245760,
+            "exactly_half": true
+          },
+          "4": {
+            "quotient": 49152,
+            "T4": 98304,
+            "exactly_half": true
+          }
+        },
+        "all_dims_incl_0_exactly_half": true
+      },
+      "passes_same_halving_check_as_negation_quotient": true,
+      "DROPPED": false,
+      "expected_betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+      ],
+      "expected_source": "free Z2 quotient of T^4 by a translation is again a smaller-period 4-torus",
+      "matches_expected_Z3": true,
+      "matches_expected_Z5": true
+    }
+  }
+}

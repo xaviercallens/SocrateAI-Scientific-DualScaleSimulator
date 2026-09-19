@@ -1,0 +1,108 @@
+{
+  "N=4": {
+    "N": 4,
+    "num_fixed_points_computed": 16,
+    "chi_U_computed": -8,
+    "chi_S2_computed": 2,
+    "chi_RP3_computed_from_link_betti": 0,
+    "chi_RP3_link_betti_used": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "chi_cone_RP3_STATED": 1,
+    "chi_of_k_scan": {
+      "0": 8,
+      "1": 9,
+      "2": 10,
+      "3": 11,
+      "4": 12,
+      "5": 13,
+      "6": 14,
+      "7": 15,
+      "8": 16,
+      "9": 17,
+      "10": 18,
+      "11": 19,
+      "12": 20,
+      "13": 21,
+      "14": 22,
+      "15": 23,
+      "16": 24
+    },
+    "solution_set_chi_equals_24": [
+      16
+    ],
+    "is_single_point": true,
+    "negative_control_k=num_fixed-1": {
+      "k": 15,
+      "chi": 23,
+      "fails_chi_24": true
+    },
+    "negative_control_k=0 (fully singular)": {
+      "k": 0,
+      "chi": 8,
+      "matches_directly_computed_chi_of_singular_quotient": true
+    },
+    "second_independent_condition_smoothness": {
+      "criterion": "X_k is a smooth closed manifold iff every one of the 16 singular points is resolved",
+      "k_satisfying_smoothness": 16,
+      "agrees_with_chi24_solution_set": true
+    },
+    "rigidity_conclusion": "Zero free parameters for k: two INDEPENDENT criteria (chi=24 arithmetic, and smoothness/no-remaining-orbifold-points) both force k=16, the unique point in {0,...,16}; k=15 fails both."
+  },
+  "N=6": {
+    "N": 6,
+    "num_fixed_points_computed": 16,
+    "chi_U_computed": -8,
+    "chi_S2_computed": 2,
+    "chi_RP3_computed_from_link_betti": 0,
+    "chi_RP3_link_betti_used": [
+      1,
+      0,
+      0,
+      1
+    ],
+    "chi_cone_RP3_STATED": 1,
+    "chi_of_k_scan": {
+      "0": 8,
+      "1": 9,
+      "2": 10,
+      "3": 11,
+      "4": 12,
+      "5": 13,
+      "6": 14,
+      "7": 15,
+      "8": 16,
+      "9": 17,
+      "10": 18,
+      "11": 19,
+      "12": 20,
+      "13": 21,
+      "14": 22,
+      "15": 23,
+      "16": 24
+    },
+    "solution_set_chi_equals_24": [
+      16
+    ],
+    "is_single_point": true,
+    "negative_control_k=num_fixed-1": {
+      "k": 15,
+      "chi": 23,
+      "fails_chi_24": true
+    },
+    "negative_control_k=0 (fully singular)": {
+      "k": 0,
+      "chi": 8,
+      "matches_directly_computed_chi_of_singular_quotient": true
+    },
+    "second_independent_condition_smoothness": {
+      "criterion": "X_k is a smooth closed manifold iff every one of the 16 singular points is resolved",
+      "k_satisfying_smoothness": 16,
+      "agrees_with_chi24_solution_set": true
+    },
+    "rigidity_conclusion": "Zero free parameters for k: two INDEPENDENT criteria (chi=24 arithmetic, and smoothness/no-remaining-orbifold-points) both force k=16, the unique point in {0,...,16}; k=15 fails both."
+  }
+}

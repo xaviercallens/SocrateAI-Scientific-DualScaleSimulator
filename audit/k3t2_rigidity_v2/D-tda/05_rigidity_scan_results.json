@@ -1,0 +1,227 @@
+{
+  "N=6": {
+    "N": "N=6",
+    "num_fixed_points_computed": 16,
+    "chi_U_computed": -8,
+    "chi_S2_computed": 2,
+    "chi_RP3_computed_from_link_betti": 0,
+    "chi_cone_RP3_STATED": 1,
+    "chi_of_k_scan": {
+      "0": 8,
+      "1": 9,
+      "2": 10,
+      "3": 11,
+      "4": 12,
+      "5": 13,
+      "6": 14,
+      "7": 15,
+      "8": 16,
+      "9": 17,
+      "10": 18,
+      "11": 19,
+      "12": 20,
+      "13": 21,
+      "14": 22,
+      "15": 23,
+      "16": 24
+    },
+    "chi_of_k_is_affine_in_k": true,
+    "chi_of_k_slope": 1,
+    "closed_form": "chi(X_k) = 8 + 1*k",
+    "solution_set_chi_equals_24": {
+      "set": [
+        16
+      ],
+      "classification": "NORMALISATION",
+      "reason": "selecting condition chi(X_k)==24 is built from the literal target value 24 (the external identification of this resolution as K3); chi(X_k) is strictly monotonic (affine, slope=1) in k, so this condition trivially isolates a point for ANY target, carrying no independent discriminating power",
+      "input_that_fixes_it": "the literal target chi=24, i.e. the physics assertion that this resolution IS the K3 surface -- an external input, not derived here"
+    },
+    "b1_selector_scan": {
+      "criterion": "task-suggested criterion 'b1(X_k)=0', COMPUTED for every k (not assumed)",
+      "b1_of_k": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 0,
+        "16": 0
+      },
+      "solution_set": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "set_size": 17,
+      "classification": "NON-DISCRIMINATING: b1(X_k)=b1(U) is independent of k in this MV model, so b1=0 selects all of k=0..16, not a point"
+    },
+    "even_intersection_form_criterion": {
+      "criterion": "task-suggested criterion: middle homology parity needed for an even intersection form",
+      "status": "NOT EVALUATED -- the intersection form is a pairing on H_2 that GUDHI Betti numbers do not supply; this track builds no such pairing. See could_not_do."
+    },
+    "manifoldness_condition_classification": {
+      "criterion": "X_k is a smooth closed manifold (no remaining orbifold points) iff k == num_fixed",
+      "classification": "REJECTED as an independent rigid criterion -- DEFINITIONAL given the X_k construction (X_k is DEFINED to have 16-k unresolved cone points), not an independent GUDHI computation"
+    },
+    "removed_incorrect_criterion_note": "An earlier pass of this script reported a chi-PARITY criterion ('chi even, via Poincare duality b1=b3') as a weak structural narrowing. That claim is MATHEMATICALLY WRONG (b1=b3 does not force chi even in general: e.g. CP^2 has b=(1,0,1,0,1), chi=3, odd; and X_k for k<16 are not manifolds, so a manifold-based parity criterion could not filter them regardless). It has been removed from this track's reported results, not kept as a caveated weak result.",
+    "negative_control_k=num_fixed-1": {
+      "k": 15,
+      "chi": 23,
+      "fails_chi_24": true
+    },
+    "rigidity_conclusion": "NO RIGID, target-value-free selecting condition for k=16 was found in this track's own data. chi(X_k)==24 is NORMALISATION (external target). The task's own suggested b1=0 criterion is COMPUTED but NON-DISCRIMINATING. The even-intersection-form criterion could not be evaluated with the tools available. This is a materially more conservative conclusion than v1's claim of a rigid, two-independent-criteria result."
+  },
+  "N=8": {
+    "N": "N=8",
+    "num_fixed_points_computed": 16,
+    "chi_U_computed": -8,
+    "chi_S2_computed": 2,
+    "chi_RP3_computed_from_link_betti": 0,
+    "chi_cone_RP3_STATED": 1,
+    "chi_of_k_scan": {
+      "0": 8,
+      "1": 9,
+      "2": 10,
+      "3": 11,
+      "4": 12,
+      "5": 13,
+      "6": 14,
+      "7": 15,
+      "8": 16,
+      "9": 17,
+      "10": 18,
+      "11": 19,
+      "12": 20,
+      "13": 21,
+      "14": 22,
+      "15": 23,
+      "16": 24
+    },
+    "chi_of_k_is_affine_in_k": true,
+    "chi_of_k_slope": 1,
+    "closed_form": "chi(X_k) = 8 + 1*k",
+    "solution_set_chi_equals_24": {
+      "set": [
+        16
+      ],
+      "classification": "NORMALISATION",
+      "reason": "selecting condition chi(X_k)==24 is built from the literal target value 24 (the external identification of this resolution as K3); chi(X_k) is strictly monotonic (affine, slope=1) in k, so this condition trivially isolates a point for ANY target, carrying no independent discriminating power",
+      "input_that_fixes_it": "the literal target chi=24, i.e. the physics assertion that this resolution IS the K3 surface -- an external input, not derived here"
+    },
+    "b1_selector_scan": {
+      "criterion": "task-suggested criterion 'b1(X_k)=0', COMPUTED for every k (not assumed)",
+      "b1_of_k": {
+        "0": 0,
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 0,
+        "16": 0
+      },
+      "solution_set": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "set_size": 17,
+      "classification": "NON-DISCRIMINATING: b1(X_k)=b1(U) is independent of k in this MV model, so b1=0 selects all of k=0..16, not a point"
+    },
+    "even_intersection_form_criterion": {
+      "criterion": "task-suggested criterion: middle homology parity needed for an even intersection form",
+      "status": "NOT EVALUATED -- the intersection form is a pairing on H_2 that GUDHI Betti numbers do not supply; this track builds no such pairing. See could_not_do."
+    },
+    "manifoldness_condition_classification": {
+      "criterion": "X_k is a smooth closed manifold (no remaining orbifold points) iff k == num_fixed",
+      "classification": "REJECTED as an independent rigid criterion -- DEFINITIONAL given the X_k construction (X_k is DEFINED to have 16-k unresolved cone points), not an independent GUDHI computation"
+    },
+    "removed_incorrect_criterion_note": "An earlier pass of this script reported a chi-PARITY criterion ('chi even, via Poincare duality b1=b3') as a weak structural narrowing. That claim is MATHEMATICALLY WRONG (b1=b3 does not force chi even in general: e.g. CP^2 has b=(1,0,1,0,1), chi=3, odd; and X_k for k<16 are not manifolds, so a manifold-based parity criterion could not filter them regardless). It has been removed from this track's reported results, not kept as a caveated weak result.",
+    "negative_control_k=num_fixed-1": {
+      "k": 15,
+      "chi": 23,
+      "fails_chi_24": true
+    },
+    "rigidity_conclusion": "NO RIGID, target-value-free selecting condition for k=16 was found in this track's own data. chi(X_k)==24 is NORMALISATION (external target). The task's own suggested b1=0 criterion is COMPUTED but NON-DISCRIMINATING. The even-intersection-form criterion could not be evaluated with the tools available. This is a materially more conservative conclusion than v1's claim of a rigid, two-independent-criteria result."
+  },
+  "rigidity_over_N": {
+    "parameter": "grid size N (discretization of the Freudenthal triangulation)",
+    "selecting_condition": "closed stars of the 16 fixed points pairwise disjoint in the quotient complex (structural, computed in 00_premise_checks.py; does NOT reference chi=24 or b2=22 or any other target value)",
+    "condition_uses_true_value": false,
+    "solution_set_tested": {
+      "N=4": "FAILS premise (computed)",
+      "N=6": "PASSES",
+      "N=8": "PASSES"
+    },
+    "negative_control": "N=4: premise fails, demonstrated programmatically in 00_premise_checks_results.json",
+    "betti_b0_b1_b2_b3_b4_by_N": {
+      "6": [
+        1,
+        0,
+        22,
+        0,
+        1
+      ],
+      "8": [
+        1,
+        0,
+        22,
+        0,
+        1
+      ]
+    },
+    "chi_by_N": {
+      "6": 24,
+      "8": 24
+    },
+    "invariant_across_premise_valid_N": true,
+    "classification": "RIGID (structural selecting condition, computed at each N, target-value-free) -- but the rigid statement is INVARIANCE of the answer under N, not a claim that N itself is uniquely determined to be 6 or 8 (both pass; larger N was not exhaustively tried)"
+  }
+}

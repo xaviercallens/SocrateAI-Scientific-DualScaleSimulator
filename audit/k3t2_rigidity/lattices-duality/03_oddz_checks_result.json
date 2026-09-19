@@ -1,0 +1,76 @@
+{
+  "track": "C",
+  "item": "3_oddz_checks",
+  "method": "Exact sympy Rational/Integer arithmetic; eta=[[0,I],[I,0]] block form; 200 seeded random samples per check per d (seed=20260918+d, python random.Random, reproducible); GL(d,Z) elements built by composing random unimodular row operations onto the identity (guarantees exact det=+-1, not sampled-and-filtered).",
+  "n_samples_per_check": 200,
+  "results_by_d": {
+    "2": {
+      "d": 2,
+      "theta_shift_preserves_eta": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      },
+      "negative_control_symmetric_theta": {
+        "num_samples": 200,
+        "num_correctly_failing": 200,
+        "control_passes": true
+      },
+      "basis_change_preserves_eta": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      },
+      "factorized_duality_preserves_eta": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      },
+      "factorized_duality_squares_to_identity": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      },
+      "full_eta_squares_to_identity": true,
+      "generalized_metric_identity_eta_H_eta_eq_H_Ginv": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      }
+    },
+    "3": {
+      "d": 3,
+      "theta_shift_preserves_eta": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      },
+      "negative_control_symmetric_theta": {
+        "num_samples": 200,
+        "num_correctly_failing": 200,
+        "control_passes": true
+      },
+      "basis_change_preserves_eta": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      },
+      "factorized_duality_preserves_eta": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      },
+      "factorized_duality_squares_to_identity": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      },
+      "full_eta_squares_to_identity": true,
+      "generalized_metric_identity_eta_H_eta_eq_H_Ginv": {
+        "passed": 200,
+        "total": 200,
+        "all_passed": true
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "track": "E-flux",
+  "part": "metric-and-formula-validation",
+  "command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/E-flux/scripts/tt_metric_checks.py",
+  "results": [
+    {
+      "id": "TT-4.15-4.16",
+      "description": "alpha_x=2e1, beta_x=2e2 tadpole check",
+      "computed": {
+        "alpha_x_sq": 8,
+        "N_flux": 16,
+        "N_D3": 16
+      },
+      "expected": {
+        "alpha_x_sq": 8,
+        "N_flux": 16,
+        "N_D3": 16
+      },
+      "expected_source": "hep-th_0301139_TripathyTrivedi.txt lines 878-885 (eqs 4.15-4.16)",
+      "match": true
+    },
+    {
+      "id": "TT-4.31-4.32",
+      "description": "second-branch example (2+,2-) flux check",
+      "computed": {
+        "alpha_xx": 16,
+        "alpha_yy": 8,
+        "N_flux": 32,
+        "tau_sq": "-1/2"
+      },
+      "expected": {
+        "alpha_xx": 16,
+        "alpha_yy": 8,
+        "N_flux": 32,
+        "tau_sq": "-1/2"
+      },
+      "expected_source": "hep-th_0301139_TripathyTrivedi.txt lines 984-1009 (eqs 4.24-4.32, text 'alpha_xx=16 and alpha_yy=8', 'tau=i/sqrt(2)')",
+      "match": true,
+      "note": "This example belongs to section 4.2 (a DIFFERENT flux family from 4.1: it does not satisfy alpha_y=-beta_x,beta_y=alpha_x). Used ONLY as an independent metric-convention check, not folded into the section-4.1 enumeration in flux_enumeration.py."
+    },
+    {
+      "id": "TT-4.13-symbolic",
+      "description": "symbolic derivation of N_flux = 2*alpha_x^2 from (2.8)+(4.8)+(4.9)",
+      "derivation_steps": [
+        "N_flux = -beta_x.alpha_y + beta_y.alpha_x   [eq 2.8]",
+        "substitute alpha_y=-beta_x, beta_y=alpha_x  [eq 4.8]",
+        "=> N_flux = beta_x.beta_x + alpha_x.alpha_x = beta_x^2 + alpha_x^2",
+        "substitute beta_x^2 = alpha_x^2             [eq 4.9]",
+        "=> N_flux = 2*alpha_x^2"
+      ],
+      "sympy_result": "2*alpha_x_sq",
+      "matches_eq_4_13": true,
+      "source": "hep-th_0301139_TripathyTrivedi.txt lines 861-873 (eqs 2.8, 4.8, 4.9, 4.13)"
+    },
+    {
+      "id": "TT-line-941-remark-check",
+      "description": "cross-check the prose remark at line 941 against numbered eq (2.3)",
+      "printed_remark": "'...choices of delta alpha_x, delta beta_x which give rise to a vacuum where N_flux = 24 and no D3-branes need be added.' (line 940-942)",
+      "eq_2_3_printed": "(1/2) N_flux + N_D3 = 24  (line 171)",
+      "N_flux_required_for_N_D3_eq_0_per_eq_2_3": "48",
+      "printed_remark_value": 24,
+      "discrepancy_flagged": true,
+      "verdict": "The prose remark at line 941 states N_flux=24 for N_D3=0 saturation; applying the numbered tadpole condition (2.3) as printed gives N_flux=48 for that saturation. This is a candidate factor-of-2 slip in the PROSE aside (not in the numbered equations 4.14/4.16/4.32, which all check out exactly -- see TT-4.15-4.16 and TT-4.31-4.32 above). We flag it and do not silently resolve it either way."
+    }
+  ],
+  "all_numeric_checks_pass": true
+}

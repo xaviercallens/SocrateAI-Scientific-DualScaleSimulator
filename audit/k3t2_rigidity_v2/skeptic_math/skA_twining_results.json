@@ -1,0 +1,115 @@
+{
+ "H_route": "eta^3 H = -2E2 + 48 F2",
+ "A_n": {
+  "0": "-1",
+  "1": "45",
+  "2": "231",
+  "3": "770",
+  "4": "2277",
+  "5": "5796",
+  "6": "13915",
+  "7": "30843",
+  "8": "65550",
+  "9": "132825",
+  "10": "260568",
+  "11": "494385",
+  "12": "915124"
+ },
+ "twining": {
+  "2A": {
+   "chi_from_frame_shape": "8",
+   "t_from_ground_state": "4/3",
+   "t_times_24_over_N(N-1)_equals_F_factor": "16",
+   "q0_const_equals_chi_minus_4": true,
+   "raw_H_g": [
+    "-2",
+    "-6",
+    "14",
+    "-28",
+    "42",
+    "-56",
+    "86",
+    "-138",
+    "188",
+    "-238"
+   ],
+   "polar_term": "-2",
+   "integral": true,
+   "congruence_mod_N": true,
+   "neg_control_t_plus_1_3_integral_and_congruent": false
+  },
+  "3A": {
+   "chi_from_frame_shape": "6",
+   "t_from_ground_state": "3/2",
+   "t_times_24_over_N(N-1)_equals_F_factor": "6",
+   "q0_const_equals_chi_minus_4": true,
+   "raw_H_g": [
+    "-2",
+    "0",
+    "-6",
+    "10",
+    "0",
+    "-18",
+    "20",
+    "0",
+    "-30",
+    "42"
+   ],
+   "polar_term": "-2",
+   "integral": true,
+   "congruence_mod_N": true,
+   "neg_control_t_plus_1_3_integral_and_congruent": false
+  },
+  "5A": {
+   "chi_from_frame_shape": "4",
+   "t_from_ground_state": "5/3",
+   "t_times_24_over_N(N-1)_equals_F_factor": "2",
+   "q0_const_equals_chi_minus_4": true,
+   "raw_H_g": [
+    "-2",
+    "0",
+    "2",
+    "0",
+    "-6",
+    "2",
+    "0",
+    "6",
+    "0",
+    "-10"
+   ],
+   "polar_term": "-2",
+   "integral": true,
+   "congruence_mod_N": true,
+   "neg_control_t_plus_1_3_integral_and_congruent": false
+  },
+  "7A": {
+   "chi_from_frame_shape": "3",
+   "t_from_ground_state": "7/4",
+   "t_times_24_over_N(N-1)_equals_F_factor": "1",
+   "q0_const_equals_chi_minus_4": true,
+   "raw_H_g": [
+    "-2",
+    "-1",
+    "0",
+    "0",
+    "4",
+    "0",
+    "-2",
+    "2",
+    "-3",
+    "0"
+   ],
+   "polar_term": "-2",
+   "integral": true,
+   "congruence_mod_N": true,
+   "neg_control_t_plus_1_3_integral_and_congruent": false
+  }
+ },
+ "comparison_with_trackA": {
+  "A_n_1_10_agree": true,
+  "2A_agree": true,
+  "3A_agree": true,
+  "5A_agree": true,
+  "7A_agree": true
+ }
+}

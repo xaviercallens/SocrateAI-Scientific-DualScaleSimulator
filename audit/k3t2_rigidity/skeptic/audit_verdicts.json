@@ -1,0 +1,18 @@
+{
+ "role": "SKEPTIC / auditor of the k3t2-rigidity blind tracks A-D, comparator, reverse pass. Tier B at best; nothing here is 'proved'.",
+ "commands": {
+  "reruns": "audit/k3t2_rigidity/skeptic/rerun_all.sh (then, because theta_forms.py defaults to QMAX=14: cd dyons && $PY theta_forms.py 22 && rerun hurwitz/part1/part2/part3 and reverse/p1_p2,p3_p4,p5); byte-compare = git diff on committed JSON; TDA diffs restored with git checkout after confirming only runtime_* fields changed",
+  "tda_validity": "$PY audit/k3t2_rigidity/skeptic/s1_tda_validity.py -> s1_tda_validity_results.json",
+  "polar_joint_scan": "$PY audit/k3t2_rigidity/skeptic/s2_polar_joint_scan.py -> s2_polar_joint_scan_results.json",
+  "PY": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python"
+ },
+ "blindness": {
+  "keyword_grep": "LeanMaster|lean_foundation|PAPER_FACTS|axioms.json over dyons/, genus-moonshine/, lattices-duality/, tda-gudhi/ scripts and git log -p: only self-report strings in tda-gudhi/00_master_summary.py:31-33 (states files NOT opened). reverse/ and comparison.json reference LeanMaster by design.",
+  "file_reads": "No forward-track script opens a path outside its own track directory; nothing references targets_sealed.json.",
+  "unverifiable": "targets_sealed.json was born 20:36:39, before the first blind commit (eccf016, 20:50:51), and sat untracked in the shared worktree. Its atime (20:37:36) is already later than its mtime under relatime, so later reads would not update it: filesystem evidence cannot exclude an agent having read it. No script-level evidence of use."
+ },
+ "key_finding_trackB_D_minus_9": "dyons/part3_polar.py:141 builds the s<=-1 branch of A_{2,1} as n = -2*s - s*k, dropping the q^{s^2+s} prefactor (correct: n = s^2 - s - s*k; identical only for s=-1). For s=-2,k=0 this puts a spurious +1 at (n,l)=(4,-5): A21 there is 4 in part3 vs 3 corrected. N*1 = 324 is exactly the 'unresolved -324 at D=-9'. With the prefactor restored the identity holds on the FULL window (n<=4,|l|<=20, no D filter) at (N,M)=(324,648), unique on the joint 9x17 grid; neighbours (323|325,648) fail at 26 coeffs, (324,647|649) at 27. The D>=-4 window in part3 was a post-hoc filter hiding a code bug, not a truncation or physics effect.",
+ "key_finding_trackD_N4": "At N=4 all 120 pairs of the 16 singular closed stars in the quotient share a vertex (e.g. (0,0,0,0) and (0,0,2,2) share (0,0,1,1)); the actual Mayer-Vietoris intersection U n B has Betti (1,105,0,16) over Z/3, not 16 disjoint RP^3 = (16,0,0,16). So the MV step in 03_resolution_hybrid.py is invalid at N=4; the b2=22 / chi=24 at N=4 come out right only because the formula b2(U)+16 was applied without checking its premise. At N=6 the stars are disjoint and U n B = (16,0,0,16): the N=6 route is valid. The 'N-invariance' claim is therefore only one valid data point.",
+ "key_finding_trackD_translation_control": "The N=4 free-translation control is not a triangulation: its dim-1 count is 1856 vs 1920 required for a 2-to-1 quotient (the halving check the script runs for negation is never run for the control). chi(f-vector)=chi(Betti)=64 still agree on it, so that check has no discriminating power; the halving (2-to-1) check is what certifies the negation quotient.",
+ "reproducibility_gap": "dyons/theta_forms.py run with its default QMAX=14 overwrites theta_forms_cache.json with a shorter table (max D 56 vs committed 88); part2_psi_m_results.json then changes and reverse/p1_p2_dmz516_m4.py crashes (ValueError: c(60) not available). The committed cache needs 'theta_forms.py 22', which no reported command states."
+}

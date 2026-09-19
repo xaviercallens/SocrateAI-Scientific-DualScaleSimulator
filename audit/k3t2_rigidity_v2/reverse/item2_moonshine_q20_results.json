@@ -1,0 +1,519 @@
+{
+ "prediction": {
+  "twined_div24_q20": "every coefficient of the 26 computed twined series stays divisible by 24*D at n=10..20 (structural: forced by the weight-2 modular combination, not by any target value)",
+  "moonshine_modules_decompose_q10_20": "<T_n,chi_i> has vanishing omega-parts, is divisible by |M24|=244823040, and the quotient is >=0, for n=10..20, i=0..25 -- a genuine new fact since CDH Table 48 stops at n=9"
+ },
+ "validation_gate_lean_n9": {
+  "twined_2A": true,
+  "twined_3A": true,
+  "twined_5A": true,
+  "twined_7AB": true,
+  "twined_all16_at_q9": {
+   "2B": true,
+   "3B": true,
+   "4A": true,
+   "4B": true,
+   "4C": true,
+   "6A": true,
+   "6B": true,
+   "8A": true,
+   "10A": true,
+   "11A": true,
+   "12A": true,
+   "12B": true,
+   "14AB": true,
+   "15AB": true,
+   "21AB": true,
+   "23AB": true
+  },
+  "twinedAll_div_at_q9": true,
+  "moonshine_modules_decompose_at_n0_9": true,
+  "mismatches_n0_9": [],
+  "all_pass": true
+ },
+ "lean_theorems_extended": [
+  "Twining.twined_div24 (DualScaleMoonshine)",
+  "TwiningAll.twinedAll_div (DualScaleMoonshine)",
+  "Decompositions.moonshine_modules_decompose (DualScaleMoonshine)"
+ ],
+ "computed": {
+  "twined_divisibility_q10_20_per_class": {
+   "2B": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "3B": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "4A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "4B": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "4C": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "6A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "6B": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "8A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "10A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "11A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "12A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "12B": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "14AB": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "15AB": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "21AB": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "23AB": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "1A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "2A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "3A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "5A": {
+    "holds_n10_20": true,
+    "violations": []
+   },
+   "7AB": {
+    "holds_n10_20": true,
+    "violations": []
+   }
+  },
+  "twined_divisibility_all_hold_q10_20": true,
+  "moonshine_modules_decompose_holds_per_n": {
+   "10": true,
+   "11": true,
+   "12": true,
+   "13": true,
+   "14": true,
+   "15": true,
+   "16": true,
+   "17": true,
+   "18": true,
+   "19": true,
+   "20": true
+  },
+  "moonshine_modules_decompose_all_hold_q10_20": true,
+  "multiplicities_n10_20": {
+   "10": [
+    0,
+    0,
+    0,
+    0,
+    2,
+    2,
+    0,
+    2,
+    2,
+    0,
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    4,
+    4,
+    6,
+    6,
+    8,
+    12,
+    10,
+    10,
+    24
+   ],
+   "11": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    4,
+    4,
+    4,
+    4,
+    6,
+    4,
+    4,
+    2,
+    8,
+    10,
+    8,
+    14,
+    12,
+    22,
+    26,
+    24,
+    40
+   ],
+   "12": [
+    0,
+    2,
+    0,
+    0,
+    2,
+    2,
+    2,
+    4,
+    4,
+    6,
+    6,
+    8,
+    8,
+    4,
+    8,
+    8,
+    12,
+    12,
+    12,
+    18,
+    26,
+    30,
+    40,
+    40,
+    38,
+    80
+   ],
+   "13": [
+    0,
+    0,
+    2,
+    2,
+    2,
+    2,
+    4,
+    2,
+    6,
+    10,
+    10,
+    14,
+    14,
+    18,
+    14,
+    14,
+    16,
+    26,
+    30,
+    28,
+    44,
+    44,
+    70,
+    84,
+    80,
+    136
+   ],
+   "14": [
+    0,
+    0,
+    0,
+    0,
+    8,
+    8,
+    4,
+    6,
+    14,
+    16,
+    16,
+    24,
+    24,
+    22,
+    24,
+    24,
+    34,
+    38,
+    46,
+    58,
+    80,
+    86,
+    128,
+    132,
+    126,
+    254
+   ],
+   "15": [
+    0,
+    0,
+    2,
+    2,
+    8,
+    8,
+    12,
+    8,
+    18,
+    38,
+    38,
+    40,
+    40,
+    46,
+    44,
+    44,
+    46,
+    78,
+    86,
+    88,
+    138,
+    144,
+    218,
+    246,
+    238,
+    424
+   ],
+   "16": [
+    0,
+    2,
+    2,
+    2,
+    18,
+    18,
+    18,
+    22,
+    36,
+    50,
+    50,
+    72,
+    72,
+    68,
+    72,
+    72,
+    100,
+    122,
+    140,
+    170,
+    232,
+    252,
+    378,
+    400,
+    382,
+    742
+   ],
+   "17": [
+    0,
+    2,
+    8,
+    8,
+    25,
+    25,
+    30,
+    26,
+    54,
+    94,
+    94,
+    116,
+    116,
+    130,
+    124,
+    124,
+    140,
+    212,
+    246,
+    262,
+    392,
+    410,
+    630,
+    704,
+    670,
+    1222
+   ],
+   "18": [
+    0,
+    6,
+    6,
+    6,
+    50,
+    50,
+    50,
+    58,
+    100,
+    148,
+    148,
+    194,
+    194,
+    192,
+    202,
+    202,
+    256,
+    342,
+    388,
+    454,
+    654,
+    704,
+    1044,
+    1120,
+    1074,
+    2058
+   ],
+   "19": [
+    0,
+    4,
+    18,
+    18,
+    68,
+    68,
+    80,
+    72,
+    150,
+    252,
+    252,
+    318,
+    318,
+    346,
+    332,
+    332,
+    394,
+    582,
+    664,
+    722,
+    1062,
+    1116,
+    1702,
+    1880,
+    1800,
+    3320
+   ],
+   "20": [
+    0,
+    14,
+    20,
+    20,
+    126,
+    126,
+    128,
+    138,
+    254,
+    390,
+    390,
+    516,
+    516,
+    520,
+    536,
+    536,
+    676,
+    904,
+    1036,
+    1196,
+    1716,
+    1836,
+    2764,
+    2980,
+    2846,
+    5408
+   ]
+  }
+ },
+ "negative_controls": {
+  "perturb_F2A_coefficient": {
+   "perturbed": "twined24(N,8,2,-15) instead of -16",
+   "violations_n10_20": [
+    [
+     11,
+     483630
+    ],
+    [
+     12,
+     928984
+    ],
+    [
+     13,
+     1634130
+    ],
+    [
+     14,
+     2946006
+    ],
+    [
+     15,
+     5038682
+    ],
+    [
+     16,
+     8690220
+    ],
+    [
+     17,
+     14475972
+    ],
+    [
+     18,
+     24116530
+    ],
+    [
+     19,
+     39218508
+    ],
+    [
+     20,
+     63548562
+    ]
+   ],
+   "control_has_teeth": true
+  },
+  "perturb_character_table_entry": {
+   "perturbed": "CHAR_TAB[1][0] (chi_2 at 1A) +1",
+   "levels_n10_20_where_integrality_or_nonneg_breaks": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "control_has_teeth": true
+  }
+ },
+ "tier": "B",
+ "command": "cd audit/k3t2_rigidity_v2/reverse && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python item2_moonshine_q20.py"
+}

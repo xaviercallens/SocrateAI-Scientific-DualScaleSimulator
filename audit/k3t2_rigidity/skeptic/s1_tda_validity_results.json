@@ -1,0 +1,248 @@
+{
+ "N=4": {
+  "fvector_T4": [
+   256,
+   3840,
+   12800,
+   15360,
+   6144
+  ],
+  "fvector_quotient": [
+   136,
+   1920,
+   6400,
+   7680,
+   3072
+  ],
+  "V1_missing_codim1_faces_in_simplextree": 0,
+  "V2_simplextree_num_simplices": 19208,
+  "V2_faceset_size": 19208,
+  "V2_match": true,
+  "V3_num_vertices": 136,
+  "V3_orbit_count_expected": 136,
+  "V3_match": true,
+  "chi_from_fvector": 8,
+  "betti_Z3": [
+   1,
+   0,
+   6,
+   0,
+   1
+  ],
+  "V4_chi_betti_eq_fvector_Z3": true,
+  "betti_Z5": [
+   1,
+   0,
+   6,
+   0,
+   1
+  ],
+  "V4_chi_betti_eq_fvector_Z5": true,
+  "V5_dims1to4_exactly_half": true,
+  "num_fixed_vertices": 16,
+  "V6_pairs_of_singular_closed_stars_sharing_a_vertex": 120,
+  "V6_examples": [
+   [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     2
+    ],
+    [
+     [
+      0,
+      0,
+      0,
+      1
+     ]
+    ]
+   ],
+   [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     2,
+     0
+    ],
+    [
+     [
+      0,
+      0,
+      1,
+      0
+     ]
+    ]
+   ],
+   [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     2,
+     2
+    ],
+    [
+     [
+      0,
+      0,
+      1,
+      1
+     ]
+    ]
+   ]
+  ],
+  "V6_union_of_16_links_betti_Z3": [
+   1,
+   105,
+   0,
+   16
+  ],
+  "V6_expected_if_disjoint_RP3s_Z3": [
+   16,
+   0,
+   0,
+   16
+  ],
+  "U_betti_Z3_independent": [
+   1,
+   0,
+   6,
+   15,
+   0
+  ],
+  "V6_actual_MV_intersection_UcapB_betti_Z3": [
+   1,
+   105,
+   0,
+   16
+  ]
+ },
+ "N=4_translation_control": {
+  "fvector_T4": [
+   256,
+   3840,
+   12800,
+   15360,
+   6144
+  ],
+  "fvector_quotient": [
+   128,
+   1856,
+   6400,
+   7680,
+   3072
+  ],
+  "V1_missing_codim1_faces_in_simplextree": 0,
+  "V2_simplextree_num_simplices": 19136,
+  "V2_faceset_size": 19136,
+  "V2_match": true,
+  "V3_num_vertices": 128,
+  "V3_orbit_count_expected": 128,
+  "V3_match": true,
+  "chi_from_fvector": 64,
+  "betti_Z3": [
+   1,
+   3,
+   69,
+   4,
+   1
+  ],
+  "V4_chi_betti_eq_fvector_Z3": true,
+  "betti_Z5": [
+   1,
+   3,
+   69,
+   4,
+   1
+  ],
+  "V4_chi_betti_eq_fvector_Z5": true,
+  "V5_dims1to4_exactly_half": false
+ },
+ "N=6": {
+  "fvector_T4": [
+   1296,
+   19440,
+   64800,
+   77760,
+   31104
+  ],
+  "fvector_quotient": [
+   656,
+   9720,
+   32400,
+   38880,
+   15552
+  ],
+  "V1_missing_codim1_faces_in_simplextree": 0,
+  "V2_simplextree_num_simplices": 97208,
+  "V2_faceset_size": 97208,
+  "V2_match": true,
+  "V3_num_vertices": 656,
+  "V3_orbit_count_expected": 656,
+  "V3_match": true,
+  "chi_from_fvector": 8,
+  "betti_Z3": [
+   1,
+   0,
+   6,
+   0,
+   1
+  ],
+  "V4_chi_betti_eq_fvector_Z3": true,
+  "betti_Z5": [
+   1,
+   0,
+   6,
+   0,
+   1
+  ],
+  "V4_chi_betti_eq_fvector_Z5": true,
+  "V5_dims1to4_exactly_half": true,
+  "num_fixed_vertices": 16,
+  "V6_pairs_of_singular_closed_stars_sharing_a_vertex": 0,
+  "V6_examples": [],
+  "V6_union_of_16_links_betti_Z3": [
+   16,
+   0,
+   0,
+   16
+  ],
+  "V6_expected_if_disjoint_RP3s_Z3": [
+   16,
+   0,
+   0,
+   16
+  ],
+  "U_betti_Z3_independent": [
+   1,
+   0,
+   6,
+   15,
+   0
+  ],
+  "V6_actual_MV_intersection_UcapB_betti_Z3": [
+   16,
+   0,
+   0,
+   16
+  ]
+ }
+}
