@@ -1,0 +1,4164 @@
+{
+  "pipeline_file_sha256": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
+  "prep_info": {
+    "n_genome_sets_total": 66343,
+    "n_avian_8segment_sets": 15175,
+    "median_len": {
+      "1": 2307.0,
+      "2": 2309.0,
+      "3": 2201.0,
+      "4": 1713.0,
+      "5": 1537.0,
+      "6": 1428.0,
+      "7": 1002.0,
+      "8": 865.0
+    },
+    "n_after_length_filter_and_seq_found": 15172,
+    "n_unique_concatenated": 14717,
+    "n_sub": 300,
+    "seed_sub": 20260919,
+    "pyfamsa_version": "0.7.0",
+    "strains": [
+      "Influenza A virus (A/mallard duck/Alberta/630/1984(H4N2))",
+      "Influenza A virus (A/shorebird/DE/75/2004(H5N7))",
+      "Influenza A virus (A/mallard duck/ALB/224/1977(H7N5))",
+      "Influenza A virus (A/semi-palmated sandpiper/Brazil/43/1990(H2N1))",
+      "Influenza A virus (A/duck/Hong Kong/319/1978(H2N2))",
+      "Influenza A virus (A/duck/Hong Kong/278/1978(H2N9))",
+      "Influenza A virus (A/red-necked stint/Australia/4189/1980(H4N8))",
+      "Influenza A virus (A/pintail duck/Alaska/20/2005(H12N5))",
+      "Influenza A virus (A/chicken/Pennsylvania/1/1983(H5N2))",
+      "Influenza A virus (A/pintail/Alaska/211/2005(H3N8))",
+      "Influenza A virus (A/mallard/Ohio/666/2002(H6N2))",
+      "Influenza A virus (A/mallard/Ohio/656/2002(mixed))",
+      "Influenza A virus (A/teal/Italy/3812/2005(H5N3))",
+      "Influenza A virus (A/chicken/New York/12273-11/1999(H7N3))",
+      "Influenza A virus (A/mallard/Interior Alaska/10BM06397R0/2010(mixed))",
+      "Influenza A virus (A/mallard/Italy/3401/2005(H5N1))",
+      "Influenza A virus (A/wild bird/Anhui/S66/2014(H9N2))",
+      "Influenza A virus (A/ruddy turnstone/Delaware Bay/446/2005)",
+      "Influenza A virus (A/ruddy turnstone/Delaware Bay/324/2005)",
+      "Influenza A virus (A/mallard/Alberta/292/2017)",
+      "Influenza A virus (A/ring-billed gull/Minnesota/CLMNAI1283/2017)",
+      "Influenza A virus (A/blue-winged teal/Guatemala/CIP049-I_H117-13/2013)",
+      "Influenza A virus (A/lesser scaup/Wisconsin/17OS5811/2017)",
+      "Influenza A virus (A/mallard/Netherlands/39/2008)",
+      "Influenza A virus (A/chicken/Taiwan/0705/99(H6N1))",
+      "Influenza A virus (A/chicken/Taiwan/0114/04(H6N1))",
+      "Influenza A virus (A/quail/Italy/4992/1999(H7N1))",
+      "Influenza A virus (A/chicken/New York/88291-15/2005(H7N2))",
+      "Influenza A virus (A/mallard/Minnesota/160/1999(H4N6))",
+      "Influenza A virus (A/northern shoveler/California/HKWF1199/2007(H3N5))",
+      "Influenza A virus (A/quail/Phathumthani/NIAH2711/2004(H5N1))",
+      "Influenza A virus (A/grey heron/Hong Kong/3088/2007(H5N1))",
+      "Influenza A virus (A/chicken/Pakistan/UDL-03/2005(H9N2))",
+      "Influenza A virus (A/mallard/Minnesota/42/2000(H11N9))",
+      "Influenza A virus (A/mallard/Maryland/41/2003(H1N1))",
+      "Influenza A virus (A/duck/Laos/P0127/2007(H5N1))",
+      "Influenza A virus (A/Cygnus olor/Astrakhan/Ast05-2-2/2005(H5N1))",
+      "Influenza A virus (A/turkey/VA/158512/2002(H7N2))",
+      "Influenza A virus (A/chicken/Israel/702/2008(H9N2))",
+      "Influenza A virus (A/chicken/Israel/883/2008(H9N2))",
+      "Influenza A virus (A/chicken/Israel/953/2007(H9N2))",
+      "Influenza A virus (A/chicken/Hong Kong/409.1/2002(H5N1))",
+      "Influenza A virus (A/chicken/Ninh Binh/209/2005(H5N1))",
+      "Influenza A virus (A/mallard/Netherlands/5/1999(H2N9))",
+      "Influenza A virus (A/duck/Shantou/2471/2002(H6N2))",
+      "Influenza A virus (A/chicken/Shanxi/10/2006(H5N1))",
+      "Influenza A virus (A/chicken/West Bengal/81760/2008(H5N1))",
+      "Influenza A virus (A/western grebe/Washington/20569-004/2007(H1N2))",
+      "Influenza A virus (A/American green-winged teal/California/27790/2007(H11N9))",
+      "Influenza A virus (A/northern shoveler/California/44287-164/2007(H7N7))",
+      "Influenza A virus (A/greater white-fronted goose/California/44358-095/2007(H6N1))",
+      "Influenza A virus (A/mallard/Netherlands/42/2006(H11N9))",
+      "Influenza A virus (A/northern shoveler/Netherlands/1/2006(H8N4))",
+      "Influenza A virus (A/mallard/Interior Alaska/6MP0038BR2/2006(H2N3))",
+      "Influenza A virus (A/mallard/Interior Alaska/9BM1812/2009(H4N6))",
+      "Influenza A virus (A/slaty-backed gull/Japan/6KS0185/2006(H4N8))",
+      "Influenza A virus (A/northern pintail/Interior Alaska/7MP1822/2007(H3N8))",
+      "Influenza A virus (A/northern pintail/Interior Alaska/8BM3723/2008(H4N1))",
+      "Influenza A virus (A/mallard/California/8462/2008(H6N1))",
+      "Influenza A virus (A/green-winged teal/California/10197/2008(H10N7))",
+      "Influenza A virus (A/mallard/California/5491/2009(H5N2))",
+      "Influenza A virus (A/American wigeon/California/HKWF541C/2007(H6N5))",
+      "Influenza A virus (A/duck/Lao/7/2010(H5N1))",
+      "Influenza A virus (A/ruddy turnstone/Delaware Bay/203/1994(H3N3))",
+      "Influenza A virus (A/mallard/Alberta/225/2006(H3N8))",
+      "Influenza A virus (A/mallard/Alberta/34/2007(H3N8))",
+      "Influenza A virus (A/duck/Eastern China/40/2007(H6N2))",
+      "Influenza A virus (A/duck/Guangxi/2281/2007(H6N6))",
+      "Influenza A virus (A/duck/Shantou/358/2007(H6N6))",
+      "Influenza A virus (A/duck/Shantou/2962/2007(H6N6))",
+      "Influenza A virus (A/duck/Fujian/4676/2007(H6N6))",
+      "Influenza A virus (A/mallard/Potsdam/177-6/1983(H2N2))",
+      "Influenza A virus (A/northern shoveler/Georgia/1/2010(H2N3))",
+      "Influenza A virus (A/American black duck/Prince Edward Island/02662/2007(H4N6))",
+      "Influenza A virus (A/mallard/Korea/SH38-45/2010(H13N2))",
+      "Influenza A virus (A/muscovy duck/Vietnam/LBM66/2011 (H5N1))",
+      "Influenza A virus (A/duck/Vietnam/LBM136/2012(H5N1))",
+      "Influenza A virus (A/mallard/Alberta/57/1994(H6N8))",
+      "Influenza A virus (A/ruddy turnstone/New Jersey/342/1989(H11N1))",
+      "Influenza A virus (A/mallard/Alberta/207/1990(H6N3))",
+      "Influenza A virus (A/ruddy turnstone/Delaware Bay/46/1998(H6N8))",
+      "Influenza A virus (A/duck/Guangxi/GXd-5/2010(H6N1))",
+      "Influenza A virus (A/mallard/New Brunswick/02294/2007(H4N6))",
+      "Influenza A virus (A/American black duck/New Brunswick/03552/2009(H4N6))",
+      "Influenza A virus (A/Muscovy duck/Ca Mau/1181/2006(H5N1))",
+      "Influenza A virus (A/mallard/Interior Alaska/9BM2606R0/2009(H4N6))",
+      "Influenza A virus (A/American wigeon/Interior Alaska/9BM2501R1/2009(H3N8))",
+      "Influenza A virus (A/ostrich/South Africa/AI2512/2011(H5N2))",
+      "Influenza A virus (A/mallard/Ohio/11OS2213/2011(H11N2))",
+      "Influenza A virus (A/mallard/Ohio/11OS2010/2011(H7N8))",
+      "Influenza A virus (A/mallard/Ohio/11OS1961/2011(H5N2))",
+      "Influenza A virus (A/mallard/Wisconsin/10OS2524/2010(H11N2))",
+      "Influenza A virus (A/blue-winged teal/Wisconsin/10OS3092/2010(H3N6))",
+      "Influenza A virus (A/American green-winged teal/Missouri/10OS4622/2010(H12N4))",
+      "Influenza A virus (A/blue-winged teal/Missouri/10MO0011/2010(H3N6))",
+      "Influenza A virus (A/mallard/California/2547V/2011(H3N8))",
+      "Influenza A virus (A/American wigeon/California/2930/2011(H10N3))",
+      "Influenza A virus (A/mallard/Alberta/2/1995(H10N7))",
+      "Influenza A virus (A/mallard/Alberta/151/2002(H1N1))",
+      "Influenza A virus (A/mallard/Alberta/130/2003(H1N1))",
+      "Influenza A virus (A/American black duck/New Brunswick/00425/2010(H3N8))",
+      "Influenza A virus (A/American black duck/New Brunswick/00523/2010(H4N6))",
+      "Influenza A virus (A/duck/Nanjing/1102/2010(H4N8))",
+      "Influenza A virus (A/blue-winged teal/Minnesota/Sg-00799/2008(H4N6))",
+      "Influenza A virus (A/green-winged teal/Minnesota/Sg-01073/2008(H6N2))",
+      "Influenza A virus (A/mallard/Interior Alaska/10BM08100R0/2010(H7N3))",
+      "Influenza A virus (A/mallard/Interior Alaska/10BM10861R0/2010(H7N3))",
+      "Influenza A virus (A/mallard/Interior Alaska/10BM11434R0/2010(H7N3))",
+      "Influenza A virus (A/American green-winged teal/Interior Alaska/9BM6222R0/2009(H10N7))",
+      "Influenza A virus (A/northern pintail/Interior Alaska/9BM7836R0/2009(H3N8))",
+      "Influenza A virus (A/mallard/Interior Alaska/9BM12326R0/2009(H3N8))",
+      "Influenza A virus (A/northern pintail/Interior Alaska/9BM12700R0/2009(H3N8))",
+      "Influenza A virus (A/ruddy turnstone/Delaware/Sg-00540/2008(H12N4))",
+      "Influenza A virus (A/ruddy turnstone/New Jersey/AI09-907/2009(H10N7))",
+      "Influenza A virus (A/chicken/Soc Trang/4/2012(H5N1))",
+      "Influenza A virus (A/goose/Guangdong/7472/2012(H7N7))",
+      "Influenza A virus (A/duck/Jiangxi/21669/2009(H7N7))",
+      "Influenza A virus (A/wild duck/Jiangxi/9157/2005(H7N8))",
+      "Influenza A virus (A/chicken/Wenzhou/279/2013(H7N7))",
+      "Influenza A virus (A/chicken/Wenzhou/685/2013(H7N7))",
+      "Influenza A virus (A/chicken/Hong Kong/YSC82/2008(H9N2))",
+      "Influenza A virus (A/chicken/Hong Kong/FY105W/2012(H9N2))",
+      "Influenza A virus (A/shorebird/Delaware Bay/324/2009(H1N1))",
+      "Influenza A virus (A/greylag goose/Iceland/1482/2011(H6N8))",
+      "Influenza A virus (A/mallard/California/3174/2012(H2N3))",
+      "Influenza A virus (A/mallard/Sweden/24/2002(H8N4))",
+      "Influenza A virus (A/chicken/Egypt/M2773A/2011(H5N1))",
+      "Influenza A virus (A/chicken/Egypt/Q1995A/2010(H5N1))",
+      "Influenza A virus (A/turkey/Egypt/S6405A/2012(H5N1))",
+      "Influenza A virus (A/chicken/Taiwan/1704/2013(H5N2))",
+      "Influenza A virus (A/chicken/Taiwan/1711/2013(H5N2))",
+      "Influenza A virus (A/mallard/QC/2323-25/2006(H5N2))",
+      "Influenza A virus (A/mallard/Sweden/2101/2003(H4N6))",
+      "Influenza A virus (A/mallard/Wisconsin/11OS4383/2011(H3N8))",
+      "Influenza A virus (A/mallard/California/1481/2013(H5N5))",
+      "Influenza A virus (A/American green-winged teal/Ohio/13OS2060/2013(H6N8))",
+      "Influenza A virus (A/duck/Wisconsin/2687/1985(H12N5))",
+      "Influenza A virus (A/mallard/Wisconsin/260/1980(H3N2))",
+      "Influenza A virus (A/mallard/Wisconsin/1120/1982(H2N3))",
+      "Influenza A virus (A/mallard/Wisconsin/856/1982(H3N5))",
+      "Influenza A virus (A/thick-billed murre/Alaska/335/1976(H1N6))",
+      "Influenza A virus (A/mallard/Wisconsin/414/1977(H3N2))",
+      "Influenza A virus (A/thick-billed murre/Alaska/243/1976(H1N9))",
+      "Influenza A virus (A/mallard/Wisconsin/443/1979(H11N9))",
+      "Influenza A virus (A/duck/Minnesota/12/1975(H3N8))",
+      "Influenza A virus (A/green-winged teal/Wisconsin/535/1976(H1N1))",
+      "Influenza A virus (A/mallard/Wisconsin/3/1980(H6N1))",
+      "Influenza A virus (A/widgeon/Wisconsin/42/1978(H6N8))",
+      "Influenza A virus (A/green-winged teal/Wisconsin/585/1983(H1N1))",
+      "Influenza A virus (A/mallard/Sweden/737/2002(H10N2))",
+      "Influenza A virus (A/mallard/Sweden/2213/2003(H12N5))",
+      "Influenza A virus (A/mallard/Sweden/79123/2008(H11N9))",
+      "Influenza A virus (A/black-headed gull/Georgia/4/2011(H13N8))",
+      "Influenza A virus (A/Mediterranean gull/Georgia/1/2011(H9N3))",
+      "Influenza A virus (A/mallard/Republic of Georgia/14/2011(H10N7))",
+      "Influenza A virus (A/mallard/Sweden/1628/2002(H7N7))",
+      "Influenza A virus (A/blue-winged teal/Illinois/12OS4788/2012(H1N1))",
+      "Influenza A virus (A/blue-winged teal/Ohio/12OS2106/2012(H4N6))",
+      "Influenza A virus (A/turtledove/Guangxi/49B6/2013(H9N2))",
+      "Influenza A virus (A/chicken/Hebei/YT/2010(H9N2))",
+      "Influenza A virus (A/chicken/Shandong/02/2011(H9N2))",
+      "Influenza A virus (A/muscovy duck/Vietnam/LBM694/2014(H9N2))",
+      "Influenza A virus (A/breeder duck/Korea/H200/2014(H5N8))",
+      "Influenza A virus (A/breeder duck/Korea/H158/2014(H5N8))",
+      "Influenza A virus (A/broiler duck/Korea/H133/2014(H5N8))",
+      "Influenza A virus (A/duck/Zhejiang/C1036/2009(H9N2))",
+      "Influenza A virus (A/duck/Jiangxi/15846/2013(H10N3))",
+      "Influenza A virus (A/chicken/Jiangxi/9696/2013(H9N2))",
+      "Influenza A virus (A/chicken/Jiangxi/13201/2014(H10N6))",
+      "Influenza A virus (A/duck/Jiangxi/302/2006(H10N3))",
+      "Influenza A virus (A/duck/Jiangxi/468/2006(H10N3))",
+      "Influenza A virus (A/chicken/Shandong/ZL1/2013(H9N2))",
+      "Influenza A virus (A/chicken/Zhejiang/JX42/2012(H9N2))",
+      "Influenza A virus (A/chicken/Liaoning/1116/2012(H9N2))",
+      "Influenza A virus (A/chicken/Dongguan/4114/2013(H7N9))",
+      "Influenza A virus (A/chicken/Huzhou/3791/2013(H7N9))",
+      "Influenza A virus (A/silkie chicken/Dongguan/4184/2013(H9N2))",
+      "Influenza A virus (A/silkie chicken/Dongguan/979/2014(H7N9))",
+      "Influenza A virus (A/silkie chicken/Dongguan/1519/2014(H7N9))",
+      "Influenza A virus (A/chicken/Jiangxi/14535/2014(H7N6))",
+      "Influenza A virus (A/chicken/Shantou/2539/2014(H7N9))",
+      "Influenza A virus (A/chicken/Zhangzhou/8829/2014(H7N9))",
+      "Influenza A virus (A/muscovy duck/Quang Ninh/7c121/2013(H5N1))",
+      "Influenza A virus (A/baikal teal/Korea/2414/2014(H5N8))",
+      "Influenza A virus (A/mallard/Maryland/11OS3603/2011(H5N2))",
+      "Influenza A virus (A/chicken/Oregon/A01819044/2015(H5N2))",
+      "Influenza A virus (A/chicken/West Java/Sbg-29/2007(H5N1))",
+      "Influenza A virus (A/ostrich/South Africa/AI1713/2009(H6N1))",
+      "Influenza A virus (A/goose/Zhejiang/77168/2014(H5N2))",
+      "Influenza A virus (A/goose/Zhejiang/727098/2014(H5N1))",
+      "Influenza A virus (A/chicken/Zhejiang/C55/2013(H9N2))",
+      "Influenza A virus (A/mute swan/Rhode Island/A00325117/2008(H7N3))",
+      "Influenza A virus (A/ruddy turnstone/Ilha de Canelas/A08/2008(H11N9))",
+      "Influenza A virus (A/gull/Massachusetts/14WP00065/2014(H4N4))",
+      "Influenza A virus (A/mallard/Interior Alaska/10BM13335/2010(H12N5))",
+      "Influenza A virus (A/American green-winged teal/Interior Alaska/11BM03166/2011(H2N9))",
+      "Influenza A virus (A/glaucous-winged gull/Southcentral Alaska/12NH01518/2008(H16N3))",
+      "Influenza A virus (A/mallard/Maryland/11OS1731/2011(H5N2))",
+      "Influenza A virus (A/mallard/Maryland/06OS1236/2006(H11N9))",
+      "Influenza A virus (A/mallard/Maryland/14OS1319/2014(H10N3))",
+      "Influenza A virus (A/surf scoter/Maryland/14OS1418/2014(H10N6))",
+      "Influenza A virus (A/mallard/Maryland/09OS1152/2009(H7N3))",
+      "Influenza A virus (A/mallard/Maryland/09OS1350/2009(H3N2))",
+      "Influenza A virus (A/Anser fabalis/Anhui/L139/2014(H9N2))",
+      "Influenza A virus (A/blue-winged teal/Texas/AI11-3094/2011(H4N6))",
+      "Influenza A virus (A/blue-winged teal/Louisiana/UGAI14-2408/2014(H4N2))",
+      "Influenza A virus (A/blue-winged teal/Texas/UGAI14-3781/2014(H4N6))",
+      "Influenza A virus (A/duck/Zhejiang/727D22/2013(H11N3))",
+      "Influenza A virus (A/glaucous-winged gull/Southcentral Alaska/14MB01422/2014(H16N3))",
+      "Influenza A virus (A/duck/Hunan/146/2014(H3N6))",
+      "Influenza A virus (A/blue-winged teal/Louisiana/UGAI14-191/2014(H7N7))",
+      "Influenza A virus (A/quail/Egypt/D10105/2014(H9N2))",
+      "Influenza A virus (A/pigeon/Egypt/S10409A/2014(H9N2))",
+      "Influenza A virus (A/chicken/Bhutan/258/2012(H5N1))",
+      "Influenza A virus (A/mallard duck/Korea/W456/2014(H5N8))",
+      "Influenza A virus (A/duck/Vietnam/QT1457-1/2012(H5N1))",
+      "Influenza A virus (A/duck/Vietnam/QT1481/2012(H5N1))",
+      "Influenza A virus (A/chicken/Zhejiang/SIC32/2014(H9N2))",
+      "Influenza A virus (A/chicken/Shandong/SIC24/2014(H9N2))",
+      "Influenza A virus (A/gadwall duck/Netherlands/1/2011(H6N2))",
+      "Influenza A virus (A/bewicks swan/Netherlands/5/2008(H5N2))",
+      "Influenza A virus (A/black-headed gull/Netherlands/82/2012(H13N6))",
+      "Influenza A virus (A/mallard duck/Netherlands/2/2008(H10N7))",
+      "Influenza A virus (A/mallard duck/Netherlands/67/2008(H10N7))",
+      "Influenza A virus (A/chicken/Vietnam/NCVD14-A390/2014(H5N1))",
+      "Influenza A virus (A/chicken/Ganzhou/GZ21/2015(H5N6))",
+      "Influenza A virus (A/chicken/Zhejiang/221/2016(H9N2))",
+      "Influenza A virus (A/mallard/Kentucky/AH0051806/2016(H7N3))",
+      "Influenza A virus (A/mallard/Utah/AH0075857/2016(H7N3))",
+      "Influenza A virus (A/duck/Bangladesh/22399/2014(H5N1))",
+      "Influenza A virus (A/blue-winged teal/Missouri/15OS4830/2015(H4N6))",
+      "Influenza A virus (A/mallard/Ohio/15OS4278/2015(H3N2))",
+      "Influenza A virus (A/blue-winged teal/Guatemala/CIP049H108-02/2012(H14N3))",
+      "Influenza A virus (A/northern pintail/Alaska/UGAI15-7408/2015(H3N8))",
+      "Influenza A virus (A/emperor goose/Alaska/UGAI15-6737/2015(H3N8))",
+      "Influenza A virus (A/American wigeon/California/HS001/2015(H6N2))",
+      "Influenza A virus (A/black-headed gull/Netherlands/53/2012(H13N6))",
+      "Influenza A virus (A/black-headed gull/Netherlands/1/2012(H13N6))",
+      "Influenza A virus (A/mallard duck/Netherlands/20/2012(H1N1))",
+      "Influenza A virus (A/black-headed gull/Netherlands/7/2009(H13N2))",
+      "Influenza A virus (A/green-winged teal/Idaho/UGAI16-1896/2016(H4N6))",
+      "Influenza A virus (A/mallard/Idaho/UGAI16-1929/2016(H3N8))",
+      "Influenza A virus (A/chicken/Daye/DY0602/2017(H9N2))",
+      "Influenza A virus (A/duck/Guangxi/SDY129/2014(H7N9))",
+      "Influenza A virus (A/duck/Bangladesh/31297/2016(H5N1))",
+      "Influenza A virus (A/long-tailed duck/Wisconsin/16OS4707/2016(H7N4))",
+      "Influenza A virus (A/mallard duck/Ohio/16OS0803/2016(H10N7))",
+      "Influenza A virus (A/mute swan/Ibaraki/0803_210/2016(H5N6))",
+      "Influenza A virus (A/environment/Gifu/21/2017(H5N6))",
+      "Influenza A virus (A/Northern Shoveler/Ningxia/481-21/2015(H5N6))",
+      "Influenza A virus (A/chicken/Guangxi/C1228/2015(H9N2))",
+      "Influenza A virus (A/chicken/Nigeria/16VIR5840-13/2015(H5N1))",
+      "Influenza A virus (A/chicken/Nigeria/16VIR5840-26/2015(H5N1))",
+      "Influenza A virus (A/chicken/Nigeria/16VIR5840-28/2015(H5N1))",
+      "Influenza A virus (A/chicken/Nigeria/16VIR5840-53/2015(H5N1))",
+      "Influenza A virus (A/goose/Nigeria/16VIR5840-3/2015(H5N1))",
+      "Influenza A virus (A/turkey/Iowa/15-013179-4/2015(H5N2))",
+      "Influenza A virus (A/turkey/Iowa/15-014869-1/2015(H5N2))",
+      "Influenza A virus (A/turkey/Iowa/15-017655-1/2015(H5N2))",
+      "Influenza A virus (A/turkey/Minnesota/15-014972-1/2015(H5N2))",
+      "Influenza A virus (A/jungle crow/Hyogo/2803E011/2018(H5N6))",
+      "Influenza A virus (A/aquatic bird/South Korea/sw001/2015(H7N1))",
+      "Influenza A virus (A/chicken/Bangladesh/32806/2017(H5N1))",
+      "Influenza A virus (A/duck/Pakistan/572/2015)",
+      "Influenza A virus (A/kelp gull/Chile/C8595/2016)",
+      "Influenza A virus (A/ruddy turnstone/New Jersey/AI10-695/2010)",
+      "Influenza A virus (A/ruddy turnstone/New Jersey/AI12-1928/2012)",
+      "Influenza A virus (A/ruddy turnstone/New Jersey/AI13-2282/2013)",
+      "Influenza A virus (A/ruddy turnstone/New Jersey/AI13-2714/2013)",
+      "Influenza A virus (A/ruddy turnstone/New Jersey/UGAI14-1840/2014)",
+      "Influenza A virus (A/American wigeon/Colorado/15-038180-1/2015)",
+      "Influenza A virus (A/American wigeon/Utah/15-038912-1/2015)",
+      "Influenza A virus (A/mallard/Minnesota/16-041335-4/2016)",
+      "Influenza A virus (A/quail/New York/07-501360-001/2007)",
+      "Influenza A virus (A/ruddy turnstone/Delaware/650631/2002)",
+      "Influenza A virus (A/chicken/Jiangsu/1/2018(H7N4))",
+      "Influenza A virus (A/mallard/Alberta/38/2018)",
+      "Influenza A virus (A/laughing gull/Delaware Bay/436/2018)",
+      "Influenza A virus (A/Pavo cristatus/China/K10/2018)",
+      "Influenza A virus (A/fighting bird/Oaxaca/CPA_06257/2015)",
+      "Influenza A virus (A/ruddy turnstone/Delaware Bay/352/2009)",
+      "Influenza A virus (A/ruddy turnstone/Delaware Bay/305/2009)",
+      "Influenza A virus (A/ruddy turnstone/Delaware Bay/259/2014)",
+      "Influenza A virus (A/northern shoveler/California/LDC762/2016)",
+      "Influenza A virus (A/Green-Winged Teal/California/D1615825/2016)",
+      "Influenza A virus (A/muscovy duck/Viet Nam/QN-2708/2016)",
+      "Influenza A virus (A/muscovy duck/Viet Nam/QN-2706/2016)",
+      "Influenza A virus (A/chicken/Viet Nam/QN-0210/2013)",
+      "Influenza A virus (A/teal/Egypt/1198C/2017)",
+      "Influenza A virus (A/duck/Mongolia/837/2015)",
+      "Influenza A virus (A/duck/Mongolia/972/2018)",
+      "Influenza A virus (A/chicken/South Korea/AIV49/2017)",
+      "Influenza A virus (A/Glaucous-Winged Gull/Southcentral Alaska/17MB03638/2017)",
+      "Influenza A virus (A/Guinea Fowl/Hong Kong/WF10/1999)",
+      "Influenza A virus (A/chicken/Zhejiang/516100/2017(H10N3))",
+      "Influenza A virus (A/Red Knot/Delaware/122/2019)",
+      "Influenza A virus (A/Ruddy Turnstone/Delaware/495/2019)",
+      "Influenza A virus (A/chicken/Bangladesh/38208/2019)",
+      "Influenza A virus (A/duck/Viet Nam/HU13-163/2019)",
+      "Influenza A virus (A/Anas platyrhynchos/Belgium/11075 20/2017)"
+    ],
+    "accessions": [
+      [
+        "CY004837",
+        "CY004836",
+        "CY004835",
+        "CY005959",
+        "CY004833",
+        "CY004832",
+        "CY004831",
+        "CY004834"
+      ],
+      [
+        "CY004983",
+        "CY004982",
+        "CY004981",
+        "CY005969",
+        "CY004979",
+        "CY004978",
+        "CY004977",
+        "CY004980"
+      ],
+      [
+        "CY005015",
+        "CY005014",
+        "CY005013",
+        "CY005973",
+        "CY005011",
+        "CY005010",
+        "CY005009",
+        "CY005012"
+      ],
+      [
+        "CY005420",
+        "CY005419",
+        "CY005418",
+        "CY005413",
+        "CY005416",
+        "CY005415",
+        "CY005414",
+        "CY005417"
+      ],
+      [
+        "CY005545",
+        "CY005544",
+        "CY005543",
+        "CY005538",
+        "CY005541",
+        "CY005540",
+        "CY005539",
+        "CY005542"
+      ],
+      [
+        "CY014614",
+        "CY005552",
+        "CY005551",
+        "CY005546",
+        "CY005549",
+        "CY005548",
+        "CY005547",
+        "CY005550"
+      ],
+      [
+        "CY014632",
+        "CY005703",
+        "CY005702",
+        "CY014630",
+        "CY005700",
+        "CY014631",
+        "CY005699",
+        "CY005701"
+      ],
+      [
+        "CY012847",
+        "CY012846",
+        "CY012845",
+        "CY012840",
+        "CY012843",
+        "CY012842",
+        "CY012841",
+        "CY012844"
+      ],
+      [
+        "CY015080",
+        "CY015079",
+        "CY015078",
+        "CY015073",
+        "CY015076",
+        "CY015075",
+        "CY015074",
+        "CY015077"
+      ],
+      [
+        "CY016187",
+        "CY016186",
+        "CY016185",
+        "CY016180",
+        "CY016183",
+        "CY016182",
+        "CY016181",
+        "CY016184"
+      ],
+      [
+        "CY020788",
+        "CY020787",
+        "CY020786",
+        "CY020781",
+        "CY020784",
+        "CY020783",
+        "CY020782",
+        "CY020785"
+      ],
+      [
+        "CY021588",
+        "CY021587",
+        "CY021586",
+        "CY021581",
+        "CY021584",
+        "CY021609",
+        "CY021582",
+        "CY021585"
+      ],
+      [
+        "CY022652",
+        "CY022651",
+        "CY022650",
+        "CY022645",
+        "CY022648",
+        "CY022647",
+        "CY022646",
+        "CY022649"
+      ],
+      [
+        "HQ541716",
+        "HQ541715",
+        "HQ541714",
+        "AY240892",
+        "HQ541713",
+        "HQ541712",
+        "AY241600",
+        "AY241639"
+      ],
+      [
+        "CY135261",
+        "CY135260",
+        "CY135259",
+        "CY135253",
+        "CY135257",
+        "CY135256",
+        "CY135255",
+        "CY135258"
+      ],
+      [
+        "KC815856",
+        "KC815857",
+        "KC815858",
+        "KC815859",
+        "KC815860",
+        "KC815861",
+        "KC815862",
+        "KC815863"
+      ],
+      [
+        "MG781103",
+        "MG781104",
+        "MG781105",
+        "MG781106",
+        "MG781107",
+        "MG781108",
+        "MG781109",
+        "MG781110"
+      ],
+      [
+        "MH579142",
+        "MH578767",
+        "MH578790",
+        "MH613320",
+        "MH578837",
+        "MH579126",
+        "MH578808",
+        "MH613324"
+      ],
+      [
+        "MH578856",
+        "MH579069",
+        "MH579035",
+        "MH578792",
+        "MH578962",
+        "MH579261",
+        "MH579259",
+        "MH578966"
+      ],
+      [
+        "MH932162",
+        "MH932161",
+        "MH932160",
+        "MH932155",
+        "MH932158",
+        "MH932157",
+        "MH932156",
+        "MH932159"
+      ],
+      [
+        "MH764220",
+        "MH764219",
+        "MH764218",
+        "MH764213",
+        "MH764216",
+        "MH764215",
+        "MH764214",
+        "MH764217"
+      ],
+      [
+        "MK327683",
+        "MK327684",
+        "MK327685",
+        "MK327686",
+        "MK327687",
+        "MK327688",
+        "MK327689",
+        "MK327690"
+      ],
+      [
+        "MK236911",
+        "MK237174",
+        "MK237171",
+        "MK236855",
+        "MK236919",
+        "MK237560",
+        "MK236873",
+        "MK237378"
+      ],
+      [
+        "MK192341",
+        "MK192357",
+        "MK192313",
+        "MK192392",
+        "MK192328",
+        "MK192350",
+        "MK192331",
+        "MK192338"
+      ],
+      [
+        "DQ376876",
+        "DQ376840",
+        "DQ376803",
+        "DQ376624",
+        "DQ376732",
+        "DQ376696",
+        "DQ376659",
+        "DQ376768"
+      ],
+      [
+        "DQ376899",
+        "DQ376863",
+        "DQ376827",
+        "DQ376647",
+        "DQ376755",
+        "DQ376719",
+        "DQ376683",
+        "DQ376791"
+      ],
+      [
+        "CY025124",
+        "CY025123",
+        "CY025122",
+        "CY025117",
+        "CY025120",
+        "CY025119",
+        "CY025118",
+        "CY025121"
+      ],
+      [
+        "CY037062",
+        "CY037061",
+        "CY037060",
+        "CY037055",
+        "CY037058",
+        "CY037057",
+        "CY037056",
+        "CY037059"
+      ],
+      [
+        "EU871883",
+        "EU871882",
+        "EU871881",
+        "EU871876",
+        "EU871879",
+        "EU871878",
+        "EU871877",
+        "EU871880"
+      ],
+      [
+        "CY033361",
+        "CY033362",
+        "CY033363",
+        "CY033364",
+        "CY033365",
+        "CY033366",
+        "CY033367",
+        "CY033368"
+      ],
+      [
+        "AB450504",
+        "AB450520",
+        "AB450536",
+        "AB450554",
+        "AB450582",
+        "AB450600",
+        "AB450628",
+        "AB450644"
+      ],
+      [
+        "CY036210",
+        "CY036211",
+        "CY036212",
+        "CY036213",
+        "CY036214",
+        "CY036215",
+        "CY036216",
+        "CY036217"
+      ],
+      [
+        "CY038439",
+        "CY038440",
+        "CY038441",
+        "CY038442",
+        "CY038443",
+        "CY038444",
+        "CY038445",
+        "CY038446"
+      ],
+      [
+        "EU743464",
+        "EU743463",
+        "EU743462",
+        "EU743457",
+        "EU743460",
+        "EU743459",
+        "EU743458",
+        "EU743461"
+      ],
+      [
+        "FJ357127",
+        "FJ357126",
+        "FJ357125",
+        "FJ357120",
+        "FJ357123",
+        "FJ357122",
+        "FJ357121",
+        "FJ357124"
+      ],
+      [
+        "CY040907",
+        "CY040908",
+        "CY040909",
+        "CY040910",
+        "CY040911",
+        "CY040912",
+        "CY040913",
+        "CY040914"
+      ],
+      [
+        "DQ343506",
+        "DQ343505",
+        "DQ343504",
+        "DQ343502",
+        "DQ359694",
+        "DQ343503",
+        "DQ359692",
+        "DQ359693"
+      ],
+      [
+        "EU743265",
+        "EU743264",
+        "EU743263",
+        "EU743261",
+        "EU743262",
+        "AY254149",
+        "AY241622",
+        "AY241659"
+      ],
+      [
+        "GQ140272",
+        "GQ148871",
+        "GQ140286",
+        "GQ120556",
+        "GQ148843",
+        "GQ120543",
+        "GQ148829",
+        "GQ148857"
+      ],
+      [
+        "GQ140274",
+        "GQ148873",
+        "GQ140288",
+        "GQ120558",
+        "GQ148845",
+        "GQ120545",
+        "GQ148831",
+        "GQ148859"
+      ],
+      [
+        "GQ140276",
+        "GQ148875",
+        "GQ140290",
+        "GQ120560",
+        "GQ148847",
+        "GQ120547",
+        "GQ148833",
+        "GQ148861"
+      ],
+      [
+        "GU186679",
+        "GU186678",
+        "GU186677",
+        "GU186672",
+        "GU186675",
+        "GU186674",
+        "GU186673",
+        "GU186676"
+      ],
+      [
+        "GU186739",
+        "GU186738",
+        "GU186737",
+        "GU186732",
+        "GU186735",
+        "GU186734",
+        "GU186733",
+        "GU186736"
+      ],
+      [
+        "CY064947",
+        "CY064948",
+        "CY064949",
+        "CY064950",
+        "CY064951",
+        "CY064952",
+        "CY064953",
+        "CY064954"
+      ],
+      [
+        "HM145643",
+        "HM145474",
+        "HM145305",
+        "HM144459",
+        "HM145136",
+        "HM144629",
+        "HM144798",
+        "HM144967"
+      ],
+      [
+        "HM172440",
+        "HM172361",
+        "HM172337",
+        "HM172113",
+        "HM172243",
+        "HM172172",
+        "HM172135",
+        "HM172297"
+      ],
+      [
+        "GU083620",
+        "GU083621",
+        "GU083622",
+        "GU083618",
+        "GU083623",
+        "GU083619",
+        "GU083624",
+        "GU083625"
+      ],
+      [
+        "CY076164",
+        "CY076163",
+        "CY076162",
+        "CY076157",
+        "CY076160",
+        "CY076159",
+        "CY076158",
+        "CY076161"
+      ],
+      [
+        "CY076356",
+        "CY076355",
+        "CY076354",
+        "CY076349",
+        "CY076352",
+        "CY076351",
+        "CY076350",
+        "CY076353"
+      ],
+      [
+        "CY076388",
+        "CY076387",
+        "CY076386",
+        "CY076381",
+        "CY076384",
+        "CY076383",
+        "CY076382",
+        "CY076385"
+      ],
+      [
+        "CY076668",
+        "CY076667",
+        "CY076666",
+        "CY076661",
+        "CY076664",
+        "CY076663",
+        "CY076662",
+        "CY076665"
+      ],
+      [
+        "CY077063",
+        "CY077062",
+        "CY077061",
+        "CY077056",
+        "CY077059",
+        "CY077058",
+        "CY077057",
+        "CY077060"
+      ],
+      [
+        "CY077031",
+        "CY077030",
+        "CY077029",
+        "CY077024",
+        "CY077027",
+        "CY077026",
+        "CY077025",
+        "CY077028"
+      ],
+      [
+        "CY078698",
+        "CY078697",
+        "CY078696",
+        "CY078691",
+        "CY078694",
+        "CY078693",
+        "CY078692",
+        "CY078695"
+      ],
+      [
+        "CY078722",
+        "CY078721",
+        "CY078720",
+        "CY078715",
+        "CY078718",
+        "CY078717",
+        "CY078716",
+        "CY078719"
+      ],
+      [
+        "CY079298",
+        "CY079297",
+        "CY079296",
+        "CY079291",
+        "CY079294",
+        "CY079293",
+        "CY079292",
+        "CY079295"
+      ],
+      [
+        "CY079010",
+        "CY079009",
+        "CY079008",
+        "CY079003",
+        "CY079006",
+        "CY079005",
+        "CY079004",
+        "CY079007"
+      ],
+      [
+        "CY079676",
+        "CY079675",
+        "CY079674",
+        "CY079669",
+        "CY079672",
+        "CY079671",
+        "CY079670",
+        "CY079673"
+      ],
+      [
+        "CY093646",
+        "CY093645",
+        "CY093644",
+        "CY093639",
+        "CY093642",
+        "CY093641",
+        "CY093640",
+        "CY093643"
+      ],
+      [
+        "CY093893",
+        "CY093892",
+        "CY093891",
+        "CY093886",
+        "CY093889",
+        "CY093888",
+        "CY093887",
+        "CY093890"
+      ],
+      [
+        "CY094732",
+        "CY094731",
+        "CY094730",
+        "CY094725",
+        "CY094728",
+        "CY094727",
+        "CY094726",
+        "CY094729"
+      ],
+      [
+        "CY094436",
+        "CY094435",
+        "CY094434",
+        "CY094429",
+        "CY094432",
+        "CY094431",
+        "CY094430",
+        "CY094433"
+      ],
+      [
+        "CY098314",
+        "CY098315",
+        "CY098316",
+        "CY098317",
+        "CY098318",
+        "CY098319",
+        "CY098320",
+        "CY098321"
+      ],
+      [
+        "CY102055",
+        "CY102054",
+        "CY102053",
+        "CY102048",
+        "CY102051",
+        "CY102050",
+        "CY102049",
+        "CY102052"
+      ],
+      [
+        "CY103093",
+        "CY103092",
+        "CY103091",
+        "CY103086",
+        "CY103089",
+        "CY103088",
+        "CY103087",
+        "CY103090"
+      ],
+      [
+        "CY103209",
+        "CY103208",
+        "CY103207",
+        "CY103202",
+        "CY103205",
+        "CY103204",
+        "CY103203",
+        "CY103206"
+      ],
+      [
+        "JF965033",
+        "JF965073",
+        "JF965123",
+        "JF965163",
+        "JF965202",
+        "JF965310",
+        "JF965243",
+        "JF965275"
+      ],
+      [
+        "CY109623",
+        "CY109624",
+        "CY109625",
+        "CY109626",
+        "CY109627",
+        "CY109628",
+        "CY109629",
+        "CY109630"
+      ],
+      [
+        "CY109727",
+        "CY109728",
+        "CY109729",
+        "CY109730",
+        "CY109731",
+        "CY109732",
+        "CY109733",
+        "CY109734"
+      ],
+      [
+        "CY109767",
+        "CY109768",
+        "CY109769",
+        "CY109770",
+        "CY109771",
+        "CY109772",
+        "CY109773",
+        "CY109774"
+      ],
+      [
+        "CY110493",
+        "CY110494",
+        "CY110495",
+        "CY110496",
+        "CY110497",
+        "CY110498",
+        "CY110499",
+        "CY110500"
+      ],
+      [
+        "CY116874",
+        "CY116873",
+        "CY116872",
+        "CY116867",
+        "CY116870",
+        "CY116869",
+        "CY116868",
+        "CY116871"
+      ],
+      [
+        "CY121990",
+        "CY121989",
+        "CY121988",
+        "CY121983",
+        "CY121986",
+        "CY121985",
+        "CY121984",
+        "CY121987"
+      ],
+      [
+        "CY125645",
+        "CY125644",
+        "CY125643",
+        "CY125638",
+        "CY125641",
+        "CY125640",
+        "CY125639",
+        "CY125642"
+      ],
+      [
+        "JX030405",
+        "JX030404",
+        "JX030403",
+        "JX030406",
+        "JX030409",
+        "JX030408",
+        "JX030407",
+        "JX030402"
+      ],
+      [
+        "AB741563",
+        "AB741564",
+        "AB741565",
+        "AB741566",
+        "AB741567",
+        "AB741568",
+        "AB741569",
+        "AB741570"
+      ],
+      [
+        "AB742276",
+        "AB742277",
+        "AB742278",
+        "AB742279",
+        "AB742280",
+        "AB742281",
+        "AB742282",
+        "AB742283"
+      ],
+      [
+        "CY126466",
+        "CY126465",
+        "CY126464",
+        "CY126459",
+        "CY126462",
+        "CY126461",
+        "CY126460",
+        "CY126463"
+      ],
+      [
+        "CY126751",
+        "CY126750",
+        "CY126749",
+        "CY126744",
+        "CY126747",
+        "CY126746",
+        "CY126745",
+        "CY126748"
+      ],
+      [
+        "CY126903",
+        "CY126902",
+        "CY126901",
+        "CY126896",
+        "CY126899",
+        "CY126898",
+        "CY126897",
+        "CY126900"
+      ],
+      [
+        "CY127412",
+        "CY127411",
+        "CY127410",
+        "CY127405",
+        "CY127408",
+        "CY127407",
+        "CY127406",
+        "CY127409"
+      ],
+      [
+        "JX304761",
+        "JX304760",
+        "JX304759",
+        "JX304754",
+        "JX304757",
+        "JX304756",
+        "JX304755",
+        "JX304758"
+      ],
+      [
+        "CY128705",
+        "CY128704",
+        "CY128703",
+        "CY128698",
+        "CY128701",
+        "CY128700",
+        "CY128699",
+        "CY128702"
+      ],
+      [
+        "CY128997",
+        "CY128996",
+        "CY128995",
+        "CY128990",
+        "CY128993",
+        "CY128992",
+        "CY128991",
+        "CY128994"
+      ],
+      [
+        "JX420131",
+        "JX420132",
+        "JX420133",
+        "JX420134",
+        "JX420135",
+        "JX420136",
+        "JX420137",
+        "JX420138"
+      ],
+      [
+        "CY130279",
+        "CY130278",
+        "CY130277",
+        "CY130272",
+        "CY130275",
+        "CY130274",
+        "CY130273",
+        "CY130276"
+      ],
+      [
+        "CY130339",
+        "CY130338",
+        "CY130337",
+        "CY130332",
+        "CY130335",
+        "CY130334",
+        "CY130333",
+        "CY130336"
+      ],
+      [
+        "JX069094",
+        "JX069095",
+        "JX069096",
+        "JX069097",
+        "JX069098",
+        "JX069099",
+        "JX069100",
+        "JX069101"
+      ],
+      [
+        "CY132188",
+        "CY132187",
+        "CY132186",
+        "CY132181",
+        "CY132184",
+        "CY132183",
+        "CY132182",
+        "CY132185"
+      ],
+      [
+        "CY132516",
+        "CY132515",
+        "CY132514",
+        "CY132509",
+        "CY132512",
+        "CY132511",
+        "CY132510",
+        "CY132513"
+      ],
+      [
+        "CY132572",
+        "CY132571",
+        "CY132570",
+        "CY132565",
+        "CY132568",
+        "CY132567",
+        "CY132566",
+        "CY132569"
+      ],
+      [
+        "CY132932",
+        "CY132931",
+        "CY132930",
+        "CY132925",
+        "CY132928",
+        "CY132927",
+        "CY132926",
+        "CY132929"
+      ],
+      [
+        "CY133152",
+        "CY133151",
+        "CY133150",
+        "CY133145",
+        "CY133148",
+        "CY133147",
+        "CY133146",
+        "CY133149"
+      ],
+      [
+        "CY133364",
+        "CY133363",
+        "CY133362",
+        "CY133357",
+        "CY133360",
+        "CY133359",
+        "CY133358",
+        "CY133361"
+      ],
+      [
+        "CY133752",
+        "CY133751",
+        "CY133750",
+        "CY133745",
+        "CY133748",
+        "CY133747",
+        "CY133746",
+        "CY133749"
+      ],
+      [
+        "CY134036",
+        "CY134035",
+        "CY134034",
+        "CY134029",
+        "CY134032",
+        "CY134031",
+        "CY134030",
+        "CY134033"
+      ],
+      [
+        "CY134318",
+        "CY134317",
+        "CY134316",
+        "CY134311",
+        "CY134314",
+        "CY134313",
+        "CY134312",
+        "CY134315"
+      ],
+      [
+        "CY136871",
+        "CY136870",
+        "CY136869",
+        "CY136864",
+        "CY136867",
+        "CY136866",
+        "CY136865",
+        "CY136868"
+      ],
+      [
+        "CY137481",
+        "CY137480",
+        "CY137479",
+        "CY137474",
+        "CY137477",
+        "CY137476",
+        "CY137475",
+        "CY137478"
+      ],
+      [
+        "CY137537",
+        "CY137536",
+        "CY137535",
+        "CY137530",
+        "CY137533",
+        "CY137532",
+        "CY137531",
+        "CY137534"
+      ],
+      [
+        "CY138865",
+        "CY138864",
+        "CY138863",
+        "CY138858",
+        "CY138861",
+        "CY138860",
+        "CY138859",
+        "CY138862"
+      ],
+      [
+        "CY139082",
+        "CY139081",
+        "CY139080",
+        "CY139075",
+        "CY139078",
+        "CY139077",
+        "CY139076",
+        "CY139079"
+      ],
+      [
+        "KC683700",
+        "KC683701",
+        "KC683702",
+        "KC683703",
+        "KC683704",
+        "KC683705",
+        "KC683706",
+        "KC683707"
+      ],
+      [
+        "CY140211",
+        "CY140210",
+        "CY140209",
+        "CY140204",
+        "CY140207",
+        "CY140206",
+        "CY140205",
+        "CY140208"
+      ],
+      [
+        "CY140638",
+        "CY140637",
+        "CY140636",
+        "CY140631",
+        "CY140634",
+        "CY140633",
+        "CY140632",
+        "CY140635"
+      ],
+      [
+        "CY141669",
+        "CY141668",
+        "CY141667",
+        "CY141662",
+        "CY141665",
+        "CY141664",
+        "CY141663",
+        "CY141666"
+      ],
+      [
+        "CY141917",
+        "CY141916",
+        "CY141915",
+        "CY141910",
+        "CY141913",
+        "CY141912",
+        "CY141911",
+        "CY141914"
+      ],
+      [
+        "CY141957",
+        "CY141956",
+        "CY141955",
+        "CY141950",
+        "CY141953",
+        "CY141952",
+        "CY141951",
+        "CY141954"
+      ],
+      [
+        "CY142013",
+        "CY142012",
+        "CY142011",
+        "CY142006",
+        "CY142009",
+        "CY142008",
+        "CY142007",
+        "CY142010"
+      ],
+      [
+        "CY142945",
+        "CY142944",
+        "CY142943",
+        "CY142938",
+        "CY142941",
+        "CY142940",
+        "CY142939",
+        "CY142942"
+      ],
+      [
+        "CY143185",
+        "CY143184",
+        "CY143183",
+        "CY143178",
+        "CY143181",
+        "CY143180",
+        "CY143179",
+        "CY143182"
+      ],
+      [
+        "CY143347",
+        "CY143346",
+        "CY143345",
+        "CY143340",
+        "CY143343",
+        "CY143342",
+        "CY143341",
+        "CY143344"
+      ],
+      [
+        "CY145654",
+        "CY145653",
+        "CY145652",
+        "CY145647",
+        "CY145650",
+        "CY145649",
+        "CY145648",
+        "CY145651"
+      ],
+      [
+        "CY146204",
+        "CY146203",
+        "CY146202",
+        "CY146197",
+        "CY146200",
+        "CY146199",
+        "CY146198",
+        "CY146201"
+      ],
+      [
+        "AB822987",
+        "AB822988",
+        "AB822989",
+        "AB822990",
+        "AB822991",
+        "AB822992",
+        "AB822993",
+        "AB822994"
+      ],
+      [
+        "KF260721",
+        "KF260477",
+        "KF260233",
+        "KF258958",
+        "KF259745",
+        "KF259620",
+        "KF259226",
+        "KF259989"
+      ],
+      [
+        "KF260737",
+        "KF260493",
+        "KF260249",
+        "KF258974",
+        "KF259761",
+        "KF259625",
+        "KF259242",
+        "KF260005"
+      ],
+      [
+        "KF260785",
+        "KF260541",
+        "KF260297",
+        "KF258999",
+        "KF259809",
+        "KF259687",
+        "KF259290",
+        "KF260053"
+      ],
+      [
+        "KF260910",
+        "KF260666",
+        "KF260422",
+        "KF259018",
+        "KF259934",
+        "KF259650",
+        "KF259415",
+        "KF260178"
+      ],
+      [
+        "KF260924",
+        "KF260680",
+        "KF260436",
+        "KF259032",
+        "KF259948",
+        "KF259664",
+        "KF259429",
+        "KF260192"
+      ],
+      [
+        "KF260840",
+        "KF260596",
+        "KF260352",
+        "KF259098",
+        "KF259864",
+        "KF259500",
+        "KF259345",
+        "KF260108"
+      ],
+      [
+        "KF260897",
+        "KF260653",
+        "KF260409",
+        "KF259155",
+        "KF259921",
+        "KF259557",
+        "KF259402",
+        "KF260165"
+      ],
+      [
+        "KF424079",
+        "KF424080",
+        "KF424081",
+        "KF424082",
+        "KF424083",
+        "KF424084",
+        "KF424085",
+        "KF424086"
+      ],
+      [
+        "CY149467",
+        "CY149466",
+        "CY149465",
+        "CY149460",
+        "CY149463",
+        "CY149462",
+        "CY149461",
+        "CY149464"
+      ],
+      [
+        "CY157397",
+        "CY157396",
+        "CY157395",
+        "CY157390",
+        "CY157393",
+        "CY157392",
+        "CY157391",
+        "CY157394"
+      ],
+      [
+        "CY060246",
+        "CY060247",
+        "CY060248",
+        "CY060249",
+        "KF695204",
+        "CY064796",
+        "CY060250",
+        "CY060251"
+      ],
+      [
+        "KF881695",
+        "KF881696",
+        "KF881697",
+        "CY099582",
+        "KF881698",
+        "KF881699",
+        "CY120018",
+        "KF881700"
+      ],
+      [
+        "KF881708",
+        "KF881709",
+        "KF881710",
+        "KF881711",
+        "KF881712",
+        "KF881713",
+        "KF881714",
+        "KF881715"
+      ],
+      [
+        "KF881317",
+        "KF881318",
+        "KF881319",
+        "KF258178",
+        "KF881320",
+        "KF881321",
+        "KF881322",
+        "KF881323"
+      ],
+      [
+        "KJ162641",
+        "KJ162642",
+        "KJ162643",
+        "KJ162644",
+        "KJ162645",
+        "KJ162646",
+        "KJ162647",
+        "KJ162648"
+      ],
+      [
+        "KJ162649",
+        "KJ162650",
+        "KJ162651",
+        "KJ162652",
+        "KJ162653",
+        "KJ162654",
+        "KJ162655",
+        "KJ162656"
+      ],
+      [
+        "KC790042",
+        "KC790043",
+        "KC790044",
+        "KC790045",
+        "KC790046",
+        "KC790047",
+        "KC790048",
+        "KC790049"
+      ],
+      [
+        "CY164351",
+        "CY164350",
+        "CY164349",
+        "CY164344",
+        "CY164347",
+        "CY164346",
+        "CY164345",
+        "CY164348"
+      ],
+      [
+        "CY166735",
+        "CY166734",
+        "CY166733",
+        "CY166728",
+        "CY166731",
+        "CY166730",
+        "CY166729",
+        "CY166732"
+      ],
+      [
+        "CY177360",
+        "CY177359",
+        "CY177358",
+        "CY177353",
+        "CY177356",
+        "CY177355",
+        "CY177354",
+        "CY177357"
+      ],
+      [
+        "KJ568078",
+        "KJ568079",
+        "KJ568080",
+        "KJ568081",
+        "KJ568082",
+        "KJ568083",
+        "KJ568084",
+        "KJ568085"
+      ],
+      [
+        "CY178373",
+        "CY178372",
+        "CY178371",
+        "CY178366",
+        "CY178369",
+        "CY178368",
+        "CY178367",
+        "CY178370"
+      ],
+      [
+        "CY178397",
+        "CY178396",
+        "CY178395",
+        "CY178390",
+        "CY178393",
+        "CY178392",
+        "CY178391",
+        "CY178394"
+      ],
+      [
+        "CY178477",
+        "CY178476",
+        "CY178475",
+        "CY178470",
+        "CY178473",
+        "CY178472",
+        "CY178471",
+        "CY178474"
+      ],
+      [
+        "CY178790",
+        "CY178789",
+        "CY178788",
+        "CY178783",
+        "CY178786",
+        "CY178785",
+        "CY178784",
+        "CY178787"
+      ],
+      [
+        "CY179146",
+        "CY179145",
+        "CY179144",
+        "CY179139",
+        "CY179142",
+        "CY179141",
+        "CY179140",
+        "CY179143"
+      ],
+      [
+        "CY179562",
+        "CY179561",
+        "CY179560",
+        "CY179555",
+        "CY179558",
+        "CY179557",
+        "CY179556",
+        "CY179559"
+      ],
+      [
+        "CY179642",
+        "CY179641",
+        "CY179640",
+        "CY179635",
+        "CY179638",
+        "CY179637",
+        "CY179636",
+        "CY179639"
+      ],
+      [
+        "CY180082",
+        "CY180081",
+        "CY180080",
+        "CY180075",
+        "CY180078",
+        "CY180077",
+        "CY180076",
+        "CY180079"
+      ],
+      [
+        "CY180787",
+        "CY180786",
+        "CY180785",
+        "CY180780",
+        "CY180783",
+        "CY180782",
+        "CY180781",
+        "CY180784"
+      ],
+      [
+        "CY180795",
+        "CY180794",
+        "CY180793",
+        "CY180788",
+        "CY180791",
+        "CY180790",
+        "CY180789",
+        "CY180792"
+      ],
+      [
+        "CY180819",
+        "CY180818",
+        "CY180817",
+        "CY180812",
+        "CY180815",
+        "CY180814",
+        "CY180813",
+        "CY180816"
+      ],
+      [
+        "CY181224",
+        "CY181223",
+        "CY181222",
+        "CY181217",
+        "CY181220",
+        "CY181219",
+        "CY181218",
+        "CY181221"
+      ],
+      [
+        "CY181376",
+        "CY181375",
+        "CY181374",
+        "CY181369",
+        "CY181372",
+        "CY181371",
+        "CY181370",
+        "CY181373"
+      ],
+      [
+        "CY183595",
+        "CY183594",
+        "CY183593",
+        "CY183588",
+        "CY183591",
+        "CY183590",
+        "CY183589",
+        "CY183592"
+      ],
+      [
+        "CY184030",
+        "CY184029",
+        "CY184028",
+        "CY184023",
+        "CY184026",
+        "CY184025",
+        "CY184024",
+        "CY184027"
+      ],
+      [
+        "CY184430",
+        "CY184429",
+        "CY184428",
+        "CY184423",
+        "CY184426",
+        "CY184425",
+        "CY184424",
+        "CY184427"
+      ],
+      [
+        "CY185544",
+        "CY185543",
+        "CY185542",
+        "CY185537",
+        "CY185540",
+        "CY185539",
+        "CY185538",
+        "CY185541"
+      ],
+      [
+        "CY185568",
+        "CY185567",
+        "CY185566",
+        "CY185561",
+        "CY185564",
+        "CY185563",
+        "CY185562",
+        "CY185565"
+      ],
+      [
+        "CY185696",
+        "CY185695",
+        "CY185694",
+        "CY185689",
+        "CY185692",
+        "CY185691",
+        "CY185690",
+        "CY185693"
+      ],
+      [
+        "CY186307",
+        "CY186306",
+        "CY186305",
+        "CY186300",
+        "CY186303",
+        "CY186302",
+        "CY186301",
+        "CY186304"
+      ],
+      [
+        "CY186655",
+        "CY186654",
+        "CY186653",
+        "CY186648",
+        "CY186651",
+        "CY186650",
+        "CY186649",
+        "CY186652"
+      ],
+      [
+        "CY186837",
+        "CY186836",
+        "CY186835",
+        "CY186830",
+        "CY186833",
+        "CY186832",
+        "CY186831",
+        "CY186834"
+      ],
+      [
+        "KJ725009",
+        "KJ725010",
+        "KJ725011",
+        "KJ725012",
+        "KJ725013",
+        "KJ725014",
+        "KJ725015",
+        "KJ725016"
+      ],
+      [
+        "KC821049",
+        "KC821086",
+        "KC821125",
+        "KC821012",
+        "KC821160",
+        "KC821232",
+        "KC821195",
+        "KC821269"
+      ],
+      [
+        "KC821050",
+        "KC821092",
+        "KC821129",
+        "KC821013",
+        "KC821162",
+        "KC821238",
+        "KC821208",
+        "KC821275"
+      ],
+      [
+        "LC000593",
+        "LC000594",
+        "LC000595",
+        "LC000596",
+        "LC000597",
+        "LC000598",
+        "LC000599",
+        "LC000600"
+      ],
+      [
+        "KJ509081",
+        "KJ509082",
+        "KJ509083",
+        "KJ509084",
+        "KJ509085",
+        "KJ509086",
+        "KJ509087",
+        "KJ509088"
+      ],
+      [
+        "KJ509073",
+        "KJ509074",
+        "KJ509075",
+        "KJ509076",
+        "KJ509077",
+        "KJ509078",
+        "KJ509079",
+        "KJ509080"
+      ],
+      [
+        "KJ509057",
+        "KJ509058",
+        "KJ509059",
+        "KJ509060",
+        "KJ509061",
+        "KJ509062",
+        "KJ509063",
+        "KJ509064"
+      ],
+      [
+        "KM113306",
+        "KM113307",
+        "KM113308",
+        "KM113313",
+        "KM113310",
+        "KM113311",
+        "KM113312",
+        "KM113309"
+      ],
+      [
+        "KP285474",
+        "KP285475",
+        "KP285476",
+        "KP285477",
+        "KP285478",
+        "KP285479",
+        "KP285480",
+        "KP285481"
+      ],
+      [
+        "KP285874",
+        "KP285875",
+        "KP285876",
+        "KP285877",
+        "KP285878",
+        "KP285879",
+        "KP285880",
+        "KP285881"
+      ],
+      [
+        "KP286282",
+        "KP286283",
+        "KP286284",
+        "KP286285",
+        "KP286286",
+        "KP286287",
+        "KP286288",
+        "KP286289"
+      ],
+      [
+        "KP287843",
+        "KP287844",
+        "KP287845",
+        "KP287846",
+        "KP287847",
+        "KP287848",
+        "KP287849",
+        "KP287850"
+      ],
+      [
+        "KP287867",
+        "KP287868",
+        "KP287869",
+        "KP287870",
+        "KP287871",
+        "KP287872",
+        "KP287873",
+        "KP287874"
+      ],
+      [
+        "KJ426388",
+        "KJ426379",
+        "KJ426370",
+        "KJ426325",
+        "KJ426352",
+        "KJ426343",
+        "KJ426334",
+        "KJ426361"
+      ],
+      [
+        "KJ426472",
+        "KJ426461",
+        "KJ426450",
+        "KJ426395",
+        "KJ426428",
+        "KJ426417",
+        "KJ426406",
+        "KJ426439"
+      ],
+      [
+        "KM609866",
+        "KM609826",
+        "KM609786",
+        "KM609586",
+        "KM609706",
+        "KM609666",
+        "KM609626",
+        "KM609746"
+      ],
+      [
+        "KP413656",
+        "KP413657",
+        "KP413658",
+        "KP413659",
+        "KP413660",
+        "KP413661",
+        "KP413662",
+        "KP413663"
+      ],
+      [
+        "KP413739",
+        "KP413740",
+        "KP413741",
+        "KP413742",
+        "KP413743",
+        "KP413744",
+        "KP413745",
+        "KP413746"
+      ],
+      [
+        "KP414658",
+        "KP414659",
+        "KP414660",
+        "KP414661",
+        "KP414662",
+        "KP414663",
+        "KP414664",
+        "KP414665"
+      ],
+      [
+        "KP416194",
+        "KP416195",
+        "KP416196",
+        "KP416197",
+        "KP416198",
+        "KP416199",
+        "KP416200",
+        "KP416201"
+      ],
+      [
+        "KP416587",
+        "KP416588",
+        "KP416589",
+        "KP416590",
+        "KP416591",
+        "KP416592",
+        "KP416593",
+        "KP416594"
+      ],
+      [
+        "KP418019",
+        "KP418020",
+        "KP418021",
+        "KP418022",
+        "KP418023",
+        "KP418024",
+        "KP418025",
+        "KP418026"
+      ],
+      [
+        "KP418051",
+        "KP418052",
+        "KP418053",
+        "KP418054",
+        "KP418055",
+        "KP418056",
+        "KP418057",
+        "KP418058"
+      ],
+      [
+        "KP418556",
+        "KP418557",
+        "KP418558",
+        "KP418559",
+        "KP418560",
+        "KP418561",
+        "KP418562",
+        "KP418563"
+      ],
+      [
+        "LC050604",
+        "LC050605",
+        "LC050606",
+        "LC050607",
+        "LC050608",
+        "LC050609",
+        "LC050610",
+        "LC050611"
+      ],
+      [
+        "KJ756578",
+        "KJ756597",
+        "KJ756616",
+        "KJ756635",
+        "KJ756654",
+        "KJ756673",
+        "KJ756692",
+        "KJ756711"
+      ],
+      [
+        "CY190994",
+        "CY190993",
+        "CY190992",
+        "CY190987",
+        "CY190990",
+        "CY190989",
+        "CY190988",
+        "CY190991"
+      ],
+      [
+        "KR233995",
+        "KR233996",
+        "KR233997",
+        "KR233998",
+        "KR233999",
+        "KR234000",
+        "KR234001",
+        "KR234002"
+      ],
+      [
+        "KR732490",
+        "KR732417",
+        "KR732558",
+        "KR732466",
+        "KR732428",
+        "KR732520",
+        "KR732457",
+        "KR732496"
+      ],
+      [
+        "KT777817",
+        "KT777816",
+        "KT777815",
+        "KT777810",
+        "KT777813",
+        "KT777812",
+        "KT777811",
+        "KT777814"
+      ],
+      [
+        "KU042665",
+        "KU042694",
+        "KU042723",
+        "KU042752",
+        "KU042781",
+        "KU042810",
+        "KU042839",
+        "KU042868"
+      ],
+      [
+        "KU042657",
+        "KU042686",
+        "KU042715",
+        "KU042744",
+        "KU042773",
+        "KU042802",
+        "KU042831",
+        "KU042860"
+      ],
+      [
+        "KU042129",
+        "KU042182",
+        "KU042235",
+        "KU042288",
+        "KU042341",
+        "KU042394",
+        "KU042447",
+        "KU042500"
+      ],
+      [
+        "KU290203",
+        "KU290202",
+        "KU290201",
+        "KU290196",
+        "KU290199",
+        "KU290198",
+        "KU290197",
+        "KU290200"
+      ],
+      [
+        "KT932362",
+        "KT932363",
+        "KT932364",
+        "KF824501",
+        "KT932365",
+        "KF824504",
+        "KT932366",
+        "KT932367"
+      ],
+      [
+        "CY195896",
+        "CY195895",
+        "CY195894",
+        "CY195889",
+        "CY195892",
+        "CY195891",
+        "CY195890",
+        "CY195893"
+      ],
+      [
+        "CY195992",
+        "CY195991",
+        "CY195990",
+        "CY195985",
+        "CY195988",
+        "CY195987",
+        "CY195986",
+        "CY195989"
+      ],
+      [
+        "CY196160",
+        "CY196159",
+        "CY196158",
+        "CY196153",
+        "CY196156",
+        "CY196155",
+        "CY196154",
+        "CY196157"
+      ],
+      [
+        "CY196771",
+        "CY196770",
+        "CY196769",
+        "CY196764",
+        "CY196767",
+        "CY196766",
+        "CY196765",
+        "CY196768"
+      ],
+      [
+        "CY203436",
+        "CY203435",
+        "CY203434",
+        "CY203429",
+        "CY203432",
+        "CY203431",
+        "CY203430",
+        "CY203433"
+      ],
+      [
+        "CY203716",
+        "CY203715",
+        "CY203714",
+        "CY203709",
+        "CY203712",
+        "CY203711",
+        "CY203710",
+        "CY203713"
+      ],
+      [
+        "CY204460",
+        "CY204459",
+        "CY204458",
+        "CY204453",
+        "CY204456",
+        "CY204455",
+        "CY204454",
+        "CY204457"
+      ],
+      [
+        "CY204673",
+        "CY204672",
+        "CY204671",
+        "CY204666",
+        "CY204669",
+        "CY204668",
+        "CY204667",
+        "CY204670"
+      ],
+      [
+        "CY204905",
+        "CY204904",
+        "CY204903",
+        "CY204898",
+        "CY204901",
+        "CY204900",
+        "CY204899",
+        "CY204902"
+      ],
+      [
+        "CY203171",
+        "CY203170",
+        "CY203169",
+        "CY203164",
+        "CY203167",
+        "CY203166",
+        "CY203165",
+        "CY203168"
+      ],
+      [
+        "KT699053",
+        "KT699054",
+        "KT699055",
+        "KT699056",
+        "KT699057",
+        "KT699058",
+        "KT699059",
+        "KT699060"
+      ],
+      [
+        "CY205815",
+        "CY205814",
+        "CY205813",
+        "CY205808",
+        "CY205811",
+        "CY205810",
+        "CY205809",
+        "CY205812"
+      ],
+      [
+        "CY206602",
+        "CY206601",
+        "CY206600",
+        "CY206595",
+        "CY206598",
+        "CY206597",
+        "CY206596",
+        "CY206599"
+      ],
+      [
+        "CY206658",
+        "CY206657",
+        "CY206656",
+        "CY206651",
+        "CY206654",
+        "CY206653",
+        "CY206652",
+        "CY206655"
+      ],
+      [
+        "KX028802",
+        "KX028808",
+        "KX028814",
+        "KX028820",
+        "KX028826",
+        "KX028832",
+        "KX028838",
+        "KX028844"
+      ],
+      [
+        "CY206925",
+        "CY206924",
+        "CY206923",
+        "CY206918",
+        "CY206921",
+        "CY206920",
+        "CY206919",
+        "CY206922"
+      ],
+      [
+        "KX121251",
+        "KX121252",
+        "KX121253",
+        "KX121254",
+        "KX121255",
+        "KX121256",
+        "KX121257",
+        "KX121258"
+      ],
+      [
+        "KT887312",
+        "KT887313",
+        "KT887314",
+        "KT887315",
+        "KT887316",
+        "KT887317",
+        "KT887318",
+        "KT887319"
+      ],
+      [
+        "KX000784",
+        "KX000711",
+        "KX000800",
+        "KX000710",
+        "KX000809",
+        "KX000852",
+        "KX000819",
+        "KX000780"
+      ],
+      [
+        "KX000764",
+        "KX000729",
+        "KX000723",
+        "KX000715",
+        "KX000806",
+        "KX000778",
+        "KX000828",
+        "KX000785"
+      ],
+      [
+        "KX215331",
+        "KX215295",
+        "KX215264",
+        "KJ682290",
+        "KX215290",
+        "KJ682291",
+        "KX215258",
+        "KX215346"
+      ],
+      [
+        "KX298038",
+        "KX298013",
+        "KX297988",
+        "KX297863",
+        "KX297938",
+        "KX297913",
+        "KX297888",
+        "KX297963"
+      ],
+      [
+        "KX513231",
+        "KX644113",
+        "KX513172",
+        "KX513374",
+        "KX513225",
+        "KX513266",
+        "KX513261",
+        "KX513403"
+      ],
+      [
+        "KX513224",
+        "KX644115",
+        "KX513315",
+        "KX513187",
+        "KX513272",
+        "KX513125",
+        "KX513334",
+        "KX513341"
+      ],
+      [
+        "KX598531",
+        "KX598573",
+        "KX598615",
+        "KX598440",
+        "KX598657",
+        "KX598489",
+        "KX598699",
+        "KX598741"
+      ],
+      [
+        "KX598541",
+        "KX598583",
+        "KX598625",
+        "KX598454",
+        "KX598667",
+        "KX598499",
+        "KX598709",
+        "KX598751"
+      ],
+      [
+        "KX977827",
+        "KX979692",
+        "KX977960",
+        "KX978389",
+        "KX977961",
+        "KX977644",
+        "KX977656",
+        "KX978259"
+      ],
+      [
+        "KX977671",
+        "KX979724",
+        "KX977998",
+        "KX979015",
+        "KX979199",
+        "KX978975",
+        "KX978107",
+        "KX979424"
+      ],
+      [
+        "KX978253",
+        "KX979776",
+        "KX978091",
+        "KX979079",
+        "KX979125",
+        "KX977750",
+        "KX977653",
+        "KX979108"
+      ],
+      [
+        "KX979332",
+        "KX979801",
+        "KX978898",
+        "KX978964",
+        "KX978450",
+        "KX978237",
+        "KX978533",
+        "KX979157"
+      ],
+      [
+        "KX977995",
+        "KX979814",
+        "KX978861",
+        "KX979437",
+        "KX978448",
+        "KX977963",
+        "KX979353",
+        "KX977595"
+      ],
+      [
+        "KY171116",
+        "KY171117",
+        "KY171118",
+        "KY171119",
+        "KY171120",
+        "KY171121",
+        "KY171122",
+        "KY171123"
+      ],
+      [
+        "KY415908",
+        "KY415865",
+        "KY415821",
+        "KY415645",
+        "KY415777",
+        "KY415733",
+        "KY415689",
+        "KY415953"
+      ],
+      [
+        "KY056270",
+        "KY056277",
+        "KY056284",
+        "KY056291",
+        "KY056298",
+        "KY056305",
+        "KY056312",
+        "KY056319"
+      ],
+      [
+        "KY550941",
+        "KY550942",
+        "KY550943",
+        "KY550944",
+        "KY550945",
+        "KY550946",
+        "KY550947",
+        "KY550948"
+      ],
+      [
+        "KY551432",
+        "KY551433",
+        "KY551434",
+        "KY551435",
+        "KY551436",
+        "KY551437",
+        "KY551438",
+        "KY551439"
+      ],
+      [
+        "KY629470",
+        "KY629454",
+        "KY629555",
+        "KY629546",
+        "KY629471",
+        "KY629440",
+        "KY629541",
+        "KY629556"
+      ],
+      [
+        "KY583741",
+        "KY583771",
+        "KY583969",
+        "KY583833",
+        "KY583844",
+        "KY583790",
+        "KY584019",
+        "KY584024"
+      ],
+      [
+        "KY583868",
+        "KY583917",
+        "KY583820",
+        "KY583932",
+        "KY583852",
+        "KY583866",
+        "KY584034",
+        "KY583756"
+      ],
+      [
+        "KY644513",
+        "KY644290",
+        "KY644494",
+        "KY644472",
+        "KY644443",
+        "KY644425",
+        "KY644312",
+        "KY644263"
+      ],
+      [
+        "KX949529",
+        "KX949530",
+        "KX949531",
+        "KX949532",
+        "KX949533",
+        "KX949534",
+        "KX949535",
+        "KX949536"
+      ],
+      [
+        "KX949457",
+        "KX949458",
+        "KX949459",
+        "KX949460",
+        "KX949461",
+        "KX949462",
+        "KX949463",
+        "KX949464"
+      ],
+      [
+        "KY983189",
+        "KY983214",
+        "KY983202",
+        "KY983104",
+        "KY983123",
+        "KY983196",
+        "KY983210",
+        "KY983128"
+      ],
+      [
+        "MF147454",
+        "MF147107",
+        "MF145722",
+        "MF147610",
+        "MF146153",
+        "MF147724",
+        "MF145908",
+        "MF147690"
+      ],
+      [
+        "MF145972",
+        "MF145724",
+        "MF146508",
+        "MF146992",
+        "MF146937",
+        "MF145775",
+        "MF147510",
+        "MF146586"
+      ],
+      [
+        "MF148095",
+        "MF147243",
+        "MF147998",
+        "MF147354",
+        "MF147668",
+        "MF145746",
+        "MF145966",
+        "MF145857"
+      ],
+      [
+        "MF148026",
+        "MF146319",
+        "MF147798",
+        "MF147289",
+        "MF146657",
+        "MF148117",
+        "MF147772",
+        "MF147842"
+      ],
+      [
+        "CY235145",
+        "CY235144",
+        "CY235143",
+        "CY235138",
+        "CY235141",
+        "CY235140",
+        "CY235139",
+        "CY235142"
+      ],
+      [
+        "CY235201",
+        "CY235200",
+        "CY235199",
+        "CY235194",
+        "CY235197",
+        "CY235196",
+        "CY235195",
+        "CY235198"
+      ],
+      [
+        "MF795006",
+        "MF795005",
+        "MF795004",
+        "MF794999",
+        "MF795002",
+        "MF795001",
+        "MF795000",
+        "MF795003"
+      ],
+      [
+        "MF630442",
+        "MF630443",
+        "MF630444",
+        "MF630445",
+        "MF630446",
+        "MF630447",
+        "MF630448",
+        "MF630449"
+      ],
+      [
+        "MG042281",
+        "MG042092",
+        "MG042119",
+        "MG042220",
+        "MG042340",
+        "MG042466",
+        "MG042141",
+        "MG042315"
+      ],
+      [
+        "MG280192",
+        "MG279961",
+        "MG279892",
+        "MG280542",
+        "MG279826",
+        "MG280364",
+        "MG280124",
+        "MG279792"
+      ],
+      [
+        "MG279862",
+        "MG280025",
+        "MG279858",
+        "MG280432",
+        "MG280246",
+        "MG279935",
+        "MG280580",
+        "MG279866"
+      ],
+      [
+        "LC306903",
+        "LC306904",
+        "LC306905",
+        "LC306906",
+        "LC306907",
+        "LC306908",
+        "LC306909",
+        "LC306910"
+      ],
+      [
+        "LC306919",
+        "LC306920",
+        "LC306921",
+        "LC306922",
+        "LC306923",
+        "LC306924",
+        "LC306925",
+        "LC306926"
+      ],
+      [
+        "MF399601",
+        "MF399602",
+        "MF399603",
+        "MF399604",
+        "MF399605",
+        "MF399606",
+        "MF399607",
+        "MF399608"
+      ],
+      [
+        "KX185888",
+        "KX185887",
+        "KX185886",
+        "KX185883",
+        "KX185885",
+        "KX185884",
+        "KX185890",
+        "KX185889"
+      ],
+      [
+        "MF112266",
+        "MF112365",
+        "MF112462",
+        "MF112554",
+        "MF112654",
+        "MF112754",
+        "MF112854",
+        "MF112951"
+      ],
+      [
+        "MF112279",
+        "MF112378",
+        "MF112475",
+        "MF112567",
+        "MF112667",
+        "MF112767",
+        "MF112867",
+        "MF112964"
+      ],
+      [
+        "MF112281",
+        "MF112380",
+        "MF112477",
+        "MF112569",
+        "MF112669",
+        "MF112769",
+        "MF112869",
+        "MF112966"
+      ],
+      [
+        "MF112306",
+        "MF112405",
+        "MF112501",
+        "MF112594",
+        "MF112694",
+        "MF112794",
+        "MF112894",
+        "MF112991"
+      ],
+      [
+        "MF112256",
+        "MF112355",
+        "MF112452",
+        "MF112544",
+        "MF112644",
+        "MF112744",
+        "MF112844",
+        "MF112944"
+      ],
+      [
+        "MG964829",
+        "MG964830",
+        "MG964831",
+        "MG964832",
+        "MG964833",
+        "MG964834",
+        "MG964835",
+        "MG964836"
+      ],
+      [
+        "MG964933",
+        "MG964934",
+        "MG964935",
+        "MG964936",
+        "MG964937",
+        "MG964938",
+        "MG964939",
+        "MG964940"
+      ],
+      [
+        "MG965029",
+        "MG965030",
+        "MG965031",
+        "MG965032",
+        "MG965033",
+        "MG965034",
+        "MG965035",
+        "MG965036"
+      ],
+      [
+        "MG965613",
+        "MG965614",
+        "MG965615",
+        "MG965616",
+        "MG965617",
+        "MG965618",
+        "MG965619",
+        "MG965620"
+      ],
+      [
+        "LC379590",
+        "LC379591",
+        "LC379592",
+        "LC379593",
+        "LC379594",
+        "LC379595",
+        "LC379596",
+        "LC379597"
+      ],
+      [
+        "MF987900",
+        "MF987899",
+        "MF987898",
+        "MF987893",
+        "MF987896",
+        "MF987895",
+        "MF987894",
+        "MF987897"
+      ],
+      [
+        "MH135569",
+        "MH135578",
+        "MH135653",
+        "MH135422",
+        "MH135658",
+        "MH135646",
+        "MH135504",
+        "MH135421"
+      ],
+      [
+        "MH180795",
+        "MH180733",
+        "MH180691",
+        "MH180386",
+        "MH180596",
+        "MH180523",
+        "MH180481",
+        "MH180632"
+      ],
+      [
+        "MH498875",
+        "MH499126",
+        "MH498726",
+        "MH498919",
+        "MH498667",
+        "MH498746",
+        "MH499129",
+        "MH499010"
+      ],
+      [
+        "MH501552",
+        "MH501551",
+        "MH501550",
+        "MH501545",
+        "MH501548",
+        "MH501547",
+        "MH501546",
+        "MH501549"
+      ],
+      [
+        "MH501688",
+        "MH501687",
+        "MH501686",
+        "MH501681",
+        "MH501684",
+        "MH501683",
+        "MH501682",
+        "MH501685"
+      ],
+      [
+        "MH502113",
+        "MH502112",
+        "MH502111",
+        "MH502106",
+        "MH502109",
+        "MH502108",
+        "MH502107",
+        "MH502110"
+      ],
+      [
+        "MH502419",
+        "MH502418",
+        "MH502417",
+        "MH502412",
+        "MH502415",
+        "MH502414",
+        "MH502413",
+        "MH502416"
+      ],
+      [
+        "MH502769",
+        "MH502768",
+        "MH502767",
+        "MH502762",
+        "MH502765",
+        "MH502764",
+        "MH502763",
+        "MH502766"
+      ],
+      [
+        "MH546224",
+        "MH546225",
+        "MH546226",
+        "MH546227",
+        "MH546228",
+        "MH546229",
+        "MH546230",
+        "MH546231"
+      ],
+      [
+        "MH546240",
+        "MH546241",
+        "MH546242",
+        "MH546243",
+        "MH546244",
+        "MH546245",
+        "MH546246",
+        "MH546247"
+      ],
+      [
+        "MH546664",
+        "MH546665",
+        "MH546666",
+        "MH546667",
+        "MH546668",
+        "MH546669",
+        "MH546670",
+        "MH546671"
+      ],
+      [
+        "MH546960",
+        "MH546961",
+        "MH546962",
+        "MH546963",
+        "MH546964",
+        "MH546965",
+        "MH546966",
+        "MH546967"
+      ],
+      [
+        "MH597396",
+        "MH597395",
+        "MH597394",
+        "MH597389",
+        "MH597392",
+        "MH597391",
+        "MH597390",
+        "MH597393"
+      ],
+      [
+        "MG779865",
+        "MG779866",
+        "MG779867",
+        "MG779868",
+        "MG779869",
+        "MG779870",
+        "MG779871",
+        "MG779872"
+      ],
+      [
+        "MK345708",
+        "MK345703",
+        "MK345706",
+        "MK345702",
+        "MK345709",
+        "MK345704",
+        "MK345707",
+        "MK345705"
+      ],
+      [
+        "MK345970",
+        "MK345964",
+        "MK345968",
+        "MK345967",
+        "MK345966",
+        "MK345965",
+        "MK345969",
+        "MK345963"
+      ],
+      [
+        "MK027384",
+        "MK027385",
+        "MK027386",
+        "MK027387",
+        "MK027388",
+        "MK027389",
+        "MK027390",
+        "MK027391"
+      ],
+      [
+        "MK559330",
+        "MK559331",
+        "MK559332",
+        "MK559333",
+        "MK559334",
+        "MK559335",
+        "MK559336",
+        "MK559337"
+      ],
+      [
+        "MK627757",
+        "MK627755",
+        "MK627758",
+        "MK627759",
+        "MK627761",
+        "MK627760",
+        "MK627756",
+        "MK627762"
+      ],
+      [
+        "MK627792",
+        "MK627787",
+        "MK627790",
+        "MK627789",
+        "MK627794",
+        "MK627793",
+        "MK627791",
+        "MK627788"
+      ],
+      [
+        "MK637403",
+        "MK637400",
+        "MK637404",
+        "MK637397",
+        "MK637401",
+        "MK637402",
+        "MK637399",
+        "MK637398"
+      ],
+      [
+        "MH251173",
+        "MH251204",
+        "MH251179",
+        "MH251158",
+        "MH251203",
+        "MH251172",
+        "MH251145",
+        "MH251212"
+      ],
+      [
+        "MK905371",
+        "MK905370",
+        "MK905369",
+        "MK905364",
+        "MK905367",
+        "MK905366",
+        "MK905365",
+        "MK905368"
+      ],
+      [
+        "MK943178",
+        "MK943177",
+        "MK943176",
+        "MK943171",
+        "MK943174",
+        "MK943173",
+        "MK943172",
+        "MK943175"
+      ],
+      [
+        "MK943529",
+        "MK943528",
+        "MK943527",
+        "MK943522",
+        "MK943525",
+        "MK943524",
+        "MK943523",
+        "MK943526"
+      ],
+      [
+        "MK964380",
+        "MK964379",
+        "MK964378",
+        "MK964373",
+        "MK964376",
+        "MK964375",
+        "MK964374",
+        "MK964377"
+      ],
+      [
+        "MH498605",
+        "MH498618",
+        "MH498615",
+        "MH498598",
+        "MH498612",
+        "MH498610",
+        "MH498556",
+        "MH498621"
+      ],
+      [
+        "MK979037",
+        "MK979038",
+        "MK979039",
+        "MK979040",
+        "MK979041",
+        "MK979042",
+        "MK979043",
+        "MK979044"
+      ],
+      [
+        "MK979229",
+        "MK979230",
+        "MK979231",
+        "MK979232",
+        "MK979233",
+        "MK979234",
+        "MK979235",
+        "MK979236"
+      ],
+      [
+        "MN133952",
+        "MN133953",
+        "MN133954",
+        "MN133955",
+        "MN133956",
+        "MN133957",
+        "MN133958",
+        "MN133959"
+      ],
+      [
+        "MN210186",
+        "MN210185",
+        "MN210184",
+        "MN210179",
+        "MN210182",
+        "MN210181",
+        "MN210180",
+        "MN210183"
+      ],
+      [
+        "MN267495",
+        "MN267496",
+        "MN267497",
+        "MN267502",
+        "MN267499",
+        "MN267500",
+        "MN267501",
+        "MN267498"
+      ],
+      [
+        "MG366486",
+        "MG366493",
+        "MG366500",
+        "MG366507",
+        "MG366514",
+        "MG366521",
+        "MG366528",
+        "MG366535"
+      ],
+      [
+        "MN814816",
+        "MN814812",
+        "MN814813",
+        "MN814817",
+        "MN814814",
+        "MN814819",
+        "MN814815",
+        "MN814818"
+      ],
+      [
+        "MN911235",
+        "MN911233",
+        "MN911234",
+        "MN911232",
+        "MN911231",
+        "MN911236",
+        "MN911237",
+        "MN911230"
+      ],
+      [
+        "MT090303",
+        "MT090304",
+        "MT090305",
+        "MT090299",
+        "MT090298",
+        "MT090300",
+        "MT090302",
+        "MT090301"
+      ],
+      [
+        "MT107007",
+        "MT107008",
+        "MT107009",
+        "MT107010",
+        "MT107011",
+        "MT107012",
+        "MT107013",
+        "MT107014"
+      ],
+      [
+        "MT406880",
+        "MT406879",
+        "MT406878",
+        "MT406873",
+        "MT406876",
+        "MT406875",
+        "MT406874",
+        "MT406877"
+      ]
+    ],
+    "subtypes": [
+      "H4N2",
+      "H5N7",
+      "H7N5",
+      "H2N1",
+      "H2N2",
+      "H2N9",
+      "H4N8",
+      "H12N5",
+      "H5N2",
+      "H3N8",
+      "H6N2",
+      "mixed",
+      "H5N3",
+      "H7N3",
+      "mixed",
+      "H5N1",
+      "H9N2",
+      "H11N8",
+      "H3N8",
+      "H3N8",
+      "H13N2",
+      "H14N3",
+      "H6N1",
+      "H3N2",
+      "H6N1",
+      "H6N1",
+      "H7N1",
+      "H7N2",
+      "H4N6",
+      "H3N5",
+      "H5N1",
+      "H5N1",
+      "H9N2",
+      "H11N9",
+      "H1N1",
+      "H5N1",
+      "H5N1",
+      "H7N2",
+      "H9N2",
+      "H9N2",
+      "H9N2",
+      "H5N1",
+      "H5N1",
+      "H2N9",
+      "H6N2",
+      "H5N1",
+      "H5N1",
+      "H1N2",
+      "H11N9",
+      "H7N7",
+      "H6N1",
+      "H11N9",
+      "H8N4",
+      "H2N3",
+      "H4N6",
+      "H4N8",
+      "H3N8",
+      "H4N1",
+      "H6N1",
+      "H10N7",
+      "H5N2",
+      "H6N5",
+      "H5N1",
+      "H3N3",
+      "H3N8",
+      "H3N8",
+      "H6N2",
+      "H6N6",
+      "H6N6",
+      "H6N6",
+      "H6N6",
+      "H2N2",
+      "H2N3",
+      "H4N6",
+      "H13N2",
+      "H5N1",
+      "H5N1",
+      "H6N8",
+      "H11N1",
+      "H6N3",
+      "H6N8",
+      "H6N1",
+      "H4N6",
+      "H4N6",
+      "H5N1",
+      "H4N6",
+      "H3N8",
+      "H5N2",
+      "H11N2",
+      "H7N8",
+      "H5N2",
+      "H11N2",
+      "H3N6",
+      "H12N4",
+      "H3N6",
+      "H3N8",
+      "H10N3",
+      "H10N7",
+      "H1N1",
+      "H1N1",
+      "H3N8",
+      "H4N6",
+      "H4N8",
+      "H4N6",
+      "H6N2",
+      "H7N3",
+      "H7N3",
+      "H7N3",
+      "H10N7",
+      "H3N8",
+      "H3N8",
+      "H3N8",
+      "H12N4",
+      "H10N7",
+      "H5N1",
+      "H7N7",
+      "H7N7",
+      "H7N8",
+      "H7N7",
+      "H7N7",
+      "H9N2",
+      "H9N2",
+      "H1N1",
+      "H6N8",
+      "H2N3",
+      "H8N4",
+      "H5N1",
+      "H5N1",
+      "H5N1",
+      "H5N2",
+      "H5N2",
+      "H5N2",
+      "H4N6",
+      "H3N8",
+      "H5N5",
+      "H6N8",
+      "H12N5",
+      "H3N2",
+      "H2N3",
+      "H3N5",
+      "H1N6",
+      "H3N2",
+      "H1N9",
+      "H11N9",
+      "H3N8",
+      "H1N1",
+      "H6N1",
+      "H6N8",
+      "H1N1",
+      "H10N2",
+      "H12N5",
+      "H11N9",
+      "H13N8",
+      "H9N3",
+      "H10N7",
+      "H7N7",
+      "H1N1",
+      "H4N6",
+      "H9N2",
+      "H9N2",
+      "H9N2",
+      "H9N2",
+      "H5N8",
+      "H5N8",
+      "H5N8",
+      "H9N2",
+      "H10N3",
+      "H9N2",
+      "H10N6",
+      "H10N3",
+      "H10N3",
+      "H9N2",
+      "H9N2",
+      "H9N2",
+      "H7N9",
+      "H7N9",
+      "H9N2",
+      "H7N9",
+      "H7N9",
+      "H7N6",
+      "H7N9",
+      "H7N9",
+      "H5N1",
+      "H5N8",
+      "H5N2",
+      "H5N2",
+      "H5N1",
+      "H6N1",
+      "H5N2",
+      "H5N1",
+      "H9N2",
+      "H7N3",
+      "H11N9",
+      "H4N4",
+      "H12N5",
+      "H2N9",
+      "H16N3",
+      "H5N2",
+      "H11N9",
+      "H10N3",
+      "H10N6",
+      "H7N3",
+      "H3N2",
+      "H9N2",
+      "H4N6",
+      "H4N2",
+      "H4N6",
+      "H11N3",
+      "H16N3",
+      "H3N6",
+      "H7N7",
+      "H9N2",
+      "H9N2",
+      "H5N1",
+      "H5N8",
+      "H5N1",
+      "H5N1",
+      "H9N2",
+      "H9N2",
+      "H6N2",
+      "H5N2",
+      "H13N6",
+      "H10N7",
+      "H10N7",
+      "H5N1",
+      "H5N6",
+      "H9N2",
+      "H7N3",
+      "H7N3",
+      "H5N1",
+      "H4N6",
+      "H3N2",
+      "H14N3",
+      "H3N8",
+      "H3N8",
+      "H6N2",
+      "H13N6",
+      "H13N6",
+      "H1N1",
+      "H13N2",
+      "H4N6",
+      "H3N8",
+      "H9N2",
+      "H7N9",
+      "H5N1",
+      "H7N4",
+      "H10N7",
+      "H5N6",
+      "H5N6",
+      "H5N6",
+      "H9N2",
+      "H5N1",
+      "H5N1",
+      "H5N1",
+      "H5N1",
+      "H5N1",
+      "H5N2",
+      "H5N2",
+      "H5N2",
+      "H5N2",
+      "H5N6",
+      "H7N1",
+      "H5N1",
+      "H9N2",
+      "H13N2",
+      "H6N1",
+      "H1N1",
+      "H10N2",
+      "H10N8",
+      "H3N6",
+      "H5N2",
+      "H5N2",
+      "H5N5",
+      "H5N2",
+      "H11N2",
+      "H7N4",
+      "H12N5",
+      "H16N3",
+      "H5N6",
+      "H7N3",
+      "H10N7",
+      "H10N7",
+      "H12N4",
+      "H8N4",
+      "H1N1",
+      "mixed",
+      "H5N6",
+      "H9N2",
+      "H5N8",
+      "H1N1",
+      "H3N8",
+      "H5N6",
+      "H13N2",
+      "H9N2",
+      "H10N3",
+      "H11N1",
+      "H11N5",
+      "H9N2",
+      "H5N6",
+      "H6N2"
+    ],
+    "aln_len_seg1": 2369,
+    "aln_len_seg2": 2341,
+    "aln_len_seg3": 2255,
+    "aln_len_seg4": 1918,
+    "aln_len_seg5": 1583,
+    "aln_len_seg6": 1557,
+    "aln_len_seg7": 1063,
+    "aln_len_seg8": 922
+  },
+  "single_segments": {
+    "1_PB2": {
+      "A_max_h1_persistence": 0.006258304505034902,
+      "B_n_h1_ge_0.005": 2,
+      "n_h1_bars": 7,
+      "top_h1_bars_birth_death": [
+        [
+          0.05397236614853195,
+          0.06023067065356685
+        ],
+        [
+          0.03650586701434159,
+          0.04224738675958188
+        ],
+        [
+          0.133419689119171,
+          0.13546690048224463
+        ],
+        [
+          0.13356461405030357,
+          0.135146804835924
+        ],
+        [
+          0.05263157894736842,
+          0.05394736842105263
+        ]
+      ],
+      "n_h1_infinite_death": 0,
+      "alpha_path_mds3": {
+        "P1": 0.0017755032499742855,
+        "P2": 0.0017540721646061284,
+        "P1_over_P2": 1.0122179040296038,
+        "S": 0.023594287348728423,
+        "top_h1_bars_birth_death": [
+          [
+            0.008804156087461911,
+            0.010579659337436197
+          ],
+          [
+            0.0031703520108527492,
+            0.004924424175458878
+          ],
+          [
+            0.003869790572364969,
+            0.005384794264957456
+          ],
+          [
+            0.011787607190925031,
+            0.013004752967104773
+          ],
+          [
+            0.0023855403906306778,
+            0.0034855196028433753
+          ]
+        ]
+      },
+      "median_pdist": 0.14649122807017545
+    },
+    "2_PB1": {
+      "A_max_h1_persistence": 0.011693373754872227,
+      "B_n_h1_ge_0.005": 1,
+      "n_h1_bars": 8,
+      "top_h1_bars_birth_death": [
+        [
+          0.06453009961022088,
+          0.07622347336509311
+        ],
+        [
+          0.06865284974093264,
+          0.07216940363007779
+        ],
+        [
+          0.07553798858146685,
+          0.0764163372859025
+        ],
+        [
+          0.08287056813327638,
+          0.08354755784061697
+        ],
+        [
+          0.08479789103690685,
+          0.08539228435197226
+        ]
+      ],
+      "n_h1_infinite_death": 0,
+      "alpha_path_mds3": {
+        "P1": 0.0020396864585577592,
+        "P2": 0.0010985554010909289,
+        "P1_over_P2": 1.8566987668826105,
+        "S": 0.035605365980478164,
+        "top_h1_bars_birth_death": [
+          [
+            0.006975227854204287,
+            0.009014914312762046
+          ],
+          [
+            0.007219191099138298,
+            0.008317746500229227
+          ],
+          [
+            0.0021361083667557953,
+            0.0031460684974595676
+          ],
+          [
+            0.002775563709492346,
+            0.003774416491826728
+          ],
+          [
+            0.001436484135859745,
+            0.002253536892760789
+          ]
+        ]
+      },
+      "median_pdist": 0.11058315334773218
+    },
+    "3_PA": {
+      "A_max_h1_persistence": 0.0013947001394700176,
+      "B_n_h1_ge_0.005": 0,
+      "n_h1_bars": 3,
+      "top_h1_bars_birth_death": [
+        [
+          0.06834030683403068,
+          0.0697350069735007
+        ],
+        [
+          0.06307977736549165,
+          0.06366530241018645
+        ],
+        [
+          0.015930814747382796,
+          0.016415868673050615
+        ]
+      ],
+      "n_h1_infinite_death": 0,
+      "alpha_path_mds3": {
+        "P1": 0.0011079661210958158,
+        "P2": 0.0009431836645335291,
+        "P1_over_P2": 1.1747087685660706,
+        "S": 0.019801792934155116,
+        "top_h1_bars_birth_death": [
+          [
+            0.005278145154955328,
+            0.006386111276051144
+          ],
+          [
+            0.003058363608568696,
+            0.004001547273102225
+          ],
+          [
+            0.007479310955209868,
+            0.008410392881789736
+          ],
+          [
+            0.003844429285256538,
+            0.004741383000083436
+          ],
+          [
+            0.006235158217469205,
+            0.007125729234292375
+          ]
+        ]
+      },
+      "median_pdist": 0.10730593607305935
+    },
+    "4_HA": {
+      "A_max_h1_persistence": 0.007800394687477119,
+      "B_n_h1_ge_0.005": 4,
+      "n_h1_bars": 45,
+      "top_h1_bars_birth_death": [
+        [
+          0.41256668642560756,
+          0.4203670811130847
+        ],
+        [
+          0.36342182890855457,
+          0.37095825984714875
+        ],
+        [
+          0.38787522071806946,
+          0.39433293978748524
+        ],
+        [
+          0.3297935103244838,
+          0.335693215339233
+        ],
+        [
+          0.4150268336314848,
+          0.4198927933293627
+        ]
+      ],
+      "n_h1_infinite_death": 0,
+      "alpha_path_mds3": {
+        "P1": 0.015288565372368695,
+        "P2": 0.0013767527220342815,
+        "P1_over_P2": 11.10480126727362,
+        "S": 0.06847148319763266,
+        "top_h1_bars_birth_death": [
+          [
+            0.14006945297262266,
+            0.15535801834499136
+          ],
+          [
+            0.010370535583234414,
+            0.011747288305268696
+          ],
+          [
+            0.004977195810356205,
+            0.006112194496492045
+          ],
+          [
+            0.0042048870148000805,
+            0.005090712171886356
+          ],
+          [
+            0.002516133179072598,
+            0.003369775452339675
+          ]
+        ]
+      },
+      "median_pdist": 0.4547069271758437
+    },
+    "5_NP": {
+      "A_max_h1_persistence": 0.0023689273689273677,
+      "B_n_h1_ge_0.005": 0,
+      "n_h1_bars": 9,
+      "top_h1_bars_birth_death": [
+        [
+          0.05649350649350649,
+          0.05886243386243386
+        ],
+        [
+          0.03636363636363636,
+          0.038386467143786594
+        ],
+        [
+          0.08376623376623377,
+          0.08571428571428572
+        ],
+        [
+          0.023376623376623377,
+          0.024675324675324677
+        ],
+        [
+          0.05855263157894737,
+          0.05942492012779553
+        ]
+      ],
+      "n_h1_infinite_death": 0,
+      "alpha_path_mds3": {
+        "P1": 0.0017825504988472612,
+        "P2": 0.0013476525526525652,
+        "P1_over_P2": 1.3227077671753693,
+        "S": 0.03167752213024214,
+        "top_h1_bars_birth_death": [
+          [
+            0.002047573622051162,
+            0.003830124120898423
+          ],
+          [
+            0.0023656725803355076,
+            0.0037133251329880728
+          ],
+          [
+            0.0037541104188963926,
+            0.004881066511114866
+          ],
+          [
+            0.00496588866388527,
+            0.006030537816994095
+          ],
+          [
+            0.003906713577852672,
+            0.004963428994849304
+          ]
+        ]
+      },
+      "median_pdist": 0.10324675324675325
+    },
+    "6_NA": {
+      "A_max_h1_persistence": 0.004644365797559613,
+      "B_n_h1_ge_0.005": 0,
+      "n_h1_bars": 40,
+      "top_h1_bars_birth_death": [
+        [
+          0.39717891610987377,
+          0.4018232819074334
+        ],
+        [
+          0.46508279337652986,
+          0.4695717505634861
+        ],
+        [
+          0.4197786998616874,
+          0.4241773962804006
+        ],
+        [
+          0.46495489243580845,
+          0.468975468975469
+        ],
+        [
+          0.4598046581517656,
+          0.4638205499276411
+        ]
+      ],
+      "n_h1_infinite_death": 0,
+      "alpha_path_mds3": {
+        "P1": 0.0052122007466066655,
+        "P2": 0.004348614425787017,
+        "P1_over_P2": 1.1985888460698273,
+        "S": 0.021333502488344633,
+        "top_h1_bars_birth_death": [
+          [
+            0.18308087767574688,
+            0.18829307842235354
+          ],
+          [
+            0.14730262459831506,
+            0.15165123902410207
+          ],
+          [
+            0.002355475779730457,
+            0.004121976755239231
+          ],
+          [
+            0.0031301753922043773,
+            0.00451492598748917
+          ],
+          [
+            0.0047477046629276565,
+            0.005881265144014772
+          ]
+        ]
+      },
+      "median_pdist": 0.4740796393688956
+    },
+    "7_M": {
+      "A_max_h1_persistence": 0.002036659877800405,
+      "B_n_h1_ge_0.005": 0,
+      "n_h1_bars": 14,
+      "top_h1_bars_birth_death": [
+        [
+          0.014256619144602852,
+          0.016293279022403257
+        ],
+        [
+          0.022954091816367265,
+          0.0249500998003992
+        ],
+        [
+          0.006993006993006993,
+          0.008982035928143712
+        ],
+        [
+          0.05089820359281437,
+          0.05220883534136546
+        ],
+        [
+          0.05928853754940711,
+          0.060362173038229376
+        ]
+      ],
+      "n_h1_infinite_death": 0,
+      "alpha_path_mds3": {
+        "P1": 0.0018276204953832477,
+        "P2": 0.0013882807862530917,
+        "P1_over_P2": 1.316463148867683,
+        "S": 0.03898111780730902,
+        "top_h1_bars_birth_death": [
+          [
+            0.004413941085393356,
+            0.0062415615807766035
+          ],
+          [
+            0.004495994033466093,
+            0.005884274819719185
+          ],
+          [
+            0.0015474414438720085,
+            0.002708632713789359
+          ],
+          [
+            0.004624312617275287,
+            0.005388003522023368
+          ],
+          [
+            0.0037538123251262467,
+            0.004496560005292726
+          ]
+        ]
+      },
+      "median_pdist": 0.08080808080808081
+    },
+    "8_NS": {
+      "A_max_h1_persistence": 0.0023696682464455013,
+      "B_n_h1_ge_0.005": 0,
+      "n_h1_bars": 5,
+      "top_h1_bars_birth_death": [
+        [
+          0.052132701421800945,
+          0.054502369668246446
+        ],
+        [
+          0.024277456647398842,
+          0.025433526011560695
+        ],
+        [
+          0.08554913294797688,
+          0.08654970760233918
+        ],
+        [
+          0.011574074074074073,
+          0.01179245283018868
+        ],
+        [
+          0.024719101123595506,
+          0.02485207100591716
+        ]
+      ],
+      "n_h1_infinite_death": 0,
+      "alpha_path_mds3": {
+        "P1": 0.0025805360183848228,
+        "P2": 0.0024285484450740783,
+        "P1_over_P2": 1.0625837107013563,
+        "S": 0.022473362105519864,
+        "top_h1_bars_birth_death": [
+          [
+            0.010375940777209061,
+            0.012956476795593884
+          ],
+          [
+            0.0033723613750649035,
+            0.005800909820138982
+          ],
+          [
+            0.00624645492787175,
+            0.007585324381657175
+          ],
+          [
+            0.0034349610493030606,
+            0.00461623072743166
+          ],
+          [
+            0.0027063763788715287,
+            0.0036921627760616604
+          ]
+        ]
+      },
+      "median_pdist": 0.1026252983293556
+    }
+  },
+  "concatenated_8_segments": {
+    "A_max_h1_persistence": 0.0419901360335202,
+    "B_n_h1_ge_0.005": 101,
+    "n_h1_bars": 152,
+    "top_h1_bars_birth_death": [
+      [
+        0.0927404028886355,
+        0.1347305389221557
+      ],
+      [
+        0.0979261810286741,
+        0.13909056171188383
+      ],
+      [
+        0.08924812030075188,
+        0.1302095066456409
+      ],
+      [
+        0.09667016649167541,
+        0.13751789616456936
+      ],
+      [
+        0.12308845577211394,
+        0.16320874840835892
+      ]
+    ],
+    "n_h1_infinite_death": 0,
+    "alpha_path_mds3": {
+      "P1": 0.010396228052032441,
+      "P2": 0.008637127813066341,
+      "P1_over_P2": 1.203667269610728,
+      "S": 0.12154870483873896,
+      "top_h1_bars_birth_death": [
+        [
+          0.016359938358419042,
+          0.026756166410451483
+        ],
+        [
+          0.024719992839370267,
+          0.03335712065243661
+        ],
+        [
+          0.022529411800901622,
+          0.026702506946259443
+        ],
+        [
+          0.02863859055183172,
+          0.032746119444523054
+        ],
+        [
+          0.01985461292838087,
+          0.023864635368811362
+        ]
+      ]
+    },
+    "median_pdist": 0.18546072812421546
+  },
+  "null_pooled_single_segment_site_bootstrap": {
+    "n": 400,
+    "p_A_concat": 0.0024937655860349127,
+    "A_q50_95_99_max": [
+      0.005715560574610088,
+      0.01482321768406895,
+      0.018247921447456742,
+      0.023852057968615892
+    ],
+    "B_q50_95_max": [
+      1.0,
+      9.049999999999955,
+      15.0
+    ]
+  },
+  "criteria_rips_binding": {
+    "i_A_concat_p_le_0.01_vs_pooled_single_segment_bootstrap": true,
+    "ii_A_HA_and_A_NA_le_half_A_concat": true,
+    "iii_B_concat_gt_max_single_B": true
+  },
+  "verdict": "PASS"
+}

@@ -1,7 +1,11 @@
 """Test 2: circular bacterial chromosome from Hi-C (pre-stated in expectations.json).
 
 Usage (resumable; re-invoke with the same arguments until it prints a verdict):
-  python test2_hic.py --n-null 1000 --n-rips-null 200 --budget-sec 540
+  python test2_hic.py --n-null 500 --n-rips-null 50 --budget-sec 540 [--cases caulo_full,caulo_cut_ter,...]
+  (null sizes reduced from the pre-stated 1000/200 for compute; recorded in expectations_addendum_ecoli.json)
+  --cases runs only the listed cases (to fill the caches in parallel processes); the final
+  invocation without --cases assembles all cases from the caches and writes the JSON.
+Test 2b (E. coli, expectations_addendum_ecoli.json) is evaluated in the same script.
 Seeds: linear-null seeds 0..n_null-1 (alpha path), 0..n_rips_null-1 (Rips path).
 
 Deviation from expectations.json, recorded in the output: the authors' iteratively
@@ -39,6 +43,36 @@ def load_gm():
     M = np.load(p)
     M = np.nan_to_num(M, nan=0.0)  # absent sparse records = zero contacts; KR-NaN bins give all-zero rows
     return M, p
+
+
+def load_ecoli():
+    import pandas as pd
+    p = glob.glob(os.path.join(DATA_ROOT, "ecoli", "GSM2870407_*.txt.gz"))[0]
+    df = pd.read_csv(p, sep="\t", index_col=0)
+    df = df.loc[:, [c for c in df.columns if not str(c).startswith("Unnamed")]]  # trailing tab -> empty column
+    M = df.values.astype(float)
+    assert M.shape[0] == M.shape[1] and np.isfinite(M).all(), M.shape
+    n5 = M.shape[0]
+    nb = (n5 + 1) // 2
+    B = np.zeros((nb, nb))
+    idx = np.arange(n5) // 2
+    np.add.at(B, (idx[:, None], idx[None, :]), M)
+    np.fill_diagonal(B, 0.0)
+    rs = B.sum(1)
+    med = np.median(rs); mad = 1.4826 * np.median(np.abs(rs - med))
+    keep = rs >= med - 3 * mad
+    B = B[np.ix_(keep, keep)]
+    it_done, dev = 0, None
+    for it in range(200):
+        r = B.sum(1); r = r / r.mean()
+        dev = float(np.max(np.abs(r - 1)))
+        if dev < 1e-6:
+            break
+        B = B / np.outer(r, r)
+        it_done = it + 1
+    info = {"raw_shape": list(M.shape), "n_bins_10kb": int(nb), "n_bins_dropped_low_coverage": int((~keep).sum()),
+            "ice_iterations": it_done, "ice_final_max_dev": dev}
+    return B, np.where(keep)[0], info, p
 
 
 def clean(C, masked_offset1):
@@ -152,59 +186,75 @@ def run_case(C, label, circular, a, cache_dir):
     return obs
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--n-null", type=int, default=1000)
-    ap.add_argument("--n-rips-null", type=int, default=200)
-    ap.add_argument("--budget-sec", type=float, default=540.0)
-    a = ap.parse_args()
-    cache_dir = os.path.join(DATA_ROOT, "cache")
-    os.makedirs(cache_dir, exist_ok=True)
+ALL_CASES = ["caulo_full", "caulo_cut_ter", "caulo_cut_ori", "gm12878_chr1q", "ecoli_full", "ecoli_cut_ter"]
 
+
+def build_cases():
     Craw, pC = load_caulo()
     C, info_c = clean(Craw, masked_offset1=True)
     n = C.shape[0]
     assert n == 405, n  # bin indices of the cut controls assume no dropped bins
-    res = {"args": vars(a), "pipeline_file_sha256": pipeline_sha256(), "distance": "d_ij = C_ij^(-1/3); alpha path = classical MDS to 3-D -> alpha_persistence",
-           "deviation_from_expectations": "masked offset-1 diagonal imputed with E(2) (see module docstring)",
-           "caulobacter": {"file": pC, "clean_info": info_c}}
-    res["caulobacter"]["full_ring"] = run_case(C, "caulo_full", True, a, cache_dir)
-
-    # internal control 1: cut at terminus, bins 182-221 removed; remaining re-ordered as a chain 222..404,0..181
-    order_ter = np.r_[np.arange(222, n), np.arange(0, 182)]
-    Ct = C[np.ix_(order_ter, order_ter)]
-    res["caulobacter"]["cut_ter_182_221"] = run_case(Ct, "caulo_cut_ter", False, a, cache_dir)
-    # internal control 2: cut at origin, bins 0-19 and 385-404 removed
-    order_ori = np.arange(20, 385)
-    Co = C[np.ix_(order_ori, order_ori)]
-    res["caulobacter"]["cut_ori_0_19_385_404"] = run_case(Co, "caulo_cut_ori", False, a, cache_dir)
-
+    order_ter = np.r_[np.arange(222, n), np.arange(0, 182)]   # ter cut: bins 182-221 removed, chain 222..404,0..181
+    order_ori = np.arange(20, 385)                              # ori cut: bins 0-19 and 385-404 removed
     Graw, pG = load_gm()
     G, info_g = clean(Graw, masked_offset1=False)
-    res["gm12878_chr1q"] = {"file": pG, "clean_info": info_g,
-                            "result": run_case(G, "gm12878_chr1q", False, a, cache_dir)}
+    E, kept, info_e, pE = load_ecoli()
+    E, info_e2 = clean(E, masked_offset1=False)
+    info_e.update(info_e2)
+    chain = [k for k, b in enumerate(kept) if b >= 182] + [k for k, b in enumerate(kept) if b < 136]
+    info_e["ter_cut_original_bins_removed"] = "136-181"
+    cases = {
+        "caulo_full": (C, True), "caulo_cut_ter": (C[np.ix_(order_ter, order_ter)], False),
+        "caulo_cut_ori": (C[np.ix_(order_ori, order_ori)], False), "gm12878_chr1q": (G, False),
+        "ecoli_full": (E, True), "ecoli_cut_ter": (E[np.ix_(chain, chain)], False)}
+    meta = {"caulobacter": {"file": pC, "clean_info": info_c}, "gm12878_chr1q": {"file": pG, "clean_info": info_g},
+            "ecoli": {"file": pE, "clean_info": info_e}}
+    return cases, meta
 
-    full = res["caulobacter"]["full_ring"]
-    crit = {
-        "i_caulo_alpha_P1_over_P2_ge_2": bool(full["alpha_path_mds3"]["P1_over_P2"] >= 2.0),
-        "ii_caulo_alpha_S_p_le_0.01_vs_linear_null": bool(full["linear_null"]["p_S_alpha"] <= 0.01),
-        "iii_ter_cut_not_dominant_and_significant": not res["caulobacter"]["cut_ter_182_221"]["dominant_and_significant_alpha"],
-        "iv_gm12878_linear_not_dominant_and_significant": not res["gm12878_chr1q"]["result"]["dominant_and_significant_alpha"],
-    }
-    crit_rips = {
-        "i_caulo_rips_P1_over_P2_ge_2": bool(full["rips_full_matrix"]["P1_over_P2"] >= 2.0),
-        "ii_caulo_rips_S_p_le_0.01": bool(full["linear_null"]["p_S_rips"] <= 0.01),
-        "iii_ter_cut_rips_not_dom_sig": not res["caulobacter"]["cut_ter_182_221"]["dominant_and_significant_rips"],
-        "iv_gm_rips_not_dom_sig": not res["gm12878_chr1q"]["result"]["dominant_and_significant_rips"],
-    }
-    res["criteria_alpha_path_binding"] = crit
-    res["criteria_rips_crosscheck"] = crit_rips
-    res["verdict"] = "PASS" if all(crit.values()) else "FAIL"
-    res["verdict_rips_crosscheck"] = "PASS" if all(crit_rips.values()) else "FAIL"
+
+def crit_block(full, cut, ext, path):
+    k = "alpha_path_mds3" if path == "alpha" else "rips_full_matrix"
+    pk = "p_S_alpha" if path == "alpha" else "p_S_rips"
+    dk = "dominant_and_significant_" + path
+    return {"i_P1_over_P2_ge_2": bool(full[k]["P1_over_P2"] >= 2.0),
+            "ii_S_p_le_0.01_vs_linear_null": bool(full["linear_null"][pk] <= 0.01),
+            "iii_ter_cut_not_dominant_and_significant": not cut[dk],
+            "iv_gm12878_linear_not_dominant_and_significant": not ext[dk]}
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--n-null", type=int, default=500)
+    ap.add_argument("--n-rips-null", type=int, default=50)
+    ap.add_argument("--budget-sec", type=float, default=540.0)
+    ap.add_argument("--cases", default=",".join(ALL_CASES))
+    a = ap.parse_args()
+    cache_dir = os.path.join(DATA_ROOT, "cache")
+    os.makedirs(cache_dir, exist_ok=True)
+    cases, meta = build_cases()
+    sel = a.cases.split(",")
+    out = {}
+    for name in sel:
+        Cm, circ = cases[name]
+        out[name] = run_case(Cm, name, circ, a, cache_dir)
+        print(name, "done")
+    if set(sel) != set(ALL_CASES):
+        return
+    res = {"args": vars(a), "pipeline_file_sha256": pipeline_sha256(),
+           "distance": "d_ij = C_ij^(-1/3); alpha path = classical MDS to 3-D -> alpha_persistence",
+           "deviations_from_expectations": ["Caulobacter masked offset-1 diagonal imputed with E(2) (see module docstring)",
+                                            "null sizes 500 (alpha) / 50 (Rips) instead of 1000 / 200 (compute); recorded in expectations_addendum_ecoli.json before the E. coli computation"],
+           "inputs": meta, "cases": out}
+    res["test2_caulobacter"] = {"criteria_alpha_binding": crit_block(out["caulo_full"], out["caulo_cut_ter"], out["gm12878_chr1q"], "alpha"),
+                                "criteria_rips_crosscheck": crit_block(out["caulo_full"], out["caulo_cut_ter"], out["gm12878_chr1q"], "rips")}
+    res["test2b_ecoli"] = {"criteria_alpha_binding": crit_block(out["ecoli_full"], out["ecoli_cut_ter"], out["gm12878_chr1q"], "alpha"),
+                           "criteria_rips_crosscheck": crit_block(out["ecoli_full"], out["ecoli_cut_ter"], out["gm12878_chr1q"], "rips")}
+    for t in ("test2_caulobacter", "test2b_ecoli"):
+        res[t]["verdict"] = "PASS" if all(res[t]["criteria_alpha_binding"].values()) else "FAIL"
+        res[t]["verdict_rips_crosscheck"] = "PASS" if all(res[t]["criteria_rips_crosscheck"].values()) else "FAIL"
+        print(t, res[t])
     dump(res, os.path.join(HERE, "test2_hic_results.json"))
-    print(res["verdict"], crit)
-    print("rips", res["verdict_rips_crosscheck"], crit_rips)
-    for k, v in [("full", full), ("ter", res["caulobacter"]["cut_ter_182_221"]), ("ori", res["caulobacter"]["cut_ori_0_19_385_404"]), ("gm", res["gm12878_chr1q"]["result"])]:
+    for k, v in out.items():
         s = v["alpha_path_mds3"]; r = v["rips_full_matrix"]; ln = v["linear_null"]
         print(k, "alpha top", np.round(s["top_h1_bars_birth_death"][:2], 4).tolist(), "P1/P2 %.2f S %.3f p %.4f" % (s["P1_over_P2"], s["S"], ln["p_S_alpha"]),
               "| rips top", np.round(r["top_h1_bars_birth_death"][:2], 4).tolist(), "P1/P2 %.2f p %.4f" % (r["P1_over_P2"], ln["p_S_rips"]))

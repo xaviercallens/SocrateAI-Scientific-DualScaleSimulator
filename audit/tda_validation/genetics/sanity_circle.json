@@ -46,7 +46,7 @@
         0,
         0
       ],
-      "runtime_sec": 0.03846001625061035
+      "runtime_sec": 0.041895389556884766
     },
     "rips": {
       "n_points": 200,
@@ -79,7 +79,7 @@
       "P1_over_P2": 34.517440302793176,
       "median_nn_distance": 0.05967739615454223,
       "S_rips": 22.399049519970784,
-      "runtime_sec": 0.17069482803344727
+      "runtime_sec": 0.12070989608764648
     }
   },
   "gaussian_blob_n200_seed1_alpha": {
@@ -127,7 +127,7 @@
       0,
       0
     ],
-    "runtime_sec": 0.039257049560546875
+    "runtime_sec": 0.026634931564331055
   },
   "criterion": "one H1 bar with death ~ radius 1 and P1/P2 >= 3",
   "passed": true

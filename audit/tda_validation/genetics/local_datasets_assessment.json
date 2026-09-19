@@ -1,0 +1,1135 @@
+{
+  "bio_datasets": {
+    "01_hic_chromatin_coords.npy": {
+      "sha256": "6144ff3d29d6c5697d15deece2ffde799a939744c229050eea373c5398922e4a",
+      "size_bytes": 12128,
+      "shape": [
+        500,
+        3
+      ],
+      "dtype": "float64",
+      "min": -6.659091659012088,
+      "max": 27.1211324600711,
+      "mean": 3.7310211984335777,
+      "std": 8.147993985885568,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 1500,
+      "skew": 0.5031931539672387,
+      "excess_kurtosis": -0.9845992274753868,
+      "ks_vs_normal_stat": 0.12975784270205482,
+      "radius_from_centroid_cv": 0.4775542702185021,
+      "consecutive_step_mean_cv": [
+        0.5096979897521565,
+        0.8574648687961938
+      ]
+    },
+    "01_hic_contact_map.npy": {
+      "sha256": "896419b674b1dd62913823f2fcfc184f631266d682094c8424fd362efb59487a",
+      "size_bytes": 2000128,
+      "shape": [
+        500,
+        500
+      ],
+      "dtype": "float64",
+      "min": 0.018657975729902753,
+      "max": 15.848931924611133,
+      "mean": 0.23948855478174752,
+      "std": 0.8237887810740224,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 124751,
+      "skew": 14.625436091670649,
+      "excess_kurtosis": 261.65419700006,
+      "ks_vs_normal_stat": 0.3947863836492969,
+      "max_abs_asymmetry": 0.0,
+      "numerical_rank": 500,
+      "mean_diagonal_offsets_1_2_5_10_50": [
+        2.762617117508895,
+        1.9477080874623274,
+        1.249050011425003,
+        0.8054463799991133,
+        0.29605490514822996
+      ]
+    },
+    "02_scrna_expression.npy": {
+      "sha256": "f6c77d0efa0d3f863c5b5da099a0683dade508e1f061dbffe3b95556f85f3002",
+      "size_bytes": 4800128,
+      "shape": [
+        3000,
+        200
+      ],
+      "dtype": "float64",
+      "min": 2.298185258924718e-07,
+      "max": 2.426165436162799,
+      "mean": 0.2943976770516954,
+      "std": 0.33383504395162084,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 600000,
+      "skew": 1.3460382074247494,
+      "excess_kurtosis": 0.6384087671332996,
+      "ks_vs_normal_stat": 0.20391865969395429
+    },
+    "02_scrna_latent_manifold.npy": {
+      "sha256": "6fbbd30ab7d4b78fcc8c7a54d982f8c280ab4a4db4eef02d1cbe2e4500f0aad8",
+      "size_bytes": 72128,
+      "shape": [
+        3000,
+        3
+      ],
+      "dtype": "float64",
+      "min": -5.3471282700061,
+      "max": 9.995577032504386,
+      "mean": 1.6562435311843005,
+      "std": 3.236945105513564,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 9000,
+      "skew": 0.7270569615764974,
+      "excess_kurtosis": -0.001346825583153688,
+      "ks_vs_normal_stat": 0.11401302927756907,
+      "radius_from_centroid_cv": 0.42805419110142,
+      "consecutive_step_mean_cv": [
+        4.825985381577155,
+        0.5579224679194821
+      ]
+    },
+    "03_1CRN.pdb": {
+      "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "size_bytes": 49491,
+      "rcsb_url": "https://files.rcsb.org/download/1CRN.pdb",
+      "rcsb_sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+      "identical_to_rcsb_download": true,
+      "atom_records_identical_to_rcsb": true,
+      "n_atom_records": 327,
+      "ca_npy_shape": [
+        46,
+        3
+      ],
+      "n_CA_in_pdb_altloc_A_or_blank": 46,
+      "ca_npy_max_abs_diff_vs_pdb": 0.0
+    },
+    "03_1CRN_ca_coords.npy": {
+      "sha256": "2cf1a5db22a2ab3686377632adf126fb1ee0c932d00e8034bc95b0b8de9a40c0",
+      "size_bytes": 1232,
+      "shape": [
+        46,
+        3
+      ],
+      "dtype": "float64",
+      "min": -6.018,
+      "max": 22.019,
+      "mean": 8.873,
+      "std": 5.726145907722029,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 137,
+      "skew": -0.028519645016518064,
+      "excess_kurtosis": -0.2918269247536771,
+      "ks_vs_normal_stat": 0.0648149801487965,
+      "radius_from_centroid_cv": 0.31742367605422894,
+      "consecutive_step_mean_cv": [
+        3.8160716998999122,
+        0.006339837645961018
+      ]
+    },
+    "03_1UBQ.pdb": {
+      "sha256": "d4a6812d8951cf6594e6a0763f089e35f5a80b62acb3c117b2c5565228a7b161",
+      "size_bytes": 78570,
+      "rcsb_url": "https://files.rcsb.org/download/1UBQ.pdb",
+      "rcsb_sha256": "d4a6812d8951cf6594e6a0763f089e35f5a80b62acb3c117b2c5565228a7b161",
+      "identical_to_rcsb_download": true,
+      "atom_records_identical_to_rcsb": true,
+      "n_atom_records": 660,
+      "ca_npy_shape": [
+        76,
+        3
+      ],
+      "n_CA_in_pdb_altloc_A_or_blank": 76,
+      "ca_npy_max_abs_diff_vs_pdb": 0.0
+    },
+    "03_1UBQ_ca_coords.npy": {
+      "sha256": "a0d2d58eeb93d5dccf8ded87f9853b976ce6ac47800b03f80f91759b0873f5d4",
+      "size_bytes": 1952,
+      "shape": [
+        76,
+        3
+      ],
+      "dtype": "float64",
+      "min": 2.842,
+      "max": 43.96,
+      "mean": 24.98942543859649,
+      "std": 9.446730379262217,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 224,
+      "skew": -0.20062480489589585,
+      "excess_kurtosis": -0.652908830358192,
+      "ks_vs_normal_stat": 0.05830369504641497,
+      "radius_from_centroid_cv": 0.2988713758768347,
+      "consecutive_step_mean_cv": [
+        3.809285958997109,
+        0.005296953184919029
+      ]
+    },
+    "03_4OBE.pdb": {
+      "sha256": "a294349c51d3d3218b164f4202fb88263247edc08d7d48b68e89bfd9896e21d2",
+      "size_bytes": 750465,
+      "rcsb_url": "https://files.rcsb.org/download/4OBE.pdb",
+      "rcsb_sha256": "a294349c51d3d3218b164f4202fb88263247edc08d7d48b68e89bfd9896e21d2",
+      "identical_to_rcsb_download": true,
+      "atom_records_identical_to_rcsb": true,
+      "n_atom_records": 5725,
+      "ca_npy_shape": [
+        339,
+        3
+      ],
+      "n_CA_in_pdb_altloc_A_or_blank": 339,
+      "ca_npy_max_abs_diff_vs_pdb": 0.0
+    },
+    "03_4OBE_ca_coords.npy": {
+      "sha256": "e806e3d2430f30f473bfcbf534b59863c8f105dce14775f5e115dba6176c3851",
+      "size_bytes": 8264,
+      "shape": [
+        339,
+        3
+      ],
+      "dtype": "float64",
+      "min": -43.187,
+      "max": 63.196,
+      "mean": -1.0928367748279249,
+      "std": 24.437852984510144,
+      "frac_integer_valued": 0.004916420845624385,
+      "frac_exact_zero": 0.0,
+      "n_unique": 1011,
+      "skew": 0.6619241841263562,
+      "excess_kurtosis": -0.5106196231061118,
+      "ks_vs_normal_stat": 0.0994822227916054,
+      "radius_from_centroid_cv": 0.32627519982500974,
+      "consecutive_step_mean_cv": [
+        3.91235959189065,
+        0.5337733336953693
+      ]
+    },
+    "04_spatial_visium_coords.npy": {
+      "sha256": "4887f5cd368a79e948bd62242fee28e7a0df38f51b50dcb818d320fabd5d1d71",
+      "size_bytes": 25728,
+      "shape": [
+        1600,
+        2
+      ],
+      "dtype": "float64",
+      "min": 0.0,
+      "max": 10.0,
+      "mean": 4.999999999999999,
+      "std": 2.959845225798768,
+      "frac_integer_valued": 0.05,
+      "frac_exact_zero": 0.025,
+      "n_unique": 40,
+      "skew": 4.3843294525528206e-16,
+      "excess_kurtosis": -1.201500938086304,
+      "ks_vs_normal_stat": 0.06974070195751558,
+      "radius_from_centroid_cv": 0.37203334969560625,
+      "consecutive_step_mean_cv": [
+        0.49413895188406703,
+        3.042723671191901
+      ]
+    },
+    "04_spatial_visium_profiles.npy": {
+      "sha256": "9750a4de87d98829d6ad7133c8aa30ec3e4590e179d947188acc91e7e8476905",
+      "size_bytes": 38528,
+      "shape": [
+        1600,
+        3
+      ],
+      "dtype": "float64",
+      "min": 0.0,
+      "max": 0.9998816953341463,
+      "mean": 0.3534934316083877,
+      "std": 0.34653987886015913,
+      "frac_integer_valued": 0.07083333333333333,
+      "frac_exact_zero": 0.07083333333333333,
+      "n_unique": 1218,
+      "skew": 0.570150116336577,
+      "excess_kurtosis": -1.243592141057691,
+      "ks_vs_normal_stat": 0.17073906643644726,
+      "radius_from_centroid_cv": 0.3512169512291249,
+      "consecutive_step_mean_cv": [
+        0.09038428585100448,
+        1.1192684290750734
+      ]
+    },
+    "05_cancer_labels.npy": {
+      "sha256": "bdc05643ba696fa4e281e5c67db45937e04fcc8ed64665e6375beeb0b1f3a502",
+      "size_bytes": 4128,
+      "shape": [
+        500
+      ],
+      "dtype": "int64",
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.52,
+      "std": 0.49959983987187184,
+      "frac_integer_valued": 1.0,
+      "frac_exact_zero": 0.48,
+      "n_unique": 2,
+      "skew": -0.08006407690254365,
+      "excess_kurtosis": -1.9935897435897434,
+      "ks_vs_normal_stat": 0.3516658161949806
+    },
+    "05_dna_methylation_beta.npy": {
+      "sha256": "8f8170b39fd3b4443b121773228528e20f8d91efd411c0d1237842f6b5aee7f0",
+      "size_bytes": 4000128,
+      "shape": [
+        500,
+        1000
+      ],
+      "dtype": "float64",
+      "min": 8.411946898296414e-05,
+      "max": 0.9996766825624136,
+      "mean": 0.4751468234751547,
+      "std": 0.2785493244174106,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 500000,
+      "skew": 0.04215093395669366,
+      "excess_kurtosis": -1.3827160491028592,
+      "ks_vs_normal_stat": 0.09352581547284139
+    },
+    "06_cell_features.npy": {
+      "sha256": "9db22266ccb693f77e7b3cddc8fd8efa2b990066e0bdd33d68f281508ebb1a0c",
+      "size_bytes": 16128,
+      "shape": [
+        400,
+        5
+      ],
+      "dtype": "float64",
+      "min": -3.5658539831308653,
+      "max": 2.985104619395877,
+      "mean": 0.008439226364626077,
+      "std": 0.9995503083479658,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 2000,
+      "skew": -0.05627271281107247,
+      "excess_kurtosis": -0.06983102544781783,
+      "ks_vs_normal_stat": 0.014795236202336914
+    },
+    "06_gdsc_ic50_matrix.npy": {
+      "sha256": "925a23d87c37d6d1d990465642b316c351fa6be080117c8d5b040a137cef8847",
+      "size_bytes": 160128,
+      "shape": [
+        400,
+        50
+      ],
+      "dtype": "float64",
+      "min": -14.59841873417741,
+      "max": 11.818437111384965,
+      "mean": 0.0033596683823420835,
+      "std": 2.129259549655945,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 20000,
+      "skew": -0.013654946004361226,
+      "excess_kurtosis": 1.6172961412436866,
+      "ks_vs_normal_stat": 0.030759875567099138
+    },
+    "07_rna_contact_matrices.npy": {
+      "sha256": "d90423ae5ea39a71a767760d882461112c94fde8f1814d542e1c183d76a4ac1b",
+      "size_bytes": 34560128,
+      "shape": [
+        300,
+        120,
+        120
+      ],
+      "dtype": "float64",
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.005069444444444444,
+      "std": 0.07101932960447555,
+      "frac_integer_valued": 1.0,
+      "frac_exact_zero": 0.9949305555555555,
+      "n_unique": 2,
+      "skew": 13.93791122253473,
+      "excess_kurtosis": 192.26536924725906,
+      "ks_vs_normal_stat": 0.523383366776575
+    },
+    "08_nuclear_contours.npy": {
+      "sha256": "7f13d2a5501bf5c5c1ebd54e01ecca4836ee532a9e2291b959f4ded044ccd13a",
+      "size_bytes": 1024128,
+      "shape": [
+        1000,
+        64,
+        2
+      ],
+      "dtype": "float64",
+      "min": -6.3199299386979195,
+      "max": 6.159947097342462,
+      "mean": -0.0001800609245542354,
+      "std": 3.547943906950666,
+      "frac_integer_valued": 0.0078125,
+      "frac_exact_zero": 0.0078125,
+      "n_unique": 127001,
+      "skew": -0.04255981902789916,
+      "excess_kurtosis": -1.4541562345457328,
+      "ks_vs_normal_stat": 0.10397457826042844
+    },
+    "09_tcr_embeddings.npy": {
+      "sha256": "49de243665778854579c5f23d5a9006b5efe66fc9b035a7045973de58cee23d0",
+      "size_bytes": 960128,
+      "shape": [
+        2000,
+        15,
+        4
+      ],
+      "dtype": "float64",
+      "min": -4.181658629730376,
+      "max": 6.9363347276606815,
+      "mean": 0.3016534695860637,
+      "std": 1.289110708703329,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 120000,
+      "skew": 0.6648795116286375,
+      "excess_kurtosis": 0.8789615043728043,
+      "ks_vs_normal_stat": 0.051807174435941516
+    },
+    "09_tcr_epitopes.npy": {
+      "sha256": "d7c49873c67a623d65f6616e64f70270b099f7bfd8661614af37bb3096f23e27",
+      "size_bytes": 16128,
+      "shape": [
+        2000
+      ],
+      "dtype": "int64",
+      "min": 0.0,
+      "max": 2.0,
+      "mean": 1.009,
+      "std": 0.8154256557160806,
+      "frac_integer_valued": 1.0,
+      "frac_exact_zero": 0.328,
+      "n_unique": 3,
+      "skew": -0.01651359999573314,
+      "excess_kurtosis": -1.4958760818177426,
+      "ks_vs_normal_stat": 0.22487724006016174
+    },
+    "10_metabolic_fluxes.npy": {
+      "sha256": "ea63333a779f706dc49852c396296f4a5cb4afca7bedec5012d6ec6998f3c535",
+      "size_bytes": 2528,
+      "shape": [
+        300
+      ],
+      "dtype": "float64",
+      "min": 0.5258908994893112,
+      "max": 4.9866344984815285,
+      "mean": 2.8489219722198285,
+      "std": 1.233671935962359,
+      "frac_integer_valued": 0.0,
+      "frac_exact_zero": 0.0,
+      "n_unique": 300,
+      "skew": -0.11584234165876776,
+      "excess_kurtosis": -1.0934341735606965,
+      "ks_vs_normal_stat": 0.06831851422488622
+    },
+    "10_metabolic_stoichiometry.npy": {
+      "sha256": "4fc62a14c2413079ee529ede056dd183c31f8d4fffe0fbe62852d263b3bca4e9",
+      "size_bytes": 360128,
+      "shape": [
+        150,
+        300
+      ],
+      "dtype": "float64",
+      "min": -1.0,
+      "max": 1.0,
+      "mean": 0.0,
+      "std": 0.11547005383792516,
+      "frac_integer_valued": 1.0,
+      "frac_exact_zero": 0.9866666666666667,
+      "n_unique": 3,
+      "skew": 0.0,
+      "excess_kurtosis": 71.99999999999999,
+      "ks_vs_normal_stat": 0.49333333333333335
+    }
+  },
+  "dual_scale_datasets": {
+    "domain01_topological_materials_berry.npz": {
+      "sha256": "c1694f5f1aea4432e576c8ed8b5fa0bd14ba8f6e525a353f568f59173f081421",
+      "size_bytes": 39804,
+      "arrays": {
+        "energy": {
+          "shape": [
+            24,
+            24,
+            24
+          ],
+          "dtype": "float64",
+          "min": 1.000260220946244,
+          "max": 5.0,
+          "mean": 2.5557383327110323,
+          "std": 0.9892513539935631,
+          "frac_integer_valued": 0.0005787037037037037,
+          "frac_exact_zero": 0.0,
+          "n_unique": 769,
+          "skew": 0.3484897260984941,
+          "excess_kurtosis": -0.6923135421842699,
+          "ks_vs_normal_stat": 0.05793133408181928
+        },
+        "berry_z": {
+          "shape": [
+            24,
+            24,
+            24
+          ],
+          "dtype": "float64",
+          "min": -0.4717375813297285,
+          "max": 0.4717375813297285,
+          "mean": 5.62178904251743e-20,
+          "std": 0.11450731369161325,
+          "frac_integer_valued": 0.0,
+          "frac_exact_zero": 0.0,
+          "n_unique": 3497,
+          "skew": -8.742356977919136e-17,
+          "excess_kurtosis": 0.49286098071903917,
+          "ks_vs_normal_stat": 0.0416666666666663
+        },
+        "k_grid": {
+          "shape": [
+            24,
+            24,
+            24
+          ],
+          "dtype": "float64",
+          "min": -3.141592653589793,
+          "max": 3.141592653589793,
+          "mean": -1.3158198810372225e-16,
+          "std": 1.8910165582519634,
+          "frac_integer_valued": 0.0,
+          "frac_exact_zero": 0.0,
+          "n_unique": 24,
+          "skew": -1.5566839079904926e-16,
+          "excess_kurtosis": -1.2041739130434785,
+          "ks_vs_normal_stat": 0.07822802972262333
+        }
+      }
+    },
+    "domain02_plasma_tokamak_gyrokinetics.npz": {
+      "sha256": "d0e425215b416a3db0381ad431bfcbc7920e7c945f49d9ebc6feb6730151ce66",
+      "size_bytes": 258914,
+      "arrays": {
+        "potential": {
+          "shape": [
+            32,
+            64,
+            32
+          ],
+          "dtype": "float64",
+          "min": -1.2969811407137062,
+          "max": 1.2969811407137057,
+          "mean": -5.99189783398712e-18,
+          "std": 0.37712341119731335,
+          "frac_integer_valued": 0.00048828125,
+          "frac_exact_zero": 0.00048828125,
+          "n_unique": 63110,
+          "skew": -8.402341794463181e-17,
+          "excess_kurtosis": 1.585357258908033,
+          "ks_vs_normal_stat": 0.13549383095043388
+        },
+        "q_profile": {
+          "shape": [
+            32,
+            64,
+            32
+          ],
+          "dtype": "float64",
+          "min": 1.122,
+          "max": 3.3000000000000003,
+          "mean": 1.9235806451612905,
+          "std": 0.6638852636929535,
+          "frac_integer_valued": 0.0,
+          "frac_exact_zero": 0.0,
+          "n_unique": 32,
+          "skew": 0.5500925472944508,
+          "excess_kurtosis": -0.9519793686734546,
+          "ks_vs_normal_stat": 0.12374300809422295
+        },
+        "r": {
+          "shape": [
+            32
+          ],
+          "dtype": "float64",
+          "min": 0.1,
+          "max": 1.0,
+          "mean": 0.55,
+          "std": 0.26805752873157174,
+          "frac_integer_valued": 0.03125,
+          "frac_exact_zero": 0.0,
+          "n_unique": 32,
+          "skew": -4.953462927445856e-16,
+          "excess_kurtosis": -1.202346041055718
+        }
+      }
+    },
+    "domain03_hea_dislocations_cantor.npz": {
+      "sha256": "fff34bf80e51fd6c46ea807f85f1e7c8dbfc737b092f1120dfaa410d5b5332a2",
+      "size_bytes": 6716,
+      "arrays": {
+        "nodes": {
+          "shape": [
+            350,
+            3
+          ],
+          "dtype": "float64",
+          "min": -15.90488089530361,
+          "max": 15.90429093001961,
+          "mean": 0.014285714285714015,
+          "std": 6.284045515075668,
+          "frac_integer_valued": 0.004761904761904762,
+          "frac_exact_zero": 0.0019047619047619048,
+          "n_unique": 1044,
+          "skew": 0.006132880893499322,
+          "excess_kurtosis": 0.3531794275205784,
+          "ks_vs_normal_stat": 0.10306811981447817,
+          "radius_from_centroid_cv": 0.431911307620927,
+          "consecutive_step_mean_cv": [
+            0.3975551691666853,
+            3.621746088380843
+          ]
+        },
+        "burgers_vector": {
+          "shape": [
+            3
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 0.5,
+          "mean": 0.3333333333333333,
+          "std": 0.23570226039551584,
+          "frac_integer_valued": 0.3333333333333333,
+          "frac_exact_zero": 0.3333333333333333,
+          "n_unique": 2,
+          "skew": -0.7071067811865472,
+          "excess_kurtosis": -1.5000000000000002
+        }
+      }
+    },
+    "domain04_hcp_connectome_neurodynamics.npz": {
+      "sha256": "80fb58f4c7a75e4f61a3d50346b76218b7caf3bf2114e08ddd3ef35c278c0503",
+      "size_bytes": 232237,
+      "arrays": {
+        "coords": {
+          "shape": [
+            68,
+            3
+          ],
+          "dtype": "float64",
+          "min": -39.55823063011181,
+          "max": 38.950954928041384,
+          "mean": -1.338195620747351,
+          "std": 23.608415120209433,
+          "frac_integer_valued": 0.0,
+          "frac_exact_zero": 0.0,
+          "n_unique": 204,
+          "skew": 0.08638246429265146,
+          "excess_kurtosis": -1.298835853192114,
+          "ks_vs_normal_stat": 0.09191824947067778,
+          "radius_from_centroid_cv": 0.24531058664058605,
+          "consecutive_step_mean_cv": [
+            56.4246522916566,
+            0.37432453518421
+          ]
+        },
+        "structural": {
+          "shape": [
+            68,
+            68
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 0.7731544002198477,
+          "mean": 0.08747838812657995,
+          "std": 0.10640120656273849,
+          "frac_integer_valued": 0.014705882352941176,
+          "frac_exact_zero": 0.014705882352941176,
+          "n_unique": 2279,
+          "skew": 2.3139583865653903,
+          "excess_kurtosis": 6.384086539941071,
+          "ks_vs_normal_stat": 0.20549406461318964,
+          "max_abs_asymmetry": 0.0,
+          "numerical_rank": 68,
+          "mean_diagonal_offsets_1_2_5_10_50": [
+            0.08285404789034394,
+            0.09922447541235252,
+            0.08637313377143856,
+            0.0864395596252922,
+            0.07562775385846963
+          ]
+        },
+        "bold": {
+          "shape": [
+            68,
+            400
+          ],
+          "dtype": "float64",
+          "min": -0.9999998870398868,
+          "max": 0.9999998870371903,
+          "mean": 0.13964705774109926,
+          "std": 0.6069933327011864,
+          "frac_integer_valued": 0.0025,
+          "frac_exact_zero": 0.0025,
+          "n_unique": 27133,
+          "skew": -0.2989385830181805,
+          "excess_kurtosis": -1.1032684533918435,
+          "ks_vs_normal_stat": 0.08264586212625091
+        }
+      }
+    },
+    "domain05_cloudsat_radar_microphysics.npz": {
+      "sha256": "b58bb7380ae85e58dc74c9fb0b932c96f5ac8a93313b423425819def859fe0ff",
+      "size_bytes": 28681,
+      "arrays": {
+        "reflectivity_dbz": {
+          "shape": [
+            128,
+            40
+          ],
+          "dtype": "float64",
+          "min": 1.1788702549653609e-08,
+          "max": 34.90248756931711,
+          "mean": 3.9987836559028755,
+          "std": 6.642898613578275,
+          "frac_integer_valued": 0.0,
+          "frac_exact_zero": 0.0,
+          "n_unique": 3695,
+          "skew": 2.082846976341285,
+          "excess_kurtosis": 3.957497375646244,
+          "ks_vs_normal_stat": 0.27359915957321906
+        },
+        "lats": {
+          "shape": [
+            128
+          ],
+          "dtype": "float64",
+          "min": -60.0,
+          "max": 60.0,
+          "mean": -3.885780586188048e-15,
+          "std": 34.91271455781226,
+          "frac_integer_valued": 0.015625,
+          "frac_exact_zero": 0.0,
+          "n_unique": 128,
+          "skew": 5.343051116088229e-16,
+          "excess_kurtosis": -1.200146493316243,
+          "ks_vs_normal_stat": 0.0611158428181835
+        },
+        "alts": {
+          "shape": [
+            40
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 18.0,
+          "mean": 9.0,
+          "std": 5.3277214064377825,
+          "frac_integer_valued": 0.1,
+          "frac_exact_zero": 0.025,
+          "n_unique": 40,
+          "skew": 2.255313504399599e-16,
+          "excess_kurtosis": -1.2015009380863033
+        }
+      }
+    },
+    "domain06_supercon_abrikosov_vortices.npz": {
+      "sha256": "deb3cdff7368f36bb86d385e466c67087bdd11f369eb1a10a505e2bd0e863f56",
+      "size_bytes": 5191,
+      "arrays": {
+        "coords": {
+          "shape": [
+            300,
+            3
+          ],
+          "dtype": "float64",
+          "min": -0.08072672976149567,
+          "max": 19.563656973654577,
+          "mean": 5.265848589806343,
+          "std": 5.648067370106439,
+          "frac_integer_valued": 0.3333333333333333,
+          "frac_exact_zero": 0.3333333333333333,
+          "n_unique": 601,
+          "skew": 0.7859350173624376,
+          "excess_kurtosis": -0.518281766863697,
+          "ks_vs_normal_stat": 0.18396501200799448,
+          "radius_from_centroid_cv": 0.3969734569822318,
+          "consecutive_step_mean_cv": [
+            1.713456406625759,
+            1.5887872887795647
+          ]
+        },
+        "pinning_strength": {
+          "shape": [],
+          "dtype": "float64",
+          "min": 1.5,
+          "max": 1.5,
+          "mean": 1.5,
+          "std": 0.0,
+          "frac_integer_valued": 0.0,
+          "frac_exact_zero": 0.0,
+          "n_unique": 1,
+          "skew": NaN,
+          "excess_kurtosis": NaN
+        }
+      }
+    },
+    "domain07_simvascular_aorta_wss.npz": {
+      "sha256": "9e1bd11897346fb7c367b7c6e4e3b0e3dc80a0c38aeafc4c746e029bb66130e8",
+      "size_bytes": 100133,
+      "arrays": {
+        "centerline": {
+          "shape": [
+            250,
+            3
+          ],
+          "dtype": "float64",
+          "min": -5.0,
+          "max": 25.0,
+          "mean": 6.280216273434948,
+          "std": 7.136253079330348,
+          "frac_integer_valued": 0.006666666666666667,
+          "frac_exact_zero": 0.0026666666666666666,
+          "n_unique": 728,
+          "skew": 0.6632465023353492,
+          "excess_kurtosis": 0.030720118744747005,
+          "ks_vs_normal_stat": 0.10110544801376109,
+          "radius_from_centroid_cv": 0.43742785959393743,
+          "consecutive_step_mean_cv": [
+            0.14072254187394853,
+            0.10696027321866414
+          ]
+        },
+        "wss": {
+          "shape": [
+            50,
+            250
+          ],
+          "dtype": "float64",
+          "min": 0.0003740600715746205,
+          "max": 4.49874023710988,
+          "mean": 0.9813697781376678,
+          "std": 1.152470523875861,
+          "frac_integer_valued": 0.0,
+          "frac_exact_zero": 0.0,
+          "n_unique": 12491,
+          "skew": 1.3430364431293982,
+          "excess_kurtosis": 0.8008381055917888,
+          "ks_vs_normal_stat": 0.1973260451506238
+        },
+        "t_cardiac": {
+          "shape": [
+            50
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.5,
+          "std": 0.2945075446869757,
+          "frac_integer_valued": 0.04,
+          "frac_exact_zero": 0.02,
+          "n_unique": 50,
+          "skew": -3.0424187912115974e-16,
+          "excess_kurtosis": -1.200960384153661
+        }
+      }
+    },
+    "domain08_earthscope_seismic_rupture.npz": {
+      "sha256": "c4aebc37d1454dafa784b4330c81e7e2c5e3509cab6a35d7fc461dde2a920746",
+      "size_bytes": 12368,
+      "arrays": {
+        "hypocenters": {
+          "shape": [
+            400,
+            3
+          ],
+          "dtype": "float64",
+          "min": -154.06368568936793,
+          "max": 151.50927384865372,
+          "mean": 2.579530674585461,
+          "std": 52.690690192713475,
+          "frac_integer_valued": 0.04583333333333333,
+          "frac_exact_zero": 0.0,
+          "n_unique": 1147,
+          "skew": -0.13484454921645186,
+          "excess_kurtosis": 1.474953461267872,
+          "ks_vs_normal_stat": 0.15174201363731438,
+          "radius_from_centroid_cv": 0.5612719389936934,
+          "consecutive_step_mean_cv": [
+            10.121428453058789,
+            0.6774166754196743
+          ]
+        },
+        "magnitudes": {
+          "shape": [
+            400
+          ],
+          "dtype": "float64",
+          "min": 2.0003415320740228,
+          "max": 36.47746077931186,
+          "mean": 3.532285350794972,
+          "std": 3.0316209410493733,
+          "frac_integer_valued": 0.0,
+          "frac_exact_zero": 0.0,
+          "n_unique": 400,
+          "skew": 5.864320564805696,
+          "excess_kurtosis": 47.49094988848715,
+          "ks_vs_normal_stat": 0.3066664553135108
+        }
+      }
+    },
+    "domain09_digitalrocks_berea_co2.npz": {
+      "sha256": "76f0c268ddde0256eefc1422dbda2a484e37e52de76f15c4bc167d65fcd9d6f6",
+      "size_bytes": 11703,
+      "arrays": {
+        "porosity_mask": {
+          "shape": [
+            32,
+            32,
+            32
+          ],
+          "dtype": "float32",
+          "min": 0.0,
+          "max": 1.0,
+          "mean": 0.480224609375,
+          "std": 0.4996087808732235,
+          "frac_integer_valued": 1.0,
+          "frac_exact_zero": 0.519775390625,
+          "n_unique": 2,
+          "skew": 0.07916350305307399,
+          "excess_kurtosis": -1.9937331397843658,
+          "ks_vs_normal_stat": 0.3515499090390475
+        },
+        "co2_sat": {
+          "shape": [
+            32,
+            32,
+            32
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 0.9935174608669801,
+          "mean": 0.1109795197695626,
+          "std": 0.210230088478273,
+          "frac_integer_valued": 0.519775390625,
+          "frac_exact_zero": 0.519775390625,
+          "n_unique": 201,
+          "skew": 2.3264643576535384,
+          "excess_kurtosis": 4.826297510257051,
+          "ks_vs_normal_stat": 0.29878593063589104
+        }
+      }
+    },
+    "domain10_mit_topopt_phononic_metamaterial.npz": {
+      "sha256": "d912ef3603eea5fa57e35adc8ac907d552e9510c94cd3fe3cba0d5c39291d75f",
+      "size_bytes": 2393,
+      "arrays": {
+        "k_path": {
+          "shape": [
+            50
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 3.0,
+          "mean": 1.5,
+          "std": 0.8835226340609272,
+          "frac_integer_valued": 0.04,
+          "frac_exact_zero": 0.02,
+          "n_unique": 50,
+          "skew": -1.6741352078624657e-16,
+          "excess_kurtosis": -1.2009603841536618
+        },
+        "bands": {
+          "shape": [
+            50,
+            4
+          ],
+          "dtype": "float64",
+          "min": 0.0,
+          "max": 8.999229324301032,
+          "mean": 4.79910470411379,
+          "std": 2.764490910451708,
+          "frac_integer_valued": 0.02,
+          "frac_exact_zero": 0.01,
+          "n_unique": 196,
+          "skew": -0.02376052405681614,
+          "excess_kurtosis": -1.2823616871617034,
+          "ks_vs_normal_stat": 0.09444425843362392,
+          "radius_from_centroid_cv": 0.3926032040528056,
+          "consecutive_step_mean_cv": [
+            0.4642926094634694,
+            1.4480807840952252
+          ]
+        },
+        "bandgap_khz": {
+          "shape": [
+            2
+          ],
+          "dtype": "float64",
+          "min": 4.7,
+          "max": 5.2,
+          "mean": 4.95,
+          "std": 0.25,
+          "frac_integer_valued": 0.0,
+          "frac_exact_zero": 0.0,
+          "n_unique": 2,
+          "skew": 0.0,
+          "excess_kurtosis": -2.0
+        }
+      }
+    }
+  },
+  "notes": [],
+  "bio_mtime_span_sec": 0.7860593795776367,
+  "dual_scale_manifest": {
+    "domain_01_topological_materials": {
+      "source": "Materials Project TopoMat & Fu-Kane-Mele 3D Lattice Benchmark",
+      "shape": [
+        24,
+        24,
+        24
+      ]
+    },
+    "domain_02_plasma_tokamak": {
+      "source": "DIII-D Tokamak Open Physics & GENE Gyrokinetic Turbulence Benchmark",
+      "shape": [
+        32,
+        64,
+        32
+      ]
+    },
+    "domain_03_hea_dislocations": {
+      "source": "NIST Materials Data Curation System (MDCS) - FeCoNiCr High-Entropy Alloy",
+      "shape": [
+        350,
+        3
+      ]
+    },
+    "domain_04_connectomics_neurodynamics": {
+      "source": "Human Connectome Project (HCP 1200) & Desikan-Killiany 68-Region Parcellation",
+      "shape": [
+        68,
+        68
+      ]
+    },
+    "domain_05_cloud_microphysics": {
+      "source": "NASA CloudSat 2B-GEOPROF Radar & ECMWF ERA5 Zonal Reanalysis",
+      "shape": [
+        128,
+        40
+      ]
+    },
+    "domain_06_superconductor_vortices": {
+      "source": "NIMS SuperCon Database & Scanning SQUID Microscopy Benchmark (YBCO)",
+      "shape": [
+        300,
+        3
+      ]
+    },
+    "domain_07_cardiovascular_wss": {
+      "source": "SimVascular Open Cardiovascular Project & UK Biobank 4D-Flow MRI",
+      "shape": [
+        250,
+        3
+      ]
+    },
+    "domain_08_seismology_rupture": {
+      "source": "IRIS / EarthScope Consortium Open Seismic Data & USGS Catalog",
+      "shape": [
+        400,
+        3
+      ]
+    },
+    "domain_09_porous_media_co2": {
+      "source": "Digital Rocks Portal (3D Micro-CT Berea Sandstone, UT Austin)",
+      "shape": [
+        32,
+        32,
+        32
+      ]
+    },
+    "domain_10_phononic_metamaterials": {
+      "source": "Harvard Metamaterials Database & MIT TopOpt Benchmark Library",
+      "shape": [
+        50,
+        4
+      ]
+    }
+  },
+  "specific_checks": {
+    "hic_contact_vs_coords": {
+      "loglog_slope": -1.1538761332287788,
+      "loglog_intercept": -0.11778325669860061,
+      "spearman_contact_vs_distance": -1.0,
+      "resid_std_loglog": 0.03190746794083544,
+      "max_contact": 15.848931924611133,
+      "log10_max_contact": 1.2,
+      "frac_offdiag_zero": 0.0,
+      "diag_values_unique": [
+        15.848931924611
+      ]
+    },
+    "scrna_expression": {
+      "frac_zero": 0.0,
+      "frac_integer": 0.0,
+      "note": "real scRNA-seq count/normalised matrices are dominated by exact zeros (dropout)"
+    },
+    "methylation_beta_histogram_10bins": [
+      0.083966,
+      0.146502,
+      0.127236,
+      0.091184,
+      0.071878,
+      0.079348,
+      0.108748,
+      0.132018,
+      0.11583,
+      0.04329
+    ],
+    "visium_coords": {
+      "n_unique_x": 40,
+      "n_unique_y": 40,
+      "x_spacing_unique": [
+        0.256410256
+      ]
+    },
+    "stoichiometry": {
+      "nnz_per_column_unique": [
+        2
+      ],
+      "column_sums_unique": [
+        0.0
+      ]
+    },
+    "cell_features_col_mean_std": [
+      [
+        -0.0503,
+        0.111,
+        0.0187,
+        0.0001,
+        -0.0373
+      ],
+      [
+        1.0169,
+        0.973,
+        1.0016,
+        0.9811,
+        1.0162
+      ]
+    ],
+    "seismic_magnitudes": {
+      "n_ge_10": 13,
+      "max": 36.47746077931186,
+      "note": "moment magnitudes above ~9.5 have never been recorded"
+    },
+    "vortex_coords_unique_per_axis": [
+      300,
+      300,
+      1
+    ]
+  }
+}
