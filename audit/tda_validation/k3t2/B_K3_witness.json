@@ -1,0 +1,59 @@
+{
+ "study": "K3_witness",
+ "tier": "X",
+ "config": {
+  "space": "K3",
+  "method": "witness",
+  "witness_ratio": 20,
+  "tau": 0.8,
+  "expected": [
+   1,
+   0,
+   22
+  ],
+  "grid": [
+   10000,
+   20000,
+   40000,
+   80000,
+   160000
+  ],
+  "save_diagram_dims": [
+   2
+  ]
+ },
+ "per_run_timeout_s": 500,
+ "mem_cap_bytes": "8589934592",
+ "runs": [
+  {
+   "spec": {
+    "space": "K3",
+    "method": "witness",
+    "witness_ratio": 20,
+    "tau": 0.8,
+    "expected": [
+     1,
+     0,
+     22
+    ],
+    "save_diagram_dims": [
+     2
+    ],
+    "fields": [
+     3,
+     2
+    ],
+    "N": 10000,
+    "seed": 0
+   },
+   "failed": true,
+   "returncode": 124,
+   "wall": 500.0,
+   "stderr_tail": "",
+   "reason": "timeout"
+  }
+ ],
+ "N_min": null,
+ "largest_N_completed": null,
+ "stopped_because": "N=10000 seed=0: timeout (rc=124, 500.0 s)"
+}

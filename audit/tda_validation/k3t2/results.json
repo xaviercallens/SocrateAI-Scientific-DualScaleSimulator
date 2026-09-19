@@ -26,7 +26,11 @@
    "n_cells": 16,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    3,
+    3
+   ]
   },
   {
    "complex": "A1 T^2 cubical Z_2^2",
@@ -50,7 +54,11 @@
    "n_cells": 16,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    3,
+    3
+   ]
   },
   {
    "complex": "A1 T^2 cubical Z_2^2",
@@ -74,7 +82,11 @@
    "n_cells": 16,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    3,
+    3
+   ]
   },
   {
    "complex": "A1 T^2 cubical Z_3^2",
@@ -98,7 +110,11 @@
    "n_cells": 36,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    8,
+    8
+   ]
   },
   {
    "complex": "A1 T^2 cubical Z_3^2",
@@ -122,7 +138,11 @@
    "n_cells": 36,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    8,
+    8
+   ]
   },
   {
    "complex": "A1 T^2 cubical Z_3^2",
@@ -146,7 +166,11 @@
    "n_cells": 36,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    8,
+    8
+   ]
   },
   {
    "complex": "A1 T^2 cubical Z_4^2",
@@ -170,7 +194,11 @@
    "n_cells": 64,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    15,
+    15
+   ]
   },
   {
    "complex": "A1 T^2 cubical Z_4^2",
@@ -194,7 +222,11 @@
    "n_cells": 64,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    15,
+    15
+   ]
   },
   {
    "complex": "A1 T^2 cubical Z_4^2",
@@ -218,7 +250,11 @@
    "n_cells": 64,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    15,
+    15
+   ]
   },
   {
    "complex": "A1 T^4 cubical Z_2^4",
@@ -248,7 +284,13 @@
    "n_cells": 256,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    15,
+    45,
+    45,
+    15
+   ]
   },
   {
    "complex": "A1 T^4 cubical Z_2^4",
@@ -278,7 +320,13 @@
    "n_cells": 256,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    15,
+    45,
+    45,
+    15
+   ]
   },
   {
    "complex": "A1 T^4 cubical Z_2^4",
@@ -308,7 +356,13 @@
    "n_cells": 256,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    15,
+    45,
+    45,
+    15
+   ]
   },
   {
    "complex": "A1 T^4 cubical Z_3^4",
@@ -338,7 +392,13 @@
    "n_cells": 1296,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    80,
+    240,
+    240,
+    80
+   ]
   },
   {
    "complex": "A1 T^4 cubical Z_3^4",
@@ -368,7 +428,13 @@
    "n_cells": 1296,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    80,
+    240,
+    240,
+    80
+   ]
   },
   {
    "complex": "A1 T^4 cubical Z_3^4",
@@ -398,7 +464,13 @@
    "n_cells": 1296,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    80,
+    240,
+    240,
+    80
+   ]
   },
   {
    "complex": "A1 T^4 cubical Z_4^4",
@@ -428,7 +500,13 @@
    "n_cells": 4096,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    255,
+    765,
+    765,
+    255
+   ]
   },
   {
    "complex": "A1 T^4 cubical Z_4^4",
@@ -458,7 +536,13 @@
    "n_cells": 4096,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    255,
+    765,
+    765,
+    255
+   ]
   },
   {
    "complex": "A1 T^4 cubical Z_4^4",
@@ -488,7 +572,13 @@
    "n_cells": 4096,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    255,
+    765,
+    765,
+    255
+   ]
   },
   {
    "complex": "A1 T^6 cubical Z_2^6",
@@ -524,7 +614,15 @@
    "n_cells": 4096,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    63,
+    315,
+    630,
+    630,
+    315,
+    63
+   ]
   },
   {
    "complex": "A1 T^6 cubical Z_2^6",
@@ -560,7 +658,15 @@
    "n_cells": 4096,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    63,
+    315,
+    630,
+    630,
+    315,
+    63
+   ]
   },
   {
    "complex": "A1 T^6 cubical Z_2^6",
@@ -596,7 +702,15 @@
    "n_cells": 4096,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    63,
+    315,
+    630,
+    630,
+    315,
+    63
+   ]
   },
   {
    "complex": "A1 T^6 cubical Z_3^6",
@@ -632,7 +746,15 @@
    "n_cells": 46656,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    728,
+    3640,
+    7280,
+    7280,
+    3640,
+    728
+   ]
   },
   {
    "complex": "A1 T^6 cubical Z_3^6",
@@ -668,7 +790,15 @@
    "n_cells": 46656,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    728,
+    3640,
+    7280,
+    7280,
+    3640,
+    728
+   ]
   },
   {
    "complex": "A1 T^6 cubical Z_3^6",
@@ -704,7 +834,15 @@
    "n_cells": 46656,
    "tier": "B",
    "engine2_agrees": true,
-   "gudhi_agrees": true
+   "gudhi_agrees": true,
+   "ranks_d_k": [
+    728,
+    3640,
+    7280,
+    7280,
+    3640,
+    728
+   ]
   },
   {
    "complex": "A1 control T^4(Z_2) x T^2(Z_3) via product()",
@@ -1244,7 +1382,13 @@
    "n_cells": 136,
    "tier": "B",
    "n_fixed_cells": 16,
-   "chi": 8
+   "chi": 8,
+   "ranks_d_k": [
+    15,
+    17,
+    20,
+    7
+   ]
   },
   {
    "complex": "A2 T^4/Z2 cubical orbit complex N=2",
@@ -1274,7 +1418,13 @@
    "n_cells": 136,
    "tier": "B",
    "n_fixed_cells": 16,
-   "chi": 8
+   "chi": 8,
+   "ranks_d_k": [
+    15,
+    17,
+    25,
+    7
+   ]
   },
   {
    "complex": "A2 T^4/Z2 cubical orbit complex N=2",
@@ -1304,7 +1454,13 @@
    "n_cells": 136,
    "tier": "B",
    "n_fixed_cells": 16,
-   "chi": 8
+   "chi": 8,
+   "ranks_d_k": [
+    15,
+    17,
+    25,
+    7
+   ]
   },
   {
    "complex": "A2 T^4/Z2 cubical orbit complex N=4",
@@ -1328,7 +1484,13 @@
    "n_cells": 2056,
    "tier": "B",
    "n_fixed_cells": 16,
-   "chi": 8
+   "chi": 8,
+   "ranks_d_k": [
+    135,
+    377,
+    380,
+    127
+   ]
   },
   {
    "complex": "A2 T^4/Z2 cubical orbit complex N=4",
@@ -1358,7 +1520,13 @@
    "n_cells": 2056,
    "tier": "B",
    "n_fixed_cells": 16,
-   "chi": 8
+   "chi": 8,
+   "ranks_d_k": [
+    135,
+    377,
+    385,
+    127
+   ]
   },
   {
    "complex": "A2 T^4/Z2 cubical orbit complex N=4",
@@ -1388,7 +1556,13 @@
    "n_cells": 2056,
    "tier": "B",
    "n_fixed_cells": 16,
-   "chi": 8
+   "chi": 8,
+   "ranks_d_k": [
+    135,
+    377,
+    385,
+    127
+   ]
   },
   {
    "complex": "A2 T^4/Z2 cubical orbit complex N=6",
@@ -1412,7 +1586,13 @@
    "n_cells": 10376,
    "tier": "B",
    "n_fixed_cells": 16,
-   "chi": 8
+   "chi": 8,
+   "ranks_d_k": [
+    655,
+    1937,
+    1940,
+    647
+   ]
   },
   {
    "complex": "A2 T^4/Z2 cubical orbit complex N=6",
@@ -1442,7 +1622,13 @@
    "n_cells": 10376,
    "tier": "B",
    "n_fixed_cells": 16,
-   "chi": 8
+   "chi": 8,
+   "ranks_d_k": [
+    655,
+    1937,
+    1945,
+    647
+   ]
   },
   {
    "complex": "A2 T^4/Z2 cubical orbit complex N=6",
@@ -1472,7 +1658,13 @@
    "n_cells": 10376,
    "tier": "B",
    "n_fixed_cells": 16,
-   "chi": 8
+   "chi": 8,
+   "ranks_d_k": [
+    655,
+    1937,
+    1945,
+    647
+   ]
   },
   {
    "complex": "A2 transfer: dim H_k(T^4;F3)^G from explicit cycles (N=4)",
@@ -1522,7 +1714,15 @@
    ],
    "n_cells": 4896,
    "tier": "B",
-   "sec": 0.047
+   "sec": 0.047,
+   "ranks_d_k": [
+    143,
+    431,
+    709,
+    704,
+    354,
+    71
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=2 x T^2(Z_3^2) direct product",
@@ -1557,7 +1757,15 @@
    ],
    "n_cells": 4896,
    "tier": "B",
-   "sec": 0.065
+   "sec": 0.065,
+   "ranks_d_k": [
+    143,
+    431,
+    714,
+    714,
+    359,
+    71
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=2 x T^2(Z_3^2) direct product",
@@ -1592,7 +1800,15 @@
    ],
    "n_cells": 4896,
    "tier": "B",
-   "sec": 0.078
+   "sec": 0.078,
+   "ranks_d_k": [
+    143,
+    431,
+    714,
+    714,
+    359,
+    71
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_2^2) direct product",
@@ -1619,7 +1835,15 @@
    ],
    "n_cells": 32896,
    "tier": "B",
-   "sec": 0.463
+   "sec": 0.463,
+   "ranks_d_k": [
+    543,
+    2591,
+    5109,
+    5104,
+    2554,
+    511
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_2^2) direct product",
@@ -1654,7 +1878,15 @@
    ],
    "n_cells": 32896,
    "tier": "B",
-   "sec": 0.29
+   "sec": 0.29,
+   "ranks_d_k": [
+    543,
+    2591,
+    5114,
+    5114,
+    2559,
+    511
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_2^2) direct product",
@@ -1689,7 +1921,15 @@
    ],
    "n_cells": 32896,
    "tier": "B",
-   "sec": 0.333
+   "sec": 0.333,
+   "ranks_d_k": [
+    543,
+    2591,
+    5114,
+    5114,
+    2559,
+    511
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_3^2) direct product",
@@ -1716,7 +1956,15 @@
    ],
    "n_cells": 74016,
    "tier": "B",
-   "sec": 0.351
+   "sec": 0.351,
+   "ranks_d_k": [
+    1223,
+    5831,
+    11509,
+    11504,
+    5754,
+    1151
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_3^2) direct product",
@@ -1751,7 +1999,15 @@
    ],
    "n_cells": 74016,
    "tier": "B",
-   "sec": 0.548
+   "sec": 0.548,
+   "ranks_d_k": [
+    1223,
+    5831,
+    11514,
+    11514,
+    5759,
+    1151
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_3^2) direct product",
@@ -1786,7 +2042,15 @@
    ],
    "n_cells": 74016,
    "tier": "B",
-   "sec": 0.459
+   "sec": 0.459,
+   "ranks_d_k": [
+    1223,
+    5831,
+    11514,
+    11514,
+    5759,
+    1151
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=6 x T^2(Z_2^2) direct product",
@@ -1813,7 +2077,15 @@
    ],
    "n_cells": 166016,
    "tier": "B",
-   "sec": 1.113
+   "sec": 1.113,
+   "ranks_d_k": [
+    2623,
+    12991,
+    25909,
+    25904,
+    12954,
+    2591
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=6 x T^2(Z_2^2) direct product",
@@ -1848,7 +2120,15 @@
    ],
    "n_cells": 166016,
    "tier": "B",
-   "sec": 1.152
+   "sec": 1.152,
+   "ranks_d_k": [
+    2623,
+    12991,
+    25914,
+    25914,
+    12959,
+    2591
+   ]
   },
   {
    "complex": "A3 (T^4/Z2)_N=6 x T^2(Z_2^2) direct product",
@@ -1883,7 +2163,15 @@
    ],
    "n_cells": 166016,
    "tier": "B",
-   "sec": 0.988
+   "sec": 0.988,
+   "ranks_d_k": [
+    2623,
+    12991,
+    25914,
+    25914,
+    12959,
+    2591
+   ]
   },
   {
    "complex": "A4 control: U + 16 cones (= orbifold, N=6)",
@@ -1995,7 +2283,13 @@
     1032
    ],
    "n_cells": 14104,
-   "tier": "B (+1 tier-L input: class of phi_2)"
+   "tier": "B (+1 tier-L input: class of phi_2)",
+   "ranks_d_k": [
+    655,
+    2513,
+    2841,
+    1031
+   ]
   },
   {
    "complex": "A4 resolved Kummer K3 = U + 16 Cyl(phi) (N=6)",
@@ -2023,7 +2317,13 @@
     1032
    ],
    "n_cells": 14104,
-   "tier": "B (+1 tier-L input: class of phi_2)"
+   "tier": "B (+1 tier-L input: class of phi_2)",
+   "ranks_d_k": [
+    655,
+    2513,
+    2841,
+    1031
+   ]
   },
   {
    "complex": "A4 resolved Kummer K3 = U + 16 Cyl(phi) (N=6)",
@@ -2051,7 +2351,13 @@
     1032
    ],
    "n_cells": 14104,
-   "tier": "B (+1 tier-L input: class of phi_2)"
+   "tier": "B (+1 tier-L input: class of phi_2)",
+   "ranks_d_k": [
+    655,
+    2513,
+    2841,
+    1031
+   ]
   },
   {
    "complex": "A4 X_res x T^2(Z_2^2) direct product",
@@ -2087,7 +2393,15 @@
    "n_cells": 225664,
    "tier": "B (+1 tier-L input)",
    "sec_engine2": 1.415,
-   "engine1_agrees": true
+   "engine1_agrees": true,
+   "ranks_d_k": [
+    2623,
+    15295,
+    34154,
+    36970,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A4 X_res x T^2(Z_2^2) direct product",
@@ -2123,7 +2437,15 @@
    "n_cells": 225664,
    "tier": "B (+1 tier-L input)",
    "sec_engine2": 1.839,
-   "engine1_agrees": true
+   "engine1_agrees": true,
+   "ranks_d_k": [
+    2623,
+    15295,
+    34154,
+    36970,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A4 X_res x T^2(Z_2^2) direct product",
@@ -2159,7 +2481,15 @@
    "n_cells": 225664,
    "tier": "B (+1 tier-L input)",
    "sec_engine2": 2.01,
-   "engine1_agrees": true
+   "engine1_agrees": true,
+   "ranks_d_k": [
+    2623,
+    15295,
+    34154,
+    36970,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A4 X_res x T^2(Z_3^2) direct product",
@@ -2195,7 +2525,15 @@
    "n_cells": 507744,
    "tier": "B (+1 tier-L input)",
    "sec_engine2": 4.915,
-   "engine1_agrees": null
+   "engine1_agrees": null,
+   "ranks_d_k": [
+    5903,
+    34415,
+    76874,
+    83210,
+    44135,
+    9287
+   ]
   },
   {
    "complex": "A4 X_res x T^2(Z_3^2) direct product",
@@ -2231,7 +2569,15 @@
    "n_cells": 507744,
    "tier": "B (+1 tier-L input)",
    "sec_engine2": 4.592,
-   "engine1_agrees": null
+   "engine1_agrees": null,
+   "ranks_d_k": [
+    5903,
+    34415,
+    76874,
+    83210,
+    44135,
+    9287
+   ]
   },
   {
    "complex": "A4 X_res x T^2(Z_3^2) direct product",
@@ -2267,7 +2613,15 @@
    "n_cells": 507744,
    "tier": "B (+1 tier-L input)",
    "sec_engine2": 4.513,
-   "engine1_agrees": null
+   "engine1_agrees": null,
+   "ranks_d_k": [
+    5903,
+    34415,
+    76874,
+    83210,
+    44135,
+    9287
+   ]
   },
   {
    "complex": "A4 local model H(Cyl,L), phi class = Bockstein generator (all 16 links)",
@@ -2381,7 +2735,15 @@
     4128
    ],
    "n_cells": 225408,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34101,
+    36912,
+    19610,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=0 resolved",
@@ -2415,7 +2777,15 @@
     4128
    ],
    "n_cells": 225408,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34106,
+    36922,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=0 resolved",
@@ -2449,7 +2819,15 @@
     4128
    ],
    "n_cells": 225408,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34106,
+    36922,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=8 resolved",
@@ -2475,7 +2853,15 @@
     4128
    ],
    "n_cells": 225536,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34130,
+    36946,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=8 resolved",
@@ -2509,7 +2895,15 @@
     4128
    ],
    "n_cells": 225536,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34130,
+    36946,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=8 resolved",
@@ -2543,7 +2937,15 @@
     4128
    ],
    "n_cells": 225536,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34130,
+    36946,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=15 resolved",
@@ -2569,7 +2971,15 @@
     4128
    ],
    "n_cells": 225648,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34151,
+    36967,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=15 resolved",
@@ -2603,7 +3013,15 @@
     4128
    ],
    "n_cells": 225648,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34151,
+    36967,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=15 resolved",
@@ -2637,7 +3055,15 @@
     4128
    ],
    "n_cells": 225648,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34151,
+    36967,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=16 resolved",
@@ -2663,7 +3089,15 @@
     4128
    ],
    "n_cells": 225664,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34154,
+    36970,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=16 resolved",
@@ -2697,7 +3131,15 @@
     4128
    ],
    "n_cells": 225664,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34154,
+    36970,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 X_k x T^2, k=16 resolved",
@@ -2731,7 +3173,15 @@
     4128
    ],
    "n_cells": 225664,
-   "tier": "B"
+   "tier": "B",
+   "ranks_d_k": [
+    2623,
+    15295,
+    34154,
+    36970,
+    19615,
+    4127
+   ]
   },
   {
    "complex": "A5 wrong gluing class (phi2=0 at 16 points) x T^2",
@@ -3247,6 +3697,12 @@
      1,
      1
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2840,
+    1031
    ]
   },
   {
@@ -3319,6 +3775,12 @@
      1,
      1
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2841,
+    1031
    ]
   },
   {
@@ -3391,6 +3853,12 @@
      1,
      1
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2841,
+    1031
    ]
   },
   {
@@ -3463,6 +3931,12 @@
      1,
      1
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2841,
+    1031
    ]
   },
   {
@@ -3511,6 +3985,12 @@
      0,
      0
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2839,
+    1031
    ]
   },
   {
@@ -3559,6 +4039,12 @@
      0,
      0
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2841,
+    1031
    ]
   },
   {
@@ -3607,6 +4093,12 @@
      0,
      0
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2840,
+    1031
    ]
   },
   {
@@ -3655,6 +4147,12 @@
      0,
      0
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2841,
+    1031
    ]
   },
   {
@@ -3685,6 +4183,12 @@
      0,
      0
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2837,
+    1031
    ]
   },
   {
@@ -3715,6 +4219,12 @@
      0,
      0
     ]
+   ],
+   "ranks_d_k": [
+    655,
+    2513,
+    2841,
+    1031
    ]
   }
  ],
@@ -4001,6 +4511,128 @@
    "tier": "X"
   },
   {
+   "study": "quadric_rips",
+   "space": "quadric",
+   "embedding": "Fermat quadric x^2+y^2+z^2+w^2=0 (S^2 x S^2), same projector embedding in R^16 as K3 (positive control)",
+   "method": "rips",
+   "tau": 0.8,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    0,
+    2
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 2000,
+   "stopped_because": "N=4000 seed=0: error/memory (rc=1, 35.0 s)",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 7208007,
+    "seconds": 17.0,
+    "maxrss_MB": 587.3,
+    "best_window_ratio_F3": 0.0,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "T2_witness",
+   "space": "T2",
+   "embedding": "product of unit circles in R^4",
+   "method": "witness",
+   "tau": 0.9,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "N_min_all_3_seeds_F3": 2000,
+   "largest_N_completed": 2000,
+   "stopped_because": "N_min found",
+   "recovered": true,
+   "at_largest_N": {
+    "n_simplices": 21916,
+    "seconds": 0.5,
+    "maxrss_MB": 42.4,
+    "best_window_ratio_F3": 1.6768240866185555,
+    "recovered_F2": true
+   },
+   "tier": "X"
+  },
+  {
+   "study": "T3_witness",
+   "space": "T3",
+   "embedding": "product of unit circles in R^6",
+   "method": "witness",
+   "tau": 0.9,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    3,
+    3,
+    1
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 8000,
+   "stopped_because": "N=16000 seed=0: timeout (rc=124, 500.0 s)",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 400146,
+    "seconds": 4.4,
+    "maxrss_MB": 159.2,
+    "best_window_ratio_F3": 1.0207699677527458,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "T4_witness",
+   "space": "T4",
+   "embedding": "product of unit circles in R^8",
+   "method": "witness",
+   "tau": 0.9,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 32000,
+   "stopped_because": "N=64000 seed=0: timeout (rc=124, 500.0 s)",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 8375202,
+    "seconds": 167.0,
+    "maxrss_MB": 3299.9,
+    "best_window_ratio_F3": 0.0,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "K3_witness",
+   "space": "K3",
+   "embedding": "Fermat quartic, Hermitian projector |z><z| in R^16 (Frobenius-isometric coords, trace-1 affine R^15)",
+   "method": "witness",
+   "tau": 0.8,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    0,
+    22
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": null,
+   "stopped_because": "N=10000 seed=0: timeout (rc=124, 500.0 s)",
+   "recovered": false,
+   "at_largest_N": null,
+   "tier": "X"
+  },
+  {
    "study": "explore K3xT2 N=4000",
    "space": "K3xT2",
    "embedding": "K3 projector (R^16) x flat T^2 of radius 0.5 (R^4)",
@@ -4091,12 +4723,12 @@
    386.4
   ],
   "A5": [
-   321.63,
-   1010.8
+   99.28,
+   1016.2
   ],
   "A5b": [
-   46.98,
-   291.8
+   19.49,
+   290.6
   ],
   "units": "[seconds, maxrss MB]"
  },
@@ -4499,6 +5131,12 @@
    "space": "K3xT2",
    "N": 64000,
    "tau": 0.8,
+   "reason": "timeout"
+  },
+  "18": {
+   "space": "K3",
+   "N": 40000,
+   "tau": 0.5,
    "reason": "timeout"
   }
  }

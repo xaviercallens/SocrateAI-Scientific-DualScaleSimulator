@@ -37,6 +37,11 @@ SPECS = [
     # B_orbifold_rips.json / B_T4_rips.json) to record the beta(eps) curve added to the worker afterwards
     dict(space="orbifold", method="rips", tau=1.2, expected=[1, 0, 6], N=12800, seed=0, fields=[3, 2]),
     dict(space="T4", method="rips", tau=1.2, expected=[1, 4, 6, 4, 1], N=12800, seed=0, fields=[3, 2]),
+    # appended after the advisor review: witness complexes at a smaller relaxation tau, where the tau=0.8 witness
+    # study (B_K3_witness.json) timed out at its first grid point
+    dict(space="K3", method="witness", witness_ratio=20, tau=0.4, expected=[1, 0, 22], N=20000, seed=0, fields=[3], save_diagram_dims=[2]),
+    dict(space="K3", method="witness", witness_ratio=20, tau=0.5, expected=[1, 0, 22], N=40000, seed=0, fields=[3], save_diagram_dims=[2]),
+    dict(space="T3", method="witness", witness_ratio=20, tau=0.6, expected=[1, 3, 3, 1], N=16000, seed=0, fields=[3]),
 ]
 path = os.path.join(HERE, "B_explore.json")
 out = json.load(open(path)) if os.path.exists(path) else {"tier": "X", "runs": {}}

@@ -56,6 +56,16 @@ def sample_fermat_k3(M, rng):
     return Z, float(resid)
 
 
+def sample_fermat_quadric(M, rng):
+    """Positive control, same pipeline as the K3 sampler: x^2+y^2+z^2+w^2 = 0 in CP^3 (= S^2 x S^2, b=(1,0,2,0,1)).
+    M random complex Gaussian (x,y,z); both roots w. Returns 2M unit vectors and the max residual."""
+    xyz = rng.normal(size=(M, 3)) + 1j * rng.normal(size=(M, 3))
+    w = np.sqrt(-(xyz ** 2).sum(1))
+    Z = np.concatenate([np.concatenate([xyz, w[:, None]], 1), np.concatenate([xyz, -w[:, None]], 1)], 0)
+    Z = Z / np.linalg.norm(Z, axis=1, keepdims=True)
+    return Z, float(np.abs((Z ** 2).sum(1)).max())
+
+
 def projector_embed(Z):
     """|z><z| (|z|=1) as a point of R^16 with Frobenius-isometric coordinates:
     diagonal entries, sqrt(2)*Re and sqrt(2)*Im of the 6 upper off-diagonal entries."""

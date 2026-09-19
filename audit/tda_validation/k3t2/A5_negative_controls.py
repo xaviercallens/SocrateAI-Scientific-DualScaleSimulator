@@ -36,7 +36,9 @@ def hom(C):
     r = {"fvector": C.fvector(), "n_cells": len(C), "chi_fvector": C.chi(), "d2_violations": len(C.check_d2())}
     for p in FIELDS:
         t = time.time()
-        r[f"F{p}"] = homology_mod_p_colred(C, p)
+        b, st = homology_mod_p_colred(C, p, True)
+        r[f"F{p}"] = b
+        r[f"ranks_d_k_F{p}"] = st["ranks_d_k"]
         r[f"sec_F{p}"] = round(time.time() - t, 2)
     r["chi_betti_F3"] = sum((-1) ** k * x for k, x in enumerate(r["F3"]))
     r["maxrss_MB"] = rss_mb()

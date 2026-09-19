@@ -46,7 +46,9 @@ for name, resolved in cases.items():
     P = product(X, T2)
     r = {"resolved_points_bits": sorted(bits[i] for i in resolved), "k": len(resolved),
          "X": {f"F{p}": homology_mod_p_colred(X, p) for p in (2, 3)},
+         "X_ranks_d_k": {f"F{p}": homology_mod_p_colred(X, p, True)[1]["ranks_d_k"] for p in (2, 3)},
          "X_x_T2": {f"F{p}": homology_mod_p_colred(P, p) for p in (2, 3)},
+         "X_x_T2_ranks_d_k": {f"F{p}": homology_mod_p_colred(P, p, True)[1]["ranks_d_k"] for p in (2, 3)},
          "chi_X": X.chi(), "chi_XxT2": P.chi(), "d2_X": len(X.check_d2()), "expected": EXP[name]}
     def kun(a):
         o = [0] * (len(a) + 2)

@@ -11,7 +11,7 @@ import json, os, resource, sys, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import gudhi
-from lib_ph import (sample_torus, orbifold_embed, sample_fermat_k3, projector_embed, sample_null_cube,
+from lib_ph import (sample_fermat_quadric, sample_torus, orbifold_embed, sample_fermat_k3, projector_embed, sample_null_cube,
                     farthest_point_subsample, recovery, bars_from_st)
 
 spec = json.loads(sys.argv[1])
@@ -37,6 +37,10 @@ def gen(M):
             T, _ = sample_torus(2, M, rng)
             X = np.concatenate([X, spec.get("torus_scale", 0.5) * T], axis=1)
         return X
+    if sp == "quadric":
+        Z, resid = sample_fermat_quadric((M + 1) // 2, rng)
+        info["fermat_residual_max"] = resid
+        return projector_embed(Z)[:M]
     if sp == "null4":
         return sample_null_cube(M, spec["null_D"], spec["null_diam"], rng)
     if sp == "null4m":
@@ -75,6 +79,17 @@ elif spec["method"] == "rips":
     st.collapse_edges(nb_iterations=spec.get("collapse_iter", 3))
     info["n_edges_after_collapse"] = st.num_simplices() - st.num_vertices()
     st.expansion(maxk + 1)
+elif spec["method"] == "witness":
+    # strong witness complex: landmarks = farthest-point subsample of L points of the N-point sample (witnesses = all N).
+    # GUDHI filtration is a squared relaxation; converted to its square root (length units) as for alpha.
+    nL = spec.get("landmarks") or N // spec["witness_ratio"]
+    Lm, lcov = farthest_point_subsample(X, nL, rng)
+    info["n_landmarks"] = nL; info["landmark_covering_radius"] = lcov
+    st = gudhi.EuclideanStrongWitnessComplex(witnesses=X, landmarks=Lm).create_simplex_tree(
+        max_alpha_square=tau ** 2, limit_dimension=maxk + 1)
+    for s, f in list(st.get_simplices()):
+        st.assign_filtration(s, float(np.sqrt(max(f, 0.0))))
+    st.make_filtration_non_decreasing()
 elif spec["method"] == "sparse":
     st = gudhi.RipsComplex(points=X, max_edge_length=tau, sparse=spec["sparse"]).create_simplex_tree(max_dimension=maxk + 1)
 else:

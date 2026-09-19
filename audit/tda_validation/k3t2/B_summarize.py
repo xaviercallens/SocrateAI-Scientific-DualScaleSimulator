@@ -13,12 +13,19 @@ import matplotlib.pyplot as plt
 HERE = os.path.dirname(os.path.abspath(__file__))
 L = lambda f: json.load(open(os.path.join(HERE, f)))
 studies = ["T2_alpha", "T2_rips", "T3_rips", "T3_rips_fps", "T4_rips", "T4_rips_fps",
-           "orbifold_rips", "orbifold_rips_fps", "K3_rips", "K3_rips_fps", "null4m_rips"]
+           "orbifold_rips", "orbifold_rips_fps", "K3_rips", "K3_rips_fps", "null4m_rips",
+           "quadric_rips", "T2_witness", "T3_witness", "T4_witness", "K3_witness"]
 S = {}
 for s in studies:
     d = L(f"B_{s}.json")
     ok_runs = [r for r in d["runs"] if not r.get("failed")]
-    last = max(ok_runs, key=lambda r: r["spec"]["N"])
+    last = max(ok_runs, key=lambda r: r["spec"]["N"]) if ok_runs else None
+    if last is None:  # every attempt failed (time/memory)
+        S[s] = {"space": d["config"]["space"], "method": d["config"]["method"], "tau": d["config"]["tau"],
+                "fps": False, "expected": d["config"]["expected"], "N_min_all3seeds_F3": None,
+                "largest_N_completed": None, "stopped_because": d["stopped_because"], "at_largest_N": None,
+                "per_N_seed": [{"N": r["spec"]["N"], "seed": r["spec"]["seed"], "failed": r["reason"]} for r in d["runs"]]}
+        continue
     S[s] = {"space": d["config"]["space"], "method": d["config"]["method"], "tau": d["config"]["tau"],
             "fps": bool(d["config"].get("fps")), "expected": d["config"]["expected"],
             "N_min_all3seeds_F3": d["N_min"], "largest_N_completed": d["largest_N_completed"],
@@ -127,7 +134,28 @@ k3xt2 = {k: {"N": v["spec"]["N"], "n_simplices": v["info"]["n_simplices"], "sec"
              "beta_curve_tail": list(v["by_field"]["F3"]["beta_curve"].items())[-5:]}
          for k, v in E.items() if v["spec"]["space"] == "K3xT2" and not v.get("failed")}
 
-out = {"tier": "X", "criterion": "window ratio >= 1.5 with exact expected Betti vector (pre-registered)",
+# positive control at the same dimension and through the same sampler/embedding/tau as K3: Fermat quadric (S^2 x S^2)
+quad = {}
+for r in L("B_quadric_rips.json")["runs"]:
+    if r.get("failed"):
+        quad[f"N{r['spec']['N']}"] = {"failed": r["reason"]}
+        continue
+    diag = r["by_field"]["F3"]["diagram_H2"]
+    c = curve(diag, 0.8, grid)
+    quad[f"N{r['spec']['N']}_seed{r['spec']['seed']}"] = {
+        "beta2_plateau(value,e1,e2,ratio)": plateau(c, grid), "beta2_at_0.76": int(curve(diag, 0.8, [0.76])[0]),
+        "n_H2_bars_alive_at_tau": sum(1 for x in diag if x[1] is None),
+        "best_window_ratio_F3": r["by_field"]["F3"]["best_window_ratio"],
+        "beta_curve_tail": list(r["by_field"]["F3"]["beta_curve"].items())[-5:]}
+witness_explore = {k: {"spec": {a: b for a, b in v["spec"].items() if a in ("space", "N", "tau", "witness_ratio", "method")},
+                       **({"failed": v["reason"]} if v.get("failed") else
+                          {"n_landmarks": v["info"].get("n_landmarks"), "landmark_covering_radius": v["info"].get("landmark_covering_radius"),
+                           "n_simplices": v["info"]["n_simplices"], "sec": v["wall"],
+                           "best_window_ratio": v["by_field"]["F3"]["best_window_ratio"],
+                           "beta_curve_tail": list(v["by_field"]["F3"]["beta_curve"].items())[-6:]})}
+                   for k, v in E.items() if v["spec"].get("method") == "witness"}
+
+out = {"tier": "X", "quadric_positive_control": quad, "witness_explore": witness_explore, "criterion": "window ratio >= 1.5 with exact expected Betti vector (pre-registered)",
        "studies": S, "scaling_fit": fit, "B2_injectivity": L("B2_injectivity.json"),
        "B3_K3": k3, "B3_K3_longest_beta2>=1_window_ratio": k3_fp, "B3_K3xT2": k3xt2,
        "B4_null_density_matched": nulls, "explore_failures": fails,

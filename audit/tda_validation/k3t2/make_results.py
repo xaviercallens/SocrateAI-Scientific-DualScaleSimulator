@@ -23,30 +23,31 @@ def row(cx, field, expected, computed, ok, fvec, extra=None, tier="B"):
 for t in A1["tori"]:
     for f, v in t["by_field"].items():
         row("A1 " + t["name"], f, v["expected"], v["betti_engine1"], v["PASS"], t["fvector"],
-            {"engine2_agrees": v["engines_agree"], "gudhi_agrees": t["gudhi_agrees"]})
+            {"engine2_agrees": v["engines_agree"], "gudhi_agrees": t["gudhi_agrees"], "ranks_d_k": v["ranks_d_k"]})
 for k, t in A1["controls"].items():
     for f, v in t["by_field"].items():
         row("A1 control " + t["name"], f, v["expected"], v["betti_engine1"], v["PASS"], t["fvector"])
 for r in A2["runs"]:
     for f, v in r["by_field"].items():
         row(f"A2 T^4/Z2 cubical orbit complex N={r['N']}", f, v["expected"], v["betti"], v["PASS"], r["quotient_fvector"],
-            {"n_fixed_cells": r["n_fixed_cells"], "chi": r["chi_fvector"]})
+            {"n_fixed_cells": r["n_fixed_cells"], "chi": r["chi_fvector"], "ranks_d_k": v["ranks_d_k"]})
 tr = A2["transfer"]
 row("A2 transfer: dim H_k(T^4;F3)^G from explicit cycles (N=4)", "F3", [1, 0, 6, 0, 1], tr["invariant_betti_F3"], tr["PASS"],
     [], {"lefschetz_number_chain_level": tr["lefschetz_number_chain_level"]})
 for r in A3["runs"]:
     for f, v in r["by_field"].items():
         row(f"A3 (T^4/Z2)_N={r['orbifold_N']} x T^2(Z_{r['T2_M']}^2) direct product", f, v["expected"], v["betti_engine2"],
-            v["PASS"], r["fvector"], {"sec": v["sec_engine2"]})
+            v["PASS"], r["fvector"], {"sec": v["sec_engine2"], "ranks_d_k": v["ranks_d_k"]})
 for f, v in A4["cone_reassembly"]["by_field"].items():
     row("A4 control: U + 16 cones (= orbifold, N=6)", f, v["expected"], v["betti"], v["PASS"], A4["cone_reassembly"]["fvector"])
 for f, v in A4["K3"]["by_field"].items():
     row("A4 resolved Kummer K3 = U + 16 Cyl(phi) (N=6)", f, v["expected"], v["betti"], v["PASS"], A4["K3"]["fvector"],
-        tier="B (+1 tier-L input: class of phi_2)")
+        {"ranks_d_k": v["ranks_d_k"]}, tier="B (+1 tier-L input: class of phi_2)")
 for r in A4["K3xT2"]:
     for f, v in r["by_field"].items():
         row("A4 " + r["name"], f, v["expected"], v["betti"], v["PASS"], r["fvector"],
-            {"sec_engine2": v.get("sec_engine2"), "engine1_agrees": v.get("engines_agree")}, tier="B (+1 tier-L input)")
+            {"sec_engine2": v.get("sec_engine2"), "engine1_agrees": v.get("engines_agree"), "ranks_d_k": v["ranks_d_k"]},
+            tier="B (+1 tier-L input)")
 lk = A4["links"][0]
 for kind in ("resolve", "trivial2"):
     for f in ("F2", "F3"):
@@ -59,7 +60,8 @@ for k, r in A5["partial_resolution"].items():
     for f in ("F2", "F3", "F5"):
         e = r["expected_X_k_x_T2_F3"] if f != "F2" else ("K3xT2" if k == "16" else "not pre-specified")
         ok = r["PASS"] if f != "F2" else (r["X_k_x_T2"]["F2"] == [1, 2, 23, 44, 23, 2, 1] if k == "16" else True)
-        row(f"A5 X_k x T^2, k={k} resolved", f, e, r["X_k_x_T2"][f], ok, r["X_k_x_T2"]["fvector"])
+        row(f"A5 X_k x T^2, k={k} resolved", f, e, r["X_k_x_T2"][f], ok, r["X_k_x_T2"]["fvector"],
+            {"ranks_d_k": r["X_k_x_T2"].get(f"ranks_d_k_{f}")})
 w = A5["wrong_class_phi2_zero"]
 row("A5 wrong gluing class (phi2=0 at 16 points) x T^2", "F3", "(1,2,23,44,23,2,1) (F3 cannot discriminate)", w["X_x_T2"]["F3"],
     w["PASS"], w["X_x_T2"]["fvector"])
@@ -71,14 +73,16 @@ for k, v in A5["factor_S2_Klein"].items():
             row(f"A5 {k}", f, v["expected"].get(f, "not pre-specified"), v[f], v["PASS"], v["fvector"])
 for k, v in A5b["cases"].items():
     for f in ("F2", "F3"):
-        row(f"A5b {k} (X_J)", f, v["expected"][f], v["X"][f], v["PASS"], [], {"resolved_bits": v["resolved_points_bits"]},
+        row(f"A5b {k} (X_J)", f, v["expected"][f], v["X"][f], v["PASS"], [],
+            {"resolved_bits": v["resolved_points_bits"], "ranks_d_k": v.get("X_ranks_d_k", {}).get(f)},
             tier="B vs pre-registered tier-L (RM(1,4) Kummer code)")
 
 brows = []
 emb = {"T2": "product of unit circles in R^4", "T3": "product of unit circles in R^6", "T4": "product of unit circles in R^8",
        "orbifold": "Z2-invariant map to R^14: cos th_i, sin th_i sin th_j (i<=j)",
        "K3": "Fermat quartic, Hermitian projector |z><z| in R^16 (Frobenius-isometric coords, trace-1 affine R^15)",
-       "null4m": "uniform 4-cube in R^16, density-matched (median 10-NN) to the K3 sample"}
+       "null4m": "uniform 4-cube in R^16, density-matched (median 10-NN) to the K3 sample",
+       "quadric": "Fermat quadric x^2+y^2+z^2+w^2=0 (S^2 x S^2), same projector embedding in R^16 as K3 (positive control)"}
 for k, s in B["studies"].items():
     brows.append({"study": k, "space": s["space"], "embedding": emb[s["space"]], "method": s["method"], "tau": s["tau"],
                   "sampling": "farthest-point subsample of 10N iid" if s["fps"] else "iid uniform (angles) / as described",
@@ -123,21 +127,24 @@ report = {
         "A5b (pre-registered after A5): the F2 homology of partially resolved complexes follows the Kummer code RM(1,4): coning an affine hyperplane of the 16 points leaves one Z/2 (F2 (1,0,15,1,1)), a non-hyperplane 8-set none (1,0,14,0,1), resolving an affine 2-plane two (1,0,12,2,1), 4 affinely independent points one (1,0,11,1,1), one point four (1,0,11,4,1): 5/5 as predicted.",
     ],
     "partB_summary": [
-        "Pre-registered criterion: the full expected Betti vector holds on a window [e1,e2] with e2 >= 1.5 e1, for all 3 seeds (F3 primary; F2 also computed). 8 GiB cap per run.",
-        f"Flat tori, iid uniform, Rips tau=1.2 with edge collapse: T^2 N_min={B['studies']['T2_rips']['N_min_all3seeds_F3']} (alpha: {B['studies']['T2_alpha']['N_min_all3seeds_F3']}); T^3 N_min={B['studies']['T3_rips']['N_min_all3seeds_F3']} (farthest-point sampling: {B['studies']['T3_rips_fps']['N_min_all3seeds_F3']}); T^4 not recovered up to N={B['studies']['T4_rips']['largest_N_completed']} ({B['studies']['T4_rips']['at_largest_N']['n_simplices']} simplices); N=25600 exceeded the memory cap. Two-point fit N_min = {fit['A']:.3g} * {fit['B_per_dimension']:.3g}^d predicts about {fit['extrapolated_N_min_T4']:.3g} points for T^4 (indicative).",
+        "Pre-registered criterion: the full expected Betti vector holds on a window [e1,e2] with e2 >= 1.5 e1, for all 3 seeds (F3 primary; F2 also computed). 8 GiB address-space cap and a 450-560 s cap per run. Methods tried: alpha (R^4), Vietoris-Rips with edge collapse, sparse Rips (one attempt, larger than exact Rips here), and strong witness complexes (landmarks = N/20 by farthest-point sampling).",
+        f"Flat tori, iid uniform, Rips tau=1.2 with edge collapse: T^2 N_min={B['studies']['T2_rips']['N_min_all3seeds_F3']} (alpha: {B['studies']['T2_alpha']['N_min_all3seeds_F3']}; witness: {B['studies']['T2_witness']['N_min_all3seeds_F3']}); T^3 N_min={B['studies']['T3_rips']['N_min_all3seeds_F3']} (farthest-point sampling: {B['studies']['T3_rips_fps']['N_min_all3seeds_F3']}); T^4 not recovered up to N={B['studies']['T4_rips']['largest_N_completed']} ({B['studies']['T4_rips']['at_largest_N']['n_simplices']} simplices, {B['studies']['T4_rips']['at_largest_N']['maxrss_MB']} MB); N=25600 exceeded the memory cap. Two-point fit N_min = {fit['A']:.3g} * {fit['B_per_dimension']:.3g}^d predicts about {fit['extrapolated_N_min_T4']:.3g} points for T^4 (indicative).",
+        f"Witness complexes do not extend the reach here: T^3 recovered nothing up to N={B['studies']['T3_witness']['largest_N_completed']} witnesses ({B['studies']['T3_witness']['stopped_because']}), T^4 nothing up to N={B['studies']['T4_witness']['largest_N_completed']} ({B['studies']['T4_witness']['stopped_because']}), and the K3 witness study timed out at its first grid point ({B['studies']['K3_witness']['stopped_because']}); a smaller-relaxation K3 witness run (N=20000, 1000 landmarks, tau=0.4) did complete and shows beta_2 in the hundreds-to-thousands with no plateau (B_summary.witness_explore). With few landmarks the landmark covering radius is far larger than the feature scale (200 landmarks on T^4: covering radius 1.36), and enough landmarks costs what Rips costs.",
         f"T^4/Z2 (b2=6 over F3) in the invariant R^14 embedding: not recovered up to N={B['studies']['orbifold_rips']['largest_N_completed']} (iid) / {B['studies']['orbifold_rips_fps']['largest_N_completed']} (FPS); N=25600 exceeded memory. At N=12800 beta_1 noise is still present at eps=1.08 and beta_2 is in the hundreds to thousands.",
-        f"K3 (Fermat quartic, projector embedding): largest feasible N=4000 at tau=0.8 (about 24M simplices, about 1.9 GB); N=8000, or tau>=0.95 at N=4000, or tau>=1.0 at N=2000, exceeded 8 GiB. Criterion not met. In all 3 seeds beta_2(eps) settles on a plateau of 27 (not 22) for eps in about [0.69,0.80] (N=3000, tau=0.9: 27 up to 0.855), with 27 H2 bars alive at the truncation. beta_2 never equals 22 on the scanned grid. The density-matched 4-cube null has beta_2 = 0 on [0.64,0.8], so the plateau is a feature of the K3 sample, but its value does not match b2(K3).",
-        f"Null (B4): with density matching, the pre-registered rule 'any beta_2>=1 window of ratio>=1.5' is triggered in {nullfp}/12 null runs (all N>=1000) by overlapping short noise bars, so 'some persistent H2' is not evidence of anything. The K3 runs' longest beta_2>=1 windows (ratio about 2.3-2.5) are comparable to the null's (about 1.7-2.2 at N>=1000).",
-        "K3 x T^2 (6-dim sample, T^2 radius 0.5): N=4000, 8000, 16000, 32000 (99M simplices, 6.7 GB) completed; at every N, beta_1 noise is in the thousands at mid scales and nothing resembling (1,2,23) appears; N=64000 timed out.",
+        f"K3 (Fermat quartic, projector embedding): largest feasible N=4000 at tau=0.8 (about 24M simplices, about 1.9 GB); N=8000, or tau>=0.95 at N=4000, or tau>=1.0 at N=2000, exceeded 8 GiB. The pre-registered criterion FAILS. But the failure is specific: beta_0 = 1 and beta_1 = 0 are recovered exactly (b1(K3)=0 is a real fact the sample reproduces), and beta_2 settles on a plateau of 27, not 22, for eps in about [0.69,0.80] in all 3 seeds (N=3000, tau=0.9: 27 up to 0.855), with 27 H2 bars alive at the truncation; beta_2 never equals 22 on the scanned grid. This is an over-count on a stable plateau, not noise like the K3 x T2 runs.",
+        "Positive control at the same dimension, same sampler, same projector embedding and same tau: the Fermat QUADRIC x^2+y^2+z^2+w^2=0 (S^2 x S^2, b=(1,0,2,0,1)). It is also not recovered: at N=2000 (3 seeds) beta_1 is still 1-9 and beta_2 is 3-17 near tau; N=4000 exceeded memory (the quadric sample is denser than the K3 one, so it is more expensive at equal N). So the 27-vs-22 over-count cannot be attributed to K3 in particular: this pipeline does not recover even b2=2 of a complex surface at the sample sizes that fit.",
+        f"Null (B4): with density matching (median 10-NN distance matched to the K3 sample), the pre-registered rule 'any beta_2>=1 window of ratio>=1.5' is triggered in {nullfp}/12 null runs (all N>=1000) by overlapping short noise bars, so 'some persistent H2' is not evidence of anything. The K3 runs' longest beta_2>=1 windows (ratio about 2.3-2.5) are comparable to the null's (about 1.7-2.2 at N>=1000). What the null does NOT produce is the K3 plateau: the null has beta_2 = 0 on [0.64,0.8].",
+        "K3 x T^2 (6-dim sample, T^2 radius 0.5): N=4000, 8000, 16000, 32000 (99M simplices, 6.7 GB) completed; at every N, beta_1 is in the thousands at mid scales and nothing resembling (1,2,23) appears; N=64000 timed out.",
     ],
     "interpretation": [
         "Chain-level: without using the Kunneth formula in any computation, a 6-dimensional cell complex built from the Kummer construction (orbifold cells + 16 resolved neighbourhoods) and crossed with T^2 has Betti numbers (1,2,23,44,23,2,1) over F2, F3, F5, and chi = 0. The value depends on the construction (k-series, wrong-class control, Klein/S^2 factors all move it as predicted). This is tier B for the arithmetic; the identification of the glued piece with D(O(-2)) rests on one stated tier-L input, and over odd primes that input is not even tested (only F2 detects it).",
-        "Point samples: persistent homology recovered the full Betti vector of flat T^2 (N about 400-800) and T^3 (N about 6400-12800), with a required N growing by about 16x per dimension in this setup. For every 4-dimensional space tried (T^4, T^4/Z2, K3) the criterion failed at the largest N that fit in 8 GiB; for K3 the most stable H2 signal counts 27 classes, not 22. K3 x T^2 samples at up to 32000 points show only noise.",
-        "Implication for cosmological point data: recovering b2 = 22 of K3, let alone the (1,2,23,44,23,2,1) of K3 x T2, from a point cloud would require sampling a 4-(or 6-)dimensional manifold densely in its own intrinsic coordinates, which is out of reach here even for ideal noiseless samples of a known embedding. Galaxy or CMB point data are samples in 3 spatial dimensions (or 2 on the sky), not samples of an internal K3 or K3 x T2. So on this evidence no claim that K3 x T2 topology is visible in cosmological point data can be supported by point-sample TDA. A non-null PH signal in such data would also not single out K3 x T2: the density-matched null already produces H2 windows passing a naive 1.5 persistence-ratio rule.",
+        "Point samples: with the methods and budget used here (alpha, Rips with edge collapse, sparse Rips, strong witness; 8 GiB, about 8 minutes per run), persistent homology recovered the full Betti vector of flat T^2 (N about 400-2000 depending on method) and T^3 (N about 6400-12800), with the required N growing by about 16x per dimension. No 4-dimensional space tried was recovered: T^4, T^4/Z2 (b2=6), K3 (b2=22) and even the much simpler S^2 x S^2 quadric (b2=2) all failed at the largest N that fit. For K3 the most stable H2 reading counts 27 classes, not 22. K3 x T^2 samples up to 32000 points show only noise.",
+        "Implication for cosmological point data: recovering b2 = 22 of K3, let alone (1,2,23,44,23,2,1) of K3 x T2, from a point cloud would require sampling a 4- (or 6-) dimensional manifold densely in its own intrinsic coordinates, which was out of reach here even for ideal, noiseless samples of a known embedding whose answer we already knew. Galaxy or CMB point data are samples in 3 spatial dimensions (or 2 on the sky), not samples of an internal K3 or K3 x T2. On this evidence, no claim that K3 x T2 topology is visible in cosmological point data is supported by point-sample TDA. A non-null PH signal in such data would also not single out K3 x T2: the density-matched null already produces H2 windows that pass a naive 1.5 persistence-ratio rule, and the one space here that did produce a stable H2 plateau (K3) produced the wrong number.",
     ],
     "limitations": [
         "Part B uses one embedding per space (Fermat quartic with the Fubini-Study projector metric, not Ricci-flat) and a sampler that is not uniform in any natural measure; a different metric or sampler could change the scales, but the combinatorial cost barrier (Rips complexes in 4-6 dimensions) is independent of that.",
-        "tau was chosen by hand per space (1.2 tori/orbifold, 0.8 K3/null, recorded); larger tau exceeded the memory cap.",
+        "tau was chosen by hand per space (1.2 tori/orbifold, 0.8 K3/quadric/null, 0.9 or less for witness; all recorded); larger tau exceeded the memory cap, so every 'not recovered' is relative to that cap and to these four complex constructions.",
+        "The negative Part B results are bounded by compute: they say these methods at 8 GiB and about 8 minutes per run do not recover the topology, not that no method can.",
         "A4's D(O(-2)) is an algebraic mapping cylinder (chain level), not a geometric cell decomposition of the Eguchi-Hanson space; its homology is determined by the stated class, and the result is the homology of that homotopy pushout.",
     ],
     "commands": {
@@ -147,7 +154,7 @@ report = {
                   "prlimit --as=8589934592 -- $PY write_expectations_A5b.py", "prlimit --as=8589934592 -- $PY A5b_kummer_code_F2.py"],
         "partB": ["B_TIMEOUT=560|500 B_CALL_BUDGET=... timeout 595 prlimit --as=8589934592 -- $PY B_driver.py <study> (resumable, repeated until finished) for study in T2_alpha T2_rips T3_rips T3_rips_fps T4_rips T4_rips_fps orbifold_rips orbifold_rips_fps K3_rips K3_rips_fps null4m_rips",
                   "prlimit --as=8589934592 -- $PY B2_injectivity_check.py", "B_TIMEOUT=500 ... $PY B_explore.py (resumable)",
-                  "prlimit --as=8589934592 -- $PY B_summarize.py", "prlimit --as=8589934592 -- $PY make_results.py"],
+                  "prlimit --as=8589934592 -- $PY B_summarize.py (studies incl. quadric_rips, T2/T3/T4/K3_witness)", "prlimit --as=8589934592 -- $PY make_results.py"],
         "seeds": "Part B seeds 0,1,2 (numpy default_rng); A5/A5b/B2 seed 20260919",
     },
 }

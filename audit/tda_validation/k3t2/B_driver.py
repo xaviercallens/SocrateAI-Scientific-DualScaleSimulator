@@ -28,6 +28,16 @@ STUDIES = {
                     save_diagram_dims=[2]),
     "K3_rips_fps": dict(space="K3", method="rips", tau=0.8, expected=[1, 0, 22], fps=True, grid=[500, 1000, 2000, 4000, 8000, 16000],
                         save_diagram_dims=[2]),
+    # added after the advisor review (post Part-B commit 69baa5d): same-pipeline positive control for K3
+    "quadric_rips": dict(space="quadric", method="rips", tau=0.8, expected=[1, 0, 2], grid=[500, 1000, 2000, 4000],
+                         save_diagram_dims=[2], all_seeds=True, no_stop=True),
+    # added after the advisor review: strong witness complexes (N = witnesses, landmarks = N/20 by farthest-point)
+    "T2_witness": dict(space="T2", method="witness", witness_ratio=20, tau=0.9, expected=[1, 2, 1], grid=[1000, 2000, 4000, 8000]),
+    "T3_witness": dict(space="T3", method="witness", witness_ratio=20, tau=0.9, expected=[1, 3, 3, 1], grid=[4000, 8000, 16000, 32000, 64000]),
+    "T4_witness": dict(space="T4", method="witness", witness_ratio=20, tau=0.9, expected=[1, 4, 6, 4, 1],
+                       grid=[8000, 16000, 32000, 64000, 128000, 256000]),
+    "K3_witness": dict(space="K3", method="witness", witness_ratio=20, tau=0.8, expected=[1, 0, 22],
+                       grid=[10000, 20000, 40000, 80000, 160000], save_diagram_dims=[2]),
     "null4m_rips": dict(space="null4m", method="rips", tau=0.8, expected=[1, 0, 0], grid=[500, 1000, 2000, 4000],
                         save_diagram_dims=[2], all_seeds=True, no_stop=True),
     "null4_rips": dict(space="null4", method="rips", tau=0.8, expected=[1, 0, 0], null_D=16, null_diam=1.414,
