@@ -1,0 +1,60 @@
+{
+ "fixed_points": {
+  "T2": 4,
+  "T4": 16
+ },
+ "O_plane_from_fixed_locus_dim": {
+  "involution_on_T2": "O7",
+  "involution_on_T4": "O5"
+ },
+ "e_K3_from_trackD_betti": 24,
+ "betti_K3_trackD": [
+  1,
+  0,
+  22,
+  0,
+  1
+ ],
+ "F_theory": {
+  "n_I0star": 4,
+  "sum_e_singular_fibres": 24,
+  "equals_e_K3": true,
+  "n_D7": 16,
+  "n_O7": 4,
+  "Q_O7_in_D7_units": -4,
+  "total_O7_charge": -16,
+  "total_D7_charge": 16,
+  "n_7branes": 24,
+  "D3_total": "24",
+  "D3_split": {
+   "O7": "8",
+   "D7": "16"
+  },
+  "chi_K3xK3": 576,
+  "chi_K3xK3_over_24": "24",
+  "chi_K3_over_24_(per_7brane)": "1"
+ },
+ "negative_control_16_O7": {
+  "n_I0star_if_16_O7": 16,
+  "sum_e": 96,
+  "exceeds_e(K3)": true
+ },
+ "D-tda#56": {
+  "sigma_from_trackC_signature": -16,
+  "dirac_index_minus_sigma_over_8": "2",
+  "hirzebruch_sigma_(c1^2-2c2)/3": "-16",
+  "todd_chiO": "2",
+  "ahat": "2",
+  "todd_equals_ahat_here": true,
+  "todd_minus_ahat_symbolic": "c1sq/8"
+ },
+ "expected_after_computing": {
+  "source": "comparison.json lean_value (sealed v3.20.0)",
+  "orientifold#6_total_d7_charge": 64,
+  "orientifold#7_total_o7_charge": -64,
+  "orientifold#8_totalO7Charge": -64,
+  "orientifold#9_totalD7Charge": 64,
+  "orientifold#11_d3TadpoleTarget": 1,
+  "D-tda#56_DiracIndex(-16)": 2
+ }
+}
