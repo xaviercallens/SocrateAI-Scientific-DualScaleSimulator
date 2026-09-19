@@ -1,0 +1,309 @@
+{
+ "expected_betti": {
+  "Z/2": [
+   1,
+   1,
+   1
+  ],
+  "Z/3": [
+   1,
+   0,
+   0
+  ]
+ },
+ "rips_reference": {
+  "function": "gudhi.RipsComplex + collapse + expansion(3), fields 2 and 3 on one tree",
+  "embedding": "R6 Veronese",
+  "info": {
+   "L": 1.2,
+   "n_points": 2000,
+   "graph_simplices": 943087,
+   "after_collapse_simplices": 7948,
+   "collapse_iterations": 5,
+   "expanded_simplices": 12133,
+   "expansion_dim": 3
+  },
+  "subsample_seed": 107,
+  "wall_sec": 10.656784534454346,
+  "fields": {
+   "Z/2": {
+    "evaluation": {
+     "cap": 1.2,
+     "P_all": 1.1046426675870207,
+     "per_dim": {
+      "0": {
+       "expected": 1,
+       "observed_beta": 1,
+       "rule": "p_1 / p_2 = 9.181 >= 5",
+       "rule_pass": true,
+       "pass": true,
+       "gated": true,
+       "n_bars": 2000,
+       "top_persistence": [
+        1.2,
+        0.13069905733082754,
+        0.12958079031296707,
+        0.12125747917399934,
+        0.12045760338753599,
+        0.11675811798972316
+       ],
+       "top_bars_birth_death_capped": [
+        [
+         0.0,
+         1.2
+        ],
+        [
+         0.0,
+         0.13069905733082754
+        ],
+        [
+         0.0,
+         0.12958079031296707
+        ],
+        [
+         0.0,
+         0.12125747917399934
+        ],
+        [
+         0.0,
+         0.12045760338753599
+        ],
+        [
+         0.0,
+         0.11675811798972316
+        ]
+       ],
+       "n_infinite": 1
+      },
+      "1": {
+       "expected": 1,
+       "observed_beta": 1,
+       "rule": "p_1 / p_2 = 7.041 >= 5",
+       "rule_pass": true,
+       "pass": true,
+       "gated": true,
+       "n_bars": 549,
+       "top_persistence": [
+        1.1046426675870207,
+        0.15688595253137338,
+        0.14147782069351628,
+        0.13923106994424236,
+        0.13377378144040913,
+        0.128501967260359
+       ],
+       "top_bars_birth_death_capped": [
+        [
+         0.0953573324129792,
+         1.2
+        ],
+        [
+         0.09549868888509626,
+         0.25238464141646966
+        ],
+        [
+         0.1004435937333208,
+         0.2419214144268371
+        ],
+        [
+         0.10229330530852965,
+         0.241524375252772
+        ],
+        [
+         0.09527613764781882,
+         0.22904991908822794
+        ],
+        [
+         0.09867944740454225,
+         0.22718141466490127
+        ]
+       ],
+       "n_infinite": 1
+      },
+      "2": {
+       "expected": 1,
+       "observed_beta": 1,
+       "rule": "p_1 / p_2 = 152.3 >= 5",
+       "rule_pass": true,
+       "pass": true,
+       "gated": true,
+       "n_bars": 3,
+       "top_persistence": [
+        0.9458655244147417,
+        0.006208956281225295,
+        7.667081006884624e-06
+       ],
+       "top_bars_birth_death_capped": [
+        [
+         0.25413447558525826,
+         1.2
+        ],
+        [
+         0.11493511770133495,
+         0.12114407398256025
+        ],
+        [
+         0.1783878688397989,
+         0.1783955359208058
+        ]
+       ],
+       "n_infinite": 1
+      }
+     },
+     "pass": true,
+     "observed_betti_vector": [
+      1,
+      1,
+      1
+     ]
+    }
+   },
+   "Z/3": {
+    "evaluation": {
+     "cap": 1.2,
+     "P_all": 0.15877714317227906,
+     "per_dim": {
+      "0": {
+       "expected": 1,
+       "observed_beta": 1,
+       "rule": "p_1 / p_2 = 9.181 >= 5",
+       "rule_pass": true,
+       "pass": true,
+       "gated": true,
+       "n_bars": 2000,
+       "top_persistence": [
+        1.2,
+        0.13069905733082754,
+        0.12958079031296707,
+        0.12125747917399934,
+        0.12045760338753599,
+        0.11675811798972316
+       ],
+       "top_bars_birth_death_capped": [
+        [
+         0.0,
+         1.2
+        ],
+        [
+         0.0,
+         0.13069905733082754
+        ],
+        [
+         0.0,
+         0.12958079031296707
+        ],
+        [
+         0.0,
+         0.12125747917399934
+        ],
+        [
+         0.0,
+         0.12045760338753599
+        ],
+        [
+         0.0,
+         0.11675811798972316
+        ]
+       ],
+       "n_infinite": 1
+      },
+      "1": {
+       "expected": 0,
+       "observed_beta": 0,
+       "rule": "acyclic clause: p_1 / p_2 = 1.012 < 5",
+       "rule_pass": true,
+       "pass": true,
+       "gated": true,
+       "n_bars": 549,
+       "top_persistence": [
+        0.15877714317227906,
+        0.15688595253137338,
+        0.14147782069351628,
+        0.13923106994424236,
+        0.13377378144040913,
+        0.128501967260359
+       ],
+       "top_bars_birth_death_capped": [
+        [
+         0.0953573324129792,
+         0.25413447558525826
+        ],
+        [
+         0.09549868888509626,
+         0.25238464141646966
+        ],
+        [
+         0.1004435937333208,
+         0.2419214144268371
+        ],
+        [
+         0.10229330530852965,
+         0.241524375252772
+        ],
+        [
+         0.09527613764781882,
+         0.22904991908822794
+        ],
+        [
+         0.09867944740454225,
+         0.22718141466490127
+        ]
+       ],
+       "n_infinite": 0
+      },
+      "2": {
+       "expected": 0,
+       "observed_beta": 1,
+       "rule": "acyclic clause: p_1 / p_2 = 809.8 < 5",
+       "rule_pass": false,
+       "pass": false,
+       "gated": true,
+       "n_bars": 2,
+       "top_persistence": [
+        0.006208956281225295,
+        7.667081006884624e-06
+       ],
+       "top_bars_birth_death_capped": [
+        [
+         0.11493511770133495,
+         0.12114407398256025
+        ],
+        [
+         0.1783878688397989,
+         0.1783955359208058
+        ]
+       ],
+       "n_infinite": 0
+      }
+     },
+     "pass": false,
+     "observed_betti_vector": [
+      1,
+      0,
+      1
+     ]
+    }
+   }
+  }
+ },
+ "status": "ok",
+ "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case P6 --part rips --nref 2000",
+ "started": "2026-09-19T19:27:37",
+ "loadavg_start": [
+  0.77001953125,
+  1.54833984375,
+  5.154296875
+ ],
+ "wall_sec_total": 10.659359455108643,
+ "peak_rss_mb": 241.62109375,
+ "git_head": "079c1609825f31db87da8808ee6c513b917a7358",
+ "script_sha256": "cbe0905e5fb9484dd560691da8b3761f15c2356f207c1fba6127382a20859682",
+ "code_under_test_sha256": {
+  "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
+  "audit/reverse_zero/E5-cmb-tda/cmb_tda.py": "a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d"
+ },
+ "versions": {
+  "python": "3.10.12",
+  "gudhi": "3.13.0",
+  "numpy": "2.2.6"
+ }
+}

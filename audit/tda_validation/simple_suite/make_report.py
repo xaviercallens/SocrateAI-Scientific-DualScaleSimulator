@@ -79,16 +79,34 @@ table.append({"id": "F3", "expected": "uniform p-values (KS p >= 0.01, #{p<0.05}
               "empirical_rank": {k: v["empirical_rank_p"] for k, v in F3["statistics"].items()},
               "topology_diagnostic_betti_full_sky": F3["topology_diagnostic"]["betti_numbers"]})
 table.append({"id": "N1", "expected": "no dominant H1/H2", "pass": C["N1"]["pass"], "H1_p1_over_p2": C["N1"]["H1"]["ratio"], "H2_p1_over_p2": C["N1"]["H2"]["ratio"]})
-table.append({"id": "N2", "expected": "P3a H1 destroyed", "pass": C["N2"]["pass"], "H1_p2_over_p3": C["N2"]["H1_p2_over_p3"],
+table.append({"id": "N2", "expected": "P3a H1 destroyed", "pass": C["N2"]["pass"],
+              "note": "the shuffle DID destroy the two dominant H1 bars (ratio half passes); the FAIL is the p-value half, from a uniform-box null mismatched to the shuffled cloud's non-uniform marginals", "H1_p2_over_p3": C["N2"]["H1_p2_over_p3"],
               "p_value_second_H1_bar_vs_P9c": C["N2"]["p_value_second_H1_bar_vs_P9c"]})
 table.append({"id": "C0", "expected": "collapse_edges preserves the diagram", "pass": C["C0"]["pass"], "bottleneck_by_dim": C["C0"]["bottleneck_by_dim"]})
 
 b1 = F3["statistics"]["b1"]
 b1d = b1["post_hoc_bin_diagnostic"]
+b1df = b1d["df_recount_check"]; b1zv = b1d["zero_variance_check"]
+b0df = F3["statistics"]["b0"]["post_hoc_bin_diagnostic"]["df_recount_check"]
+b0zv = F3["statistics"]["b0"]["post_hoc_bin_diagnostic"]["zero_variance_check"]
 p6 = C["P6"]["variants"]
 p7s = {s["N"]: s for s in p7["sweep"]}
 lm = {s["n_landmarks"]: s for s in p7.get("post_hoc_landmarks", [])}
 p9c_max = C["P9c"]["max_persistence_H1"]["max"]
+r6 = p6["nref2000"]["parts"]["rips"]
+
+
+def _ratio(rule):
+    v = rule.split("=")[1].split("(")[0].split(">")[0].split("<")[0].strip()
+    return float(v)
+
+
+mono = {}
+for _k in ("0", "1", "2", "3"):
+    _v = [_ratio(p7s[n]["per_dim"][_k]["rule"]) for n in sorted(p7s)]
+    _fin = [x for x in _v if x != float("inf")]
+    mono["H" + _k] = bool(all(b >= a for a, b in zip(_fin, _fin[1:])))
+SPOT = json.load(open(os.path.join(HERE, "spot", "spot_check.json")))
 
 def top_equal(parts):
     a = parts["pipeline"]["pipeline_Z2"]["per_dim"]; b = parts["direct"]["direct_alpha_Z/2"]["per_dim"]
@@ -109,13 +127,16 @@ findings_pipeline = [
      "finding": "by_dim keeps dimensions 0, 1, 2 only; H3 and above are dropped without warning. P7 (beta_3 = 1) had to use gudhi.RipsComplex directly.",
      "consequence": "any 4-D or higher analysis through this function silently loses H3"},
     {"function": "cmb_tda.coarse_stats (with betti_curves_from_topology on the default nu grid [-4, 4])", "kind": "calibration FAILURE (F3)",
-     "finding": "for the sublevel b1 curve the Hartlap chi2 p-values of 100 independent Gaussian maps against a 100-map ensemble are not uniform: KS p = %s, %d of 100 below 0.05. Cause (post-hoc diagnostic): the first coarse bin (nu in [-4, -3]) of b1 is exactly 0 in a fraction %s of the 100 ensemble maps (std %s), and the second is a rare-count bin (fraction %s of maps exactly 0, std %s); coarse_stats keeps df = N_BINS = 8 and a 1e-8 ridge, so one degenerate bin shifts the chi2(8) reference and a single loop in the rare-count bin gives a single-bin |z| up to %s. The smallest Hartlap p-values are %s. The empirical rank p-value is closer to uniform for b1 (KS p = %s) but has %d of 100 below 0.05."
-               % (f(b1["hartlap_p"]["ks_p"]), b1["hartlap_p"]["n_below_0.05"], f(b1d["coarse_bin_fraction_of_sims_exactly_zero"][0]),
-                  f(b1d["coarse_bin_ensemble_std"][0]), f(b1d["coarse_bin_fraction_of_sims_exactly_zero"][1]), f(b1d["coarse_bin_ensemble_std"][1]),
-                  f(b1d["test_max_abs_z_single_bin_quantiles"][-1]), [round(x, 4) for x in b1d["test_hartlap_p_sorted_first10"][:3]],
-                  f(b1["empirical_rank_p"]["ks_p"]), b1["empirical_rank_p"]["n_below_0.05"]),
+     "finding": "for the sublevel b1 curve the Hartlap chi2 p-values of 100 independent Gaussian maps against a 100-map ensemble are not uniform: KS p = %s, %d of 100 below 0.05. Post-hoc diagnosis, two measured causes and one latent hazard: (1) df: the first coarse bin (nu in [-4, -3]) of b1 has zero ensemble variance (value %s in all 100 maps), so only %d bins carry information, but coarse_stats uses df = %d; recomputing the survival function with df = %d moves the b1 KS p to %s (b0, which has the same kind of zero-variance bin at nu in [3, 4], moves from %s to %s). (2) tail: the second coarse bin of b1 is a rare-count bin (fraction %s of maps exactly 0, std %s); a test map with one small loop there gets a single-bin z of %s, which gives the smallest p-values %s; with the df recount %d of 100 are still below 0.05. (3) latent, did not fire here: coarse_stats adds a 1e-8 ridge and calls pinv (cutoff about %s), so a zero-variance bin keeps an inverse-variance weight of about 1e8; no test map differed in a zero-variance bin (%d for b1, %d for b0), but one that did would get a chi2 of order 1e8 and p = 0."
+               % (f(b1["hartlap_p"]["ks_p"]), b1["hartlap_p"]["n_below_0.05"], b1zv["zero_variance_bin_values"], b1df["df_nonzero_variance_bins"],
+                  b1df["df_used_by_coarse_stats"], b1df["df_nonzero_variance_bins"], f(b1df["ks_p_with_df_recount"]),
+                  f(F3["statistics"]["b0"]["hartlap_p"]["ks_p"]), f(b0df["ks_p_with_df_recount"]),
+                  f(b1d["coarse_bin_fraction_of_sims_exactly_zero"][1]), f(b1d["coarse_bin_ensemble_std"][1]),
+                  [f(z["per_bin_z"][1]) for z in b1df["lowest_p_maps_per_bin_z"]], [f(z["hartlap_p"], 2) for z in b1df["lowest_p_maps_per_bin_z"]],
+                  b1df["n_below_0.05_with_df_recount"], f(b1zv["pinv_rcond_cutoff_estimate"], 2),
+                  b1zv["n_test_maps_differing_in_a_zero_variance_bin"], b0zv["n_test_maps_differing_in_a_zero_variance_bin"]),
      "not_affected": "b0 (KS p = %s) and chi (KS p = %s) pass the pre-registered gate" % (f(F3["statistics"]["b0"]["hartlap_p"]["ks_p"]), f(F3["statistics"]["chi"]["hartlap_p"]["ks_p"])),
-     "consequence": "b1 chi2 p-values from the CMB TDA run (same coarse_stats, same nu grid, nside 128 masked) should not be read at face value; drop zero-variance bins (and set df to the number kept), restrict the nu range to where the curve varies, or use the rank p-value with its own calibration"},
+     "consequence": "chi2 p-values from the CMB TDA run (same coarse_stats, same nu grid, nside 128 masked) should not be read at face value until its saved null ensembles are scanned for zero-variance and rare-count coarse bins. Fix: drop zero-variance bins and set df to the number kept, restrict the nu range to where the curve varies, and calibrate against the empirical rank p-value"},
     {"function": "cmb_tda.build_topology", "kind": "construction defect with no effect on b0/b1 (predicted in expectations.json before running)",
      "finding": "the full-sky nside-64 complex (V=%d, E=%d, T=%d) has Betti numbers %s instead of (1, 0, 1) for a triangulated S2: every set of 4 mutually 8-adjacent pixels around a pixel corner gives 4 triangles and no tetrahedron (a hollow tetrahedron)."
                % (F3["topology_diagnostic"]["n_vertices"], F3["topology_diagnostic"]["n_edges"], F3["topology_diagnostic"]["n_triangles"], F3["topology_diagnostic"]["betti_numbers"]),
@@ -130,12 +151,19 @@ findings_other = [
                  % (p6["N2000"]["parts"]["pipeline"]["pipeline_Z2"]["observed"], p6["N2000"]["parts"]["direct"]["direct_alpha_Z/2"]["observed"],
                     p6["N2000"]["parts"]["direct"]["direct_alpha_Z/3"]["observed"], p6["N2000"]["parts"]["direct"]["direct_alpha_n_simplices"],
                     f(p6["N2000"]["parts"]["direct"]["peak_rss_mb"], 4), p6["N1000"]["parts"]["pipeline"]["pipeline_Z2"]["observed"],
-                    p6["N1000"]["parts"]["pipeline"]["pipeline_Z2"]["per_dim"]["1"]["rule"])},
+                    p6["N1000"]["parts"]["pipeline"]["pipeline_Z2"]["per_dim"]["1"]["rule"]),
+     "post_hoc_rips_n2000": "Rips on the R6 Veronese with n = 2000 (seed 107, L = 1.2; not pre-registered): Z/2 observed %s (H1 %s); Z/3 observed %s. The Z/3 H2 'bar' that trips the acyclic rule is a ratio of two negligible bars (%s, persistence %s and %s against L = 1.2): the pre-registered p_1 < 5 p_2 rule has no absolute floor, which is a defect of the rule, recorded as FAIL." % (
+         r6["rips_Z/2"]["observed"], r6["rips_Z/2"]["per_dim"]["1"]["rule"], r6["rips_Z/3"]["observed"], r6["rips_Z/3"]["per_dim"]["2"]["rule"],
+         f(r6["rips_Z/3"]["per_dim"]["2"]["top_persistence"][0]), f(r6["rips_Z/3"]["per_dim"]["2"]["top_persistence"][1]))},
     {"case": "P7 (T3 in R6)", "result": "not recovered within budget",
      "sweep": {n: {"observed": s["observed"], "rules": {k: v["rule"] for k, v in (s["per_dim"] or {}).items()}, "wall_sec": s["wall_sec_total"]} for n, s in p7s.items()},
      "reading": "the three H1 bars, three H2 bars and the H3 bar are the three to four longest bars from N = 2000 up, but the 5x rule needs the noise bars to shrink below 1/5 of the capped true bars. At N = 16000 (%s s, %s MB) H1 (%s) and H3 (%s) pass; H0 (%s) and H2 (%s) do not. N = 32000 was not attempted: wall time grew from %s s (N = 8000) to %s s (N = 16000), so N = 32000 is projected far beyond the 590 s cap."
                 % (f(p7s[16000]["wall_sec_total"]), f(p7s[16000]["peak_rss_mb"], 4), p7s[16000]["per_dim"]["1"]["rule"], p7s[16000]["per_dim"]["3"]["rule"],
                    p7s[16000]["per_dim"]["0"]["rule"], p7s[16000]["per_dim"]["2"]["rule"], f(p7s[8000]["wall_sec_total"]), f(p7s[16000]["wall_sec_total"])),
+     "trend": {"dominance_ratio_by_N": {k: {n: p7s[n]["per_dim"][k]["rule"].split("=")[1].split("(")[0].split(">")[0].strip() for n in sorted(p7s)} for k in ("0", "1", "2", "3")},
+               "observed_betti_by_N": {n: p7s[n]["observed"] for n in sorted(p7s)},
+               "monotone_in_N": mono,
+               "reading": "the ratios grow with N overall (monotone per dimension: %s); at N = 16000 the observed H1/H2/H3 counts are (3, 3, 1), H0 still has %d bars above threshold, and the H0 and H2 ratios are below 5" % (mono, p7s[16000]["observed"][0])},
      "post_hoc_landmarks": "farthest-point landmarks from a 48000-point pool (not pre-registered): 8000 landmarks give %s (H0 %s); 16000 landmarks pass every 5x rule (H0 %s, H1 %s, H2 %s, H3 %s) but observed beta_0 = %d because that many H0 bars (the second is %s, near the landmark spacing) are >= 0.2 x P_all = %s; so FAIL under the pre-registered observed-beta rule."
                           % (lm[8000]["observed"], lm[8000]["per_dim"]["0"]["rule"], lm[16000]["per_dim"]["0"]["rule"], lm[16000]["per_dim"]["1"]["rule"],
                              lm[16000]["per_dim"]["2"]["rule"], lm[16000]["per_dim"]["3"]["rule"], lm[16000]["observed"][0],
@@ -183,7 +211,9 @@ report = {
         "F1shuf (shuffled-site control) added post hoc because TEST_USE_CASES gained TDA-N3 during this run.",
         "F3 per-bin diagnostic added post hoc after the b1 KS failure; it does not change the gate.",
         "The P5 direct run frees the AlphaComplex object before persistence (memory); the complex is unchanged.",
-        "All cheap and medium cases were rerun at the committed script (9da5954); outputs matched the earlier runs exactly apart from timing fields. P6 N-variants, P7 and F3 chunks were run with the pre-commit working copy (same code path for those cases).",
+        "All cheap and medium cases were rerun at the committed runner (9da5954) and matched the earlier runs exactly apart from timing fields. The case files without a script_sha256 key were produced by the pre-commit working copy: %s. A spot-check reran one per group at the final script (spot/): %s." % (SPOT["pre_commit_case_files"], SPOT["comparisons"]),
+        "P6 Rips with n = 2000 (post hoc, --nref) added after the advisor review; reference only, not gated.",
+        "The --outdir and --nref options and the F3 zero-variance/df diagnostics were added to simple_suite.py after 9da5954; they do not change any gated computation.",
     ],
     "killed_or_crashed_runs": R.get("killed_or_crashed_runs", []),
 }

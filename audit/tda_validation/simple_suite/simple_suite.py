@@ -346,6 +346,8 @@ def case_coeff(case):
         t0 = time.time()
         Xr = cloud("P6v") if case == "P6" else X
         n, seed = {"P5": (1000, 106), "P6": (600, 107)}[case]
+        if ARGS.nref:
+            n = ARGS.nref  # POST-HOC override, recorded in the case name and output
         rd, rinfo = rips_diagram(sub(Xr, n, seed), L_REF, 2, fields=(2, 3))
         out["rips_reference"] = {"function": "gudhi.RipsComplex + collapse + expansion(3), fields 2 and 3 on one tree",
                                  "embedding": "R6 Veronese" if case == "P6" else "R4 (same as alpha)",
@@ -707,7 +709,7 @@ def aggregate():
                         pr["rips_" + f] = {"observed": ev["observed_betti_vector"], "pass": ev["pass"], "per_dim": ev["per_dim"]}
                 vr["parts"][part] = pr
             has_alpha = any(("pipeline_Z2" in v or "direct_alpha" in v or v.get("status") == "error") for v in vparts.values())
-            vr["pass"] = bool(has_alpha and flags and all(flags))
+            vr["pass"] = bool(flags and all(flags)) if has_alpha else None  # Rips-only variants are reference runs, not gated
             vr["pass_rule"] = "every alpha run in this variant (pipeline Z/2, direct Z/2 and Z/3) passes; an error counts as FAIL; Rips reference reported, not gated"
             r["variants"][vname] = vr
         r["pass"] = r["variants"].get("preregistered", {}).get("pass", False)
@@ -807,7 +809,40 @@ def aggregate():
                     tc = CMB.coarsen(np.array(m[key], dtype=float), CMB.N_BINS)
                     z = np.abs(tc - mu) / np.where(sd_bins > 0, sd_bins, np.nan)
                     zmax.append(float(np.nanmax(z)) if np.isfinite(z).any() else float("nan"))
-                diag = {"coarse_bin_ensemble_std": sd_bins.tolist(), "coarse_bin_ensemble_mean": mu.tolist(),
+                zv = [j for j in range(CMB.N_BINS) if sd_bins[j] == 0]
+                hits = []
+                for ti, m in enumerate(test):
+                    tc = CMB.coarsen(np.array(m[key], dtype=float), CMB.N_BINS)
+                    if any(tc[j] != mu[j] for j in zv):
+                        hits.append(ti)
+                rest = [ti for ti in range(len(test)) if ti not in hits]
+                diag_zero_var = {
+                    "zero_variance_bins": zv, "zero_variance_bin_values": [float(mu[j]) for j in zv],
+                    "n_test_maps_differing_in_a_zero_variance_bin": len(hits),
+                    "hartlap_p_of_those_maps": [float(ph[ti]) for ti in hits],
+                    "chi2_of_those_maps": [float(CMB.coarse_stats(S, np.array(test[ti][key], dtype=float))["data_chi2_hartlap"]) for ti in hits],
+                    "n_other_maps": len(rest),
+                    "ks_p_hartlap_other_maps": float(kstest(ph[rest], "uniform").pvalue) if rest else None,
+                    "n_below_0.05_other_maps": int(np.sum(ph[rest] < 0.05)) if rest else None,
+                    "pinv_rcond_cutoff_estimate": float(1e-15 * CMB.N_BINS * np.linalg.eigvalsh(np.cov(Sc, rowvar=False) + 1e-8 * np.eye(CMB.N_BINS)).max()),
+                    "smallest_cov_eigenvalue": float(np.linalg.eigvalsh(np.cov(Sc, rowvar=False) + 1e-8 * np.eye(CMB.N_BINS)).min()),
+                }
+                # df re-count: chi2 survival with df = number of bins with nonzero ensemble variance
+                from scipy.stats import chi2 as chi2dist
+                chis = np.array([CMB.coarse_stats(S, np.array(m[key], dtype=float))["data_chi2_hartlap"] for m in test])
+                dfk = CMB.N_BINS - len(zv)
+                p_df = chi2dist.sf(chis, df=dfk)
+                low3 = np.argsort(ph)[:3]
+                zlow = []
+                for ti in low3:
+                    tc = CMB.coarsen(np.array(test[ti][key], dtype=float), CMB.N_BINS)
+                    zlow.append({"test_index": int(ti), "hartlap_p": float(ph[ti]), "chi2": float(chis[ti]),
+                                 "per_bin_z": [float(x) if np.isfinite(x) else None for x in (tc - mu) / np.where(sd_bins > 0, sd_bins, np.nan)]})
+                diag_df = {"df_used_by_coarse_stats": CMB.N_BINS, "df_nonzero_variance_bins": dfk,
+                           "ks_p_with_df_recount": float(kstest(p_df, "uniform").pvalue),
+                           "n_below_0.05_with_df_recount": int(np.sum(p_df < 0.05)),
+                           "lowest_p_maps_per_bin_z": zlow}
+                diag = {"df_recount_check": diag_df, "zero_variance_check": diag_zero_var, "coarse_bin_ensemble_std": sd_bins.tolist(), "coarse_bin_ensemble_mean": mu.tolist(),
                         "coarse_bin_fraction_of_sims_exactly_zero": frac_zero,
                         "n_bins_with_std_below_0.05": int(np.sum(sd_bins < 0.05)),
                         "test_max_abs_z_single_bin_quantiles": np.nanpercentile(zmax, [50, 90, 99, 100]).tolist(),
@@ -841,15 +876,19 @@ if __name__ == "__main__":
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--count", type=int, default=50)
     ap.add_argument("--aggregate", action="store_true")
+    ap.add_argument("--outdir", default=None, help="write the case JSON here instead of cases/ (determinism spot-checks)")
+    ap.add_argument("--nref", type=int, default=None, help="POST-HOC: Rips reference subsample size override (P5/P6 rips part)")
     ARGS = ap.parse_args()
     if ARGS.aggregate:
         aggregate()
         sys.exit(0)
+    if ARGS.outdir:
+        CASE_DIR = os.path.abspath(ARGS.outdir)
     os.makedirs(CASE_DIR, exist_ok=True)
     t0 = time.time()
     la = os.getloadavg()
     c = ARGS.case
-    names = {"P5": "P5_%s" % ARGS.part, "P6": "P6_%s%s" % (ARGS.part, "_N%d" % ARGS.n if ARGS.n else ""),
+    names = {"P5": "P5_%s" % ARGS.part, "P6": "P6_%s%s%s" % (ARGS.part, "_N%d" % ARGS.n if ARGS.n else "", "_nref%d" % ARGS.nref if ARGS.nref else ""),
              "P7": "P7_N%s" % ARGS.n, "P7lm": "P7lm_N%s" % ARGS.n, "F3chunk": "F3chunk_%03d" % ARGS.start}
     name = names.get(c, c)
     dispatch = {"P5": lambda: case_coeff("P5"), "P6": lambda: case_coeff("P6"), "P7": lambda: case_p7(ARGS.n), "P7lm": lambda: case_p7lm(ARGS.n),

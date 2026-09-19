@@ -1,0 +1,36 @@
+{
+ "pre_commit_case_files": [
+  "F3chunk_000.json",
+  "F3chunk_025.json",
+  "F3chunk_050.json",
+  "F3chunk_100.json",
+  "F3chunk_150.json",
+  "P6_direct_N2000.json",
+  "P6_pipeline_N1000.json",
+  "P6_pipeline_N2000.json",
+  "P6_pipeline_N3000.json",
+  "P6_rips.json",
+  "P7_N1000.json",
+  "P7_N16000.json",
+  "P7_N2000.json",
+  "P7_N250.json",
+  "P7_N4000.json",
+  "P7_N500.json",
+  "P7_N8000.json",
+  "P7lm_N16000.json",
+  "P7lm_N8000.json",
+  "killed___case_P6___part_pipeline_.json"
+ ],
+ "comparisons": {
+  "P7_N4000.json": {
+   "identical_ignoring_timing": true
+  },
+  "P6_pipeline_N1000.json": {
+   "identical_ignoring_timing": true
+  },
+  "F3chunk_000.json maps 0-4": {
+   "identical": true,
+   "n_maps_compared": 5
+  }
+ }
+}

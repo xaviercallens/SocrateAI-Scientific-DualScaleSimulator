@@ -2,7 +2,7 @@
  "title": "TDA known-answer suite on simple spaces (LeanFlow TEST_USE_CASES section 2)",
  "generated_by": "make_report.py from results.json",
  "tiers": "expected topology: L (Hatcher 2002; Kunneth; construction). Every observed number: X (numerics). Nothing here is proved.",
- "hardware": "Intel Xeon @ 2.20GHz, 8 cores, 29 GB RAM, shared; 1-min load average at case start ranged 1.83-16.1 over the recorded runs (per-case loadavg_start in results.json). Every process: prlimit --as=6442450944, timeout <= 590 s, OMP_NUM_THREADS=1. Wall times are under contention and are not benchmarks.",
+ "hardware": "Intel Xeon @ 2.20GHz, 8 cores, 29 GB RAM, shared; 1-min load average at case start ranged 0.77-16.1 over the recorded runs (per-case loadavg_start in results.json). Every process: prlimit --as=6442450944, timeout <= 590 s, OMP_NUM_THREADS=1. Wall times are under contention and are not benchmarks.",
  "code_under_test_sha256": {
   "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
   "audit/reverse_zero/E5-cmb-tda/cmb_tda.py": "a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d"
@@ -464,6 +464,40 @@
      "error": "MemoryError('std::bad_alloc')",
      "wall_sec_total": 245.87866401672363,
      "peak_rss_mb": 5588.0
+    }
+   }
+  },
+  {
+   "id": "P6[nref2000]",
+   "expected": {
+    "Z/2": [
+     1,
+     1,
+     1
+    ],
+    "Z/3": [
+     1,
+     0,
+     0
+    ]
+   },
+   "pass": null,
+   "parts": {
+    "rips": {
+     "status": "ok",
+     "error": null,
+     "wall_sec_total": 10.659359455108643,
+     "peak_rss_mb": 241.62109375,
+     "rips_Z/2": [
+      1,
+      1,
+      1
+     ],
+     "rips_Z/3": [
+      1,
+      0,
+      1
+     ]
     }
    }
   },
@@ -949,6 +983,7 @@
    "id": "N2",
    "expected": "P3a H1 destroyed",
    "pass": false,
+   "note": "the shuffle DID destroy the two dominant H1 bars (ratio half passes); the FAIL is the p-value half, from a uniform-box null mismatched to the shuffled cloud's non-uniform marginals",
    "H1_p2_over_p3": 1.0240297944616428,
    "p_value_second_H1_bar_vs_P9c": 0.0196078431372549
   },
@@ -979,9 +1014,9 @@
   {
    "function": "cmb_tda.coarse_stats (with betti_curves_from_topology on the default nu grid [-4, 4])",
    "kind": "calibration FAILURE (F3)",
-   "finding": "for the sublevel b1 curve the Hartlap chi2 p-values of 100 independent Gaussian maps against a 100-map ensemble are not uniform: KS p = 0.000109, 9 of 100 below 0.05. Cause (post-hoc diagnostic): the first coarse bin (nu in [-4, -3]) of b1 is exactly 0 in a fraction 1 of the 100 ensemble maps (std 0), and the second is a rare-count bin (fraction 0.74 of maps exactly 0, std 0.12); coarse_stats keeps df = N_BINS = 8 and a 1e-8 ridge, so one degenerate bin shifts the chi2(8) reference and a single loop in the rare-count bin gives a single-bin |z| up to 6.12. The smallest Hartlap p-values are [0.0, 0.0003, 0.0019]. The empirical rank p-value is closer to uniform for b1 (KS p = 0.246) but has 12 of 100 below 0.05.",
+   "finding": "for the sublevel b1 curve the Hartlap chi2 p-values of 100 independent Gaussian maps against a 100-map ensemble are not uniform: KS p = 0.000109, 9 of 100 below 0.05. Post-hoc diagnosis, two measured causes and one latent hazard: (1) df: the first coarse bin (nu in [-4, -3]) of b1 has zero ensemble variance (value [0.0] in all 100 maps), so only 7 bins carry information, but coarse_stats uses df = 8; recomputing the survival function with df = 7 moves the b1 KS p to 0.162 (b0, which has the same kind of zero-variance bin at nu in [3, 4], moves from 0.0205 to 0.948). (2) tail: the second coarse bin of b1 is a rare-count bin (fraction 0.74 of maps exactly 0, std 0.12); a test map with one small loop there gets a single-bin z of ['6.12', '4.46', '4.46'], which gives the smallest p-values ['9.4e-07', '0.00034', '0.0019']; with the df recount 10 of 100 are still below 0.05. (3) latent, did not fire here: coarse_stats adds a 1e-8 ridge and calls pinv (cutoff about 1e-12), so a zero-variance bin keeps an inverse-variance weight of about 1e8; no test map differed in a zero-variance bin (0 for b1, 0 for b0), but one that did would get a chi2 of order 1e8 and p = 0.",
    "not_affected": "b0 (KS p = 0.0205) and chi (KS p = 0.397) pass the pre-registered gate",
-   "consequence": "b1 chi2 p-values from the CMB TDA run (same coarse_stats, same nu grid, nside 128 masked) should not be read at face value; drop zero-variance bins (and set df to the number kept), restrict the nu range to where the curve varies, or use the rank p-value with its own calibration"
+   "consequence": "chi2 p-values from the CMB TDA run (same coarse_stats, same nu grid, nside 128 masked) should not be read at face value until its saved null ensembles are scanned for zero-variance and rare-count coarse bins. Fix: drop zero-variance bins and set df to the number kept, restrict the nu range to where the curve varies, and calibrate against the empirical rank p-value"
   },
   {
    "function": "cmb_tda.build_topology",
@@ -995,7 +1030,8 @@
    "case": "P6 (RP2), pre-registered design",
    "result": "FAIL (over budget)",
    "cause": "alpha in R4 on the (xy, xz, y^2 - z^2, 2yz) embedding does not fit the 6 GiB / 590 s cap at N = 6000 (the recorded run hit the 590 s timeout, exit 124; an earlier identical attempt, before error capture was added, ended in std::bad_alloc) nor at N = 3000 (std::bad_alloc, peak RSS 5588 MB). This is a Delaunay-size limit of gudhi/CGAL in R4 for this point set, not pipeline logic.",
-   "post_hoc": "N = 2000 (first 2000 of the same draw): pipeline Z/2 [1, 1, 1], direct alpha Z/2 [1, 1, 1, 0] and Z/3 [1, 0, 0, 0], all PASS (13879307 simplices, peak RSS 4577 MB). N = 1000: pipeline Z/2 observed [1, 5, 1], FAIL (H1 rule p_1 / p_2 = 4.297 (required >= 5))."
+   "post_hoc": "N = 2000 (first 2000 of the same draw): pipeline Z/2 [1, 1, 1], direct alpha Z/2 [1, 1, 1, 0] and Z/3 [1, 0, 0, 0], all PASS (13879307 simplices, peak RSS 4577 MB). N = 1000: pipeline Z/2 observed [1, 5, 1], FAIL (H1 rule p_1 / p_2 = 4.297 (required >= 5)).",
+   "post_hoc_rips_n2000": "Rips on the R6 Veronese with n = 2000 (seed 107, L = 1.2; not pre-registered): Z/2 observed [1, 1, 1] (H1 p_1 / p_2 = 7.041 (required >= 5)); Z/3 observed [1, 0, 1]. The Z/3 H2 'bar' that trips the acyclic rule is a ratio of two negligible bars (acyclic clause: p_1 / p_2 = 809.8 < 5, persistence 0.00621 and 7.67e-06 against L = 1.2): the pre-registered p_1 < 5 p_2 rule has no absolute floor, which is a defect of the rule, recorded as FAIL."
   },
   {
    "case": "P7 (T3 in R6)",
@@ -1108,6 +1144,97 @@
     }
    },
    "reading": "the three H1 bars, three H2 bars and the H3 bar are the three to four longest bars from N = 2000 up, but the 5x rule needs the noise bars to shrink below 1/5 of the capped true bars. At N = 16000 (429 s, 1178 MB) H1 (p_3 / p_4 = 5.94 (required >= 5)) and H3 (p_1 / p_2 = 24.14 (required >= 5)) pass; H0 (p_1 / p_2 = 4.776 (required >= 5)) and H2 (p_3 / p_4 = 4.168 (required >= 5)) do not. N = 32000 was not attempted: wall time grew from 62.4 s (N = 8000) to 429 s (N = 16000), so N = 32000 is projected far beyond the 590 s cap.",
+   "trend": {
+    "dominance_ratio_by_N": {
+     "0": {
+      "250": "1.541",
+      "500": "1.684",
+      "1000": "2.002",
+      "2000": "2.631",
+      "4000": "3.056",
+      "8000": "3.966",
+      "16000": "4.776"
+     },
+     "1": {
+      "250": "1.135",
+      "500": "1.514",
+      "1000": "2.106",
+      "2000": "2.609",
+      "4000": "3.597",
+      "8000": "4.657",
+      "16000": "5.94"
+     },
+     "2": {
+      "250": "1.059",
+      "500": "1.013",
+      "1000": "1.255",
+      "2000": "1.841",
+      "4000": "3.046",
+      "8000": "3.913",
+      "16000": "4.168"
+     },
+     "3": {
+      "250": "inf",
+      "500": "inf",
+      "1000": "3.915",
+      "2000": "6.017",
+      "4000": "14.65",
+      "8000": "25.84",
+      "16000": "24.14"
+     }
+    },
+    "observed_betti_by_N": {
+     "250": [
+      248,
+      74,
+      0,
+      0
+     ],
+     "500": [
+      481,
+      104,
+      18,
+      0
+     ],
+     "1000": [
+      914,
+      133,
+      21,
+      0
+     ],
+     "2000": [
+      1595,
+      138,
+      15,
+      1
+     ],
+     "4000": [
+      2172,
+      114,
+      8,
+      1
+     ],
+     "8000": [
+      1272,
+      12,
+      4,
+      1
+     ],
+     "16000": [
+      67,
+      3,
+      3,
+      1
+     ]
+    },
+    "monotone_in_N": {
+     "H0": true,
+     "H1": true,
+     "H2": false,
+     "H3": false
+    },
+    "reading": "the ratios grow with N overall (monotone per dimension: {'H0': True, 'H1': True, 'H2': False, 'H3': False}); at N = 16000 the observed H1/H2/H3 counts are (3, 3, 1), H0 still has 67 bars above threshold, and the H0 and H2 ratios are below 5"
+   },
    "post_hoc_landmarks": "farthest-point landmarks from a 48000-point pool (not pre-registered): 8000 landmarks give [4603, 3, 3, 1] (H0 p_1 / p_2 = 4.34 (required >= 5)); 16000 landmarks pass every 5x rule (H0 p_1 / p_2 = 5.438 (required >= 5), H1 p_3 / p_4 = 8.193 (required >= 5), H2 p_3 / p_4 = 6.553 (required >= 5), H3 p_1 / p_2 = 26.32 (required >= 5)) but observed beta_0 = 15 because that many H0 bars (the second is 0.294, near the landmark spacing) are >= 0.2 x P_all = 0.276; so FAIL under the pre-registered observed-beta rule."
   },
   {
@@ -1137,7 +1264,9 @@
   "F1shuf (shuffled-site control) added post hoc because TEST_USE_CASES gained TDA-N3 during this run.",
   "F3 per-bin diagnostic added post hoc after the b1 KS failure; it does not change the gate.",
   "The P5 direct run frees the AlphaComplex object before persistence (memory); the complex is unchanged.",
-  "All cheap and medium cases were rerun at the committed script (9da5954); outputs matched the earlier runs exactly apart from timing fields. P6 N-variants, P7 and F3 chunks were run with the pre-commit working copy (same code path for those cases)."
+  "All cheap and medium cases were rerun at the committed runner (9da5954) and matched the earlier runs exactly apart from timing fields. The case files without a script_sha256 key were produced by the pre-commit working copy: ['F3chunk_000.json', 'F3chunk_025.json', 'F3chunk_050.json', 'F3chunk_100.json', 'F3chunk_150.json', 'P6_direct_N2000.json', 'P6_pipeline_N1000.json', 'P6_pipeline_N2000.json', 'P6_pipeline_N3000.json', 'P6_rips.json', 'P7_N1000.json', 'P7_N16000.json', 'P7_N2000.json', 'P7_N250.json', 'P7_N4000.json', 'P7_N500.json', 'P7_N8000.json', 'P7lm_N16000.json', 'P7lm_N8000.json', 'killed___case_P6___part_pipeline_.json']. A spot-check reran one per group at the final script (spot/): {'P7_N4000.json': {'identical_ignoring_timing': True}, 'P6_pipeline_N1000.json': {'identical_ignoring_timing': True}, 'F3chunk_000.json maps 0-4': {'identical': True, 'n_maps_compared': 5}}.",
+  "P6 Rips with n = 2000 (post hoc, --nref) added after the advisor review; reference only, not gated.",
+  "The --outdir and --nref options and the F3 zero-variance/df diagnostics were added to simple_suite.py after 9da5954; they do not change any gated computation."
  ],
  "killed_or_crashed_runs": [
   {

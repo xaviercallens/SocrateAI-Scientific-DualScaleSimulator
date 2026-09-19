@@ -1,6 +1,6 @@
 {
  "generated_by": "simple_suite.py --aggregate",
- "git_head_at_aggregate": "9da59549e958d7b0a9df7350f6e27cfc28d163fa",
+ "git_head_at_aggregate": "079c1609825f31db87da8808ee6c513b917a7358",
  "code_under_test_sha256": {
   "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
   "audit/reverse_zero/E5-cmb-tda/cmb_tda.py": "a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d"
@@ -3547,6 +3547,284 @@
      "pass": false,
      "pass_rule": "every alpha run in this variant (pipeline Z/2, direct Z/2 and Z/3) passes; an error counts as FAIL; Rips reference reported, not gated"
     },
+    "nref2000": {
+     "parts": {
+      "rips": {
+       "status": "ok",
+       "error": null,
+       "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case P6 --part rips --nref 2000",
+       "wall_sec_total": 10.659359455108643,
+       "peak_rss_mb": 241.62109375,
+       "loadavg_start": [
+        0.77001953125,
+        1.54833984375,
+        5.154296875
+       ],
+       "rips_info": {
+        "L": 1.2,
+        "n_points": 2000,
+        "graph_simplices": 943087,
+        "after_collapse_simplices": 7948,
+        "collapse_iterations": 5,
+        "expanded_simplices": 12133,
+        "expansion_dim": 3
+       },
+       "function": "gudhi.RipsComplex + collapse + expansion(3), fields 2 and 3 on one tree",
+       "embedding": "R6 Veronese",
+       "rips_Z/2": {
+        "observed": [
+         1,
+         1,
+         1
+        ],
+        "pass": true,
+        "per_dim": {
+         "0": {
+          "expected": 1,
+          "observed_beta": 1,
+          "rule": "p_1 / p_2 = 9.181 >= 5",
+          "rule_pass": true,
+          "pass": true,
+          "gated": true,
+          "n_bars": 2000,
+          "top_persistence": [
+           1.2,
+           0.13069905733082754,
+           0.12958079031296707,
+           0.12125747917399934,
+           0.12045760338753599,
+           0.11675811798972316
+          ],
+          "top_bars_birth_death_capped": [
+           [
+            0.0,
+            1.2
+           ],
+           [
+            0.0,
+            0.13069905733082754
+           ],
+           [
+            0.0,
+            0.12958079031296707
+           ],
+           [
+            0.0,
+            0.12125747917399934
+           ],
+           [
+            0.0,
+            0.12045760338753599
+           ],
+           [
+            0.0,
+            0.11675811798972316
+           ]
+          ],
+          "n_infinite": 1
+         },
+         "1": {
+          "expected": 1,
+          "observed_beta": 1,
+          "rule": "p_1 / p_2 = 7.041 >= 5",
+          "rule_pass": true,
+          "pass": true,
+          "gated": true,
+          "n_bars": 549,
+          "top_persistence": [
+           1.1046426675870207,
+           0.15688595253137338,
+           0.14147782069351628,
+           0.13923106994424236,
+           0.13377378144040913,
+           0.128501967260359
+          ],
+          "top_bars_birth_death_capped": [
+           [
+            0.0953573324129792,
+            1.2
+           ],
+           [
+            0.09549868888509626,
+            0.25238464141646966
+           ],
+           [
+            0.1004435937333208,
+            0.2419214144268371
+           ],
+           [
+            0.10229330530852965,
+            0.241524375252772
+           ],
+           [
+            0.09527613764781882,
+            0.22904991908822794
+           ],
+           [
+            0.09867944740454225,
+            0.22718141466490127
+           ]
+          ],
+          "n_infinite": 1
+         },
+         "2": {
+          "expected": 1,
+          "observed_beta": 1,
+          "rule": "p_1 / p_2 = 152.3 >= 5",
+          "rule_pass": true,
+          "pass": true,
+          "gated": true,
+          "n_bars": 3,
+          "top_persistence": [
+           0.9458655244147417,
+           0.006208956281225295,
+           7.667081006884624e-06
+          ],
+          "top_bars_birth_death_capped": [
+           [
+            0.25413447558525826,
+            1.2
+           ],
+           [
+            0.11493511770133495,
+            0.12114407398256025
+           ],
+           [
+            0.1783878688397989,
+            0.1783955359208058
+           ]
+          ],
+          "n_infinite": 1
+         }
+        }
+       },
+       "rips_Z/3": {
+        "observed": [
+         1,
+         0,
+         1
+        ],
+        "pass": false,
+        "per_dim": {
+         "0": {
+          "expected": 1,
+          "observed_beta": 1,
+          "rule": "p_1 / p_2 = 9.181 >= 5",
+          "rule_pass": true,
+          "pass": true,
+          "gated": true,
+          "n_bars": 2000,
+          "top_persistence": [
+           1.2,
+           0.13069905733082754,
+           0.12958079031296707,
+           0.12125747917399934,
+           0.12045760338753599,
+           0.11675811798972316
+          ],
+          "top_bars_birth_death_capped": [
+           [
+            0.0,
+            1.2
+           ],
+           [
+            0.0,
+            0.13069905733082754
+           ],
+           [
+            0.0,
+            0.12958079031296707
+           ],
+           [
+            0.0,
+            0.12125747917399934
+           ],
+           [
+            0.0,
+            0.12045760338753599
+           ],
+           [
+            0.0,
+            0.11675811798972316
+           ]
+          ],
+          "n_infinite": 1
+         },
+         "1": {
+          "expected": 0,
+          "observed_beta": 0,
+          "rule": "acyclic clause: p_1 / p_2 = 1.012 < 5",
+          "rule_pass": true,
+          "pass": true,
+          "gated": true,
+          "n_bars": 549,
+          "top_persistence": [
+           0.15877714317227906,
+           0.15688595253137338,
+           0.14147782069351628,
+           0.13923106994424236,
+           0.13377378144040913,
+           0.128501967260359
+          ],
+          "top_bars_birth_death_capped": [
+           [
+            0.0953573324129792,
+            0.25413447558525826
+           ],
+           [
+            0.09549868888509626,
+            0.25238464141646966
+           ],
+           [
+            0.1004435937333208,
+            0.2419214144268371
+           ],
+           [
+            0.10229330530852965,
+            0.241524375252772
+           ],
+           [
+            0.09527613764781882,
+            0.22904991908822794
+           ],
+           [
+            0.09867944740454225,
+            0.22718141466490127
+           ]
+          ],
+          "n_infinite": 0
+         },
+         "2": {
+          "expected": 0,
+          "observed_beta": 1,
+          "rule": "acyclic clause: p_1 / p_2 = 809.8 < 5",
+          "rule_pass": false,
+          "pass": false,
+          "gated": true,
+          "n_bars": 2,
+          "top_persistence": [
+           0.006208956281225295,
+           7.667081006884624e-06
+          ],
+          "top_bars_birth_death_capped": [
+           [
+            0.11493511770133495,
+            0.12114407398256025
+           ],
+           [
+            0.1783878688397989,
+            0.1783955359208058
+           ]
+          ],
+          "n_infinite": 0
+         }
+        }
+       }
+      }
+     },
+     "pass": null,
+     "pass_rule": "every alpha run in this variant (pipeline Z/2, direct Z/2 and Z/3) passes; an error counts as FAIL; Rips reference reported, not gated"
+    },
     "preregistered": {
      "parts": {
       "rips": {
@@ -6330,6 +6608,75 @@
    "statistics": {
     "b0": {
      "post_hoc_bin_diagnostic": {
+      "df_recount_check": {
+       "df_used_by_coarse_stats": 8,
+       "df_nonzero_variance_bins": 7,
+       "ks_p_with_df_recount": 0.9476720151115903,
+       "n_below_0.05_with_df_recount": 4,
+       "lowest_p_maps_per_bin_z": [
+        {
+         "test_index": 48,
+         "hartlap_p": 0.014988846079287214,
+         "chi2": 18.975941025869876,
+         "per_bin_z": [
+          0.24442851237705515,
+          -1.3559189620291274,
+          -1.7326400719723458,
+          -1.81709420327034,
+          -1.052104602752779,
+          0.3714453687147001,
+          2.9234227320944774,
+          null
+         ]
+        },
+        {
+         "test_index": 66,
+         "hartlap_p": 0.01748562971087132,
+         "chi2": 18.5459888963385,
+         "per_bin_z": [
+          -0.8299825310385708,
+          -1.6145176197587767,
+          -0.42633158727763587,
+          -0.3755186225772647,
+          -2.0482361022031146,
+          3.148607003964788,
+          2.9234227320944774,
+          null
+         ]
+        },
+        {
+         "test_index": 20,
+         "hartlap_p": 0.04794345111829038,
+         "chi2": 15.633069136121012,
+         "per_bin_z": [
+          1.0502367949387748,
+          -1.2697194094525772,
+          -1.115112424662119,
+          -1.9352561361140348,
+          0.4658100630763025,
+          2.8014617995585276,
+          -0.4891329863037457,
+          null
+         ]
+        }
+       ]
+      },
+      "zero_variance_check": {
+       "zero_variance_bins": [
+        7
+       ],
+       "zero_variance_bin_values": [
+        1.0
+       ],
+       "n_test_maps_differing_in_a_zero_variance_bin": 0,
+       "hartlap_p_of_those_maps": [],
+       "chi2_of_those_maps": [],
+       "n_other_maps": 100,
+       "ks_p_hartlap_other_maps": 0.02052679244545007,
+       "n_below_0.05_other_maps": 3,
+       "pinv_rcond_cutoff_estimate": 9.23295861460473e-13,
+       "smallest_cov_eigenvalue": 1e-08
+      },
       "coarse_bin_ensemble_std": [
        0.7445939846790344,
        2.32019765789839,
@@ -6408,6 +6755,75 @@
     },
     "b1": {
      "post_hoc_bin_diagnostic": {
+      "df_recount_check": {
+       "df_used_by_coarse_stats": 8,
+       "df_nonzero_variance_bins": 7,
+       "ks_p_with_df_recount": 0.1621246733760803,
+       "n_below_0.05_with_df_recount": 10,
+       "lowest_p_maps_per_bin_z": [
+        {
+         "test_index": 25,
+         "hartlap_p": 9.378721983686216e-07,
+         "chi2": 42.84895264404689,
+         "per_bin_z": [
+          null,
+          6.12303385783233,
+          -0.7047821334798029,
+          -0.4940159025775253,
+          1.1623323816222515,
+          1.487668371495472,
+          0.11785253256496193,
+          0.7424621202458743
+         ]
+        },
+        {
+         "test_index": 80,
+         "hartlap_p": 0.00034192412113380374,
+         "chi2": 28.813323396058372,
+         "per_bin_z": [
+          null,
+          4.45916596168224,
+          1.4116807298229073,
+          -2.2390172636917973,
+          1.2391384861347343,
+          0.6588274524668747,
+          -1.961898042110804,
+          -0.3181980515339466
+         ]
+        },
+        {
+         "test_index": 54,
+         "hartlap_p": 0.0019266391298509158,
+         "chi2": 24.44845985384619,
+         "per_bin_z": [
+          null,
+          4.45916596168224,
+          -0.28148956081926074,
+          -0.5541883633056035,
+          1.0599242422722737,
+          -0.2104447309045816,
+          1.6934211497435727,
+          -0.053033008588991216
+         ]
+        }
+       ]
+      },
+      "zero_variance_check": {
+       "zero_variance_bins": [
+        0
+       ],
+       "zero_variance_bin_values": [
+        0.0
+       ],
+       "n_test_maps_differing_in_a_zero_variance_bin": 0,
+       "hartlap_p_of_those_maps": [],
+       "chi2_of_those_maps": [],
+       "n_other_maps": 100,
+       "ks_p_hartlap_other_maps": 0.00010907605871558121,
+       "n_below_0.05_other_maps": 9,
+       "pinv_rcond_cutoff_estimate": 1.0126321913815934e-12,
+       "smallest_cov_eigenvalue": 1e-08
+      },
       "coarse_bin_ensemble_std": [
        0.0,
        0.12020185043702468,
@@ -6486,6 +6902,71 @@
     },
     "chi": {
      "post_hoc_bin_diagnostic": {
+      "df_recount_check": {
+       "df_used_by_coarse_stats": 8,
+       "df_nonzero_variance_bins": 8,
+       "ks_p_with_df_recount": 0.39745050547226574,
+       "n_below_0.05_with_df_recount": 9,
+       "lowest_p_maps_per_bin_z": [
+        {
+         "test_index": 53,
+         "hartlap_p": 0.0018162279476343585,
+         "chi2": 24.600461150358786,
+         "per_bin_z": [
+          -0.2927770093307578,
+          0.5661360170439521,
+          0.4129170281984831,
+          0.2166092182845972,
+          -0.8045374810858903,
+          -0.46231117860412363,
+          -0.26991872740324074,
+          -4.4547727214752495
+         ]
+        },
+        {
+         "test_index": 80,
+         "hartlap_p": 0.015481256643660813,
+         "chi2": 18.88601747933624,
+         "per_bin_z": [
+          2.9304561209161206,
+          -0.03522242291168698,
+          -2.215553717134623,
+          1.4795251552796005,
+          -0.4674961509119101,
+          -0.6513955052315775,
+          1.9270941700649986,
+          0.3181980515339463
+         ]
+        },
+        {
+         "test_index": 52,
+         "hartlap_p": 0.01631690746465824,
+         "chi2": 18.739451917265864,
+         "per_bin_z": [
+          -0.2927770093307578,
+          -1.2379393028229646,
+          0.4353825901244066,
+          -1.3524681579819224,
+          -1.1614047718583402,
+          1.995785067552777,
+          0.4205710403724916,
+          -0.21213203435596437
+         ]
+        }
+       ]
+      },
+      "zero_variance_check": {
+       "zero_variance_bins": [],
+       "zero_variance_bin_values": [],
+       "n_test_maps_differing_in_a_zero_variance_bin": 0,
+       "hartlap_p_of_those_maps": [],
+       "chi2_of_those_maps": [],
+       "n_other_maps": 100,
+       "ks_p_hartlap_other_maps": 0.39745050547226574,
+       "n_below_0.05_other_maps": 9,
+       "pinv_rcond_cutoff_estimate": 2.1941944888960718e-12,
+       "smallest_cov_eigenvalue": 0.2261516843050294
+      },
       "coarse_bin_ensemble_std": [
        0.7445939846790344,
        2.3280624449259832,
