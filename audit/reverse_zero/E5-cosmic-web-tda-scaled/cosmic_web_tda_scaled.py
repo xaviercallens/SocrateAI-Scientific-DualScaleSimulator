@@ -218,11 +218,22 @@ def l2_over_range(curve_a, curve_b, r_grid, r_range):
     return float(np.sqrt(np.mean((curve_a[mask] - curve_b[mask]) ** 2)))
 
 
-def top_bars(by_dim, dim, k=5):
+def top_bars(by_dim, dim, k=5, r_trunc=None):
+    """r_trunc: substitute value for an infinite death (the truncation
+    scale of the alpha complex THIS diagram came from). Defaults to the
+    module-level R_MAX_PERS for backward compatibility with the real/null
+    calls below (which are all built at that truncation); callers that
+    build a complex at a DIFFERENT max_alpha_square (e.g. the planted-void
+    control, truncated at 37.5 Mpc not 50) must pass their own r_trunc --
+    using the wrong one here previously caused top_bars() to silently
+    borrow the wrong truncation scale for any complex not built at
+    R_MAX_PERS. Fixed 2026-09-19 (see RESUME NOTE in this file's docstring)."""
+    if r_trunc is None:
+        r_trunc = R_MAX_PERS
     bars = np.array(by_dim[dim]) if by_dim[dim] else np.empty((0, 2))
     if bars.size == 0:
         return np.empty((0, 2))
-    finite = np.where(np.isfinite(bars[:, 1]), bars[:, 1], R_MAX_PERS)
+    finite = np.where(np.isfinite(bars[:, 1]), bars[:, 1], r_trunc)
     pers = finite - bars[:, 0]
     order = np.argsort(pers)[::-1][:k]
     out = bars[order].copy()
@@ -366,15 +377,29 @@ def run():
     # ---- known-answer controls ----
     circle_xyz = build_circle_cloud(n=2000, seed=SEED_SUBSAMPLE_REAL)
     res_circle, bd_circle = alpha_persistence(circle_xyz, max_alpha_sq=100.0, label="known_answer_circle", out_dir=HERE)
-    circle_h1 = top_bars(bd_circle, 1, k=3)
+    circle_h1 = top_bars(bd_circle, 1, k=3, r_trunc=10.0)
     circle_ratio = float((circle_h1[0, 1] - circle_h1[0, 0]) / max(circle_h1[1, 1] - circle_h1[1, 0], 1e-9)) if len(circle_h1) >= 2 else None
 
     void_xyz, void_centers = build_planted_void_cloud(n_fill=15000, box=100.0, void_radius=15.0, n_voids=6, seed=SEED_SUBSAMPLE_REAL)
-    res_void, bd_void = alpha_persistence(void_xyz, max_alpha_sq=(2.5 * 15.0) ** 2, label="known_answer_planted_voids", out_dir=HERE)
-    void_h2 = top_bars(bd_void, 2, k=8)
+    VOID_R_TRUNC = 2.5 * 15.0  # sqrt(max_alpha_sq) below -- pass explicitly to top_bars (see its 2026-09-19 fix)
+    res_void, bd_void = alpha_persistence(void_xyz, max_alpha_sq=VOID_R_TRUNC ** 2, label="known_answer_planted_voids", out_dir=HERE)
+    void_h2 = top_bars(bd_void, 2, k=8, r_trunc=VOID_R_TRUNC)
     # each planted void should give an H2 bar that DIES near r ~ void_radius (the alpha-radius at which the
     # Delaunay-alpha ball first reaches the cavity's own radius and the void gets filled in) -- verified below.
     void_h2_bars = [[float(x[0]), float(x[1])] for x in void_h2]
+    # pass/fail gate, computed rather than eyeballed: a real detection is N_VOIDS bars whose DEATH
+    # is within 20% of the planted void_radius, separated by a persistence gap from the next bar.
+    _void_deaths = np.array([d for _, d in void_h2_bars])
+    _void_pers = np.array([d - b for b, d in void_h2_bars])
+    _near_radius = np.sum(np.abs(_void_deaths - 15.0) / 15.0 < 0.20)
+    _order = np.argsort(_void_pers)[::-1]
+    _gap = float(_void_pers[_order[5]] - _void_pers[_order[6]]) if len(_order) > 6 else None
+    void_control_gate = {
+        "n_bars_with_death_within_20pct_of_void_radius": int(_near_radius),
+        "n_voids_planted": int(len(void_centers)),
+        "persistence_gap_bar6_to_bar7": _gap,
+        "pass": bool(_near_radius == len(void_centers) and (_gap is None or _gap > 1.0)),
+    }
 
     plot_betti_envelope(R_GRID, (b0_real, b1_real, b2_real),
                         {0: null_betti_stacks[0], 1: null_betti_stacks[1], 2: null_betti_stacks[2]},
@@ -454,6 +479,7 @@ def run():
                                    "void_radius_mpc_or_length_unit": 15.0,
                                    "betti_numbers": res_void["betti_numbers_at_truncation"],
                                    "top_H2_bars_birth_death": void_h2_bars,
+                                   "gate": void_control_gate,
                                    "interpretation": "each planted spherical void should produce an H2 bar that "
                                                        "DIES near r ~ void_radius (the alpha-radius at which the "
                                                        "Delaunay-alpha ball first spans the cavity and its boundary "

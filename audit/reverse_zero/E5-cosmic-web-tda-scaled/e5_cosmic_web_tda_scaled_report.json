@@ -179,7 +179,7 @@
       {
         "seed": 0,
         "n_points": 25000,
-        "runtime_sec": 2.6602084636688232,
+        "runtime_sec": 2.7625174522399902,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -189,7 +189,7 @@
       {
         "seed": 1,
         "n_points": 25000,
-        "runtime_sec": 2.584096670150757,
+        "runtime_sec": 2.9439003467559814,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -199,7 +199,7 @@
       {
         "seed": 2,
         "n_points": 25000,
-        "runtime_sec": 2.520562171936035,
+        "runtime_sec": 3.0006282329559326,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -209,7 +209,7 @@
       {
         "seed": 3,
         "n_points": 25000,
-        "runtime_sec": 2.5291264057159424,
+        "runtime_sec": 3.0965240001678467,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -219,7 +219,7 @@
       {
         "seed": 4,
         "n_points": 25000,
-        "runtime_sec": 2.528163194656372,
+        "runtime_sec": 3.270871162414551,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -229,7 +229,7 @@
       {
         "seed": 5,
         "n_points": 25000,
-        "runtime_sec": 2.5269222259521484,
+        "runtime_sec": 2.7940688133239746,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -239,7 +239,7 @@
       {
         "seed": 6,
         "n_points": 25000,
-        "runtime_sec": 2.5537455081939697,
+        "runtime_sec": 2.649031400680542,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -249,7 +249,7 @@
       {
         "seed": 7,
         "n_points": 25000,
-        "runtime_sec": 2.5050764083862305,
+        "runtime_sec": 2.57002329826355,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -259,7 +259,7 @@
       {
         "seed": 8,
         "n_points": 25000,
-        "runtime_sec": 2.5272555351257324,
+        "runtime_sec": 2.547243356704712,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -269,7 +269,7 @@
       {
         "seed": 9,
         "n_points": 25000,
-        "runtime_sec": 2.5061235427856445,
+        "runtime_sec": 2.538585901260376,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -279,7 +279,7 @@
       {
         "seed": 10,
         "n_points": 25000,
-        "runtime_sec": 2.5140275955200195,
+        "runtime_sec": 2.6164286136627197,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -289,7 +289,7 @@
       {
         "seed": 11,
         "n_points": 25000,
-        "runtime_sec": 2.5202887058258057,
+        "runtime_sec": 2.6612770557403564,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -299,7 +299,7 @@
       {
         "seed": 12,
         "n_points": 25000,
-        "runtime_sec": 2.5087337493896484,
+        "runtime_sec": 2.748986005783081,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -309,7 +309,7 @@
       {
         "seed": 13,
         "n_points": 25000,
-        "runtime_sec": 2.5543742179870605,
+        "runtime_sec": 2.760169744491577,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -319,7 +319,7 @@
       {
         "seed": 14,
         "n_points": 25000,
-        "runtime_sec": 2.524444341659546,
+        "runtime_sec": 2.9386796951293945,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -329,7 +329,7 @@
       {
         "seed": 15,
         "n_points": 25000,
-        "runtime_sec": 2.5760507583618164,
+        "runtime_sec": 3.1721739768981934,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -339,7 +339,7 @@
       {
         "seed": 16,
         "n_points": 25000,
-        "runtime_sec": 2.543344736099243,
+        "runtime_sec": 3.1564509868621826,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -349,7 +349,7 @@
       {
         "seed": 17,
         "n_points": 25000,
-        "runtime_sec": 2.8684167861938477,
+        "runtime_sec": 3.0913703441619873,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -359,7 +359,7 @@
       {
         "seed": 18,
         "n_points": 25000,
-        "runtime_sec": 2.610157012939453,
+        "runtime_sec": 2.7651588916778564,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -369,7 +369,7 @@
       {
         "seed": 19,
         "n_points": 25000,
-        "runtime_sec": 2.681195020675659,
+        "runtime_sec": 2.726316213607788,
         "betti_numbers_at_truncation": [
           1,
           0,
@@ -386,7 +386,7 @@
   },
   "real_result": {
     "n_points": 25000,
-    "runtime_sec": 2.407261848449707,
+    "runtime_sec": 2.5444703102111816,
     "betti_numbers_at_truncation_r50": [
       1,
       0,
@@ -554,19 +554,49 @@
         0,
         0
       ],
-      "top_H2_bar_births": [
-        4.067902946752418,
-        4.039478757083866,
-        4.083873563072125,
-        4.507659870337222,
-        5.359867077093099,
-        5.726800662369912,
-        3.8936760328034605,
-        3.782964679633458
+      "top_H2_bars_birth_death": [
+        [
+          4.067902946752418,
+          15.12776300966527
+        ],
+        [
+          4.039478757083866,
+          15.068472827792634
+        ],
+        [
+          4.083873563072125,
+          15.05531440173681
+        ],
+        [
+          4.507659870337222,
+          15.142233290087864
+        ],
+        [
+          5.359867077093099,
+          15.06591969843279
+        ],
+        [
+          5.726800662369912,
+          15.050371861313675
+        ],
+        [
+          3.8936760328034605,
+          6.096347793831287
+        ],
+        [
+          3.782964679633458,
+          5.8038570172338675
+        ]
       ],
-      "interpretation": "each planted spherical void should produce an H2 bar born near r ~ void_radius (the alpha-radius at which the Delaunay triangulation closes the cavity's boundary); births are reported for inspection against the 15.0 target -- confirms the pipeline detects H2 (voids), which the E4 circle-only control never tested."
+      "gate": {
+        "n_bars_with_death_within_20pct_of_void_radius": 6,
+        "n_voids_planted": 6,
+        "persistence_gap_bar6_to_bar7": 7.120899437915938,
+        "pass": true
+      },
+      "interpretation": "each planted spherical void should produce an H2 bar that DIES near r ~ void_radius (the alpha-radius at which the Delaunay-alpha ball first spans the cavity and its boundary closes up), with a small BIRTH set by the local point spacing near the void wall, not by the void radius. Verified: the top 6 bars (matching the 6 planted voids) have death in [15.05, 15.14] against a planted radius of 15.0 (<1% error); the 7th/8th bars (death ~5.8-6.1) are smaller incidental cavities from the random fill, not planted voids -- this confirms the pipeline detects H2 (voids), which the E4 circle-only control never tested."
     }
   },
-  "total_runtime_sec": 70.1945915222168,
+  "total_runtime_sec": 76.97718167304993,
   "interpretation": "See pre_stated_comparison_statistic for the r-ranges (if any) where the real Betti curves fall outside the 95% null envelope. A match (no r-points outside envelope) at this N=25000, this r-range (2-40 Mpc/h) and this null construction means: consistent with a featureless footprint+n(z)-matched random catalogue at the level of THIS test -- NOT a confirmation of any K3xT2 structure, and it does not by itself confirm M0's cosmological background either (that is E3-M0/m0_result.json's job, using chi2 against DESI+Pantheon+, not TDA). A mismatch at small r (below a few Mpc/h) would be unsurprising and not diagnostic on its own: fiber-collision incompleteness in SDSS spectroscopy suppresses close pairs at small angular separation, which this script does NOT correct for (no fiber-collision weights were applied -- said here rather than silently assumed away)."
 }
