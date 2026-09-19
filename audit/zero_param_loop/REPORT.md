@@ -120,3 +120,49 @@ Overturned or corrected after review (these are not fabrications):
 Known broken and not used as evidence: `vacuum_decay_cdl` (floored action), the `tadpole_cancellation_certified` flag, and local `proofs/BuscherRules.lean`.
 
 Tier note: the constants table labels `omegaLambda` "Tier A". As a Lean `def` the number is kernel-fixed. As physics it is tier L (Planck 2018), and identifying it with the model's parameter is tier C.
+
+---
+
+# Final verdict section (2026-09-19, rounds 1-2 of the reverse loop)
+
+Added after rounds 1 and 2 of `reverse-to-zero` (reports `audit/reverse_zero/REPORT.md` with `ERRATA.md`, and `audit/reverse_zero_r2/REPORT.md`). Everything below is tier X unless a tier is stated. Nothing here is derived from K3 x T2.
+
+## A. Framing, in answer to the framing skeptic
+
+**M0 is a change of hypothesis, not a successful ab-initio derivation.** M0 is flat LCDM with `Omega_Lambda = 0.68885` **frozen to an imported Planck 2018 value** (tier L; `DarkEnergyScale.lean:83-84` records it as "from `astropy.cosmology.Planck18`, rounded"), with the symmetron sector deleted and the pulsar term set to its General Relativity value `c4_pta_product = 0`. Its "zero parameters" count zero **theory** parameters after those deletions; it still carries two nuisances profiled out of every fit (the BAO scale `r_d h` and the supernova offset), and H0 cannot be frozen (R1 rejected that at delta chi2 = +1204.5).
+
+Three consequences, stated plainly:
+- Calling M0 "zero-parameter" describes the bookkeeping after a deletion, not a prediction from the mathematics.
+- No result in this loop lets K3 x T2 fix, predict or bound `Omega_Lambda`, `mu_sym` or `c4_pta_product`. LeanMaster's Stream 8 says "Observables: none" for its own results, and grep at `eb791e7` finds no mention of `mu_sym` or `c4_pta_product` anywhere in it.
+- "Consistent with M0" never means "confirms the theory". Round 1's phrases "not just not rejected - it is free" and "cleared its data test decisively" were withdrawn in `ERRATA.md`.
+
+## B. Statistics, in answer to the statistics skeptic
+
+**Why 1590 supernovae in E1 and 1580 in E3.** Both start from Pantheon+SH0ES (1701 rows) and apply the Hubble-flow cut `0.01 < zHD <= 2.4` with a finite distance modulus and a positive error, which leaves **1590**. E3 applies one further cut, `IS_CALIBRATOR == 0`, which removes the **10** supernovae in Cepheid-calibrated hosts, leaving **1580**. The reason is that a calibrator supernova's magnitude is tied to the Cepheid distance ladder, so including it while the supernova offset is free double-counts information about H0. E1 kept them (the "as before" convention of rounds 2-3); E3 dropped them. The effect is small and does not change any verdict: the DR2 CPL-versus-Lambda delta chi2 is 4.547 on 1590 and 4.735 on 1580 (1.63 and 1.66 sigma). Round 2 removed the inconsistency by fitting **one cut everywhere** (1580 primary, 1590 disclosed): X4 gives 2.17 sigma on 1580 and 2.12 sigma on 1590.
+
+**`mu_sym` and `c4_pta_product` are constrained by no dataset in hand.**
+- They enter no term of the BAO or supernova likelihood: M0 and M2 return **identical chi2 to 15 decimal places**. The information criteria therefore only count parameters: delta AIC(M2 - M0) = +4.00 and **delta BIC = +14.75 = 2 ln N**, a pure parsimony penalty. That is bookkeeping, not evidence against the sectors.
+- `mu_sym`: no unit bridge exists between the harness parameter and a laboratory length or mass, so even a fetched Eot-Wash table could not be mapped onto it. Building that bridge is a prerequisite, not an optional extra.
+- `c4_pta_product`: round 2 analysed the real NANOGrav 15-year timing data (66 pulsars, 2145 pairs, 7 angular bins) and obtained **no unconditional bound**. At one assumed common-noise amplitude the Fieller interval is [-0.841, 0.101], which contains 0; at another the calibration gate fails and no interval follows. So the parameter is still untested, now with a measured statement of what it would take.
+
+## C. The three verdicts
+
+1. **P1 (dark energy is a cosmological constant, `Omega_Lambda = 0.68885`): SURVIVES as a constrained phenomenological fit; not falsified, not confirmed.** Its registered falsification rule needs DESI DR3 or final BAO with CMB and supernovae, or Euclid, or Rubin, at 5 sigma; none of that data exists here. Measured instead: delta chi2 = 4.55 (1.63 sigma) on DR2 BAO + Pantheon+ with full covariance; 2.17 sigma once compressed CMB distance priors are added; M0 itself disfavoured at 2.16 sigma in that same fit. The published DESI DR2 + CMB + SN figure of 3.1 sigma is **not** reproduced, because the CMB enters here through three distance priors rather than the full likelihood. Emphasis, per A: `Omega_Lambda` is imported, so this is a fit with a frozen constant, not a derivation.
+2. **P2 (self-dual length ~ 47 um as a large extra dimension): the physical reading is REFUTED.** LeanMaster Stream 6 records that `R = s ~ 47.0 um` fails all three bounds (Eot-Wash toroidal radius < 30 um, Yukawa range < 38.6 um, MVV neutron stars < 44 um), and that the programme's own T-duality fixes `kappa = 1` under the tier-C identification `alpha' = s^2`, removing the only O(1) freedom that could have rescued it. **Precision kept for the record:** the rule written in `PRE_REGISTRATION.md:58` falsifies P2 only if the exclusion covers **every range >= 21.0 um**, and the bounds in hand reach down to about 30 um, so the 21-30 um window is not yet excluded by data. The interpretation is abandoned; the registered rule stays formally open. The self-dual length, if it means anything, is confined to microscopic dynamics.
+3. **"Zero parameters by derivation": CLOSED AS IMPOSSIBLE TODAY.** Going from 2 free parameters to 0 by derivation is not feasible with what is verified: every physical reading of the dual-scale identification is excluded (Streams 6 and 7), Stream 8's results are dimensionless with "Observables: none", and `mu_sym` has no unit bridge. Stream 8 adds a structural obstruction whose arithmetic is kernel-checked: on the full `Gamma_6,22` moduli space of K3 x T2 the maximal enhancement is `SO(44)` (924 roots), whereas any factorised point (a K3 point times a T2 point) reaches at most 760 + 6 = 766 roots (`product_points_not_maximal`). **The physical reading** - that global IR trapping by a string gas therefore pulls away from the factorised geometry and away from the UV attractor `tau = omega`, so that a static factorised K3 x T2 vacuum is not where the dynamics goes - **is tier C, LeanMaster's own label, and is not a theorem about our universe.**
+
+## D. TDA: why nothing was found, and where the search goes next
+
+**What was found: nothing, at every scale tried.** E4 at N = 400 and E5 at N = 25000 found no topology distinguishing the real cosmic web from matched nulls in any range their own gates validated; round 2's X2 could not even calibrate its mocks (2.88 sigma mismatch) and returned INCONCLUSIVE. On the sky, X1's WMAP test does not reject Gaussian isotropy (p = 0.47) with a null whose spectrum matches the data; the Planck SMICA map shows an anomaly (p = 0.004) whose causes cannot be separated with this pipeline.
+
+**Consistency with the IR picture.** A null result for smooth continuous defects is what one expects if the infrared dynamics smooths the geometry toward the maximally enhanced `SO(44)` point, since that point is not a factorised K3 x T2 geometry and carries no surviving continuous defect network of the kind these statistics target. This is a consistency remark at tier C, not evidence for the picture: the same null is equally consistent with plain LCDM, which is the more economical reading.
+
+**Where the lens goes next.** If the geometry crystallised in the ultraviolet at `tau = omega`, a fossil imprint would be **discrete**, not a smooth loop. Future TDA work targets residual discrete angular anisotropy matching the finite groups Stream 8 singles out: the order-192 Kummer group `(Z_2)^4 |x A_4` with Frame shapes `1^24, 1^8 2^8, 1^6 3^6, 1^4 2^2 4^4`; the Hurwitz lattice `D_4`, whose automorphism group of order 1152 this project computed exhaustively; and the `D = 12` attractive Kummer surface. The CAMB lognormal mocks and spectrum-matched Gaussian simulations are the nulls. **No prediction is registered**: LeanMaster derives no CMB or galaxy observable from these groups, so this is a search template (tier X), and a detection would need its own pre-registration before any comparison.
+
+## E. Code defects disclosed
+
+Two real defects were found by a known-answer suite run against the pipeline's own functions:
+- `cmb_tda.coarse_stats` counted dead bins in the degrees of freedom and gave them enormous weight through a 1e-8 ridge before `pinv`; test-map p-values that should be uniform failed at KS p = 1.1e-4. **Round-1 CMB chi2 p-values that used it are withdrawn.**
+- `cmb_tda.build_topology` fills every 4-clique of adjacent pixels (full-sky b2 = 49147 instead of 1); b0 and b1 are unaffected, but its "Euler characteristic" is b0 - b1.
+- **X1 is unaffected**: it uses empirical rank p-values with a floored variance, and only b0 and b1.
+Repairs, with a regression suite that fails on the old code, are on branch `loop/tda-simple`.
