@@ -1,0 +1,52 @@
+{
+ "prediction": {
+  "claim": "For every n = 10..20 and every l with (n,l) present in the independently computed B_series, the coefficient depends only on D = 4n - l^2 (i.e. every two pairs (n,l), (n',l') with the same D agree), extending LeanMaster's c_depends_only_on_D (checked there only for n<=9).",
+  "why_expected": "Structural: 2*phi_{0,1} is by construction a weak Jacobi form of index 1 (elliptic transformation law with index m=1), so its Fourier coefficients c(n,l) depend on (D,l mod 2) alone at every order, not just the ones Lean happened to check; this is a property of the theta-function product formula used to build B_series, not of any particular truncation.",
+  "negative_control_plan": "perturb one (n,l) coefficient in a range n=10..20 by +1 and confirm this creates a same-D disagreement with its (n,l') partner sharing that D, i.e. the check is not vacuous."
+ },
+ "lean_theorem": "c_depends_only_on_D, DualScaleDyons/DMVV.lean (LeanMaster)",
+ "lean_checked_range": "n <= 9 (zK3 := ellipticGenus 9)",
+ "new_range_tested": "n = 10..20",
+ "computed": {
+  "holds_on_new_range": true,
+  "conflicts_found": [],
+  "num_D_values_with_multiple_(n,l)_pairs_in_new_range": 41,
+  "num_new_D_values_beyond_n_leq_9": 22,
+  "new_cD_sample": {
+   "39": "-16135176",
+   "40": "20213280",
+   "43": "-39153024",
+   "44": "48579872",
+   "47": "-91617270",
+   "48": "112732000",
+   "51": "-207612672",
+   "52": "253555488",
+   "55": "-457194510",
+   "56": "554658112",
+   "59": "-981229696",
+   "60": "1183223040",
+   "63": "-2057384940",
+   "64": "2467340568",
+   "67": "-4223097216"
+  }
+ },
+ "negative_control": {
+  "pair_tested": {
+   "(n1,l1)": [
+    15,
+    -7
+   ],
+   "(n2,l2)": [
+    3,
+    -1
+   ],
+   "D": 11
+  },
+  "values_agree_before_perturbation": true,
+  "perturb_(n1,l1)_by_+1_then_agree": false,
+  "control_has_teeth": true
+ },
+ "tier": "B",
+ "command": "cd audit/k3t2_rigidity_v2/reverse && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python item1_index1_q20.py",
+ "source_cache_regeneration_command": "cd audit/k3t2_rigidity_v2/B-dyons && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python theta_forms.py 40"
+}
