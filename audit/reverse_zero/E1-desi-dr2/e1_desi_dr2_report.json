@@ -48,10 +48,14 @@
    "sn_offset": 43.06605644247521,
    "H0_implied_by_offset": 73.0481824392504
   },
-  "delta_chi2_CPL_vs_Lambda_2dof": 5.132685704719279,
-  "sigma_equivalent_2dof": 1.7694670809334514,
+  "delta_chi2_CPL_vs_Lambda_2dof": 4.546691779292587,
+  "sigma_equivalent_2dof": 1.6306362921461302,
   "prereg_rule_ge_28.74_falsifies_5sigma": false,
   "prereg_rule_ge_11.83_is_3sigma": false,
+  "quadrant_w0_gt_-1_and_wa_lt_0": true,
+  "quadrant_note": "The pre-registered rule is conditional on the w0>-1, wa<0 quadrant; only Delta chi2 found in that quadrant falsifies P1. Fitted (w0=-0.8960, wa=-0.1863) is in that quadrant.",
+  "delta_chi2_CPL_vs_Lambda_2dof_Om_m_frozen_both": 5.132685704719279,
+  "sigma_equivalent_2dof_Om_m_frozen_both": 1.7694670809334514,
   "negative_control_Om_L_0.5": {
    "delta_chi2_vs_fitted_lcdm": 365.25994671237504
   },
@@ -101,10 +105,14 @@
    "sn_offset": 43.066696314871145,
    "H0_implied_by_offset": 73.0266603470162
   },
-  "delta_chi2_CPL_vs_Lambda_2dof": 3.208050315270384,
-  "sigma_equivalent_2dof": 1.2784650906983595,
+  "delta_chi2_CPL_vs_Lambda_2dof": 3.1913734397599,
+  "sigma_equivalent_2dof": 1.2737014707821952,
   "prereg_rule_ge_28.74_falsifies_5sigma": false,
   "prereg_rule_ge_11.83_is_3sigma": false,
+  "quadrant_w0_gt_-1_and_wa_lt_0": true,
+  "quadrant_note": "The pre-registered rule is conditional on the w0>-1, wa<0 quadrant; only Delta chi2 found in that quadrant falsifies P1. Fitted (w0=-0.8801, wa=-0.4371) is in that quadrant.",
+  "delta_chi2_CPL_vs_Lambda_2dof_Om_m_frozen_both": 3.208050315270384,
+  "sigma_equivalent_2dof_Om_m_frozen_both": 1.2784650906983595,
   "negative_control_Om_L_0.5": {
    "delta_chi2_vs_fitted_lcdm": 173.5688325273004
   },
@@ -115,7 +123,7 @@
   "omega_lambda_distance_from_0.68885_in_sigma": 0.14506380978189873,
   "prereg_rule_omega_lambda_ge_5sigma_falsifies": false
  },
- "DR1_to_DR2_delta_chi2_CPL_vs_Lambda_change": 1.9246353894488948,
+ "DR1_to_DR2_delta_chi2_CPL_vs_Lambda_change": 1.3553183395326869,
  "published_3.1sigma_reproduction": {
   "reproduced": false,
   "why_not": "The published 3.1sigma (PRE_REGISTRATION.md R4) is DESI DR2 BAO + CMB + supernovae combined. This script has no CMB likelihood (no Planck/ACT/SPT chain in the USABLE DATA list; none fetched). CMB breaks the Omega_m*h^2 vs r_d (BAO) and Omega_m vs H0 (SN) degeneracies that BAO+SN alone leave partially open, so a BAO+SN-only Delta chi2 is expected to be smaller than the published DESI+CMB+SN result, not a reproduction of it. Whatever Delta chi2/sigma this script found for DR2 is reported above as a distinct, weaker number; it is not adjusted toward 3.1sigma."

@@ -178,12 +178,27 @@ def run_combo(label, bz, bv, bq, BCinv, sz, smu, SCinv, n_bao_pts):
     out["cpl_om_free"] = {"Om_m": float(c2.x[0]), "w0": float(c2.x[1]), "wa": float(c2.x[2]),
                            **chi2(E_cpl(*c2.x))}
 
-    dchi2 = out["frozen_omega_lambda_0.68885"]["chi2"] - out["cpl_om_frozen"]["chi2"]
-    out["delta_chi2_CPL_vs_Lambda_2dof"] = dchi2
-    out["sigma_equivalent_2dof"] = float(chi2dist.isf(chi2dist.sf(dchi2, df=2), df=1)) ** 0.5 if dchi2 > 0 else 0.0
-    # report against the two pre-registered bars, quoted verbatim above
-    out["prereg_rule_ge_28.74_falsifies_5sigma"] = bool(dchi2 >= THRESH_5SIGMA_2DOF)
-    out["prereg_rule_ge_11.83_is_3sigma"] = bool(dchi2 >= THRESH_3SIGMA_2DOF)
+    def sigma_of(d):
+        return float(chi2dist.isf(chi2dist.sf(d, df=2), df=1)) ** 0.5 if d > 0 else 0.0
+
+    # Headline pairing, matching the task spec ("CPL fitted with Omega_m fitted") and the
+    # pre-registered rule's comparison of w=-1 (LCDM fitted freely in Om_m) vs CPL: both
+    # models here let Om_m float, so the only difference is w0,wa -> 2 dof.
+    dchi2_free = out["fitted_lcdm"]["chi2"] - out["cpl_om_free"]["chi2"]
+    out["delta_chi2_CPL_vs_Lambda_2dof"] = dchi2_free
+    out["sigma_equivalent_2dof"] = sigma_of(dchi2_free)
+    out["prereg_rule_ge_28.74_falsifies_5sigma"] = bool(dchi2_free >= THRESH_5SIGMA_2DOF)
+    out["prereg_rule_ge_11.83_is_3sigma"] = bool(dchi2_free >= THRESH_3SIGMA_2DOF)
+    out["quadrant_w0_gt_-1_and_wa_lt_0"] = bool(out["cpl_om_free"]["w0"] > -1 and out["cpl_om_free"]["wa"] < 0)
+    out["quadrant_note"] = ("The pre-registered rule is conditional on the w0>-1, wa<0 "
+                             "quadrant; only Delta chi2 found in that quadrant falsifies P1. "
+                             f"Fitted (w0={out['cpl_om_free']['w0']:.4f}, wa={out['cpl_om_free']['wa']:.4f}) "
+                             f"{'is' if out['quadrant_w0_gt_-1_and_wa_lt_0'] else 'is NOT'} in that quadrant.")
+
+    # Secondary pairing: Om_m held at the frozen value in both models (isolates w0,wa only).
+    dchi2_frozen_om = out["frozen_omega_lambda_0.68885"]["chi2"] - out["cpl_om_frozen"]["chi2"]
+    out["delta_chi2_CPL_vs_Lambda_2dof_Om_m_frozen_both"] = dchi2_frozen_om
+    out["sigma_equivalent_2dof_Om_m_frozen_both"] = sigma_of(dchi2_frozen_om)
 
     # negative control
     out["negative_control_Om_L_0.5"] = {
