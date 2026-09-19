@@ -114,6 +114,37 @@ Run (smoke test, already done, see smoke_test.json -- N=10, pre-v2-fix
 script, kept for provenance):
   .venv-tda/bin/python audit/reverse_zero/E5-cmb-tda/cmb_tda.py --n-sims 10 --out smoke_test.json
 """
+
+# =============================================================================
+# TODO (comment only -- no behaviour change; added 2026-09-19)
+#
+# This file searches for a SMOOTH CONTINUOUS defect: the Kaiser-Stebbins step
+# of a cosmic string (see inject_ks_strings below).  Those searches returned
+# nothing.  A complementary lens, searching instead for residual DISCRETE
+# angular anisotropy matching a finite symmetry group acting on S^2, now lives
+# at
+#
+#     audit/tda_validation/crystallography/discrete_symmetry_lens.py
+#     audit/tda_validation/crystallography/lens_spec.json   (design note and
+#                                                            pre-registration)
+#
+# It reuses build_topology and betti_curves_from_topology from THIS file for
+# b0 and b1 only, and its report records why b2 and the "euler_chi" curve are
+# not used (audit/tda_validation/simple_suite/report.json documents a
+# hollow-tetrahedron defect in the complex that produces spurious H2 classes
+# while leaving b0 and b1 unaffected, and notes that b0 - b1 is not the Euler
+# characteristic of the complex actually built).
+#
+# It also does NOT inherit this file's coarse_stats chi^2 p-values, which the
+# same simple_suite report found miscalibrated (KS p = 0.000109 on the sublevel
+# b1 curve, from degrees-of-freedom counting over zero-variance coarse bins,
+# with a latent 1e-8-ridge/pinv hazard); the lens uses empirical rank p-values
+# only.
+#
+# The new lens is tier X (exploratory) and is NOT a prediction: LeanMaster
+# Stream 8 states "Observables: none" for K3 x T^2
+# (docs/STREAM8_WHICH_K3.md:115, v3.28.0).
+# =============================================================================
 import argparse
 import json
 import sys
