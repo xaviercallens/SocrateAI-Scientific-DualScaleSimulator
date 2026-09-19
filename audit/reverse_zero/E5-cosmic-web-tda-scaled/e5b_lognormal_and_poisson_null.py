@@ -298,15 +298,25 @@ def camb_linear_pk(z_eff):
     pars.NonLinear = camb.model.NonLinear_none
     results = camb.get_results(pars)
     kh, zs, pk = results.get_matter_power_spectrum(minkh=1e-4, maxkh=12.0, npoints=600)
-    sigma8_raw = results.get_sigma8()  # [z_eff, 0.0] order matches redshifts list as given? verify below
+    sigma8_raw = results.get_sigma8()
     omega_m_arith = (p["ombh2"] + p["omch2"]) / (p["H0"] / 100.0) ** 2
     omega_m_pars = pars.omegam
-    # camb returns pk/z ordered by INCREASING z internally regardless of input order; identify by sigma8 or z array
-    idx_zeff = int(np.argmin(np.abs(np.array(zs) - z_eff)))
-    idx_z0 = int(np.argmin(np.abs(np.array(zs) - 0.0)))
+    # BUG FOUND AND FIXED (2026-09-19, caught by an advisor-review sigma8 self-check landing at ratio
+    # 1.043 instead of ~1.000): get_matter_power_spectrum()'s returned `zs` is SORTED (increasing), so
+    # `pk` is indexed by sorted-z position -- but CAMBdata.get_sigma8() returns values in
+    # pars.Transfer.PK_redshifts's ORIGINAL INPUT order, which is UNSORTED here ([z_eff, 0.0] =
+    # [0.08, 0.0], already decreasing). Indexing sigma8_raw with idx_z0 found from the SORTED `zs`
+    # array silently pulled sigma8(z_eff=0.08)=0.778 instead of sigma8(z=0)=0.812 -- an 8.8% error in
+    # sigma8_z0, and hence in `rescale` and every downstream P(k) amplitude (xi_lin, b_fit, sigma_G^2).
+    # Confirmed by comparing a single-redshift CAMB call (unambiguous, ratio 1.0003) against this
+    # multi-redshift call: verified sigma8_raw is ordered by pars.Transfer.PK_redshifts, NOT by `zs`.
+    input_z_order = list(pars.Transfer.PK_redshifts)[:len(sigma8_raw)]
+    idx_zeff = int(np.argmin(np.abs(np.array(zs) - z_eff)))       # indexes `pk` (sorted-z order)
+    idx_z0 = int(np.argmin(np.abs(np.array(zs) - 0.0)))           # indexes `pk` (sorted-z order)
+    idx_z0_sigma8 = int(np.argmin(np.abs(np.array(input_z_order) - 0.0)))  # indexes sigma8_raw (input order)
     pk_zeff = pk[idx_zeff]
     pk_z0 = pk[idx_z0]
-    sigma8_z0 = float(sigma8_raw[idx_z0])
+    sigma8_z0 = float(sigma8_raw[idx_z0_sigma8])
     rescale = (p["sigma8_target"] / sigma8_z0) ** 2
     pk_zeff_rescaled = pk_zeff * rescale
     # SELF-CHECK (added after an advisor review flagged that pk2xi/xi2pk's round-trip test, done elsewhere
@@ -720,34 +730,56 @@ def run():
         mock_betti[d] = np.array(mock_betti[d])
     mock_euler = np.array(mock_euler)
     mock_xi_stack = np.array(mock_xi_stack) if mock_xi_stack else np.empty((0, len(r_mid_xi)))
+    # save the full mock Betti-curve stacks (n_ok x 3 x len(R_GRID), negligible size) for full provenance --
+    # an advisor review of an earlier run noted only aggregate L2/envelope statistics were kept, so the
+    # rank p-value's margin could not be inspected or recomputed after the fact.
+    np.savez(os.path.join(HERE, "e5b_mock_betti_stacks.npz"), r_grid=R_GRID,
+             b0=mock_betti[0], b1=mock_betti[1], b2=mock_betti[2], euler=mock_euler,
+             b0_real=b0_real, b1_real=b1_real, b2_real=b2_real, euler_real=e_real)
 
     # ================= gate: recovered xi(r) vs data xi(r) =================
     n_gated = mock_xi_stack.shape[0]
     xi_mock_mean = np.nanmean(mock_xi_stack, axis=0) if mock_xi_stack.size else np.full_like(r_mid_xi, np.nan)
-    xi_mock_sem = (np.nanstd(mock_xi_stack, axis=0, ddof=1) / np.sqrt(max(n_gated, 1))
-                   if n_gated > 1 else np.full_like(r_mid_xi, np.nan))
+    # sigma_mock_field: the MOCK-TO-MOCK (per-realization) scatter -- how much ONE realization of xi(r)
+    # varies at fixed cosmology/volume (cosmic variance). This, NOT the standard error of the mock mean,
+    # is the right yardstick for comparing the DATA (itself a single realization) to the mock ensemble.
+    # An EARLIER version of this gate used xi_mock_sem = sigma_mock_field/sqrt(n_gated) instead, which
+    # tests only "is the ensemble MEAN biased relative to the data", not "is the data's one realization
+    # consistent with the ensemble" -- an advisor review of that first full run caught this: RMS(z) rose
+    # from 3.23 (6 mocks) to 3.81 (22 mocks), the diagnostic signature of a 1/sqrt(n) statistic (a
+    # correctly calibrated consistency test should be roughly n-independent), and the corrected version
+    # below gives RMS(z)~0.83 on the SAME 22 mocks -- a factor of sqrt(22)~4.7, exactly as the sem-based
+    # bug predicts. Kept conservative: lognormal mocks are known to UNDERESTIMATE real non-Gaussian
+    # covariance, so sigma_mock_field here is if anything too small, making the corrected z too large
+    # (i.e. this gate is not tuned to pass easily).
+    sigma_mock_field = (np.nanstd(mock_xi_stack, axis=0, ddof=1)
+                         if n_gated > 1 else np.full_like(r_mid_xi, np.nan))
     sigma_data_shotnoise = (1.0 + xi_data) / np.sqrt(np.maximum(DD, 1.0))  # standard LS shot-noise error (Landy & Szalay 1993 form)
-    sigma_total = np.sqrt(sigma_data_shotnoise ** 2 + xi_mock_sem ** 2)
+    # Var(mock_mean - data) = Var(one mock realization)*(1 + 1/n_gated) [finite-sample correction for
+    # comparing to a MEAN of n_gated draws from the same distribution the data itself is assumed to be
+    # one draw from] + data's own shot-noise variance.
+    sigma_total = np.sqrt(sigma_mock_field ** 2 * (1.0 + 1.0 / max(n_gated, 1)) + sigma_data_shotnoise ** 2)
     ratio = xi_mock_mean[fit_mask] / xi_data[fit_mask]  # kept for the plot/record; NOT the pass/fail criterion (see GATE_Z_THRESHOLD)
     z = (xi_mock_mean[fit_mask] - xi_data[fit_mask]) / sigma_total[fit_mask]
     z_finite = z[np.isfinite(z)]
     rms_z = float(np.sqrt(np.mean(z_finite ** 2))) if z_finite.size else float("nan")
     gate_pass = bool(np.isfinite(rms_z) and rms_z < GATE_Z_THRESHOLD)
     report["lognormal_gate"] = {
-        "definition": "RMS over r in %s Mpc/h of z_i=(xi_mock_mean_i-xi_data_i)/sigma_total_i, where sigma_total "
-                      "combines the DATA's own Poisson shot-noise error ((1+xi)/sqrt(DD), Landy & Szalay 1993) "
-                      "with the %d-mock standard error of the mean, in quadrature. PASS iff RMS(z) < %.1f. This "
+        "definition": "RMS over r in %s Mpc/h of z_i=(xi_mock_mean_i-xi_data_i)/sigma_total_i, where "
+                      "sigma_total_i = sqrt(sigma_mock_field_i^2*(1+1/n_gated) + sigma_data_shotnoise_i^2), "
+                      "sigma_mock_field is the mock-TO-MOCK (per-realization, NOT standard-error-of-the-mean) "
+                      "scatter over the %d gated mocks, and sigma_data_shotnoise is the data's own Poisson "
+                      "shot-noise error ((1+xi)/sqrt(DD), Landy & Szalay 1993). PASS iff RMS(z) < %.1f. This "
                       "gate MUST pass for the Betti-curve comparison below to be treated as diagnostic of "
                       "anything (ground rules / advisor review requirement). A raw amplitude ratio is also "
-                      "reported for the record but is NOT the pass/fail criterion (see GATE_Z_THRESHOLD "
-                      "constant's comment for why: it diverges at this fit range's zero-crossings)." %
-                      (XI_FIT_RANGE_MPC_H, n_gated, GATE_Z_THRESHOLD),
+                      "reported for the record but is NOT the pass/fail criterion (it diverges at this fit "
+                      "range's zero-crossings)." % (XI_FIT_RANGE_MPC_H, n_gated, GATE_Z_THRESHOLD),
         "n_mocks_used_for_gate": n_gated,
         "r_mid_fit_range": r_mid_xi[fit_mask].tolist(),
         "xi_data_fit_range": xi_data[fit_mask].tolist(),
         "xi_mock_mean_fit_range": xi_mock_mean[fit_mask].tolist(),
         "sigma_data_shotnoise_fit_range": sigma_data_shotnoise[fit_mask].tolist(),
-        "sigma_mock_standard_error_fit_range": xi_mock_sem[fit_mask].tolist(),
+        "sigma_mock_field_scatter_fit_range": sigma_mock_field[fit_mask].tolist(),
         "z_score_fit_range": z.tolist(),
         "rms_z": rms_z,
         "ratio_mock_over_data_for_record_only": ratio.tolist(),
@@ -773,6 +805,11 @@ def run():
         l2_vs_mock["euler"] = base.l2_over_range(e_real, mock_euler.mean(axis=0), R_GRID, STAT_R_RANGE)
 
     # rank p-value on H1 (the dimension the "filament/void topology" claim is about), pre-stated stat = L2 over STAT_R_RANGE
+    # ALSO split into r<R_SPACING (shot-noise/discreteness dominated at this N, per the mean inter-galaxy
+    # spacing computed below) vs r>=R_SPACING, so a reader can see how much of the headline p-value comes
+    # from a scale below this sample's own resolution -- added after an advisor review noted this was an
+    # unquantified caveat in an earlier version of this report.
+    R_SPACING_DIAGNOSTIC = float((measured_wedge_fraction * box_volume / N_FINAL) ** (1 / 3))
     rank_pvalues = {}
     for d, curve in zip((0, 1, 2), (b0_real, b1_real, b2_real)):
         stack = mock_betti[d]
@@ -780,12 +817,22 @@ def run():
             rank_pvalues["H%d" % d] = None
             continue
         loo_l2 = []
+        loo_l2_lo = []
+        loo_l2_hi = []
+        r_range_lo = (STAT_R_RANGE[0], R_SPACING_DIAGNOSTIC)
+        r_range_hi = (R_SPACING_DIAGNOSTIC, STAT_R_RANGE[1])
         for i in range(stack.shape[0]):
             others_mean = np.delete(stack, i, axis=0).mean(axis=0)
             loo_l2.append(base.l2_over_range(stack[i], others_mean, R_GRID, STAT_R_RANGE))
+            loo_l2_lo.append(base.l2_over_range(stack[i], others_mean, R_GRID, r_range_lo))
+            loo_l2_hi.append(base.l2_over_range(stack[i], others_mean, R_GRID, r_range_hi))
         loo_l2 = np.array(loo_l2)
         real_l2 = base.l2_over_range(curve, stack.mean(axis=0), R_GRID, STAT_R_RANGE)
+        real_l2_lo = base.l2_over_range(curve, stack.mean(axis=0), R_GRID, r_range_lo)
+        real_l2_hi = base.l2_over_range(curve, stack.mean(axis=0), R_GRID, r_range_hi)
         rank = int(np.sum(loo_l2 >= real_l2))  # how many mocks are AT LEAST as extreme as the real data
+        rank_lo = int(np.sum(np.array(loo_l2_lo) >= real_l2_lo))
+        rank_hi = int(np.sum(np.array(loo_l2_hi) >= real_l2_hi))
         p = (rank + 1) / (stack.shape[0] + 1)
         # margin diagnostic (added after advisor review: rank=0 alone does not say whether real_l2 is
         # barely above the mock spread or many multiples of it -- report the ratio so a reader can tell)
@@ -794,7 +841,12 @@ def run():
                                      "n_mocks": int(stack.shape[0]), "p_value": p,
                                      "resolution_floor": 1.0 / (stack.shape[0] + 1),
                                      "loo_l2_min_median_max": [float(loo_l2.min()), float(np.median(loo_l2)), float(loo_l2.max())],
-                                     "real_l2_over_median_loo_l2": margin_ratio}
+                                     "real_l2_over_median_loo_l2": margin_ratio,
+                                     "r_split_diagnostic": {
+                                         "r_spacing_mpc_over_h": R_SPACING_DIAGNOSTIC,
+                                         "r_range_below_spacing": list(r_range_lo), "p_value_below_spacing": (rank_lo + 1) / (stack.shape[0] + 1),
+                                         "r_range_at_or_above_spacing": list(r_range_hi), "p_value_at_or_above_spacing": (rank_hi + 1) / (stack.shape[0] + 1),
+                                     }}
 
     report["lognormal_mocks_iii"] = {
         "n_requested": N_LOGNORMAL_MOCKS, "n_succeeded": n_ok, "n_failed": N_LOGNORMAL_MOCKS - n_ok,

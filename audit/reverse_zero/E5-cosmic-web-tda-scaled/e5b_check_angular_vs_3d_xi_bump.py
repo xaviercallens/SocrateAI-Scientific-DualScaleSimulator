@@ -27,13 +27,18 @@ vs the main run's 4x/20-seed treatment) -- diagnostic only, tier X.
 
 RESULT (this run, 2026-09-19): the bump PERSISTS (dip near r=33, rise to
 ~0.010-0.012 at r=39-45) at somewhat lower amplitude than with the main
-run's mask-uniform random. Persistence under an angular-position-matched
-random means this is NOT explained by the nside=64 binary mask -- it is
-a 3D (or finer-than-nside-64 angular-completeness-scale) feature the
-lognormal recipe's single-bias, linear-theory model does not reproduce.
-A genuine sub-nside-64 angular effect (e.g. SDSS fiber-plate boundaries,
-~1-2 degree scale) is NOT ruled out by this test, since it is below this
-mask's own resolution.
+run's mask-uniform random. CAVEAT on that amplitude difference (added
+after a further advisor review): it is EXPECTED and uninformative on its
+own -- an angular-position-matched random inherits part of the data's
+own real 3D clustering by construction, which generically suppresses the
+LS estimator's measured xi(r). Only the PERSISTENCE of the r=37-45 shape
+feature, not this amplitude drop, is diagnostic. Persistence under an
+angular-position-matched random means the bump is NOT explained by the
+nside=64 binary mask -- it is a 3D (or finer-than-nside-64 angular-
+completeness-scale) feature the lognormal recipe's single-bias, linear-
+theory model does not reproduce. A genuine sub-nside-64 angular effect
+(e.g. SDSS fiber-plate boundaries, ~1-2 degree scale) is NOT ruled out by
+this test, since it is below this mask's own resolution.
 
 Command:
   timeout 200 prlimit --as=10737418240 -- \
