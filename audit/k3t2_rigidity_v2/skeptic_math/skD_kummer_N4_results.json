@@ -1,0 +1,40 @@
+{
+ "N": 4,
+ "cover_top_simplices": 6144,
+ "quotient_top_simplices": 3072,
+ "degenerate_images": 0,
+ "fixed_vertices": 16,
+ "f_X": [
+  136,
+  1920,
+  6400,
+  7680,
+  3072
+ ],
+ "f_U": [
+  120,
+  1680,
+  5200,
+  5760,
+  2112
+ ],
+ "betti_X_Z3": [
+  1,
+  0,
+  6,
+  0,
+  1
+ ],
+ "betti_U_Z3": [
+  1,
+  0,
+  6,
+  15,
+  0
+ ],
+ "chi_X_fvec": 8,
+ "chi_U_fvec": -8,
+ "chi_U_betti": -8,
+ "b2_K3_MV": 22,
+ "chi_K3_MV": 24
+}

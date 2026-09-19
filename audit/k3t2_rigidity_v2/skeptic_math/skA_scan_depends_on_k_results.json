@@ -1,0 +1,15 @@
+{
+ "cutoff_q": 6,
+ "selected_N_by_k": {
+  "1": [
+   12
+  ],
+  "2": [
+   24
+  ],
+  "3": [
+   36
+  ]
+ },
+ "reading": "slice agreement selects N = 12k = Z(tau,0): it recovers the normalisation of Z, it does not force 24 independently of k"
+}
