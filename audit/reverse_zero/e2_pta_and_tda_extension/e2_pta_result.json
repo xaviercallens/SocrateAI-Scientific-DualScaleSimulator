@@ -104,5 +104,5 @@
       "c4_for_10pct_of_HD_dynamic_range": 0.06481808765435654
     }
   },
-  "parameter_effect": "none -- free-parameter count stays at 2 (mu_sym, c4_pta_product). No angular-correlation dataset exists to fit, so c4_pta_product is neither constrained nor removed by data this round. Setting c4_pta_product = 0 in the M0 hypothesis is a HYPOTHESIS CHANGE (the PTA sector set to its GR/pure-Hellings-Downs value), tier L for GR itself, NOT a derivation from K3xT2 and NOT a data-driven reduction. LeanMaster Streams 6-8 (E2-E4) confirm mu_sym and c4_pta_product are unchanged by every result reviewed there."
+  "parameter_effect": "none -- free-parameter count stays at 2 (mu_sym, c4_pta_product). No angular-correlation dataset exists to fit, so c4_pta_product is neither constrained nor removed by data this round. Setting c4_pta_product = 0 in the M0 hypothesis is a HYPOTHESIS CHANGE (the PTA sector set to its GR/pure-Hellings-Downs value), tier L for GR itself, NOT a derivation from K3xT2 and NOT a data-driven reduction. LeanMaster Streams 6-8 do not mention mu_sym or c4_pta_product; 'untested' is this project's statement, not LeanMaster's."
 }

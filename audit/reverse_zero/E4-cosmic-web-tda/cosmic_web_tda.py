@@ -240,10 +240,9 @@ def run():
         "interpretation": (
             "This is a real-vs-null topology COMPARISON, not a test of any K3xT2 (E2/E3) "
             "prediction: LeanMaster's octad/complement split (Stream 8 E3) has NO constructed "
-            "large-scale-structure observable to compare against (quoted in E3-M0/m0_result.json "
-            "leanmaster_P2_note context and REPORT.md's own line: 'a TDA prediction would be "
-            "given cosmological data, the topology of the large-scale structure encodes this "
-            "octad partition. This is frozen as Tier C and requires a fresh comparison.'). "
+            "large-scale-structure observable to compare against; LeanMaster STREAM8_WHICH_K3.md "
+            "states 'Observables: none' (lines 112, 153, 374 at eb791e7) and makes no TDA "
+            "prediction (an earlier quoted 'TDA prediction' was not LeanMaster text; see ERRATA.md). "
             "What this script establishes is only whether real SDSS DR17 clustering differs "
             "topologically from its shuffled-z null at N=400 subsamples -- the PRE-REQUISITE for "
             "any future octad-indexed statistic, not that statistic itself. DIAGNOSIS of the real vs "
@@ -264,9 +263,8 @@ def run():
             "catalogue. Designing that map (e.g. partitioning the catalogue into 24 angular or "
             "redshift bins and testing whether an 8-vs-16 sub-partition analogous to the Golay "
             "octad/complement shows a topological asymmetry the random null does not) is UNBUILT "
-            "and would be a new, separately pre-registered hypothesis (H'), per LeanMaster's own "
-            "E4 consequence note: 'This would be a new hypothesis (H'), to be frozen before "
-            "comparison. No such prediction is registered in PRE_REGISTRATION.md.'"
+            "and would be a new, separately pre-registered hypothesis (H') of this project, not "
+            "of LeanMaster; no such prediction is registered in PRE_REGISTRATION.md."
         ),
     }
     with open(os.path.join(HERE, "e4_cosmic_web_tda_report.json"), "w") as f:

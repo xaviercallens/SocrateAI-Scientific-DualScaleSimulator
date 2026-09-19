@@ -168,8 +168,8 @@ def main():
             "a HYPOTHESIS CHANGE (the PTA sector set to its GR/pure-"
             "Hellings-Downs value), tier L for GR itself, NOT a derivation "
             "from K3xT2 and NOT a data-driven reduction. LeanMaster Streams "
-            "6-8 (E2-E4) confirm mu_sym and c4_pta_product are unchanged by "
-            "every result reviewed there."
+            "6-8 do not mention mu_sym or c4_pta_product; 'untested' is this "
+            "project's statement, not LeanMaster's."
         ),
     }
     out_path = os.path.join(OUT_DIR, "e2_pta_result.json")
