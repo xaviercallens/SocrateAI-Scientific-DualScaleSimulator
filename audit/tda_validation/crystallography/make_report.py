@@ -24,6 +24,7 @@ def main():
     tda = {w: load("tda_secondary_%s.json" % w) for w in ("wmap", "planck")}
     pc = load("pointcloud_kat.json")
     probe = load("probe_wmap.json")
+    injb2 = load("injection_broad2_wmap.json")
 
     rep = {
         "title": "Discrete-symmetry (crystallinity) lens for the CMB and the "
@@ -222,6 +223,20 @@ def main():
                         "(Taormina-Wendland, order 40320) and not A_8 (the octad "
                         "stabiliser).  Neither appears anywhere in this work.",
         "never_proved": "the word 'proved' is not used for any result here."}
+
+    if injb2:
+        rep["sensitivity_broadband_extra_rungs_RUN_AFTER_THE_DATA"] = {
+            "ORDERING_WARNING": "these two rungs (f = 0.3, 0.5, broadband) were "
+                                "run AFTER the WMAP result had been computed and "
+                                "committed.  Every other sensitivity number in "
+                                "this report was produced before any real map "
+                                "was read.  They exist only to bracket a "
+                                "threshold that the pre-data broadband ladder "
+                                "left unbounded; they change no data test, no "
+                                "decision rule and no p-value, and the WMAP "
+                                "result was not revisited.",
+            "why_added": injb2["why_added"],
+            "results": injb2["results"]}
 
     if probe:
         rep["fixed_orientation_probe"] = {

@@ -1242,6 +1242,69 @@ def stage_injection_ext(args):
     jdump(out, os.path.join(HERE, "injection_ext_%s.json" % which))
 
 
+BROAD2_AMPLITUDES = [0.3, 0.5]
+
+
+def stage_injection_broad2(args):
+    """Two extra rungs of the BROADBAND ladder (f = 0.3, 0.5), added because the
+    broadband ladder in --stage injection_ext topped out at f = 0.2 with power
+    0.49, i.e. just below the 95% point.  Two rungs bracket the threshold
+    instead of leaving it unbounded.  Same statistic, same nulls, same frozen
+    orientation grid, same pattern seed as injection_ext; only the amplitude
+    list differs.  Still not a data test; N_TESTS stays 4.
+    """
+    which = args.map
+    m, mask, meta = load_map_and_mask(which)
+    cl = estimate_cl(m, mask, 3 * NSIDE_WORK - 1)
+    del m
+    ops = {g: load_ops(g) for g in ("A4", "C12")}
+    nullZ, nullmu, nullsd = {}, {}, {}
+    for g in ("A4", "C12"):
+        CM = np.load(_null_path(which, g))["cmax"]
+        nullZ[g] = _null_Z(CM)
+        nullmu[g] = CM.mean(axis=0)
+        nullsd[g] = CM.std(axis=0, ddof=1)
+    ells_of = {"A4": list(range(2, LMAX + 1)), "C12": list(range(2, LMAX + 1))}
+    pats = {g: symmetric_pattern(ops[g], ells_of[g], INJ_PATTERN_SEED + 7,
+                                 per_l_equal=True) for g in ("A4", "C12")}
+    results = []
+    for inj_g in ("A4", "C12"):
+        for f in BROAD2_AMPLITUDES:
+            pw = {"A4": 0, "C12": 0}
+            for r in range(N_INJ):
+                seed = (INJ_BASE_SEED + 9000000
+                        + 10000 * BROAD2_AMPLITUDES.index(f)
+                        + 200000 * (inj_g == "C12") + r)
+                host = map_to_full(gaussian_sim(cl, seed), mask)
+                rng = np.random.default_rng(seed)
+                pat = rotate_full(ops[inj_g]["wc"], pats[inj_g],
+                                  random_rotation(rng))
+                fld = inject(host, pat, ells_of[inj_g], f)
+                for test_g in ("A4", "C12"):
+                    cm = cmax(crystallinity(ops[test_g], fld))
+                    Z = Z_stat(cm, nullmu[test_g], nullsd[test_g])
+                    if rank_p(Z, nullZ[test_g]) <= ALPHA:
+                        pw[test_g] += 1
+            results.append({"scenario": "broadband_l2_to_64_extra_rungs",
+                            "injected_group": inj_g,
+                            "amplitude_fraction_of_injected_band_power": f,
+                            "n_realisations": N_INJ, "alpha": ALPHA,
+                            "power_A4_statistic": pw["A4"] / N_INJ,
+                            "power_C12_statistic": pw["C12"] / N_INJ})
+            log("DONE broad2 inject %s f=%g -> power A4 %.2f, C12 %.2f"
+                % (inj_g, f, pw["A4"] / N_INJ, pw["C12"] / N_INJ))
+    out = {"stage": "injection_broad2", "tier": "X",
+           "why_added": stage_injection_broad2.__doc__,
+           "added_before_any_real_map_was_read": False,
+           "note_on_ordering": "these two rungs were run AFTER the WMAP result "
+                               "was already computed and committed.  They change "
+                               "no data test and no decision rule; they only "
+                               "bracket a sensitivity threshold.  The WMAP "
+                               "result was not revisited.",
+           "results": results, "peak_rss_mb": peak_rss_mb()}
+    jdump(out, os.path.join(HERE, "injection_broad2_%s.json" % which))
+
+
 def stage_probe(args):
     """Fixed-orientation amplitude probe.  This exists so that the numbers cited
     in report.json for the linear-interference effect and for the uneven pattern
@@ -1451,15 +1514,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", required=True,
                     choices=["groups", "operators", "nulls", "injection",
-                             "injection_ext", "probe", "data", "tda",
-                             "pointcloud"])
+                             "injection_ext", "injection_broad2", "probe",
+                             "data", "tda", "pointcloud"])
     ap.add_argument("--map", default="wmap", choices=["wmap", "planck"])
     args = ap.parse_args()
     log("stage=%s map=%s python=%s host=%s"
         % (args.stage, args.map, sys.version.split()[0], platform.node()))
     {"groups": stage_groups, "operators": stage_operators,
      "nulls": stage_nulls, "injection": stage_injection,
-     "injection_ext": stage_injection_ext, "probe": stage_probe,
+     "injection_ext": stage_injection_ext,
+     "injection_broad2": stage_injection_broad2, "probe": stage_probe,
      "data": stage_data,
      "tda": stage_tda, "pointcloud": stage_pointcloud}[args.stage](args)
     log("done, peak RSS %.0f MB" % peak_rss_mb())
