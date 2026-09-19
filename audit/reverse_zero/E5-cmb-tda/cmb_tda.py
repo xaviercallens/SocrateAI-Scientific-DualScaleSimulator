@@ -168,6 +168,35 @@ def estimate_cl(masked_map, mask, nside, lmax=None):
 
 
 def build_topology(mask, nside):
+    # =====================================================================
+    # DEFECT D2 -- FOUND 2026-09-19 -- DO NOT USE FOR NEW WORK
+    # ---------------------------------------------------------------------
+    # This function builds a MALFORMED 2-complex.  It inserts every 3-clique
+    # of the 8-neighbour pixel adjacency graph.  Each group of four pixels
+    # meeting at a HEALPix grid corner is a 4-clique, and filling all four of
+    # its triangles makes a hollow tetrahedron, i.e. a 2-sphere.
+    #
+    # Measured by the known-answer suite (branch loop/tda-simple, case F3topo
+    # in audit/tda_validation/simple_suite/results.json), full sky, nside 64:
+    #     V = 49152, E = 196596, F = 196592, V - E + F = 49148
+    #     Betti = (1, 0, 49147)        expected for a triangulated S2: (1,0,1)
+    # At nside 32: V - E + F = 12284, Betti = (1, 0, 12283).
+    # With a 30 deg polar-cap mask at nside 32 it gives Betti (1, 0, 761) for
+    # what is a disc, whose Betti numbers are (1, 0, 0).
+    #
+    # FIXED REPLACEMENT:
+    #     audit/tda_validation/tda_fixed/cmb_topology.py
+    #         :: build_topology_fixed(mask, nside)
+    #   Same call shape.  Builds the HEALPix quad-corner 2-complex instead of
+    #   filling cliques: V - E + F = 2 and Betti (1, 0, 1) at nside 8, 16, 32
+    #   and 64; a polar cap gives (1, 0, 0).  Before/after numbers in
+    #   audit/tda_validation/tda_fixed/validation_results.json; regression
+    #   tests in audit/tda_validation/tda_fixed/tests/test_cmb_topology.py.
+    #
+    # THIS FUNCTION IS LEFT UNCHANGED ON PURPOSE.  It is the committed record
+    # of the runs in audit/reverse_zero/ and other branches' results were
+    # produced with it.  Only this comment block was added.
+    # =====================================================================
     """Mask-only (temperature-independent) adjacency: unmasked pixel list,
     edge index-pairs, triangle index-triples among mutual neighbours. Built
     ONCE and reused for every sim and both filtration directions -- this is
@@ -207,6 +236,35 @@ def build_topology(mask, nside):
 
 
 def betti_curves_from_topology(temp, unmasked, edges_arr, tris_arr, nu_grid, sublevel=True):
+    # =====================================================================
+    # DEFECT D2, THIRD CLAUSE -- FOUND 2026-09-19 -- MISLABELLED RETURN VALUE
+    # ---------------------------------------------------------------------
+    # The third return value is chi = b0 - b1 and is called the "Euler
+    # characteristic" here, in the module docstring (point 3) and in the
+    # 'euler_chi' key of every report this file wrote.  For a 2-complex the
+    # Euler characteristic is b0 - b1 + b2, so the name is wrong whenever
+    # b2 != 0 -- which is ALWAYS on a closed surface, and catastrophically so
+    # on the complex build_topology returns (b2 = 49147 at nside 64).
+    # Measured (audit/tda_validation/tda_fixed/parts/smooth.json, nside 64,
+    # full sky, seed 30000): at the top of the filtration this function
+    # returns 1, while the true Euler characteristic of the sphere is 2.
+    #
+    # The FILTRATION ITSELF IS CORRECT and was verified: on the F1 grid case
+    # (256x256 Freudenthal triangulation, 7 Gaussian wells, seed 21) the
+    # fixed implementation reproduces this one's b0 and b1 curves EXACTLY
+    # (np.array_equal, 4001 grid points).  Only the Euler key is wrong, and
+    # the complex it is usually fed (see build_topology above).
+    #
+    # FIXED REPLACEMENT:
+    #     audit/tda_validation/tda_fixed/cmb_topology.py
+    #         :: betti_curves_from_topology(...)   -- same signature
+    #   Returns a dict: 'b0', 'b1', 'euler_char_true' (the true #V-#E+#F of
+    #   the filtered subcomplex), 'b0_minus_b1' (what this function returns)
+    #   and 'b2_implied'.
+    #
+    # THIS FUNCTION IS LEFT UNCHANGED ON PURPOSE (committed record of past
+    # runs).  Only this comment block was added.
+    # =====================================================================
     """Given the cached topology, compute Betti-0/1 and Euler-char curves for
     ONE map on nu_grid, for the given filtration direction. Same lower-star
     filtration definition (max of endpoint T/sigma) as the smoke-test's
@@ -252,6 +310,53 @@ def chi2_stat(vec, mean, cov_inv):
 
 
 def coarse_stats(sim_curves, data_curve, n_bins=N_BINS):
+    # =====================================================================
+    # DEFECT D1 -- FOUND 2026-09-19 -- MISCALIBRATED p-VALUES
+    # ---------------------------------------------------------------------
+    # The chi2 p-values this function returns are not uniform under the null.
+    # Measured by the known-answer suite (branch loop/tda-simple, case F3 in
+    # audit/tda_validation/simple_suite/results.json): 100 independent test
+    # maps against a 100-map same-C_ell ensemble, HEALPix nside 64, KS test
+    # of the 100 p-values against U(0,1):
+    #     b0   KS p = 0.0205        #{p < 0.05} = 3
+    #     b1   KS p = 0.000109      #{p < 0.05} = 9
+    #     chi  KS p = 0.397         #{p < 0.05} = 9
+    # Three causes, all measured:
+    #   (a) df is ALWAYS n_bins (8) below, even when a coarse bin is
+    #       identically constant across the whole ensemble (b0 bin 7 = 1.0 in
+    #       100/100 sims; b1 bin 0 = 0.0 in 100/100).
+    #   (b) `cov = np.cov(...) + 1e-8 * np.eye(n_bins)` followed by
+    #       `np.linalg.pinv` INVERTS the ridge instead of dropping the dead
+    #       direction, giving that direction a weight of about 1e8.
+    #   (c) bins that are atomic but not dead are treated as Gaussian: b1
+    #       bin 1 is 0.0 in 74/100 sims (std 0.1202), so a single extra count
+    #       there gives |z| ~ 6 and a chi2 survival p ~ 1e-6.
+    # The same three causes apply to the leave-one-out branch below, which
+    # the sensitivity scan uses for its 95th-percentile threshold.
+    #
+    # FIXED REPLACEMENT:
+    #     audit/tda_validation/tda_fixed/stats.py
+    #         :: coarse_stats_fixed(sim_curves, data_curve, n_bins=...)
+    #   Drops dead and atomic bins using the ensemble only, conditions the
+    #   kept block by eigenvalue truncation (no ridge), sets df to the
+    #   retained rank, and returns BOTH the chi2 p-value and a
+    #   pooled-exchangeable rank p-value, with the kept-bin count and the
+    #   dropped-bin list (and whether the test vector differs in a dropped
+    #   bin) in the output.  On the same F3 case: b0 KS p = 0.386
+    #   (#{p<0.05} = 4), b1 KS p = 0.222 (9), chi KS p = 0.397 (9).
+    #   Before/after in audit/tda_validation/tda_fixed/validation_results.json;
+    #   regression tests in audit/tda_validation/tda_fixed/tests/test_stats.py.
+    #
+    # EFFECT ON THIS DIRECTORY'S COMMITTED RESULTS: recomputing null_report
+    # .json's six p-values from chunks/null_merged.npz with the fixed
+    # statistic moves them, e.g. sublevel b0 0.0650 -> 0.0428 (crosses 0.05)
+    # and superlevel b1 0.0109 -> 0.0054.  See validation_results.json,
+    # section e5 -- and note that those curves were themselves produced by
+    # the defective build_topology above, which is NOT corrected there.
+    #
+    # THIS FUNCTION IS LEFT UNCHANGED ON PURPOSE (committed record of past
+    # runs).  Only this comment block was added.
+    # =====================================================================
     """Hartlap-corrected Mahalanobis chi2 of the data's coarse curve against
     the null ensemble, plus a leave-one-out chi2 distribution among the null
     sims (used both as a covariance-free empirical rank p-value AND, by the
