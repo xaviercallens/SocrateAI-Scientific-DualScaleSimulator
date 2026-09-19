@@ -1,0 +1,45 @@
+{
+ "chi_from_own_series": "24",
+ "euler_numbers_Hilb_k_K3_k0_to_8": [
+  "1",
+  "24",
+  "324",
+  "3200",
+  "25650",
+  "176256",
+  "1073720",
+  "5930496",
+  "30178575"
+ ],
+ "G_solutions": {
+  "G_1": [
+   "2"
+  ],
+  "G_2": [
+   "9/4",
+   "3/4"
+  ],
+  "G_3": [
+   "50/27",
+   "16/9",
+   "10/27"
+  ],
+  "G_4": [
+   "475/384",
+   "443/192",
+   "15/16",
+   "199/384"
+  ]
+ },
+ "immortal_N_c_M": [
+  "324",
+  "3",
+  "648"
+ ],
+ "hurwitz_table_path": "audit/k3t2_rigidity_v3/B-dyons/hurwitz_results.json",
+ "depends_on_inputs": [
+  "K3_elliptic_genus_factor_k",
+  "Track_D_chi_K3"
+ ],
+ "source": "build_results.py from part*_results.json"
+}

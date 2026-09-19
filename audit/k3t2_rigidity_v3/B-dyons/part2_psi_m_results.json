@@ -1,0 +1,240 @@
+{
+ "args": {
+  "QMAX": 40,
+  "QCHK": 7,
+  "k_norm": "2"
+ },
+ "G_solutions_exact": {
+  "G_1": {
+   "monomials": [
+    "E4^0 E6^0 A^0 B^1"
+   ],
+   "num_equations": 62,
+   "num_unknowns": 1,
+   "rank_M": 1,
+   "rank_augmented": 1,
+   "consistent": true,
+   "num_nonzero_residual_equations": 0,
+   "solution": [
+    "2"
+   ],
+   "neighbour_denominator_d": 1,
+   "neighbour_perturbations_num_failing_equations": {
+    "x[0]+1/1": 62,
+    "x[0]-1/1": 62
+   },
+   "all_neighbours_fail": true
+  },
+  "G_2": {
+   "monomials": [
+    "E4^0 E6^0 A^0 B^2",
+    "E4^1 E6^0 A^2 B^0"
+   ],
+   "num_equations": 88,
+   "num_unknowns": 2,
+   "rank_M": 2,
+   "rank_augmented": 2,
+   "consistent": true,
+   "num_nonzero_residual_equations": 0,
+   "solution": [
+    "9/4",
+    "3/4"
+   ],
+   "neighbour_denominator_d": 4,
+   "neighbour_perturbations_num_failing_equations": {
+    "x[0]+1/4": 88,
+    "x[0]-1/4": 88,
+    "x[1]+1/4": 88,
+    "x[1]-1/4": 88
+   },
+   "all_neighbours_fail": true
+  },
+  "G_3": {
+   "monomials": [
+    "E4^0 E6^0 A^0 B^3",
+    "E4^1 E6^0 A^2 B^1",
+    "E4^0 E6^1 A^3 B^0"
+   ],
+   "num_equations": 110,
+   "num_unknowns": 3,
+   "rank_M": 3,
+   "rank_augmented": 3,
+   "consistent": true,
+   "num_nonzero_residual_equations": 0,
+   "solution": [
+    "50/27",
+    "16/9",
+    "10/27"
+   ],
+   "neighbour_denominator_d": 27,
+   "neighbour_perturbations_num_failing_equations": {
+    "x[0]+1/27": 110,
+    "x[0]-1/27": 110,
+    "x[1]+1/27": 110,
+    "x[1]-1/27": 110,
+    "x[2]+1/27": 110,
+    "x[2]-1/27": 110
+   },
+   "all_neighbours_fail": true
+  },
+  "G_4": {
+   "monomials": [
+    "E4^0 E6^0 A^0 B^4",
+    "E4^1 E6^0 A^2 B^2",
+    "E4^0 E6^1 A^3 B^1",
+    "E4^2 E6^0 A^4 B^0"
+   ],
+   "num_equations": 128,
+   "num_unknowns": 4,
+   "rank_M": 4,
+   "rank_augmented": 4,
+   "consistent": true,
+   "num_nonzero_residual_equations": 0,
+   "solution": [
+    "475/384",
+    "443/192",
+    "15/16",
+    "199/384"
+   ],
+   "neighbour_denominator_d": 384,
+   "neighbour_perturbations_num_failing_equations": {
+    "x[0]+1/384": 128,
+    "x[0]-1/384": 128,
+    "x[1]+1/384": 128,
+    "x[1]-1/384": 128,
+    "x[2]+1/384": 128,
+    "x[2]-1/384": 128,
+    "x[3]+1/384": 128,
+    "x[3]-1/384": 128
+   },
+   "all_neighbours_fail": true
+  }
+ },
+ "delta_psi_lines": {
+  "m=-1": "Delta psi_{-1} = 1/A (G_0=1, empty product)",
+  "m=0": "Delta psi_0 = G_1/A, G_1 solved coefficient(s) in main['G_1']",
+  "m=1": "Delta psi_1 = G_2/A",
+  "m=2": "Delta psi_2 = G_3/A",
+  "m=3": "Delta psi_3 = G_4/A (DMZ-style extension)"
+ },
+ "expected_after_computing": {
+  "G_2 = (9/4) B^2 + (3/4) E4 A^2  [4 Dpsi_1 = 9B^2/A + 3E4A]": [
+   "9/4",
+   "3/4"
+  ],
+  "G_3 = (50/27) B^3 + (48/27) E4 A^2 B + (10/27) E6 A^3": [
+   "50/27",
+   "48/27",
+   "10/27"
+  ],
+  "source": "DMZ arXiv:1208.4074 eq 5.16, FROM MEMORY / v2 note; never used in a computation path"
+ },
+ "k_scan_1_to_6": {
+  "1": {
+   "G_1_solution": [
+    "1"
+   ],
+   "G_1_consistent": true,
+   "G_2_solution": [
+    "5/8",
+    "3/8"
+   ],
+   "G_2_consistent": true,
+   "monomials_G_2": [
+    "E4^0 E6^0 A^0 B^2",
+    "E4^1 E6^0 A^2 B^0"
+   ]
+  },
+  "2": {
+   "G_1_solution": [
+    "2"
+   ],
+   "G_1_consistent": true,
+   "G_2_solution": [
+    "9/4",
+    "3/4"
+   ],
+   "G_2_consistent": true,
+   "monomials_G_2": [
+    "E4^0 E6^0 A^0 B^2",
+    "E4^1 E6^0 A^2 B^0"
+   ]
+  },
+  "3": {
+   "G_1_solution": [
+    "3"
+   ],
+   "G_1_consistent": true,
+   "G_2_solution": [
+    "39/8",
+    "9/8"
+   ],
+   "G_2_consistent": true,
+   "monomials_G_2": [
+    "E4^0 E6^0 A^0 B^2",
+    "E4^1 E6^0 A^2 B^0"
+   ]
+  },
+  "4": {
+   "G_1_solution": [
+    "4"
+   ],
+   "G_1_consistent": true,
+   "G_2_solution": [
+    "17/2",
+    "3/2"
+   ],
+   "G_2_consistent": true,
+   "monomials_G_2": [
+    "E4^0 E6^0 A^0 B^2",
+    "E4^1 E6^0 A^2 B^0"
+   ]
+  },
+  "5": {
+   "G_1_solution": [
+    "5"
+   ],
+   "G_1_consistent": true,
+   "G_2_solution": [
+    "105/8",
+    "15/8"
+   ],
+   "G_2_consistent": true,
+   "monomials_G_2": [
+    "E4^0 E6^0 A^0 B^2",
+    "E4^1 E6^0 A^2 B^0"
+   ]
+  },
+  "6": {
+   "G_1_solution": [
+    "6"
+   ],
+   "G_1_consistent": true,
+   "G_2_solution": [
+    "75/4",
+    "9/4"
+   ],
+   "G_2_consistent": true,
+   "monomials_G_2": [
+    "E4^0 E6^0 A^0 B^2",
+    "E4^1 E6^0 A^2 B^0"
+   ]
+  }
+ },
+ "shared_inputs": [
+  "K3_elliptic_genus_factor_k",
+  "DMVV_product_formula",
+  "Jacobi_theta_definitions",
+  "weak_Jacobi_ring_monomials"
+ ],
+ "rigidity": {
+  "parameter_inserted": "coefficient vector x of G_k in the weak-Jacobi monomial basis",
+  "selecting_condition": "G_k(DMVV, own expansion) = sum x_i mono_i for all (n,l), n<=QCHK (linear system; target-free)",
+  "condition_uses_true_value": false,
+  "classification": "RIGID_GIVEN_DEFINITION",
+  "solution_set": "unique solution when rank_M = num_unknowns (see G_solutions_exact); given declared k and the monomial ansatz",
+  "control_perturbs_same_parameter": true,
+  "negative_control": "neighbour_perturbations_num_failing_equations (each coordinate +-1/d)",
+  "k_dependence": "solvable for every k in 1..6: the SHAPE does not select k (see k_scan)"
+ }
+}

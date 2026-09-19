@@ -1,0 +1,152 @@
+{
+ "args": {
+  "QMAX": 40,
+  "QCHK": 8,
+  "LWIN": 20,
+  "YCAP": 60,
+  "k_norm": "2"
+ },
+ "main_solution": {
+  "num_rows": 106,
+  "rank_M": 3,
+  "rank_augmented": 3,
+  "consistent": true,
+  "solution_N_c_M": [
+   "324",
+   "3",
+   "648"
+  ],
+  "num_nonzero_residual_rows": 0,
+  "neighbour_offsets_num_failing_rows": {
+   "(-1, -1, -1)": 106,
+   "(-1, -1, 0)": 106,
+   "(-1, -1, 1)": 106,
+   "(-1, 0, -1)": 105,
+   "(-1, 0, 0)": 38,
+   "(-1, 0, 1)": 105,
+   "(-1, 1, -1)": 101,
+   "(-1, 1, 0)": 101,
+   "(-1, 1, 1)": 101,
+   "(0, -1, -1)": 73,
+   "(0, -1, 0)": 73,
+   "(0, -1, 1)": 73,
+   "(0, 0, -1)": 67,
+   "(0, 0, 1)": 67,
+   "(0, 1, -1)": 73,
+   "(0, 1, 0)": 73,
+   "(0, 1, 1)": 73,
+   "(1, -1, -1)": 101,
+   "(1, -1, 0)": 101,
+   "(1, -1, 1)": 101,
+   "(1, 0, -1)": 105,
+   "(1, 0, 0)": 38,
+   "(1, 0, 1)": 105,
+   "(1, 1, -1)": 106,
+   "(1, 1, 0)": 106,
+   "(1, 1, 1)": 106
+  },
+  "all_26_neighbours_fail": true,
+  "solution_is_integer": true,
+  "A_times_invA_equals_1_n_le_4_window": {
+   "0": true,
+   "1": true,
+   "2": true,
+   "3": true,
+   "4": true
+  }
+ },
+ "expected_after_computing": {
+  "form": "Delta*psi_1 - N*A_{2,1} = 3*E4*A - M*Hhat, i.e. c = 3 in the task's form",
+  "source": "task statement (coefficient 3 of E4*A) and v2 blind run (N=324, M=648); filled AFTER the solve, never used in a computation path",
+  "solved_equals_expected": null
+ },
+ "k_scan_1_to_6": {
+  "1": {
+   "rank_M": 3,
+   "rank_augmented": 3,
+   "consistent": true,
+   "solution_N_c_M": [
+    "90",
+    "1",
+    "180"
+   ],
+   "num_nonzero_residual_rows": 0
+  },
+  "2": {
+   "rank_M": 3,
+   "rank_augmented": 3,
+   "consistent": true,
+   "solution_N_c_M": [
+    "324",
+    "3",
+    "648"
+   ],
+   "num_nonzero_residual_rows": 0
+  },
+  "3": {
+   "rank_M": 3,
+   "rank_augmented": 3,
+   "consistent": true,
+   "solution_N_c_M": [
+    "702",
+    "6",
+    "1404"
+   ],
+   "num_nonzero_residual_rows": 0
+  },
+  "4": {
+   "rank_M": 3,
+   "rank_augmented": 3,
+   "consistent": true,
+   "solution_N_c_M": [
+    "1224",
+    "10",
+    "2448"
+   ],
+   "num_nonzero_residual_rows": 0
+  },
+  "5": {
+   "rank_M": 3,
+   "rank_augmented": 3,
+   "consistent": true,
+   "solution_N_c_M": [
+    "1890",
+    "15",
+    "3780"
+   ],
+   "num_nonzero_residual_rows": 0
+  },
+  "6": {
+   "rank_M": 3,
+   "rank_augmented": 3,
+   "consistent": true,
+   "solution_N_c_M": [
+    "2700",
+    "21",
+    "5400"
+   ],
+   "num_nonzero_residual_rows": 0
+  }
+ },
+ "shared_inputs": [
+  "K3_elliptic_genus_factor_k",
+  "DMVV_product_formula",
+  "Jacobi_theta_definitions",
+  "immortal_ansatz_form",
+  "Hurwitz_H0",
+  "Kronecker_Hurwitz_relation"
+ ],
+ "rigidity": {
+  "parameter_inserted": "(N, c, M) in G_2/A = N A_{2,1} + c E4 A - M Hhat",
+  "selecting_condition": "identity of q,y series for all (n,l), n<=QCHK, |l|<=LWIN (exact linear solve, target-free)",
+  "condition_uses_true_value": false,
+  "classification": "RIGID_GIVEN_DEFINITION",
+  "given_definitions": [
+   "immortal_ansatz_form",
+   "K3_elliptic_genus_factor_k"
+  ],
+  "control_perturbs_same_parameter": true,
+  "negative_control": "all 26 joint integer neighbours of the solved (N,c,M) fail (see main_solution)",
+  "k_dependence": "system consistent for k=1..6 with k-dependent (N,c,M): the identity does not select k"
+ }
+}
