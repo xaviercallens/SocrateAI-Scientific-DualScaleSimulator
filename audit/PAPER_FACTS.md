@@ -50,9 +50,15 @@ X exploratory numerics.
     `lean_foundation` `tadpole_conservation`) has the same form as eq. (2.3) with flux := ½ N_flux.
     - LeanMaster sources it to Dasgupta–Rajesh–Sethi (M-theory on K3 × K3, ½∫G∧G + n = 24 = χ(K3×K3)/24).
     - That setting is dual to IIB on K3 × T²/ℤ₂, so two independent literature routes give the same 24.
-  - LeanMaster `StringTheoryFoundation/StringTheory/TadpoleCancellation.lean` has the same 16-O7
-    assignment, and its D3 condition "= χ(K3)/24 = 1" disagrees with (2.3). Reported to the LeanMaster
-    session; see `audit/LEANMASTER_NOTE_orientifold.md`.
+  - LeanMaster had the same 16-O7 assignment and a D3 target "= χ(K3)/24 = 1". This session
+    reported both (`audit/LEANMASTER_NOTE_orientifold.md`). **Fixed in LeanMaster v3.21.0**, checked
+    here read-only:
+    - `TadpoleCancellation.lean` now has 4 O7 at −4, 16 D7 at +1, and 4·2 + 16·1 = χ(K3×K3)/24 = 24.
+      `d3_tadpole_target_is_one` and `total_O7_charge_is_minus_64` are removed.
+    - `KummerTadpole.lean` docstrings: units are stated and the citation now points to TT and Sen.
+      LeanMaster found that GP (3.12) is a Chan–Paton projection, not a charge normalisation.
+    - The TT eq. (2.3) citation is in `StringTheoryFormalization/StringDynamics/TadpoleConstraint.lean`.
+    - LeanMaster's review record: `docs/reviews/2026-09-18_dualscalesimulator_orientifold_note.md`.
 
 ## F2. Replacement: kernel-checked foundation (LeanMaster)
 - LeanMaster clone at tag v2.2.0 (commit b27ce8b) built (3708 jobs). Its own gates re-run here:
