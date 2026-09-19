@@ -7,13 +7,60 @@
   "sha256": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
   "functions_exercised": [
    "alpha_persistence",
-   "top_bars (always with explicit r_trunc)"
+   "top_bars (always with explicit r_trunc)",
+   "betti_curve and euler_curve (posthoc_check2.py only; not part of any pre-stated statistic): beta1(r) on the circle control is 1 over most of the grid, on the E. coli MDS-3 diagram 1 over a shorter range; betti_curve(dim=1) equals the beta1 component of euler_curve"
   ],
   "functions_not_exercised": [
-   "betti_curve",
-   "euler_curve (not needed for the pre-stated statistics)",
    "cmb_tda.betti_curves_from_topology (no dataset is a scalar field on a graph; stated in expectations.json)"
   ],
+  "betti_curves_post_hoc": {
+   "circle_beta1": [
+    0.0,
+    9.0,
+    6.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0
+   ],
+   "ecoli_beta1": [
+    0.0,
+    15.0,
+    6.0,
+    1.0,
+    1.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
   "import": "loaded by path with importlib; the module only runs under __main__, so main() is not executed"
  },
  "commands": {
@@ -587,7 +634,16 @@
     "verdict": "PASS",
     "verdict_rips_crosscheck": "FAIL"
    },
-   "verdict": "PASS"
+   "verdict": "PASS",
+   "discrimination_note": "Criterion (ii) carries no discriminating information in tests 2/2b: the known-linear GM12878 control rejects the linear-polymer null at the same floor (alpha p = 0.002, n = 500) as E. coli, because permuting residuals destroys domain structure present in every real contact map. The pre-stated PASS stands, but it rests on the dominance ratio (i) and on the controls' dominance ratios: synthetic ring very large, E. coli 3.5697, E. coli ter-cut 1.6321, GM12878 1.1517, Caulobacter 1.0539, synthetic chain no H1.",
+   "null_offset1_caveat_post_hoc": {
+    "note": "the linear null sets offset-1 contacts to E(2) for every case, while the observed E. coli and GM12878 matrices keep measured offset-1 contacts; this biases S (and S_rips) of the data upward relative to the null, weakening the p-values further; P1/P2 is a within-diagram ratio and is not affected by a global scale.",
+    "E1_over_E2": {
+     "ecoli_full_E1_E2_ratio": 1.439,
+     "gm12878_chr1q_E1_E2_ratio": 2.3956,
+     "caulo_full_E1_E2_ratio": 1.0
+    }
+   }
   },
   "test_3_influenza_reassortment": {
    "data": "NCBI Influenza Virus Resource genomeset.dat / influenza.fna (avian, complete 8-segment sets), 300 genomes",
@@ -779,6 +835,7 @@
  },
  "local_datasets_assessment": {
   "verdict": "MIXED: the three PDB files (1CRN, 1UBQ, 4OBE) are byte-identical to RCSB downloads and the *_ca_coords.npy arrays equal their C-alpha coordinates exactly (real). Every other bio_datasets array and every dual_scale_datasets array has content that points to synthetic generation under real-source names; none was used as validation data.",
+  "manifests": "dual_scale_datasets has dual_scale_datasets_manifest.json, whose 'source' fields name real databases (Materials Project, DIII-D, NIST MDCS, HCP 1200, CloudSat, NIMS SuperCon, SimVascular/UK Biobank, IRIS/USGS, Digital Rocks, Harvard/MIT) that the array contents contradict (evidence below). bio_datasets has NO manifest: none was found in the directory, and no generator script was found by a date-bounded search (find over /home and the local disk, depth <= 5, *.py/*.ipynb).",
   "evidence": {
    "all_23_bio_files_written_within_sec": 0.7860593795776367,
    "pdb": {
@@ -883,7 +940,7 @@
   ]
  },
  "absent": {
-  "none_of_the_pre-stated_tests": "all three pre-stated tests (1a, 1b, 2, 3) and the addendum (2b) were run",
+  "none_of_the_pre-stated_tests": "all four pre-stated tests (1a, 1b, 2, 3) and the addendum (2b) were run; nothing is ABSENT",
   "urls_failed": {
    "https://raw.githubusercontent.com/scverse/scanpy_usage/master/180209_cell_cycle/data/regev_lab_cell_cycle_genes.txt": "HTTP 404 (1 try); not needed: the tinyatlas lists were used instead",
    "https://raw.githubusercontent.com/hbc/tinyatlas/master/cell_cycle/README.md": "HTTP 404 (1 try); documentation only"
@@ -901,6 +958,6 @@
   "Cell cycle (1a, 1b): FAIL as pre-stated. The phase angle is recovered (|rho_cc| 0.31 U2OS vs FUCCI angle, 0.44 vs FUCCI time; 0.71 mESC vs FACS labels, permutation p ~1e-4), but the loop is not a DOMINANT H1 bar (P1/P2 about 1.5-1.6) and not significant against a gene-wise permutation null. Post hoc, it stays non-dominant in PC1-PC2, after whitening, and in 250-cell subsamples, so the failure is not an embedding-dimension or density artefact of the pipeline: at this preprocessing, the published ellipse is too thick/filled to register as a persistent H1 class.",
   "Hi-C: FAIL for Caulobacter (no dominant bar; the chromosome arms are juxtaposed, as Le et al. report, and the contact distance is strongly non-Euclidean), PASS for E. coli (pre-stated addendum): P1/P2 3.6 on the alpha path, p = 0.002 (floor of 500 nulls) against a linear-polymer null, ter-cut and human chr1q controls not dominant. The Rips cross-check on E. coli has P1/P2 2.06 but its p = 0.0196 equals the floor 1/51 of the reduced 50-draw null, so it cannot meet p <= 0.01 by construction: the observed value exceeded all 50 null draws. Caveat: the E. coli PASS depends on the pre-stated exponent 1/3; with d = C^(-1) (reported sensitivity) the alpha-path P1/P2 drops to about 1.0, and classical MDS discards about 46% negative-eigenvalue mass, so the result is not robust to the distance transform.",
   "Influenza (Chan et al. 2013): PASS with plain gudhi Rips on the full p-distance matrix: concatenated genomes have max H1 persistence 0.042 and 101 bars >= 0.005 versus <= 0.012 and <= 4 for any single segment; p = 0.0025 (floor of 400 site-bootstrap draws). The pipeline's alpha path on a 3-D MDS embedding does NOT reproduce this and gives a spurious dominant loop in the single HA segment (P1/P2 about 11), a concrete warning that 3-D embeddings of non-Euclidean metrics can create loops.",
-  "Overall: on the pipeline's own alpha path the functions recover the pre-stated known topology in 0 of 3 original tests (1a, 1b, 2) and in the 1 addendum test (2b, E. coli); test 3 passes only with plain gudhi Rips on the full metric, not with the pipeline's 3-D alpha path. A clean dominant loop (E. coli ring, synthetic ring, circle) is recovered; noisy biological loops (cell cycle) and a folded ring (Caulobacter) are not. The pipeline is not validated as a general detector of biological loops at these settings, and 3-D embeddings of non-Euclidean data can create spurious loops."
+  "Headline split: on the pipeline's own alpha path, 1 PASS of 4 pre-stated tests (the E. coli addendum only), resting on the dominance ratio alone and not robust to the distance exponent; the test-3 PASS is plain gudhi Rips, not the pipeline. Overall: on the pipeline's own alpha path the functions recover the pre-stated known topology in 0 of 3 original tests (1a, 1b, 2) and in the 1 addendum test (2b, E. coli); test 3 passes only with plain gudhi Rips on the full metric, not with the pipeline's 3-D alpha path. A clean dominant loop (E. coli ring, synthetic ring, circle) is recovered; noisy biological loops (cell cycle) and a folded ring (Caulobacter) are not. The pipeline is not validated as a general detector of biological loops at these settings, and 3-D embeddings of non-Euclidean data can create spurious loops."
  ]
 }
