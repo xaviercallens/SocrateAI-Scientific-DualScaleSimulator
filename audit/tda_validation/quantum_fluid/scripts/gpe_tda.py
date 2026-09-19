@@ -114,8 +114,25 @@ def main():
             r["random_control"] = {"per_seed": ctrl,
                                    "h0_iqr_over_median_mean": float(np.mean([c["h0_iqr_over_median"] for c in ctrl])),
                                    "psi6_interior_mean": float(np.mean([c["psi6_interior"] for c in ctrl]))}
-        np.save(os.path.join(qc.DATA_ROOT, "gpe", f"vortex_positions_Omega{Om:.2f}.npy"), pos)
-        out[f"Omega{Om:.2f}"] = r
+            # POST-HOC (added after the pre-registered psi6 >= 0.9 rule was evaluated): the value of the
+            # same interior-psi6 estimator for a PERFECT triangular lattice (spacing a_F) cut to a disk
+            # holding the same number of points, so the small-cluster hull effect is known.
+            N = len(pos)
+            base = np.array([[i + 0.5 * (j % 2), j * np.sqrt(3) / 2] for j in range(-20, 21) for i in range(-20, 21)]) * aF
+            rb = np.hypot(base[:, 0], base[:, 1])
+            ref = base[np.argsort(rb)[:N]]
+            r["posthoc_psi6_perfect_lattice_same_N"] = interior_psi6(ref)[0]
+            from scipy.spatial import Delaunay
+            tri = Delaunay(pos); ip, nbv = tri.vertex_neighbor_vertices
+            coord = np.array([ip[j + 1] - ip[j] for j in range(N)])
+            from scipy.spatial import ConvexHull
+            hull = set(ConvexHull(pos).vertices.tolist())
+            inner = [j for j in range(N) if j not in hull]
+            r["posthoc_interior_coordination_counts"] = {str(c): int((coord[inner] == c).sum()) for c in sorted(set(coord[inner].tolist()))}
+        stem = os.path.basename(fn)[len("psi_"):-4]
+        r["file"] = fn
+        np.save(os.path.join(qc.DATA_ROOT, "gpe", f"vortex_positions_{stem}.npy"), pos)
+        out[stem] = r
         print(json.dumps({k: v for k, v in r.items() if k not in ("random_control",)}, default=float)[:1500], flush=True)
     with open(os.path.join(qc.RESULTS, "gpe_tda.json"), "w") as fh:
         json.dump(out, fh, indent=1, default=float)

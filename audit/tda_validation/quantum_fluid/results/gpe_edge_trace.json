@@ -1,0 +1,37 @@
+{
+ "Omega0.00": {
+  "R_eff": 5.973481591421826,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.25]": 0,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.5]": 0
+ },
+ "Omega0.70": {
+  "R_eff": 7.068625704170226,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.25]": 2,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.5]": 3
+ },
+ "Omega0.70_ext": {
+  "R_eff": 7.068625704170226,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.25]": 2,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.5]": 2
+ },
+ "Omega0.80": {
+  "R_eff": 7.711731574151103,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.25]": 3,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.5]": 5
+ },
+ "Omega0.80_ext": {
+  "R_eff": 7.711731574151103,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.25]": 3,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.5]": 6
+ },
+ "Omega0.90": {
+  "R_eff": 9.047719529509692,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.25]": 1,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.5]": 6
+ },
+ "Omega0.90_ext": {
+  "R_eff": 9.047719529509692,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.25]": 1,
+  "n_vortex_centres_in_(0.7R, 0.7R+0.5]": 6
+ }
+}

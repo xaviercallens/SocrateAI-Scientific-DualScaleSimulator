@@ -1,0 +1,71 @@
+{
+ "note": "POST-HOC descriptive; does not change the pre-registered E3d verdict",
+ "by_field": {
+  "3kOe": {
+   "global_bonds_le_1.6a": 0.2584319302522192,
+   "per_site_mean_abs": 0.5790828906278018,
+   "abs_mean_of_site_psi6": 0.25190722792785114,
+   "n_images": 20
+  },
+  "4kOe": {
+   "global_bonds_le_1.6a": 0.21064040899310416,
+   "per_site_mean_abs": 0.5902224891004693,
+   "abs_mean_of_site_psi6": 0.20561379310365185,
+   "n_images": 20
+  },
+  "5kOe": {
+   "global_bonds_le_1.6a": 0.4093992774778138,
+   "per_site_mean_abs": 0.6471886899370036,
+   "abs_mean_of_site_psi6": 0.39599085446306775,
+   "n_images": 20
+  },
+  "10kOe": {
+   "global_bonds_le_1.6a": 0.4065774600736695,
+   "per_site_mean_abs": 0.644240887233902,
+   "abs_mean_of_site_psi6": 0.39073366298316276,
+   "n_images": 20
+  },
+  "15kOe": {
+   "global_bonds_le_1.6a": 0.5734186731388913,
+   "per_site_mean_abs": 0.7183998803905219,
+   "abs_mean_of_site_psi6": 0.54928272086019,
+   "n_images": 20
+  },
+  "20kOe": {
+   "global_bonds_le_1.6a": 0.6951259581600776,
+   "per_site_mean_abs": 0.777973098711847,
+   "abs_mean_of_site_psi6": 0.6793224724802955,
+   "n_images": 20
+  },
+  "25kOe": {
+   "global_bonds_le_1.6a": 0.5359924121240477,
+   "per_site_mean_abs": 0.7201526008384607,
+   "abs_mean_of_site_psi6": 0.5038494352669716,
+   "n_images": 20
+  },
+  "30kOe": {
+   "global_bonds_le_1.6a": 0.4781196101646382,
+   "per_site_mean_abs": 0.6986245248959444,
+   "abs_mean_of_site_psi6": 0.45740340383532463,
+   "n_images": 20
+  },
+  "40kOe": {
+   "global_bonds_le_1.6a": 0.5497492393865284,
+   "per_site_mean_abs": 0.7211457797230792,
+   "abs_mean_of_site_psi6": 0.539781690541856,
+   "n_images": 20
+  },
+  "50kOe": {
+   "global_bonds_le_1.6a": 0.1239749174959162,
+   "per_site_mean_abs": 0.5270237179008176,
+   "abs_mean_of_site_psi6": 0.12150587497183622,
+   "n_images": 20
+  },
+  "70kOe": {
+   "global_bonds_le_1.6a": 0.10096370737643885,
+   "per_site_mean_abs": 0.49165905313326413,
+   "abs_mean_of_site_psi6": 0.1002300480499263,
+   "n_images": 20
+  }
+ }
+}

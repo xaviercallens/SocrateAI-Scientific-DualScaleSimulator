@@ -25,6 +25,9 @@ vortices can nucleate in imaginary time).
 Command:
   prlimit --as=8589934592 -- .venv-tda/bin/python gpe_rotating.py --omega 0.9
 Output: DATA_ROOT/gpe/psi_Omega{Omega}.npz (psi, grid, mu history, params)
+EXTENSION (added after the pre-registered runs hit the step cap unconverged):
+  gpe_rotating.py --omega 0.9 --resume DATA_ROOT/gpe/psi_Omega0.90.npz --max1 0 --max2 40000 --tag _ext
+  continues imaginary time at dt = 0.002 from the step-cap state.
 """
 import argparse
 import json
@@ -48,7 +51,7 @@ def chem_potential(psi, X, Y, KX, KY, g, Om, dx):
     return float(mu), float(mu - e_int)
 
 
-def run(Om, g=1000.0, N=384, Lbox=24.0, seed=7, max1=8000, max2=12000):
+def run(Om, g=1000.0, N=384, Lbox=24.0, seed=7, max1=8000, max2=12000, resume=None, tag=""):
     x = (np.arange(N) - N // 2) * (Lbox / N)
     dx = x[1] - x[0]
     X, Y = np.meshgrid(x, x, indexing="xy")  # X[j,i] = x_i, Y[j,i] = y_j ; axis0 = y, axis1 = x
@@ -69,6 +72,8 @@ def run(Om, g=1000.0, N=384, Lbox=24.0, seed=7, max1=8000, max2=12000):
             x0, y0 = r0 * np.cos(a0), r0 * np.sin(a0)
             psi *= ((X - x0) + 1j * (Y - y0)) / np.sqrt((X - x0) ** 2 + (Y - y0) ** 2 + 0.05)
     psi /= np.sqrt(np.sum(np.abs(psi) ** 2) * dx * dx)
+    if resume:  # EXTENSION (not pre-registered): continue imaginary time from a saved state
+        psi = np.load(resume)["psi"].astype(np.complex128)
     V = 0.5 * (X ** 2 + Y ** 2)
     hist = []
     t0 = time.time()
@@ -88,6 +93,11 @@ def run(Om, g=1000.0, N=384, Lbox=24.0, seed=7, max1=8000, max2=12000):
             psi *= np.exp(-0.5 * dt * (V + g * np.abs(psi) ** 2))
             psi /= np.sqrt(np.sum(np.abs(psi) ** 2) * dx * dx)
             step_total += 1
+            if step_total % 2000 == 0:  # checkpoint (overwritten; converged=False until the end)
+                ck = os.path.join(DATA_ROOT, "gpe", f"psi_Omega{Om:.2f}{tag}.npz")
+                os.makedirs(os.path.dirname(ck), exist_ok=True)
+                np.savez_compressed(ck, psi=psi.astype(np.complex64), x=x, g=g, Omega=Om, N=N, Lbox=Lbox, seed=seed,
+                                    mu=np.nan, mu_hist=np.array(hist), converged=False, steps=step_total, checkpoint=True)
             if s % 100 == 99:
                 mu, e_noint = chem_potential(psi, X, Y, KX, KY, g, Om, dx)
                 hist.append([step_total, dt, mu])
@@ -96,10 +106,11 @@ def run(Om, g=1000.0, N=384, Lbox=24.0, seed=7, max1=8000, max2=12000):
                     break
                 mu_prev = mu
     mu, _ = chem_potential(psi, X, Y, KX, KY, g, Om, dx)
-    out = os.path.join(DATA_ROOT, "gpe", f"psi_Omega{Om:.2f}.npz")
+    out = os.path.join(DATA_ROOT, "gpe", f"psi_Omega{Om:.2f}{tag}.npz")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     np.savez_compressed(out, psi=psi.astype(np.complex64), x=x, g=g, Omega=Om, N=N, Lbox=Lbox, seed=seed,
-                        mu=mu, mu_hist=np.array(hist), converged=converged, steps=step_total)
+                        mu=mu, mu_hist=np.array(hist), converged=converged, steps=step_total, checkpoint=False,
+                        resumed_from=str(resume))
     info = dict(Omega=Om, g=g, N=N, Lbox=Lbox, dx=float(dx), seed=seed, mu_final=mu, mu_TF_rot=float(mu_tf),
                 converged=converged, steps=step_total, runtime_s=time.time() - t0,
                 last_mu_changes=[h[2] for h in hist[-5:]], file=out)
@@ -113,5 +124,7 @@ if __name__ == "__main__":
     ap.add_argument("--max1", type=int, default=8000)
     ap.add_argument("--max2", type=int, default=12000)
     ap.add_argument("--N", type=int, default=384)
+    ap.add_argument("--resume", type=str, default=None)
+    ap.add_argument("--tag", type=str, default="")
     a = ap.parse_args()
-    run(a.omega, N=a.N, max1=a.max1, max2=a.max2)
+    run(a.omega, N=a.N, max1=a.max1, max2=a.max2, resume=a.resume, tag=a.tag)

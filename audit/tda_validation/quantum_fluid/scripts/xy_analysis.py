@@ -123,7 +123,9 @@ def main():
     tda = {}
     for L in (32, 64, 128):
         feats = load_feats(L)
-        if not feats:
+        n_mc = len(glob.glob(os.path.join(qc.DATA_ROOT, "xy", f"L{L}", "T*.npz")))
+        if not feats or len(feats) < n_mc:
+            print(f"L={L}: TDA features incomplete ({len(feats)}/{n_mc} temperatures), skipped")
             continue
         r = {"n_T": len(feats), "n_cfg_per_T": int(len(feats[0]["b0"]))}
         r["window_A"] = classifier_crossing(feats, L, (0.40, 0.60), (1.30, 1.60))
@@ -157,6 +159,11 @@ def main():
         if any(len(d["b0_shuf"]) for d in feats):
             fs = [d for d in feats if len(d["b0_shuf"])]
             r["E1e_classifier_on_shuffled_windowA"] = classifier_crossing(fs, L, (0.40, 0.60), (1.30, 1.60), "b0_shuf", "b1_shuf")
+        shdir = os.path.join(qc.DATA_ROOT, "xy_tda", f"L{L}_shufonly")
+        if os.path.isdir(shdir) and len(glob.glob(os.path.join(shdir, "T*.npz"))) == len(feats):
+            fs = sorted([dict(np.load(f)) for f in glob.glob(os.path.join(shdir, "T*.npz"))], key=lambda d: float(d["T"]))
+            r["E1e_classifier_on_shuffled_windowA"] = classifier_crossing(fs, L, (0.40, 0.60), (1.30, 1.60), "b0_shuf", "b1_shuf")
+            r["E1e_classifier_on_shuffled_note"] = "EXTENSION: shuffle-only run (xy_tda_features.py --shuffle-only 50)"
         # E1f alpha pairing
         al = {}
         for d in feats:

@@ -57,12 +57,15 @@ def main():
     ap.add_argument("--shuffle-n", type=int, default=0)
     ap.add_argument("--alpha-n", type=int, default=0)
     ap.add_argument("--temps", type=str, default=None)
+    ap.add_argument("--shuffle-only", type=int, default=0,
+                    help="EXTENSION: only site-shuffled Betti curves for the first K configs (stride applied), "
+                         "written to xy_tda/L{L}_shufonly/ (used for the L=128 control)")
     a = ap.parse_args()
     cmb, web = qc.cmb(), qc.web()
     L = a.L
     topo = qc.torus_topology(L)
     src = os.path.join(qc.DATA_ROOT, "xy", f"L{L}")
-    dst = os.path.join(qc.DATA_ROOT, "xy_tda", f"L{L}")
+    dst = os.path.join(qc.DATA_ROOT, "xy_tda", f"L{L}" + ("_shufonly" if a.shuffle_only else ""))
     os.makedirs(dst, exist_ok=True)
     files = sorted(glob.glob(os.path.join(src, "T*.npz")))
     if a.temps:
@@ -76,6 +79,17 @@ def main():
         d = np.load(fn)
         T = float(d["T"])
         cfgs = d["configs"][:: a.stride]
+        if a.shuffle_only:
+            S0 = []; S1 = []
+            for i, th in enumerate(cfgs[: a.shuffle_only]):
+                th = th.astype(np.float64)
+                thp = qc.wrap(th - np.angle(np.exp(1j * th).sum()))
+                perm = np.random.default_rng(12345 + i).permutation(L * L)
+                b0s, b1s = betti(thp.ravel()[perm].reshape(L, L), topo, cmb)
+                S0.append(b0s); S1.append(b1s)
+            np.savez_compressed(out, T=T, L=L, thr=THR, b0_shuf=np.array(S0), b1_shuf=np.array(S1), stride=a.stride)
+            print(f"L={L} T={T:.3f} shuffle-only n={len(S0)} t={time.time()-t0:.1f}s", flush=True)
+            continue
         n = len(cfgs)
         B0 = np.zeros((n, THR.size), int); B1 = np.zeros((n, THR.size), int); NV = np.zeros(n, int)
         nsh = min(a.shuffle_n, n)

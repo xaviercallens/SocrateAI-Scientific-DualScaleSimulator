@@ -1,0 +1,925 @@
+{
+ "title": "TDA pipeline validation against established quantum-fluid topology",
+ "expectations_commit": "a0fd19a (expectations.json committed alone, before any computation)",
+ "pipeline_functions_tested": {
+  "lower_star": "audit/reverse_zero/E5-cmb-tda/cmb_tda.py::betti_curves_from_topology (imported via importlib, not reimplemented)",
+  "alpha": "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py::alpha_persistence, top_bars (betti_curve not needed for the pre-stated statistics)"
+ },
+ "status_of_tests": "Tests 1 and 2 are simulations of established theory (known physics, not measurements). Test 3 uses real published STM measurements.",
+ "calibration": {
+  "perfect_triangular_H0_death_over_a": 0.4999999999999995,
+  "perfect_triangular_H1_death_over_a": 0.5773502691896257,
+  "poisson_H0_iqr_over_median": 0.699635798919964,
+  "lower_star_dips_b0": [
+   7,
+   1
+  ],
+  "torus_euler": {
+   "8": {
+    "V": 64,
+    "E": 192,
+    "F": 128,
+    "chi": 0
+   },
+   "32": {
+    "V": 1024,
+    "E": 3072,
+    "F": 2048,
+    "chi": 0
+   },
+   "64": {
+    "V": 4096,
+    "E": 12288,
+    "F": 8192,
+    "chi": 0
+   }
+  }
+ },
+ "test1_xy_bkt": {
+  "setup": "2-D XY model, J=1, periodic L x L, L = 32, 64, 128; Wolff single-cluster MC (numba), 2000 thermalisation sweep-equivalents, 400 measurements 2 sweep-equivalents apart, 29 temperatures 0.40-1.60 (step 0.05 plus 0.875, 0.925, 0.975, 1.025); seeds 20260919 + 1000 L + round(1000 T). Max integrated autocorrelation time of the energy (measurement units): L=32: 2.89, L=64: 3.34, L=128: 3.10. TDA on 200 (L=32, 64) or 100 (L=128) configurations per temperature.",
+  "E1a_helicity_crosscheck": {
+   "T_Ups_by_L": {
+    "32": 0.9279001427040815,
+    "64": 0.9146922460319451,
+    "128": 0.9108133517663207
+   },
+   "T_Ups_err_by_L": {
+    "32": 0.0018331718754614759,
+    "64": 0.0021902419396256922,
+    "128": 0.002015660660504024
+   },
+   "fit": "T_Ups(L) = T_inf + c/(ln L)^2",
+   "T_inf": 0.8915464169432099,
+   "reference_T_BKT": 0.89289,
+   "PASS": true,
+   "scope": "validates the Monte Carlo and the independent (non-TDA) observable, not the TDA pipeline"
+  },
+  "E1b_primary_lower_star_crossover": {
+   "T_TDA_windowA_by_L": {
+    "32": 1.022464376583588,
+    "64": 0.9980099110283599,
+    "128": 0.9488404796820177
+   },
+   "T_TDA_boot_std_by_L": {
+    "32": 0.0027894580168411815,
+    "64": 0.0023033255610657066,
+    "128": 0.003065851973000987
+   },
+   "rule_PASS": true,
+   "VERDICT": "NOT ATTRIBUTABLE (counted as FAIL as a topology validation): the bracket/drift rule is met, but the pre-stated negative control E1e fails and the classifier trained on SITE-SHUFFLED fields reproduces the crossing",
+   "classifier_on_shuffled_T_TDA_by_L": {
+    "32": 1.025592374550901,
+    "64": 1.0068842694702096,
+    "128": 0.9871476862142479
+   }
+  },
+  "E1c_training_window_control": {
+   "crossings_by_L": {
+    "32": {
+     "window_A": 1.022464376583588,
+     "window_B": 1.0483461894036055,
+     "window_C": 0.9286792255638586
+    },
+    "64": {
+     "window_A": 0.9980099110283599,
+     "window_B": 1.0004908199138454,
+     "window_C": 0.9678360138671528
+    },
+    "128": {
+     "window_A": 0.9488404796820177,
+     "window_B": 0.97122299338685,
+     "window_C": 0.9564351708352251
+    }
+   },
+   "shift_B_minus_A_L64": 0.0024809088854854666,
+   "shift_C_minus_A_L64": -0.03017389716120711,
+   "PASS_at_L64": true,
+   "note": "at L=32 window C moves the crossing by -0.094 (would fail); rule was stated for L=64"
+  },
+  "E1d_vortex_betti_identity": {
+   "median_spearman_rho_T_0.70_0.80": 0.09503274933090383,
+   "per_T": {
+    "0.700": {
+     "spearman_rho": 0.09503274933090383,
+     "mean_nv": 3.32,
+     "mean_b0_m3pi4": 5.575
+    },
+    "0.750": {
+     "spearman_rho": 0.2531921525607414,
+     "mean_nv": 6.89,
+     "mean_b0_m3pi4": 8.245
+    },
+    "0.800": {
+     "spearman_rho": 0.06711125940730484,
+     "mean_nv": 12.27,
+     "mean_b0_m3pi4": 13.065
+    },
+    "0.850": {
+     "spearman_rho": 0.25827264465651767,
+     "mean_nv": 21.93,
+     "mean_b0_m3pi4": 19.2
+    },
+    "0.900": {
+     "spearman_rho": 0.28573842194730115,
+     "mean_nv": 37.74,
+     "mean_b0_m3pi4": 28.035
+    }
+   },
+   "PASS": false
+  },
+  "E1e_negative_control_site_shuffle": {
+   "min_diff_over_se_T_le_1": -3.5457149411443445,
+   "b0_theta_le_0_per_site_real_range_L64": [
+    0.0159423828125,
+    0.0186328125
+   ],
+   "per_T_L64": {
+    "0.400": {
+     "real_b0_theta_le_0_per_site": 0.0172314453125,
+     "shuffled": 0.0176171875,
+     "diff_over_se": 0.839219798160766,
+     "real_b1_theta_le_0_per_site": 0.0186669921875,
+     "shuffled_b1": 0.0182177734375
+    },
+    "0.450": {
+     "real_b0_theta_le_0_per_site": 0.0186328125,
+     "shuffled": 0.017275390625,
+     "diff_over_se": -3.5457149411443445,
+     "real_b1_theta_le_0_per_site": 0.0177685546875,
+     "shuffled_b1": 0.018046875
+    },
+    "0.500": {
+     "real_b0_theta_le_0_per_site": 0.0184130859375,
+     "shuffled": 0.017861328125,
+     "diff_over_se": -1.3020139554537522,
+     "real_b1_theta_le_0_per_site": 0.017568359375,
+     "shuffled_b1": 0.0181396484375
+    },
+    "0.550": {
+     "real_b0_theta_le_0_per_site": 0.0172119140625,
+     "shuffled": 0.01724609375,
+     "diff_over_se": 0.07883755805963431,
+     "real_b1_theta_le_0_per_site": 0.0185302734375,
+     "shuffled_b1": 0.0180615234375
+    },
+    "0.600": {
+     "real_b0_theta_le_0_per_site": 0.0178515625,
+     "shuffled": 0.0181640625,
+     "diff_over_se": 0.7890014535827299,
+     "real_b1_theta_le_0_per_site": 0.01693359375,
+     "shuffled_b1": 0.0169091796875
+    },
+    "0.650": {
+     "real_b0_theta_le_0_per_site": 0.0179833984375,
+     "shuffled": 0.0174755859375,
+     "diff_over_se": -1.620645456010885,
+     "real_b1_theta_le_0_per_site": 0.01716796875,
+     "shuffled_b1": 0.017392578125
+    },
+    "0.700": {
+     "real_b0_theta_le_0_per_site": 0.0178173828125,
+     "shuffled": 0.0178564453125,
+     "diff_over_se": 0.10614592748363562,
+     "real_b1_theta_le_0_per_site": 0.0175146484375,
+     "shuffled_b1": 0.017490234375
+    },
+    "0.750": {
+     "real_b0_theta_le_0_per_site": 0.017451171875,
+     "shuffled": 0.0174462890625,
+     "diff_over_se": -0.013104180380179575,
+     "real_b1_theta_le_0_per_site": 0.017626953125,
+     "shuffled_b1": 0.018330078125
+    },
+    "0.800": {
+     "real_b0_theta_le_0_per_site": 0.0179248046875,
+     "shuffled": 0.0175146484375,
+     "diff_over_se": -1.143000183220421,
+     "real_b1_theta_le_0_per_site": 0.01779296875,
+     "shuffled_b1": 0.0178076171875
+    },
+    "0.850": {
+     "real_b0_theta_le_0_per_site": 0.0174951171875,
+     "shuffled": 0.017587890625,
+     "diff_over_se": 0.26210318637197677,
+     "real_b1_theta_le_0_per_site": 0.0178466796875,
+     "shuffled_b1": 0.0183349609375
+    },
+    "0.875": {
+     "real_b0_theta_le_0_per_site": 0.0180029296875,
+     "shuffled": 0.017890625,
+     "diff_over_se": -0.2631151023845523,
+     "real_b1_theta_le_0_per_site": 0.0179443359375,
+     "shuffled_b1": 0.0176025390625
+    },
+    "0.900": {
+     "real_b0_theta_le_0_per_site": 0.0176953125,
+     "shuffled": 0.0178662109375,
+     "diff_over_se": 0.4465445588288841,
+     "real_b1_theta_le_0_per_site": 0.0174365234375,
+     "shuffled_b1": 0.017197265625
+    },
+    "0.925": {
+     "real_b0_theta_le_0_per_site": 0.0179736328125,
+     "shuffled": 0.01810546875,
+     "diff_over_se": 0.2996902008716672,
+     "real_b1_theta_le_0_per_site": 0.017744140625,
+     "shuffled_b1": 0.0183203125
+    },
+    "0.950": {
+     "real_b0_theta_le_0_per_site": 0.018193359375,
+     "shuffled": 0.01791015625,
+     "diff_over_se": -0.7568833167764383,
+     "real_b1_theta_le_0_per_site": 0.017841796875,
+     "shuffled_b1": 0.01771484375
+    },
+    "0.975": {
+     "real_b0_theta_le_0_per_site": 0.0175244140625,
+     "shuffled": 0.01794921875,
+     "diff_over_se": 1.3389272770605218,
+     "real_b1_theta_le_0_per_site": 0.017578125,
+     "shuffled_b1": 0.01751953125
+    },
+    "1.000": {
+     "real_b0_theta_le_0_per_site": 0.0177685546875,
+     "shuffled": 0.0176708984375,
+     "diff_over_se": -0.22780043196116748,
+     "real_b1_theta_le_0_per_site": 0.01763671875,
+     "shuffled_b1": 0.01783203125
+    },
+    "1.025": {
+     "real_b0_theta_le_0_per_site": 0.0174267578125,
+     "shuffled": 0.0180078125,
+     "diff_over_se": 1.4739577131706403,
+     "real_b1_theta_le_0_per_site": 0.01794921875,
+     "shuffled_b1": 0.017548828125
+    },
+    "1.050": {
+     "real_b0_theta_le_0_per_site": 0.018193359375,
+     "shuffled": 0.0183349609375,
+     "diff_over_se": 0.3060656663553631,
+     "real_b1_theta_le_0_per_site": 0.01751953125,
+     "shuffled_b1": 0.0175927734375
+    },
+    "1.100": {
+     "real_b0_theta_le_0_per_site": 0.017724609375,
+     "shuffled": 0.0177197265625,
+     "diff_over_se": -0.012379224600316752,
+     "real_b1_theta_le_0_per_site": 0.0176220703125,
+     "shuffled_b1": 0.0177978515625
+    },
+    "1.150": {
+     "real_b0_theta_le_0_per_site": 0.017158203125,
+     "shuffled": 0.0177734375,
+     "diff_over_se": 1.5442251840008148,
+     "real_b1_theta_le_0_per_site": 0.0176318359375,
+     "shuffled_b1": 0.0173486328125
+    },
+    "1.200": {
+     "real_b0_theta_le_0_per_site": 0.016845703125,
+     "shuffled": 0.0171875,
+     "diff_over_se": 0.8191735327089669,
+     "real_b1_theta_le_0_per_site": 0.0170166015625,
+     "shuffled_b1": 0.017900390625
+    },
+    "1.250": {
+     "real_b0_theta_le_0_per_site": 0.016982421875,
+     "shuffled": 0.01783203125,
+     "diff_over_se": 2.102739596629259,
+     "real_b1_theta_le_0_per_site": 0.0166748046875,
+     "shuffled_b1": 0.0175634765625
+    },
+    "1.300": {
+     "real_b0_theta_le_0_per_site": 0.016875,
+     "shuffled": 0.0177978515625,
+     "diff_over_se": 2.5959697202006167,
+     "real_b1_theta_le_0_per_site": 0.016708984375,
+     "shuffled_b1": 0.017724609375
+    },
+    "1.350": {
+     "real_b0_theta_le_0_per_site": 0.017001953125,
+     "shuffled": 0.0180712890625,
+     "diff_over_se": 2.422103209016097,
+     "real_b1_theta_le_0_per_site": 0.0165380859375,
+     "shuffled_b1": 0.0170849609375
+    },
+    "1.400": {
+     "real_b0_theta_le_0_per_site": 0.0167919921875,
+     "shuffled": 0.01755859375,
+     "diff_over_se": 1.9346283018437431,
+     "real_b1_theta_le_0_per_site": 0.0164208984375,
+     "shuffled_b1": 0.01767578125
+    },
+    "1.450": {
+     "real_b0_theta_le_0_per_site": 0.0164453125,
+     "shuffled": 0.0178857421875,
+     "diff_over_se": 3.62769524990328,
+     "real_b1_theta_le_0_per_site": 0.0166943359375,
+     "shuffled_b1": 0.0178955078125
+    },
+    "1.500": {
+     "real_b0_theta_le_0_per_site": 0.0164404296875,
+     "shuffled": 0.017685546875,
+     "diff_over_se": 3.5229310161831546,
+     "real_b1_theta_le_0_per_site": 0.0165625,
+     "shuffled_b1": 0.018291015625
+    },
+    "1.550": {
+     "real_b0_theta_le_0_per_site": 0.0159423828125,
+     "shuffled": 0.017529296875,
+     "diff_over_se": 4.242712415746173,
+     "real_b1_theta_le_0_per_site": 0.01609375,
+     "shuffled_b1": 0.01794921875
+    },
+    "1.600": {
+     "real_b0_theta_le_0_per_site": 0.0161669921875,
+     "shuffled": 0.0178662109375,
+     "diff_over_se": 5.065160633314989,
+     "real_b1_theta_le_0_per_site": 0.016416015625,
+     "shuffled_b1": 0.017421875
+    }
+   },
+   "PASS": false
+  },
+  "E1f_alpha_vortex_pairing": {
+   "S_pair_L64": {
+    "0.650": 46.06666666666666,
+    "0.700": null,
+    "0.750": 75.95835390100095,
+    "0.800": 49.38902187784189,
+    "0.850": 35.80588275672682,
+    "0.875": 23.12083766048332,
+    "0.900": 15.399913850320754,
+    "0.925": 11.791596593242335,
+    "0.950": 8.49982130279361,
+    "0.975": 6.922903331422334,
+    "1.000": 5.521244491671051,
+    "1.025": 4.3419231174194,
+    "1.050": 3.4620229749307847,
+    "1.100": 2.5702986011832443,
+    "1.150": 2.1337136298689208,
+    "1.200": 1.8364795792587365,
+    "1.250": 1.6718358088727694,
+    "1.300": 1.509481681171216,
+    "1.350": 1.4453987544639815,
+    "1.400": 1.380491133687291,
+    "1.450": 1.3144396460131407,
+    "1.500": 1.2677980285964092,
+    "1.550": 1.2361952378628474,
+    "1.600": 1.2042299908345753
+   },
+   "S_pair_0.85": 35.80588275672682,
+   "S_pair_1.50": 1.2677980285964092,
+   "PASS": true,
+   "note": "S_pair is null at T=0.70 because the random null had f_short = 0 in all configurations (division by zero); reported as null, not infinite"
+  },
+  "summary": "Independent cross-check: the helicity-modulus crossings T_Ups(L) = 0.9279 (L=32), 0.9147 (L=64), 0.9108 (L=128) give T_inf = 0.8915 with the (ln L)^-2 form, against T_BKT = 0.89289 (Komura & Okabe 2012): PASS; this validates the simulation, not the TDA. Alpha path (vortex point cloud): the H0 short-bar excess over a matched-density random placement falls from 35.8 at T=0.85 to 1.27 at T=1.50 (L=64), a clean bound-pair to free-vortex signature: PASS. It is not a T_BKT locator and was not claimed as one. Lower-star path (angle field, Cole et al.-style classifier): crossings T_TDA = 1.022 (L=32), 0.998 (L=64), 0.949 (L=128) drift down with L and sit in the pre-stated bracket, but the pre-stated negative control fails: b0 per site at the median threshold (L=64) is the same for real and site-shuffled fields at every T <= 1.00 (largest |difference| 3.5 standard errors; a small excess of up to 5.1 SE appears only at T >= 1.45), and the classifier trained on site-shuffled fields gives 1.026 (L=32), 1.007 (L=64), 0.987 (L=128). The crossover is carried by the one-point angle distribution (magnetisation), not by spatial topology, so it is NOT attributable to topology. The vortex-count/Betti identity (E1d) also fails (median Spearman rho = 0.095).",
+  "caveats": [
+   "BKT finite-size drift is logarithmic; L <= 128 cannot resolve T_BKT to better than a few percent from any crossing statistic.",
+   "The field was gauge-rotated by the magnetisation angle before filtration (pre-stated); Cole et al. used the raw angle on periodic cubical complexes with persistence images, we used a Freudenthal simplicial torus with Betti curves (the pipeline's output). The E1d rule (within-temperature rank correlation) is stricter than Cole et al.'s Fig. 13 (averages at fixed pair number).",
+   "The Betti curves at the median threshold equal those of an i.i.d. (site-shuffled) field of the same histogram: on this graph the raw-angle sublevel topology is dominated by lattice-scale spin-wave noise.",
+   "L=128 shuffle control was an extension run (xy_tda_features.py --shuffle-only 50), not part of the pre-stated L=64 rule.",
+   "The alpha complex of vortex positions is non-periodic (pipeline limitation); pairs across the periodic boundary are split."
+  ]
+ },
+ "test2_rotating_bec": {
+  "setup": "2-D GPE, hbar=m=omega=1, g=1000, 384^2 grid on [-12,12)^2 (dx=0.0625), imaginary-time Strang split-step Fourier with x/y-split rotation operator, dt 0.005 (8000 steps) then 0.002 (up to 12000), seed 7, Omega = 0, 0.7, 0.8, 0.9. Omega=0 converged; the rotating runs hit the step cap (primary, pre-stated); an extension continued them for up to 40000 steps at dt=0.002 (Omega=0.8 converged, 0.7 and 0.9 still drifting in mu at ~1e-5 per 100 steps).",
+  "runs": {
+   "Omega0.00": {
+    "converged": true,
+    "steps": 16400,
+    "mu": 17.941819732269035,
+    "winding_signs": {
+     "plus": 0,
+     "minus": 0
+    }
+   },
+   "Omega0.70": {
+    "converged": false,
+    "steps": 20000,
+    "mu": 13.926083147498662,
+    "winding_signs": {
+     "plus": 17,
+     "minus": 0
+    }
+   },
+   "Omega0.70_ext": {
+    "converged": false,
+    "steps": 40000,
+    "mu": 13.917776895996154,
+    "winding_signs": {
+     "plus": 18,
+     "minus": 0
+    }
+   },
+   "Omega0.80": {
+    "converged": false,
+    "steps": 20000,
+    "mu": 11.960405258439264,
+    "winding_signs": {
+     "plus": 21,
+     "minus": 0
+    }
+   },
+   "Omega0.80_ext": {
+    "converged": true,
+    "steps": 10100,
+    "mu": 11.957802949373164,
+    "winding_signs": {
+     "plus": 21,
+     "minus": 0
+    }
+   },
+   "Omega0.90": {
+    "converged": false,
+    "steps": 20000,
+    "mu": 9.074520162601594,
+    "winding_signs": {
+     "plus": 35,
+     "minus": 0
+    }
+   },
+   "Omega0.90_ext": {
+    "converged": false,
+    "steps": 40000,
+    "mu": 9.070329125424843,
+    "winding_signs": {
+     "plus": 34,
+     "minus": 0
+    }
+   }
+  },
+  "E2a_h0_equals_winding": {
+   "primary": {
+    "Omega0.70": {
+     "b0_lower_star": 18,
+     "N_winding": 17,
+     "diff": 1,
+     "vortices_just_outside_edge_(0.7R,0.7R+0.25]": 2
+    },
+    "Omega0.80": {
+     "b0_lower_star": 23,
+     "N_winding": 21,
+     "diff": 2,
+     "vortices_just_outside_edge_(0.7R,0.7R+0.25]": 3
+    },
+    "Omega0.90": {
+     "b0_lower_star": 35,
+     "N_winding": 35,
+     "diff": 0,
+     "vortices_just_outside_edge_(0.7R,0.7R+0.25]": 1
+    }
+   },
+   "extension": {
+    "Omega0.70_ext": {
+     "b0_lower_star": 19,
+     "N_winding": 18,
+     "diff": 1,
+     "vortices_just_outside_edge_(0.7R,0.7R+0.25]": 2
+    },
+    "Omega0.80_ext": {
+     "b0_lower_star": 24,
+     "N_winding": 21,
+     "diff": 3,
+     "vortices_just_outside_edge_(0.7R,0.7R+0.25]": 3
+    },
+    "Omega0.90_ext": {
+     "b0_lower_star": 35,
+     "N_winding": 34,
+     "diff": 1,
+     "vortices_just_outside_edge_(0.7R,0.7R+0.25]": 1
+    }
+   },
+   "PASS": false,
+   "note": "every discrepancy is b0 > N_winding and is <= the number of vortex centres lying within 0.25 a_ho OUTSIDE the analysis disk (their low-density cores enter the masked disk; the all-corners-inside winding count excludes them). Omega=0.8 exceeds the pre-stated tolerance of 1."
+  },
+  "E2b_feynman": {
+   "primary": {
+    "Omega0.70": {
+     "central_r<0.5R_over_nF": 0.9149175683318204,
+     "N_central": 8,
+     "r<0.7R_over_nF": 0.9919386901556728
+    },
+    "Omega0.80": {
+     "central_r<0.5R_over_nF": 0.8407486824596893,
+     "N_central": 10,
+     "r<0.7R_over_nF": 0.9008021597782384
+    },
+    "Omega0.90": {
+     "central_r<0.5R_over_nF": 0.9772636116684675,
+     "N_central": 18,
+     "r<0.7R_over_nF": 0.9695075512584003
+    }
+   },
+   "extension": {
+    "Omega0.70_ext": {
+     "central_r<0.5R_over_nF": 0.9149175683318204,
+     "N_central": 8,
+     "r<0.7R_over_nF": 1.0502880248707123
+    },
+    "Omega0.80_ext": {
+     "central_r<0.5R_over_nF": 0.9248235507056581,
+     "N_central": 11,
+     "r<0.7R_over_nF": 0.9008021597782384
+    },
+    "Omega0.90_ext": {
+     "central_r<0.5R_over_nF": 0.9772636116684675,
+     "N_central": 18,
+     "r<0.7R_over_nF": 0.9418073355081604
+    }
+   },
+   "PASS": false,
+   "note": "one vortex in the central disk changes the ratio by ~0.05-0.12 (8-18 central vortices); the Omega=0.8 step-cap value 0.841 becomes 0.925 in the extension run"
+  },
+  "E2c_lattice_tda": {
+   "primary": {
+    "Omega0.70": {
+     "a_TDA_over_a_F": 1.0850627899259357,
+     "a_F": 2.2764630235986814,
+     "2median_H0_over_a_F": 0.9283888897800695,
+     "H0_iqr_over_median": 0.0802054909744732,
+     "psi6_interior": 0.4854194078998507,
+     "interior_coordination_counts": {
+      "4": 1,
+      "5": 3,
+      "6": 3,
+      "7": 1
+     },
+     "random_H0_iqr_over_median": 0.7504839757432915,
+     "random_psi6": 0.3837343933336827
+    },
+    "Omega0.80": {
+     "a_TDA_over_a_F": 1.0530954203141578,
+     "a_F": 2.1294361719914368,
+     "2median_H0_over_a_F": 0.9578321901712235,
+     "H0_iqr_over_median": 0.035877101803482664,
+     "psi6_interior": 0.5644817665880796,
+     "interior_coordination_counts": {
+      "4": 2,
+      "5": 2,
+      "6": 6,
+      "7": 1
+     },
+     "random_H0_iqr_over_median": 0.663763393681301,
+     "random_psi6": 0.418600929488021
+    },
+    "Omega0.90": {
+     "a_TDA_over_a_F": 1.060570645624132,
+     "a_F": 2.007651676425424,
+     "2median_H0_over_a_F": 0.9287239704806919,
+     "H0_iqr_over_median": 0.05062708408067884,
+     "psi6_interior": 0.40079480103069076,
+     "interior_coordination_counts": {
+      "4": 2,
+      "5": 11,
+      "6": 9,
+      "7": 3
+     },
+     "random_H0_iqr_over_median": 0.6537724338700248,
+     "random_psi6": 0.4013007574481227
+    }
+   },
+   "extension": {
+    "Omega0.70_ext": {
+     "a_TDA_over_a_F": 1.074062121355551,
+     "a_F": 2.2764630235986814,
+     "2median_H0_over_a_F": 0.9550191981282222,
+     "H0_iqr_over_median": 0.06574476175268298,
+     "psi6_interior": 0.5922191899347082,
+     "interior_coordination_counts": {
+      "4": 1,
+      "5": 2,
+      "6": 4,
+      "7": 1
+     },
+     "random_H0_iqr_over_median": 0.7426153719178492,
+     "random_psi6": 0.386857538016273
+    },
+    "Omega0.80_ext": {
+     "a_TDA_over_a_F": 1.0574552040072989,
+     "a_F": 2.1294361719914368,
+     "2median_H0_over_a_F": 0.9643208955860851,
+     "H0_iqr_over_median": 0.04166696224385673,
+     "psi6_interior": 0.6294627768447518,
+     "interior_coordination_counts": {
+      "4": 3,
+      "5": 2,
+      "6": 6,
+      "7": 1
+     },
+     "random_H0_iqr_over_median": 0.663763393681301,
+     "random_psi6": 0.418600929488021
+    },
+    "Omega0.90_ext": {
+     "a_TDA_over_a_F": 1.0556281319492469,
+     "a_F": 2.007651676425424,
+     "2median_H0_over_a_F": 0.9360000389322597,
+     "H0_iqr_over_median": 0.03963394925451496,
+     "psi6_interior": 0.5351772472709776,
+     "interior_coordination_counts": {
+      "4": 6,
+      "5": 5,
+      "6": 9,
+      "7": 4
+     },
+     "random_H0_iqr_over_median": 0.7513086857697444,
+     "random_psi6": 0.3870761710894117
+    }
+   },
+   "PASS_TDA_rule": true,
+   "PASS_independent_psi6_crosscheck": false,
+   "reading": "The TDA rule passes (regular spacing at the Feynman scale), but the independent hexatic check fails: the imaginary-time states contain 4-, 5- and 7-coordinated interior vortices (dislocation/disclination defects; runs not converged by the pre-stated criterion except Omega=0.8 extension). The simulated lattice is therefore NOT a clean Abrikosov triangular lattice, and the alpha-path H0 spread did not flag the defects: it measures spacing regularity, not orientational order."
+  },
+  "E2d_negative_controls": {
+   "Omega0_N_winding": 0,
+   "Omega0_b0": 0,
+   "random_H0_iqr_over_median": {
+    "Omega0.70": 0.7504839757432915,
+    "Omega0.80": 0.663763393681301,
+    "Omega0.90": 0.6537724338700248
+   },
+   "random_psi6": {
+    "Omega0.70": 0.3837343933336827,
+    "Omega0.80": 0.418600929488021,
+    "Omega0.90": 0.4013007574481227
+   },
+   "PASS": true
+  },
+  "caveats": [
+   "Imaginary-time evolution from a random-phase start gives metastable, defected vortex arrays; the lattice was not annealed to the triangular ground state within budget.",
+   "Vortex positions are plaquette centres (0.0625 a_ho resolution, <= 3.2% of a_F).",
+   "Only 17-35 vortices lie inside the analysis disk; Feynman ratios carry a counting error of one vortex (~0.05-0.12)."
+  ]
+ },
+ "test3_real_stm_re6zr": {
+  "setup": "Duhan et al., Nat. Commun. 16, 2100 (2025); Zenodo 10.5281/zenodo.14780459 (CC-BY-4.0). 20 successive STS conductance maps (channel Input_7, forward, 256x256 px) per field at 460 mK, H = 3-70 kOe; scan size from the .sxm header. Minima detector fixed in expectations.json (Gaussian low-pass sigma = a_tri/6, disk minimum radius a_tri/3).",
+  "E3a": {
+   "observed_a_TDA_over_a_tri_20kOe": 1.0426171807894733,
+   "a_tri_nm": 34.56617197922703,
+   "a_TDA_nm": 36.03928477966577,
+   "secondary_2median_H0_over_a_tri": 0.9607213685473378,
+   "rule": "within +/-10%",
+   "PASS": true
+  },
+  "E3b": {
+   "count_ratio_median_by_field": {
+    "3kOe": 1.1055471675651596,
+    "4kOe": 1.0188413848101268,
+    "5kOe": 1.0634574075428573,
+    "10kOe": 1.0173742532160002,
+    "15kOe": 1.0569131062105217,
+    "20kOe": 1.0122692961824589,
+    "25kOe": 1.0271246481012657,
+    "30kOe": 1.0315937748191075,
+    "40kOe": 1.0049672501280003,
+    "50kOe": 1.0055633348852042,
+    "70kOe": 1.0213179131443288
+   },
+   "rule": "in [0.90,1.25] at 10-30 kOe",
+   "PASS": true,
+   "note_3kOe": "published: minima 10-15% above expected vortex number at 3 kOe; observed ratio 1.106"
+  },
+  "E3c": {
+   "H_kOe": [
+    3.0,
+    4.0,
+    5.0,
+    10.0,
+    15.0,
+    20.0,
+    25.0,
+    30.0,
+    40.0,
+    50.0,
+    70.0
+   ],
+   "h0_iqr_over_median": [
+    0.15773343131922335,
+    0.0877711082954623,
+    0.11183653024466199,
+    0.08696431183149753,
+    0.07866830959602299,
+    0.0694278500288623,
+    0.10522728518506051,
+    0.0978329915729232,
+    0.09833929238627606,
+    0.09067010180101415,
+    0.12904406078870054
+   ],
+   "argmin_H_kOe": 20.0,
+   "rule": "min at 15/20/25 kOe and value at 3 and 70 kOe larger than at 20 kOe",
+   "PASS": true
+  },
+  "E3d": {
+   "psi6_global_by_field": {
+    "3kOe": 0.22881552252608955,
+    "4kOe": 0.19439292114415213,
+    "5kOe": 0.3751363826822706,
+    "10kOe": 0.37041242823216225,
+    "15kOe": 0.5355262256940375,
+    "20kOe": 0.6372711272233341,
+    "25kOe": 0.48555143113081406,
+    "30kOe": 0.44226675817711725,
+    "40kOe": 0.5089439865658675,
+    "50kOe": 0.11261889509995829,
+    "70kOe": 0.09024312812695556
+   },
+   "argmax_H_kOe": 20.0,
+   "published": {
+    "3kOe": 0.035,
+    "20kOe": 0.62,
+    "above_50kOe": "~0"
+   },
+   "sub_rules": {
+    "max_at_15_20_25": true,
+    "value_20kOe_within_0.62+-0.20": true,
+    "value_3kOe_below_0.2": false
+   },
+   "PASS": false
+  },
+  "E3e": {
+   "random_h0_iqr_over_median_by_field": {
+    "3kOe": 0.755010080300043,
+    "4kOe": 0.7282777937743936,
+    "5kOe": 0.7362874275529099,
+    "10kOe": 0.7324415338110448,
+    "15kOe": 0.7317077621968155,
+    "20kOe": 0.7273793039637219,
+    "25kOe": 0.728938617277624,
+    "30kOe": 0.7318032449888077,
+    "40kOe": 0.7281346074160229,
+    "50kOe": 0.7244829887644259,
+    "70kOe": 0.7293717050663598
+   },
+   "random_psi6_by_field": {
+    "3kOe": 0.06308224700270226,
+    "4kOe": 0.03988878498795679,
+    "5kOe": 0.042904342024169706,
+    "10kOe": 0.03972913504128398,
+    "15kOe": 0.04086753458166979,
+    "20kOe": 0.04119614923265702,
+    "25kOe": 0.03980878888790863,
+    "30kOe": 0.04181017037462962,
+    "40kOe": 0.03966258377094609,
+    "50kOe": 0.04177295375770725,
+    "70kOe": 0.0412333882118419
+   },
+   "PASS": true
+  },
+  "descriptive": {
+   "spearman_rho_TDA_spread_vs_psi6_across_11_fields": -0.46363636363636374,
+   "a_TDA_over_a_tri_all_fields": {
+    "3kOe": 1.0423603662947978,
+    "4kOe": 1.0533954472822082,
+    "5kOe": 1.0393075124712332,
+    "10kOe": 1.0514232624593425,
+    "15kOe": 1.0491444493774689,
+    "20kOe": 1.0426171807894733,
+    "25kOe": 1.0444746543655283,
+    "30kOe": 1.0477462885212356,
+    "40kOe": 1.0521892396989327,
+    "50kOe": 1.0690386569289698,
+    "70kOe": 1.0827312198899557
+   }
+  },
+  "posthoc_psi6_variants": {
+   "3kOe": {
+    "global_bonds_le_1.6a": 0.2584319302522192,
+    "per_site_mean_abs": 0.5790828906278018,
+    "abs_mean_of_site_psi6": 0.25190722792785114,
+    "n_images": 20
+   },
+   "4kOe": {
+    "global_bonds_le_1.6a": 0.21064040899310416,
+    "per_site_mean_abs": 0.5902224891004693,
+    "abs_mean_of_site_psi6": 0.20561379310365185,
+    "n_images": 20
+   },
+   "5kOe": {
+    "global_bonds_le_1.6a": 0.4093992774778138,
+    "per_site_mean_abs": 0.6471886899370036,
+    "abs_mean_of_site_psi6": 0.39599085446306775,
+    "n_images": 20
+   },
+   "10kOe": {
+    "global_bonds_le_1.6a": 0.4065774600736695,
+    "per_site_mean_abs": 0.644240887233902,
+    "abs_mean_of_site_psi6": 0.39073366298316276,
+    "n_images": 20
+   },
+   "15kOe": {
+    "global_bonds_le_1.6a": 0.5734186731388913,
+    "per_site_mean_abs": 0.7183998803905219,
+    "abs_mean_of_site_psi6": 0.54928272086019,
+    "n_images": 20
+   },
+   "20kOe": {
+    "global_bonds_le_1.6a": 0.6951259581600776,
+    "per_site_mean_abs": 0.777973098711847,
+    "abs_mean_of_site_psi6": 0.6793224724802955,
+    "n_images": 20
+   },
+   "25kOe": {
+    "global_bonds_le_1.6a": 0.5359924121240477,
+    "per_site_mean_abs": 0.7201526008384607,
+    "abs_mean_of_site_psi6": 0.5038494352669716,
+    "n_images": 20
+   },
+   "30kOe": {
+    "global_bonds_le_1.6a": 0.4781196101646382,
+    "per_site_mean_abs": 0.6986245248959444,
+    "abs_mean_of_site_psi6": 0.45740340383532463,
+    "n_images": 20
+   },
+   "40kOe": {
+    "global_bonds_le_1.6a": 0.5497492393865284,
+    "per_site_mean_abs": 0.7211457797230792,
+    "abs_mean_of_site_psi6": 0.539781690541856,
+    "n_images": 20
+   },
+   "50kOe": {
+    "global_bonds_le_1.6a": 0.1239749174959162,
+    "per_site_mean_abs": 0.5270237179008176,
+    "abs_mean_of_site_psi6": 0.12150587497183622,
+    "n_images": 20
+   },
+   "70kOe": {
+    "global_bonds_le_1.6a": 0.10096370737643885,
+    "per_site_mean_abs": 0.49165905313326413,
+    "abs_mean_of_site_psi6": 0.1002300480499263,
+    "n_images": 20
+   }
+  },
+  "summary": "Real data. At 20 kOe the alpha-path lattice constant is 36.0 nm against a_tri = 1.075 sqrt(Phi0/B) = 34.6 nm (ratio 1.043): PASS. Minima counts match B*A/Phi0 at every field (ratio 1.005-1.106); at 3 kOe the excess is 10.6%, matching the paper's stated 10-15%. The H0 death spread (IQR/median) is smallest at 20 kOe (0.069) and larger at 3 kOe (0.158) and 70 kOe (0.129): the published re-entrant liquid-solid-liquid sequence is recovered by a purely topological statistic: PASS. Independent psi6 peaks at 20 kOe at 0.637 (published ~0.62) but is 0.229 at 3 kOe (published ~0.035): E3d FAIL on the 3 kOe sub-rule; no post-hoc reading of psi6 brings 3 kOe below 0.2. Random controls: H0 IQR/median 0.72-0.76, psi6 <= 0.063: PASS. The TDA spread tracks psi6 only moderately across fields (Spearman rho = -0.46): at 50 and 70 kOe psi6 collapses (0.113, 0.090) while the H0 spread rises only to 0.091 and 0.129 (20 kOe: 0.069; 3 kOe liquid: 0.158), i.e. the alpha H0 statistic sees positional spacing regularity, not orientational (hexatic) order.",
+  "caveats": [
+   "B = mu0 H assumed (thin film).",
+   "Our minima detector is not the authors' (their Fourier filter parameters are not given numerically); the paper's psi6 normalisation is garbled in the text extraction.",
+   "The scan area was chosen by the experimenters to hold ~120 vortices at most fields, so the count check tests detection plus flux quantisation at one density per field."
+  ]
+ },
+ "local_file_domain06": {
+  "file": "/mnt/disks/disk-socrateai-local-1/dual_scale_datasets/domain06_supercon_abrikosov_vortices.npz",
+  "sha256": "deb3cdff7368f36bb86d385e466c67087bdd11f369eb1a10a505e2bd0e863f56",
+  "manifest_source_claim": "NIMS SuperCon Database & Scanning SQUID Microscopy Benchmark (YBCO)",
+  "evidence": [
+   "all 300 points sit on distinct sites of an ideal triangular lattice with spacing exactly 1.0 (i = 0..19, j = 0..14; row pitch sqrt(3)/2, alternate-row offset 0.5)",
+   "points are stored in exact nested-loop raster order (i-major, j-minor): True",
+   "displacements from the ideal sites are isotropic Gaussian: std = 0.0435, 0.0414; D'Agostino normality p = 0.72, 0.31; max |residual| 0.116",
+   "z column identically [0.0]; lengths dimensionless (no nm/um scale, no field value), no image, no defects, no dislocations",
+   "the only other array is a bare scalar pinning_strength = 1.5",
+   "the NIMS SuperCon database is a database of superconducting materials and critical temperatures, not of vortex images or coordinates; YBCO SQUID images are not distributed as dimensionless 20x15 coordinate lists (statement from general knowledge of the database, not checked online in this run)"
+  ],
+  "verdict": "SYNTHETIC: a generated 20 x 15 triangular lattice (a = 1) with ~0.04a Gaussian jitter, labelled with real-source names. Not a measurement. Not used as validation data.",
+  "alpha_signature_for_record": {
+   "h0": {
+    "n": 299,
+    "median": 0.4744607148323764,
+    "q1": 0.46307349984316487,
+    "q3": 0.4851820593711509,
+    "iqr_over_median": 0.046597239427497834,
+    "mean": 0.4730841845644326,
+    "cv": 0.035840754675540897
+   },
+   "h1_death_median": 0.5797761325969268,
+   "sqrt3_median_h1_death": 1.0042017186736676
+  }
+ },
+ "absent_or_not_used": {
+  "huggingface_datasets": "searched https://huggingface.co/api/datasets?search= {gross-pitaevskii, superfluid, vortex, bose-einstein, quantum-turbulence, abrikosov, vortex lattice}: no quantum-fluid vortex dataset (only unrelated LLM/text sets).",
+  "the_well_polymathic_ai": "https://huggingface.co/api/datasets?author=polymathic-ai lists 21 datasets (active_matter, MHD, shear_flow, rayleigh_benard, ...): none is a GPE / superfluid dataset.",
+  "zenodo": "searched zenodo.org/api/records (type=dataset) for vortex-lattice STM, Gross-Pitaevskii vortex, BEC vortex-lattice images, Bitter decoration; used 10.5281/zenodo.14780459 (Duhan et al.). Other candidates seen but not used: 20728008 (classical-field simulation of vortex-lattice melting, no files listed in the API), 5510351 (generalised GP circulation-statistics sample data).",
+  "experimental_BEC_vortex_images": "no public raw image set of Abo-Shaeer et al. 2001 found; test 2 is therefore a known-physics simulation."
+ },
+ "citations_checked": [
+  "Komura & Okabe, JPSJ 81, 113001 (2012), arXiv:1210.6116: beta_KT = 1.11996(6)",
+  "Hasenbusch, J. Phys. A 38, 5869 (2005), arXiv:cond-mat/0502556: beta_KT = 1.1199",
+  "Cole, Loges & Shiu, PRB 104, 104426 (2021), arXiv:2009.14231: T_XY ~ 0.9 (20x20, logistic regression on persistence images)",
+  "Donato et al., Phys. Rev. E 93, 052138 (2016) (PRE, not PRB): mean-field XY and phi^4 models, not the 2-D XY BKT transition; not used for a number",
+  "Abo-Shaeer, Raman, Vogels & Ketterle, Science 292, 476 (2001): triangular vortex lattices with > 100 vortices",
+  "Duhan et al., Nat. Commun. 16, 2100 (2025), arXiv:2406.07027: a_tri = 1.075 sqrt(Phi0/B), Psi6 ~0.035 (3 kOe) and ~0.62 (20 kOe) at 460 mK, minima 10-15% above vortex number at 3 kOe"
+ ],
+ "verdict_table": {
+  "E1a_helicity_crosscheck": true,
+  "E1b_lower_star_crossover": "rule met, NOT ATTRIBUTABLE (control reproduces it)",
+  "E1c_window_control_L64": true,
+  "E1d_vortex_betti_identity": false,
+  "E1e_shuffle_control": false,
+  "E1f_alpha_pairing": true,
+  "E2a_h0_equals_winding": false,
+  "E2b_feynman": false,
+  "E2c_lattice_tda_rule": true,
+  "E2c_psi6_crosscheck": false,
+  "E2d_controls": true,
+  "E3a_lattice_constant": true,
+  "E3b_count": true,
+  "E3c_reentrant_tda": true,
+  "E3d_psi6": false,
+  "E3e_random_control": true
+ },
+ "execution_notes": [
+  "Every python command ran under prlimit --as=8589934592 and timeout. Jobs longer than the 600 s foreground limit (XY MC for L=128, TDA feature extraction, GPE solves) ran as nohup background processes with timeouts of 3000-10800 s, not in the foreground.",
+  "numba (MC only) was installed into the separate venv /mnt/disks/disk-socrateai-local-1/venv-tdaval; all GUDHI/pipeline code ran in .venv-tda unchanged.",
+  "Extensions added after the pre-stated runs, labelled as such in scripts and JSON: GPE continuation (--resume, _ext), L=128 shuffle-only control, stm_psi6_variants.py, gpe_edge_trace.py, psi6 perfect-lattice reference in gpe_tda.py. None changes a pre-stated verdict.",
+  "The GPE solver was restarted once (after ~7 min) to add checkpointing; the restarted runs are the ones reported."
+ ],
+ "overall_assessment": "The alpha-complex path (alpha_persistence/top_bars) recovers established quantum-fluid topology in the cases where the answer is a spacing or pairing scale: vortex-antivortex binding in the XY model (bound-pair excess vs random), the Feynman-scale vortex spacing in a rotating condensate, and, on real STM data, the Abrikosov lattice constant 1.075 sqrt(Phi0/B) and the published re-entrant order-disorder-order sequence in a-Re6Zr. Its H0 spread does not see orientational order: it did not flag defected GPE lattices and did not follow the psi6 collapse at 50-70 kOe. The lower-star path (betti_curves_from_topology) counts components correctly on a smooth field (GPE vortex cores: exact at Omega=0 and 0.9, off by edge-straddling cores at 0.7 and 0.8), but on the raw XY angle field its Betti curves are indistinguishable from a site-shuffled field, so the Cole et al.-style BKT crossover it produces is not attributable to topology. For the cosmology use: a positive lower-star result on a rough field needs a site-shuffle (one-point-matched) null, which the CMB analysis already has in the form of Gaussian sims of the same spectrum; alpha-path H0 statistics should not be read as evidence of orientational/structural order without an independent orientational check."
+}
