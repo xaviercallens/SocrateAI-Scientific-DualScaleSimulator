@@ -1,3 +1,5 @@
+> **Correction notice (2026-09-19):** statements in this file were corrected after the skeptic review. See `audit/reverse_zero/ERRATA.md` and REPORT.md §6. Wherever they differ, REPORT.md is authoritative.
+
 # Improvement proposals (grounded in this round's results)
 
 Per the FRAMING RULE: none of these claim K3×T2 predicts or fixes
@@ -77,9 +79,7 @@ radial-shuffle null. Right now this is purely descriptive because
     persistence comparison.
   This converts "we saw a suggestive difference" into a test that can
   actually be failed next round, which is the gap E4's own verdict
-  names explicitly: *"This would be a new hypothesis (H'), to be frozen
-  before comparison. No such prediction is registered in
-  PRE_REGISTRATION.md."*
+  names (this is E4's wording, not a LeanMaster quote; see ERRATA.md).
 
 ## 4. Extend the TDA to the fetched CMB pair (not yet run this round)
 
@@ -95,11 +95,7 @@ threshold) before running, per #3's lesson.
 ## 5. Framing discipline for any future octad/Kummer comparison
 
 If a future round wants to actually test the E3/E4 Golay-octad/Kummer
-8+16 structure against cosmic-web or CMB topology, the LeanMaster
-verdict itself specifies the missing step: *"a TDA prediction would be:
-'given cosmological data, the topology of the large-scale structure
-encodes this octad partition.' This is frozen as Tier C and requires a
-fresh comparison."* Concretely: state the specific topological signature
+8+16 structure against cosmic-web or CMB topology, [CORRECTED: an earlier version attributed a quoted "TDA prediction ... frozen as Tier C" to LeanMaster. No such text exists in LeanMaster at any tag. LeanMaster STREAM8_WHICH_K3.md says "Observables: none" (lines 112, 153, 374 at eb791e7).] Any such step would be a new hypothesis of this project, not LeanMaster's Concretely: state the specific topological signature
 the octad/complement split would imply (e.g. a specific Betti-number
 ratio, or a specific count of independent structures) as a numerical
 prediction, write it into `PRE_REGISTRATION.md` BEFORE running the

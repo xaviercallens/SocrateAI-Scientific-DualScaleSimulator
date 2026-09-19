@@ -1,3 +1,5 @@
+> **Correction notice (2026-09-19):** statements in this file were corrected after the skeptic review. See `audit/reverse_zero/ERRATA.md` and REPORT.md §6. Wherever they differ, REPORT.md is authoritative.
+
 # E2 -- is the PTA sector GR? (NO-DATA branch)
 
 **Tier: X/B** (exact arithmetic on a fixed pre-existing formula; no fit,
@@ -75,7 +77,7 @@ Using `scripts/param_loop_sim.compute_pta_observable` (imported
 unmodified) at `pta_suppression=1.0` (so `c4_c0_ratio == c4_pta_product`
 directly), `gamma_theta` is exactly linear in `c4_pta_product` (the
 Legendre-P4 term `l4_response` does not depend on it). Fitted slope:
-`max_deviation_from_hd / c4_pta_product = 6.171` (spread across the
+`max_deviation_from_hd / c4_pta_product = 1.000` [CORRECTED from 6.171; the script JSON and skeptic_statistics/check_e2_slope.json give 1.000] (spread across the
 scanned grid: see `e2_pta_result.json`, effectively zero -- confirms
 linearity to floating-point precision).
 

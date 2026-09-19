@@ -1,3 +1,5 @@
+> **Correction notice (2026-09-19):** statements in this file were corrected after the skeptic review. See `audit/reverse_zero/ERRATA.md` and REPORT.md §6. Wherever they differ, REPORT.md is authoritative.
+
 # E3 -- M0 (zero-parameter hypothesis) vs M2 vs fitted LCDM, and the LeanMaster P2/kappa=1 note
 
 Script: `audit/reverse_zero/E3-M0/m0_model.py`
@@ -37,7 +39,7 @@ Every number, listed with source (`m0_result.json` -> `parameters.M0`):
 | M2 (M0 + mu_sym, c4 reinstated free) | 2 | 1401.071 (identical) | 1405.071 | 1415.818 |
 | LCDM fitted (Omega_m free) | 1 | 1400.325 | 1402.325 | 1407.699 |
 
-- Delta chi2 (M0 - LCDM fitted) = **0.746** (1 dof). Pre-registered rule (`PRE_REGISTRATION.md` Sec 2, quoted verbatim): "1 dof: Delta chi2 = 9.00 is 3sigma". **NOT REJECTED, and not close** -- M0's frozen Omega_m sits well inside the data's own preferred value (fitted Omega_m = 0.30422, close to the frozen 0.31115). Read this as "consistent within ~0.1sigma equivalent", not primarily via AIC/BIC (see caveat below).
+- Delta chi2 (M0 - LCDM fitted) = **0.746** (1 dof). Threshold table (`PRE_REGISTRATION.md`:35; this comparison was NOT pre-registered): "1 dof: Delta chi2 = 9.00 is 3sigma". **NOT REJECTED, and not close** -- M0's frozen Omega_m sits well inside the data's own preferred value (fitted Omega_m = 0.30422, close to the frozen 0.31115). Read this as "consistent at 0.86 sigma equivalent (chi2.sf(0.746, 1) = 0.388)", not primarily via AIC/BIC (see caveat below).
 - Delta AIC (M0 - LCDM fitted) = **-1.25**, Delta BIC = **-6.63**: on parsimony grounds alone M0 costs nothing in fit quality and drops a parameter. **Caveat (do not over-read):** a negative Delta BIC here is a restatement that the frozen value happens to land close to the data's fitted optimum -- it would flip sign (favor the fitted model) had the frozen Omega_Lambda missed by only a little more. The Delta chi2 = 0.746 (1 dof) figure is the primary, load-bearing number; AIC/BIC are subordinate color, not independent confirmation.
 - Delta AIC (M2 - M0) = **+4.00**, Delta BIC (M2 - M0) = **+14.75** (= 2 ln N, purely definitional -- see note): reinstating mu_sym and c4 as free parameters buys **zero** improvement in chi2 (they enter no term in this data's likelihood -- confirmed identical to 15 decimal places) and is penalized on both criteria for that reason alone. **This reproduces round-3's `chi2_independent.json` "probes_note" finding on the new DR2 + full-covariance data: chi2 is flat across the whole (mu_sym, c4) sweep because no dataset in hand tests either parameter.**
 - Negative controls (same z-cut, 1580 SNe): Omega_Lambda = 0.5 gives a large chi2 penalty vs fitted; 0.72 and 0.65 give smaller but still clearly non-zero penalties (`m0_result.json` -> `negative_controls`) -- the frozen value is not merely "not rejected", it sits close to the data's own minimum.
