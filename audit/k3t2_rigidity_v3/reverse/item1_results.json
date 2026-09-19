@@ -1,0 +1,32 @@
+{
+  "theorem": "DualScaleDyons.WhichK3.moore_vs_hurwitz",
+  "lean_range": [
+    0,
+    400
+  ],
+  "scanned_range": [
+    0,
+    5000
+  ],
+  "newly_scanned_count": 4600,
+  "identity_holds_for_all_scanned": true,
+  "failures_full_range": [],
+  "failures_beyond_lean_range": [],
+  "negative_control": {
+    "description": "Same identity with the two correction terms (6*[D=4f^2], 8*[D=3f^2]) removed, scanned only beyond the Lean range.",
+    "num_failures": 54,
+    "control_fails_as_expected": true,
+    "sample_failures": [
+      432,
+      484,
+      507,
+      576,
+      588,
+      675,
+      676,
+      768,
+      784,
+      867
+    ]
+  }
+}

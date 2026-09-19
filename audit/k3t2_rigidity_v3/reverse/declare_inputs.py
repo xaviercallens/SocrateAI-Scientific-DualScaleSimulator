@@ -1,0 +1,97 @@
+"""
+Writes inputs.json: every typed/declared normalisation or literature constant the reverse-pass
+items depend on, with {name, value, tier, why}. Run:
+
+    cd audit/k3t2_rigidity_v3/reverse && \
+    /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python declare_inputs.py
+
+No argument. Writes inputs.json next to this script (path found via pathlib, relative to repo root).
+"""
+import json
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+
+INPUTS = [
+    {
+        "name": "D_max_moore_hurwitz",
+        "value": 5000,
+        "tier": "B",
+        "why": "Scan bound for item1 (WhichK3.moore_vs_hurwitz beyond Lean's D<=400); "
+               "chosen as a round number far past the Lean range, not tuned to any known failure.",
+    },
+    {
+        "name": "D_max_kummer_iff_even",
+        "value": 5000,
+        "tier": "B",
+        "why": "Scan bound for item2 (WhichK3.kummer_iff_even beyond Lean's D<=200).",
+    },
+    {
+        "name": "D_max_class_number_one",
+        "value": 3000,
+        "tier": "B",
+        "why": "Scan bound for item3 (WhichK3.most_attractive beyond Lean's D in {3,4}).",
+    },
+    {
+        "name": "heegner_discriminants_from_memory",
+        "value": [3, 4, 7, 8, 11, 19, 43, 67, 163],
+        "tier": "L",
+        "why": "FROM MEMORY: the nine imaginary-quadratic discriminants with primitive class "
+               "number h(-D) = 1 (Heegner/Baker/Stark, standard number-theory fact). Used only "
+               "as the 'expected' comparison list AFTER item3's scan computes its own nForms(D) "
+               "table; never fed into the scan itself.",
+    },
+    {
+        "name": "rank_max_ade_trapping",
+        "value": 32,
+        "tier": "B",
+        "why": "Rank bound for item4 (KummerD4.trapping_rank_table beyond Lean's rank<=8).",
+    },
+    {
+        "name": "extended_adeSimple_rank_range",
+        "value": {"A_n": "n = 1..32", "D_n": "n = 4..32", "E6_E7_E8": "fixed rank 6,7,8"},
+        "tier": "B",
+        "why": "STRUCTURAL INPUT, not just a scan-bound change: Lean's own adeSimple list "
+               "(KummerD4.lean) only contains A1..A8, D4..D8, E6, E7, E8 -- nothing of rank > 8. "
+               "item4's component list is enlarged to A1..A32 and D4..D32 so the DP has "
+               "candidates to pick from at rank > 8 at all. This means item4 is not a `decide` "
+               "on Lean's existing bestTable/adeSimple with a bigger List.range bound; it needs "
+               "a new, larger adeSimple definition first. Declared explicitly per ground rule 7 "
+               "so this is not mistaken for a pure range extension.",
+    },
+    {
+        "name": "E6_E7_E8_root_counts_from_memory",
+        "value": {"E6": 72, "E7": 126, "E8": 240},
+        "tier": "L",
+        "why": "FROM MEMORY: root counts of the exceptional simply-laced Lie algebras E6, E7, E8 "
+               "(standard Lie theory fact, also the literal numbers Lean's own adeSimple list uses). "
+               "A_n = n(n+1) and D_n = 2n(n-1) are formulas, not recalled numbers, so they are "
+               "computed structurally in item4's script, not declared here.",
+    },
+    {
+        "name": "N_max_twined_2A",
+        "value": 40,
+        "tier": "B",
+        "why": "q-order bound for item5 (Twining.twined_2A / twined_div24 beyond Lean's q^9).",
+    },
+    {
+        "name": "twined_2A_chi_Nlev_c_from_CDH",
+        "value": {"chi": 8, "Nlev": 2, "c": -16},
+        "tier": "L",
+        "why": "FROM MEMORY (matches Lean's own declared constants, traced to CDH Table 3 "
+               "F_2A = -16*Lambda_2 and Table 14 chi_2A = 8; the same triple Lean's twined24 9 8 2 "
+               "(-16) call uses). This is the structural frame-shape input (chi_g, N, F_g's Lambda "
+               "coefficient), not the printed q-series table -- the q^9..q^40 coefficients "
+               "themselves are computed here from this input, not looked up.",
+    },
+]
+
+
+def main() -> None:
+    out = HERE / "inputs.json"
+    out.write_text(json.dumps(INPUTS, indent=2) + "\n")
+    print(f"wrote {out} ({len(INPUTS)} inputs)")
+
+
+if __name__ == "__main__":
+    main()

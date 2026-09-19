@@ -1,0 +1,61 @@
+{
+  "theorem": "DualScaleDyons.WhichK3.kummer_iff_even",
+  "lean_range": [
+    0,
+    200
+  ],
+  "scanned_range": [
+    0,
+    5000
+  ],
+  "holds_for_all_scanned": true,
+  "num_mismatches": 0,
+  "sample_mismatches": [],
+  "negative_control": {
+    "description": "Perturbs the SAME selecting condition (which of a,b,c must be even) by dropping the requirement on b, checked only beyond the Lean range (D>200); this must NOT be equivalent to isKummerForm, i.e. some reduced form must have a,c even, b odd.",
+    "num_forms_where_control_disagrees": 7362,
+    "control_disagrees_as_expected": true,
+    "sample": [
+      [
+        207,
+        [
+          2,
+          -1,
+          26
+        ]
+      ],
+      [
+        207,
+        [
+          2,
+          1,
+          26
+        ]
+      ],
+      [
+        207,
+        [
+          8,
+          7,
+          8
+        ]
+      ],
+      [
+        215,
+        [
+          4,
+          -3,
+          14
+        ]
+      ],
+      [
+        215,
+        [
+          4,
+          3,
+          14
+        ]
+      ]
+    ]
+  }
+}
