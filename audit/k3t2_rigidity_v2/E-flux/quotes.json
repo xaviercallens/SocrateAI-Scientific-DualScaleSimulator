@@ -1,0 +1,77 @@
+{
+  "track": "E-flux",
+  "note": "Direct quotations with line numbers from the pinned .txt extractions of the two sources. Line numbers refer to audit/k3t2_rigidity_v2/sources/hep-th_0301139_TripathyTrivedi.txt and .../hep-th_9605184_BLPSSW.txt as pinned (sha256 in sources/SHA256SUMS). This file is quotation/extraction data (tier L), not a computation; all numeric claims quoted here are separately checked in tadpole_bookkeeping_results.json and tt_metric_checks_results.json.",
+  "part1_TT_orientifold_and_tadpole": {
+    "source": "hep-th_0301139_TripathyTrivedi.txt",
+    "quotes": [
+      {
+        "lines": "160-163",
+        "text": "The first comment relates to tadpole cancellation for various RR fields. Consider first the 7-brane tadpole. The Z2 orientifold symmetry has 4 fixed points on the T2, an O7-plane is located at each of these fixed points. To cancel the resulting 7-brane charge 16 D7-branes need to be added."
+      },
+      {
+        "lines": "164-171",
+        "text": "Next consider the 3-brane tadpole [34]. Both the O7-planes and the D7-branes wrap the K3 (besides filling spacetime). As a result, it turns out, 2 units of D3 brane charge are induced on the world volume of each O7-plane and one units of D3 brane charge in each D7-brane, giving rise to a total of 24 units of three brane charge. This charge needs to be canceled by adding D3-branes and flux. The relevant formula for tadpole cancellation then takes the form:\n(1/2) N_flux + N_D3 = 24 ,   (2.3)"
+      },
+      {
+        "lines": "180-183 (footnote 1)",
+        "text": "The simplest way to see this is the following: in F-theory there are no O7 planes. Instead there are 24 (p, q) 7-branes each of which acquires one unit of 3-brane charge on wrapping K3."
+      },
+      {
+        "lines": "217-224",
+        "text": "F3 = alpha_x ^ dx + alpha_y ^ dy  (2.6)\nH3 = beta_x ^ dx + beta_y ^ dy,  (2.7)\nwhere alpha_x, alpha_y, beta_x, beta_y in H^2(K3,Z). If e_i is a basis of H^2(K3,Z) and alpha_x = alpha_x^i e_i we have taking into account the quantisation condition that alpha_x^i is even integer, similarly for alpha_y, beta_x, beta_y."
+      },
+      {
+        "lines": "226-229",
+        "text": "Finally, we note that with our choice of orientation, as explained in App. A, N_flux (2.4), takes the form N_flux = (beta_x ^ alpha_y ^ dx ^ dy + beta_y ^ alpha_x ^ dy ^ dx) = (-beta_x . alpha_y + beta_y . alpha_x) .   (2.8)"
+      }
+    ]
+  },
+  "part2_BLPSSW_hidden_instantons": {
+    "source": "hep-th_9605184_BLPSSW.txt",
+    "quotes": [
+      {
+        "lines": "200-205",
+        "text": "By integrating the Bianchi identity over K3 one learns that, of n1 and n2 are the number of instantons in the two factors, then E8 x E8 compactifications must satisfy n1 + n2 + n5 = 24. ... In the case of the SO(32) theory compactified on K3, there is a similar requirement, namely n1 + n5 = 24, where n1 is the number of instantons embedded in the SO(32) group and n5 is the number of SO(32) five-branes."
+      },
+      {
+        "lines": "211-215",
+        "text": "It turns out that the 16 orbifold singularities each contain a “hidden” instanton, a fact that we will demonstrate by studying the behavior upon blowing up the singularity. The models constructed by GP satisfy the counting rule by introducing eight five-branes in addition to the hidden instantons."
+      },
+      {
+        "lines": "961-969",
+        "text": "A smooth K3 compactification needs a vacuum SO(32) gauge bundle with instanton number 24 ... The GP model does not have any explicit instantons in the vacuum. Rather than instantons, the model has five-branes; there are eight five-branes, at arbitrary positions on T4/Z2. Since a Type I five-brane is equivalent to the small size limit of an instanton [1], eight instantons are implicit in the five-branes of the GP model. Since 24 are expected, 24-8=16 seem to be missing."
+      },
+      {
+        "lines": "970-973",
+        "text": "As there are 16 Z2 orbifold singularities in T4/Z2, one might intuitively think that one instanton is “hiding” at each singularity, and that blowing up one of these singularities will bring an instanton out into the open. Understanding this will be our first goal."
+      }
+    ],
+    "literal_vs_inference_verdict": "BLPSSW never write '16+8=24'. They literally state n1+n5=24 (line 205), eight five-branes (line 213-215, 964-966), the subtraction '24-8=16 seem to be missing' (line 968), and 16 Z2 orbifold singularities with the hedged phrase 'one might intuitively think that one instanton is hiding at each' (lines 970-972). The equality 16 (hidden)+8 (explicit five-branes)=24 is our INFERENCE, assembled from their subtraction and their singularity count -- not a sentence in the paper, and their own language ('might intuitively think') marks the singularity-instanton correspondence itself as a plausibility argument, not a proven identity, at the point this passage is introduced (section 4 goes on to argue for it in more detail via blow-up)."
+  },
+  "part4_unfixed_moduli": {
+    "source": "hep-th_0301139_TripathyTrivedi.txt",
+    "quotes": [
+      {
+        "lines": "16-19 (abstract)",
+        "text": "We find the most general supersymmetry preserving, Poincare invariant, vacua in this model. All the complex structure moduli and some of the Kahler moduli are stabilised in these vacua."
+      },
+      {
+        "lines": "841-846",
+        "text": "Next we turn to primitivity (3.34), which requires that J-tilde is orthogonal to the vector space V_flux. In the present example, this condition does not yield any extra restrictions on the flux. It can be met easily. H^2(K3,R) is 22 dimensional. (3.34), imposes two conditions allowing for all twenty Kahler moduli of K3, and the one Kahler modulus of the T2, to vary."
+      },
+      {
+        "lines": "884-890",
+        "text": "Let us end by mentioning that in this example, (4.15), primitivity requires the Kahler two-form of K3 to be of the form J-tilde = sum_{i=3}^{22} t_i e_i, where the real parameters t_i are chosen to make J.J>0. This is a twenty dimensional space, as was mentioned above."
+      },
+      {
+        "lines": "195-198",
+        "text": "In addition, while we do not provide a precise count here, there are moduli that arise from the open string sector. These include moduli due to exciting the gauge fields on the 7 branes, the location of the 7-branes on the T2 and the locations of the D3 branes in the K3 x T2/Z2."
+      },
+      {
+        "lines": "1718-1723",
+        "text": "The K3 x T2/Z2 compactification has D7-branes present in it. Our analysis did not consider the effects of exciting the gauge fields on these seven branes. ... We mentioned in Sec 2.4, that generically one expects the moduli associated with the locations of the D7-branes on the T2 to be lifted, once flux is turned on."
+      }
+    ],
+    "summary": "Per TT, ALL complex structure moduli of K3 x T2 are fixed by the susy+flux conditions. Of the closed-string Kahler moduli, in their concrete example (4.15) TWENTY of the twenty-two-dimensional H^2(K3,R) directions (the t_i, i=3..22, i.e. all Kahler directions orthogonal to the flux 2-plane V_flux spanned by alpha_x,beta_x) remain UNFIXED, plus the one Kahler modulus of T2 -- this matches the abstract's 'some of the Kahler moduli' are stabilised, i.e. most are NOT. Additionally unanalysed (open-string) moduli: 7-brane gauge-field vevs, 7-brane positions on T2 (expected, but not shown, to be lifted once flux is on), and D3-brane positions on K3xT2/Z2."
+  }
+}
