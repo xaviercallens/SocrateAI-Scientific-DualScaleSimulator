@@ -1,0 +1,52 @@
+{
+ "title": "K3 x T2 topology without Kunneth (exact cellular homology) and what point-sample persistent homology sees",
+ "tiers": "Part A tier B (exact arithmetic mod p with negative controls) with one tier-L input in A4; Part B tier X.",
+ "partA_summary": [
+  "Part A: 119/119 table rows PASS (expected values pre-registered in expectations.json, commit 529bf2b; A5b predictions in expectations_A5b.json).",
+  "Rank engines: two independent sparse eliminations mod p (pair elimination; column reduction with clearing), agreeing on every case where both ran; A1 tori also agree with GUDHI's periodic cubical complex and dense elimination; RP^2/RP^3 reproduce the F2 vs F3 split (field sensitivity).",
+  "A2: the cubical orbit complex of T^4/Z2 has exactly 16 fixed cells, all vertices (no cell of dim>=1 fixed for N even), so it is the CW complex of the quotient. Over F3/F5: (1,0,6,0,1); over F2: [1, 0, 11, 5, 1] for N=2,4,6, chi=8. UCT then gives 5 cyclic 2-primary summands in H_2(T^4/Z2;Z). Transfer check: sigma acts by (-1)^k on explicit cycle bases of H_k(T^4;F3) (rank tests), invariants (1,0,6,0,1) = quotient; chain-level Lefschetz number 16.",
+  "A3: the 6-dimensional product cell complex (T^4/Z2) x T^2 (T^2 cubical with nonzero differential), up to 166,016 cells: F3/F5 (1,2,7,12,7,2,1), chi 0; F2 (1,2,12,27,22,7,1).",
+  "A4: U = orbifold minus 16 open stars (computed), 16 links each RP^3 (computed, three fields), glued to 16 algebraic mapping cylinders of phi: C(RP^3) -> C(S^2) with phi_2 = delta(x~)/2 (Bockstein of the F2 generator; integral cocycle checked). Local model H(Cyl,L) = (0,0,1,0,1) over F2/F3 (Lefschetz duality consistency, checked); cones instead of cylinders reproduce A2 exactly. K3 = (1,0,22,0,1) over F2, F3, F5, Poincare-symmetric, chi 24; K3 x T^2 as a direct product complex = (1,2,23,44,23,2,1) over F2, F3, F5 at 225664 cells and 507744 cells.",
+  "A4 tier-L input: that the Kummer disc bundle D(O(-2)) is the mapping cylinder of RP^3 -> S^2 whose pull-back of [S^2] generates H^2(RP^3;Z)=Z/2 (Euler number +-2). Everything else is computed. Over odd p this input cannot matter (the wrong class phi_2=0 also gives (1,0,22,0,1)); only F2 discriminates (wrong class: X = [1, 0, 27, 5, 1], X x T2 = [1, 2, 28, 59, 38, 7, 1]).",
+  "A5: resolving k = 0, 8, 15, 16 points gives b(X_k x T2; F3) = (1,2,7+k,12+2k,7+k,2,1), with k entering only through which complexes are glued; S^2 and Klein factors give the field-Kunneth values; K3 x Klein over F2 equals K3 x T2 over F2 (1,2,23,44,23,2,1) while over F3 it is (1,1,22,22,1,1,0).",
+  "A5b (pre-registered after A5): the F2 homology of partially resolved complexes follows the Kummer code RM(1,4): coning an affine hyperplane of the 16 points leaves one Z/2 (F2 (1,0,15,1,1)), a non-hyperplane 8-set none (1,0,14,0,1), resolving an affine 2-plane two (1,0,12,2,1), 4 affinely independent points one (1,0,11,1,1), one point four (1,0,11,4,1): 5/5 as predicted."
+ ],
+ "partB_summary": [
+  "Pre-registered criterion: the full expected Betti vector holds on a window [e1,e2] with e2 >= 1.5 e1, for all 3 seeds (F3 primary; F2 also computed). 8 GiB cap per run.",
+  "Flat tori, iid uniform, Rips tau=1.2 with edge collapse: T^2 N_min=800 (alpha: 400); T^3 N_min=12800 (farthest-point sampling: 6400); T^4 not recovered up to N=12800 (24659638 simplices); N=25600 exceeded the memory cap. Two-point fit N_min = 3.12 * 16^d predicts about 2.05e+05 points for T^4 (indicative).",
+  "T^4/Z2 (b2=6 over F3) in the invariant R^14 embedding: not recovered up to N=12800 (iid) / 12800 (FPS); N=25600 exceeded memory. At N=12800 beta_1 noise is still present at eps=1.08 and beta_2 is in the hundreds to thousands.",
+  "K3 (Fermat quartic, projector embedding): largest feasible N=4000 at tau=0.8 (about 24M simplices, about 1.9 GB); N=8000, or tau>=0.95 at N=4000, or tau>=1.0 at N=2000, exceeded 8 GiB. Criterion not met. In all 3 seeds beta_2(eps) settles on a plateau of 27 (not 22) for eps in about [0.69,0.80] (N=3000, tau=0.9: 27 up to 0.855), with 27 H2 bars alive at the truncation. beta_2 never equals 22 on the scanned grid. The density-matched 4-cube null has beta_2 = 0 on [0.64,0.8], so the plateau is a feature of the K3 sample, but its value does not match b2(K3).",
+  "Null (B4): with density matching, the pre-registered rule 'any beta_2>=1 window of ratio>=1.5' is triggered in 9/12 null runs (all N>=1000) by overlapping short noise bars, so 'some persistent H2' is not evidence of anything. The K3 runs' longest beta_2>=1 windows (ratio about 2.3-2.5) are comparable to the null's (about 1.7-2.2 at N>=1000).",
+  "K3 x T^2 (6-dim sample, T^2 radius 0.5): N=4000, 8000, 16000, 32000 (99M simplices, 6.7 GB) completed; at every N, beta_1 noise is in the thousands at mid scales and nothing resembling (1,2,23) appears; N=64000 timed out."
+ ],
+ "interpretation": [
+  "Chain-level: without using the Kunneth formula in any computation, a 6-dimensional cell complex built from the Kummer construction (orbifold cells + 16 resolved neighbourhoods) and crossed with T^2 has Betti numbers (1,2,23,44,23,2,1) over F2, F3, F5, and chi = 0. The value depends on the construction (k-series, wrong-class control, Klein/S^2 factors all move it as predicted). This is tier B for the arithmetic; the identification of the glued piece with D(O(-2)) rests on one stated tier-L input, and over odd primes that input is not even tested (only F2 detects it).",
+  "Point samples: persistent homology recovered the full Betti vector of flat T^2 (N about 400-800) and T^3 (N about 6400-12800), with a required N growing by about 16x per dimension in this setup. For every 4-dimensional space tried (T^4, T^4/Z2, K3) the criterion failed at the largest N that fit in 8 GiB; for K3 the most stable H2 signal counts 27 classes, not 22. K3 x T^2 samples at up to 32000 points show only noise.",
+  "Implication for cosmological point data: recovering b2 = 22 of K3, let alone the (1,2,23,44,23,2,1) of K3 x T2, from a point cloud would require sampling a 4-(or 6-)dimensional manifold densely in its own intrinsic coordinates, which is out of reach here even for ideal noiseless samples of a known embedding. Galaxy or CMB point data are samples in 3 spatial dimensions (or 2 on the sky), not samples of an internal K3 or K3 x T2. So on this evidence no claim that K3 x T2 topology is visible in cosmological point data can be supported by point-sample TDA. A non-null PH signal in such data would also not single out K3 x T2: the density-matched null already produces H2 windows passing a naive 1.5 persistence-ratio rule."
+ ],
+ "limitations": [
+  "Part B uses one embedding per space (Fermat quartic with the Fubini-Study projector metric, not Ricci-flat) and a sampler that is not uniform in any natural measure; a different metric or sampler could change the scales, but the combinatorial cost barrier (Rips complexes in 4-6 dimensions) is independent of that.",
+  "tau was chosen by hand per space (1.2 tori/orbifold, 0.8 K3/null, recorded); larger tau exceeded the memory cap.",
+  "A4's D(O(-2)) is an algebraic mapping cylinder (chain level), not a geometric cell decomposition of the Eguchi-Hanson space; its homology is determined by the stated class, and the result is the homology of that homotopy pushout."
+ ],
+ "commands": {
+  "partA": [
+   "prlimit --as=8589934592 -- $PY write_expectations.py",
+   "prlimit --as=8589934592 -- $PY A1_tori_and_engine_controls.py",
+   "prlimit --as=8589934592 -- $PY A2_orbifold.py",
+   "prlimit --as=8589934592 -- $PY A3_orbifold_x_T2.py --big",
+   "prlimit --as=8589934592 -- $PY A4_resolved_K3xT2.py --big",
+   "prlimit --as=8589934592 -- $PY A5_negative_controls.py",
+   "prlimit --as=8589934592 -- $PY write_expectations_A5b.py",
+   "prlimit --as=8589934592 -- $PY A5b_kummer_code_F2.py"
+  ],
+  "partB": [
+   "B_TIMEOUT=560|500 B_CALL_BUDGET=... timeout 595 prlimit --as=8589934592 -- $PY B_driver.py <study> (resumable, repeated until finished) for study in T2_alpha T2_rips T3_rips T3_rips_fps T4_rips T4_rips_fps orbifold_rips orbifold_rips_fps K3_rips K3_rips_fps null4m_rips",
+   "prlimit --as=8589934592 -- $PY B2_injectivity_check.py",
+   "B_TIMEOUT=500 ... $PY B_explore.py (resumable)",
+   "prlimit --as=8589934592 -- $PY B_summarize.py",
+   "prlimit --as=8589934592 -- $PY make_results.py"
+  ],
+  "seeds": "Part B seeds 0,1,2 (numpy default_rng); A5/A5b/B2 seed 20260919"
+ }
+}

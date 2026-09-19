@@ -1,0 +1,4505 @@
+{
+ "branch": "loop/tda-k3t2",
+ "hardware": "GCP VM, 8 vCPU, 29 GB RAM (shared); every python run under prlimit --as=8 GiB; pure-Python rank engines single-threaded; GUDHI 3.13",
+ "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python",
+ "partA_all_PASS": true,
+ "partA_table": [
+  {
+   "complex": "A1 T^2 cubical Z_2^2",
+   "field": "F2",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    4,
+    8,
+    4
+   ],
+   "n_cells": 16,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^2 cubical Z_2^2",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    4,
+    8,
+    4
+   ],
+   "n_cells": 16,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^2 cubical Z_2^2",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    4,
+    8,
+    4
+   ],
+   "n_cells": 16,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^2 cubical Z_3^2",
+   "field": "F2",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    9,
+    18,
+    9
+   ],
+   "n_cells": 36,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^2 cubical Z_3^2",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    9,
+    18,
+    9
+   ],
+   "n_cells": 36,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^2 cubical Z_3^2",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    9,
+    18,
+    9
+   ],
+   "n_cells": 36,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^2 cubical Z_4^2",
+   "field": "F2",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    16,
+    32,
+    16
+   ],
+   "n_cells": 64,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^2 cubical Z_4^2",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    16,
+    32,
+    16
+   ],
+   "n_cells": 64,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^2 cubical Z_4^2",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    16,
+    32,
+    16
+   ],
+   "n_cells": 64,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^4 cubical Z_2^4",
+   "field": "F2",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    16,
+    64,
+    96,
+    64,
+    16
+   ],
+   "n_cells": 256,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^4 cubical Z_2^4",
+   "field": "F3",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    16,
+    64,
+    96,
+    64,
+    16
+   ],
+   "n_cells": 256,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^4 cubical Z_2^4",
+   "field": "F5",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    16,
+    64,
+    96,
+    64,
+    16
+   ],
+   "n_cells": 256,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^4 cubical Z_3^4",
+   "field": "F2",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    81,
+    324,
+    486,
+    324,
+    81
+   ],
+   "n_cells": 1296,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^4 cubical Z_3^4",
+   "field": "F3",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    81,
+    324,
+    486,
+    324,
+    81
+   ],
+   "n_cells": 1296,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^4 cubical Z_3^4",
+   "field": "F5",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    81,
+    324,
+    486,
+    324,
+    81
+   ],
+   "n_cells": 1296,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^4 cubical Z_4^4",
+   "field": "F2",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    256,
+    1024,
+    1536,
+    1024,
+    256
+   ],
+   "n_cells": 4096,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^4 cubical Z_4^4",
+   "field": "F3",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    256,
+    1024,
+    1536,
+    1024,
+    256
+   ],
+   "n_cells": 4096,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^4 cubical Z_4^4",
+   "field": "F5",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    256,
+    1024,
+    1536,
+    1024,
+    256
+   ],
+   "n_cells": 4096,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^6 cubical Z_2^6",
+   "field": "F2",
+   "expected": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "computed": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    64,
+    384,
+    960,
+    1280,
+    960,
+    384,
+    64
+   ],
+   "n_cells": 4096,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^6 cubical Z_2^6",
+   "field": "F3",
+   "expected": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "computed": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    64,
+    384,
+    960,
+    1280,
+    960,
+    384,
+    64
+   ],
+   "n_cells": 4096,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^6 cubical Z_2^6",
+   "field": "F5",
+   "expected": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "computed": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    64,
+    384,
+    960,
+    1280,
+    960,
+    384,
+    64
+   ],
+   "n_cells": 4096,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^6 cubical Z_3^6",
+   "field": "F2",
+   "expected": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "computed": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    729,
+    4374,
+    10935,
+    14580,
+    10935,
+    4374,
+    729
+   ],
+   "n_cells": 46656,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^6 cubical Z_3^6",
+   "field": "F3",
+   "expected": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "computed": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    729,
+    4374,
+    10935,
+    14580,
+    10935,
+    4374,
+    729
+   ],
+   "n_cells": 46656,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 T^6 cubical Z_3^6",
+   "field": "F5",
+   "expected": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "computed": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    729,
+    4374,
+    10935,
+    14580,
+    10935,
+    4374,
+    729
+   ],
+   "n_cells": 46656,
+   "tier": "B",
+   "engine2_agrees": true,
+   "gudhi_agrees": true
+  },
+  {
+   "complex": "A1 control T^4(Z_2) x T^2(Z_3) via product()",
+   "field": "F2",
+   "expected": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "computed": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    144,
+    864,
+    2160,
+    2880,
+    2160,
+    864,
+    144
+   ],
+   "n_cells": 9216,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control T^4(Z_2) x T^2(Z_3) via product()",
+   "field": "F3",
+   "expected": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "computed": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    144,
+    864,
+    2160,
+    2880,
+    2160,
+    864,
+    144
+   ],
+   "n_cells": 9216,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control T^4(Z_2) x T^2(Z_3) via product()",
+   "field": "F5",
+   "expected": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "computed": [
+    1,
+    6,
+    15,
+    20,
+    15,
+    6,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    144,
+    864,
+    2160,
+    2880,
+    2160,
+    864,
+    144
+   ],
+   "n_cells": 9216,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control S^2 = boundary [-1,1]^3",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    26,
+    48,
+    24
+   ],
+   "n_cells": 98,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control S^2 = boundary [-1,1]^3",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    26,
+    48,
+    24
+   ],
+   "n_cells": 98,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control S^2 = boundary [-1,1]^3",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    26,
+    48,
+    24
+   ],
+   "n_cells": 98,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control S^3 = boundary [-1,1]^4",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    80,
+    208,
+    192,
+    64
+   ],
+   "n_cells": 544,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control S^3 = boundary [-1,1]^4",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    80,
+    208,
+    192,
+    64
+   ],
+   "n_cells": 544,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control S^3 = boundary [-1,1]^4",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    80,
+    208,
+    192,
+    64
+   ],
+   "n_cells": 544,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control RP^2 = S^2/antipodal (cubical)",
+   "field": "F2",
+   "expected": [
+    1,
+    1,
+    1
+   ],
+   "computed": [
+    1,
+    1,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    13,
+    24,
+    12
+   ],
+   "n_cells": 49,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control RP^2 = S^2/antipodal (cubical)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    0
+   ],
+   "computed": [
+    1,
+    0,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    13,
+    24,
+    12
+   ],
+   "n_cells": 49,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control RP^2 = S^2/antipodal (cubical)",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    0
+   ],
+   "computed": [
+    1,
+    0,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    13,
+    24,
+    12
+   ],
+   "n_cells": 49,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control RP^3 = S^3/antipodal (cubical)",
+   "field": "F2",
+   "expected": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "computed": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "n_cells": 272,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control RP^3 = S^3/antipodal (cubical)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "n_cells": 272,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control RP^3 = S^3/antipodal (cubical)",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "n_cells": 272,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control Klein = T^2(Z_2 x Z_2)/tau",
+   "field": "F2",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2,
+    4,
+    2
+   ],
+   "n_cells": 8,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control Klein = T^2(Z_2 x Z_2)/tau",
+   "field": "F3",
+   "expected": [
+    1,
+    1,
+    0
+   ],
+   "computed": [
+    1,
+    1,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2,
+    4,
+    2
+   ],
+   "n_cells": 8,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control Klein = T^2(Z_2 x Z_2)/tau",
+   "field": "F5",
+   "expected": [
+    1,
+    1,
+    0
+   ],
+   "computed": [
+    1,
+    1,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2,
+    4,
+    2
+   ],
+   "n_cells": 8,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control Klein = T^2(Z_4 x Z_3)/tau",
+   "field": "F2",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    6,
+    12,
+    6
+   ],
+   "n_cells": 24,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control Klein = T^2(Z_4 x Z_3)/tau",
+   "field": "F3",
+   "expected": [
+    1,
+    1,
+    0
+   ],
+   "computed": [
+    1,
+    1,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    6,
+    12,
+    6
+   ],
+   "n_cells": 24,
+   "tier": "B"
+  },
+  {
+   "complex": "A1 control Klein = T^2(Z_4 x Z_3)/tau",
+   "field": "F5",
+   "expected": [
+    1,
+    1,
+    0
+   ],
+   "computed": [
+    1,
+    1,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    6,
+    12,
+    6
+   ],
+   "n_cells": 24,
+   "tier": "B"
+  },
+  {
+   "complex": "A2 T^4/Z2 cubical orbit complex N=2",
+   "field": "F2",
+   "expected": "not pre-specified (chi=8 only)",
+   "computed": [
+    1,
+    0,
+    11,
+    5,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    16,
+    32,
+    48,
+    32,
+    8
+   ],
+   "n_cells": 136,
+   "tier": "B",
+   "n_fixed_cells": 16,
+   "chi": 8
+  },
+  {
+   "complex": "A2 T^4/Z2 cubical orbit complex N=2",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    16,
+    32,
+    48,
+    32,
+    8
+   ],
+   "n_cells": 136,
+   "tier": "B",
+   "n_fixed_cells": 16,
+   "chi": 8
+  },
+  {
+   "complex": "A2 T^4/Z2 cubical orbit complex N=2",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    16,
+    32,
+    48,
+    32,
+    8
+   ],
+   "n_cells": 136,
+   "tier": "B",
+   "n_fixed_cells": 16,
+   "chi": 8
+  },
+  {
+   "complex": "A2 T^4/Z2 cubical orbit complex N=4",
+   "field": "F2",
+   "expected": "not pre-specified (chi=8 only)",
+   "computed": [
+    1,
+    0,
+    11,
+    5,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    136,
+    512,
+    768,
+    512,
+    128
+   ],
+   "n_cells": 2056,
+   "tier": "B",
+   "n_fixed_cells": 16,
+   "chi": 8
+  },
+  {
+   "complex": "A2 T^4/Z2 cubical orbit complex N=4",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    136,
+    512,
+    768,
+    512,
+    128
+   ],
+   "n_cells": 2056,
+   "tier": "B",
+   "n_fixed_cells": 16,
+   "chi": 8
+  },
+  {
+   "complex": "A2 T^4/Z2 cubical orbit complex N=4",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    136,
+    512,
+    768,
+    512,
+    128
+   ],
+   "n_cells": 2056,
+   "tier": "B",
+   "n_fixed_cells": 16,
+   "chi": 8
+  },
+  {
+   "complex": "A2 T^4/Z2 cubical orbit complex N=6",
+   "field": "F2",
+   "expected": "not pre-specified (chi=8 only)",
+   "computed": [
+    1,
+    0,
+    11,
+    5,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    656,
+    2592,
+    3888,
+    2592,
+    648
+   ],
+   "n_cells": 10376,
+   "tier": "B",
+   "n_fixed_cells": 16,
+   "chi": 8
+  },
+  {
+   "complex": "A2 T^4/Z2 cubical orbit complex N=6",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    656,
+    2592,
+    3888,
+    2592,
+    648
+   ],
+   "n_cells": 10376,
+   "tier": "B",
+   "n_fixed_cells": 16,
+   "chi": 8
+  },
+  {
+   "complex": "A2 T^4/Z2 cubical orbit complex N=6",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    656,
+    2592,
+    3888,
+    2592,
+    648
+   ],
+   "n_cells": 10376,
+   "tier": "B",
+   "n_fixed_cells": 16,
+   "chi": 8
+  },
+  {
+   "complex": "A2 transfer: dim H_k(T^4;F3)^G from explicit cycles (N=4)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B",
+   "lefschetz_number_chain_level": 16
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=2 x T^2(Z_3^2) direct product",
+   "field": "F2",
+   "expected": "not pre-specified (F2; chi=0 only)",
+   "computed": [
+    1,
+    2,
+    12,
+    27,
+    22,
+    7,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    144,
+    576,
+    1152,
+    1440,
+    1080,
+    432,
+    72
+   ],
+   "n_cells": 4896,
+   "tier": "B",
+   "sec": 0.047
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=2 x T^2(Z_3^2) direct product",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    144,
+    576,
+    1152,
+    1440,
+    1080,
+    432,
+    72
+   ],
+   "n_cells": 4896,
+   "tier": "B",
+   "sec": 0.065
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=2 x T^2(Z_3^2) direct product",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    144,
+    576,
+    1152,
+    1440,
+    1080,
+    432,
+    72
+   ],
+   "n_cells": 4896,
+   "tier": "B",
+   "sec": 0.078
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_2^2) direct product",
+   "field": "F2",
+   "expected": "not pre-specified (F2; chi=0 only)",
+   "computed": [
+    1,
+    2,
+    12,
+    27,
+    22,
+    7,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    544,
+    3136,
+    7712,
+    10240,
+    7680,
+    3072,
+    512
+   ],
+   "n_cells": 32896,
+   "tier": "B",
+   "sec": 0.463
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_2^2) direct product",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    544,
+    3136,
+    7712,
+    10240,
+    7680,
+    3072,
+    512
+   ],
+   "n_cells": 32896,
+   "tier": "B",
+   "sec": 0.29
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_2^2) direct product",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    544,
+    3136,
+    7712,
+    10240,
+    7680,
+    3072,
+    512
+   ],
+   "n_cells": 32896,
+   "tier": "B",
+   "sec": 0.333
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_3^2) direct product",
+   "field": "F2",
+   "expected": "not pre-specified (F2; chi=0 only)",
+   "computed": [
+    1,
+    2,
+    12,
+    27,
+    22,
+    7,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    1224,
+    7056,
+    17352,
+    23040,
+    17280,
+    6912,
+    1152
+   ],
+   "n_cells": 74016,
+   "tier": "B",
+   "sec": 0.351
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_3^2) direct product",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    1224,
+    7056,
+    17352,
+    23040,
+    17280,
+    6912,
+    1152
+   ],
+   "n_cells": 74016,
+   "tier": "B",
+   "sec": 0.548
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=4 x T^2(Z_3^2) direct product",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    1224,
+    7056,
+    17352,
+    23040,
+    17280,
+    6912,
+    1152
+   ],
+   "n_cells": 74016,
+   "tier": "B",
+   "sec": 0.459
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=6 x T^2(Z_2^2) direct product",
+   "field": "F2",
+   "expected": "not pre-specified (F2; chi=0 only)",
+   "computed": [
+    1,
+    2,
+    12,
+    27,
+    22,
+    7,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    15616,
+    38912,
+    51840,
+    38880,
+    15552,
+    2592
+   ],
+   "n_cells": 166016,
+   "tier": "B",
+   "sec": 1.113
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=6 x T^2(Z_2^2) direct product",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    15616,
+    38912,
+    51840,
+    38880,
+    15552,
+    2592
+   ],
+   "n_cells": 166016,
+   "tier": "B",
+   "sec": 1.152
+  },
+  {
+   "complex": "A3 (T^4/Z2)_N=6 x T^2(Z_2^2) direct product",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    15616,
+    38912,
+    51840,
+    38880,
+    15552,
+    2592
+   ],
+   "n_cells": 166016,
+   "tier": "B",
+   "sec": 0.988
+  },
+  {
+   "complex": "A4 control: U + 16 cones (= orbifold, N=6)",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    11,
+    5,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    11,
+    5,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    656,
+    3168,
+    5360,
+    3872,
+    1032
+   ],
+   "n_cells": 14088,
+   "tier": "B"
+  },
+  {
+   "complex": "A4 control: U + 16 cones (= orbifold, N=6)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    656,
+    3168,
+    5360,
+    3872,
+    1032
+   ],
+   "n_cells": 14088,
+   "tier": "B"
+  },
+  {
+   "complex": "A4 control: U + 16 cones (= orbifold, N=6)",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    6,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    656,
+    3168,
+    5360,
+    3872,
+    1032
+   ],
+   "n_cells": 14088,
+   "tier": "B"
+  },
+  {
+   "complex": "A4 resolved Kummer K3 = U + 16 Cyl(phi) (N=6)",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    22,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    22,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    656,
+    3168,
+    5376,
+    3872,
+    1032
+   ],
+   "n_cells": 14104,
+   "tier": "B (+1 tier-L input: class of phi_2)"
+  },
+  {
+   "complex": "A4 resolved Kummer K3 = U + 16 Cyl(phi) (N=6)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    22,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    22,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    656,
+    3168,
+    5376,
+    3872,
+    1032
+   ],
+   "n_cells": 14104,
+   "tier": "B (+1 tier-L input: class of phi_2)"
+  },
+  {
+   "complex": "A4 resolved Kummer K3 = U + 16 Cyl(phi) (N=6)",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    22,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    22,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    656,
+    3168,
+    5376,
+    3872,
+    1032
+   ],
+   "n_cells": 14104,
+   "tier": "B (+1 tier-L input: class of phi_2)"
+  },
+  {
+   "complex": "A4 X_res x T^2(Z_2^2) direct product",
+   "field": "F2",
+   "expected": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49472,
+    71168,
+    56608,
+    23744,
+    4128
+   ],
+   "n_cells": 225664,
+   "tier": "B (+1 tier-L input)",
+   "sec_engine2": 1.415,
+   "engine1_agrees": true
+  },
+  {
+   "complex": "A4 X_res x T^2(Z_2^2) direct product",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49472,
+    71168,
+    56608,
+    23744,
+    4128
+   ],
+   "n_cells": 225664,
+   "tier": "B (+1 tier-L input)",
+   "sec_engine2": 1.839,
+   "engine1_agrees": true
+  },
+  {
+   "complex": "A4 X_res x T^2(Z_2^2) direct product",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49472,
+    71168,
+    56608,
+    23744,
+    4128
+   ],
+   "n_cells": 225664,
+   "tier": "B (+1 tier-L input)",
+   "sec_engine2": 2.01,
+   "engine1_agrees": true
+  },
+  {
+   "complex": "A4 X_res x T^2(Z_3^2) direct product",
+   "field": "F2",
+   "expected": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    5904,
+    40320,
+    111312,
+    160128,
+    127368,
+    53424,
+    9288
+   ],
+   "n_cells": 507744,
+   "tier": "B (+1 tier-L input)",
+   "sec_engine2": 4.915,
+   "engine1_agrees": null
+  },
+  {
+   "complex": "A4 X_res x T^2(Z_3^2) direct product",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    5904,
+    40320,
+    111312,
+    160128,
+    127368,
+    53424,
+    9288
+   ],
+   "n_cells": 507744,
+   "tier": "B (+1 tier-L input)",
+   "sec_engine2": 4.592,
+   "engine1_agrees": null
+  },
+  {
+   "complex": "A4 X_res x T^2(Z_3^2) direct product",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    5904,
+    40320,
+    111312,
+    160128,
+    127368,
+    53424,
+    9288
+   ],
+   "n_cells": 507744,
+   "tier": "B (+1 tier-L input)",
+   "sec_engine2": 4.513,
+   "engine1_agrees": null
+  },
+  {
+   "complex": "A4 local model H(Cyl,L), phi class = Bockstein generator (all 16 links)",
+   "field": "F2",
+   "expected": [
+    0,
+    0,
+    1,
+    0,
+    1
+   ],
+   "computed": [
+    0,
+    0,
+    1,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B"
+  },
+  {
+   "complex": "A4 local model H(Cyl,L), phi class = Bockstein generator (all 16 links)",
+   "field": "F3",
+   "expected": [
+    0,
+    0,
+    1,
+    0,
+    1
+   ],
+   "computed": [
+    0,
+    0,
+    1,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B"
+  },
+  {
+   "complex": "A4 local model H(Cyl,L), phi class = 0 (wrong) (all 16 links)",
+   "field": "F2",
+   "expected": [
+    0,
+    0,
+    2,
+    1,
+    1
+   ],
+   "computed": [
+    0,
+    0,
+    2,
+    1,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B"
+  },
+  {
+   "complex": "A4 local model H(Cyl,L), phi class = 0 (wrong) (all 16 links)",
+   "field": "F3",
+   "expected": [
+    0,
+    0,
+    1,
+    0,
+    1
+   ],
+   "computed": [
+    0,
+    0,
+    1,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=0 resolved",
+   "field": "F2",
+   "expected": "not pre-specified",
+   "computed": [
+    1,
+    2,
+    12,
+    27,
+    22,
+    7,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49408,
+    71040,
+    56544,
+    23744,
+    4128
+   ],
+   "n_cells": 225408,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=0 resolved",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49408,
+    71040,
+    56544,
+    23744,
+    4128
+   ],
+   "n_cells": 225408,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=0 resolved",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    7,
+    12,
+    7,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49408,
+    71040,
+    56544,
+    23744,
+    4128
+   ],
+   "n_cells": 225408,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=8 resolved",
+   "field": "F2",
+   "expected": "not pre-specified",
+   "computed": [
+    1,
+    2,
+    15,
+    28,
+    15,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49440,
+    71104,
+    56576,
+    23744,
+    4128
+   ],
+   "n_cells": 225536,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=8 resolved",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    15,
+    28,
+    15,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    15,
+    28,
+    15,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49440,
+    71104,
+    56576,
+    23744,
+    4128
+   ],
+   "n_cells": 225536,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=8 resolved",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    15,
+    28,
+    15,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    15,
+    28,
+    15,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49440,
+    71104,
+    56576,
+    23744,
+    4128
+   ],
+   "n_cells": 225536,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=15 resolved",
+   "field": "F2",
+   "expected": "not pre-specified",
+   "computed": [
+    1,
+    2,
+    22,
+    42,
+    22,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49468,
+    71160,
+    56604,
+    23744,
+    4128
+   ],
+   "n_cells": 225648,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=15 resolved",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    22,
+    42,
+    22,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    22,
+    42,
+    22,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49468,
+    71160,
+    56604,
+    23744,
+    4128
+   ],
+   "n_cells": 225648,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=15 resolved",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    22,
+    42,
+    22,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    22,
+    42,
+    22,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49468,
+    71160,
+    56604,
+    23744,
+    4128
+   ],
+   "n_cells": 225648,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=16 resolved",
+   "field": "F2",
+   "expected": "K3xT2",
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49472,
+    71168,
+    56608,
+    23744,
+    4128
+   ],
+   "n_cells": 225664,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=16 resolved",
+   "field": "F3",
+   "expected": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49472,
+    71168,
+    56608,
+    23744,
+    4128
+   ],
+   "n_cells": 225664,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 X_k x T^2, k=16 resolved",
+   "field": "F5",
+   "expected": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49472,
+    71168,
+    56608,
+    23744,
+    4128
+   ],
+   "n_cells": 225664,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 wrong gluing class (phi2=0 at 16 points) x T^2",
+   "field": "F3",
+   "expected": "(1,2,23,44,23,2,1) (F3 cannot discriminate)",
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49472,
+    71168,
+    56608,
+    23744,
+    4128
+   ],
+   "n_cells": 225664,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 wrong gluing class (phi2=0 at 16 points) x T^2",
+   "field": "F2",
+   "expected": "must differ from (1,2,23,44,23,2,1)",
+   "computed": [
+    1,
+    2,
+    28,
+    59,
+    38,
+    7,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    2624,
+    17920,
+    49472,
+    71168,
+    56608,
+    23744,
+    4128
+   ],
+   "n_cells": 225664,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 orbifold_x_S2",
+   "field": "F2",
+   "expected": "not pre-specified",
+   "computed": [
+    1,
+    0,
+    12,
+    5,
+    12,
+    5,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    17056,
+    113856,
+    307168,
+    433984,
+    341328,
+    142464,
+    24768
+   ],
+   "n_cells": 1380624,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 orbifold_x_S2",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    7,
+    0,
+    7,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    7,
+    0,
+    7,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    17056,
+    113856,
+    307168,
+    433984,
+    341328,
+    142464,
+    24768
+   ],
+   "n_cells": 1380624,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 orbifold_x_S2",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    7,
+    0,
+    7,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    7,
+    0,
+    7,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    17056,
+    113856,
+    307168,
+    433984,
+    341328,
+    142464,
+    24768
+   ],
+   "n_cells": 1380624,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 K3_x_S2",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    23,
+    0,
+    23,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    23,
+    0,
+    23,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    17056,
+    113856,
+    307584,
+    434752,
+    341712,
+    142464,
+    24768
+   ],
+   "n_cells": 1382192,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 K3_x_S2",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    23,
+    0,
+    23,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    23,
+    0,
+    23,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    17056,
+    113856,
+    307584,
+    434752,
+    341712,
+    142464,
+    24768
+   ],
+   "n_cells": 1382192,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 K3_x_S2",
+   "field": "F5",
+   "expected": [
+    1,
+    0,
+    23,
+    0,
+    23,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    23,
+    0,
+    23,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    17056,
+    113856,
+    307584,
+    434752,
+    341712,
+    142464,
+    24768
+   ],
+   "n_cells": 1382192,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 orbifold_x_Klein",
+   "field": "F2",
+   "expected": "not pre-specified",
+   "computed": [
+    1,
+    2,
+    12,
+    27,
+    22,
+    7,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    3936,
+    26880,
+    74112,
+    106560,
+    84816,
+    35616,
+    6192
+   ],
+   "n_cells": 338112,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 orbifold_x_Klein",
+   "field": "F3",
+   "expected": [
+    1,
+    1,
+    6,
+    6,
+    1,
+    1,
+    0
+   ],
+   "computed": [
+    1,
+    1,
+    6,
+    6,
+    1,
+    1,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    3936,
+    26880,
+    74112,
+    106560,
+    84816,
+    35616,
+    6192
+   ],
+   "n_cells": 338112,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 orbifold_x_Klein",
+   "field": "F5",
+   "expected": [
+    1,
+    1,
+    6,
+    6,
+    1,
+    1,
+    0
+   ],
+   "computed": [
+    1,
+    1,
+    6,
+    6,
+    1,
+    1,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    3936,
+    26880,
+    74112,
+    106560,
+    84816,
+    35616,
+    6192
+   ],
+   "n_cells": 338112,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 K3_x_Klein",
+   "field": "F2",
+   "expected": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    2,
+    23,
+    44,
+    23,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    3936,
+    26880,
+    74208,
+    106752,
+    84912,
+    35616,
+    6192
+   ],
+   "n_cells": 338496,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 K3_x_Klein",
+   "field": "F3",
+   "expected": [
+    1,
+    1,
+    22,
+    22,
+    1,
+    1,
+    0
+   ],
+   "computed": [
+    1,
+    1,
+    22,
+    22,
+    1,
+    1,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    3936,
+    26880,
+    74208,
+    106752,
+    84912,
+    35616,
+    6192
+   ],
+   "n_cells": 338496,
+   "tier": "B"
+  },
+  {
+   "complex": "A5 K3_x_Klein",
+   "field": "F5",
+   "expected": [
+    1,
+    1,
+    22,
+    22,
+    1,
+    1,
+    0
+   ],
+   "computed": [
+    1,
+    1,
+    22,
+    22,
+    1,
+    1,
+    0
+   ],
+   "PASS": true,
+   "cells_per_dim": [
+    3936,
+    26880,
+    74208,
+    106752,
+    84912,
+    35616,
+    6192
+   ],
+   "n_cells": 338496,
+   "tier": "B"
+  },
+  {
+   "complex": "A5b J_affine_hyperplane_x0_eq_0_k8 (X_J)",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    15,
+    1,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    15,
+    1,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     1,
+     0
+    ],
+    [
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "complex": "A5b J_affine_hyperplane_x0_eq_0_k8 (X_J)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    14,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    14,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     1,
+     0
+    ],
+    [
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "complex": "A5b J_non_hyperplane_8set_k8 (X_J)",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    14,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    14,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "complex": "A5b J_non_hyperplane_8set_k8 (X_J)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    14,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    14,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1,
+     1
+    ]
+   ]
+  },
+  {
+   "complex": "A5b resolved_affine_2plane_k4 (X_J)",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    12,
+    2,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    12,
+    2,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     1,
+     1,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "complex": "A5b resolved_affine_2plane_k4 (X_J)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    10,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    10,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     1,
+     1,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "complex": "A5b resolved_4_affinely_independent_k4 (X_J)",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    11,
+    1,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    11,
+    1,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "complex": "A5b resolved_4_affinely_independent_k4 (X_J)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    10,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    10,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "complex": "A5b resolved_single_point_k1 (X_J)",
+   "field": "F2",
+   "expected": [
+    1,
+    0,
+    11,
+    4,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    11,
+    4,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     0,
+     0,
+     0,
+     0
+    ]
+   ]
+  },
+  {
+   "complex": "A5b resolved_single_point_k1 (X_J)",
+   "field": "F3",
+   "expected": [
+    1,
+    0,
+    7,
+    0,
+    1
+   ],
+   "computed": [
+    1,
+    0,
+    7,
+    0,
+    1
+   ],
+   "PASS": true,
+   "cells_per_dim": [],
+   "n_cells": 0,
+   "tier": "B vs pre-registered tier-L (RM(1,4) Kummer code)",
+   "resolved_bits": [
+    [
+     0,
+     0,
+     0,
+     0
+    ]
+   ]
+  }
+ ],
+ "partB_table": [
+  {
+   "study": "T2_alpha",
+   "space": "T2",
+   "embedding": "product of unit circles in R^4",
+   "method": "alpha",
+   "tau": 1.8,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "N_min_all_3_seeds_F3": 400,
+   "largest_N_completed": 400,
+   "stopped_because": "N_min found",
+   "recovered": true,
+   "at_largest_N": {
+    "n_simplices": 54579,
+    "seconds": 5.6,
+    "maxrss_MB": 61.6,
+    "best_window_ratio_F3": 2.021021110287728,
+    "recovered_F2": true
+   },
+   "tier": "X"
+  },
+  {
+   "study": "T2_rips",
+   "space": "T2",
+   "embedding": "product of unit circles in R^4",
+   "method": "rips",
+   "tau": 1.2,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "N_min_all_3_seeds_F3": 800,
+   "largest_N_completed": 800,
+   "stopped_because": "N_min found",
+   "recovered": true,
+   "at_largest_N": {
+    "n_simplices": 4944,
+    "seconds": 0.4,
+    "maxrss_MB": 41.3,
+    "best_window_ratio_F3": 1.6537839423244869,
+    "recovered_F2": true
+   },
+   "tier": "X"
+  },
+  {
+   "study": "T3_rips",
+   "space": "T3",
+   "embedding": "product of unit circles in R^6",
+   "method": "rips",
+   "tau": 1.2,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    3,
+    3,
+    1
+   ],
+   "N_min_all_3_seeds_F3": 12800,
+   "largest_N_completed": 12800,
+   "stopped_because": "N_min found",
+   "recovered": true,
+   "at_largest_N": {
+    "n_simplices": 5388325,
+    "seconds": 46.3,
+    "maxrss_MB": 535.4,
+    "best_window_ratio_F3": 1.563208082645082,
+    "recovered_F2": true
+   },
+   "tier": "X"
+  },
+  {
+   "study": "T3_rips_fps",
+   "space": "T3",
+   "embedding": "product of unit circles in R^6",
+   "method": "rips",
+   "tau": 1.2,
+   "sampling": "farthest-point subsample of 10N iid",
+   "expected": [
+    1,
+    3,
+    3,
+    1
+   ],
+   "N_min_all_3_seeds_F3": 6400,
+   "largest_N_completed": 6400,
+   "stopped_because": "N_min found",
+   "recovered": true,
+   "at_largest_N": {
+    "n_simplices": 231586,
+    "seconds": 96.0,
+    "maxrss_MB": 102.8,
+    "best_window_ratio_F3": 1.7399709167235777,
+    "recovered_F2": true
+   },
+   "tier": "X"
+  },
+  {
+   "study": "T4_rips",
+   "space": "T4",
+   "embedding": "product of unit circles in R^8",
+   "method": "rips",
+   "tau": 1.2,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 12800,
+   "stopped_because": "N=25600 seed=0: error/memory (rc=127, 101.2 s)",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 24659638,
+    "seconds": 102.5,
+    "maxrss_MB": 2355.9,
+    "best_window_ratio_F3": 0.0,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "T4_rips_fps",
+   "space": "T4",
+   "embedding": "product of unit circles in R^8",
+   "method": "rips",
+   "tau": 1.2,
+   "sampling": "farthest-point subsample of 10N iid",
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 12800,
+   "stopped_because": "grid exhausted",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 39974425,
+    "seconds": 280.5,
+    "maxrss_MB": 3787.5,
+    "best_window_ratio_F3": 1.0053149527438094,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "orbifold_rips",
+   "space": "orbifold",
+   "embedding": "Z2-invariant map to R^14: cos th_i, sin th_i sin th_j (i<=j)",
+   "method": "rips",
+   "tau": 1.2,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    0,
+    6
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 12800,
+   "stopped_because": "N=25600 seed=0: error/memory (rc=1, 235.3 s)",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 5241820,
+    "seconds": 21.6,
+    "maxrss_MB": 480.7,
+    "best_window_ratio_F3": 0.0,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "orbifold_rips_fps",
+   "space": "orbifold",
+   "embedding": "Z2-invariant map to R^14: cos th_i, sin th_i sin th_j (i<=j)",
+   "method": "rips",
+   "tau": 1.2,
+   "sampling": "farthest-point subsample of 10N iid",
+   "expected": [
+    1,
+    0,
+    6
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 12800,
+   "stopped_because": "grid exhausted",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 5737390,
+    "seconds": 265.8,
+    "maxrss_MB": 550.7,
+    "best_window_ratio_F3": 1.0588548788505996,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "K3_rips",
+   "space": "K3",
+   "embedding": "Fermat quartic, Hermitian projector |z><z| in R^16 (Frobenius-isometric coords, trace-1 affine R^15)",
+   "method": "rips",
+   "tau": 0.8,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    0,
+    22
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 4000,
+   "stopped_because": "N=8000 seed=0: error/memory (rc=127, 68.2 s)",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 24065216,
+    "seconds": 81.8,
+    "maxrss_MB": 1861.6,
+    "best_window_ratio_F3": 0.0,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "K3_rips_fps",
+   "space": "K3",
+   "embedding": "Fermat quartic, Hermitian projector |z><z| in R^16 (Frobenius-isometric coords, trace-1 affine R^15)",
+   "method": "rips",
+   "tau": 0.8,
+   "sampling": "farthest-point subsample of 10N iid",
+   "expected": [
+    1,
+    0,
+    22
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 4000,
+   "stopped_because": "N=8000 seed=0: error/memory (rc=127, 108.0 s)",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 24898135,
+    "seconds": 77.2,
+    "maxrss_MB": 1939.5,
+    "best_window_ratio_F3": 0.0,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "null4m_rips",
+   "space": "null4m",
+   "embedding": "uniform 4-cube in R^16, density-matched (median 10-NN) to the K3 sample",
+   "method": "rips",
+   "tau": 0.8,
+   "sampling": "iid uniform (angles) / as described",
+   "expected": [
+    1,
+    0,
+    0
+   ],
+   "N_min_all_3_seeds_F3": null,
+   "largest_N_completed": 4000,
+   "stopped_because": "grid exhausted",
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 5428197,
+    "seconds": 30.5,
+    "maxrss_MB": 490.9,
+    "best_window_ratio_F3": 1.2665555757345923,
+    "recovered_F2": false
+   },
+   "tier": "X"
+  },
+  {
+   "study": "explore K3xT2 N=4000",
+   "space": "K3xT2",
+   "embedding": "K3 projector (R^16) x flat T^2 of radius 0.5 (R^4)",
+   "method": "rips",
+   "tau": 0.8,
+   "expected": [
+    1,
+    2,
+    23
+   ],
+   "largest_N_completed": 4000,
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 44470,
+    "seconds": 0.8,
+    "maxrss_MB": 45.7
+   },
+   "tier": "X"
+  },
+  {
+   "study": "explore K3xT2 N=8000",
+   "space": "K3xT2",
+   "embedding": "K3 projector (R^16) x flat T^2 of radius 0.5 (R^4)",
+   "method": "rips",
+   "tau": 0.8,
+   "expected": [
+    1,
+    2,
+    23
+   ],
+   "largest_N_completed": 8000,
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 418295,
+    "seconds": 3.5,
+    "maxrss_MB": 84.5
+   },
+   "tier": "X"
+  },
+  {
+   "study": "explore K3xT2 N=16000",
+   "space": "K3xT2",
+   "embedding": "K3 projector (R^16) x flat T^2 of radius 0.5 (R^4)",
+   "method": "rips",
+   "tau": 0.8,
+   "expected": [
+    1,
+    2,
+    23
+   ],
+   "largest_N_completed": 16000,
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 6095450,
+    "seconds": 36.7,
+    "maxrss_MB": 501.5
+   },
+   "tier": "X"
+  },
+  {
+   "study": "explore K3xT2 N=32000",
+   "space": "K3xT2",
+   "embedding": "K3 projector (R^16) x flat T^2 of radius 0.5 (R^4)",
+   "method": "rips",
+   "tau": 0.8,
+   "expected": [
+    1,
+    2,
+    23
+   ],
+   "largest_N_completed": 32000,
+   "recovered": false,
+   "at_largest_N": {
+    "n_simplices": 99482102,
+    "seconds": 402.1,
+    "maxrss_MB": 6744.7
+   },
+   "tier": "X"
+  }
+ ],
+ "partA_runtime_memory": {
+  "A1": [
+   15.5,
+   98.6
+  ],
+  "A4": [
+   105.86,
+   386.4
+  ],
+  "A5": [
+   321.63,
+   1010.8
+  ],
+  "A5b": [
+   46.98,
+   291.8
+  ],
+  "units": "[seconds, maxrss MB]"
+ },
+ "partB_scaling_fit": {
+  "method": "Rips tau=1.2, iid uniform, grid of doublings (so N_min resolution is a factor 2)",
+  "points": [
+   [
+    2,
+    800
+   ],
+   [
+    3,
+    12800
+   ]
+  ],
+  "A": 3.125,
+  "B_per_dimension": 16.0,
+  "extrapolated_N_min_T4": 204800.0,
+  "T4_status": "not recovered up to N=12800; next grid N failed: N=25600 seed=0: error/memory (rc=127, 101.2 s)",
+  "caveat": "two points only; extrapolation is indicative (tier X)",
+  "fps_T3_N_min": 6400
+ },
+ "partB_null_false_positive_check": {
+  "N500_seed0": {
+   "max_window_ratio_beta2_ge1": 1.3801662265781514,
+   "false_positive_rule_(>=1.5)": false,
+   "beta2_at_0.7": 20
+  },
+  "N500_seed1": {
+   "max_window_ratio_beta2_ge1": 1.2908028259915627,
+   "false_positive_rule_(>=1.5)": false,
+   "beta2_at_0.7": 12
+  },
+  "N500_seed2": {
+   "max_window_ratio_beta2_ge1": 1.3298284113881838,
+   "false_positive_rule_(>=1.5)": false,
+   "beta2_at_0.7": 14
+  },
+  "N1000_seed0": {
+   "max_window_ratio_beta2_ge1": 1.7156362520999646,
+   "false_positive_rule_(>=1.5)": true,
+   "beta2_at_0.7": 67
+  },
+  "N1000_seed1": {
+   "max_window_ratio_beta2_ge1": 1.7076528636322514,
+   "false_positive_rule_(>=1.5)": true,
+   "beta2_at_0.7": 57
+  },
+  "N1000_seed2": {
+   "max_window_ratio_beta2_ge1": 1.6592186313603,
+   "false_positive_rule_(>=1.5)": true,
+   "beta2_at_0.7": 60
+  },
+  "N2000_seed0": {
+   "max_window_ratio_beta2_ge1": 2.221009249149597,
+   "false_positive_rule_(>=1.5)": true,
+   "beta2_at_0.7": 8
+  },
+  "N2000_seed1": {
+   "max_window_ratio_beta2_ge1": 2.0499237093864324,
+   "false_positive_rule_(>=1.5)": true,
+   "beta2_at_0.7": 9
+  },
+  "N2000_seed2": {
+   "max_window_ratio_beta2_ge1": 2.078147532451411,
+   "false_positive_rule_(>=1.5)": true,
+   "beta2_at_0.7": 10
+  },
+  "N4000_seed0": {
+   "max_window_ratio_beta2_ge1": 1.9676745929682118,
+   "false_positive_rule_(>=1.5)": true,
+   "beta2_at_0.7": 0
+  },
+  "N4000_seed1": {
+   "max_window_ratio_beta2_ge1": 2.162028394336297,
+   "false_positive_rule_(>=1.5)": true,
+   "beta2_at_0.7": 0
+  },
+  "N4000_seed2": {
+   "max_window_ratio_beta2_ge1": 1.9980645368455956,
+   "false_positive_rule_(>=1.5)": true,
+   "beta2_at_0.7": 0
+  }
+ },
+ "partB_K3": {
+  "seed0": {
+   "N": 4000,
+   "tau": 0.8,
+   "n_H2_bars": 1671,
+   "n_H2_bars_alive_at_tau": 27,
+   "beta2_plateau(value,e1,e2,ratio)": [
+    27,
+    0.6890000000000001,
+    0.799,
+    1.1596516690856313
+   ],
+   "beta2_ever_equals_22_on_grid": false,
+   "beta2_at": {
+    "0.6": 79,
+    "0.65": 31,
+    "0.7": 27,
+    "0.75": 27,
+    "0.79": 27
+   },
+   "F2_beta_curve_tail": [
+    [
+     "0.64",
+     [
+      1,
+      0,
+      43
+     ]
+    ],
+    [
+     "0.68",
+     [
+      1,
+      0,
+      27
+     ]
+    ],
+    [
+     "0.72",
+     [
+      1,
+      0,
+      27
+     ]
+    ],
+    [
+     "0.76",
+     [
+      1,
+      0,
+      27
+     ]
+    ]
+   ]
+  },
+  "seed1": {
+   "N": 4000,
+   "tau": 0.8,
+   "n_H2_bars": 1631,
+   "n_H2_bars_alive_at_tau": 27,
+   "beta2_plateau(value,e1,e2,ratio)": [
+    27,
+    0.647,
+    0.737,
+    1.1391035548686244
+   ],
+   "beta2_ever_equals_22_on_grid": false,
+   "beta2_at": {
+    "0.6": 75,
+    "0.65": 27,
+    "0.7": 27,
+    "0.75": 27,
+    "0.79": 27
+   },
+   "F2_beta_curve_tail": [
+    [
+     "0.64",
+     [
+      1,
+      0,
+      35
+     ]
+    ],
+    [
+     "0.68",
+     [
+      1,
+      0,
+      27
+     ]
+    ],
+    [
+     "0.72",
+     [
+      1,
+      0,
+      27
+     ]
+    ],
+    [
+     "0.76",
+     [
+      1,
+      0,
+      27
+     ]
+    ]
+   ]
+  },
+  "seed2": {
+   "N": 4000,
+   "tau": 0.8,
+   "n_H2_bars": 1791,
+   "n_H2_bars_alive_at_tau": 27,
+   "beta2_plateau(value,e1,e2,ratio)": [
+    27,
+    0.69,
+    0.799,
+    1.1579710144927537
+   ],
+   "beta2_ever_equals_22_on_grid": false,
+   "beta2_at": {
+    "0.6": 51,
+    "0.65": 31,
+    "0.7": 27,
+    "0.75": 27,
+    "0.79": 27
+   },
+   "F2_beta_curve_tail": [
+    [
+     "0.64",
+     [
+      1,
+      0,
+      35
+     ]
+    ],
+    [
+     "0.68",
+     [
+      1,
+      0,
+      35
+     ]
+    ],
+    [
+     "0.72",
+     [
+      1,
+      0,
+      27
+     ]
+    ],
+    [
+     "0.76",
+     [
+      1,
+      0,
+      27
+     ]
+    ]
+   ]
+  },
+  "seed0_fps": {
+   "N": 4000,
+   "tau": 0.8,
+   "n_H2_bars": 4359,
+   "n_H2_bars_alive_at_tau": 29,
+   "beta2_plateau(value,e1,e2,ratio)": [
+    28,
+    0.688,
+    0.741,
+    1.0770348837209303
+   ],
+   "beta2_ever_equals_22_on_grid": false,
+   "beta2_at": {
+    "0.6": 29,
+    "0.65": 28,
+    "0.7": 28,
+    "0.75": 29,
+    "0.79": 29
+   },
+   "F2_beta_curve_tail": null
+  },
+  "N3000_tau0.9": {
+   "beta_curve": {
+    "0.045": [
+     2996,
+     0,
+     0
+    ],
+    "0.09": [
+     2952,
+     0,
+     0
+    ],
+    "0.135": [
+     2812,
+     0,
+     0
+    ],
+    "0.18": [
+     2444,
+     0,
+     0
+    ],
+    "0.225": [
+     1748,
+     0,
+     0
+    ],
+    "0.27": [
+     764,
+     76,
+     0
+    ],
+    "0.315": [
+     197,
+     453,
+     0
+    ],
+    "0.36": [
+     29,
+     941,
+     4
+    ],
+    "0.405": [
+     13,
+     889,
+     20
+    ],
+    "0.45": [
+     5,
+     473,
+     68
+    ],
+    "0.495": [
+     1,
+     121,
+     244
+    ],
+    "0.54": [
+     1,
+     16,
+     259
+    ],
+    "0.585": [
+     1,
+     0,
+     139
+    ],
+    "0.63": [
+     1,
+     0,
+     75
+    ],
+    "0.675": [
+     1,
+     0,
+     35
+    ],
+    "0.72": [
+     1,
+     0,
+     27
+    ],
+    "0.765": [
+     1,
+     0,
+     31
+    ],
+    "0.81": [
+     1,
+     0,
+     27
+    ],
+    "0.855": [
+     1,
+     0,
+     27
+    ]
+   }
+  }
+ },
+ "partB_K3_longest_beta2_ge1_window": {
+  "0": 2.4003587428231743,
+  "1": 2.2602063258523435,
+  "2": 2.474317082502451
+ },
+ "partB_failures_recorded": {
+  "5": {
+   "space": "K3",
+   "N": 2000,
+   "tau": 1.0,
+   "reason": "error/memory"
+  },
+  "6": {
+   "space": "K3",
+   "N": 2000,
+   "tau": 1.2,
+   "reason": "error/memory"
+  },
+  "7": {
+   "space": "K3",
+   "N": 4000,
+   "tau": 0.95,
+   "reason": "error/memory"
+  },
+  "8": {
+   "space": "null4",
+   "N": 4000,
+   "tau": 0.8,
+   "reason": "timeout"
+  },
+  "14": {
+   "space": "K3xT2",
+   "N": 64000,
+   "tau": 0.8,
+   "reason": "timeout"
+  }
+ }
+}
