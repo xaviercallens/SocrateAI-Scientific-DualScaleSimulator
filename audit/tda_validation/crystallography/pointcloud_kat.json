@@ -1,0 +1,41 @@
+{
+ "stage": "pointcloud",
+ "tier": "X",
+ "construction": "60 random seed points, each replaced by its full A_4 orbit -> 720 points; control = the same number of points drawn from the same radial/angular distribution with no symmetry",
+ "seed": 555,
+ "A4_orbit_union": {
+  "n_points": 720,
+  "A4_orbit_residual_mean": 0.0,
+  "A4_orbit_residual_median": 0.0,
+  "C12_orbit_residual_mean": 0.0838536237154881,
+  "C12_orbit_residual_median": 0.08152276410389198,
+  "n_distinct_after_A4_folding": 60,
+  "expected_n_distinct_if_exact_orbits": 60,
+  "betti_of_folded_set": {
+   "0": 60,
+   "1": 107,
+   "2": 35
+  }
+ },
+ "random_control": {
+  "n_points": 720,
+  "A4_orbit_residual_mean": 0.09699437870730548,
+  "A4_orbit_residual_median": 0.0922547489022634,
+  "C12_orbit_residual_mean": 0.0953695926983452,
+  "C12_orbit_residual_median": 0.0907800100842937,
+  "n_distinct_after_A4_folding": 720,
+  "expected_n_distinct_if_exact_orbits": 60,
+  "betti_of_folded_set": {
+   "0": 720,
+   "1": 1721,
+   "2": 899
+  }
+ },
+ "group_specific": {
+  "target_residual_symmetric_over_random": 0.0,
+  "control_group_residual_on_symmetric_set_is_NOT_small": 0.0838536237154881,
+  "reading": "a A_4-symmetric point set has ~0 residual under A_4 and a large residual under C_12; the statistic is group-specific"
+ },
+ "not_run": "the cosmic-web application (SDSS/DESI point set with the CAMB lognormal mocks of audit/reverse_zero/E5-cosmic-web-tda-scaled/ as null) was NOT run in this session; only this synthetic known-answer test was",
+ "peak_rss_mb": 76.87890625
+}

@@ -576,7 +576,7 @@ def gaussian_sim(cl, seed, nside=NSIDE_WORK):
 # ===========================================================================
 # 6.  Injection of a G-symmetric pattern
 # ===========================================================================
-def symmetric_pattern(ops, ells, seed):
+def symmetric_pattern(ops, ells, seed, per_l_equal=False):
     """A random unit vector inside the G-invariant subspace at the given ells,
     expressed as full-m vectors (zero elsewhere).  Real-field reality is
     imposed by symmetrising; the result is re-projected so it stays exactly
@@ -595,6 +595,10 @@ def symmetric_pattern(ops, ells, seed):
         v_conj = ((-1.0) ** mm) * np.conj(v[::-1])
         v = 0.5 * (v + v_conj)
         v = U @ (U.conj().T @ v)            # back into the invariant subspace
+        if per_l_equal:
+            nv = np.linalg.norm(v)
+            if nv > 0:
+                v = v / nv
         full[l] = v
     tot = np.sqrt(sum(float(np.sum(np.abs(full[l]) ** 2)) for l in range(lmax + 1)))
     if tot > 0:
@@ -1124,6 +1128,114 @@ def stage_injection(args):
     jdump(out, os.path.join(HERE, "injection_power_%s.json" % which))
 
 
+EXT_AMPLITUDES = [0.0, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0]
+BROAD_AMPLITUDES = [0.0, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2]
+
+
+def stage_injection_ext(args):
+    """Extended and broadband injection, ADDED AFTER the pre-registered ladder
+    was run and BEFORE any real map was looked at.  Reason, recorded here:
+
+      (i)  the pre-registered ladder (f <= 0.2, pattern confined to l = 3,4,6)
+           produced no power at all -- power stayed at the alpha = 0.05 level
+           everywhere -- so the required group-specificity demonstration was
+           vacuous: showing that the CONTROL statistic does not fire is
+           meaningless at an amplitude where the MATCHED statistic does not
+           fire either.  Specificity has to be shown at an amplitude where the
+           matched statistic reaches power >= 0.95.
+      (ii) the pre-registered pattern draw put 0.007 / 0.214 / 0.779 of its
+           power at l = 3 / 4 / 6, so a nominally three-multipole pattern was
+           effectively single-multipole.  The extended runs normalise the
+           pattern to EQUAL power per injection multipole.  That is a change to
+           the SIGNAL MODEL, not to the test statistic; the statistic, the
+           bands, the orientation grid, the nulls and the decision rule are
+           exactly as pre-registered and are not touched.
+      (iii) the task's own wording is "a sum of G-orbit-symmetrised spherical
+           harmonics", i.e. broadband.  Confining the signal to 3 multipoles was
+           a narrowing introduced here, and is the case where the statistic has
+           least power.
+
+    Nothing here is a data test and N_TESTS stays 4.
+    """
+    which = args.map
+    m, mask, meta = load_map_and_mask(which)
+    cl = estimate_cl(m, mask, 3 * NSIDE_WORK - 1)
+    del m
+    ops = {g: load_ops(g) for g in ("A4", "C12")}
+    nullZ, nullmu, nullsd = {}, {}, {}
+    for g in ("A4", "C12"):
+        CM = np.load(_null_path(which, g))["cmax"]
+        nullZ[g] = _null_Z(CM)
+        nullmu[g] = CM.mean(axis=0)
+        nullsd[g] = CM.std(axis=0, ddof=1)
+
+    narrow = {"A4": [3, 4, 6], "C12": [12, 13]}
+    broad = {"A4": list(range(2, LMAX + 1)), "C12": list(range(2, LMAX + 1))}
+    scenarios = [("narrow_equal_power_per_l", narrow, EXT_AMPLITUDES),
+                 ("broadband_l2_to_64", broad, BROAD_AMPLITUDES)]
+    results = []
+    for sc_name, ells_of, ladder in scenarios:
+        pats = {g: symmetric_pattern(ops[g], ells_of[g], INJ_PATTERN_SEED + 7,
+                                     per_l_equal=True) for g in ("A4", "C12")}
+        for inj_g in ("A4", "C12"):
+            for f in ladder:
+                pw = {"A4": 0, "C12": 0}
+                for r in range(N_INJ):
+                    seed = (INJ_BASE_SEED + 500000 + 10000 * ladder.index(f)
+                            + 200000 * (inj_g == "C12")
+                            + 3000000 * scenarios.index(
+                                (sc_name, ells_of, ladder)) + r)
+                    sim = gaussian_sim(cl, seed)
+                    host = map_to_full(sim, mask)
+                    rng = np.random.default_rng(seed)
+                    Rr = random_rotation(rng)
+                    pat = rotate_full(ops[inj_g]["wc"], pats[inj_g], Rr)
+                    fld = inject(host, pat, ells_of[inj_g], f)
+                    for test_g in ("A4", "C12"):
+                        cm = cmax(crystallinity(ops[test_g], fld))
+                        Z = Z_stat(cm, nullmu[test_g], nullsd[test_g])
+                        if rank_p(Z, nullZ[test_g]) <= ALPHA:
+                            pw[test_g] += 1
+                results.append({
+                    "scenario": sc_name, "injected_group": inj_g,
+                    "injection_ells": [ells_of[inj_g][0], ells_of[inj_g][-1]]
+                    if len(ells_of[inj_g]) > 3 else ells_of[inj_g],
+                    "n_injection_ells": len(ells_of[inj_g]),
+                    "amplitude_fraction_of_injected_band_power": f,
+                    "n_realisations": N_INJ, "alpha": ALPHA,
+                    "power_A4_statistic": pw["A4"] / N_INJ,
+                    "power_C12_statistic": pw["C12"] / N_INJ})
+                log("DONE %s inject %s f=%g -> power A4 %.2f, C12 %.2f"
+                    % (sc_name, inj_g, f, pw["A4"] / N_INJ, pw["C12"] / N_INJ))
+    out = {"stage": "injection_ext", "tier": "X",
+           "why_added": stage_injection_ext.__doc__,
+           "added_before_any_real_map_was_read": True,
+           "map_spectrum_from": which, "results": results}
+    sens, spec = {}, {}
+    for sc_name, _, _ in scenarios:
+        for g in ("A4", "C12"):
+            hits = [r["amplitude_fraction_of_injected_band_power"]
+                    for r in results if r["scenario"] == sc_name
+                    and r["injected_group"] == g
+                    and r["power_%s_statistic" % g] >= 0.95]
+            sens["%s/%s" % (sc_name, g)] = min(hits) if hits else None
+            if hits:
+                f0 = min(hits)
+                other = "C12" if g == "A4" else "A4"
+                row = [r for r in results if r["scenario"] == sc_name
+                       and r["injected_group"] == g
+                       and r["amplitude_fraction_of_injected_band_power"] == f0][0]
+                spec["%s: inject %s at f=%g" % (sc_name, g, f0)] = {
+                    "matched_statistic_%s_power" % g: row["power_%s_statistic" % g],
+                    "control_statistic_%s_power" % other:
+                        row["power_%s_statistic" % other],
+                    "alpha": ALPHA}
+    out["smallest_amplitude_with_power_0.95_at_alpha_0.05"] = sens
+    out["group_specificity_at_a_detectable_amplitude"] = spec
+    out["peak_rss_mb"] = peak_rss_mb()
+    jdump(out, os.path.join(HERE, "injection_ext_%s.json" % which))
+
+
 def stage_data(args):
     which = args.map
     m, mask, meta = load_map_and_mask(which)
@@ -1282,13 +1394,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stage", required=True,
                     choices=["groups", "operators", "nulls", "injection",
-                             "data", "tda", "pointcloud"])
+                             "injection_ext", "data", "tda", "pointcloud"])
     ap.add_argument("--map", default="wmap", choices=["wmap", "planck"])
     args = ap.parse_args()
     log("stage=%s map=%s python=%s host=%s"
         % (args.stage, args.map, sys.version.split()[0], platform.node()))
     {"groups": stage_groups, "operators": stage_operators,
-     "nulls": stage_nulls, "injection": stage_injection, "data": stage_data,
+     "nulls": stage_nulls, "injection": stage_injection,
+     "injection_ext": stage_injection_ext, "data": stage_data,
      "tda": stage_tda, "pointcloud": stage_pointcloud}[args.stage](args)
     log("done, peak RSS %.0f MB" % peak_rss_mb())
 
