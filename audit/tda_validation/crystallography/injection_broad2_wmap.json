@@ -1,0 +1,46 @@
+{
+ "stage": "injection_broad2",
+ "tier": "X",
+ "why_added": "Two extra rungs of the BROADBAND ladder (f = 0.3, 0.5), added because the\n    broadband ladder in --stage injection_ext topped out at f = 0.2 with power\n    0.49, i.e. just below the 95% point.  Two rungs bracket the threshold\n    instead of leaving it unbounded.  Same statistic, same nulls, same frozen\n    orientation grid, same pattern seed as injection_ext; only the amplitude\n    list differs.  Still not a data test; N_TESTS stays 4.\n    ",
+ "added_before_any_real_map_was_read": false,
+ "note_on_ordering": "these two rungs were run AFTER the WMAP result was already computed and committed.  They change no data test and no decision rule; they only bracket a sensitivity threshold.  The WMAP result was not revisited.",
+ "results": [
+  {
+   "scenario": "broadband_l2_to_64_extra_rungs",
+   "injected_group": "A4",
+   "amplitude_fraction_of_injected_band_power": 0.3,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.54,
+   "power_C12_statistic": 0.18
+  },
+  {
+   "scenario": "broadband_l2_to_64_extra_rungs",
+   "injected_group": "A4",
+   "amplitude_fraction_of_injected_band_power": 0.5,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.82,
+   "power_C12_statistic": 0.33
+  },
+  {
+   "scenario": "broadband_l2_to_64_extra_rungs",
+   "injected_group": "C12",
+   "amplitude_fraction_of_injected_band_power": 0.3,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.23,
+   "power_C12_statistic": 0.44
+  },
+  {
+   "scenario": "broadband_l2_to_64_extra_rungs",
+   "injected_group": "C12",
+   "amplitude_fraction_of_injected_band_power": 0.5,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.33,
+   "power_C12_statistic": 0.53
+  }
+ ],
+ "peak_rss_mb": 302.4296875
+}

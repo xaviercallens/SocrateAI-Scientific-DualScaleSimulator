@@ -1305,6 +1305,40 @@ def stage_injection_broad2(args):
     jdump(out, os.path.join(HERE, "injection_broad2_%s.json" % which))
 
 
+def stage_bandfrac(args):
+    """The narrow and the broadband ladders use DIFFERENT denominators: narrow f
+    is a fraction of the host power in l in {3,4,6}, broadband f is a fraction
+    of the host power in l = 2..64.  Quoting 'narrow needs f ~ 2, broadband
+    needs f ~ 0.5' side by side is therefore misleading.  This stage measures
+    the conversion from the data's own spectrum so both thresholds can be
+    restated in ONE unit: injected power as a fraction of the total l = 2..64
+    power.
+    """
+    which = args.map
+    m, mask, meta = load_map_and_mask(which)
+    full = map_to_full(m, mask)
+    del m
+    nrm = band_norms(full, LMAX)
+    tot = float(nrm[2:LMAX + 1].sum())
+    narrow = float(nrm[[3, 4, 6]].sum())
+    out = {"stage": "bandfrac", "tier": "X", "map": which,
+           "why": stage_bandfrac.__doc__,
+           "power_l2_to_64": tot,
+           "power_l_3_4_6": narrow,
+           "fraction_of_l2to64_power_in_l_3_4_6": narrow / tot,
+           "conversion": "injected power as a fraction of total l = 2..64 power "
+                         "= f_narrow * (power in l 3,4,6) / (power in l 2..64) "
+                         "for the narrow ladder, and = f_broad for the "
+                         "broadband ladder.",
+           "narrow_thresholds_in_common_unit": {
+               str(f): f * narrow / tot for f in [0.5, 1.0, 2.0, 5.0]},
+           "peak_rss_mb": peak_rss_mb()}
+    log("fraction of l2-64 power in l={3,4,6}: %.4f" % (narrow / tot))
+    log("narrow f=2 -> %.3f of total l2-64 power; f=5 -> %.3f"
+        % (2 * narrow / tot, 5 * narrow / tot))
+    jdump(out, os.path.join(HERE, "bandfrac_%s.json" % which))
+
+
 def stage_probe(args):
     """Fixed-orientation amplitude probe.  This exists so that the numbers cited
     in report.json for the linear-interference effect and for the uneven pattern
@@ -1515,7 +1549,7 @@ def main():
     ap.add_argument("--stage", required=True,
                     choices=["groups", "operators", "nulls", "injection",
                              "injection_ext", "injection_broad2", "probe",
-                             "data", "tda", "pointcloud"])
+                             "bandfrac", "data", "tda", "pointcloud"])
     ap.add_argument("--map", default="wmap", choices=["wmap", "planck"])
     args = ap.parse_args()
     log("stage=%s map=%s python=%s host=%s"
@@ -1524,6 +1558,7 @@ def main():
      "nulls": stage_nulls, "injection": stage_injection,
      "injection_ext": stage_injection_ext,
      "injection_broad2": stage_injection_broad2, "probe": stage_probe,
+     "bandfrac": stage_bandfrac,
      "data": stage_data,
      "tda": stage_tda, "pointcloud": stage_pointcloud}[args.stage](args)
     log("done, peak RSS %.0f MB" % peak_rss_mb())

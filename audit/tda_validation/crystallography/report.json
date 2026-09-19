@@ -1,0 +1,1086 @@
+{
+ "title": "Discrete-symmetry (crystallinity) lens for the CMB and the cosmic web -- result",
+ "date": "2026-09-19",
+ "generated_by": "make_report.py from the stage JSONs in this directory",
+ "design_note_and_preregistration": "lens_spec.json, committed before any lens code was run and before any real map was read",
+ "tiers": "B (exact arithmetic with negative controls) for the group, |Aut(D_4)| and invariant-dimension checks in groups_check.json. X (numerics) for every statistic, sensitivity and p-value. Nothing in this directory is proved, and nothing here is predicted by K3 x T^2.",
+ "hardware": {
+  "node": "socreateai-agora-hermes-node1",
+  "cpu": "Intel Xeon @ 2.20GHz, 8 cores, 29 GB RAM, shared",
+  "limits": "every python process run as `OMP_NUM_THREADS=1 timeout <T> prlimit --as=8589934592 -- <venv python> discrete_symmetry_lens.py --stage <S> [--map <M>]`",
+  "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 3.10.12; gudhi 3.13.0, healpy 1.20.0, numpy 2.2.6, scipy 1.15.3, camb 2.0.4"
+ },
+ "commands": [
+  "discrete_symmetry_lens.py --stage groups",
+  "discrete_symmetry_lens.py --stage operators",
+  "discrete_symmetry_lens.py --stage nulls --map wmap",
+  "discrete_symmetry_lens.py --stage injection --map wmap",
+  "discrete_symmetry_lens.py --stage injection_ext --map wmap",
+  "discrete_symmetry_lens.py --stage probe --map wmap",
+  "discrete_symmetry_lens.py --stage bandfrac --map wmap",
+  "discrete_symmetry_lens.py --stage injection_broad2 --map wmap   (RUN AFTER THE DATA -- see the section flagged as such)",
+  "discrete_symmetry_lens.py --stage data --map wmap",
+  "discrete_symmetry_lens.py --stage tda --map wmap",
+  "discrete_symmetry_lens.py --stage pointcloud",
+  "discrete_symmetry_lens.py --stage nulls --map planck",
+  "discrete_symmetry_lens.py --stage data --map planck",
+  "make_report.py"
+ ],
+ "seeds": {
+  "orientation_grid": 20260919,
+  "null_base_seed": 900000,
+  "injection_base_seed": 700000,
+  "injection_pattern_seed": 31415,
+  "pointcloud_seed": 555,
+  "note": "the orientation grid is frozen by its seed and is identical for the data map and for every null and injected realisation"
+ },
+ "what_the_lens_computes": {
+  "group_on_the_sky": "A_4, order 12: the image of the 24 Hurwitz units (the binary tetrahedral group 2T) under the double cover phi(q) : v |-> q v qbar.  NOT order 24, NOT A_7, NOT A_8.",
+  "control": "C_12, cyclic of the same order 12, about a fixed axis.",
+  "m_G": "the G-orbit average, computed as the EXACT orthogonal projector onto the G-invariant subspace in harmonic space (a_lm -> P_G^(l) a_lm), not by pixel interpolation.",
+  "r_G": "T - m_G, the G-antisymmetrised residual; orthogonal to m_G by construction.",
+  "crystallinity": "C_B(G, R) = fraction of band-B power lying in the G-invariant subspace with G placed at orientation R.",
+  "orientation_search": "max over a frozen grid of 192 rotations, applied identically to data and to every null.",
+  "primary_statistic": "Z = max over the 4 multipole bands of the null-standardised C_b^max; rank p-value against 200 Gaussian sims from the map's own masked pseudo-C_l.",
+  "tda_path": "lower-star Betti curves b0, b1 of m_G and of r_G on the HEALPix mask graph, plus a gudhi CubicalComplex cross-check on a gnomonic projection (secondary, not gated).",
+  "point_set_path": "orbit-distance residuals under G and persistence of the G-folded point set."
+ },
+ "tier_B_checks": {
+  "all_pass": true,
+  "Aut_D4": 1152,
+  "Aut_D4_negative_controls": {
+   "A3_root_system": {
+    "computed": 48,
+    "expected": 48,
+    "matches": true
+   },
+   "Z4_norm1_vectors_not_D4": {
+    "computed": 384,
+    "expected": 384,
+    "matches": true
+   }
+  },
+  "hurwitz_closed_exactly": true,
+  "double_cover_24_to_12": true,
+  "element_orders_A4": {
+   "1": 1,
+   "2": 3,
+   "3": 8
+  },
+  "invariant_dims_A4_l0_to_l6": [
+   1,
+   0,
+   0,
+   1,
+   1,
+   0,
+   2
+  ],
+  "invariant_dims_two_methods_agree": {
+   "A4": true,
+   "C12": true
+  },
+  "wigner": {
+   "homomorphism_D(R1)D(R2)=D(R1R2)_max_abs_error": 1.7838744889380527e-13,
+   "unitarity_max_abs_error": 2.886579921603171e-15,
+   "trace_D(R)=chi_l(theta_R)_max_abs_error": 8.104628079763643e-14,
+   "tolerance": 1e-08,
+   "pass": true,
+   "note": "trace(D^l(R)) = chi_l(theta_R) is convention-independent, so together with the homomorphism property it pins the representation to the rotation it is meant to represent."
+  },
+  "frame_shape_boundary": {
+   "1A_order_1": "matched: 1 identity in phi(2T)",
+   "2A_order_2": "matched in element order: 3 elements of order 2 in phi(2T) (the coordinate-axis pi rotations)",
+   "3A_order_3": "matched in element order: 8 elements of order 3 in phi(2T) (the body-diagonal 2pi/3 rotations)",
+   "4B_order_4": "NOT MATCHED and cannot be.  phi(2T) = A_4 has no element of order 4: the order-4 quaternion units +-i, +-j, +-k map under phi to rotations by pi, i.e. order 2.  The order-4 structure lives in the double cover 2T and in the (Z_2)^4 factor, neither of which acts on S^2.  This is the boundary of where the Frame-shape comparison is meaningful; it is stated, not fudged."
+  }
+ },
+ "sensitivity_preregistered": {
+  "ladder": [
+   0.0,
+   0.005,
+   0.01,
+   0.02,
+   0.05,
+   0.1,
+   0.2
+  ],
+  "injection_ells_A4": [
+   3,
+   4,
+   6
+  ],
+  "injection_ells_C12": [
+   12,
+   13
+  ],
+  "smallest_amplitude_with_power_0.95": {
+   "A4": null,
+   "C12": null
+  },
+  "table": [
+   {
+    "injected_group": "A4",
+    "amplitude_fraction_of_band_power": 0.0,
+    "power_A4_statistic": 0.04,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "injected_group": "A4",
+    "amplitude_fraction_of_band_power": 0.005,
+    "power_A4_statistic": 0.03,
+    "power_C12_statistic": 0.06
+   },
+   {
+    "injected_group": "A4",
+    "amplitude_fraction_of_band_power": 0.01,
+    "power_A4_statistic": 0.15,
+    "power_C12_statistic": 0.02
+   },
+   {
+    "injected_group": "A4",
+    "amplitude_fraction_of_band_power": 0.02,
+    "power_A4_statistic": 0.03,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "injected_group": "A4",
+    "amplitude_fraction_of_band_power": 0.05,
+    "power_A4_statistic": 0.08,
+    "power_C12_statistic": 0.03
+   },
+   {
+    "injected_group": "A4",
+    "amplitude_fraction_of_band_power": 0.1,
+    "power_A4_statistic": 0.09,
+    "power_C12_statistic": 0.07
+   },
+   {
+    "injected_group": "A4",
+    "amplitude_fraction_of_band_power": 0.2,
+    "power_A4_statistic": 0.09,
+    "power_C12_statistic": 0.03
+   },
+   {
+    "injected_group": "C12",
+    "amplitude_fraction_of_band_power": 0.0,
+    "power_A4_statistic": 0.06,
+    "power_C12_statistic": 0.02
+   },
+   {
+    "injected_group": "C12",
+    "amplitude_fraction_of_band_power": 0.005,
+    "power_A4_statistic": 0.04,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "injected_group": "C12",
+    "amplitude_fraction_of_band_power": 0.01,
+    "power_A4_statistic": 0.09,
+    "power_C12_statistic": 0.03
+   },
+   {
+    "injected_group": "C12",
+    "amplitude_fraction_of_band_power": 0.02,
+    "power_A4_statistic": 0.05,
+    "power_C12_statistic": 0.07
+   },
+   {
+    "injected_group": "C12",
+    "amplitude_fraction_of_band_power": 0.05,
+    "power_A4_statistic": 0.09,
+    "power_C12_statistic": 0.01
+   },
+   {
+    "injected_group": "C12",
+    "amplitude_fraction_of_band_power": 0.1,
+    "power_A4_statistic": 0.05,
+    "power_C12_statistic": 0.06
+   },
+   {
+    "injected_group": "C12",
+    "amplitude_fraction_of_band_power": 0.2,
+    "power_A4_statistic": 0.07,
+    "power_C12_statistic": 0.03
+   }
+  ],
+  "reading": "NO sensitivity anywhere in the pre-registered ladder: power stayed at the alpha = 0.05 level (0.01-0.15) at every amplitude up to f = 0.2, for both groups.  The f = 0 rows (power 0.04 and 0.02) confirm the test is correctly calibrated and does not fire on unsignalled maps.  Because the MATCHED statistic never fired, the control result in this table carries no information about group specificity; that had to be measured at an amplitude where the matched statistic does fire, which is what injection_ext_wmap.json does."
+ },
+ "sensitivity_extended": {
+  "why_added": "Extended and broadband injection, ADDED AFTER the pre-registered ladder\n    was run and BEFORE any real map was looked at.  Reason, recorded here:\n\n      (i)  the pre-registered ladder (f <= 0.2, pattern confined to l = 3,4,6)\n           produced no power at all -- power stayed at the alpha = 0.05 level\n           everywhere -- so the required group-specificity demonstration was\n           vacuous: showing that the CONTROL statistic does not fire is\n           meaningless at an amplitude where the MATCHED statistic does not\n           fire either.  Specificity has to be shown at an amplitude where the\n           matched statistic reaches power >= 0.95.\n      (ii) the pre-registered pattern draw put 0.007 / 0.214 / 0.779 of its\n           power at l = 3 / 4 / 6, so a nominally three-multipole pattern was\n           effectively single-multipole.  The extended runs normalise the\n           pattern to EQUAL power per injection multipole.  That is a change to\n           the SIGNAL MODEL, not to the test statistic; the statistic, the\n           bands, the orientation grid, the nulls and the decision rule are\n           exactly as pre-registered and are not touched.\n      (iii) the task's own wording is \"a sum of G-orbit-symmetrised spherical\n           harmonics\", i.e. broadband.  Confining the signal to 3 multipoles was\n           a narrowing introduced here, and is the case where the statistic has\n           least power.\n\n    Nothing here is a data test and N_TESTS stays 4.\n    ",
+  "added_before_any_real_map_was_read": true,
+  "smallest_amplitude_with_power_0.95": {
+   "narrow_equal_power_per_l/A4": 5.0,
+   "narrow_equal_power_per_l/C12": 5.0,
+   "broadband_l2_to_64/A4": null,
+   "broadband_l2_to_64/C12": null
+  },
+  "group_specificity_at_a_detectable_amplitude": {
+   "narrow_equal_power_per_l: inject A4 at f=5": {
+    "matched_statistic_A4_power": 1.0,
+    "control_statistic_C12_power": 0.05,
+    "alpha": 0.05
+   },
+   "narrow_equal_power_per_l: inject C12 at f=5": {
+    "matched_statistic_C12_power": 1.0,
+    "control_statistic_A4_power": 0.37,
+    "alpha": 0.05
+   }
+  },
+  "table": [
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "A4",
+    "injection_ells": [
+     3,
+     4,
+     6
+    ],
+    "n_injection_ells": 3,
+    "amplitude_fraction_of_injected_band_power": 0.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.01,
+    "power_C12_statistic": 0.07
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "A4",
+    "injection_ells": [
+     3,
+     4,
+     6
+    ],
+    "n_injection_ells": 3,
+    "amplitude_fraction_of_injected_band_power": 0.1,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.08,
+    "power_C12_statistic": 0.04
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "A4",
+    "injection_ells": [
+     3,
+     4,
+     6
+    ],
+    "n_injection_ells": 3,
+    "amplitude_fraction_of_injected_band_power": 0.2,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.12,
+    "power_C12_statistic": 0.1
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "A4",
+    "injection_ells": [
+     3,
+     4,
+     6
+    ],
+    "n_injection_ells": 3,
+    "amplitude_fraction_of_injected_band_power": 0.5,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.2,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "A4",
+    "injection_ells": [
+     3,
+     4,
+     6
+    ],
+    "n_injection_ells": 3,
+    "amplitude_fraction_of_injected_band_power": 1.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.47,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "A4",
+    "injection_ells": [
+     3,
+     4,
+     6
+    ],
+    "n_injection_ells": 3,
+    "amplitude_fraction_of_injected_band_power": 2.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.9,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "A4",
+    "injection_ells": [
+     3,
+     4,
+     6
+    ],
+    "n_injection_ells": 3,
+    "amplitude_fraction_of_injected_band_power": 5.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 1.0,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "C12",
+    "injection_ells": [
+     12,
+     13
+    ],
+    "n_injection_ells": 2,
+    "amplitude_fraction_of_injected_band_power": 0.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.07,
+    "power_C12_statistic": 0.03
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "C12",
+    "injection_ells": [
+     12,
+     13
+    ],
+    "n_injection_ells": 2,
+    "amplitude_fraction_of_injected_band_power": 0.1,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.05,
+    "power_C12_statistic": 0.03
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "C12",
+    "injection_ells": [
+     12,
+     13
+    ],
+    "n_injection_ells": 2,
+    "amplitude_fraction_of_injected_band_power": 0.2,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.03,
+    "power_C12_statistic": 0.02
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "C12",
+    "injection_ells": [
+     12,
+     13
+    ],
+    "n_injection_ells": 2,
+    "amplitude_fraction_of_injected_band_power": 0.5,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.11,
+    "power_C12_statistic": 0.12
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "C12",
+    "injection_ells": [
+     12,
+     13
+    ],
+    "n_injection_ells": 2,
+    "amplitude_fraction_of_injected_band_power": 1.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.11,
+    "power_C12_statistic": 0.44
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "C12",
+    "injection_ells": [
+     12,
+     13
+    ],
+    "n_injection_ells": 2,
+    "amplitude_fraction_of_injected_band_power": 2.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.14,
+    "power_C12_statistic": 0.77
+   },
+   {
+    "scenario": "narrow_equal_power_per_l",
+    "injected_group": "C12",
+    "injection_ells": [
+     12,
+     13
+    ],
+    "n_injection_ells": 2,
+    "amplitude_fraction_of_injected_band_power": 5.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.37,
+    "power_C12_statistic": 1.0
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "A4",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.06,
+    "power_C12_statistic": 0.02
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "A4",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.002,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.08,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "A4",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.005,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.06,
+    "power_C12_statistic": 0.06
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "A4",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.01,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.07,
+    "power_C12_statistic": 0.04
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "A4",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.02,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.11,
+    "power_C12_statistic": 0.03
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "A4",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.05,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.05,
+    "power_C12_statistic": 0.03
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "A4",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.1,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.12,
+    "power_C12_statistic": 0.04
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "A4",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.2,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.49,
+    "power_C12_statistic": 0.12
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "C12",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.0,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.05,
+    "power_C12_statistic": 0.07
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "C12",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.002,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.04,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "C12",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.005,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.07,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "C12",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.01,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.05,
+    "power_C12_statistic": 0.05
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "C12",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.02,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.06,
+    "power_C12_statistic": 0.08
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "C12",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.05,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.06,
+    "power_C12_statistic": 0.11
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "C12",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.1,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.08,
+    "power_C12_statistic": 0.23
+   },
+   {
+    "scenario": "broadband_l2_to_64",
+    "injected_group": "C12",
+    "injection_ells": [
+     2,
+     64
+    ],
+    "n_injection_ells": 63,
+    "amplitude_fraction_of_injected_band_power": 0.2,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.18,
+    "power_C12_statistic": 0.4
+   }
+  ]
+ },
+ "real_map_results": {
+  "wmap": {
+   "map_path": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse/data/real2/cmb/wmap_ilc_9yr_v5.fits",
+   "map_sha256": "4501090f824f9140e916339f9e8e490333f6ffe4257a6ee6a02526c8640099a9",
+   "mask_path": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse/data/real2/cmb/wmap_temperature_kq85_analysis_mask_r9_9yr_v5.fits",
+   "native_nside": 512,
+   "downgrade": "hp.ud_grade to NSIDE_WORK=128; mask ud_graded as float then thresholded at >= 0.5 to a binary mask; no extra smoothing",
+   "fsky_at_work_resolution": 0.7521158854166666,
+   "n_null": 200,
+   "p_floor": 0.004975124378109453,
+   "alpha_family": 0.05,
+   "n_tests": 4,
+   "alpha_bonferroni": 0.0125,
+   "tests": {
+    "A4": {
+     "C_b_max_data": [
+      0.24516344182200364,
+      0.1994255964897942,
+      0.12128477990754909,
+      0.1007420668371068
+     ],
+     "C_b_max_null_mean": [
+      0.22327299278544474,
+      0.18283789846831733,
+      0.12477428378165037,
+      0.10524745153347262
+     ],
+     "C_b_max_null_std": [
+      0.04421676196995526,
+      0.021791230822965673,
+      0.006998850058390513,
+      0.003097685377713281
+     ],
+     "z_per_band": [
+      0.49507128204985223,
+      0.7612097800366175,
+      -0.4985824592595636,
+      -1.4544358600070932
+     ],
+     "Z_max_over_bands": 0.7612097800366175,
+     "argmax_band": [
+      9,
+      16
+     ],
+     "rank_p": 0.6268656716417911,
+     "detection_at_bonferroni": false
+    },
+    "C12": {
+     "C_b_max_data": [
+      0.20902607181963867,
+      0.2002375704803062,
+      0.12451212345444715,
+      0.10266256300405488
+     ],
+     "C_b_max_null_mean": [
+      0.27850920009692176,
+      0.17212646599054957,
+      0.12782049430341128,
+      0.1050796442600854
+     ],
+     "C_b_max_null_std": [
+      0.04363374153851945,
+      0.016786680209007514,
+      0.007912608610405072,
+      0.0034339698996365495
+     ],
+     "z_per_band": [
+      -1.5924173776375343,
+      1.6746077330211229,
+      -0.41811379936240267,
+      -0.703873745744347
+     ],
+     "Z_max_over_bands": 1.6746077330211229,
+     "argmax_band": [
+      9,
+      16
+     ],
+     "rank_p": 0.22388059701492538,
+     "detection_at_bonferroni": false
+    }
+   }
+  },
+  "planck": {
+   "map_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/planck_maps/COM_CMB_IQU-smica_2048_R3.00_full.fits",
+   "map_sha256": "60952c645eb33d151905ddf5837477e15ca02a3261feca4ceca3c3feece4f9ac",
+   "mask_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/planck_maps/COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits",
+   "native_nside": 2048,
+   "downgrade": "hp.ud_grade to NSIDE_WORK=128; mask ud_graded as float then thresholded at >= 0.5 to a binary mask; no extra smoothing",
+   "fsky_at_work_resolution": 0.7848358154296875,
+   "n_null": 200,
+   "p_floor": 0.004975124378109453,
+   "alpha_family": 0.05,
+   "n_tests": 4,
+   "alpha_bonferroni": 0.0125,
+   "tests": {
+    "A4": {
+     "C_b_max_data": [
+      0.20784535666784798,
+      0.20693027756980545,
+      0.12331972356405493,
+      0.10157044358153096
+     ],
+     "C_b_max_null_mean": [
+      0.22157569786271109,
+      0.18656486825158075,
+      0.12596870702116167,
+      0.10482833299416844
+     ],
+     "C_b_max_null_std": [
+      0.04624657352003427,
+      0.023737133341550504,
+      0.006851726678285252,
+      0.00327110791182589
+     ],
+     "z_per_band": [
+      -0.29689423777342216,
+      0.85795571963933,
+      -0.3866154593559595,
+      -0.9959590146382447
+     ],
+     "Z_max_over_bands": 0.85795571963933,
+     "argmax_band": [
+      9,
+      16
+     ],
+     "rank_p": 0.5771144278606966,
+     "detection_at_bonferroni": false
+    },
+    "C12": {
+     "C_b_max_data": [
+      0.23318119502759646,
+      0.1815337773290015,
+      0.12498023238813813,
+      0.11026669546620704
+     ],
+     "C_b_max_null_mean": [
+      0.2871042865916473,
+      0.17202409533336416,
+      0.12922080956742768,
+      0.10489830620491702
+     ],
+     "C_b_max_null_std": [
+      0.04458696708286552,
+      0.019345155561248335,
+      0.008449396484707451,
+      0.0032602941449899722
+     ],
+     "z_per_band": [
+      -1.2093913332080644,
+      0.4915795050357138,
+      -0.5018792983575294,
+      1.6465966021929381
+     ],
+     "Z_max_over_bands": 1.6465966021929381,
+     "argmax_band": [
+      33,
+      64
+     ],
+     "rank_p": 0.21393034825870647,
+     "detection_at_bonferroni": false
+    }
+   }
+  }
+ },
+ "tda_secondary": {
+  "wmap": {
+   "complex": "cmb_tda.build_topology (sha256 a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d) -- b0 and b1 ONLY; b2 is never used and b0-b1 is NOT called an Euler characteristic, because simple_suite/report.json records a hollow-tetrahedron defect in this complex that produces spurious H2 classes while leaving b0 and b1 unaffected",
+   "tda_fixed_status": "audit/tda_validation/tda_fixed/ does not exist on branch loop/tda-simple (git ls-tree -r --name-only loop/tda-simple | grep -i tda_fixed -> empty); the only directory there is simple_suite/",
+   "gated": false,
+   "per_group": {
+    "A4": {
+     "power_fraction_in_mG": 0.0923329706609324,
+     "mG_rG_normalised_overlap_on_unmasked_pixels": 0.06662168354529713,
+     "max_b1_mG": 944,
+     "max_b1_rG": 956,
+     "max_b1_T": 960
+    },
+    "C12": {
+     "power_fraction_in_mG": 0.08090511181803073,
+     "mG_rG_normalised_overlap_on_unmasked_pixels": 0.03289531365232291,
+     "max_b1_mG": 959,
+     "max_b1_rG": 949,
+     "max_b1_T": 960
+    }
+   }
+  }
+ },
+ "point_set_known_answer": {
+  "construction": "60 random seed points, each replaced by its full A_4 orbit -> 720 points; control = the same number of points drawn from the same radial/angular distribution with no symmetry",
+  "A4_orbit_union": {
+   "n_points": 720,
+   "A4_orbit_residual_mean": 0.0,
+   "A4_orbit_residual_median": 0.0,
+   "C12_orbit_residual_mean": 0.0838536237154881,
+   "C12_orbit_residual_median": 0.08152276410389198,
+   "n_distinct_after_A4_folding": 60,
+   "expected_n_distinct_if_exact_orbits": 60,
+   "betti_of_folded_set": {
+    "0": 60,
+    "1": 107,
+    "2": 35
+   }
+  },
+  "random_control": {
+   "n_points": 720,
+   "A4_orbit_residual_mean": 0.09699437870730548,
+   "A4_orbit_residual_median": 0.0922547489022634,
+   "C12_orbit_residual_mean": 0.0953695926983452,
+   "C12_orbit_residual_median": 0.0907800100842937,
+   "n_distinct_after_A4_folding": 720,
+   "expected_n_distinct_if_exact_orbits": 60,
+   "betti_of_folded_set": {
+    "0": 720,
+    "1": 1721,
+    "2": 899
+   }
+  },
+  "group_specific": {
+   "target_residual_symmetric_over_random": 0.0,
+   "control_group_residual_on_symmetric_set_is_NOT_small": 0.0838536237154881,
+   "reading": "a A_4-symmetric point set has ~0 residual under A_4 and a large residual under C_12; the statistic is group-specific"
+  },
+  "not_run": "the cosmic-web application (SDSS/DESI point set with the CAMB lognormal mocks of audit/reverse_zero/E5-cosmic-web-tda-scaled/ as null) was NOT run in this session; only this synthetic known-answer test was"
+ },
+ "honest_statement": {
+  "no_derivation": "There is no derivation from K3 x T^2 to any CMB or galaxy-survey observable.  LeanMaster v3.28.0 (commit 64f905ffc63c07b4d7ec4b3a7a62bc975239f60d) states it at docs/STREAM8_WHICH_K3.md:115: \"(iii) Observables: none -- `N = 4`, non-chiral.\"  This lens is an exploratory search template, tier X, not a prediction and not a test of K3 x T^2.",
+  "what_a_detection_would_mean": "that this sky carries anomalous power in the A_4-invariant subspace relative to Gaussian realisations of its own masked spectrum under the same mask and the same orientation search.  It would NOT mean that K3 x T^2, a Kummer surface or a D_4 lattice is favoured: the same statistic fires for any effect that aligns power with that subspace, including foreground residuals and mask or beam systematics.",
+  "what_a_non_detection_would_mean": "that this sky is consistent with the null for these groups, these bands, this orientation grid and this sensitivity.  It would NOT falsify K3 x T^2, because nothing connects the two.  A null result is a perfectly good outcome and is reported as such.",
+  "group_naming": "the order-192 group is (Z_2)^4 |x A_4.  It is not A_7 (Taormina-Wendland, order 40320) and not A_8 (the octad stabiliser).  Neither appears anywhere in this work.",
+  "never_proved": "the word 'proved' is not used for any result here."
+ },
+ "sensitivity_broadband_extra_rungs_RUN_AFTER_THE_DATA": {
+  "ORDERING_WARNING": "these two rungs (f = 0.3, 0.5, broadband) were run AFTER the WMAP result had been computed and committed.  Every other sensitivity number in this report was produced before any real map was read.  They exist only to bracket a threshold that the pre-data broadband ladder left unbounded; they change no data test, no decision rule and no p-value, and the WMAP result was not revisited.",
+  "why_added": "Two extra rungs of the BROADBAND ladder (f = 0.3, 0.5), added because the\n    broadband ladder in --stage injection_ext topped out at f = 0.2 with power\n    0.49, i.e. just below the 95% point.  Two rungs bracket the threshold\n    instead of leaving it unbounded.  Same statistic, same nulls, same frozen\n    orientation grid, same pattern seed as injection_ext; only the amplitude\n    list differs.  Still not a data test; N_TESTS stays 4.\n    ",
+  "results": [
+   {
+    "scenario": "broadband_l2_to_64_extra_rungs",
+    "injected_group": "A4",
+    "amplitude_fraction_of_injected_band_power": 0.3,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.54,
+    "power_C12_statistic": 0.18
+   },
+   {
+    "scenario": "broadband_l2_to_64_extra_rungs",
+    "injected_group": "A4",
+    "amplitude_fraction_of_injected_band_power": 0.5,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.82,
+    "power_C12_statistic": 0.33
+   },
+   {
+    "scenario": "broadband_l2_to_64_extra_rungs",
+    "injected_group": "C12",
+    "amplitude_fraction_of_injected_band_power": 0.3,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.23,
+    "power_C12_statistic": 0.44
+   },
+   {
+    "scenario": "broadband_l2_to_64_extra_rungs",
+    "injected_group": "C12",
+    "amplitude_fraction_of_injected_band_power": 0.5,
+    "n_realisations": 100,
+    "alpha": 0.05,
+    "power_A4_statistic": 0.33,
+    "power_C12_statistic": 0.53
+   }
+  ]
+ },
+ "sensitivity_in_a_common_unit": {
+  "why": "The narrow and the broadband ladders use DIFFERENT denominators: narrow f\n    is a fraction of the host power in l in {3,4,6}, broadband f is a fraction\n    of the host power in l = 2..64.  Quoting 'narrow needs f ~ 2, broadband\n    needs f ~ 0.5' side by side is therefore misleading.  This stage measures\n    the conversion from the data's own spectrum so both thresholds can be\n    restated in ONE unit: injected power as a fraction of the total l = 2..64\n    power.\n    ",
+  "fraction_of_l2to64_power_in_l_3_4_6": 0.11969317924656861,
+  "narrow_thresholds_restated": {
+   "0.5": 0.059846589623284305,
+   "1.0": 0.11969317924656861,
+   "2.0": 0.23938635849313722,
+   "5.0": 0.5984658962328431
+  },
+  "reading": "restated as 'injected power as a fraction of the total l = 2..64 power', the narrow low-l pattern reaches power 0.90 at 0.239 and 1.00 at 0.598, while the broadband pattern reaches only 0.54 at 0.30 and 0.82 at 0.50.  So the narrow low-l pattern is in fact the MORE efficient of the two per unit injected power -- concentrating a coherent component in a low-dimensional band produces a larger z than spreading it over l = 2..64.  This reverses the expectation that motivated adding the broadband scenario, and is recorded rather than quietly dropped.  The common conclusion is the important one: in EITHER signal model the lens needs the G-symmetric component to carry TENS OF PERCENT of the total l <= 64 power before it is detected at 95%."
+ },
+ "fixed_orientation_probe": {
+  "why": "Fixed-orientation amplitude probe.  This exists so that the numbers cited\n    in report.json for the linear-interference effect and for the uneven pattern\n    draw come from a COMMITTED script and not from an inline `python -c`\n    (LeanFlow CLAUDE.md section 6: no numbers without a script).\n\n    It injects the PRE-REGISTERED pattern (uneven per-l draw, seed\n    INJ_PATTERN_SEED) UNROTATED into one fixed Gaussian host (seed 1) and reads\n    the crystallinity at grid element 0, which is the identity orientation, so\n    the group is exactly where the pattern is.  Any failure to rise is then a\n    property of the statistic, not a misalignment.\n    ",
+  "pattern_power_per_l_preregistered_draw": {
+   "3": 0.007094643561548961,
+   "4": 0.21398222331370675,
+   "6": 0.7789231331247444
+  },
+  "pattern_power_per_l_equal_power_draw": {
+   "3": 0.3333333333333335,
+   "4": 0.3333333333333334,
+   "6": 0.33333333333333337
+  },
+  "amplitude_scan_at_fixed_identity_orientation": [
+   {
+    "f": 0.0,
+    "C_at_identity_orientation": [
+     0.14794730829973554,
+     0.15218832738702773,
+     0.07917548387892252,
+     0.08179657769384693
+    ],
+    "C_b_max_over_grid": [
+     0.15171114935490274,
+     0.18230958378879308,
+     0.1322347583149958,
+     0.10416584521592195
+    ]
+   },
+   {
+    "f": 0.05,
+    "C_at_identity_orientation": [
+     0.09579478821628343,
+     0.15218832738702773,
+     0.07917548387892252,
+     0.08179657769384693
+    ],
+    "C_b_max_over_grid": [
+     0.1582996256704166,
+     0.18230958378879308,
+     0.1322347583149958,
+     0.10416584521592195
+    ]
+   },
+   {
+    "f": 0.2,
+    "C_at_identity_orientation": [
+     0.07077179473937706,
+     0.15218832738702773,
+     0.07917548387892252,
+     0.08179657769384693
+    ],
+    "C_b_max_over_grid": [
+     0.16082714797433825,
+     0.18230958378879308,
+     0.1322347583149958,
+     0.10416584521592195
+    ]
+   },
+   {
+    "f": 1.0,
+    "C_at_identity_orientation": [
+     0.14181034856162944,
+     0.15218832738702773,
+     0.07917548387892252,
+     0.08179657769384693
+    ],
+    "C_b_max_over_grid": [
+     0.16715978683364055,
+     0.18230958378879308,
+     0.1322347583149958,
+     0.10416584521592195
+    ]
+   },
+   {
+    "f": 5.0,
+    "C_at_identity_orientation": [
+     0.546012363593555,
+     0.15218832738702773,
+     0.07917548387892252,
+     0.08179657769384693
+    ],
+    "C_b_max_over_grid": [
+     0.546012363593555,
+     0.18230958378879308,
+     0.1322347583149958,
+     0.10416584521592195
+    ]
+   },
+   {
+    "f": 50.0,
+    "C_at_identity_orientation": [
+     0.9424926018564488,
+     0.15218832738702773,
+     0.07917548387892252,
+     0.08179657769384693
+    ],
+    "C_b_max_over_grid": [
+     0.9424926018564488,
+     0.18230958378879308,
+     0.1322347583149958,
+     0.10416584521592195
+    ]
+   }
+  ],
+  "analytic_null_level_band1": {
+   "sum_d_l_over_band": 6,
+   "sum_2l+1_over_band": 77,
+   "ratio": 0.07792207792207792
+  },
+  "reading": "the machinery is correct -- at large f the crystallinity at the identity orientation tends to 1 -- but at small f it can FALL, because the cross term 2Re<P a, s p> dominates s^2 and is destructive as often as constructive.  That is the sensitivity floor of a power-FRACTION statistic: it is set by the sample variance of the invariant subspace's own random content."
+ },
+ "corrections_to_earlier_commit_messages": [
+  {
+   "commit_subject": "audit(crystallography): Planck SMICA leg -- also NULL; all 4 pre-registered tests complete",
+   "what_it_said": "\"The two maps are independent experiments (different instrument, different component separation, different mask) and agree\".",
+   "correction": "they are NOT independent experiments.  WMAP and Planck observe the SAME sky, and at l <= 64 both are strongly signal-dominated, so the CMB realisation is common to both.  The two p-values are CORRELATED, not independent confirmations, and their agreement is largely expected even under the null.  Correct wording: two instruments and two component-separation pipelines on the same sky. The Bonferroni correction over 4 tests is conservative for exactly this reason."
+  },
+  {
+   "commit_subject": "audit(crystallography): Planck SMICA leg -- also NULL; all 4 pre-registered tests complete",
+   "what_it_said": "that the matching null means show the null level is \"set by the invariant dimensions d_l and the band structure, not by the sky\".",
+   "correction": "over-read.  The two null ensembles are also built from SIMILAR spectra and SIMILAR masks (f_sky 0.752 vs 0.785), so the agreement is unsurprising on those grounds too.  It is a reasonable consistency check, not evidence that the mask and the spectrum do not matter."
+  },
+  {
+   "commit_subject": "audit(crystallography): pre-registered injection ladder (no sensitivity), point-set known-answer test, nulls",
+   "what_it_said": "it gave two causes for the pre-registered ladder finding nothing and listed the uneven per-l pattern draw (0.007/0.214/0.779 at l = 3/4/6) as cause (2), with equal weight.",
+   "correction": "the DOMINANT cause is neither of those: the pre-registered ladder simply stopped at f = 0.2, about 25x below the 95% threshold.  The two ladders agree where they overlap -- pre-registered f = 0.2 gave power 0.09, the extended equal-power-per-l ladder gives 0.12 at the same f -- so the uneven draw is a secondary effect, not the explanation.  The linear-interference floor (cause 1) is real and is why the threshold is so high in the first place."
+  }
+ ],
+ "caveats_on_the_sensitivity_numbers": [
+  "Each scenario/group uses ONE pattern vector (a single seed); only the host realisation and the injection orientation vary across the 100 realisations.  The quoted threshold is therefore the threshold for that direction in the invariant subspace.  At l = 3, 4, 6 that subspace is 1 + 1 + 2 = 4-dimensional, so direction-to-direction variation is plausible and the threshold should be read as indicative, not exact.",
+  "Power is estimated from 100 realisations, so a quoted power of 0.95 carries a binomial standard error of about 0.022.",
+  "The amplitude f is a fraction of the host's power in the INJECTION multipoles, which is not the same denominator across the narrow and broadband scenarios; the two thresholds are not directly comparable as numbers, only as statements about their own signal models."
+ ],
+ "limitations": [
+  "The orientation grid has 192 points and the normaliser of A_4 in SO(3) is S_4 (order 24), so of order 8 effectively independent placements cover SO(3)/N(A_4).  A signal at an orientation far from every grid point is attenuated.  The injection tests use a RANDOM orientation not drawn from the grid, so the measured sensitivity already includes this loss.",
+  "The statistic is a power FRACTION, so a coherent injected component interferes linearly with the invariant subspace's own random content before it dominates it quadratically.  The cross term is destructive as often as constructive, which is why crystallinity can DROP at small injected amplitude (measured: C at the true orientation fell from 0.1479 to 0.0958 when f went from 0 to 0.05 in a fixed-orientation probe).  The sensitivity floor of this observable is set by the sample variance of the invariant subspace's own content.",
+  "Band 1 (l = 2..8) has only sum_l d_l = 6 invariant dimensions out of 77, so its crystallinity fluctuates strongly and its max over 192 orientations sits far above the analytic mean 6/77 = 0.0779.  A narrow low-l pattern therefore has to be very large to exceed that maximum.",
+  "The mask is handled by pseudo-alm (mask multiply, then map2alm).  The mask breaks isotropy and creates a preferred orientation; that is absorbed because every null passes through the identical code path, but the lens does not deconvolve the mask coupling.",
+  "b2 and any 'Euler characteristic' from cmb_tda.build_topology are not used: simple_suite/report.json documents a hollow-tetrahedron defect in that complex which leaves b0 and b1 unaffected but produces tens of thousands of spurious H2 classes, and flags that b0 - b1 is not the Euler characteristic of the complex actually built.",
+  "audit/tda_validation/tda_fixed/ does not exist on branch loop/tda-simple (checked with `git ls-tree -r --name-only loop/tda-simple | grep -i tda_fixed`, which returns nothing); the only directory there is simple_suite/.",
+  "The cosmic-web (3-D point set) path is delivered with its synthetic known-answer test only.  It was NOT applied to a real galaxy catalogue and the CAMB lognormal mocks of audit/reverse_zero/E5-cosmic-web-tda-scaled/ were NOT used as a null in this session."
+ ]
+}

@@ -1,0 +1,17 @@
+{
+ "stage": "bandfrac",
+ "tier": "X",
+ "map": "wmap",
+ "why": "The narrow and the broadband ladders use DIFFERENT denominators: narrow f\n    is a fraction of the host power in l in {3,4,6}, broadband f is a fraction\n    of the host power in l = 2..64.  Quoting 'narrow needs f ~ 2, broadband\n    needs f ~ 0.5' side by side is therefore misleading.  This stage measures\n    the conversion from the data's own spectrum so both thresholds can be\n    restated in ONE unit: injected power as a fraction of the total l = 2..64\n    power.\n    ",
+ "power_l2_to_64": 0.024773361610938058,
+ "power_l_3_4_6": 0.0029652024118380707,
+ "fraction_of_l2to64_power_in_l_3_4_6": 0.11969317924656861,
+ "conversion": "injected power as a fraction of total l = 2..64 power = f_narrow * (power in l 3,4,6) / (power in l 2..64) for the narrow ladder, and = f_broad for the broadband ladder.",
+ "narrow_thresholds_in_common_unit": {
+  "0.5": 0.059846589623284305,
+  "1.0": 0.11969317924656861,
+  "2.0": 0.23938635849313722,
+  "5.0": 0.5984658962328431
+ },
+ "peak_rss_mb": 219.8984375
+}

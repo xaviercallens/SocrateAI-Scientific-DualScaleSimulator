@@ -25,6 +25,7 @@ def main():
     pc = load("pointcloud_kat.json")
     probe = load("probe_wmap.json")
     injb2 = load("injection_broad2_wmap.json")
+    bf = load("bandfrac_wmap.json")
 
     rep = {
         "title": "Discrete-symmetry (crystallinity) lens for the CMB and the "
@@ -56,6 +57,9 @@ def main():
             "discrete_symmetry_lens.py --stage injection --map wmap",
             "discrete_symmetry_lens.py --stage injection_ext --map wmap",
             "discrete_symmetry_lens.py --stage probe --map wmap",
+            "discrete_symmetry_lens.py --stage bandfrac --map wmap",
+            "discrete_symmetry_lens.py --stage injection_broad2 --map wmap"
+            "   (RUN AFTER THE DATA -- see the section flagged as such)",
             "discrete_symmetry_lens.py --stage data --map wmap",
             "discrete_symmetry_lens.py --stage tda --map wmap",
             "discrete_symmetry_lens.py --stage pointcloud",
@@ -238,6 +242,27 @@ def main():
             "why_added": injb2["why_added"],
             "results": injb2["results"]}
 
+    if bf:
+        rep["sensitivity_in_a_common_unit"] = {
+            "why": bf["why"],
+            "fraction_of_l2to64_power_in_l_3_4_6": bf[
+                "fraction_of_l2to64_power_in_l_3_4_6"],
+            "narrow_thresholds_restated": bf["narrow_thresholds_in_common_unit"],
+            "reading": "restated as 'injected power as a fraction of the total "
+                       "l = 2..64 power', the narrow low-l pattern reaches power "
+                       "0.90 at 0.239 and 1.00 at 0.598, while the broadband "
+                       "pattern reaches only 0.54 at 0.30 and 0.82 at 0.50.  So "
+                       "the narrow low-l pattern is in fact the MORE efficient "
+                       "of the two per unit injected power -- concentrating a "
+                       "coherent component in a low-dimensional band produces a "
+                       "larger z than spreading it over l = 2..64.  This "
+                       "reverses the expectation that motivated adding the "
+                       "broadband scenario, and is recorded rather than "
+                       "quietly dropped.  The common conclusion is the "
+                       "important one: in EITHER signal model the lens needs "
+                       "the G-symmetric component to carry TENS OF PERCENT of "
+                       "the total l <= 64 power before it is detected at 95%."}
+
     if probe:
         rep["fixed_orientation_probe"] = {
             "why": probe["why"],
@@ -251,6 +276,30 @@ def main():
             "reading": probe["reading"]}
 
     rep["corrections_to_earlier_commit_messages"] = [
+        {"commit_subject": "audit(crystallography): Planck SMICA leg -- also "
+                           "NULL; all 4 pre-registered tests complete",
+         "what_it_said": "\"The two maps are independent experiments (different "
+                         "instrument, different component separation, different "
+                         "mask) and agree\".",
+         "correction": "they are NOT independent experiments.  WMAP and Planck "
+                       "observe the SAME sky, and at l <= 64 both are strongly "
+                       "signal-dominated, so the CMB realisation is common to "
+                       "both.  The two p-values are CORRELATED, not independent "
+                       "confirmations, and their agreement is largely expected "
+                       "even under the null.  Correct wording: two instruments "
+                       "and two component-separation pipelines on the same sky. "
+                       "The Bonferroni correction over 4 tests is conservative "
+                       "for exactly this reason."},
+        {"commit_subject": "audit(crystallography): Planck SMICA leg -- also "
+                           "NULL; all 4 pre-registered tests complete",
+         "what_it_said": "that the matching null means show the null level is "
+                         "\"set by the invariant dimensions d_l and the band "
+                         "structure, not by the sky\".",
+         "correction": "over-read.  The two null ensembles are also built from "
+                       "SIMILAR spectra and SIMILAR masks (f_sky 0.752 vs "
+                       "0.785), so the agreement is unsurprising on those "
+                       "grounds too.  It is a reasonable consistency check, not "
+                       "evidence that the mask and the spectrum do not matter."},
         {"commit_subject": "audit(crystallography): pre-registered injection "
                            "ladder (no sensitivity), point-set known-answer "
                            "test, nulls",
