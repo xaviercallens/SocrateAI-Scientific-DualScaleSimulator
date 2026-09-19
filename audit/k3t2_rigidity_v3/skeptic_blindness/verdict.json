@@ -1,0 +1,136 @@
+{
+  "skeptic": "BLINDNESS, CIRCULARITY AND REPRODUCIBILITY",
+  "date": "2026-09-19",
+  "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2",
+  "branch": "loop/k3t2-rigidity",
+  "head_at_review": "51050b7",
+  "stance": "Produced none of this; verified everything below by cloning, rerunning, and reading source directly. Did not trust the BLIND/CHAIN/COMPARISON/REVERSE prose at face value.",
+
+  "summary": {
+    "verdict": "The tracks are substantially reproducible and the declared-inputs discipline (rule 7) is mostly followed, but the audit's own aggregation layer (chain_check_results.json) is STALE relative to what the committed script actually produces -- a genuine, evidence-backed reproducibility defect -- and one Track C rigidity label (chi_top) does not meet the ground rules' own definition of the classification it is given. Track D's multi-script pipeline has an undocumented, order-dependent shared-write hazard between 02_mv_resolution.py and 04_kunneth_scan_results.py that the task's own per-result 'command' fields do not disclose. One propagation gap (rule 7) was found in Track B's margin check. No forbidden literal-answer-in-computation-path was found; the one line that looked suspicious (Track A's mu-term scan bound baking in '12') was traced to source and shown to be a search-radius heuristic that does not determine the returned exact solution.",
+    "counts": {
+      "commands_rerun_from_clean_clone": 27,
+      "commands_reproduced_exit0": 27,
+      "commands_reproduced_exit0_but_only_after_correct_undocumented_order": 2,
+      "byte_identical_json_after_rerun": "all except chain_check_results.json (1-line text mismatch) and D-tda exports.json/results.json (identical once run in the correct 00->01->02->03->04 order; NOT identical if 04 is run before 02 completes, or if 02 is re-run after 04)",
+      "confirmed_rule10_or_rule8_violations": 3,
+      "disputed_calls_referred_to_orchestrator": 2
+    }
+  },
+
+  "lens": "BLINDNESS, CIRCULARITY AND REPRODUCIBILITY -- verified every claim by direct clone+rerun+source-read rather than trusting the blind/chain/comparison/reverse agents' own prose.",
+
+  "violations": [
+    "audit/k3t2_rigidity_v3/chain/chain_check_results.json (committed at HEAD, written by commit 4b93bb5) contains a caveat string for the C.chi_top-vs-D.chi link that reads '...depends on declared input resolution_local_model (tier L)...'. chain_check.py:243 does a verbatim `d_status_note = D_exports.get(\"status\")` and formats it with %r at chain_check.py:259-262. D-tda/exports.json:13's 'status' field has been fixed since commit d5f8301 (the ONLY commit that ever touched that file) at '...depends on declared inputs (local model of a resolved point)' -- a DIFFERENT string. chain_check.py's format-string code at this line has likewise been unchanged since commit 2dded2a. Since neither the input file nor the reading code has changed since before the JSON was committed, a byte-for-byte rerun of the committed chain_check.py against the committed D-tda/exports.json MUST reproduce the committed chain_check_results.json exactly -- and it does not (verified by clean-clone rerun; the ONLY diff in the entire file is this one line). This means the committed chain_check_results.json was not actually produced by running the final, committed chain_check.py against the final, committed D-tda/exports.json: it is stale (most likely generated once when D-tda/exports.json's status field briefly read differently, then D-tda's file was edited without chain_check.py being rerun before the chain commits were made). Rule 10 requires results.json to be reproducible from the stated command against the committed inputs; this one line is not. Severity: HIGH -- it is exactly the class of defect ground rule 10 exists to catch, and it survived three chain-track commits (d19c5d6, 2dded2a, 4b93bb5) without being caught.",
+
+    "audit/k3t2_rigidity_v3/C-lattices/results.json rigidity entry for parameter_inserted='chi_top' is labelled RIGID_GIVEN_DEFINITION, but its own fields read: solution_set='chi_top=24 unique given the declared inputs (it is a computation, not a scan)', negative_control='none realizable... not a control; labelled HYPOTHETICAL and not counted', control_perturbs_same_parameter=false. Ground rule 8 defines RIGID_GIVEN_DEFINITION as 'RIGID once named defining inputs are granted', and RIGID itself requires 'a structural selecting condition ... and a neighbouring value demonstrably fails'. This entry admits there is no scan, no selecting condition over candidate values, and no realizable negative control -- by its own words it is a straight-line formula evaluation (chi(O)=h0-h1+h2, then x12 via Noether), not a selection process at all. It therefore does not meet ANY of the rule-8 categories that require a demonstrated failure mode. The correct label is CONDITIONAL_ON_INPUT (a value fixed once the K3 definition -- K=O, b1=0 -- is granted, with no rigidity test performed), matching the label already correctly used two entries later in the same results.json for the 'typed Gram 3U+2(-E8)' entry which is honestly self-labelled CONDITIONAL_ON_INPUT with selecting_condition='none (typed)'. File: audit/k3t2_rigidity_v3/C-lattices/results.json (rigidity[1], id-less entry with parameter_inserted='chi_top'); also audit/k3t2_rigidity_v3/C-lattices/03_merge.py (writes this classification). Severity: MEDIUM -- a labelling defect, not a numeric one; chi_top=24 itself is correctly computed and correctly flagged elsewhere (in C1_chi_top's own 'note' and in the chain-check caveat) as depending on a typed Noether constant.",
+
+    "audit/k3t2_rigidity_v3/B-dyons/results.json entry id='B5_margin' (script theta_margin_check.py) declares shared_inputs=['Jacobi_theta_definitions'] only. Reading theta_margin_check.py directly (lines ~28-34 of the clean-clone copy) shows it calls `knorm = Fr(load_inputs()['K3_elliptic_genus_factor_k']['value'])` and then `P2.compute(q1, QCHK-1, knorm, ...)` and `P3.run(q1, QCHK, 20, 60, knorm, Hh, ...)` where Hh is loaded from hurwitz_results.json. So B5's own computation depends on K3_elliptic_genus_factor_k (the declared k), on Hurwitz_H0/Kronecker_Hurwitz_relation (via the Hurwitz table it reads), on immortal_ansatz_form (via part3's ansatz), and on weak_Jacobi_ring_monomials (via part2's basis) -- none of which appear in B5's declared shared_inputs. Rule 7 requires 'every result lists shared_inputs: the names of the declared inputs it depends on', and this propagation is incomplete. Severity: LOW-MEDIUM -- B5 is a stability/margin cross-check (QMAX 40 vs 60 agreement), not itself a headline numeric claim, but a reader trusting the shared_inputs field to audit dependency propagation (as rule 7 intends) would be misled into thinking this check is nearly input-free."
+  ],
+
+  "math_errors": [],
+
+  "reruns": [
+    {"command": "cd audit/k3t2_rigidity_v3/A-genus && .venv-tda/bin/python run_track_a_v3.py --cutoff 16 --nmax 12 --kmax 6", "reproduced": true, "clean_clone": true, "note": "exact match to A-genus/exports.json and results.json byte-for-byte."},
+    {"command": "cd audit/k3t2_rigidity_v3/A-genus && .venv-tda/bin/python m24_shapes.py --samples 4000 --seed 1", "reproduced": true, "clean_clone": true, "note": "group order 244823040 and all 4 generators preserve-code reproduced."},
+    {"command": "cd audit/k3t2_rigidity_v3/B-dyons && .venv-tda/bin/python hurwitz.py 400", "reproduced": true, "clean_clone": true},
+    {"command": "cd audit/k3t2_rigidity_v3/B-dyons && .venv-tda/bin/python part1_euler.py 40 8 4", "reproduced": true, "clean_clone": true, "note": "trackD_exports_source.version_dir confirmed 'k3t2_rigidity_v3' (not the v2 fallback in B-dyons/common.py:48-55, which is dead code in this run since v3's D-tda/exports.json exists)."},
+    {"command": "cd audit/k3t2_rigidity_v3/B-dyons && .venv-tda/bin/python part2_psi_m.py 40 7 2", "reproduced": true, "clean_clone": true},
+    {"command": "cd audit/k3t2_rigidity_v3/B-dyons && .venv-tda/bin/python part3_immortal.py 40 8 20 60", "reproduced": true, "clean_clone": true, "note": "solution_N_c_M=[324,3,648] reproduced via exact sympy rational LUsolve on the normal equations, all 106 rows zero-residual, all 26 integer neighbours fail -- confirmed no literal 324/3/648 anywhere in the computation path (only in a post-hoc 'expected' comment at part3_immortal.py:169)."},
+    {"command": "cd audit/k3t2_rigidity_v3/B-dyons && .venv-tda/bin/python theta_forms.py 40 ; theta_forms.py 60 ; declare_inputs.py ; build_results.py ; theta_margin_check.py 40 60 8", "reproduced": true, "clean_clone": true, "note": "full 5-step chain run in order; final theta_margin_check_results.json all_agree=true reproduced exactly."},
+    {"command": "cd audit/k3t2_rigidity_v3/C-lattices && .venv-tda/bin/python decl.py ; 01_lattices.py ; 02_tduality.py ; 03_merge.py", "reproduced": true, "clean_clone": true, "note": "results.json and exports.json byte-identical to committed."},
+    {"command": "cd audit/k3t2_rigidity_v3/D-tda && .venv-tda/bin/python 00_premise.py 3 4 5 6 7 8", "reproduced": true, "clean_clone": true},
+    {"command": "cd audit/k3t2_rigidity_v3/D-tda && .venv-tda/bin/python 01_controls.py 4 6 8", "reproduced": true, "clean_clone": true, "note": "NOT listed as a 'command' anywhere in the task's per-result table for Track D, yet 04_kunneth_scan_results.py hard-requires 01_controls_results.json to exist. This is a rule-10 documentation gap: the stated commands for D5/D6 (04_kunneth_scan_results.py) omit this prerequisite."},
+    {"command": "cd audit/k3t2_rigidity_v3/D-tda && .venv-tda/bin/python 02_mv_resolution.py 4 6 8 --chain-max-N 8", "reproduced": true, "clean_clone": true, "note": "slow (N=8 chain-level computation takes ~150-350s depending on machine load); reproduces chi=24, b2=22 for every N in {4,6,8} and both Z/3, Z/5."},
+    {"command": "cd audit/k3t2_rigidity_v3/D-tda && .venv-tda/bin/python 03_cup_parity.py 4", "reproduced": true, "clean_clone": true},
+    {"command": "cd audit/k3t2_rigidity_v3/D-tda && .venv-tda/bin/python 04_kunneth_scan_results.py", "reproduced": true, "clean_clone": true, "note": "CRITICAL ORDERING HAZARD FOUND: 02_mv_resolution.py (line ~161) and 04_kunneth_scan_results.py (line ~107) both write to the SAME D-tda/exports.json and results.json paths, with no lock, no order check, and no error if run out of order. 02_mv_resolution.py writes only a PARTIAL export (tagged 'source: 02_mv_resolution.py, N=4, Z/3') as soon as it finishes its FIRST requested N; 04_kunneth_scan_results.py writes the FULL, canonical export (with chi_K3xT2, generated_by, etc.) and must run LAST. First rerun attempt (04 run before 02 had finished N=8, then 02 re-run afterward to get full N=8 timing data) silently clobbered exports.json/results.json back down to 02's partial N=4-only state, with exit 0 and no warning either time. Second rerun in the disciplined order 00->01->02(complete)->03->04 reproduced the committed files exactly. This ordering requirement is NOT stated anywhere in the task's per-result 'command' fields (which list 00_premise.py, 02_mv_resolution.py, 04_kunneth_scan_results.py, 03_cup_parity.py as if each is independently runnable)."},
+    {"command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && .venv-tda/bin/python build_results.py", "reproduced": true, "clean_clone": true, "note": "reproduces exactly, but ONLY because results/*.json (written by scripts 01-06 and poll_track_d.py) are separately committed to git. The task's stated single-line command for the 'E-summary' result does not itself state the prerequisite pipeline (01_lattice_index.py, 02_tt_worked_examples.py, 03_family41_counts.py, 04_family42_counts.py, 05_second_branch.py, 06_literature_and_moduli.py, poll_track_d.py) needed to regenerate results/ from scratch, unlike Track B's and C's compound command fields which do spell out their prerequisite steps. Minor rule-10 documentation gap; does not affect actual reproducibility since the intermediate files are committed."},
+    {"command": "cd audit/k3t2_rigidity_v3/F-whichk3 && .venv-tda/bin/python f1_moduli.py 6", "reproduced": true, "clean_clone": true},
+    {"command": "cd audit/k3t2_rigidity_v3/F-whichk3 && .venv-tda/bin/python f2_abelian.py 50", "reproduced": true, "clean_clone": true},
+    {"command": "cd audit/k3t2_rigidity_v3/F-whichk3 && .venv-tda/bin/python f3_t4.py", "reproduced": true, "clean_clone": true},
+    {"command": "cd audit/k3t2_rigidity_v3/F-whichk3 && .venv-tda/bin/python f4_codes.py 40000", "reproduced": true, "clean_clone": true, "note": "group order 244823040 and all weight distributions reproduced; note the random-sampling cycle-shape FREQUENCIES differ run-to-run by design (seed not fixed), but the SET of 20 distinct cycle types and the group order (deterministic, via Schreier-Sims) reproduced exactly."},
+    {"command": "cd audit/k3t2_rigidity_v3/F-whichk3 && .venv-tda/bin/python f5_symplectic.py", "reproduced": true, "clean_clone": true},
+    {"command": "cd audit/k3t2_rigidity_v3/chain && .venv-tda/bin/python chain_check.py", "reproduced": false, "clean_clone": true, "note": "runs to exit 0 and reproduces 'ALL CONSISTENT: True' and the same 3/8 independent-corroboration count, but chain_check_results.json differs from the committed file by exactly one line (the D.exports.status quotation inside the C-vs-D link's caveat) -- see violations[0]. This is the only non-reproducing artifact found in the entire tree."},
+    {"command": "cd audit/k3t2_rigidity_v3/comparison && .venv-tda/bin/python build_comparison.py /mnt/disks/disk-socrateai-local-1/k3t2-sealed-v3/targets_sealed_v3.json", "reproduced": true, "clean_clone": true, "note": "wrote 332 rows, AGREE=71 NOT_COMPUTED=261, byte-identical comparison.json. Sealed-targets file lives outside the repo by design (rule-compliant) and was confirmed present at the stated absolute path; a clean clone of the WORKTREE alone cannot regenerate this file, which is correct per the task's own design (targets are sealed outside the worktree to prevent circularity), not a defect."},
+    {"command": "cd audit/k3t2_rigidity_v3/reverse && .venv-tda/bin/python item1_moore_vs_hurwitz.py ; item2_kummer_iff_even.py ; item3_class_number_one.py ; item4_ade_trapping.py ; item5_twined_2A_extended.py ; declare_inputs.py ; build_results.py", "reproduced": true, "clean_clone": true, "note": "results.json and exports.json byte-identical to committed for the full reverse pipeline; the only track/stage in the whole tree with a fully verified end-to-end byte-identical rerun of its final aggregator."}
+  ],
+
+  "disputed_rows": [
+    {
+      "target_id": "k3_euler_characteristic (and the 3 rows that reuse the same pair: k3_euler_eq_24, euler_K3, ellipticGenus_z0)",
+      "reason": "comparison/build_comparison.py:100-108 counts independent_routes=2 for chi=24 (D-tda/D2 GUDHI Mayer-Vietoris + C-lattices/C1_chi_top Hodge/Noether), while its own module docstring (lines 31-39) states the general rule that 'a route built by typing (declared input) x (computed number) counts as the SAME route as the computed number, never an extra one (ground rule 7)' -- and C1_chi_top's own note explicitly says its route is 'not independent of noether_formula'. The script defends counting it anyway on the grounds that Noether's formula's constant 12 is 'a fixed constant of Noether's formula, not a tunable choice', unlike Track A's typed overall factor k (which genuinely has multiple untested candidate values). I find this a DEFENSIBLE distinction -- a universally-true theorem constant is not the same kind of free parameter rule 7 is warning about -- but it sits close enough to the letter of rule 7 that I am flagging it rather than silently accepting it. The prose note IS honest and does not hide the caveat. Recommend the orchestrator explicitly rule on whether 'fixed theorem constant x computed number' should count as an independent route, since this precedent is reused for 4 rows and for the earlier chain-check link."
+    },
+    {
+      "target_id": "smallest_black_hole_index / c_depends_only_on_D / units_complete / holomorphic_isometries and ~200 other NOT_COMPUTED rows using Hurwitz-quaternion / umbral-moonshine / DMZ-table arithmetic",
+      "reason": "Not a defect, but worth the orchestrator's attention: 261 of 332 sealed targets (79%) are NOT_COMPUTED. This is honestly reported (comparison.json counts field matches exactly) and each row states specifically why (e.g. 'Hurwitz-quaternion Kahler-form arithmetic; not reproduced by any blind script'), so it is not a blindness violation -- but it means the AGREE rate (71/332 = 21%) corroborates only the K3xT2 topology/lattice/moonshine-twining headline facts, not the large Hurwitz-quaternion (KummerD4/KummerOmegaE4), umbral-moonshine (HMNBridge), DMZ-immortal-table, or attractor-charge sections of LeanMaster. This is a scope gap, not a wrong answer, and the comparison track already discloses it; flagging only so the orchestrator does not overstate the '71 AGREE' figure as broad corroboration."
+    }
+  ],
+
+  "rigidity_verdicts": [
+    {
+      "parameter": "C-lattices: chi_top (Noether formula application)",
+      "genuinely_rigid": false,
+      "reason": "Own results.json admits 'it is a computation, not a scan' and 'no realizable negative control'; fails rule 8's requirement of a demonstrated neighbour failure for any RIGID-family label.",
+      "final_label": "CONDITIONAL_ON_INPUT"
+    },
+    {
+      "parameter": "C-lattices: lattice family m*U+n(-E8) signature/rank selection",
+      "genuinely_rigid": true,
+      "reason": "Verified: 01_lattices.py scans all integer (m,n) in 0..30, only (3,2) has the correct signature; (11,0) and (7,1) are real, realizable even-unimodular lattices of the wrong signature. Genuine scan, genuine realizable negative control, same parameter perturbed.",
+      "final_label": "RIGID_GIVEN_DEFINITION"
+    },
+    {
+      "parameter": "D-tda: j (number of resolved singular points), 'no unresolved point with non-sphere Z/2 link' selector",
+      "genuinely_rigid": true,
+      "reason": "Initially suspected of being tautological ('unresolved_points_with_Z2_link_not_S3 = k - j' looks like pure arithmetic bookkeeping), but traced to 00_premise.py's independently-computed fact that every one of the k singular points' link IS an RP^3-homology-sphere (not an S^3-homology-sphere) before resolution -- a genuinely computed geometric fact, not assumed. Given that computed fact, 'no bad-link point remains' is equivalent to j=k for a non-circular reason, and j=k-1 is a realizable, demonstrated failure (one RP^3-link point remains, RP^3 != S^3 homology, computed). Label stands.",
+      "final_label": "RIGID_GIVEN_DEFINITION"
+    },
+    {
+      "parameter": "A-genus: chi(g) at level 5 (5A twining), 3-element passing set {4,14,24}",
+      "genuinely_rigid": true,
+      "reason": "The two integers adjacent to the true value (3 and 5) both fail the full integrality+congruence+multiplicity test (computed, in run_track_a_v3.py's chi_scan). The third passing value (14) is correctly labelled HYPOTHETICAL per rule 9 (no M24 element of order 5 realizes it) and is correctly excluded from counting against discrimination. A 3-element solution set does not by itself disqualify RIGID_GIVEN_DEFINITION when the non-realizable member is properly flagged and the realizable neighbours fail.",
+      "final_label": "RIGID_GIVEN_DEFINITION"
+    },
+    {
+      "parameter": "B-dyons: overall factor k in Z=k*phi_{0,1}",
+      "genuinely_rigid": false,
+      "reason": "Own table already correctly labels this NORMALISATION (selecting condition k*(cB(0)+2cB(-1))=chi_from_Track_D contains the target chi=24 by construction: condition_uses_true_value=true). Verified this is honestly disclosed, not smuggled as RIGID anywhere.",
+      "final_label": "NORMALISATION"
+    }
+  ],
+
+  "reverse_verdicts": [
+    {
+      "item": "reverse_1_moore_vs_hurwitz",
+      "stands": true,
+      "reason": "Reimplemented from scratch, D in [0,5000] (Lean only checks <=400), 0 failures, negative control (drop the two correction terms) fails on 54 D. Reran the script from a clean clone: byte-identical results.json. Genuinely extends beyond Lean's checked range with a real negative control."
+    },
+    {
+      "item": "reverse_2_kummer_iff_even",
+      "stands": true,
+      "reason": "Same pattern as item 1: D in [0,5000] vs Lean's [0,200], 0 mismatches, and the negative control (requiring only a,c even, not b) is shown to genuinely differ on 7362 forms -- a real, non-trivial discriminating control on the SAME selecting condition (which of a,b,c must be even)."
+    },
+    {
+      "item": "reverse_3_most_attractive_class_number_one",
+      "stands": false,
+      "reason": "The item's own negative control explicitly reports control_passes_as_expected=false with 8 neighbour violations: D=3,4,7,8,11 are five CONSECUTIVE valid discriminants that all pass nForms==1, so the immediate-neighbour-fails criterion required by rule 8 for a RIGID label FAILS for the majority (5 of 9) of the computed set. The label RIGID as reported by build_results.py's own printed summary ('reverse_3_most_attractive_class_number_one: holds=True label=RIGID') overstates the case: only the high end (19,43,67,163) satisfies the neighbour-failure test; the low end is a dense run. The set-membership fact itself (nForms==1 iff D in {3,4,7,8,11,19,43,67,163}, verified by scan to D<=3000 with no literal list typed into the scan) is solid and correctly matches the literature; only the blanket RIGID classification over the WHOLE set is not supported by the item's own computed control. Recommend splitting the label: {19,43,67,163}=RIGID, {3,4,7,8,11}=NON_DISCRIMINATING against immediate neighbours (though still correctly excluded from all OTHER integers by the scan)."
+    },
+    {
+      "item": "reverse_4_ade_trapping_beyond_rank8",
+      "stands": true,
+      "reason": "holds=False is itself the correct, honestly-reported outcome (D9=144 roots vs E8+A1=240+2=242 roots at rank 9, verified arithmetic; D12=D4+best(8)=E8+D4=240+24=264 tie at rank 12), and the item's own text already discloses that this required an EXTENDED component list beyond Lean's own adeSimple (which stops at rank 8), so it is honestly labelled as testing an extended hypothesis, not literally falsifying Lean's own (narrower, rank<=8) theorem. Rerun byte-identical from clean clone. The CONDITIONAL_ON_INPUT label is appropriate given the declared structural extension."
+    },
+    {
+      "item": "reverse_5_twined_2A_beyond_q9",
+      "stands": true,
+      "reason": "Divisibility-by-24 verified to q^40 (Lean only checks to q^9), reimplemented from CDH's own defining formula (declared tier-L structural input, not the printed q-series table). The NON_DISCRIMINATING label for the constant c is correctly derived: the item shows analytically that only the q^0 coefficient carries c-dependence mod 24, reducing the whole q^40 divisibility question to a single congruence c=8 (mod 12), then verifies that congruence directly against 7 sample values of c including the literature's own c=-16. This is a genuine, well-reasoned strengthening of the original v9 result, not overclaimed."
+    }
+  ],
+
+  "could_not_verify": [
+    "Did not re-verify the 240-root E8 construction, the Golay/QR-23 code construction, or the Schreier-Sims group-order algorithm's own correctness (trusted gudhi/sympy/networkx and the standard textbook algorithms as correctly implemented; only checked that the SAME code run twice from a clean clone gives the SAME deterministic outputs, and cross-checked arithmetic identities such as E8 root count 240 = 2*120, D_n=2n(n-1), A_n=n(n+1) by hand).",
+    "Did not attempt to rebuild LeanMaster or re-check any Lean-side literal against its own kernel; the comparison track's 'lean_value' fields were taken as given (this skeptic's brief is BLINDNESS/CIRCULARITY/REPRODUCIBILITY on the audit side, not a second Lean gate).",
+    "Did not exhaustively re-audit all ~25 rigidity-table entries at the same depth; the 5 checked in rigidity_verdicts were chosen for being the ones where the entry's own text was in tension with its label (per the advisor's triage) or were named in the ground rules as the specific v2 defects being re-tested. The remaining ~20 entries were spot-read and found internally consistent with rule 8 but not independently re-derived.",
+    "The two scratch clones from this session (in the session scratchpad, not /tmp/k3t2v3_clone*) could not be deleted: rm -rf was sandbox-denied, same as the CHAIN block's prior report. They never touched the actual worktree, any tracked repo, or any other worktree."
+  ]
+}
