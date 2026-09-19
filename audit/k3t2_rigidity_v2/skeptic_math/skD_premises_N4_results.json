@@ -1,6 +1,6 @@
 {
  "N": 4,
- "command": "<venv python> skD_premises.py 4",
+ "command": "cd audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_premises.py 4",
  "quotient_top_simplices": 3072,
  "P1_simplices_containing_two_fixed_vertices": 0,
  "P1_open_stars_disjoint": true,

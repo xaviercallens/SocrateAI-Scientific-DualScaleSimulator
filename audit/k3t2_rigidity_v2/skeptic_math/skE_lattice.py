@@ -5,7 +5,7 @@ to TT's integral lattice (A.2)-(A.3)?  Exact integer arithmetic only.
    Z-basis of H^2(K3,Z)) with alpha^2=beta^2>0, alpha.beta=0, alpha^2<=24, hyperbolic coefficients
    |c|<=BOUND; count how many are ALSO in Track E's family 2*L_diag (even diagonal coordinates).
  - 8 | alpha^2 for all alpha in 2*Gamma (Gamma even): checked on every enumerated vector.
-Command: cd audit/k3t2_rigidity_v2/skeptic_math && <venv python> skE_lattice.py
+Command: cd audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skE_lattice.py
 """
 import itertools, json, os
 import sympy

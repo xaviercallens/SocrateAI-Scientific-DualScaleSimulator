@@ -29,7 +29,7 @@
   },
   {
    "script": "skD_kummer.py",
-   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 4 ; /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 6",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 4 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 6",
    "prior_incarnation": true,
    "rerun_byte_identical": true
   },
@@ -41,7 +41,7 @@
   },
   {
    "script": "skD_premises.py",
-   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_premises.py 4 ; /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_premises.py 6",
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_premises.py 4 && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_premises.py 6",
    "prior_incarnation": false
   },
   {
@@ -166,7 +166,10 @@
   }
  ],
  "notes_on_prior_skeptic_findings": [
-  "The prior skE_lattice reading 'E undercounts TT-admissible pairs' is right relative to the literal (2.5) quantisation. It needs one qualification: E is faithful to TT's own worked examples and to TT's (wrong) claim that the diagonal e_i form a Z-basis. The error originates in TT's appendix."
+  "The prior skE_lattice reading 'E undercounts TT-admissible pairs' is right relative to the literal (2.5) quantisation. It needs one qualification: E is faithful to TT's own worked examples and to TT's (wrong) claim that the diagonal e_i form a Z-basis. The error originates in TT's appendix.",
+  "skD_kummer.py (prior incarnation) types the MV inputs b2(S^2) = 1, chi(S^2) = 2 and chi(RP^3) = 0 as literals in its last lines. skD_premises.py supersedes it: it checks the premises and computes the H_3 map rank from data. Cite skD_premises for the MV step. The remaining '+16' in skD_premises is 16 fixed points (computed) x b2(D(O(-2))) = 1 (tier L).",
+  "Independence of skX_rows_orientifold_dirac from comparison/third_computation_orientifold.py: both take the 4 T^2 fixed points as the O7 count. What skX adds independently is the closure constraint. Sum of Kodaira fibre Euler numbers = 4 x 6 = 24 = e(K3), with e(K3) from Track D's blind Betti numbers, and the control that 16 O7 would need 96 > 24. The D7 count (4 per I_0*) and Q(O7) = -4 are derived from the fibre content, not taken from TT.",
+  "Command strings: the prior incarnation's docstrings used the placeholder '<venv python>'. All skeptic scripts now state the full interpreter path, and skD_premises emits the full command in its JSON."
  ],
  "violations": [
   "Ground rule 'never write proved': E-flux/results.json:60 ('EMPTY. Proof: ...') and the E-flux return value ('structurally empty, proved'; 'proved via the orthogonal-complement signature argument'). The argument itself is correct, so this is labelling only.",
@@ -262,5 +265,43 @@
    "reason": "Structural and basis-independent: evenness of Gamma_{3,19} plus even flux coefficients, checked in both the diagonal and the unimodular readings. Proper negative control: an odd unimodular lattice gives alpha^2 = 4 (skE_tt_faithful). E's own control (rank-2 emptiness) tests a different parameter."
   }
  ],
- "overall": "No DISAGREE row goes against the blind tracks. The three orientifold DISAGREEs are errors in the sealed v3.20.0 file, re-derived independently from F-theory fibre Euler numbers and matching post-seal LeanMaster adc85e7. All seven NOT_COMPARABLE rows match under valid conversions; D-tda#56 should be AGREE. Track D's Mayer-Vietoris step is sound, with premises verified at N = 4 and N = 6. The main mathematical findings are: (i) Track A's rigid 24 is a normalisation echo; (ii) Track E's counts are of TT's index-8 worked-example family because TT's appendix basis claim is false over Z, while 8 | alpha^2 and N_D3 in {16,8,0} survive; (iii) Track C's chi-perturbation controls use non-existent surfaces, but its (3,2) selection is rigid given K = O and b1 = 0; (iv) E's orbit-count 'upper bounds' are unsupported."
+ "overall": "No DISAGREE row goes against the blind tracks. The three orientifold DISAGREEs are errors in the sealed v3.20.0 file, re-derived independently from F-theory fibre Euler numbers and matching post-seal LeanMaster adc85e7. All seven NOT_COMPARABLE rows match under valid conversions; D-tda#56 should be AGREE. Track D's Mayer-Vietoris step is sound, with premises verified at N = 4 and N = 6. The main mathematical findings are: (i) Track A's rigid 24 is a normalisation echo; (ii) Track E's counts are of TT's index-8 worked-example family because TT's appendix basis claim is false over Z, while 8 | alpha^2 and N_D3 in {16,8,0} survive; (iii) Track C's chi-perturbation controls use non-existent surfaces, but its (3,2) selection is rigid given K = O and b1 = 0; (iv) E's orbit-count 'upper bounds' are unsupported.",
+ "reruns": [
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skA_twining.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skA_scan_depends_on_k.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skB_immortal.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skC_chain.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 4",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 6",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  },
+  {
+   "command": "cd /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skE_lattice.py",
+   "reproduced": true,
+   "note": "byte-identical output vs committed JSON of f5f2589 (cmp)"
+  }
+ ],
+ "commit": "0cc264c (verdict and new scripts); amended in the follow-up commit that fixes the command strings"
 }

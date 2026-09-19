@@ -2,7 +2,7 @@
 cross-checked against A-genus/exports.json), c1=0, b1=0, Kahler; (2) exact signature of
 3U+2(-E8) from my own E8 Cartan matrix (Dynkin edges typed from the E8 diagram 1-2-3-4-5-6-7, 3-8,
 i.e. TT eq A.4's layout) via Descartes sign changes of the (real-rooted) characteristic polynomial.
-Command: cd audit/k3t2_rigidity_v2/skeptic_math && <venv python> skC_chain.py
+Command: cd audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skC_chain.py
 """
 import json, os
 import sympy

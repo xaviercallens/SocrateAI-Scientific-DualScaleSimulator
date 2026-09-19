@@ -1,7 +1,7 @@
 """Skeptic check of Track A 'rigidity scan (a)': does the slice-agreement selector pin N=24
 independently of the overall normalisation k of Z = k*phi01?  Reuses Track A's own
 build_blocks/extract_H (imported read-only) but rescales Z*eta^3 by k/2.
-Command: cd audit/k3t2_rigidity_v2/skeptic_math && <venv python> skA_scan_depends_on_k.py
+Command: cd audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skA_scan_depends_on_k.py
 """
 import sys, os, json
 from fractions import Fraction as Fr

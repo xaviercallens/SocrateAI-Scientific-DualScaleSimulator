@@ -86,7 +86,7 @@ for F in (3, 5):
         "K3_betti_from_MV": [bU[0], bU[1], bU[2] + 16, bU[3] - rank, 16 - rank],
     }
 out = {
-    "N": N, "command": f"<venv python> skD_premises.py {N}",
+    "N": N, "command": f"cd audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_premises.py {N}",
     "quotient_top_simplices": len(tops),
     "P1_simplices_containing_two_fixed_vertices": two_fixed,
     "P1_open_stars_disjoint": two_fixed == 0,

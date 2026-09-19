@@ -5,7 +5,7 @@ quotient by x -> -x (vertex canonical rep = lexicographic min of {x, -x}), then
 Checks: simpliciality of the quotient (every image simplex has 5 distinct vertices and the
 f-vector halves as expected), Betti numbers of X and U over Z/3, and the Mayer-Vietoris
 bookkeeping b2(K3) = b2(U) + 16*b2(S^2), chi(K3) = chi(U) + 16*chi(S^2) - 16*chi(RP^3).
-Command: cd audit/k3t2_rigidity_v2/skeptic_math && <venv python> skD_kummer.py 6
+Command: cd audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skD_kummer.py 6
 """
 import sys, json, os, itertools
 import gudhi

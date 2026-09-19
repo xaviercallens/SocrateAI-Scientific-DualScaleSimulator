@@ -15,7 +15,7 @@ Route (independent of Track A's theta/Appell-Lerch code):
     to be -2 x trivial, printed as a check, not imposed).
  3. Compare raw coefficients to Track A's A-genus/results.json (read AFTER computing).
  4. Negative control: t -> t + 1/3 breaks integrality or the mod-N congruence.
-Command: cd audit/k3t2_rigidity_v2/skeptic_math && <venv python> skA_twining.py
+Command: cd audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skA_twining.py
 """
 import json, os
 from fractions import Fraction as Fr

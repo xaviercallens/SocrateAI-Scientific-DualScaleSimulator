@@ -7,7 +7,7 @@ Checks, with own product-formula series (no Track B code or cache):
        enters; s!=0 terms are expanded in q^{|s|} (valid for |q|<|y|<|q|^-1).
   (ii) negative control: H(3) -> H(3)+1/6 makes the system inconsistent.
   (iii) Goettsche prod(1-q^n)^-24 coefficients 0..8.
-Command: cd audit/k3t2_rigidity_v2/skeptic_math && <venv python> skB_immortal.py
+Command: cd audit/k3t2_rigidity_v2/skeptic_math && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python skB_immortal.py
 """
 import json, os, math
 from fractions import Fraction as Fr
