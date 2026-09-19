@@ -76,13 +76,17 @@ def rescale_unit_diam(X):
     from scipy.spatial.distance import pdist
     d = pdist(X)
     maxd = float(np.max(d)) if len(d) else 1.0
+    from scipy.spatial import cKDTree
+    tree = cKDTree(X)
+    nn_d, _ = tree.query(X, k=2)
+    mean_nn = float(np.mean(nn_d[:, 1]))
     if maxd <= 0:
         maxd = 1.0
-    return X / maxd
+    return X / maxd, maxd, mean_nn
 
 
 def alpha_persistence(X_sub):
-    Xr = rescale_unit_diam(X_sub)
+    Xr, raw_diameter, raw_mean_nn = rescale_unit_diam(X_sub)
     ac = gudhi.AlphaComplex(points=Xr.tolist())
     st = ac.create_simplex_tree()
     st.persistence(homology_coeff_field=2, min_persistence=0.0)
@@ -100,7 +104,10 @@ def alpha_persistence(X_sub):
             "max_persistence": float(max((d - b for b, d in finite), default=0.0)),
         }
     return {"betti_numbers": betti[:MAX_ALPHA_DIM + 1],
-            "by_dim": by_dim_total_persistence}
+            "by_dim": by_dim_total_persistence,
+            "raw_diameter_pre_rescale": raw_diameter,
+            "raw_mean_nn_distance_pre_rescale": raw_mean_nn,
+            "mean_nn_over_diameter": raw_mean_nn / raw_diameter if raw_diameter else None}
 
 
 def run_catalogue(label, path):
@@ -129,11 +136,17 @@ def summarize(cat_result):
     b2 = [d["betti_numbers"][2] for d in cat_result["draws"]]
     tp1 = [d["by_dim"]["1"]["total_persistence"] for d in cat_result["draws"]]
     tp2 = [d["by_dim"]["2"]["total_persistence"] for d in cat_result["draws"]]
+    diam = [d["raw_diameter_pre_rescale"] for d in cat_result["draws"]]
+    mean_nn = [d["raw_mean_nn_distance_pre_rescale"] for d in cat_result["draws"]]
+    nn_over_diam = [d["mean_nn_over_diameter"] for d in cat_result["draws"]]
     def stats(v):
         return {"mean": float(np.mean(v)), "std": float(np.std(v)), "values": v}
     return {
         "betti0": stats(b0), "betti1": stats(b1), "betti2": stats(b2),
         "total_persistence_H1": stats(tp1), "total_persistence_H2": stats(tp2),
+        "raw_diameter_pre_rescale": stats(diam),
+        "raw_mean_nn_distance_pre_rescale": stats(mean_nn),
+        "mean_nn_over_diameter": stats(nn_over_diam),
     }
 
 
@@ -143,7 +156,9 @@ def main():
     real_summary = summarize(real)
     null_summary = summarize(null)
     welch_tests = {}
-    for key in ("total_persistence_H1", "total_persistence_H2"):
+    for key in ("total_persistence_H1", "total_persistence_H2",
+                "raw_diameter_pre_rescale", "raw_mean_nn_distance_pre_rescale",
+                "mean_nn_over_diameter"):
         a = real_summary[key]["values"]
         b = null_summary[key]["values"]
         t, p = scipy_stats.ttest_ind(a, b, equal_var=False)

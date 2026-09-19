@@ -67,7 +67,14 @@ radial-shuffle null. Right now this is purely descriptive because
     a p-value),
   - a decision rule (e.g. "real total persistence more than 2σ below the
     null distribution's mean, replicated on both H1 and H2, counts as
-    X").
+    X"),
+  - a pre-specified confound check: this round verified raw
+    (pre-rescale) bounding diameter is statistically indistinguishable
+    between real and null draws (p=0.57), which excludes the specific
+    "unit-diameter rescaling inflates whichever side has smaller raw
+    extent" artifact; the next round should keep recording per-draw
+    diameter and mean-NN distance and re-check this before trusting any
+    persistence comparison.
   This converts "we saw a suggestive difference" into a test that can
   actually be failed next round, which is the gap E4's own verdict
   names explicitly: *"This would be a new hypothesis (H'), to be frozen

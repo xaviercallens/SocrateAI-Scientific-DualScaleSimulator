@@ -29,6 +29,9 @@
             "max_persistence": 0.003289975027228314
           }
         },
+        "raw_diameter_pre_rescale": 0.14368539334871921,
+        "raw_mean_nn_distance_pre_rescale": 0.0036551137655487513,
+        "mean_nn_over_diameter": 0.025438311301956236,
         "subsample_seed": 20260919
       },
       {
@@ -54,6 +57,9 @@
             "max_persistence": 0.0035384981192748137
           }
         },
+        "raw_diameter_pre_rescale": 0.1461910952437056,
+        "raw_mean_nn_distance_pre_rescale": 0.0036956589713880465,
+        "mean_nn_over_diameter": 0.025279644873220597,
         "subsample_seed": 20260920
       },
       {
@@ -79,6 +85,9 @@
             "max_persistence": 0.0035466211397294396
           }
         },
+        "raw_diameter_pre_rescale": 0.14052036248455946,
+        "raw_mean_nn_distance_pre_rescale": 0.0036467888215323016,
+        "mean_nn_over_diameter": 0.025952031129531244,
         "subsample_seed": 20260921
       },
       {
@@ -104,6 +113,9 @@
             "max_persistence": 0.003536449663513689
           }
         },
+        "raw_diameter_pre_rescale": 0.14049314022625733,
+        "raw_mean_nn_distance_pre_rescale": 0.0037093015384234416,
+        "mean_nn_over_diameter": 0.026402011745554215,
         "subsample_seed": 20260922
       },
       {
@@ -129,6 +141,9 @@
             "max_persistence": 0.0024576241648800075
           }
         },
+        "raw_diameter_pre_rescale": 0.13836971948891436,
+        "raw_mean_nn_distance_pre_rescale": 0.0036608735495648227,
+        "mean_nn_over_diameter": 0.026457187042704944,
         "subsample_seed": 20260923
       },
       {
@@ -154,6 +169,9 @@
             "max_persistence": 0.0026870971027764855
           }
         },
+        "raw_diameter_pre_rescale": 0.14167983632925657,
+        "raw_mean_nn_distance_pre_rescale": 0.003738116137435695,
+        "mean_nn_over_diameter": 0.02638424940545885,
         "subsample_seed": 20260924
       },
       {
@@ -179,6 +197,9 @@
             "max_persistence": 0.001709729366353914
           }
         },
+        "raw_diameter_pre_rescale": 0.14879279836158746,
+        "raw_mean_nn_distance_pre_rescale": 0.0036114529328359407,
+        "mean_nn_over_diameter": 0.024271691725694957,
         "subsample_seed": 20260925
       },
       {
@@ -204,6 +225,9 @@
             "max_persistence": 0.0021922432524400046
           }
         },
+        "raw_diameter_pre_rescale": 0.14203972832679945,
+        "raw_mean_nn_distance_pre_rescale": 0.0037568292667295635,
+        "mean_nn_over_diameter": 0.02644914427100281,
         "subsample_seed": 20260926
       }
     ]
@@ -238,6 +262,9 @@
             "max_persistence": 0.0023094001153702473
           }
         },
+        "raw_diameter_pre_rescale": 0.13754692668728138,
+        "raw_mean_nn_distance_pre_rescale": 0.004218511305899905,
+        "mean_nn_over_diameter": 0.030669615145170522,
         "subsample_seed": 20260919
       },
       {
@@ -263,6 +290,9 @@
             "max_persistence": 0.001934909564001757
           }
         },
+        "raw_diameter_pre_rescale": 0.14053485697437182,
+        "raw_mean_nn_distance_pre_rescale": 0.00413072871871491,
+        "mean_nn_over_diameter": 0.029392912247160122,
         "subsample_seed": 20260920
       },
       {
@@ -288,6 +318,9 @@
             "max_persistence": 0.0022206618751035093
           }
         },
+        "raw_diameter_pre_rescale": 0.13831304108849252,
+        "raw_mean_nn_distance_pre_rescale": 0.004049656612264741,
+        "mean_nn_over_diameter": 0.029278921064816842,
         "subsample_seed": 20260921
       },
       {
@@ -313,6 +346,9 @@
             "max_persistence": 0.0027212085223369212
           }
         },
+        "raw_diameter_pre_rescale": 0.14353767927807953,
+        "raw_mean_nn_distance_pre_rescale": 0.004103490048035871,
+        "mean_nn_over_diameter": 0.02858824295247289,
         "subsample_seed": 20260922
       },
       {
@@ -338,6 +374,9 @@
             "max_persistence": 0.0034095346777730682
           }
         },
+        "raw_diameter_pre_rescale": 0.14054700045760316,
+        "raw_mean_nn_distance_pre_rescale": 0.004156800257524859,
+        "mean_nn_over_diameter": 0.02957587315268804,
         "subsample_seed": 20260923
       },
       {
@@ -363,6 +402,9 @@
             "max_persistence": 0.002512438512361646
           }
         },
+        "raw_diameter_pre_rescale": 0.14296320126342793,
+        "raw_mean_nn_distance_pre_rescale": 0.004153464626444344,
+        "mean_nn_over_diameter": 0.02905268341600057,
         "subsample_seed": 20260924
       },
       {
@@ -388,6 +430,9 @@
             "max_persistence": 0.0028689239542738342
           }
         },
+        "raw_diameter_pre_rescale": 0.14716003484023332,
+        "raw_mean_nn_distance_pre_rescale": 0.004148639330736111,
+        "mean_nn_over_diameter": 0.028191345124647115,
         "subsample_seed": 20260925
       },
       {
@@ -413,6 +458,9 @@
             "max_persistence": 0.002539976845005055
           }
         },
+        "raw_diameter_pre_rescale": 0.1435787667056498,
+        "raw_mean_nn_distance_pre_rescale": 0.004293093253095771,
+        "mean_nn_over_diameter": 0.02990061379965063,
         "subsample_seed": 20260926
       }
     ]
@@ -488,6 +536,48 @@
           0.07108575214636088,
           0.08186232306926684
         ]
+      },
+      "raw_diameter_pre_rescale": {
+        "mean": 0.14272150922622495,
+        "std": 0.0031647730648240737,
+        "values": [
+          0.14368539334871921,
+          0.1461910952437056,
+          0.14052036248455946,
+          0.14049314022625733,
+          0.13836971948891436,
+          0.14167983632925657,
+          0.14879279836158746,
+          0.14203972832679945
+        ]
+      },
+      "raw_mean_nn_distance_pre_rescale": {
+        "mean": 0.0036842668729323205,
+        "std": 4.613185466954167e-05,
+        "values": [
+          0.0036551137655487513,
+          0.0036956589713880465,
+          0.0036467888215323016,
+          0.0037093015384234416,
+          0.0036608735495648227,
+          0.003738116137435695,
+          0.0036114529328359407,
+          0.0037568292667295635
+        ]
+      },
+      "mean_nn_over_diameter": {
+        "mean": 0.025829283936890483,
+        "std": 0.0007340483660388848,
+        "values": [
+          0.025438311301956236,
+          0.025279644873220597,
+          0.025952031129531244,
+          0.026402011745554215,
+          0.026457187042704944,
+          0.02638424940545885,
+          0.024271691725694957,
+          0.02644914427100281
+        ]
       }
     },
     "null_shuffled_z": {
@@ -560,6 +650,48 @@
           0.08560764675476124,
           0.09852603699599331
         ]
+      },
+      "raw_diameter_pre_rescale": {
+        "mean": 0.14177268841189244,
+        "std": 0.002951243240865494,
+        "values": [
+          0.13754692668728138,
+          0.14053485697437182,
+          0.13831304108849252,
+          0.14353767927807953,
+          0.14054700045760316,
+          0.14296320126342793,
+          0.14716003484023332,
+          0.1435787667056498
+        ]
+      },
+      "raw_mean_nn_distance_pre_rescale": {
+        "mean": 0.004156798019089565,
+        "std": 6.843174112319543e-05,
+        "values": [
+          0.004218511305899905,
+          0.00413072871871491,
+          0.004049656612264741,
+          0.004103490048035871,
+          0.004156800257524859,
+          0.004153464626444344,
+          0.004148639330736111,
+          0.004293093253095771
+        ]
+      },
+      "mean_nn_over_diameter": {
+        "mean": 0.029331275862825842,
+        "std": 0.0007168350027265207,
+        "values": [
+          0.030669615145170522,
+          0.029392912247160122,
+          0.029278921064816842,
+          0.02858824295247289,
+          0.02957587315268804,
+          0.02905268341600057,
+          0.028191345124647115,
+          0.02990061379965063
+        ]
       }
     },
     "welch_t_tests_real_vs_null": {
@@ -575,6 +707,27 @@
         "p_value": 3.2675412355765624e-05,
         "real_mean": 0.07923914100913775,
         "null_mean": 0.09593051382716516,
+        "note": "Welch's t-test, unequal variance, n=8 seeds per side. Exploratory (Tier X) -- NOT a pre-registered test; n=8 subsample draws from overlapping parent catalogues (draws are not fully independent of each other); direction and significance should be treated as a signal to pre-register and re-test, not a confirmed result."
+      },
+      "raw_diameter_pre_rescale": {
+        "t_statistic": 0.5801162885168645,
+        "p_value": 0.5710998044001987,
+        "real_mean": 0.14272150922622495,
+        "null_mean": 0.14177268841189244,
+        "note": "Welch's t-test, unequal variance, n=8 seeds per side. Exploratory (Tier X) -- NOT a pre-registered test; n=8 subsample draws from overlapping parent catalogues (draws are not fully independent of each other); direction and significance should be treated as a signal to pre-register and re-test, not a confirmed result."
+      },
+      "raw_mean_nn_distance_pre_rescale": {
+        "t_statistic": -15.148596118753751,
+        "p_value": 2.600149352047919e-09,
+        "real_mean": 0.0036842668729323205,
+        "null_mean": 0.004156798019089565,
+        "note": "Welch's t-test, unequal variance, n=8 seeds per side. Exploratory (Tier X) -- NOT a pre-registered test; n=8 subsample draws from overlapping parent catalogues (draws are not fully independent of each other); direction and significance should be treated as a signal to pre-register and re-test, not a confirmed result."
+      },
+      "mean_nn_over_diameter": {
+        "t_statistic": -9.030589334509216,
+        "p_value": 3.2668735884796e-07,
+        "real_mean": 0.025829283936890483,
+        "null_mean": 0.029331275862825842,
         "note": "Welch's t-test, unequal variance, n=8 seeds per side. Exploratory (Tier X) -- NOT a pre-registered test; n=8 subsample draws from overlapping parent catalogues (draws are not fully independent of each other); direction and significance should be treated as a signal to pre-register and re-test, not a confirmed result."
       }
     },

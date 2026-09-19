@@ -56,10 +56,40 @@ The real catalogue shows systematically **lower** total persistence in
 both H1 and H2 than the radial-shuffle null, at this N_SUB=1200,
 unit-rescaled filtration, across all 8 seeds.
 
+## Confound check: is this just a rescaling artifact?
+
+Before trusting the sign above, checked whether it is explained by
+real and null subsamples having a different realized bounding diameter
+(unit-diameter rescaling would then mechanically inflate bar lengths
+for whichever side has the smaller raw diameter, producing this exact
+sign with zero topological content). Per draw, recorded the raw
+(pre-rescale) diameter and the raw mean nearest-neighbor distance:
+
+| statistic | real mean (n=8) | null mean (n=8) | Welch t | p |
+|---|---|---|---|---|
+| raw diameter (pre-rescale) | 0.14272 | 0.14177 | 0.58 | 0.57 |
+| raw mean NN distance | 0.003684 | 0.004157 | -15.1 | 2.6e-9 |
+| mean NN distance / diameter | 0.02583 | 0.02933 | -9.0 | 3.3e-7 |
+
+**Raw diameters are statistically indistinguishable (p=0.57)** -- the
+specific mechanical confound (differing bounding-box size under
+unit-diameter rescaling) is excluded. The real catalogue's mean
+nearest-neighbor distance IS significantly smaller than the null's,
+even relative to diameter. That is consistent with genuine clustering
+(filamentary structure packs points more tightly on average than a
+radially-scrambled version at the same footprint and overall extent),
+not a separate artifact to correct for -- it is plausibly part of the
+same signal that produces the persistence difference, not an
+independent confound. This does not promote the result to confirmed;
+it removes the one specific mechanical alternative explanation that was
+checked.
+
 ## What this is -- and is not
 
-This is a genuine, reproducible signal in this specific pipeline
-(exact command + seeds above; anyone can rerun it). What it is **not**:
+This is a reproducible signal in this specific pipeline (exact command
++ seeds above; anyone can rerun it), with the one checked mechanical
+confound (diameter mismatch under rescaling) excluded. What it is
+**not**:
 
 - **Not a pre-registered test.** `PRE_REGISTRATION.md` contains no
   threshold for any Betti number or persistence statistic, so this
