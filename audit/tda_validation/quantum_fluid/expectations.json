@@ -1,0 +1,109 @@
+{
+ "_meta": {
+  "written": "2026-09-19, BEFORE any XY Monte Carlo, GPE solve, or STM-image analysis was run (the only things run before this file: reading the two pipeline files, a content inspection of dual_scale_datasets/domain06, a listing of the Zenodo zip's folder names, and calib_pipeline.py on synthetic inputs, whose numbers are quoted in 'calibration_measured_before_expectations').",
+  "purpose": "Pre-stated expectations for validating the DualScaleSimulator TDA pipeline (cmb_tda.betti_curves_from_topology lower-star path; cosmic_web_tda_scaled.alpha_persistence / betti_curve / top_bars alpha path) against established quantum-fluid results.",
+  "status_of_tests": "Tests 1 and 2 are simulations of established theory (2-D XY model; 2-D rotating Gross-Pitaevskii equation). They are known-physics simulations with literature reference numbers, NOT measurements. Test 3 uses real published STM data (Zenodo 10.5281/zenodo.14780459).",
+  "citation_corrections": [
+   "Donato et al. 2016 is Phys. Rev. E 93, 052138 (not PRB) and treats the MEAN-FIELD XY model and the phi^4 lattice model, not the 2-D XY BKT transition (arXiv:1601.03641 abstract). It is therefore NOT used as a reference number for the BKT test.",
+   "Cole, Loges & Shiu, Phys. Rev. B 104, 104426 (2021), arXiv:2009.14231: sublevel filtration of the raw angle field on periodic cubical complexes, 20x20 lattice, T in {0.05,...,1.50}, 200 samples per T, logistic regression on H0+H1 persistence images trained far from the transition; section 3.4.1 states 'The critical temperature is estimated as T_XY ~ 0.9'. They also report (Fig. 13) that early-death 0-cycles and late-death 1-cycles (thresholds -3pi/4 and 3pi/4) correlate with the number of vortex-antivortex pairs."
+  ],
+  "calibration_measured_before_expectations": {
+   "script": "scripts/calib_pipeline.py -> results/calib_pipeline.json",
+   "perfect_triangular_lattice_a1": "alpha_persistence: all 899 finite H0 deaths = 0.5000 (= a/2, IQR/median = 0); H1 bars born at 0.5 (a/2), die at 0.57735 (a/sqrt3), ratio 1.1547",
+   "jittered_lattice_sigma0.05a": "H0 median death 0.470, IQR/median 0.064; H1 median death 0.582",
+   "jittered_lattice_sigma0.10a": "H0 median death 0.443, IQR/median 0.133; H1 median death 0.594",
+   "poisson_same_N_same_box_5_seeds": "H0 median death ~0.29, IQR/median 0.66-0.73 (mean 0.70)",
+   "consequence": "Lattice-constant estimator from the alpha path is fixed as a_TDA = sqrt(3) * median(H1 death) (bias +0.8% at sigma=0.05a, +2.9% at sigma=0.10a); 2*median(H0 death) is reported as secondary (biased LOW by jitter: -6% at 0.05a, -11% at 0.10a). Lattice-vs-random discriminator: IQR/median of finite H0 deaths (lattice <= 0.2; Poisson ~0.70).",
+   "lower_star_checks": "Freudenthal torus V-E+F=0 for L=8,32,64; 7 Gaussian dips on a 64^2 torus give b0=7 below background and b0=1, b1=2 above all values (torus)."
+  }
+ },
+ "test1_xy_bkt": {
+  "model": "2-D XY model H = -J sum_<ij> cos(theta_i - theta_j), J = k_B = 1, square L x L lattice, periodic boundaries.",
+  "monte_carlo": "Wolff single-cluster algorithm (Wolff 1989) for the O(2) model, numba-compiled, in the separate venv /mnt/disks/disk-socrateai-local-1/venv-tdaval. One 'sweep-equivalent' = clusters until >= L^2 spins flipped. Thermalisation 1000 sweep-equivalents; measurements every 2 sweep-equivalents (integrated autocorrelation of the energy reported). L in {32, 64, 128}. T grid 0.40..1.60 step 0.05 for L=32,64 (25 temperatures); L=128: T 0.80..1.10 step 0.025 for helicity/vortex observables (TDA on L=128 only if time allows, stated). Seeds: 20260919 + 1000*L + round(1000*T).",
+  "reference_values": {
+   "T_BKT": {"value": 0.89289, "source": "Komura & Okabe, J. Phys. Soc. Jpn. 81, 113001 (2012), arXiv:1210.6116 abstract: beta_KT = 1.11996(6) -> T = 0.89289"},
+   "T_BKT_check": {"value": 0.89294, "source": "Hasenbusch, J. Phys. A 38, 5869 (2005), arXiv:cond-mat/0502556 abstract: beta_KT = 1.1199"},
+   "helicity_jump": "Upsilon(T_BKT^-) = 2 T_BKT / pi = 0.5684 (Nelson-Kosterlitz universal jump)",
+   "tda_reference": "Cole, Loges & Shiu 2021: T_XY ~ 0.9 from logistic regression on persistence images (20x20)."
+  },
+  "E1a_crosscheck_helicity": {
+   "observable": "Helicity modulus Upsilon = (1/(2L^2)) sum_{mu=x,y} [ <sum_bonds_mu cos(dtheta)> - (1/T) <(sum_bonds_mu sin(dtheta))^2> ] (independent of TDA). T_Ups(L) = crossing of Upsilon(T) with 2T/pi (linear interpolation).",
+   "expectation": "Upsilon -> ~1 at low T (spin-wave-renormalised, > 0.7 at T=0.4) and -> 0 at T=1.6; T_Ups(L) > 0.8929 and non-increasing with L (finite-size drift from above); fit T_Ups(L) = T_inf + c/(ln L)^2 over L=32,64,128 gives T_inf within 0.8929 +/- 0.03.",
+   "pass_rule": "PASS if T_inf in [0.863, 0.923] and T_Ups(128) <= T_Ups(32)."
+  },
+  "E1b_primary_tda_crossover": {
+   "pipeline_function": "cmb_tda.betti_curves_from_topology on the Freudenthal-triangulated periodic L x L torus (V=L^2, E=3L^2, F=2L^2, asserted V-E+F=0).",
+   "field": "theta_i rotated by minus the configuration's magnetisation angle, wrapped to (-pi, pi] (Cole et al. use the raw angle; the rotation fixes the arbitrary global U(1) gauge so the branch cut sits opposite the magnetisation). Sublevel direction only.",
+   "grid": "33 absolute thresholds equally spaced in [-pi, pi], converted per configuration to the function's sigma units (nu = threshold / std(theta)).",
+   "features": "concatenated b0(nu)/L^2 and b1(nu)/L^2 (66 numbers per configuration).",
+   "classifier": "sklearn StandardScaler + LogisticRegression(C=1.0, max_iter=5000), trained on T in [0.40,0.60] (label 0) and T in [1.30,1.60] (label 1) (window A), 50/50 train/test split of configurations at training temperatures with seed 0; T_TDA(L) = temperature at which the mean P(label 1) over configurations crosses 0.5 (linear interpolation).",
+   "expectation": "T_TDA(L) in [0.80, 1.05] for each L in {32, 64} (and 128 if run); T_TDA(64) <= T_TDA(32) + 0.02. The crossover is expected ABOVE or near 0.8929 at these sizes, not equal to it, because finite-size drift in the BKT class is logarithmic.",
+   "pass_rule": "PASS if both bracket and drift conditions hold."
+  },
+  "E1c_training_window_control": {
+   "why": "A logistic-regression crossing can simply sit halfway between the training windows. Window A edges midpoint = 0.95.",
+   "windows": {"B": "low [0.40,0.75], high [1.30,1.60] (edge midpoint 1.025)", "C": "low [0.40,0.60], high [1.10,1.60] (edge midpoint 0.85)"},
+   "pass_rule": "PASS if |T_TDA_B - T_TDA_A| <= 0.04 and |T_TDA_C - T_TDA_A| <= 0.04 (the crossing moves by less than about half the 0.075 shift of the window-edge midpoint) for L=64."
+  },
+  "E1d_topology_identity": {
+   "what": "Cole et al. Fig. 13 analogue: per-configuration Spearman correlation between the vortex count N_v (vortices + antivortices from wrapped plaquette winding; total winding must be exactly 0 on the torus, asserted) and b0 at threshold -3pi/4 (components of {theta <= -3pi/4}).",
+   "pass_rule": "PASS if the median over T in {0.70, 0.75, 0.80} of the Spearman rho is > 0.3 for L=64."
+  },
+  "E1e_negative_control_site_shuffle": {
+   "what": "Same configurations with sites randomly permuted (numpy default_rng(12345)), same pipeline. Shuffling keeps the one-point angle histogram and destroys spatial structure.",
+   "pass_rule": "PASS if b0(theta <= 0)/L^2 of shuffled configurations exceeds the real ones by > 5 standard errors at every T <= 1.00 for L=64 (the TDA features see spatial connectivity, not just the angle histogram). The classifier crossing on shuffled features is reported descriptively only."
+  },
+  "E1f_secondary_alpha_vortex_cloud": {
+   "pipeline_function": "cosmic_web_tda_scaled.alpha_persistence on the combined vortex+antivortex positions (plaquette centres; non-periodic, stated), max_alpha_sq = 100 (r <= 10 lattice units).",
+   "statistic": "S_pair(T) = f_short(data) / f_short(random), f_short = fraction of finite H0 deaths <= 0.75 (points within 1.5 lattice units); random = same number of points placed uniformly without replacement on the plaquette-centre lattice (seed 777 + config index). Configurations with < 4 vortices skipped.",
+   "expectation": "Bound-pair signature: S_pair > 2 at T = 0.85 and S_pair < 1.5 at T = 1.50 (L=64). This statistic tracks vortex proliferation; it is not claimed to locate T_BKT, and its crossover is expected at or above T_BKT.",
+   "pass_rule": "PASS if both inequalities hold."
+  }
+ },
+ "test2_rotating_bec": {
+  "model": "2-D GPE in the rotating frame, units hbar = m = omega_trap = 1 (length a_ho): mu psi = [-(1/2) nabla^2 + (1/2) r^2 + g |psi|^2 - Omega L_z] psi, int |psi|^2 = 1, g = 1000.",
+  "solver": "Imaginary-time Strang split-step Fourier with the rotation term split into (1/2 k_y^2 - Omega x k_y) [FFT in y] and (1/2 k_x^2 + Omega y k_x) [FFT in x] exponentials, potential+nonlinear exponential in real space, renormalisation each step. Grid 384 x 384 on [-12, 12)^2 (dx = 0.0625). dt = 0.005 then 0.002; stop when |d mu| < 1e-7 over 100 steps or at the step cap (reported). Initial state: Thomas-Fermi profile times exp(i * seeded random smooth phase), numpy default_rng(7). Omega in {0 (negative control), 0.7, 0.8, 0.9}.",
+  "derived_scales": "Coarse-grained TF radius with vortex lattice: omega' = sqrt(1 - Omega^2), R_eff^2 = 2 sqrt(g/pi) / omega'; central density n0 = mu_TF / g with mu_TF = omega' sqrt(g/pi).",
+  "reference_values": {
+   "feynman_rule": "n_v = 2 m Omega / h = Omega / pi in these units (Feynman 1955).",
+   "triangular_lattice": "Abo-Shaeer, Raman, Vogels & Ketterle, Science 292, 476 (2001): highly ordered triangular vortex lattices with > 100 vortices. Lattice constant for density Omega/pi: a_F = sqrt(2 pi / (sqrt(3) Omega)).",
+   "edge_depletion": "In a trapped condensate the vortex density falls below Omega/pi towards the Thomas-Fermi edge; the sign of the deviation of an outer-region count is therefore expected negative."
+  },
+  "E2a_h0_count_equals_winding": {
+   "pipeline_function": "cmb_tda.betti_curves_from_topology on the open grid restricted to the disk r < 0.7 R_eff (masked_grid_topology), field |psi|^2, sublevel, threshold 0.1 * n0 (in the function's sigma units). The mask removes the exterior low-density halo, so no '+1 exterior component' is expected.",
+   "independent_count": "phase winding of psi around every grid plaquette whose 4 corners lie in the same disk.",
+   "pass_rule": "PASS if b0 = N_winding exactly for every Omega, allowing a discrepancy of at most 1 per Omega that is traced to a vortex straddling the disk edge (reported explicitly). Omega = 0: b0 = 0 and N_winding = 0."
+  },
+  "E2b_feynman_density": {
+   "pass_rule": "PASS if the vortex density inside r < 0.5 R_eff is within [0.85, 1.05] x Omega/pi for each Omega in {0.7, 0.8, 0.9}, and the density inside r < 0.7 R_eff is <= 1.02 x Omega/pi (edge-depletion sign)."
+  },
+  "E2c_triangular_lattice_tda": {
+   "pipeline_function": "cosmic_web_tda_scaled.alpha_persistence (max_alpha_sq = (3 a_F)^2), top_bars with r_trunc = 3 a_F, betti_curve on vortex positions inside r < 0.7 R_eff (winding-detected, sub-grid position = plaquette centre).",
+   "pass_rule": "PASS if a_TDA = sqrt(3) * median(H1 death) is within +/- 10% of a_F, IQR/median of finite H0 deaths <= 0.2, for each Omega in {0.7, 0.8, 0.9}.",
+   "independent_crosscheck": "mean local |psi6| over vortices not on the Delaunay convex hull >= 0.9 (scipy Delaunay, not GUDHI)."
+  },
+  "E2d_negative_controls": {
+   "non_rotating": "Omega = 0: no vortex (N_winding = 0, b0 = 0).",
+   "random_points": "Uniform random points, same N, same disk (seeds 101..110): IQR/median of finite H0 deaths >= 0.4 and mean local |psi6| <= 0.6.",
+   "pass_rule": "PASS if both hold."
+  }
+ },
+ "test3_real_stm_vortex_lattice": {
+  "data": "Duhan, Sengupta, Jesudasan, Basistha & Raychaudhuri, 'Inverse melting and re-entrant transformations of the vortex lattice in amorphous Re6Zr thin film', Nature Communications 16, 2100 (2025), arXiv:2406.07027; data Zenodo 10.5281/zenodo.14780459 (CC-BY-4.0), 'STM data.zip' md5 5b97a8b60660f1f7b521f0f7a526502f: Nanonis .sxm STS conductance maps, 20 successive maps per field at 460 mK for H = 3, 4, 5, 10, 15, 20, 25, 30, 40, 50, 70 kOe.",
+  "published_quantitative_features": {
+   "lattice_parameter": "a_triangle = 1.075 sqrt(Phi0 / B), Phi0 = 2.068e-15 Wb (paper text); B = mu0 H assumed (thin film, stated). 20 kOe -> 34.57 nm (computed in script).",
+   "psi6": "Psi6 averaged over 20 images at 460 mK: ~0.035 at 3 kOe, sharp peak ~0.62 at 20 kOe, then decreasing to ~0 above 50 kOe (paper Fig. 2m and text).",
+   "minima_excess": "at 3 kOe 'the total number of minima is 10-15% larger than the expected number of vortices'."
+  },
+  "vortex_positions": "Non-TDA detector (same for every field): forward-scan conductance channel, plane-subtracted, Gaussian low-pass in Fourier space with sigma_real = a_triangle(B)/6, local minima = pixels that are the minimum within a disk of radius a_triangle(B)/3. Scan size and pixel count read from the .sxm header.",
+  "E3a_lattice_constant": {"pass_rule": "At 20 kOe, 460 mK: a_TDA = sqrt(3) * median(H1 death) of the alpha complex of the detected minima (pooled over the 20 images) within +/- 10% of 1.075 sqrt(Phi0/B)."},
+  "E3b_flux_quantisation_count": {"pass_rule": "Detected minima per image / (B * A / Phi0) in [0.90, 1.25] at 10, 15, 20, 25, 30 kOe (median over images). Reported at all fields; the paper's +10-15% excess at low field is expected."},
+  "E3c_reentrant_tda": {"pass_rule": "IQR/median of finite H0 deaths (pooled over 20 images per field, 460 mK) is minimal at 15, 20 or 25 kOe, and is larger at 3 kOe and at 70 kOe than at 20 kOe."},
+  "E3d_independent_crosscheck_psi6": {"what": "global bond-orientational order |<exp(6 i theta_b)>| over Delaunay bonds per image, averaged over 20 images (one reading of the paper's definition; the paper's exact normalisation is garbled in the text extraction, stated).", "pass_rule": "Maximum over fields at 15, 20 or 25 kOe; value at 20 kOe within 0.62 +/- 0.20; value at 3 kOe < 0.2."},
+  "E3e_negative_control": {"what": "Uniform random points with the same count in the same scan area, seeds 201..220.", "pass_rule": "IQR/median of finite H0 deaths >= 0.4 and global psi6 < 0.1."}
+ },
+ "local_file_assessment": {
+  "file": "/mnt/disks/disk-socrateai-local-1/dual_scale_datasets/domain06_supercon_abrikosov_vortices.npz",
+  "rule": "Assessed from content; NOT used as validation data under any outcome."
+ }
+}
