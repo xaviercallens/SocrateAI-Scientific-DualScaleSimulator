@@ -1,0 +1,490 @@
+{
+  "script": "05_second_branch.py",
+  "results": [
+    {
+      "id": "E05a",
+      "quantity": "second branch, dim V_flux = 1: exact solve of the tadpole for (j,k) with N_flux = 8jk",
+      "computed": {
+        "allowed_(j,k)_from_scan_up_to_KMAX": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            6,
+            1
+          ]
+        ],
+        "n_allowed": 14,
+        "N_flux_values": [
+          8,
+          16,
+          24,
+          32,
+          40,
+          48
+        ],
+        "N_D3_values": [
+          "0",
+          "4",
+          "8",
+          "12",
+          "16",
+          "20"
+        ],
+        "rows": [
+          {
+            "j": 1,
+            "k": 1,
+            "lambda0_norm": -2,
+            "N_flux_scan": 8,
+            "N_flux_realised_from_lattice_Gram": 8,
+            "N_D3": "20",
+            "phi_tau_relation": "phi*tau = -1",
+            "consistent": true
+          },
+          {
+            "j": 1,
+            "k": 2,
+            "lambda0_norm": -2,
+            "N_flux_scan": 16,
+            "N_flux_realised_from_lattice_Gram": 16,
+            "N_D3": "16",
+            "phi_tau_relation": "phi*tau = -2",
+            "consistent": true
+          },
+          {
+            "j": 1,
+            "k": 3,
+            "lambda0_norm": -2,
+            "N_flux_scan": 24,
+            "N_flux_realised_from_lattice_Gram": 24,
+            "N_D3": "12",
+            "phi_tau_relation": "phi*tau = -3",
+            "consistent": true
+          },
+          {
+            "j": 1,
+            "k": 4,
+            "lambda0_norm": -2,
+            "N_flux_scan": 32,
+            "N_flux_realised_from_lattice_Gram": 32,
+            "N_D3": "8",
+            "phi_tau_relation": "phi*tau = -4",
+            "consistent": true
+          },
+          {
+            "j": 1,
+            "k": 5,
+            "lambda0_norm": -2,
+            "N_flux_scan": 40,
+            "N_flux_realised_from_lattice_Gram": 40,
+            "N_D3": "4",
+            "phi_tau_relation": "phi*tau = -5",
+            "consistent": true
+          },
+          {
+            "j": 1,
+            "k": 6,
+            "lambda0_norm": -2,
+            "N_flux_scan": 48,
+            "N_flux_realised_from_lattice_Gram": 48,
+            "N_D3": "0",
+            "phi_tau_relation": "phi*tau = -6",
+            "consistent": true
+          },
+          {
+            "j": 2,
+            "k": 1,
+            "lambda0_norm": -4,
+            "N_flux_scan": 16,
+            "N_flux_realised_from_lattice_Gram": 16,
+            "N_D3": "16",
+            "phi_tau_relation": "phi*tau = -1",
+            "consistent": true
+          },
+          {
+            "j": 2,
+            "k": 2,
+            "lambda0_norm": -4,
+            "N_flux_scan": 32,
+            "N_flux_realised_from_lattice_Gram": 32,
+            "N_D3": "8",
+            "phi_tau_relation": "phi*tau = -2",
+            "consistent": true
+          },
+          {
+            "j": 2,
+            "k": 3,
+            "lambda0_norm": -4,
+            "N_flux_scan": 48,
+            "N_flux_realised_from_lattice_Gram": 48,
+            "N_D3": "0",
+            "phi_tau_relation": "phi*tau = -3",
+            "consistent": true
+          },
+          {
+            "j": 3,
+            "k": 1,
+            "lambda0_norm": -6,
+            "N_flux_scan": 24,
+            "N_flux_realised_from_lattice_Gram": 24,
+            "N_D3": "12",
+            "phi_tau_relation": "phi*tau = -1",
+            "consistent": true
+          },
+          {
+            "j": 3,
+            "k": 2,
+            "lambda0_norm": -6,
+            "N_flux_scan": 48,
+            "N_flux_realised_from_lattice_Gram": 48,
+            "N_D3": "0",
+            "phi_tau_relation": "phi*tau = -2",
+            "consistent": true
+          },
+          {
+            "j": 4,
+            "k": 1,
+            "lambda0_norm": -8,
+            "N_flux_scan": 32,
+            "N_flux_realised_from_lattice_Gram": 32,
+            "N_D3": "8",
+            "phi_tau_relation": "phi*tau = -1",
+            "consistent": true
+          },
+          {
+            "j": 5,
+            "k": 1,
+            "lambda0_norm": -10,
+            "N_flux_scan": 40,
+            "N_flux_realised_from_lattice_Gram": 40,
+            "N_D3": "4",
+            "phi_tau_relation": "phi*tau = -1",
+            "consistent": true
+          },
+          {
+            "j": 6,
+            "k": 1,
+            "lambda0_norm": -12,
+            "N_flux_scan": 48,
+            "N_flux_realised_from_lattice_Gram": 48,
+            "N_D3": "0",
+            "phi_tau_relation": "phi*tau = -1",
+            "consistent": true
+          }
+        ],
+        "all_realisations_consistent": true,
+        "KMAX": 24,
+        "scan_pairs_without_tadpole_(negative_control)": 576,
+        "note": "The scan grid is (j,k) in 1..KMAX x 1..KMAX stepping through every integer; the allowed set is read from the scan. Each (j,k) is only a CLASS label: flux = 2 lambda0 (a,b,c,d) with bc-ad = k has infinitely many integer matrices; identification of matrices by SL(2,Z) x SL(2,Z) is NOT asserted here."
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "flux_quantisation_even_coefficients",
+        "branch2_conditions_5.1_5.3",
+        "N_flux_formula_2.8",
+        "tadpole_total_24_eq2.3",
+        "tadpole_half_factor_eq2.3"
+      ],
+      "script": "05_second_branch.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 05_second_branch.py 1 24"
+    },
+    {
+      "id": "E05b",
+      "quantity": "second branch, dim V_flux = 2: enumeration in a window, mod G+",
+      "computed": {
+        "window": "fg entries |.|<=1",
+        "n_window_vectors": 729,
+        "negative_norm_lambda_orbit_reps_for_alpha_x": 7,
+        "tuples_(dim V_flux=2, second branch, tadpole 0<N_flux<=48)": 67152,
+        "orbits_mod_Gplus": 604,
+        "tuples_by_N_flux": {
+          "12": 10176,
+          "16": 27960,
+          "20": 4800,
+          "24": 17328,
+          "28": 768,
+          "32": 5112,
+          "40": 960,
+          "48": 48
+        },
+        "N_D3_by_N_flux": {
+          "12": "18",
+          "16": "16",
+          "20": "14",
+          "24": "12",
+          "28": "10",
+          "32": "8",
+          "40": "4",
+          "48": "0"
+        },
+        "exact_check_(5.1)_solution_with_Im_phi>0,Im_tau>0": {
+          "checked": 60,
+          "ok": 60
+        },
+        "example_orbit_reps": [
+          {
+            "lambda_ax": [
+              -1,
+              -1,
+              -1,
+              1,
+              -1,
+              1
+            ],
+            "lambda_bx": [
+              -1,
+              0,
+              -1,
+              1,
+              0,
+              -1
+            ],
+            "lambda_ay": [
+              -1,
+              0,
+              -1,
+              1,
+              0,
+              -1
+            ],
+            "lambda_by": [
+              1,
+              1,
+              1,
+              -1,
+              1,
+              -1
+            ]
+          },
+          {
+            "lambda_ax": [
+              -1,
+              -1,
+              -1,
+              1,
+              -1,
+              1
+            ],
+            "lambda_bx": [
+              -1,
+              0,
+              -1,
+              1,
+              0,
+              0
+            ],
+            "lambda_ay": [
+              -1,
+              0,
+              -1,
+              1,
+              0,
+              0
+            ],
+            "lambda_by": [
+              0,
+              1,
+              0,
+              0,
+              1,
+              -1
+            ]
+          },
+          {
+            "lambda_ax": [
+              -1,
+              0,
+              -1,
+              0,
+              -1,
+              1
+            ],
+            "lambda_bx": [
+              -1,
+              -1,
+              1,
+              -1,
+              -1,
+              1
+            ],
+            "lambda_ay": [
+              -1,
+              -1,
+              1,
+              -1,
+              -1,
+              1
+            ],
+            "lambda_by": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              -1
+            ]
+          },
+          {
+            "lambda_ax": [
+              -1,
+              0,
+              -1,
+              0,
+              -1,
+              1
+            ],
+            "lambda_bx": [
+              -1,
+              0,
+              -1,
+              1,
+              0,
+              -1
+            ],
+            "lambda_ay": [
+              -1,
+              0,
+              -1,
+              1,
+              0,
+              -1
+            ],
+            "lambda_by": [
+              1,
+              0,
+              1,
+              0,
+              1,
+              -1
+            ]
+          }
+        ]
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "flux_quantisation_even_coefficients",
+        "branch2_conditions_5.1_5.3",
+        "N_flux_formula_2.8",
+        "tadpole_total_24_eq2.3",
+        "tadpole_half_factor_eq2.3",
+        "group_G_definition",
+        "window_bounds"
+      ],
+      "script": "05_second_branch.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 05_second_branch.py 1 24"
+    },
+    {
+      "id": "E05c",
+      "quantity": "unfixed moduli in the second branch (TT quotations)",
+      "computed": {
+        "quotes": {
+          "5.4_5.5": {
+            "line": 1091,
+            "text": "which is 36 dimensional, while the moduli space of Einstein metrics has the form (again"
+          },
+          "5.4_5.5b": {
+            "line": 1098,
+            "text": "which is 52 dimensional."
+          },
+          "5.3_38": {
+            "line": 1194,
+            "text": "O(1, 18)) (upto discrete identifications), which is 38 dimensional and the moduli space of"
+          },
+          "5.3_55": {
+            "line": 1196,
+            "text": "identifications), which is 55 dimensional."
+          },
+          "5.3_phi_tau": {
+            "line": 1191,
+            "text": "\u03c6\u03c4 = \u22121. (5.9)"
+          },
+          "second_branch_all_orbifold": {
+            "line": 1121,
+            "text": "branch correspond to orbifold singularities. From \u00a72.3 we learn that there exists an orbifold"
+          },
+          "N2": {
+            "line": 1137,
+            "text": "essary and sufficient conditions for N = 2 supersymmetry."
+          },
+          "T2_volume": {
+            "line": 1119,
+            "text": "Ka\u0308hler modulus of the T 2 is not constrained at all."
+          }
+        },
+        "summary": "second branch: dim V_flux<=2; only ONE complex relation between phi and tau (dim 1: phi*tau = -k, dim 2: tau = p - r phi with r phi^2+(s-p)phi-q=0 fixes both); T2 Kahler modulus unconstrained; K3 complex structure only partially fixed (Grassmannian O(3,17) or O(3,18) type, 36 or 38 dimensional); N=2 supersymmetry; all such solutions sit at K3 orbifold points (TT)."
+      },
+      "shared_inputs": [
+        "branch2_conditions_5.1_5.3"
+      ],
+      "script": "05_second_branch.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 05_second_branch.py 1 24"
+    }
+  ],
+  "rigidity": [
+    {
+      "parameter_inserted": "the set of (j,k) with N_flux = 8jk <= 48, i.e. jk <= 6 (second branch, dim 1)",
+      "selecting_condition": "N_D3 = 24 - N_flux/2 >= 0 with N_flux = 8jk (from the lattice Gram) and k>0 for Im phi, Im tau>0",
+      "condition_uses_true_value": true,
+      "solution_set": "the (j,k) with jk<=6 (14 pairs; read from E05a)",
+      "classification": "CONDITIONAL_ON_INPUT",
+      "input_it_depends_on": "tadpole_total_24_eq2.3",
+      "negative_control": "without the tadpole every one of the KMAX^2 scanned (j,k) is admissible",
+      "control_perturbs_same_parameter": true
+    }
+  ],
+  "literature_checks": [],
+  "could_not_do": [
+    "second branch dim V_flux = 2 enumerated only in the stated window; dim V_flux = 1 solved exactly as classes (j,k) but not counted modulo a duality group"
+  ],
+  "wall_seconds": 19.6
+}

@@ -1,0 +1,142 @@
+[
+ {
+  "name": "TT_H33_gram_A3",
+  "value": "parsed 6x6 matrix (three hyperbolic planes)",
+  "tier": "L",
+  "why": "TT (A.3), parsed from pinned text by common.parse_H33",
+  "source": {
+   "line": 1787,
+   "text": "where the matrix H3,3 is defined as"
+  }
+ },
+ {
+  "name": "TT_E8_cartan_A4",
+  "value": "parsed 8x8 Cartan matrix",
+  "tier": "L",
+  "why": "TT (A.4), parsed by common.parse_E8",
+  "source": {
+   "line": 1803,
+   "text": "and E8 is the Catran matrix of E8 algebra :"
+  }
+ },
+ {
+  "name": "TT_A6_gram_A6_A7",
+  "value": "diag(2,2,2,-2,-2,-2)",
+  "tier": "L",
+  "why": "TT (A.6)-(A.7): (e_i,e_i)=+2 (i<=3), -2 (i>=4), others 0; typed here as sympy.diag",
+  "source": {
+   "line": 1870,
+   "text": "(e4 , e4 ) = (e5 , e5 ) = (e6 , e6 ) = \u22122,"
+  }
+ },
+ {
+  "name": "embedding_A6_into_U3",
+  "value": "e_i = f_i + g_i, e_{i+3} = f_i - g_i (i=1,2,3)",
+  "tier": "declared structural choice",
+  "why": "one isometric embedding of the (A.6) Gram into U^3; index |det| = 8 is forced for any isometric embedding (01)"
+ },
+ {
+  "name": "flux_quantisation_even_coefficients",
+  "value": "flux vector = 2*lambda, lambda in Gamma",
+  "tier": "L",
+  "why": "TT (2.5) and App A remark: even coefficients",
+  "source": {
+   "line": 223,
+   "text": "ing into account the quantisation condition that \u03b1ix is even integer, similarly for \u03b1y , \u03b2x , \u03b2y ."
+  }
+ },
+ {
+  "name": "tadpole_total_24_eq2.3",
+  "value": 24,
+  "tier": "L",
+  "why": "TT (2.3) right-hand side 24 (typed; NOT derived here; the tier-L bookkeeping 4*2+16*1 is in literature_checks)",
+  "source": {
+   "line": 171,
+   "text": "Nf lux + ND3 = 24 , (2.3)"
+  }
+ },
+ {
+  "name": "tadpole_half_factor_eq2.3",
+  "value": "1/2",
+  "tier": "L",
+  "why": "TT (2.3): (1/2) N_flux + N_D3 = 24; decided against line-941 prose by 02",
+  "source": {
+   "line": 171,
+   "text": "Nf lux + ND3 = 24 , (2.3)"
+  }
+ },
+ {
+  "name": "N_flux_formula_2.8",
+  "value": "N_flux = -beta_x.alpha_y + beta_y.alpha_x",
+  "tier": "L",
+  "why": "TT (2.8)",
+  "source": {
+   "line": 229,
+   "text": "Nf lux = (\u03b2x \u2227 \u03b1y \u2227 dx \u2227 dy + \u03b2y \u2227 \u03b1x \u2227 dy \u2227 dx) = (\u2212\u03b2x \u00b7 \u03b1y + \u03b2y \u00b7 \u03b1x ) . (2.8)"
+  }
+ },
+ {
+  "name": "sec41_conditions_4.8_4.10",
+  "value": "alpha_y=-beta_x, beta_y=alpha_x, alpha_x^2=beta_x^2, alpha_x.beta_x=0, V_flux type (2+,0-)",
+  "tier": "L",
+  "why": "TT section 4.1 eqs (4.8)-(4.10)",
+  "source": {
+   "line": 848,
+   "text": "\u03b1y = \u2212\u03b2x and \u03b2y = \u03b1x . (4.8)"
+  }
+ },
+ {
+  "name": "sec42_conditions_4.24_4.25",
+  "value": "(4.24) alpha_x.alpha_y = beta_x.beta_y = alpha_x.beta_y+alpha_y.beta_x = 0; (4.25) beta_x^2 = 2 alpha_x^2 = 2 alpha_x.beta_x, same for y",
+  "tier": "L",
+  "why": "TT section 4.2; then phi=(1+-i)/2, tau = i sqrt(alpha_yy/alpha_xx)",
+  "source": {
+   "line": 953,
+   "text": "(\u03b1x \u00b7 \u03b1y ) = (\u03b2x \u00b7 \u03b2y ) = (\u03b1x \u00b7 \u03b2y + \u03b1y \u00b7 \u03b2x ) = 0 . (4.24)"
+  }
+ },
+ {
+  "name": "branch2_conditions_5.1_5.3",
+  "value": "G_zbar=0 i.e. (alpha_x-phi beta_x) tau = alpha_y - phi beta_y; dim V_flux <= 2 spanned by timelike vectors",
+  "tier": "L",
+  "why": "TT section 5.1",
+  "source": {
+   "line": 1025,
+   "text": "Gz\u0304 = nx \u03c4 \u2212 ny = 0 . (5.1)"
+  }
+ },
+ {
+  "name": "orbifold_criterion_TT_3.3",
+  "value": "singular iff V_flux contains a lattice vector orthogonal to Omega",
+  "tier": "L",
+  "why": "TT section 3.3 'Orbifold Singularities'",
+  "source": {
+   "line": 735,
+   "text": "singularity iff Vf lux contains a Lattice Vector v of \u03933,19 , which is orthogonal to \u2126. If no"
+  }
+ },
+ {
+  "name": "group_G_definition",
+  "value": "(Z2 x Z2) wr S3 on U+U+U, order 384; G+ = det +1 on positive 3-block, order 192",
+  "tier": "declared structural choice",
+  "why": "explicit finite subgroup of O(Gamma); verified isometry in 01"
+ },
+ {
+  "name": "window_bounds",
+  "value": "entry bound N on lambda coordinates (recorded in every count)",
+  "tier": "declared truncation",
+  "why": "counts are counts inside a finite window; the tadpole does not bound entries in indefinite signature (control in 03)"
+ },
+ {
+  "name": "TT_printed_examples_expected",
+  "value": "(4.16) N_D3=16; (4.32) N_flux=32, 8 D3; (5.3) N_flux/2=4, 20 D3",
+  "tier": "L (expected only)",
+  "why": "used only as 'expected' fields after computing; line numbers by grep"
+ },
+ {
+  "name": "T4Z2_fixed_points_from_track_D",
+  "value": "16 (read from audit/k3t2_rigidity_v3/D-tda/exports.json; also computed here tier B: 16)",
+  "tier": "cross-track import",
+  "why": "number of T^4/Z2 singular points; not typed"
+ }
+]

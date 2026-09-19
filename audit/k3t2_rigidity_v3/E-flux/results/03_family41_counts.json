@@ -1,0 +1,1293 @@
+{
+  "script": "03_family41_counts.py",
+  "results": [
+    {
+      "id": "E03a",
+      "quantity": "TT section 4.1 family in unimodular Gamma_{3,3}: ordered pairs, N_D3 values, counts modulo G and G+ (window-restricted)",
+      "computed": {
+        "windows": [
+          {
+            "rank": 6,
+            "N": 1,
+            "n_lattice_vectors_in_window": 729,
+            "window_G_invariant_(6_sample_elements_checked_exactly)": true,
+            "per_m_(m=lambda^2)": {
+              "2": {
+                "n_vectors_of_norm_m": 174,
+                "ordered_pairs": 6264,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 8,
+                "N_flux": 16,
+                "N_D3": "16",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 120,
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  29
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  51
+                ],
+                "orbits_mod_G_of_A6_subfamily": [
+                  384,
+                  3
+                ],
+                "orbits_mod_G_plus_of_A6_subfamily": [
+                  192,
+                  3
+                ],
+                "A6_subfamily_O(Gamma33)_classes_hit_(distinct_invariants)": 1,
+                "cheap_invariants_distinct_(lower_bound,_all_pairs)": 1,
+                "cheap_invariants_values": [
+                  [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "O(Gamma33)_invariants_distinct_(lower_bound_on_orbits)": 1,
+                "invariants_computed_on": "all pairs",
+                "generated_subgroup_components_(upper_bound_on_orbits)": 1,
+                "generators_used": [
+                  "GL3_E01",
+                  "GL3_E02",
+                  "GL3_E10",
+                  "GL3_E12",
+                  "GL3_E20",
+                  "GL3_E21",
+                  "Bshift_01",
+                  "Bshift_02",
+                  "Bshift_12",
+                  "swap_0",
+                  "swap_1",
+                  "swap_2"
+                ],
+                "lower_eq_upper": true,
+                "greedy_reduction_sample": {
+                  "samples": 1500,
+                  "distinct_classes_after_reduction": 1,
+                  "max_abs_entry_after_reduction": 1,
+                  "classes_subset_of_smaller_window_full_invariant_classes": null
+                }
+              },
+              "4": {
+                "n_vectors_of_norm_m": 60,
+                "ordered_pairs": 792,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 16,
+                "N_flux": 32,
+                "N_D3": "8",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 24,
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  7
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  13
+                ],
+                "orbits_mod_G_of_A6_subfamily": [
+                  384,
+                  1
+                ],
+                "orbits_mod_G_plus_of_A6_subfamily": [
+                  192,
+                  1
+                ],
+                "A6_subfamily_O(Gamma33)_classes_hit_(distinct_invariants)": 1,
+                "cheap_invariants_distinct_(lower_bound,_all_pairs)": 2,
+                "cheap_invariants_values": [
+                  [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2,
+                    2,
+                    2
+                  ]
+                ],
+                "O(Gamma33)_invariants_distinct_(lower_bound_on_orbits)": 2,
+                "invariants_computed_on": "all pairs",
+                "generated_subgroup_components_(upper_bound_on_orbits)": 2,
+                "generators_used": [
+                  "GL3_E01",
+                  "GL3_E02",
+                  "GL3_E10",
+                  "GL3_E12",
+                  "GL3_E20",
+                  "GL3_E21",
+                  "Bshift_01",
+                  "Bshift_02",
+                  "Bshift_12",
+                  "swap_0",
+                  "swap_1",
+                  "swap_2"
+                ],
+                "lower_eq_upper": true,
+                "greedy_reduction_sample": {
+                  "samples": 1500,
+                  "distinct_classes_after_reduction": 2,
+                  "max_abs_entry_after_reduction": 2,
+                  "classes_subset_of_smaller_window_full_invariant_classes": null
+                }
+              },
+              "6": {
+                "n_vectors_of_norm_m": 8,
+                "ordered_pairs": 0,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 24,
+                "N_flux": 48,
+                "N_D3": "0",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              }
+            },
+            "total_pairs_WITHOUT_tadpole_bound_(negative_control)": 7056,
+            "total_pairs_WITH_tadpole_bound": 7056,
+            "tadpole_allowed_m_values_found_by_scan": [
+              2,
+              4,
+              6
+            ],
+            "alpha_x_sq_values_with_tadpole": [
+              8,
+              16,
+              24
+            ],
+            "N_D3_values_with_tadpole": [
+              "0",
+              "16",
+              "8"
+            ],
+            "seconds": 10.1
+          },
+          {
+            "rank": 6,
+            "N": 2,
+            "n_lattice_vectors_in_window": 15625,
+            "window_G_invariant_(6_sample_elements_checked_exactly)": true,
+            "per_m_(m=lambda^2)": {
+              "2": {
+                "n_vectors_of_norm_m": 1278,
+                "ordered_pairs": 171096,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 8,
+                "N_flux": 16,
+                "N_D3": "16",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 6744,
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  599
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  1103
+                ],
+                "orbits_mod_G_of_A6_subfamily": [
+                  384,
+                  37
+                ],
+                "orbits_mod_G_plus_of_A6_subfamily": [
+                  192,
+                  63
+                ],
+                "A6_subfamily_O(Gamma33)_classes_hit_(distinct_invariants)": 1,
+                "cheap_invariants_distinct_(lower_bound,_all_pairs)": 1,
+                "cheap_invariants_values": [
+                  [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "O(Gamma33)_invariants_distinct_(lower_bound_on_orbits)": 1,
+                "invariants_computed_on": "all pairs",
+                "generated_subgroup_components_(upper_bound_on_orbits)": 1,
+                "generators_used": [
+                  "GL3_E01",
+                  "GL3_E02",
+                  "GL3_E10",
+                  "GL3_E12",
+                  "GL3_E20",
+                  "GL3_E21",
+                  "Bshift_01",
+                  "Bshift_02",
+                  "Bshift_12",
+                  "swap_0",
+                  "swap_1",
+                  "swap_2"
+                ],
+                "lower_eq_upper": true,
+                "greedy_reduction_sample": {
+                  "samples": 1500,
+                  "distinct_classes_after_reduction": 1,
+                  "max_abs_entry_after_reduction": 3,
+                  "classes_subset_of_smaller_window_full_invariant_classes": null
+                }
+              },
+              "4": {
+                "n_vectors_of_norm_m": 1920,
+                "ordered_pairs": 288120,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 16,
+                "N_flux": 32,
+                "N_D3": "8",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 1080,
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  894
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  1730
+                ],
+                "orbits_mod_G_of_A6_subfamily": [
+                  384,
+                  13
+                ],
+                "orbits_mod_G_plus_of_A6_subfamily": [
+                  192,
+                  21
+                ],
+                "A6_subfamily_O(Gamma33)_classes_hit_(distinct_invariants)": 2,
+                "cheap_invariants_distinct_(lower_bound,_all_pairs)": 2,
+                "cheap_invariants_values": [
+                  [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2,
+                    2,
+                    2
+                  ]
+                ],
+                "O(Gamma33)_invariants_distinct_(lower_bound_on_orbits)": 2,
+                "invariants_computed_on": "all pairs",
+                "generated_subgroup_components_(upper_bound_on_orbits)": 2,
+                "generators_used": [
+                  "GL3_E01",
+                  "GL3_E02",
+                  "GL3_E10",
+                  "GL3_E12",
+                  "GL3_E20",
+                  "GL3_E21",
+                  "Bshift_01",
+                  "Bshift_02",
+                  "Bshift_12",
+                  "swap_0",
+                  "swap_1",
+                  "swap_2"
+                ],
+                "lower_eq_upper": true,
+                "greedy_reduction_sample": {
+                  "samples": 1500,
+                  "distinct_classes_after_reduction": 2,
+                  "max_abs_entry_after_reduction": 3,
+                  "classes_subset_of_smaller_window_full_invariant_classes": null
+                }
+              },
+              "6": {
+                "n_vectors_of_norm_m": 848,
+                "ordered_pairs": 64224,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 24,
+                "N_flux": 48,
+                "N_D3": "0",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 1824,
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  213
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  405
+                ],
+                "orbits_mod_G_of_A6_subfamily": [
+                  384,
+                  7
+                ],
+                "orbits_mod_G_plus_of_A6_subfamily": [
+                  192,
+                  11
+                ],
+                "A6_subfamily_O(Gamma33)_classes_hit_(distinct_invariants)": 1,
+                "cheap_invariants_distinct_(lower_bound,_all_pairs)": 1,
+                "cheap_invariants_values": [
+                  [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "O(Gamma33)_invariants_distinct_(lower_bound_on_orbits)": 1,
+                "invariants_computed_on": "all pairs",
+                "generated_subgroup_components_(upper_bound_on_orbits)": 1,
+                "generators_used": [
+                  "GL3_E01",
+                  "GL3_E02",
+                  "GL3_E10",
+                  "GL3_E12",
+                  "GL3_E20",
+                  "GL3_E21",
+                  "Bshift_01",
+                  "Bshift_02",
+                  "Bshift_12",
+                  "swap_0",
+                  "swap_1",
+                  "swap_2"
+                ],
+                "lower_eq_upper": true,
+                "greedy_reduction_sample": {
+                  "samples": 1500,
+                  "distinct_classes_after_reduction": 1,
+                  "max_abs_entry_after_reduction": 3,
+                  "classes_subset_of_smaller_window_full_invariant_classes": null
+                }
+              },
+              "8": {
+                "n_vectors_of_norm_m": 1230,
+                "ordered_pairs": 103320,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 32,
+                "N_flux": 64,
+                "N_D3": "-8",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 7032
+              },
+              "10": {
+                "n_vectors_of_norm_m": 408,
+                "ordered_pairs": 8496,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 40,
+                "N_flux": 80,
+                "N_D3": "-16",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 1200
+              },
+              "12": {
+                "n_vectors_of_norm_m": 568,
+                "ordered_pairs": 27072,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 48,
+                "N_flux": 96,
+                "N_D3": "-24",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "14": {
+                "n_vectors_of_norm_m": 120,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 56,
+                "N_flux": 112,
+                "N_D3": "-32",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "16": {
+                "n_vectors_of_norm_m": 204,
+                "ordered_pairs": 3672,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 64,
+                "N_flux": 128,
+                "N_D3": "-40",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 792
+              },
+              "18": {
+                "n_vectors_of_norm_m": 24,
+                "ordered_pairs": 96,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 72,
+                "N_flux": 144,
+                "N_D3": "-48",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 96
+              },
+              "20": {
+                "n_vectors_of_norm_m": 48,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 80,
+                "N_flux": 160,
+                "N_D3": "-56",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "24": {
+                "n_vectors_of_norm_m": 8,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 96,
+                "N_flux": 192,
+                "N_D3": "-72",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              }
+            },
+            "total_pairs_WITHOUT_tadpole_bound_(negative_control)": 666096,
+            "total_pairs_WITH_tadpole_bound": 523440,
+            "tadpole_allowed_m_values_found_by_scan": [
+              2,
+              4,
+              6
+            ],
+            "alpha_x_sq_values_with_tadpole": [
+              8,
+              16,
+              24
+            ],
+            "N_D3_values_with_tadpole": [
+              "0",
+              "16",
+              "8"
+            ],
+            "seconds": 59.5
+          },
+          {
+            "rank": 6,
+            "N": 3,
+            "n_lattice_vectors_in_window": 117649,
+            "window_G_invariant_(6_sample_elements_checked_exactly)": true,
+            "per_m_(m=lambda^2)": {
+              "2": {
+                "n_vectors_of_norm_m": 5718,
+                "ordered_pairs": 1872024,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 8,
+                "N_flux": 16,
+                "N_D3": "16",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 48600,
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  5469
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  10611
+                ],
+                "orbits_mod_G_of_A6_subfamily": [
+                  384,
+                  201
+                ],
+                "orbits_mod_G_plus_of_A6_subfamily": [
+                  192,
+                  363
+                ],
+                "A6_subfamily_O(Gamma33)_classes_hit_(distinct_invariants)": 1,
+                "cheap_invariants_distinct_(lower_bound,_all_pairs)": 1,
+                "cheap_invariants_values": [
+                  [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "O(Gamma33)_invariants_distinct_(lower_bound_on_orbits)": 1,
+                "invariants_computed_on": "random 400000-pair subsample (lower bound only)",
+                "generated_subgroup_components_(upper_bound_on_orbits)": 1,
+                "generators_used": [
+                  "GL3_E01",
+                  "GL3_E02",
+                  "GL3_E10",
+                  "GL3_E12",
+                  "GL3_E20",
+                  "GL3_E21",
+                  "Bshift_01",
+                  "Bshift_02",
+                  "Bshift_12",
+                  "swap_0",
+                  "swap_1",
+                  "swap_2"
+                ],
+                "lower_eq_upper": true,
+                "greedy_reduction_sample": {
+                  "samples": 1500,
+                  "distinct_classes_after_reduction": 1,
+                  "max_abs_entry_after_reduction": 4,
+                  "classes_subset_of_smaller_window_full_invariant_classes": true
+                }
+              },
+              "4": {
+                "n_vectors_of_norm_m": 6336,
+                "ordered_pairs": 2096376,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 16,
+                "N_flux": 32,
+                "N_D3": "8",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 37560,
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  6040
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  11666
+                ],
+                "orbits_mod_G_of_A6_subfamily": [
+                  384,
+                  163
+                ],
+                "orbits_mod_G_plus_of_A6_subfamily": [
+                  192,
+                  281
+                ],
+                "A6_subfamily_O(Gamma33)_classes_hit_(distinct_invariants)": 2,
+                "cheap_invariants_distinct_(lower_bound,_all_pairs)": 2,
+                "cheap_invariants_values": [
+                  [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ],
+                  [
+                    1,
+                    1,
+                    2,
+                    2,
+                    2
+                  ]
+                ],
+                "O(Gamma33)_invariants_distinct_(lower_bound_on_orbits)": 2,
+                "invariants_computed_on": "random 400000-pair subsample (lower bound only)",
+                "generated_subgroup_components_(upper_bound_on_orbits)": 2,
+                "generators_used": [
+                  "GL3_E01",
+                  "GL3_E02",
+                  "GL3_E10",
+                  "GL3_E12",
+                  "GL3_E20",
+                  "GL3_E21",
+                  "Bshift_01",
+                  "Bshift_02",
+                  "Bshift_12",
+                  "swap_0",
+                  "swap_1",
+                  "swap_2"
+                ],
+                "lower_eq_upper": true,
+                "greedy_reduction_sample": {
+                  "samples": 1500,
+                  "distinct_classes_after_reduction": 2,
+                  "max_abs_entry_after_reduction": 4,
+                  "classes_subset_of_smaller_window_full_invariant_classes": true
+                }
+              },
+              "6": {
+                "n_vectors_of_norm_m": 7052,
+                "ordered_pairs": 2399040,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 24,
+                "N_flux": 48,
+                "N_D3": "0",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 60864,
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  6630
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  13056
+                ],
+                "orbits_mod_G_of_A6_subfamily": [
+                  384,
+                  204
+                ],
+                "orbits_mod_G_plus_of_A6_subfamily": [
+                  192,
+                  362
+                ],
+                "A6_subfamily_O(Gamma33)_classes_hit_(distinct_invariants)": 1,
+                "cheap_invariants_distinct_(lower_bound,_all_pairs)": 1,
+                "cheap_invariants_values": [
+                  [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1
+                  ]
+                ],
+                "O(Gamma33)_invariants_distinct_(lower_bound_on_orbits)": 1,
+                "invariants_computed_on": "random 400000-pair subsample (lower bound only)",
+                "generated_subgroup_components_(upper_bound_on_orbits)": 1,
+                "generators_used": [
+                  "GL3_E01",
+                  "GL3_E02",
+                  "GL3_E10",
+                  "GL3_E12",
+                  "GL3_E20",
+                  "GL3_E21",
+                  "Bshift_01",
+                  "Bshift_02",
+                  "Bshift_12",
+                  "swap_0",
+                  "swap_1",
+                  "swap_2"
+                ],
+                "lower_eq_upper": true,
+                "greedy_reduction_sample": {
+                  "samples": 1500,
+                  "distinct_classes_after_reduction": 1,
+                  "max_abs_entry_after_reduction": 5,
+                  "classes_subset_of_smaller_window_full_invariant_classes": true
+                }
+              },
+              "8": {
+                "n_vectors_of_norm_m": 5406,
+                "ordered_pairs": 1319640,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 32,
+                "N_flux": 64,
+                "N_D3": "-8",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 48696
+              },
+              "10": {
+                "n_vectors_of_norm_m": 4224,
+                "ordered_pairs": 655824,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 40,
+                "N_flux": 80,
+                "N_D3": "-16",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 12048
+              },
+              "12": {
+                "n_vectors_of_norm_m": 5908,
+                "ordered_pairs": 1371936,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 48,
+                "N_flux": 96,
+                "N_D3": "-24",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 32256
+              },
+              "14": {
+                "n_vectors_of_norm_m": 3360,
+                "ordered_pairs": 352704,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 56,
+                "N_flux": 112,
+                "N_D3": "-32",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 11712
+              },
+              "16": {
+                "n_vectors_of_norm_m": 3012,
+                "ordered_pairs": 311352,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 64,
+                "N_flux": 128,
+                "N_D3": "-40",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 9528
+              },
+              "18": {
+                "n_vectors_of_norm_m": 3718,
+                "ordered_pairs": 478104,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 72,
+                "N_flux": 144,
+                "N_D3": "-48",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 11736
+              },
+              "20": {
+                "n_vectors_of_norm_m": 2040,
+                "ordered_pairs": 140976,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 80,
+                "N_flux": 160,
+                "N_D3": "-56",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 3696
+              },
+              "22": {
+                "n_vectors_of_norm_m": 1560,
+                "ordered_pairs": 70080,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 88,
+                "N_flux": 176,
+                "N_D3": "-64",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "24": {
+                "n_vectors_of_norm_m": 2024,
+                "ordered_pairs": 156672,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 96,
+                "N_flux": 192,
+                "N_D3": "-72",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 6720
+              },
+              "26": {
+                "n_vectors_of_norm_m": 984,
+                "ordered_pairs": 22704,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 104,
+                "N_flux": 208,
+                "N_D3": "-80",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 1584
+              },
+              "28": {
+                "n_vectors_of_norm_m": 600,
+                "ordered_pairs": 6144,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 112,
+                "N_flux": 224,
+                "N_D3": "-88",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "30": {
+                "n_vectors_of_norm_m": 1056,
+                "ordered_pairs": 55872,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 120,
+                "N_flux": 240,
+                "N_D3": "-96",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "32": {
+                "n_vectors_of_norm_m": 336,
+                "ordered_pairs": 1920,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 128,
+                "N_flux": 256,
+                "N_D3": "-104",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 192
+              },
+              "34": {
+                "n_vectors_of_norm_m": 240,
+                "ordered_pairs": 576,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 136,
+                "N_flux": 272,
+                "N_D3": "-112",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 192
+              },
+              "36": {
+                "n_vectors_of_norm_m": 412,
+                "ordered_pairs": 8856,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 144,
+                "N_flux": 288,
+                "N_D3": "-120",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 408
+              },
+              "38": {
+                "n_vectors_of_norm_m": 120,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 152,
+                "N_flux": 304,
+                "N_D3": "-128",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "40": {
+                "n_vectors_of_norm_m": 48,
+                "ordered_pairs": 384,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 160,
+                "N_flux": 320,
+                "N_D3": "-136",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "42": {
+                "n_vectors_of_norm_m": 144,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 168,
+                "N_flux": 336,
+                "N_D3": "-144",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "44": {
+                "n_vectors_of_norm_m": 24,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 176,
+                "N_flux": 352,
+                "N_D3": "-152",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "48": {
+                "n_vectors_of_norm_m": 48,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 192,
+                "N_flux": 384,
+                "N_D3": "-168",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              },
+              "54": {
+                "n_vectors_of_norm_m": 8,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 216,
+                "N_flux": 432,
+                "N_D3": "-192",
+                "ordered_pairs_in_A6_subfamily_(lambda in D)": 0
+              }
+            },
+            "total_pairs_WITHOUT_tadpole_bound_(negative_control)": 11321184,
+            "total_pairs_WITH_tadpole_bound": 6367440,
+            "tadpole_allowed_m_values_found_by_scan": [
+              2,
+              4,
+              6
+            ],
+            "alpha_x_sq_values_with_tadpole": [
+              8,
+              16,
+              24
+            ],
+            "N_D3_values_with_tadpole": [
+              "0",
+              "16",
+              "8"
+            ],
+            "seconds": 306.4
+          },
+          {
+            "rank": 8,
+            "N": 1,
+            "n_lattice_vectors_in_window": 6561,
+            "window_G_invariant_(6_sample_elements_checked_exactly)": true,
+            "per_m_(m=lambda^2)": {
+              "2": {
+                "n_vectors_of_norm_m": 534,
+                "ordered_pairs": 30744,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 8,
+                "N_flux": 16,
+                "N_D3": "16",
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  221
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  411
+                ]
+              },
+              "4": {
+                "n_vectors_of_norm_m": 108,
+                "ordered_pairs": 1656,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 16,
+                "N_flux": 32,
+                "N_D3": "8",
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  31
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  49
+                ]
+              },
+              "6": {
+                "n_vectors_of_norm_m": 8,
+                "ordered_pairs": 0,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 24,
+                "N_flux": 48,
+                "N_D3": "0"
+              }
+            },
+            "total_pairs_WITHOUT_tadpole_bound_(negative_control)": 32400,
+            "total_pairs_WITH_tadpole_bound": 32400,
+            "tadpole_allowed_m_values_found_by_scan": [
+              2,
+              4,
+              6
+            ],
+            "alpha_x_sq_values_with_tadpole": [
+              8,
+              16,
+              24
+            ],
+            "N_D3_values_with_tadpole": [
+              "0",
+              "16",
+              "8"
+            ],
+            "seconds": 1.2
+          },
+          {
+            "rank": 8,
+            "N": 2,
+            "n_lattice_vectors_in_window": 390625,
+            "window_G_invariant_(6_sample_elements_checked_exactly)": true,
+            "per_m_(m=lambda^2)": {
+              "2": {
+                "n_vectors_of_norm_m": 23442,
+                "ordered_pairs": 31994808,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 8,
+                "N_flux": 16,
+                "N_D3": "16",
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  105483
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  203683
+                ]
+              },
+              "4": {
+                "n_vectors_of_norm_m": 12960,
+                "ordered_pairs": 7136760,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 16,
+                "N_flux": 32,
+                "N_D3": "8",
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  28458
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  55278
+                ]
+              },
+              "6": {
+                "n_vectors_of_norm_m": 12548,
+                "ordered_pairs": 6256992,
+                "tadpole_allowed": true,
+                "alpha_x_sq": 24,
+                "N_flux": 48,
+                "N_D3": "0",
+                "orbits_mod_G_(order,count)": [
+                  384,
+                  23381
+                ],
+                "orbits_mod_G_plus_(order,count)": [
+                  192,
+                  45933
+                ]
+              },
+              "8": {
+                "n_vectors_of_norm_m": 5622,
+                "ordered_pairs": 1833912,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 32,
+                "N_flux": 64,
+                "N_D3": "-8"
+              },
+              "10": {
+                "n_vectors_of_norm_m": 5216,
+                "ordered_pairs": 788976,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 40,
+                "N_flux": 80,
+                "N_D3": "-16"
+              },
+              "12": {
+                "n_vectors_of_norm_m": 1720,
+                "ordered_pairs": 161280,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 48,
+                "N_flux": 96,
+                "N_D3": "-24"
+              },
+              "14": {
+                "n_vectors_of_norm_m": 1632,
+                "ordered_pairs": 86976,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 56,
+                "N_flux": 112,
+                "N_D3": "-32"
+              },
+              "16": {
+                "n_vectors_of_norm_m": 396,
+                "ordered_pairs": 9144,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 64,
+                "N_flux": 128,
+                "N_D3": "-40"
+              },
+              "18": {
+                "n_vectors_of_norm_m": 360,
+                "ordered_pairs": 96,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 72,
+                "N_flux": 144,
+                "N_D3": "-48"
+              },
+              "20": {
+                "n_vectors_of_norm_m": 48,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 80,
+                "N_flux": 160,
+                "N_D3": "-56"
+              },
+              "22": {
+                "n_vectors_of_norm_m": 48,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 88,
+                "N_flux": 176,
+                "N_D3": "-64"
+              },
+              "24": {
+                "n_vectors_of_norm_m": 8,
+                "ordered_pairs": 0,
+                "tadpole_allowed": false,
+                "alpha_x_sq": 96,
+                "N_flux": 192,
+                "N_D3": "-72"
+              }
+            },
+            "total_pairs_WITHOUT_tadpole_bound_(negative_control)": 48268944,
+            "total_pairs_WITH_tadpole_bound": 45388560,
+            "tadpole_allowed_m_values_found_by_scan": [
+              2,
+              4,
+              6
+            ],
+            "alpha_x_sq_values_with_tadpole": [
+              8,
+              16,
+              24
+            ],
+            "N_D3_values_with_tadpole": [
+              "0",
+              "16",
+              "8"
+            ],
+            "seconds": 278.1
+          }
+        ],
+        "TADPOLE_TOTAL_read_from_declared_input": 24,
+        "truncation_statement": "every count is inside the stated window (rank, N); the tadpole does not bound entries (see E03b)",
+        "orbit_meaning": "orbits of the FINITE group G (or G+) on the window-set; NOT physically distinct vacua; NOT O(Gamma) orbits"
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "TT_E8_cartan_A4",
+        "flux_quantisation_even_coefficients",
+        "sec41_conditions_4.8_4.10",
+        "tadpole_total_24_eq2.3",
+        "tadpole_half_factor_eq2.3",
+        "group_G_definition",
+        "window_bounds",
+        "embedding_A6_into_U3"
+      ],
+      "script": "03_family41_counts.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 03_family41_counts.py 3 2"
+    },
+    {
+      "id": "E03b",
+      "quantity": "negative control: growth of the count with the window, WITH and WITHOUT the tadpole bound",
+      "computed": {
+        "with_tadpole_(rank,N,pairs)": [
+          [
+            6,
+            1,
+            7056
+          ],
+          [
+            6,
+            2,
+            523440
+          ],
+          [
+            6,
+            3,
+            6367440
+          ],
+          [
+            8,
+            1,
+            32400
+          ],
+          [
+            8,
+            2,
+            45388560
+          ]
+        ],
+        "without_tadpole_(rank,N,pairs)": [
+          [
+            6,
+            1,
+            7056
+          ],
+          [
+            6,
+            2,
+            666096
+          ],
+          [
+            6,
+            3,
+            11321184
+          ],
+          [
+            8,
+            1,
+            32400
+          ],
+          [
+            8,
+            2,
+            48268944
+          ]
+        ],
+        "with_tadpole_strictly_increasing_in_N_rank6": true,
+        "without_tadpole_strictly_increasing_in_N_rank6": true,
+        "meaning": "in indefinite signature the bound alpha_x^2 <= 24 does NOT bound the entries of lambda, so the with-tadpole count also grows with the window; finiteness of any reported number comes from the stated window (or from a quotient by an infinite duality group), not from the tadpole alone. Without the tadpole bound the set of admissible alpha_x^2 is unbounded (all m>0 in the window)."
+      },
+      "shared_inputs": [
+        "window_bounds",
+        "tadpole_total_24_eq2.3"
+      ],
+      "script": "03_family41_counts.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 03_family41_counts.py 3 2"
+    },
+    {
+      "id": "E03c",
+      "quantity": "admissible alpha_x^2 (tadpole scan) in the unimodular EVEN lattice versus the ODD unimodular control",
+      "computed": {
+        "even_lattice_U3_alpha_sq_values": [
+          8,
+          16,
+          24
+        ],
+        "odd_control_I33_alpha_sq_values_window_N=2": [
+          4,
+          8,
+          12,
+          16,
+          20,
+          24
+        ],
+        "odd_control_is_HYPOTHETICAL": "I_{3,3} is not H^2(K3,Z)",
+        "N_D3_even": [
+          "0",
+          "16",
+          "8"
+        ],
+        "N_D3_odd_control": [
+          "0",
+          "12",
+          "16",
+          "20",
+          "4",
+          "8"
+        ]
+      },
+      "shared_inputs": [
+        "flux_quantisation_even_coefficients",
+        "tadpole_total_24_eq2.3",
+        "tadpole_half_factor_eq2.3",
+        "sec41_conditions_4.8_4.10"
+      ],
+      "script": "03_family41_counts.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 03_family41_counts.py 3 2"
+    },
+    {
+      "id": "E03d",
+      "quantity": "orbit classes of the 4.1 family under O(Gamma_{3,3}) (windows N>=2): generated-subgroup components (upper bound) equal O(Gamma)-invariant classes (lower bound), stable in N",
+      "computed": {
+        "per_window_(m: (upper,lower))": {
+          "1": {
+            "2": [
+              1,
+              1
+            ],
+            "4": [
+              2,
+              2
+            ],
+            "6": [
+              null,
+              null
+            ]
+          },
+          "2": {
+            "2": [
+              1,
+              1
+            ],
+            "4": [
+              2,
+              2
+            ],
+            "6": [
+              1,
+              1
+            ]
+          },
+          "3": {
+            "2": [
+              1,
+              1
+            ],
+            "4": [
+              2,
+              2
+            ],
+            "6": [
+              1,
+              1
+            ]
+          }
+        },
+        "stable_and_tight_at_last_two_rank6_windows": true,
+        "even_overlattices_of_diag(m,m)_for_m=2,4,6": {
+          "2": 1,
+          "4": 2,
+          "6": 1
+        },
+        "meaning": "these are orbits of the subgroup of O(Gamma_{3,3}) generated by GL(3,Z), B-shifts and block swaps acting on Gamma_{3,3} = U^3 (upper bound = components inside the window; lower bound = O(Gamma_{3,3}) invariants); they are NOT orbits of O(Gamma_{3,19}) (which may identify more) and do not include S-duality/T2 dualities. The even-overlattice counts are a Nikulin-type consistency expectation (one orbit per overlattice if the gluing is unique), not a derivation.",
+        "total_classes_with_tadpole": 4
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "flux_quantisation_even_coefficients",
+        "sec41_conditions_4.8_4.10",
+        "tadpole_total_24_eq2.3",
+        "window_bounds"
+      ],
+      "script": "03_family41_counts.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 03_family41_counts.py 3 2"
+    }
+  ],
+  "rigidity": [
+    {
+      "parameter_inserted": "the window bound N (nuisance) in the number of O(Gamma_{3,3})-orbit classes of the 4.1 family with alpha_x^2 <= 24",
+      "selecting_condition": "none: nothing is selected; the count of classes is compared across windows N=2,3",
+      "condition_uses_true_value": false,
+      "solution_set": "the class counts per m (upper=lower) do not change between the last two rank-6 windows (E03d); finite-group orbit counts DO grow (E03a)",
+      "classification": "INVARIANCE",
+      "input_it_depends_on": "declared generators and the 24 (only through which m are admissible)",
+      "negative_control": "orbit counts modulo the finite group G grow with N (E03a) -- the stability is a property of the large group O(Gamma), not of the counting method",
+      "control_perturbs_same_parameter": true
+    },
+    {
+      "parameter_inserted": "the discrete set {N_D3} = {16, 8, 0} (equivalently alpha_x^2 in {8,16,24})",
+      "selecting_condition": "N_D3 = 24 - N_flux/2 >= 0 with N_flux = 2 alpha_x^2 and alpha_x^2 in 8Z; the 24 is a typed literature input",
+      "condition_uses_true_value": true,
+      "solution_set": "{16, 8, 0} for even Gamma; odd control gives more values (E03c)",
+      "classification": "CONDITIONAL_ON_INPUT",
+      "input_it_depends_on": "tadpole_total_24_eq2.3 (tier L) -- changing 24 changes the set; the 8-divisibility itself is RIGID_GIVEN_DEFINITION (01)",
+      "negative_control": "odd unimodular lattice changes the admissible alpha_x^2 set (E03c); removing the tadpole gives unbounded alpha_x^2 (E03b)",
+      "control_perturbs_same_parameter": false,
+      "note": "N_flux = 2*alpha_x^2 uses the typed 2 of (4.13) (also derived from (2.8) in 02 for the (4.8) family, so that factor is checked, not assumed)"
+    }
+  ],
+  "literature_checks": [],
+  "could_not_do": [],
+  "wall_seconds": 657.5
+}

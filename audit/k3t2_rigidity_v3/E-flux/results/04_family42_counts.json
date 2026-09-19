@@ -1,0 +1,709 @@
+{
+  "script": "04_family42_counts.py",
+  "results": [
+    {
+      "id": "E04a",
+      "quantity": "TT section 4.2 ansatz (4.24)-(4.25): tuples and orbit counts in the stated windows",
+      "computed": {
+        "windows": [
+          {
+            "window": "U3_window_fg_N=2",
+            "n_lattice_vectors_in_window": 15625,
+            "tuples_satisfying_4.24_4.25_with_tau_nonreal": 227328096,
+            "of_which_0<=N_flux<=48_(N_D3>=0)": 105713280,
+            "orbits_mod_Gplus": {
+              "order": 192,
+              "all_tuples": 1206520,
+              "tadpole_allowed": 560850
+            },
+            "orbits_mod_G": {
+              "order": 384,
+              "all_tuples": 612772,
+              "tadpole_allowed": 284824
+            },
+            "tuples_by_N_flux_(tadpole_allowed)": {
+              "16": 8973936,
+              "24": 38213760,
+              "32": 30691536,
+              "40": 9606720,
+              "48": 18227328
+            },
+            "N_D3_by_N_flux": {
+              "16": "16",
+              "24": "12",
+              "32": "8",
+              "40": "4",
+              "48": "0"
+            },
+            "admissible_after_TT_conditions_(c!=0,(3.31)>0,V_flux 2 positive and no null vector)": {
+              "orbit_reps_mod_Gplus": 478109,
+              "tuples": 91452384,
+              "V_flux_types_(orbits)": {
+                "(2+,2-)": 477748,
+                "(2+,0-)": 361
+              },
+              "rejected_orbit_counts_(tadpole-allowed reps)": {
+                "c331_not_positive_(Gzbar=0_second_branch_or_isotropic)": 38117,
+                "V_flux_has_null_vector": 82462,
+                "V_flux_not_2_positive": 38117
+              }
+            },
+            "exact_verification_on_admissible_Gplus_orbit_reps": {
+              "verified": 400,
+              "all_3.16abc_zero": true,
+              "all_3.31_positive": true,
+              "types": {
+                "(2, 2, 0)": 400
+              },
+              "orbifold_free": 217,
+              "orbifold_singular": 183,
+              "nflux_positive": 400,
+              "examples": [
+                {
+                  "alpha_x": [
+                    -4,
+                    0,
+                    -4,
+                    2,
+                    0,
+                    0
+                  ],
+                  "beta_x": [
+                    0,
+                    0,
+                    0,
+                    4,
+                    -4,
+                    4
+                  ],
+                  "alpha_y": [
+                    0,
+                    4,
+                    0,
+                    -4,
+                    -4,
+                    2
+                  ],
+                  "beta_y": [
+                    4,
+                    -4,
+                    4,
+                    0,
+                    0,
+                    4
+                  ],
+                  "tau": "I",
+                  "N_flux": 48,
+                  "V_flux_signature": [
+                    2,
+                    2,
+                    0
+                  ],
+                  "3.31_value": "16"
+                },
+                {
+                  "alpha_x": [
+                    -4,
+                    0,
+                    -4,
+                    2,
+                    2,
+                    2
+                  ],
+                  "beta_x": [
+                    -2,
+                    0,
+                    -4,
+                    2,
+                    0,
+                    4
+                  ],
+                  "alpha_y": [
+                    2,
+                    0,
+                    -2,
+                    0,
+                    -2,
+                    4
+                  ],
+                  "beta_y": [
+                    -4,
+                    0,
+                    4,
+                    -2,
+                    -4,
+                    2
+                  ],
+                  "tau": "sqrt(2)*I",
+                  "N_flux": 24,
+                  "V_flux_signature": [
+                    2,
+                    2,
+                    0
+                  ],
+                  "3.31_value": "-32 + 24*sqrt(2)"
+                },
+                {
+                  "alpha_x": [
+                    -4,
+                    -2,
+                    -2,
+                    0,
+                    -2,
+                    2
+                  ],
+                  "beta_x": [
+                    2,
+                    -4,
+                    2,
+                    4,
+                    -2,
+                    -4
+                  ],
+                  "alpha_y": [
+                    -2,
+                    0,
+                    -2,
+                    -2,
+                    0,
+                    4
+                  ],
+                  "beta_y": [
+                    -4,
+                    -2,
+                    -2,
+                    0,
+                    0,
+                    2
+                  ],
+                  "tau": "I",
+                  "N_flux": 24,
+                  "V_flux_signature": [
+                    2,
+                    2,
+                    0
+                  ],
+                  "3.31_value": "40"
+                }
+              ],
+              "float_vs_exact_admissibility_disagreements": 0,
+              "verified_subset": "random 400 of 478109 representatives (seed 7)"
+            },
+            "exact_check_of_REJECTED_reps_agrees_with_float_(sample_of_40)": {
+              "verified": 40,
+              "all_3.16abc_zero": true,
+              "all_3.31_positive": false,
+              "types": {
+                "(0, 2, 2)": 18,
+                "(2, 0, 2)": 22
+              },
+              "orbifold_free": 0,
+              "orbifold_singular": 40,
+              "nflux_positive": 40,
+              "examples": [
+                {
+                  "alpha_x": [
+                    -4,
+                    0,
+                    -2,
+                    2,
+                    0,
+                    0
+                  ],
+                  "beta_x": [
+                    -4,
+                    0,
+                    -4,
+                    0,
+                    -2,
+                    4
+                  ],
+                  "alpha_y": [
+                    0,
+                    -2,
+                    -2,
+                    2,
+                    0,
+                    4
+                  ],
+                  "beta_y": [
+                    4,
+                    -2,
+                    0,
+                    0,
+                    0,
+                    4
+                  ],
+                  "tau": "I",
+                  "N_flux": 16,
+                  "V_flux_signature": [
+                    0,
+                    2,
+                    2
+                  ],
+                  "3.31_value": "0"
+                },
+                {
+                  "alpha_x": [
+                    -4,
+                    2,
+                    -2,
+                    0,
+                    -2,
+                    0
+                  ],
+                  "beta_x": [
+                    -4,
+                    2,
+                    0,
+                    2,
+                    4,
+                    -2
+                  ],
+                  "alpha_y": [
+                    -4,
+                    0,
+                    2,
+                    -2,
+                    2,
+                    -2
+                  ],
+                  "beta_y": [
+                    -2,
+                    -2,
+                    4,
+                    -4,
+                    2,
+                    -2
+                  ],
+                  "tau": "I",
+                  "N_flux": 32,
+                  "V_flux_signature": [
+                    0,
+                    2,
+                    2
+                  ],
+                  "3.31_value": "0"
+                },
+                {
+                  "alpha_x": [
+                    -2,
+                    0,
+                    -2,
+                    2,
+                    0,
+                    0
+                  ],
+                  "beta_x": [
+                    -4,
+                    0,
+                    -2,
+                    2,
+                    -2,
+                    2
+                  ],
+                  "alpha_y": [
+                    -2,
+                    0,
+                    0,
+                    0,
+                    -2,
+                    2
+                  ],
+                  "beta_y": [
+                    -4,
+                    2,
+                    2,
+                    -4,
+                    -4,
+                    -2
+                  ],
+                  "tau": "I",
+                  "N_flux": 16,
+                  "V_flux_signature": [
+                    0,
+                    2,
+                    2
+                  ],
+                  "3.31_value": "0"
+                }
+              ],
+              "float_vs_exact_admissibility_disagreements": 0,
+              "verified_subset": "random 40 of 82741 representatives (seed 7)"
+            },
+            "TT_4.31_present_in_window": null,
+            "seconds": 476.9
+          },
+          {
+            "window": "A6_subfamily_window_e_n=2",
+            "n_lattice_vectors_in_window": 15625,
+            "tuples_satisfying_4.24_4.25_with_tau_nonreal": 139519584,
+            "of_which_0<=N_flux<=48_(N_D3>=0)": 42046656,
+            "orbits_mod_Gplus": {
+              "order": 192,
+              "all_tuples": 755144,
+              "tadpole_allowed": 230476
+            },
+            "orbits_mod_G": {
+              "order": 384,
+              "all_tuples": 387228,
+              "tadpole_allowed": 119092
+            },
+            "tuples_by_N_flux_(tadpole_allowed)": {
+              "16": 3806448,
+              "32": 28179792,
+              "48": 10060416
+            },
+            "N_D3_by_N_flux": {
+              "16": "16",
+              "32": "8",
+              "48": "0"
+            },
+            "admissible_after_TT_conditions_(c!=0,(3.31)>0,V_flux 2 positive and no null vector)": {
+              "orbit_reps_mod_Gplus": 168522,
+              "tuples": 32115360,
+              "V_flux_types_(orbits)": {
+                "(2+,2-)": 168264,
+                "(2+,0-)": 258
+              },
+              "rejected_orbit_counts_(tadpole-allowed reps)": {
+                "c331_not_positive_(Gzbar=0_second_branch_or_isotropic)": 27922,
+                "V_flux_has_null_vector": 61734,
+                "V_flux_not_2_positive": 27922
+              }
+            },
+            "exact_verification_on_admissible_Gplus_orbit_reps": {
+              "verified": 400,
+              "all_3.16abc_zero": true,
+              "all_3.31_positive": true,
+              "types": {
+                "(2, 2, 0)": 400
+              },
+              "orbifold_free": 305,
+              "orbifold_singular": 95,
+              "nflux_positive": 400,
+              "examples": [
+                {
+                  "alpha_x": [
+                    -4,
+                    0,
+                    -2,
+                    2,
+                    -2,
+                    2
+                  ],
+                  "beta_x": [
+                    4,
+                    -4,
+                    -8,
+                    0,
+                    -8,
+                    0
+                  ],
+                  "alpha_y": [
+                    8,
+                    0,
+                    2,
+                    -2,
+                    -4,
+                    0
+                  ],
+                  "beta_y": [
+                    8,
+                    0,
+                    6,
+                    -2,
+                    -2,
+                    -2
+                  ],
+                  "tau": "sqrt(2)*I/2",
+                  "N_flux": 32,
+                  "V_flux_signature": [
+                    2,
+                    2,
+                    0
+                  ],
+                  "3.31_value": "-16 + 16*sqrt(2)"
+                },
+                {
+                  "alpha_x": [
+                    -8,
+                    0,
+                    -2,
+                    -2,
+                    -4,
+                    4
+                  ],
+                  "beta_x": [
+                    0,
+                    0,
+                    -6,
+                    2,
+                    -2,
+                    6
+                  ],
+                  "alpha_y": [
+                    -4,
+                    0,
+                    -2,
+                    2,
+                    0,
+                    0
+                  ],
+                  "beta_y": [
+                    -4,
+                    0,
+                    -2,
+                    2,
+                    2,
+                    -2
+                  ],
+                  "tau": "sqrt(3)*I/3",
+                  "N_flux": 32,
+                  "V_flux_signature": [
+                    2,
+                    2,
+                    0
+                  ],
+                  "3.31_value": "-16 + 32*sqrt(3)/3"
+                },
+                {
+                  "alpha_x": [
+                    -8,
+                    0,
+                    -6,
+                    -2,
+                    -2,
+                    2
+                  ],
+                  "beta_x": [
+                    4,
+                    0,
+                    -4,
+                    -4,
+                    0,
+                    8
+                  ],
+                  "alpha_y": [
+                    -4,
+                    0,
+                    0,
+                    0,
+                    -2,
+                    -2
+                  ],
+                  "beta_y": [
+                    -8,
+                    0,
+                    -2,
+                    -2,
+                    -2,
+                    -2
+                  ],
+                  "tau": "sqrt(2)*I/2",
+                  "N_flux": 32,
+                  "V_flux_signature": [
+                    2,
+                    2,
+                    0
+                  ],
+                  "3.31_value": "16 + 16*sqrt(2)"
+                }
+              ],
+              "float_vs_exact_admissibility_disagreements": 0,
+              "verified_subset": "random 400 of 168522 representatives (seed 7)"
+            },
+            "exact_check_of_REJECTED_reps_agrees_with_float_(sample_of_40)": {
+              "verified": 40,
+              "all_3.16abc_zero": true,
+              "all_3.31_positive": false,
+              "types": {
+                "(2, 0, 2)": 23,
+                "(0, 2, 2)": 17
+              },
+              "orbifold_free": 0,
+              "orbifold_singular": 40,
+              "nflux_positive": 40,
+              "examples": [
+                {
+                  "alpha_x": [
+                    -6,
+                    -2,
+                    -6,
+                    2,
+                    -2,
+                    -2
+                  ],
+                  "beta_x": [
+                    -2,
+                    -2,
+                    -2,
+                    -2,
+                    0,
+                    8
+                  ],
+                  "alpha_y": [
+                    0,
+                    0,
+                    4,
+                    4,
+                    0,
+                    -8
+                  ],
+                  "beta_y": [
+                    -4,
+                    -4,
+                    4,
+                    4,
+                    0,
+                    0
+                  ],
+                  "tau": "2*I",
+                  "N_flux": 32,
+                  "V_flux_signature": [
+                    2,
+                    0,
+                    2
+                  ],
+                  "3.31_value": "128"
+                },
+                {
+                  "alpha_x": [
+                    -8,
+                    0,
+                    -4,
+                    -4,
+                    0,
+                    0
+                  ],
+                  "beta_x": [
+                    0,
+                    0,
+                    -4,
+                    -4,
+                    -4,
+                    -4
+                  ],
+                  "alpha_y": [
+                    -4,
+                    0,
+                    0,
+                    0,
+                    2,
+                    2
+                  ],
+                  "beta_y": [
+                    -6,
+                    -2,
+                    -2,
+                    2,
+                    0,
+                    0
+                  ],
+                  "tau": "I/2",
+                  "N_flux": 32,
+                  "V_flux_signature": [
+                    2,
+                    0,
+                    2
+                  ],
+                  "3.31_value": "32"
+                },
+                {
+                  "alpha_x": [
+                    -4,
+                    0,
+                    -2,
+                    2,
+                    0,
+                    0
+                  ],
+                  "beta_x": [
+                    -2,
+                    -2,
+                    -6,
+                    2,
+                    -4,
+                    0
+                  ],
+                  "alpha_y": [
+                    -6,
+                    -2,
+                    -4,
+                    0,
+                    -4,
+                    4
+                  ],
+                  "beta_y": [
+                    6,
+                    -2,
+                    -2,
+                    -2,
+                    -4,
+                    0
+                  ],
+                  "tau": "I",
+                  "N_flux": 16,
+                  "V_flux_signature": [
+                    0,
+                    2,
+                    2
+                  ],
+                  "3.31_value": "0"
+                }
+              ],
+              "float_vs_exact_admissibility_disagreements": 0,
+              "verified_subset": "random 40 of 61954 representatives (seed 7)"
+            },
+            "TT_4.31_present_in_window": {
+              "inside_window": true,
+              "ansatz_conditions_residuals": {
+                "a.v": 0,
+                "b.w": 0,
+                "a.w+v.b": 0,
+                "b2-2a2": 0,
+                "a2-a.b": 0,
+                "w2-2v2": 0,
+                "v2-v.w": 0
+              }
+            },
+            "seconds": 617.8
+          }
+        ],
+        "truncation": "ansatz (4.24)-(4.25) only; windows only; NOT the full class (c); counts mod G+ / G are not physically distinct vacua",
+        "moduli_fixed": "phi=(1+-i)/2, tau=i sqrt(alpha_yy/alpha_xx), all complex structure moduli of K3 via Omega (TT 3.9); Kahler: 18 of K3 + T2 volume unfixed for dim V_flux=4 (TT 3.4)"
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "flux_quantisation_even_coefficients",
+        "sec42_conditions_4.24_4.25",
+        "N_flux_formula_2.8",
+        "tadpole_total_24_eq2.3",
+        "tadpole_half_factor_eq2.3",
+        "group_G_definition",
+        "window_bounds",
+        "embedding_A6_into_U3",
+        "orbifold_criterion_TT_3.3"
+      ],
+      "script": "04_family42_counts.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 04_family42_counts.py 2 2 400"
+    }
+  ],
+  "rigidity": [
+    {
+      "parameter_inserted": "the finite set of N_flux values reachable in the 4.2 ansatz within the window",
+      "selecting_condition": "(4.24),(4.25) and 0 <= N_flux <= 2*24 (tadpole)",
+      "condition_uses_true_value": true,
+      "solution_set": "see E04a tuples_by_N_flux",
+      "classification": "CONDITIONAL_ON_INPUT",
+      "input_it_depends_on": "tadpole_total_24_eq2.3, window_bounds",
+      "negative_control": "N_D3 >= 0 removed: N_flux unbounded above inside the window (largest N_flux reached is reported)",
+      "control_perturbs_same_parameter": true
+    }
+  ],
+  "literature_checks": [],
+  "could_not_do": [
+    "section 4.2 counts restricted to the ansatz (4.24)-(4.25) and windows; the general class (c) (dim V_flux = 4, M zero eigenvalue) was not enumerated"
+  ],
+  "wall_seconds": 1097.1
+}

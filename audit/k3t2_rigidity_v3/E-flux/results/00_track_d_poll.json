@@ -1,0 +1,22 @@
+{
+  "track_d_export_used": "audit/k3t2_rigidity_v3/D-tda/exports.json",
+  "v3_export_present_after_polling": true,
+  "polled_seconds": 0,
+  "fallback_to_v2": false,
+  "keys_found": [
+    [
+      "n_singular",
+      16
+    ]
+  ],
+  "track_d_other_exports_used": {
+    "chi": 24,
+    "b2": 22
+  },
+  "T4Z2_fixed_points_from_track_D": 16,
+  "T4Z2_fixed_points_computed_here_tierB": 16,
+  "T2Z2_fixed_points_computed_here_tierB": 4,
+  "sha256_of_export_used": "ae20c4d7107b2cc31cc72d6015f1b24c45b285b4169ae8b38b77c5937ef89029",
+  "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python poll_track_d.py 0",
+  "agree_D_vs_here": true
+}
