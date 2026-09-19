@@ -57,9 +57,9 @@
     "applying_the_24_input": "Combined with TT's tadpole bound alpha_x^2<=24 (itself derived from the D7/O7 count, part 1), the admissible alpha_x^2 is restricted to the 3-element set {8,16,24}, i.e. N_flux in {16,32,48}, N_D3 in {16,8,0}.",
     "truncations": {
       "rank2_e1e4_signature_1_1": {
-        "predicted": "EMPTY -- signature (1,1) has a 1-dimensional positive light-cone per sign block; two strictly-positive-norm vectors alpha_x,beta_x with alpha_x^2=beta_x^2>0 AND alpha_x.beta_x=0 cannot coexist in a rank-2 space of signature (1,1) (Cauchy-Schwarz-type obstruction in the positive cone).",
-        "checked": "CONFIRMED: 0 valid pairs at bounds N=1,2,3,4, with or without the tadpole bound.",
-        "note": "A neighbouring truncation (rank-4) demonstrably succeeds where rank-2 demonstrably fails -- this is the 'neighbouring value fails' check the STRUCTURAL parts of this computation satisfy."
+        "predicted": "EMPTY. Proof: for a real quadratic space of signature (p,q), if alpha_x^2>0 then the orthogonal complement alpha_x^perp has signature (p-1,q). At p=1 (our rank-2, signature-(1,1) truncation), alpha_x^perp is 1-dimensional with signature (0,1), i.e. NEGATIVE-SEMIDEFINITE, so any beta_x orthogonal to alpha_x has beta_x^2<=0. This contradicts eq (4.9)+the spacelike requirement (3.31), beta_x^2=alpha_x^2>0. Hence no rank-2, signature-(1,1) truncation of any positive-norm alpha_x can support an orthogonal, equal-positive-norm beta_x. This argument needs p>=2, which is exactly why rank-4 (signature (2,2)) succeeds and rank-2 (signature (1,1)) fails -- a genuine structural, dimension-driven statement, not merely an empirical non-observation up to N=4.",
+        "checked": "CONFIRMED computationally as well: 0 valid pairs at bounds N=1,2,3,4, with or without the tadpole bound (consistent with, and not merely coincidental given, the proof above).",
+        "note": "This is the required 'neighbouring value demonstrably fails' check: rank-4 (p=2) succeeds, rank-2 (p=1) fails, for a structural (signature) reason independent of the tadpole value 24."
       },
       "rank4_e1e2e4e5_signature_2_2_PRIMARY": {
         "bounds_N": [1, 2, 3, 4],
@@ -82,6 +82,14 @@
     "summary": "TT abstract (lines 16-19): 'All the complex structure moduli and SOME of the Kahler moduli are stabilised.' In their worked example (4.15): TWENTY of the 22 Kahler directions of K3 (t_3,...,t_22, lines 884-890) plus the one Kahler modulus of T2 remain UNFIXED (only the 2-plane spanned by alpha_x,beta_x is constrained by primitivity, lines 841-846). Also unanalysed: 7-brane gauge-field moduli, 7-brane positions on T2, D3-brane positions (lines 195-198, 1718-1723).",
     "detail": "see quotes.json:part4_unfixed_moduli"
   },
+  "could_not_do": [
+    "Rank-6 orbit counts at N=2 (order-2304 automorphism subgroup applied to ~339,600 tadpole-satisfying pairs): profiled at >20 minutes, exceeds the ~15min per-script time budget. Raw (non-orbit) pair and vector counts at rank-6, N=2 ARE reported.",
+    "No quotient by the full (infinite, arithmetic) automorphism group Aut(Gamma_{3,3}) was computed anywhere -- only a stated FINITE subgroup (coordinate permutation within each signature block + independent sign flips, order 64 for rank-4, order 2304 for rank-6). Reported orbit counts are upper bounds on the number of physically distinct configurations and are NOT expected to converge as the entry bound N grows (confirmed: rank-4 orbit counts 3,13,30,57 for N=1..4, still growing at N=4).",
+    "The (A.2)-(A.3) TT hyperbolic 'U+U+U' basis presentation of Gamma_{3,3} was not used and its relation to the (A.6)-(A.7) diagonal basis used here was not reconciled beyond noting the two Gram matrices are not integrally equivalent (det -1 vs -64) -- this looks like an internal inconsistency in the source paper's own Appendix A, not something we can resolve from outside; every count in this track is stated as conditional on the (A.6)-(A.7) basis choice.",
+    "Only the TT section-4.1 flux family (eqs 4.8-4.10) was enumerated. TT's section 4.2 'common quadratic' family (eqs 4.24-4.32) and section 5's second branch (N=2 supersymmetry case) were used only as fixed-number metric-convention checks (tt_metric_checks.py) and were NOT enumerated over a truncation.",
+    "Primitivity (TT eq 3.34) and orbifold-singularity avoidance were taken on TT's own prose assurance ('It can be met easily', lines 841-843) for the section-4.1 family; we did not independently verify primitivity or singularity-avoidance for each individually enumerated (alpha_x,beta_x) pair.",
+    "The TT line-941 factor-of-2 discrepancy (flagged below) was not resolved -- we do not have grounds from the text alone to decide whether it is a typo or a different, unstated convention."
+  ],
   "flagged_discrepancy_not_resolved": {
     "location": "TT line 941 (prose, not a numbered equation)",
     "statement": "'...choices of delta alpha_x, delta beta_x which give rise to a vacuum where N_flux=24 and no D3-branes need be added.'",

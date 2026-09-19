@@ -110,7 +110,7 @@ def count_pairs_same_k(buckets, signs, k_filter=None):
                     n_pairs += 1
                     if len(samples) < 5:
                         samples.append({"alpha_x": a, "beta_x": b})
-        result[k] = {"n_flux_x2_plus": None, "pair_count": n_pairs, "samples": samples}
+        result[k] = {"pair_count": n_pairs, "samples": samples}
     return result
 
 

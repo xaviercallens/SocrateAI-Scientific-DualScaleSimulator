@@ -1,7 +1,7 @@
 {
   "track": "E-flux",
   "part": "metric-and-formula-validation",
-  "command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python scripts/tt_metric_checks.py",
+  "command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python /mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/E-flux/scripts/tt_metric_checks.py",
   "results": [
     {
       "id": "TT-4.15-4.16",

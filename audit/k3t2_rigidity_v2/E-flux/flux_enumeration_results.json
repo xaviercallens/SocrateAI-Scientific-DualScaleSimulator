@@ -2591,5 +2591,5 @@
       "orbit_note": "Orbit canonicalisation under the order-2304 automorphism subgroup was computed only at N=1 (see could_not_do for N=2: profiled at >20 minutes, exceeds the per-script time budget). Raw (non-orbit) pair/vector counts ARE reported at N=2."
     }
   },
-  "total_wall_time_s": 54.61
+  "total_wall_time_s": 54.1
 }
