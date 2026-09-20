@@ -1,12 +1,24 @@
 {
  "u2os": {
-  "status": "ABSENT: not computed"
+  "dominance": 1.5096,
+  "S": 0.02207,
+  "p_S": null,
+  "p_dom": null,
+  "null_complete": false,
+  "null_draws_reached": 81,
+  "n_cells": 400,
+  "n_genes": 97,
+  "expects_loop": true,
+  "criteria_met": false,
+  "neg_median_dom": null
  },
  "mesc": {
   "dominance": 1.0411,
   "S": 0.00543,
   "p_S": 0.00498,
   "p_dom": 0.39303,
+  "null_complete": true,
+  "null_draws_reached": 200,
   "n_cells": 269,
   "n_genes": 97,
   "expects_loop": true,
@@ -14,6 +26,16 @@
   "neg_median_dom": 1.038090410916423
  },
  "pbmc3k": {
-  "status": "ABSENT: not computed"
+  "dominance": 1.2091,
+  "S": 0.00559,
+  "p_S": null,
+  "p_dom": null,
+  "null_complete": false,
+  "null_draws_reached": 41,
+  "n_cells": 400,
+  "n_genes": 500,
+  "expects_loop": false,
+  "criteria_met": false,
+  "neg_median_dom": null
  }
 }

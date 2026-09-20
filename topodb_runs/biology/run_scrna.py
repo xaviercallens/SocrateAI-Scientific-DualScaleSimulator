@@ -247,15 +247,48 @@ def run_dataset(name, n_null, n_neg, budget):
     return out
 
 
+def observed_only(name):
+    """Record the observed diagram with NO p-value, when the null has not finished.
+
+    The database refuses a p_value without its null model, which is the right rule;
+    this writes what was actually measured and says plainly that no null completed,
+    rather than leaving a downloaded, hashed dataset out of the record entirely.
+    """
+    Z, Lsub, neg_pool, n_sel, lab, idx, info = prepare(name)
+    t = time.time()
+    dg, obs = summarise(Z)
+    wall = round(time.time() - t, 2)
+    cp = CACHE / f"{name}_genenull_n200.json"
+    n_done = len(json.loads(cp.read_text())) if cp.exists() else 0
+    out = {"dataset": name, "info": info, "observed": obs, "wall_obs_sec": wall,
+           "n_null": 0, "null_incomplete_draws_reached": n_done,
+           "no_pvalue_reason": f"the gene-permutation null did not complete: {n_done} of 200 "
+                               f"draws at roughly 13 s each on a {Z.shape[0]}-cell correlation "
+                               f"metric. No p-value is stored, because a p-value without its "
+                               f"null is not storable.",
+           "negative_control": {"n_draws": 0, "median_dominance": None,
+                                "frac_dominance_ge_2": None, "median_S": None},
+           "top_h1_bars": [[round(b, 5), round(d, 5)] for b, d in top_bars(dg[1], 5)],
+           "diagram_h1": [[float(b), float(d)] for b, d in dg[1]]}
+    (RESULTS / f"scrna_{name}_observed_only.json").write_text(json.dumps(out, indent=1))
+    print(f"  {name} OBSERVED ONLY: n_cells={Z.shape[0]} n_genes={Z.shape[1]} "
+          f"dom={obs['h1_dominance_P1_over_P2']:.3f} S={obs['h1_S']:.4f} "
+          f"(null {n_done}/200, no p-value stored)")
+    return out
+
+
 def assemble():
     blk = Block("scrna", SCRIPT, "see per-run command field")
     summary = {}
     for name in DATASETS:
         f = RESULTS / f"scrna_{name}.json"
         if not f.exists():
+            f = RESULTS / f"scrna_{name}_observed_only.json"
+        if not f.exists():
             summary[name] = {"status": "ABSENT: not computed"}
             continue
         r = json.loads(f.read_text())
+        has_null = r["n_null"] > 0
         info, obs = r["info"], r["observed"]
         expects_loop = name != "pbmc3k"
         ds_id = f"biology/scrna_{name}"
@@ -274,7 +307,7 @@ def assemble():
                           + (". BREADTH dataset: discrete immune cell types, no cell-cycle loop "
                              "is expected and none is claimed." if not expects_loop else ""))
         dom = obs["h1_dominance_P1_over_P2"]
-        ok = dom >= 2 and r["p_S"] <= 0.01
+        ok = bool(has_null and dom >= 2 and r["p_S"] <= 0.01)
         blk.run(dataset_id=ds_id, method="rips", coeff_field=2, max_dim=1,
                 params={"metric": "sqrt(2(1-spearman rho)) between cells, fed directly to Rips "
                                   "(NO PCA, NO MDS)", "max_hom_dim": 1, "max_edge_length": None,
@@ -288,25 +321,32 @@ def assemble():
                 diagrams={1: [(b, d) for b, d in r["diagram_h1"]]},
                 betti={1: 1 if ok else 0},
                 expected_betti=({1: 1} if expects_loop else None),
-                stats=[{"name": "h1_dominance_P1_over_P2", "value": dom,
-                        "null_model": "gene-wise permutation across cells", "n_null": r["n_null"],
-                        "p_value": r["p_dominance"], "p_method": "rank"},
-                       {"name": "h1_S_longest_over_total", "value": obs["h1_S"],
-                        "null_model": "gene-wise permutation across cells", "n_null": r["n_null"],
-                        "p_value": r["p_S"], "p_method": "rank"},
-                       {"name": "h1_max_persistence", "value": obs["h1_max_persistence"]},
-                       {"name": "h1_finite_bar_count", "value": obs["h1_finite_bar_count"]},
-                       {"name": "null_frac_dominance_ge_2", "value": r["null_frac_dominance_ge_2"]}]
+                stats=([{"name": "h1_dominance_P1_over_P2", "value": dom,
+                         "null_model": "gene-wise permutation across cells", "n_null": r["n_null"],
+                         "p_value": r["p_dominance"], "p_method": "rank"},
+                        {"name": "h1_S_longest_over_total", "value": obs["h1_S"],
+                         "null_model": "gene-wise permutation across cells", "n_null": r["n_null"],
+                         "p_value": r["p_S"], "p_method": "rank"},
+                        {"name": "null_frac_dominance_ge_2",
+                         "value": r["null_frac_dominance_ge_2"]}] if has_null else
+                       [{"name": "h1_dominance_P1_over_P2", "value": dom},
+                        {"name": "h1_S_longest_over_total", "value": obs["h1_S"]},
+                        {"name": "null_draws_reached_before_stopping",
+                         "value": float(r.get("null_incomplete_draws_reached", 0))}])
+                      + [{"name": "h1_max_persistence", "value": obs["h1_max_persistence"]},
+                         {"name": "h1_finite_bar_count", "value": obs["h1_finite_bar_count"]}]
                       + ([{"name": "negative_control_median_dominance",
                            "value": r["negative_control"]["median_dominance"]}]
                          if r["negative_control"]["median_dominance"] is not None else []),
                 controls=[{"kind": "shuffle",
                            "description": "gene-wise permutation destroys cell-cell covariance and "
                                           "keeps every gene's marginal",
-                           "passed": bool(r["null_frac_dominance_ge_2"] < 0.1),
-                           "detail": f"{r['null_frac_dominance_ge_2']:.3f} of {r['n_null']} "
-                                     f"permutations reach dominance >= 2; null S q95 = "
-                                     f"{r['null_S_q50_q95_q99_max'][1]:.4f}"},
+                           "passed": (bool(r["null_frac_dominance_ge_2"] < 0.1) if has_null
+                                      else None),
+                           "detail": (f"{r['null_frac_dominance_ge_2']:.3f} of {r['n_null']} "
+                                      f"permutations reach dominance >= 2; null S q95 = "
+                                      f"{r['null_S_q50_q95_q99_max'][1]:.4f}") if has_null
+                                     else f"NOT RUN TO COMPLETION: {r.get('no_pvalue_reason')}"},
                           {"kind": "negative",
                            "description": "the same number of random expressed genes outside the "
                                           "selected set",
@@ -316,14 +356,17 @@ def assemble():
                                      f"{r['negative_control']['median_dominance']}"}]
                          + ([{"kind": "known_answer",
                               "description": "published cell-cycle loop should appear as a dominant H1",
-                              "passed": bool(ok),
-                              "detail": f"dominance {dom:.3f}, p_S {r['p_S']:.4f}"}]
+                              "passed": (bool(ok) if has_null else None),
+                              "detail": (f"dominance {dom:.3f}, p_S {r['p_S']:.4f}" if has_null
+                                         else f"dominance {dom:.3f}; NOT RUN TO COMPLETION: "
+                                              f"{r.get('no_pvalue_reason')}")}]
                             if expects_loop else []),
                 findings=[{"claim": f"{name}: Rips on the cell-cell Spearman metric over "
                                     f"{info['n_genes_selected']} genes gives H1 dominance "
-                                    f"{dom:.2f} (p {r['p_dominance']:.4f}) and S {obs['h1_S']:.4f} "
-                                    f"(p {r['p_S']:.4f}) against {r['n_null']} gene-wise "
-                                    f"permutations."
+                                    f"{dom:.2f} and S {obs['h1_S']:.4f}"
+                                    + (f" (p {r['p_dominance']:.4f} and {r['p_S']:.4f} against "
+                                       f"{r['n_null']} gene-wise permutations)." if has_null
+                                       else f". NO p-value: {r.get('no_pvalue_reason')}")
                                     + (f" Pre-stated criteria (dominance >= 2 and p <= 0.01): "
                                        f"{'MET' if ok else 'NOT MET'}." if expects_loop else
                                        " No loop was expected and none is claimed."),
@@ -339,7 +382,10 @@ def assemble():
                                       "not a cell-cycle list"),
                            "reference": "topodb_runs/biology/expectations.json"}])
         summary[name] = {"dominance": round(dom, 4), "S": round(obs["h1_S"], 5),
-                         "p_S": round(r["p_S"], 5), "p_dom": round(r["p_dominance"], 5),
+                         "p_S": (round(r["p_S"], 5) if has_null else None),
+                         "p_dom": (round(r["p_dominance"], 5) if has_null else None),
+                         "null_complete": has_null,
+                         "null_draws_reached": r.get("null_incomplete_draws_reached", r["n_null"]),
                          "n_cells": info["n_cells_used"], "n_genes": info["n_genes_selected"],
                          "expects_loop": expects_loop, "criteria_met": bool(ok),
                          "neg_median_dom": r["negative_control"]["median_dominance"]}
@@ -355,9 +401,14 @@ def main() -> int:
     ap.add_argument("--n-neg", type=int, default=10)
     ap.add_argument("--budget-sec", type=float, default=440)
     ap.add_argument("--assemble", action="store_true")
+    ap.add_argument("--observed-only", action="store_true")
     a = ap.parse_args()
     if a.assemble:
         assemble()
+        return 0
+    if a.observed_only:
+        for name in (a.dataset.split(",") if a.dataset else DATASETS):
+            observed_only(name.strip())
         return 0
     for name in (a.dataset.split(",") if a.dataset else DATASETS):
         run_dataset(name.strip(), a.n_null, a.n_neg, a.budget_sec)
