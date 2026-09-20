@@ -1,0 +1,98 @@
+{
+ "block": "influenza_null2",
+ "script": "topodb_runs/biology/run_influenza_null2.py",
+ "command": "timeout 1200 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza_null2.py --n-per-segment 25",
+ "git_commit": "ed2e5a0a6ed8d7a1f53718f8a11f6ed30c353491",
+ "wall_sec_total": 0.01,
+ "peak_mb": 117.9,
+ "datasets": [],
+ "runs": [
+  {
+   "dataset_id": "biology/influenza_concatenated_genomes",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "test": "POST-HOC: pooled single-segment site-bootstrap null for A_concatenated",
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_per_segment": 25,
+    "n_null_total": 200,
+    "prespecified": false,
+    "reason": "the pre-stated site bootstrap of the concatenated alignment cannot be a null for reassortment: resampling columns leaves each genome's row, and therefore its segment combination, intact",
+    "bar_threshold_B": 0.005
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "sites resampled with replacement WITHIN each single segment; the resulting A and B values pooled across all eight segments",
+   "seed": "100000 + 1000*segment + draw",
+   "script": "topodb_runs/biology/run_influenza_null2.py",
+   "command": "timeout 1200 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza_null2.py --n-per-segment 25",
+   "wall_sec": null,
+   "peak_mb": 117.9,
+   "betti": {},
+   "expected_betti": null,
+   "bars": {},
+   "stats": [
+    {
+     "name": "A_max_h1_persistence_concat",
+     "value": 0.0419901360335202,
+     "null_model": "pooled single-segment site bootstrap (clonal, non-reassorting data at this sample size)",
+     "n_null": 200,
+     "p_value": 0.004975124378109453,
+     "p_method": "rank",
+     "multiplicity": "post hoc; not pre-registered and not corrected"
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005_concat",
+     "value": 101.0,
+     "null_model": "same pooled single-segment site bootstrap",
+     "n_null": 200,
+     "p_value": 0.004975124378109453,
+     "p_method": "rank"
+    },
+    {
+     "name": "null_A_q50",
+     "value": 0.005592186106185924
+    },
+    {
+     "name": "null_A_q95",
+     "value": 0.016456270724616542
+    },
+    {
+     "name": "null_A_max",
+     "value": 0.021281315286841018
+    },
+    {
+     "name": "null_B_q95",
+     "value": 10.0
+    }
+   ],
+   "controls": [
+    {
+     "kind": "null_calibration",
+     "description": "this null is drawn from CLONAL data (single segments are trees), so it is the distribution of A when no reassortment has occurred -- unlike the pre-stated site bootstrap of the concatenation, which preserves reassortment",
+     "passed": true,
+     "detail": "observed A 0.04199 vs null q50 0.00559, q95 0.01646, max 0.02128"
+    },
+    {
+     "kind": "negative",
+     "description": "DISCLOSED LIMITATION: the null's alignments are shorter (865-2369 columns) than the concatenation (14008), so this null differs from the observed statistic in length as well as in reassortment. No long non-reassorting alignment of these organisms exists to draw from.",
+     "passed": null,
+     "detail": "length confound stated, not corrected"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "POST-HOC, with a null that can actually be one: A_concatenated = 0.04199 against a pooled single-segment site-bootstrap null of 200 draws (median 0.00559, max 0.02128) gives p = 0.00498. With criteria (ii) and (iii) already met, the published contrast of Chan, Carlsson & Rabadan (2013) is reproduced on this criterion set: PASS.",
+     "verdict": "recovered",
+     "tier": "X",
+     "caveat": "POST HOC: this null was chosen after the pre-stated one turned out to be ill-posed. The pre-stated run and its FAIL verdict remain in the database unchanged. The null's alignments are shorter than the concatenation, which is a stated confound.",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013); the same null the 2026-09-19 genetics validation used (its p_A was 0.0025 over 400 draws)"
+    }
+   ],
+   "note": null
+  }
+ ]
+}
