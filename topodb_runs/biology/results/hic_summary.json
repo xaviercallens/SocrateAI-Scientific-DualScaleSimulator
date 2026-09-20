@@ -98,6 +98,17 @@
   "n_bins_full": 364
  },
  "gm12878_chr1q": {
-  "status": "ABSENT: not computed"
+  "circular": false,
+  "dominance_coarsened": 1.0164,
+  "dominance": 1.4908,
+  "S": 0.08959,
+  "p_S": 0.00498,
+  "p_dom": 0.93035,
+  "expected_b1": 0,
+  "observed_b1": 0,
+  "n_bins": 208,
+  "n_null": 200,
+  "dominance_full_res": 1.4908,
+  "n_bins_full": 417
  }
 }
