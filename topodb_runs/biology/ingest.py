@@ -46,16 +46,46 @@ def purge(db: TopoDB, script: str) -> int:
     return len(ids)
 
 
+# the order matters: a block whose runs reference another block's dataset rows
+# (influenza_null2 -> influenza) must be ingested after it
+ALL_BLOCKS = ["step0_known_answer", "proteins_rna", "proteins_ext", "synthetic_control",
+              "ecg", "hic", "influenza", "influenza_null2", "scrna", "reproduction_check"]
+
+
+def ingest_all() -> int:
+    """Re-ingest every block that has a result file.
+
+    Needed because topodb.sqlite is shared: on 2026-09-20 at 07:43:31 another
+    process rewrote the file wholesale and every row this block had written
+    disappeared.  Every run is reconstructible from a committed result JSON, so a
+    full re-ingest costs seconds; this makes it one command.
+    """
+    base = Path(__file__).with_name("results")
+    rc = 0
+    for b in ALL_BLOCKS:
+        f = base / f"{b}.json"
+        if not f.exists():
+            print(f"[ingest-all] {b}: no result file, skipped")
+            continue
+        rc |= _ingest_one(f)
+    return rc
+
+
 def main() -> int:
+    if "--all" in sys.argv:
+        return ingest_all()
     path = Path(sys.argv[1])
     dry = "--dry-run" in sys.argv
-    payload = json.loads(path.read_text())
-    script = payload["script"]
-
     if dry:
+        payload = json.loads(path.read_text())
         print(f"[dry] {path.name}: {len(payload['datasets'])} datasets, {len(payload['runs'])} runs")
         return 0
+    return _ingest_one(path)
 
+
+def _ingest_one(path: Path) -> int:
+    payload = json.loads(path.read_text())
+    script = payload["script"]
     db = TopoDB()
     try:
         n_purged = _retry(purge, db, script)
