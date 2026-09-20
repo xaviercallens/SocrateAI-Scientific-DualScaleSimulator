@@ -50,6 +50,17 @@
    "p_value_convention": "min(1, 2*min((1+#{null<=d})/(N+1), (1+#{null>=d})/(N+1)))"
   }
  },
+ "S3_support": {
+  "n_sites_kept_data": 492,
+  "n_sites_kept_null_mean": 486.664,
+  "n_bonds_data": 2025,
+  "n_bonds_null_mean": 2039.304,
+  "bond_cut": "1.5 * a_ref = 9.0 deg great-circle; a_ref = 6*sigma_s = 6.0 deg, while the detected spacing is a_obs ~ 7.6 deg, so the cut is only ~1.18 * the actual spacing and drops a substantial share of sites -- the counts above show it acts symmetrically on the data and on the null."
+ },
+ "min_attainable_p": {
+  "value": 0.003992015968063872,
+  "note": "with 500 nulls and the two-sided rank convention the smallest reachable p is 2/(N+1) = 0.00399, against the Bonferroni threshold 0.008333; the test can reach significance but only in one resolvable step."
+ },
  "absolute_floor_data": {
   "median_death_deg": 2.601165273377033,
   "q1_death_deg": 2.1042993690108434,

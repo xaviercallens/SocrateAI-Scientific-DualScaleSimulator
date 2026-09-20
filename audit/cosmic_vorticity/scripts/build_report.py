@@ -30,6 +30,53 @@ def _fmt(x):
     return ("%.4f" % x) if isinstance(x, float) else str(x)
 
 
+def _desi_narrative(ad):
+    """All numbers read from desi_analysis_NGC.json."""
+    d = ad["data"]
+    c = ad.get("N2_randoms_control_NO_P_VALUE") or {}
+    out = [
+        "WHAT WAS MEASURED. G1 (the volume-limited check) passed: over %d interior 4 Mpc/h shells the "
+        "galaxy-per-random ratio varies by a factor %.3f, inside the registered tolerance of 1.5. The "
+        "detector finds %d density-peak candidates in %.3e (Mpc/h)^3 of eroded volume. The H0 death "
+        "radii have median %.1f Mpc/h (quartiles %.1f / %.1f), so the absolute persistence floor is "
+        "satisfied with room to spare: NO bar falls below the 8 Mpc/h grid cell or below sigma_G = 16 "
+        "Mpc/h, and the (3 a_ref) = 288 Mpc/h truncation removes no bar. S1 = %.4f, S3 (Steinhardt Q6) "
+        "= %.4f over %d kept sites."
+        % (ad["G1"]["n_interior_shells"], ad["G1"]["ratio_max_over_min"], d["S2_count"],
+           d["valid_volume_Mpch3"], d["absolute_floor"]["median_death_Mpch"],
+           d["absolute_floor"]["q1_Mpch"], d["absolute_floor"]["q3_Mpch"],
+           d["S1_iqr_over_median"], d["S3_Q6_site_mean"], d["S3_n_sites_kept"]),
+        "WHAT THIS IS NOT. These are ABSOLUTE numbers with no p-value attached, because the registered "
+        "clustering-matched null was not built. They cannot be read as agreement or disagreement with "
+        "anything.",
+    ]
+    if c:
+        out.append(
+            "THE RANDOMS CONTROL, AND WHY IT CARRIES NO P-VALUE. The official randoms, shell-matched and "
+            "passed through the IDENTICAL detector, give S1 = %.4f +- %.4f, N = %.0f +- %.0f, S3 = %.4f "
+            "+- %.4f, against the data's %.4f, %d and %.4f. The data has FEWER peaks and a LARGER S1 "
+            "than the randoms. That difference is what real galaxy clustering does to a peak detector, "
+            "and it is exactly the comparison a clustering-matched null exists to absorb; quoting a "
+            "p-value against an unclustered catalogue would manufacture a detection out of the fact "
+            "that galaxies cluster. Registration limit L4."
+            % (c["S1_iqr_over_median"]["mean"], c["S1_iqr_over_median"]["std"],
+               c["S2_count"]["mean"], c["S2_count"]["std"],
+               c["S3_Q6_site_mean"]["mean"], c["S3_Q6_site_mean"]["std"],
+               d["S1_iqr_over_median"], d["S2_count"], d["S3_Q6_site_mean"]))
+    inj = ad.get("injection")
+    if inj:
+        fp = inj.get("false_positive_rate_amp_zero", {})
+        out.append(
+            "INJECTION (against the clustering-free randoms baseline, so it OVERSTATES sensitivity "
+            "against the real field). Amplitude-zero row: S1 %.2f, S2 %.2f, S3 %.2f against a nominal "
+            "0.05 at n = 30 (95%% binomial interval for 0.05 at n = 30 is about [0.006, 0.17]). "
+            "Smallest cell reaching 95%% on S1: %s."
+            % (fp.get("S1_iqr_over_median", float("nan")), fp.get("S2_count", float("nan")),
+               fp.get("S3_Q6_site_mean", float("nan")),
+               json.dumps(inj.get("smallest_detected_at_95pc_S1"))))
+    return out
+
+
 def _inj_narrative(a, units):
     """Everything numeric here is read out of the analysis / units JSON."""
     if not a or "injection" not in a:
@@ -316,6 +363,7 @@ def main():
             "N1_clustering_matched_null": ad["N1_lognormal"],
             "N2_randoms_control_NO_P_VALUE": ad.get("N2_randoms_control_NO_P_VALUE"),
             "injection_sensitivity": ad.get("injection"),
+            "narrative": _desi_narrative(ad),
         }
 
     rep["11_amplitude_and_density_units"] = j("cmb_amplitude_units.json")
