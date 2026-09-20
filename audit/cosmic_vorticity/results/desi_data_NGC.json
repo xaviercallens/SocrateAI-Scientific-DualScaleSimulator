@@ -1,0 +1,52 @@
+{
+ "cap": "NGC",
+ "N_gal": 217614,
+ "N_ran": 13248857,
+ "weights": "WEIGHT * WEIGHT_FKP (galaxies and randoms)",
+ "primary": {
+  "S2_count": 832,
+  "h0": {
+   "n": 831,
+   "median": 36.66060555964672,
+   "q1": 30.72458299147443,
+   "q3": 41.7612260356422,
+   "iqr_over_median": 0.30104912004825396,
+   "mean": 37.01705528760432,
+   "cv": 0.22948656194984313
+  },
+  "S1_iqr_over_median": 0.30104912004825396,
+  "betti_at_truncation": [
+   1,
+   0,
+   0
+  ],
+  "absolute_floor": {
+   "median_death_Mpch": 36.66060555964672,
+   "q1_Mpch": 30.72458299147443,
+   "q3_Mpch": 41.7612260356422,
+   "twice_median_Mpch": 73.32121111929344,
+   "cell_Mpch": 8.0,
+   "sigma_G_Mpch": 16.0,
+   "n_bars_below_cell": 0,
+   "n_bars_below_sigma_G": 0,
+   "frac_bars_below_sigma_G": 0.0,
+   "max_death_Mpch": 70.76722405181653
+  },
+  "truncation": {
+   "r_trunc_Mpch": 288.0,
+   "frac_h0_deaths_at_or_above_r_trunc": 0.0
+  },
+  "S3_Q6_site_mean": 0.31372683059542245,
+  "S3_n_sites_kept": 796,
+  "sigma_delta": 0.48606644386806885,
+  "valid_volume_Mpch3": 1128246272.0,
+  "alpha": 0.014951536431908607,
+  "grid_shape": [
+   172,
+   258,
+   166
+  ],
+  "n_valid_cells": 2203606,
+  "n_eroded_cells": 1475204
+ }
+}

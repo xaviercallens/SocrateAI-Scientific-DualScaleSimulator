@@ -206,33 +206,43 @@ def cmd_data(a):
 
 
 # --------------------------------------------------------------------- controls
-def shell_match(rr, wr, rd, wd, rng):
-    """Draw randoms with the data's per-shell weighted counts (X2's S3 rule),
-    so the control has the data's exact radial selection."""
-    edges = np.arange(np.floor(min(rd.min(), rr.min())), np.ceil(max(rd.max(), rr.max())) + SHELL, SHELL)
-    sd = np.clip(np.searchsorted(edges, rd, "right") - 1, 0, len(edges) - 2)
-    sr = np.clip(np.searchsorted(edges, rr, "right") - 1, 0, len(edges) - 2)
-    need = np.bincount(sd, minlength=len(edges) - 1)
-    order = np.argsort(sr, kind="stable")
-    starts = np.searchsorted(sr[order], np.arange(len(edges) - 1))
-    ends = np.searchsorted(sr[order], np.arange(len(edges) - 1), side="right")
-    out = []
-    for s in range(len(edges) - 1):
-        k = need[s]
-        if k == 0 or ends[s] <= starts[s]:
-            continue
-        pool = order[starts[s]:ends[s]]
-        out.append(rng.choice(pool, size=min(k, pool.size), replace=False))
-    return np.concatenate(out)
+class ShellMatcher:
+    """Draw randoms with the data's per-shell weighted counts (X2's S3 rule), so
+    the control has the data's exact radial selection.  The randoms' shell sort
+    is done ONCE (13 M rows) and reused by every realisation."""
+
+    def __init__(self, rr, rd):
+        self.edges = np.arange(np.floor(min(rd.min(), rr.min())),
+                               np.ceil(max(rd.max(), rr.max())) + SHELL, SHELL)
+        nsh = len(self.edges) - 1
+        sd = np.clip(np.searchsorted(self.edges, rd, "right") - 1, 0, nsh - 1)
+        sr = np.clip(np.searchsorted(self.edges, rr, "right") - 1, 0, nsh - 1)
+        self.need = np.bincount(sd, minlength=nsh)
+        self.order = np.argsort(sr, kind="stable")
+        srs = sr[self.order]
+        self.starts = np.searchsorted(srs, np.arange(nsh))
+        self.ends = np.searchsorted(srs, np.arange(nsh), side="right")
+        self.nsh = nsh
+
+    def draw(self, rng):
+        out = []
+        for s in range(self.nsh):
+            k = self.need[s]
+            if k == 0 or self.ends[s] <= self.starts[s]:
+                continue
+            pool = self.order[self.starts[s]:self.ends[s]]
+            out.append(rng.choice(pool, size=min(k, pool.size), replace=False))
+        return np.concatenate(out)
 
 
 def cmd_control(a):
     xd, wd, rd, xr, wr, rr = _load(a.cap)
     g = Grid(xd, wd, xr, wr)
+    sm = ShellMatcher(rr, rd)
     rows = []
     for k in range(a.n):
         rng = np.random.default_rng(7100000 + k)
-        idx = shell_match(rr, wr, rd, wd, rng)
+        idx = sm.draw(rng)
         pts, sd, _ = g.peaks(g.delta(xr[idx], wr[idx]))
         st = desi_statistics(pts)
         st["sigma_delta"] = sd
@@ -248,42 +258,93 @@ def cmd_control(a):
 
 
 # --------------------------------------------------------------------- injection
+def jittered_lattice(g, vol, n_target, rng):
+    """Registered PRIMARY placement: a cubic lattice over the eroded region at
+    spacing (vol/n_target)^(1/3), keeping only lattice sites whose cell is
+    eroded, then a Gaussian jitter of 0.25 * spacing.  (The first version of
+    this function drew a uniform random subset of eroded cells, i.e. POISSON
+    placement -- the very thing the registration says not to use as primary,
+    because a Poisson subpopulation pushes S1 the wrong way.  Fixed 2026-09-20;
+    the defect and the fix are both recorded in report.json.)"""
+    lat = (vol / max(n_target, 1)) ** (1 / 3.0)
+    lo = g.origin
+    hi = g.origin + (np.array(g.shape) - 1) * L.L_CELL
+    ax = [np.arange(lo[i] + 0.5 * lat, hi[i], lat) for i in range(3)]
+    gx, gy, gz = np.meshgrid(*ax, indexing="ij")
+    cen = np.stack([gx.ravel(), gy.ravel(), gz.ravel()], 1)
+    cen = cen + rng.normal(0, 0.25 * lat, cen.shape)
+    idx = np.floor((cen - g.origin) / L.L_CELL + 0.5).astype(np.int64)
+    ok = np.all((idx >= 0) & (idx < np.array(g.shape)), axis=1)
+    cen, idx = cen[ok], idx[ok]
+    ok = g.eroded[idx[:, 0], idx[:, 1], idx[:, 2]]
+    return cen[ok], lat
+
+
+def calibrate_per(g, sm, vol, rng):
+    """EMPIRICAL calibration of 'galaxies per injected core'.
+
+    The analytic route (divide by the smoothing kernel's normalisation) is a
+    normalisation trap and the first version of this code fell into it: it
+    computed per = 1 for EVERY amplitude, so the whole grid was flat and
+    measured nothing.  Instead: inject a trial number of galaxies per core,
+    MEASURE the delta increment actually produced at the core centres, and
+    scale once.  The measured response is reported.
+    """
+    ridx = sm.draw(rng)
+    xb, wb = xr_g[ridx], wr_g[ridx]
+    d0 = g.delta(xb, wb)
+    cen, lat = jittered_lattice(g, vol, 2000, rng)
+    per_trial = 200
+    ex = np.repeat(cen, per_trial, axis=0) + rng.normal(0, L.SIGMA_G, (len(cen) * per_trial, 3))
+    xb2 = np.vstack([xb, ex.astype(np.float32)])
+    wb2 = np.concatenate([wb, np.full(len(ex), wb.mean(), np.float32)])
+    d1 = g.delta(xb2, wb2)
+    idx = np.floor((cen - g.origin) / L.L_CELL + 0.5).astype(np.int64)
+    inc = (d1 - d0)[idx[:, 0], idx[:, 1], idx[:, 2]]
+    resp = float(np.median(inc) / per_trial)     # delta increment per injected galaxy
+    return resp, per_trial, float(np.median(inc)), int(len(cen))
+
+
 def cmd_inject(a):
+    global xr_g, wr_g
     xd, wd, rd, xr, wr, rr = _load(a.cap)
+    xr_g, wr_g = xr, wr
     g = Grid(xd, wd, xr, wr)
+    sm = ShellMatcher(rr, rd)
     base_pts, base_sd, vol = g.peaks(g.delta(xd, wd))
+    resp, per_trial, med_inc, n_cal = calibrate_per(g, sm, vol, np.random.default_rng(7399999))
+    log("calibration: %d trial galaxies per core at %d cores -> median delta increment %.4f "
+        "=> response %.3e per galaxy" % (per_trial, n_cal, med_inc, resp))
     amps = [0.0, 0.5, 1.0, 2.0]
     dens = [1, 3, 10]                       # per 1e6 (Mpc/h)^3
-    ijk = np.argwhere(g.eroded)
     cells = []
     for ia, A in enumerate(amps):
         for idn, D in enumerate(dens):
             if A == 0.0 and idn > 0:
                 continue
             rows = []
+            per = int(round(A * base_sd / resp)) if A > 0 else 0
+            n_place = []
             for k in range(a.n):
                 rng = np.random.default_rng(7300000 + 10000 * ia + 1000 * idn + k)
-                ridx = shell_match(rr, wr, rd, wd, rng)
+                ridx = sm.draw(rng)
                 xb, wb = xr[ridx], wr[ridx]
                 Ninj = max(1, int(round(D * 1e-6 * vol)))
                 if A > 0:
-                    # jittered cubic lattice inside the eroded region (registered)
-                    side = max(1, int(round(Ninj ** (1 / 3))))
-                    sub = ijk[rng.choice(len(ijk), size=min(Ninj, len(ijk)), replace=False)]
-                    cen = g.origin + sub * L.L_CELL
-                    lat = (vol / max(Ninj, 1)) ** (1 / 3)
-                    cen = cen + rng.normal(0, 0.25 * lat, cen.shape)
-                    # each injected core adds galaxies with a Gaussian profile of width sigma_G
-                    per = max(1, int(round(A * base_sd * g.alphaR[g.eroded].mean() / wb.mean())))
+                    cen, lat = jittered_lattice(g, vol, Ninj, rng)
+                    n_place.append(len(cen))
                     ex = np.repeat(cen, per, axis=0) + rng.normal(0, L.SIGMA_G, (len(cen) * per, 3))
                     xb = np.vstack([xb, ex.astype(np.float32)])
                     wb = np.concatenate([wb, np.full(len(ex), wb.mean(), np.float32)])
                 pts, sd, _ = g.peaks(g.delta(xb, wb))
                 st = desi_statistics(pts)
                 rows.append({kk: st[kk] for kk in ("S1_iqr_over_median", "S2_count", "S3_Q6_site_mean")})
-            cells.append(dict(amp_over_sigma_delta=A, density_per_1e6Mpc3=D, n_inj=Ninj, n_sims=a.n,
+            cells.append(dict(amp_over_sigma_delta=A, density_per_1e6Mpc3=D, n_inj_target=Ninj,
+                              n_inj_placed_mean=(float(np.mean(n_place)) if n_place else 0),
+                              galaxies_per_core=per, n_sims=a.n,
                               seed_rule="7300000+10000*%d+1000*%d+k" % (ia, idn), rows=rows))
-            log("inject A=%.2f D=%d (N_inj=%d) done" % (A, D, Ninj))
+            log("inject A=%.2f D=%d (target %d, placed %s, %d gal/core) done"
+                % (A, D, Ninj, cells[-1]["n_inj_placed_mean"], per))
     json.dump({"cap": a.cap, "base": "official randoms, shell-matched (clustering-free)",
                "valid_volume_Mpch3": vol, "sigma_delta_data": base_sd, "cells": cells},
               open(os.path.join(OUT, "desi_inject_%s.json" % a.cap), "w"))
@@ -336,7 +397,8 @@ def cmd_analyze(a):
         hi = {k: float(np.nanpercentile(get(c["rows"], k), 97.5)) for k in keys}
         grid = []
         for cc in inj["cells"]:
-            g = {kk: cc[kk] for kk in ("amp_over_sigma_delta", "density_per_1e6Mpc3", "n_inj", "n_sims")}
+            g = {kk: cc[kk] for kk in ("amp_over_sigma_delta", "density_per_1e6Mpc3", "n_inj_target",
+                                       "n_inj_placed_mean", "galaxies_per_core", "n_sims")}
             for k in keys:
                 x = get(cc["rows"], k)
                 g["rate_" + k] = float(np.mean((x < lo[k]) | (x > hi[k])))

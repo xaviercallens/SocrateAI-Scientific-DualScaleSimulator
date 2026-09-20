@@ -176,12 +176,21 @@ def cmd_inject(a):
     sigma_T = float(L.prep_map(m, mask)[mask > 0].std())
     amps = [0.0, 0.25, 0.5, 1.0, 2.0]
     dens = [100, 300, 1000]
+    if a.ext:
+        # POST-REGISTRATION EXTENSION, declared as such in report.json.  The
+        # registered ladder tops out at 22% detection, so it returns "NONE
+        # detected at 95%" -- a bound, not a sensitivity.  This extension walks
+        # the ladder up until the criterion DOES fire, so the null can be
+        # reported with a number instead of an absence.  Amplitude and placement
+        # seed rules and every other hyperparameter are unchanged.
+        amps = [4.0, 8.0]
+        dens = [1000, 3000]
     cells = []
     for ia, A in enumerate(amps):
         for idn, Nj in enumerate(dens):
             if A == 0.0 and idn > 0:
                 continue                      # A=0 run ONCE (registered)
-            for placement in (["grid"] if A == 0.0 else ["grid", "poisson"]):
+            for placement in (["grid"] if (A == 0.0 or a.ext) else ["grid", "poisson"]):
                 rows = []
                 for k in range(a.n):
                     gs = 4100000 + 10000 * ia + 1000 * idn + k
@@ -200,7 +209,9 @@ def cmd_inject(a):
                 log("inject A=%.2f N=%d %s done" % (A, Nj, placement))
     json.dump({"which": a.which, "sigma_T_mK_or_K": sigma_T, "theta0_deg": L.SIGMA_S_DEG,
                "profile": "T += s*A*sigma_T*exp(-theta^2/(2 theta0^2)), s=+-1 equiprobable",
-               "cells": cells}, open(os.path.join(OUT, "cmb_inject_%s.json" % a.which), "w"))
+               "extension": bool(a.ext),
+               "cells": cells}, open(os.path.join(OUT, "cmb_inject_%s%s.json"
+                                                  % (a.which, "_ext" if a.ext else "")), "w"))
 
 
 # --------------------------------------------------------------------- analyze
@@ -241,6 +252,19 @@ def cmd_analyze(a):
             e["withheld"] = "gate failed (fail closed)"
         res["statistics"][key] = e
 
+    res["S3_support"] = {"n_sites_kept_data": dat["primary"].get("S3_n_sites_kept"),
+                         "n_sites_kept_null_mean": float(np.mean(get(rows, "S3_n_sites_kept"))),
+                         "n_bonds_data": dat["primary"].get("S3_n_bonds"),
+                         "n_bonds_null_mean": float(np.mean(get(rows, "S3_n_bonds"))),
+                         "bond_cut": "1.5 * a_ref = 9.0 deg great-circle; a_ref = 6*sigma_s = 6.0 deg, while the "
+                                     "detected spacing is a_obs ~ 7.6 deg, so the cut is only ~1.18 * the actual "
+                                     "spacing and drops a substantial share of sites -- the counts above show it "
+                                     "acts symmetrically on the data and on the null."}
+    res["min_attainable_p"] = {"value": 2.0 / (len(rows) + 1),
+                               "note": "with %d nulls and the two-sided rank convention the smallest reachable "
+                                       "p is 2/(N+1) = %.5f, against the Bonferroni threshold 0.008333; the test "
+                                       "can reach significance but only in one resolvable step."
+                                       % (len(rows), 2.0 / (len(rows) + 1))}
     res["absolute_floor_data"] = dat["primary"].get("absolute_floor")
     res["absolute_floor_null_mean"] = {
         k: float(np.mean([r["absolute_floor"][k] for r in rows if "absolute_floor" in r]))
@@ -267,8 +291,14 @@ def cmd_analyze(a):
                 get(rows, k), float(np.nanmean(get(c["C2_value_shuffle"]["rows"], k))))
 
     inf = os.path.join(OUT, "cmb_inject_%s.json" % a.which)
+    ext = os.path.join(OUT, "cmb_inject_%s_ext.json" % a.which)
     if os.path.exists(inf):
         inj = json.load(open(inf))
+        if os.path.exists(ext):
+            e = json.load(open(ext))
+            for c in e["cells"]:
+                c["post_registration_extension"] = True
+            inj["cells"] = inj["cells"] + e["cells"]
         lo = {k: float(np.nanpercentile(get(rows, k), 2.5)) for k in
               ("S1_iqr_over_median", "S2_count", "S3_psi6_site_mean")}
         hi = {k: float(np.nanpercentile(get(rows, k), 97.5)) for k in lo}
@@ -276,6 +306,7 @@ def cmd_analyze(a):
         for c in inj["cells"]:
             rs = c["rows"]
             g = {kk: c[kk] for kk in ("amp_over_sigmaT", "n_inj_full_sky", "placement", "n_sims")}
+            g["post_registration_extension"] = bool(c.get("post_registration_extension", False))
             for k in lo:
                 x = get(rs, k)
                 g["rate_" + k] = float(np.mean((x < lo[k]) | (x > hi[k])))
@@ -304,6 +335,8 @@ if __name__ == "__main__":
     ap.add_argument("cmd", choices=["null", "data", "control", "inject", "analyze"])
     ap.add_argument("--which", default="wmap", choices=list(L.MAPS))
     ap.add_argument("--n", type=int, default=500)
+    ap.add_argument("--ext", action="store_true",
+                    help="post-registration extension of the injection ladder (see report.json)")
     a = ap.parse_args()
     os.makedirs(OUT, exist_ok=True)
     globals()["cmd_" + a.cmd](a)
