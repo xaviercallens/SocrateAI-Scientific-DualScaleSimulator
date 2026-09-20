@@ -279,11 +279,12 @@ def run_one(key, nside, n_sims, out):
         sep_sigma = {}
         for name in STATS_TAIL:
             nv = np.array([ss[name] for ss in sim_stats], float)
-            sd = float(nv.std(ddof=1))
+            # NB: do NOT name this `sd` -- that is the data statistics dict.
+            sigma_null = float(nv.std(ddof=1))
             out_range = bool(sd_data[name] < nv.min() or sd_data[name] > nv.max())
             n_outside += int(out_range)
-            if sd > 0:
-                sep_sigma[name] = float((sd_data[name] - nv.mean()) / sd)
+            if sigma_null > 0:
+                sep_sigma[name] = float((sd_data[name] - nv.mean()) / sigma_null)
                 db.add_statistic(rid, f"null_separation_sigma__{name}", sep_sigma[name])
             db.add_statistic(rid, f"data_outside_null_range__{name}", float(out_range))
         db.add_control(rid, "null_calibration",
@@ -306,7 +307,7 @@ def run_one(key, nside, n_sims, out):
                                    f"range of the {n_sims} Gaussian draws; min rank p = "
                                    f"{min(pvals.values()):.4g} at floor {2 / (n_sims + 1):.4g}. The "
                                    "verdict rests on the separation, NOT on the floored p-value."))
-    out[f"{key}_nside{nside}"] = {"run_id": rid, "f_sky": f_sky, "data": sd, "p_values": pvals,
+    out[f"{key}_nside{nside}"] = {"run_id": rid, "f_sky": f_sky, "data": sd_data, "p_values": pvals,
                                   "separation_sigma": sep_sigma, "n_outside": n_outside,
                                   "null_calibration_p": p_cal, "n_sims": n_sims,
                                   "coarse_b0": {k: v for k, v in cs0.items() if k != "kept_bin_indices"},

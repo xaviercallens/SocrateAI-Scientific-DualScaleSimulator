@@ -204,10 +204,43 @@ def skymap_findings(db):
     return n
 
 
+def camels_finding(db):
+    """Re-emit the CAMELS finding from its committed result JSON (run_camels.py
+    writes it too; this makes finalize idempotent after a findings wipe)."""
+    d = load("camels.json")
+    if not d:
+        return 0
+    res = d["correlations"]
+    best = max(res.items(), key=lambda kv: abs(kv[1]["rho"]))
+    n_sig, n_sh = d["n_significant"], d["n_significant_shuffled"]
+    db.add_finding(run_id=d["run_id"], dataset_id="astro/camels_hi_illustristng_lh",
+                   claim=(f"Sublevel cubical persistence of CAMELS IllustrisTNG HI maps correlates with "
+                          f"cosmology: {n_sig} of 12 pre-declared (statistic, parameter) pairs survive "
+                          f"Bonferroni/12 at p<{d['bonferroni']:.5f} over {d['n_maps']} INDEPENDENT "
+                          f"simulations (one map per simulation). Strongest: {best[0]} Spearman rho = "
+                          f"{best[1]['rho']:+.4f}, permutation p = {best[1]['p_perm']:.5f} "
+                          f"(10000 permutations, floor 1.0e-4). Shuffled-label control: {n_sh} of 12."),
+                   verdict="recovered" if n_sig else "null", tier="X",
+                   caveat=("Tier X numerics, not a proof and not a measurement of Omega_m. A correlation "
+                           "within ONE simulation suite (IllustrisTNG LH) at ONE redshift, on maps a "
+                           "third party had already min-max and log1p normalised globally. The "
+                           "astrophysical feedback parameters A_SN1/A_AGN1/A_SN2/A_AGN2 vary "
+                           "simultaneously across the LH set and are NOT controlled for, so part of any "
+                           "correlation may be feedback rather than cosmology. EFFECTIVE N: the 750 test "
+                           "maps carry only 555 distinct label rows (397 singletons, 126 pairs, 27 "
+                           "triples, 5 quads) and 293 of those simulations also appear in the val split; "
+                           "sampling one map per simulation is what makes N_eff = N_maps = 200, at the "
+                           "cost of leaving 550 maps unused. The strongest p sits at the permutation "
+                           "floor 1/10001, so its magnitude is resolution-limited."),
+                   reference="topodb_runs/astro/results/camels.json")
+    return 1
+
+
 def main():
     with topodb() as db:
         a = pointcloud_findings(db)
         b = skymap_findings(db)
+        camels_finding(db)
     print(f"wrote {a} point-cloud findings and {b} sky-map findings")
     with topodb() as db:
         import json as _j
