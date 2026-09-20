@@ -109,3 +109,35 @@ correlation surviving the threshold.
 **resolution-limited, not significant**, and is recorded as such in `p_method`.
 No p-value is stored without its `null_model` and `n_null` (TopoDB refuses it).
 Where no null exists, the number is stored **without** a p-value.
+
+---
+
+## AMENDMENT A1 — 2026-09-20, after Step 0 was run and K2 FAILED
+
+**What happened.** The rule declared in §0 (bare largest-multiplicative-gap) was
+run on the Step-0 suite. K1 circle, K3 torus, K4 wells and K5 HEALPix passed;
+**K2 sphere FAILED**, reporting b1 = 3933 where the textbook answer is 0. The
+failed run is in TopoDB as runs 1–6 and is deliberately **not deleted**.
+
+**Why it failed.** With no feature present, the largest multiplicative gap falls
+somewhere in the tail of sub-resolution bars, so the rule always returns a large
+number instead of zero. The rule as declared cannot express "no feature".
+
+**The amendment.** A bar shorter than the sampling resolution cannot be a feature
+of the underlying shape. The floor is `median(finite H0 death radii)` — the
+typical nearest-neighbour scale, computed from the cloud itself, with no tuned
+constant. `gap_betti` is applied only to bars above that floor. Re-run: all six
+cases pass (runs 7–12).
+
+**Scope of the amendment.** The gap rule is confined to Step 0 (§0), so this
+change touches no real-data result. §1–§4 are unchanged and were still written
+before any dataset was opened.
+
+**What K6 actually measured, and it matters.** On 400 uniform points in a disc
+the amended rule still reports **b1 = 1** — a loop that is not there. What
+separates it from the circle is not the count but the *gap ratio*: **1.30 for the
+disc against ∞ for the circle** (the circle has exactly one bar above the floor).
+This is the same failure mode the prior campaign measured (a persistence-ratio
+rule firing on 9 of 12 density-matched nulls), reproduced here on our own
+pipeline. It is the direct empirical justification for §0's scope limit: **the
+count of long bars is not a detector without a null.**
