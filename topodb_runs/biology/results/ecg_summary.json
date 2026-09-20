@@ -1,0 +1,216 @@
+{
+ "100": {
+  "desc": "normal sinus rhythm (69 M); periodic, dominant H1 expected",
+  "fs_hz": 360.0,
+  "tau": 72,
+  "f0_hz": 1.25,
+  "dominance": 1.157,
+  "S": 0.039,
+  "p_dom": 0.55721,
+  "p_S": 0.39303,
+  "null_median_dominance": 1.2494,
+  "criteria_met": false,
+  "posthoc_sweep": [
+   {
+    "variant": "delay_m3",
+    "window_sec": 5.0,
+    "bandpass_0.5_15hz": false,
+    "tau": 75,
+    "f0_hz": 1.2,
+    "dominance": 1.1411,
+    "S": 0.05725
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 5.0,
+    "bandpass_0.5_15hz": true,
+    "tau": 75,
+    "f0_hz": 1.2,
+    "dominance": 1.0754,
+    "S": 0.07222
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 10.0,
+    "bandpass_0.5_15hz": false,
+    "tau": 36,
+    "f0_hz": 2.5,
+    "dominance": 1.0739,
+    "S": 0.0473
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 10.0,
+    "bandpass_0.5_15hz": true,
+    "tau": 150,
+    "f0_hz": 0.6,
+    "dominance": 1.4956,
+    "S": 0.14583
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 20.0,
+    "bandpass_0.5_15hz": false,
+    "tau": 72,
+    "f0_hz": 1.25,
+    "dominance": 1.157,
+    "S": 0.039
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 20.0,
+    "bandpass_0.5_15hz": true,
+    "tau": 72,
+    "f0_hz": 1.25,
+    "dominance": 1.0049,
+    "S": 0.07969
+   },
+   {
+    "variant": "sw1pers_sphere",
+    "window_sec": 20.0,
+    "M": 8,
+    "tau": 32,
+    "dominance": 1.2515,
+    "S": 0.09792
+   },
+   {
+    "variant": "sw1pers_sphere",
+    "window_sec": 20.0,
+    "M": 14,
+    "tau": 19,
+    "dominance": 2.0858,
+    "S": 0.078
+   },
+   {
+    "variant": "sw1pers_sphere",
+    "window_sec": 20.0,
+    "M": 20,
+    "tau": 14,
+    "dominance": 1.4326,
+    "S": 0.05911
+   }
+  ],
+  "posthoc_sweep_max_dominance": 2.0858,
+  "top_bars": [
+   [
+    0.4795,
+    0.6388
+   ],
+   [
+    0.3366,
+    0.4743
+   ],
+   [
+    0.2514,
+    0.3801
+   ]
+  ]
+ },
+ "207": {
+  "desc": "severe arrhythmia incl. ventricular flutter; no expectation stated",
+  "fs_hz": 360.0,
+  "tau": 82,
+  "f0_hz": 1.1,
+  "dominance": 1.4083,
+  "S": 0.04881,
+  "p_dom": 0.10448,
+  "p_S": 0.05473,
+  "null_median_dominance": 1.1482,
+  "criteria_met": null,
+  "posthoc_sweep": [
+   {
+    "variant": "delay_m3",
+    "window_sec": 5.0,
+    "bandpass_0.5_15hz": false,
+    "tau": 150,
+    "f0_hz": 0.6,
+    "dominance": 1.347,
+    "S": 0.11901
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 5.0,
+    "bandpass_0.5_15hz": true,
+    "tau": 150,
+    "f0_hz": 0.6,
+    "dominance": 1.6506,
+    "S": 0.16651
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 10.0,
+    "bandpass_0.5_15hz": false,
+    "tau": 82,
+    "f0_hz": 1.1,
+    "dominance": 1.0285,
+    "S": 0.0424
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 10.0,
+    "bandpass_0.5_15hz": true,
+    "tau": 82,
+    "f0_hz": 1.1,
+    "dominance": 1.4648,
+    "S": 0.06695
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 20.0,
+    "bandpass_0.5_15hz": false,
+    "tau": 82,
+    "f0_hz": 1.1,
+    "dominance": 1.4083,
+    "S": 0.04881
+   },
+   {
+    "variant": "delay_m3",
+    "window_sec": 20.0,
+    "bandpass_0.5_15hz": true,
+    "tau": 82,
+    "f0_hz": 1.1,
+    "dominance": 1.0769,
+    "S": 0.04928
+   },
+   {
+    "variant": "sw1pers_sphere",
+    "window_sec": 20.0,
+    "M": 8,
+    "tau": 36,
+    "dominance": 1.5019,
+    "S": 0.04704
+   },
+   {
+    "variant": "sw1pers_sphere",
+    "window_sec": 20.0,
+    "M": 14,
+    "tau": 22,
+    "dominance": 1.42,
+    "S": 0.04224
+   },
+   {
+    "variant": "sw1pers_sphere",
+    "window_sec": 20.0,
+    "M": 20,
+    "tau": 16,
+    "dominance": 1.4211,
+    "S": 0.03381
+   }
+  ],
+  "posthoc_sweep_max_dominance": 1.6506,
+  "top_bars": [
+   [
+    0.5282,
+    0.9039
+   ],
+   [
+    0.4838,
+    0.7505
+   ],
+   [
+    0.6192,
+    0.8859
+   ]
+  ]
+ }
+}
