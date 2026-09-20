@@ -202,10 +202,16 @@ def main() -> int:
                                     f"max H1 persistence {st['A_max_h1_persistence']:.5f} and "
                                     f"{st['B_n_h1_bars_ge_0.005']:.0f} bars above {BAR_THRESH} over "
                                     f"{n_gen} genomes.",
-                           "verdict": "null" if st["B_n_h1_bars_ge_0.005"] <= 4 else "inconclusive",
+                           "verdict": ("null" if st["B_n_h1_bars_ge_0.005"] == 0
+                                       else "inconclusive"),
                            "tier": "X",
-                           "caveat": "no per-segment null was run; only the concatenated statistic "
-                                     "has a site-bootstrap p-value",
+                           "caveat": f"no per-segment null was run, so there is no p-value here; "
+                                     f"the verdict is 'null' only when NO bar exceeds "
+                                     f"{BAR_THRESH}. This segment has "
+                                     f"{st['B_n_h1_bars_ge_0.005']:.0f} such bars among "
+                                     f"{st['n_h1_bars']:.0f} finite H1 bars at median p-distance "
+                                     f"{st['median_pdistance']:.4f}, so a non-zero count is "
+                                     f"reported as inconclusive rather than as an absence of H1.",
                            "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"}])
 
     ds_id = "biology/influenza_concatenated_genomes"

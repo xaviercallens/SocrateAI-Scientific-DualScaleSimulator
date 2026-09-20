@@ -51,8 +51,15 @@ def main() -> int:
         if not f.exists():
             comps.append({"quantity": f"hic {case} rips P1/P2", "status": "ABSENT (not computed)"})
             continue
-        mine = json.loads(f.read_text())["meta"]["full_resolution_observed"]["h1_dominance_P1_over_P2"]
-        theirs = ref["tests"][test][sub]["rips_P1_over_P2"]
+        try:
+            mine = json.loads(f.read_text())["meta"]["full_resolution_observed"][
+                "h1_dominance_P1_over_P2"]
+            theirs = ref["tests"][test][sub]["rips_P1_over_P2"]
+        except (KeyError, TypeError) as exc:
+            # a missing reference key must not abort the whole check
+            comps.append({"quantity": f"hic {case} Rips P1/P2 (full resolution)",
+                          "status": f"NOT COMPARED: {type(exc).__name__}: {exc}"})
+            continue
         comps.append({"quantity": f"hic {case} Rips P1/P2 (full resolution)",
                       "mine": round(mine, 8), "earlier_validation": theirs,
                       "relative_difference": round(rel(mine, theirs), 10),
@@ -61,6 +68,7 @@ def main() -> int:
     # ---- influenza ----
     f = RESULTS / "influenza_summary.json"
     if f.exists():
+      try:
         mine = json.loads(f.read_text())["observed"]
         t3 = ref["tests"]["test_3_influenza_reassortment"]
         for s, nm in ((1, "PB2"), (2, "PB1"), (3, "PA"), (4, "HA"), (5, "NP"), (6, "NA"),
@@ -86,6 +94,8 @@ def main() -> int:
                           "relative_difference": round(rel(mc[key], tc[theirs_key]), 10),
                           "agrees_to_1e-4": bool(
                               abs(mc[key] - tc[theirs_key]) <= max(TOL * abs(tc[theirs_key]), 5e-5))})
+      except (KeyError, TypeError) as exc:
+        comps.append({"quantity": "influenza", "status": f"NOT COMPARED: {exc}"})
     else:
         comps.append({"quantity": "influenza", "status": "ABSENT (not computed)"})
 

@@ -1,0 +1,19 @@
+{
+ "u2os": {
+  "status": "ABSENT: not computed"
+ },
+ "mesc": {
+  "dominance": 1.0411,
+  "S": 0.00543,
+  "p_S": 0.00498,
+  "p_dom": 0.39303,
+  "n_cells": 269,
+  "n_genes": 97,
+  "expects_loop": true,
+  "criteria_met": false,
+  "neg_median_dom": 1.038090410916423
+ },
+ "pbmc3k": {
+  "status": "ABSENT: not computed"
+ }
+}
