@@ -26,6 +26,11 @@ from . import _common as C
 DIR = "audit/cosmic_vorticity"
 R = f"{DIR}/results"
 
+# names carried by BOTH cmb_data_*.json's `primary` block and cmb_analysis_*.json's
+# `statistics.<S>.data`. Verified identical value for value in both maps; the
+# analysis copy is stored because it is the one that carries the p-value.
+DUPLICATED_ON_THE_PRIMARY_RUN = ("S1_iqr_over_median", "S2_count", "S3_psi6_site_mean")
+
 CMB_DATASETS = {
     "wmap": dict(id="astro/cv/wmap_ilc9_defect_cores",
                  title="WMAP 9-yr ILC: smoothed-temperature defect-core peak set on the sphere"),
@@ -34,7 +39,17 @@ CMB_DATASETS = {
 }
 
 
-def _h0_block(src, rid, blk, prefix=""):
+def _h0_block(src, rid, blk, prefix="", skip=()):
+    """`skip` names statistics written elsewhere on the same run.
+
+    The `statistic` table has primary key (run_id, name) and INSERT OR REPLACE,
+    so writing one name twice on a run silently discards the first write. On the
+    CMB primary runs, cmb_data_*.json's `primary` block and cmb_analysis_*.json's
+    `statistics.<S>.data` carry S1/S2/S3 under the same names; they were checked
+    and are identical value for value, and the analysis file's copy is the one
+    that carries the p-value, so this skips the duplicate rather than letting it
+    be overwritten without trace.
+    """
     h0 = blk.get("h0") or {}
     for k in ("n", "median", "q1", "q3", "iqr_over_median", "mean", "cv"):
         src.stat(rid, f"{prefix}h0_{k}", h0.get(k))
@@ -44,7 +59,7 @@ def _h0_block(src, rid, blk, prefix=""):
         src.stat(rid, f"{prefix}truncation_{k}", v)
     for k in ("S1_iqr_over_median", "S2_count", "S3_psi6_site_mean", "S3_Q6_site_mean",
               "S3_n_sites_kept", "S3_n_bonds", "sigma_Ts", "var_Ts_eroded", "sigma_delta"):
-        if k in blk:
+        if k in blk and k not in skip:
             src.stat(rid, f"{prefix}{k}", blk.get(k))
 
 
@@ -127,7 +142,8 @@ def ingest(db) -> dict:
                       seed=str(ana.get("null_seeds")))
         prim = data.get("primary") or {}
         src.betti(rid, C.betti_map(prim.get("betti_at_truncation")))
-        _h0_block(src, rid, prim)
+        # S1/S2/S3 come from the analysis file below, with their p-values attached
+        _h0_block(src, rid, prim, skip=DUPLICATED_ON_THE_PRIMARY_RUN)
         null_desc = (f"{ana.get('n_null')} Gaussian isotropic realisations (seeds "
                      f"{ana.get('null_seeds')}) through the same mask, the same smoothing, the same "
                      "peak detector and the same alpha filtration")
@@ -405,6 +421,14 @@ def ingest(db) -> dict:
         src.note_discrepancy("cosmic_vorticity correction to an earlier commit message",
                              f"{c.get('commit_subject')}: said {str(c.get('what_it_said'))[:200]} - "
                              f"correction: {str(c.get('correction'))[:300]}")
+    src.note_discrepancy(
+        "cosmic_vorticity duplicated statistics",
+        "S1_iqr_over_median, S2_count and S3_psi6_site_mean appear in BOTH cmb_data_<map>.json's "
+        "`primary` block and cmb_analysis_<map>.json's `statistics.<S>.data`. They were compared "
+        "value for value in both maps and are identical, so nothing was lost; the analysis file's "
+        "copy is the one stored, because it is the one that carries the p-value, and the data "
+        "file's copy is deliberately skipped rather than silently overwritten by the "
+        "(run_id, name) primary key")
     src.skip("cosmic_vorticity persistence diagrams",
              "no birth/death pairs are committed anywhere in audit/cosmic_vorticity: the H0 bars are "
              "consumed in memory and only their summary (n, median, q1, q3, IQR/median, mean, cv), a "

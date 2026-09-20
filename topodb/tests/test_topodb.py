@@ -492,6 +492,15 @@ class TestOwnershipScopedReset:
             rows = db.con.execute(f"SELECT run_id FROM {t}").fetchall()
             assert [r[0] for r in rows] == [their_run], t
         assert [r[0] for r in db.con.execute("SELECT id FROM finding")] == [their_finding]
+        # api.add_finding indexes into the FTS table; the index must not outlive the row,
+        # or `topodb.cli search` returns hits whose ref_id no longer resolves
+        assert db.con.execute(
+            "SELECT count(*) FROM search WHERE kind='finding' AND ref_id NOT IN "
+            "(SELECT CAST(id AS TEXT) FROM finding)").fetchone()[0] == 0
+        assert db.con.execute(
+            "SELECT count(*) FROM search WHERE kind='dataset' AND ref_id NOT IN "
+            "(SELECT id FROM dataset)").fetchone()[0] == 0
+        assert [r["ref_id"] for r in db.search("theirs")] == [str(their_finding)]
         assert [r[0] for r in db.con.execute("SELECT id FROM dataset")] == [theirs]
         assert db.con.execute("SELECT 1 FROM finding WHERE id=?", (my_ds_finding,)).fetchone() is None
 
@@ -512,6 +521,26 @@ class TestOwnershipScopedReset:
         assert db.con.execute("SELECT count(*) FROM dataset WHERE id=?", (shared,)).fetchone()[0] == 1
         assert [r[0] for r in db.con.execute("SELECT id FROM run")] == [theirs]
         assert mine not in [r[0] for r in db.con.execute("SELECT id FROM run")]
+
+    def test_wipe_owned_sweeps_index_rows_left_by_an_earlier_reset(self, db, tmp_path):
+        """An earlier reset that deleted findings without their index rows is repaired,
+        and only rows whose target is already gone are touched."""
+        from topodb.ingest import _common as C
+
+        _dataset(db)
+        live = db.add_finding(dataset_id="synthetic/circle", claim="still here",
+                              verdict="null", tier="X")
+        stale = db.add_finding(dataset_id="synthetic/circle", claim="orphan",
+                               verdict="null", tier="X")
+        db.con.execute("DELETE FROM finding WHERE id=?", (stale,))   # index row left behind
+        db.con.commit()
+        assert db.con.execute("SELECT count(*) FROM search WHERE kind='finding'").fetchone()[0] == 2
+
+        removed = C.wipe_owned(db, str(tmp_path / "missing.json"))
+        assert removed["orphan_search_rows_finding"] == 1
+        assert [r["ref_id"] for r in db.con.execute(
+            "SELECT ref_id FROM search WHERE kind='finding'")] == [str(live)]
+        assert db.con.execute("SELECT count(*) FROM finding").fetchone()[0] == 1
 
     def test_wipe_owned_on_an_empty_manifest_deletes_nothing(self, db, tmp_path):
         from topodb.ingest import _common as C

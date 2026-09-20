@@ -85,8 +85,15 @@ def wipe_owned(db: TopoDB, manifest_path: str = OWNED_MANIFEST) -> dict:
         qs = ",".join("?" * len(owned_runs))
         for t in ("bar", "betti", "statistic", "control"):
             db.con.execute(f"DELETE FROM {t} WHERE run_id IN ({qs})", owned_runs)
+        # api.add_finding indexes every finding into the FTS table, so the index
+        # rows have to go with the findings or `topodb.cli search` starts
+        # returning hits whose ref_id no longer resolves
+        doomed = [int(r[0]) for r in db.con.execute(
+            f"SELECT id FROM finding WHERE run_id IN ({qs})", owned_runs).fetchall()]
         cur = db.con.execute(f"DELETE FROM finding WHERE run_id IN ({qs})", owned_runs)
         removed["findings"] += cur.rowcount if cur.rowcount and cur.rowcount > 0 else 0
+        for fid in doomed:
+            db.con.execute("DELETE FROM search WHERE kind='finding' AND ref_id=?", (str(fid),))
         db.con.execute(f"DELETE FROM run WHERE id IN ({qs})", owned_runs)
 
     man = load_manifest(manifest_path)
@@ -103,6 +110,16 @@ def wipe_owned(db: TopoDB, manifest_path: str = OWNED_MANIFEST) -> dict:
         cur = db.con.execute("DELETE FROM dataset WHERE id=?", (did,))
         removed["datasets"] += cur.rowcount if cur.rowcount and cur.rowcount > 0 else 0
         db.con.execute("DELETE FROM search WHERE kind='dataset' AND ref_id=?", (did,))
+    # sweep any index row left behind by an earlier reset, guarded so it can only
+    # remove rows whose target is already gone and never another session's
+    for kind, sql in (("finding", "SELECT ref_id FROM search WHERE kind='finding' AND ref_id NOT IN "
+                                  "(SELECT CAST(id AS TEXT) FROM finding)"),
+                      ("dataset", "SELECT ref_id FROM search WHERE kind='dataset' AND ref_id NOT IN "
+                                  "(SELECT id FROM dataset)")):
+        orphans = [r[0] for r in db.con.execute(sql).fetchall()]
+        for ref in orphans:
+            db.con.execute("DELETE FROM search WHERE kind=? AND ref_id=?", (kind, ref))
+        removed[f"orphan_search_rows_{kind}"] = len(orphans)
     db.con.commit()
     return removed
 

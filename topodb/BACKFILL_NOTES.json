@@ -1,6 +1,6 @@
 {
   "_what_this_is": "A machine-written record of the TopoDB backfill: what each committed source contributed, what was skipped and why, and every place where a source's own numbers disagree with its narrative. No number in the database was computed here; all of them were read from the committed files named below.",
-  "generated": "2026-09-20T07:52:32+00:00",
+  "generated": "2026-09-20T07:57:21+00:00",
   "db_path": "/mnt/disks/disk-socrateai-local-1/topodb/topodb.sqlite",
   "rules_applied": [
     "expected= is passed to add_betti only where the source itself pre-stated the expectation, so `matches` is NULL wherever no pre-registration existed",
@@ -16,10 +16,13 @@
     "rows_removed_by_the_ownership_scoped_reset_before_this_ingest": {
       "runs": 406,
       "datasets": 136,
-      "findings": 94
+      "findings": 95,
+      "orphan_search_rows_finding": 527,
+      "orphan_search_rows_dataset": 0
     },
-    "runs_present_that_this_backfill_does_not_own": 147,
-    "owned_manifest": "/mnt/disks/disk-socrateai-local-1/topodb/backfill_owned.json"
+    "runs_present_that_this_backfill_does_not_own": 150,
+    "owned_manifest": "/mnt/disks/disk-socrateai-local-1/topodb/backfill_owned.json",
+    "manifest_is_load_bearing": "runs carry the `_backfill_source` marker in params_json and can always be identified, but dataset-level findings (those with run_id NULL) carry no marker: they are identified only by the sidecar manifest. If that file is lost, the next reset leaves them behind as orphans and adds a fresh set."
   },
   "sources": [
     {
@@ -244,15 +247,15 @@
       },
       "skipped": [
         {
-          "what": "genetics statistic P1_over_P2 on run 1422",
+          "what": "genetics statistic P1_over_P2 on run 1970",
           "why": "the source records a non-finite value (inf); the database stores only finite statistics, so it was not carried"
         },
         {
-          "what": "genetics statistic P1_over_P2 on run 1423",
+          "what": "genetics statistic P1_over_P2 on run 1971",
           "why": "the source records a non-finite value (inf); the database stores only finite statistics, so it was not carried"
         },
         {
-          "what": "genetics statistic P1_over_P2 on run 1424",
+          "what": "genetics statistic P1_over_P2 on run 1972",
           "why": "the source records a non-finite value (inf); the database stores only finite statistics, so it was not carried"
         },
         {
@@ -538,7 +541,7 @@
         "runs": 15,
         "betti": 19,
         "bars": 0,
-        "statistics": 449,
+        "statistics": 443,
         "controls": 11,
         "findings": 8
       },
@@ -604,6 +607,10 @@
         {
           "where": "cosmic_vorticity defect found during the run",
           "detail": "scripts/cv_desi.py::cmd_inject (first version): TWO defects. Defect (b) ALONE flattened the grid so that it measured nothing; defect (a) would not have nulled the grid but would have biased the measured sensitivity in the wrong direction. (a) the placement drew a uniform random subset of eroded cells -- POISSON placement -- although the registration makes a jittered lattice the primary and says why; the unused variable `side` is the fingerprint of the lattice that was intended. (b) the galaxies-per-core count was derived analytically and omitted the smoothing kernel's normalisation ((2 pi)^(3/2) sigma_cells^3 ~ 126), so it evaluated to max(1, 0) = 1 galaxy per core at EVERY amplitude. Measured consequence: the whole grid was flat -- S1 ranged only over 0.2548-0.2612 and the count over 1234-1257 from A = 0 to A = 2."
+        },
+        {
+          "where": "cosmic_vorticity duplicated statistics",
+          "detail": "S1_iqr_over_median, S2_count and S3_psi6_site_mean appear in BOTH cmb_data_<map>.json's `primary` block and cmb_analysis_<map>.json's `statistics.<S>.data`. They were compared value for value in both maps and are identical, so nothing was lost; the analysis file's copy is the one stored, because it is the one that carries the p-value, and the data file's copy is deliberately skipped rather than silently overwritten by the (run_id, name) primary key"
         }
       ]
     },
@@ -700,7 +707,7 @@
     "runs": 406,
     "betti": 1068,
     "bars": 794,
-    "statistics": 2565,
+    "statistics": 2559,
     "controls": 427,
     "findings": 95
   }

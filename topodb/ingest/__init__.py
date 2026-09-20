@@ -85,6 +85,11 @@ def run_all(db: TopoDB | None = None, wipe: bool = True, only: list[str] | None 
             "rows_removed_by_the_ownership_scoped_reset_before_this_ingest": removed,
             "runs_present_that_this_backfill_does_not_own": foreign_runs,
             "owned_manifest": C.OWNED_MANIFEST,
+            "manifest_is_load_bearing": (
+                "runs carry the `_backfill_source` marker in params_json and can always be "
+                "identified, but dataset-level findings (those with run_id NULL) carry no marker: "
+                "they are identified only by the sidecar manifest. If that file is lost, the next "
+                "reset leaves them behind as orphans and adds a fresh set."),
         },
         "sources": reports,
         "totals": {k: sum(r["ingested"][k] for r in reports) for k in
