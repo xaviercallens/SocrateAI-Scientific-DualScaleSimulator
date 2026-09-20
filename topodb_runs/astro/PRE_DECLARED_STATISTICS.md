@@ -117,7 +117,15 @@ Where no null exists, the number is stored **without** a p-value.
 **What happened.** The rule declared in §0 (bare largest-multiplicative-gap) was
 run on the Step-0 suite. K1 circle, K3 torus, K4 wells and K5 HEALPix passed;
 **K2 sphere FAILED**, reporting b1 = 3933 where the textbook answer is 0. The
-failed run is in TopoDB as runs 1–6 and is deliberately **not deleted**.
+failed run was deliberately **not deleted** from TopoDB.
+
+> **Correction, 2026-09-20.** That sentence said "the failed run is in TopoDB as
+> runs 1–6". It is no longer true: a concurrent agent replaced the shared
+> `topodb.sqlite` wholesale and every row this branch had written was destroyed.
+> The re-ingested Step 0 contains only the six **passing** runs, because re-running
+> the corrected script cannot reproduce the failure. The failed attempt now
+> survives only in this document and in commit `506169e`. Run ids are not stable
+> across the shared database and must never be cited as identifiers.
 
 **Why it failed.** With no feature present, the largest multiplicative gap falls
 somewhere in the tail of sub-resolution bars, so the rule always returns a large

@@ -16,7 +16,6 @@ const DB = '/mnt/disks/disk-socrateai-local-1/topodb/topodb.sqlite'
 const WT = '/mnt/disks/disk-socrateai-local-1/wt-topo-astro'
 const OUT = `${WT}/topodb_runs/astro/duality`
 const PY = '/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python'
-const RUN = `prlimit --as=8589934592 -- ${PY}`
 
 const A = args || {}
 const NULL_FITS = A.nullFits || 200
@@ -211,9 +210,24 @@ persistence diagram D = {(b_i, d_i)} define, for a scale constant c > 0,
 
     sigma_c(b, d) = (c/d, c/b).
 
-sigma_c is an involution (sigma_c o sigma_c = identity) and it reverses the order of the scale axis, so a
-long bar at small scale maps to a long bar at large scale. A diagram is SELF-INVERSE ABOUT c if
-D and sigma_c(D) agree. Define the score
+sigma_c is an involution (sigma_c o sigma_c = identity), it preserves b < d, and it reverses the order of
+the scale axis, so a long bar at small scale maps to a long bar at large scale.
+
+THE DOMAIN OF sigma_c, which is NOT all of the diagram, and is MEASURED, not assumed. c/b is undefined at
+b = 0 and c/d is 0 at d = infinity, so sigma_c is undefined on exactly the bars that usually carry the most
+persistence. Counted over the whole TopoDB bar table on 2026-09-20:
+    dim 0: 2712 bars, 2687 of them (99.1%) have birth <= 0   -> H_0 IS EXCLUDED BY CONSTRUCTION
+    dim 1: 3147 bars,    0 (0.0%) have birth <= 0, 139 essential
+    dim 2: 1511 bars,    0 (0.0%) have birth <= 0,  75 essential
+    dim 3:   24 bars,    0 (0.0%) have birth <= 0,   0 essential
+So the detector runs on FINITE BARS WITH birth > 0, which on this corpus means H_1, H_2 and H_3 only.
+State that H_0 is excluded by construction and not by convenience; an alpha-complex H_0 bar is always born
+at 0, so no scale inversion can act on it at all. Usable bars after the restriction:
+H_1 biology 2655 / synthetic 325 / astro 28; H_2 biology 1273 / synthetic 160; H_3 synthetic 24.
+NOTE the consequence for Phase 3 and say it there: the astro slice has only ~28 usable H_1 bars, so the
+sweep is biology- and synthetic-dominated and the astro result will be weak whatever it shows.
+
+A diagram is SELF-INVERSE ABOUT c if D and sigma_c(D) agree. Define the score
 
     S(c) = W_1( D, sigma_c(D) ) / totalPersistence(D)          (1-Wasserstein, or bottleneck; state which)
 
@@ -353,22 +367,33 @@ explanations (real local structure vs trivial scaling with local density) the da
     },
     {
       id: 'exchange',
-      p: `Test the SHARPEST topological signature of a T-duality-like structure, which is not scale inversion
-alone but DIMENSION EXCHANGE under it.
+      p: `Test scale-reversed Poincare duality on diagrams - and FIRST, correct a physics error that the
+first draft of this workflow contained, because the correction is itself the most useful thing in this probe.
 
-T-duality on a torus exchanges momentum and winding modes. The homological shadow of such an exchange is
-that inverting the scale also swaps homological degrees: H_k at scale s should look like H_{n-k} at scale
-c/s. Scale inversion WITHOUT degree exchange is just self-similarity; scale inversion WITH degree exchange
-is a far more specific and far more falsifiable structure.
+THE ERROR, stated plainly so nobody re-derives it: it is tempting to say that the topological signature of
+T-duality is a degree exchange, H_k at scale s matching H_{n-k} at scale c/s. THAT IS WRONG. T-duality
+exchanges momentum and winding modes - the spectrum-level statement is that the Kaluza-Klein tower
+(mass proportional to n/R) swaps with the winding tower (mass proportional to mR). It does NOT act on the
+homology of the torus: H_*(T^d) is INVARIANT under T-duality. That invariance is precisely WHY T-duality
+is hard to see homologically at all, and it is the single most important negative result this workflow can
+report. Write it down as such.
 
-Define the cross-degree score S_{k,n-k}(c) = W_1( D_k , sigma_c(D_{n-k}) ) normalised, fit c, and compare
-against the SAME fit on the shuffle null (HARD RULE 2). Run it on:
-  - the synthetic torus and sphere from the Step-0 suite (${WT}/topodb_runs/astro/step0_known_answers.py):
-    a torus has b = (1,2,1) and IS Poincare self-dual, so it is the natural positive control for degree
-    exchange; a sphere (1,0,1) has b_1 = 0 and is the natural negative for the k=1 channel;
-  - every candidate that survived Phase 3.
-Report whether ANY real dataset shows degree exchange, and be explicit that the expected answer is NO.
-A null result here is the most likely outcome and is a perfectly good result - report it as a null.`,
+WHAT IS ACTUALLY TESTABLE, and it is narrower:
+  (a) The reciprocal-radius pair. A flat torus sampled at radius R has its H_1 death scales set by R; one
+      at radius alpha'/R has them set by alpha'/R. So a PAIR of datasets at reciprocal radii must show
+      reciprocal H_1 death scales. This tests THE DETECTOR, not the physics - it is the P3 control from
+      Phase 2, promoted here. Build both tori at matched sampling density, predict the reciprocal relation
+      before measuring, and report whether the detector recovers it.
+  (b) Scale-reversed Poincare duality on diagrams: S_{k,n-k}(c) = W_1( D_k , sigma_c(D_{n-k}) ) normalised,
+      c fitted, compared against the SAME fit on the shuffle null (HARD RULE 2). This is a property OF THE
+      SPACE, not of a duality transformation on it - label it that way. It is included only because Phase 1
+      established that the palindrome version of the same idea is necessary-but-not-sufficient, and it is
+      worth knowing whether the diagram-level version inherits that weakness. Run it on the Step-0 torus
+      (b = (1,2,1), Poincare self-dual, the natural positive) and sphere (b = (1,0,1), b_1 = 0, the natural
+      negative for the k=1 channel), then on the Phase 3 candidates.
+
+Report (a) and (b) separately and never merge them. The expected answer to (b) on real data is NO, and a
+null is a perfectly good result. Do not, anywhere, describe either as evidence of T-duality.`,
     },
   ]
   const res = await parallel(PROBES.map(P => () => agent(`${RULES}
@@ -388,6 +413,9 @@ Write ${OUT}/PHASE4_${P.id}.json and commit the script that produced it.`,
 // PHASE 5 — SKEPTICS: try to kill every surviving candidate
 // =====================================================================
 let verdicts = null
+if (want('skeptics') && sweep && !sweep.candidates.length) {
+  log('Skeptics SKIPPED: the sweep produced zero candidates, so there was nothing to challenge. That is a null result, not an absence of scrutiny.')
+}
 if (want('skeptics') && sweep && sweep.candidates.length) {
   phase('Skeptics')
   const LENSES = [
