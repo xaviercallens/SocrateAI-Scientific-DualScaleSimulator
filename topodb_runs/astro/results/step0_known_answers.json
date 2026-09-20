@@ -478,10 +478,10 @@
     "shape": "unit circle S^1 in R^2"
    },
    "passed": true,
-   "peak_mb": 41.1640625,
+   "peak_mb": 41.25,
    "resolution_floor": 0.008676898241383178,
-   "run_id": 7,
-   "wall_sec": 0.035956382751464844
+   "run_id": 1107,
+   "wall_sec": 0.0362706184387207
   },
   "K2_sphere": {
    "bars": {
@@ -3331,10 +3331,10 @@
     "shape": "unit sphere S^2 in R^3"
    },
    "passed": true,
-   "peak_mb": 52.1640625,
+   "peak_mb": 52.0,
    "resolution_floor": 0.03781703605443186,
-   "run_id": 8,
-   "wall_sec": 0.8766727447509766
+   "run_id": 1108,
+   "wall_sec": 0.8758223056793213
   },
   "K3_torus": {
    "bars": {
@@ -26315,10 +26315,10 @@
     "shape": "torus T^2 in R^3"
    },
    "passed": true,
-   "peak_mb": 95.96875,
+   "peak_mb": 95.84765625,
    "resolution_floor": 0.03869635056876931,
-   "run_id": 9,
-   "wall_sec": 0.7816286087036133
+   "run_id": 1109,
+   "wall_sec": 0.7157320976257324
   },
   "K4_grid_wells": {
    "bars": {
@@ -31298,9 +31298,9 @@
     "well_sigma_px": 6.0
    },
    "passed": true,
-   "peak_mb": 95.96875,
-   "run_id": 10,
-   "wall_sec": 0.05500364303588867
+   "peak_mb": 95.84765625,
+   "run_id": 1110,
+   "wall_sec": 0.047720909118652344
   },
   "K5_healpix_complex": {
    "bars": {},
@@ -31324,9 +31324,9 @@
     "nside": 32
    },
    "passed": true,
-   "peak_mb": 105.984375,
-   "run_id": 11,
-   "wall_sec": 1.2896838188171387
+   "peak_mb": 106.11328125,
+   "run_id": 1111,
+   "wall_sec": 1.3074662685394287
   },
   "K6_negative": {
    "b0_noise_grid": 1860,
@@ -31341,8 +31341,8 @@
    },
    "passed": true,
    "resolution_floor": 0.027906948665075294,
-   "run_id": 12,
-   "wall_sec": 0.04452037811279297
+   "run_id": 1112,
+   "wall_sec": 0.04938197135925293
   }
  },
  "seed": 20260920
