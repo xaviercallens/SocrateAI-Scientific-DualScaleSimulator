@@ -16,11 +16,17 @@ MANDATORY CONTROL (registration limit L2).  On rough fields the lower-star path
 FAILED a site-shuffle control in the Re6Zr work: shuffled fields reproduced the
 "signal", so it came from the value distribution and not from topology.  This
 script therefore also runs the C2 value-shuffle ensemble through the identical
-lower-star path and reports where it lands.  Reading:
-  - if the shuffled ensemble is INDISTINGUISHABLE from the Gaussian null, the
-    statistic is blind to spatial arrangement and the diagnostic is WITHDRAWN;
-  - if the shuffled ensemble is decisively separated from the null, the
-    statistic is reading spatial structure and the diagnostic stands.
+lower-star path and reports where it lands.
+
+CORRECTION (2026-09-20), which report.json carries and which supersedes the
+`control_verdict` string this script emits: what is measured here is whether the
+SHUFFLED ensemble is SEPARATED FROM THE GAUSSIAN NULL.  That is NOT the
+proposition L2 names.  L2's failure mode is that the shuffled field looks like
+the REAL field, i.e. that an apparent signal lives in the value distribution; a
+statistic can separate shuffles from the null and still be value-driven.  The
+fractions below are therefore reported as a separation measurement and NOTHING
+is concluded from them about L2.  The verdict string is left as the code wrote
+it so the committed JSON matches its producer.
 
 Command:
   timeout 7200 prlimit --as=8589934592 -- <venv-tda python> cv_lowerstar.py --which wmap --n 200
@@ -86,6 +92,9 @@ def main():
     for k in range(a.nshuf):
         rng = np.random.default_rng(6100000 + k)     # SAME seeds as the C2 control
         sh = ts_data.copy()
+        # NOTE: the lower-star complex is built on the FULL mask, so the
+        # permutation is over mask > 0 -- NOT over the R_disk-eroded region the
+        # alpha path's C2 control uses.  Same seed integers, different pixel set.
         sh[mask > 0] = rng.permutation(ts_data[mask > 0])
         c = curves(sh, unm, edges, tris)
         sb0.append(c[0]); sb1.append(c[1])
@@ -93,7 +102,8 @@ def main():
 
     res = {
         "which": a.which, "n_null": a.n, "null_seeds": "2000000+k (the SAME null ensemble as the alpha path)",
-        "n_shuffle": a.nshuf, "shuffle_seeds": "6100000+k (the SAME seeds as the C2 control)",
+        "n_shuffle": a.nshuf, "shuffle_seeds": "6100000+k (the same seed integers as the alpha path's C2 control, but "
+                         "permuting over mask > 0 rather than over the eroded region)",
         "nu_grid": "np.linspace(-4, 4, 41), X1's registered grid",
         "filtration": "lower-star on the HEALPix quad-corner 2-complex of lib/cmb_topology.build_topology_fixed",
         "complex_info": {k: (v if not isinstance(v, np.ndarray) else v.tolist())
@@ -121,6 +131,12 @@ def main():
             "min_rank_p": float(ps.min()), "max_rank_p": float(ps.max())}
     f0 = res["shuffle_control_vs_null"]["b0"]["fraction_below_0.05"]
     f1 = res["shuffle_control_vs_null"]["b1"]["fraction_below_0.05"]
+    # NOTE (correction, 2026-09-20): the field below measures SEPARATION OF THE
+    # SHUFFLED ENSEMBLE FROM THE GAUSSIAN NULL.  That is NOT the proposition
+    # registration limit L2 names -- L2's failure mode is that the shuffled
+    # field looks like the REAL field.  report.json supersedes the verdict
+    # string emitted here and reports the fractions as a separation measurement
+    # only.  Kept unchanged so the committed JSON matches the code that wrote it.
     stands = bool(f0 >= 0.95 or f1 >= 0.95)
     res["control_verdict"] = {
         "fraction_of_shuffles_separated_from_the_null_b0": f0,

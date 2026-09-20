@@ -35,6 +35,13 @@ def _lowerstar(ls):
     lower-star statistic in this audit."""
     if not ls:
         return {"status": "NOT ATTEMPTED"}
+    if int(ls.get("n_null", 0)) < 100:
+        # GUARD: a short smoke-test file must never reach the report.  With a
+        # handful of nulls the rank p cannot go below 2/(n+1), every control
+        # fraction is 0 by construction, and the Hartlap factor is NaN.
+        return {"status": "NOT ATTEMPTED (only a smoke-test file with n_null = %s was present; "
+                          "its numbers are meaningless and are deliberately not reported)"
+                          % ls.get("n_null")}
     dv = ls["data_vs_null"]
     cv = ls["control_verdict"]
     return {
@@ -50,19 +57,33 @@ def _lowerstar(ls):
                                       "retained_rank_used_as_df": dv[k]["retained_rank"],
                                       "test_differs_in_dropped_bin": dv[k]["test_differs_in_dropped_bin"]}
                                   for k in dv},
-        "mandatory_site_shuffle_control": ls["shuffle_control_vs_null"],
-        "control_verdict": cv,
+        "site_shuffle_control": ls["shuffle_control_vs_null"],
+        "control_verdict_AS_EMITTED_BY_THE_SCRIPT_SUPERSEDED": cv,
+        "corrected_reading_of_the_shuffle_control": (
+            "THE SCRIPT'S OWN 'diagnostic_stands' FIELD IS SUPERSEDED AND SHOULD NOT BE QUOTED. It tests "
+            "whether the value-shuffled field is SEPARATED FROM THE GAUSSIAN NULL (%.0f%% of shuffles on "
+            "b0, %.0f%% on b1). That is NOT the proposition registration limit L2 names. L2's failure "
+            "mode is that the shuffled field looks like the REAL field, i.e. that the apparent signal "
+            "lives in the value distribution rather than in the spatial arrangement; a statistic can "
+            "separate shuffles from the null and still be value-driven. The numbers are therefore "
+            "reported as a separation measurement and nothing is concluded from them about L2. What IS "
+            "measured on this dataset, by the alpha path's C2 control, is that shuffling moves every "
+            "statistic outside the null ensemble entirely (N 351 -> 1658)."
+            % (100 * cv["fraction_of_shuffles_separated_from_the_null_b0"],
+               100 * cv["fraction_b1"])),
+        "shuffle_pixel_set_note": "the lower-star complex is built on the full mask, so this control "
+                                  "permutes T_s over mask > 0, NOT over the R_disk-eroded region the "
+                                  "alpha path's C2 control uses. The seeds are the same integers; the "
+                                  "pixel set is not. The two controls are therefore related, not identical.",
         "narrative": (
-            "This is the only statistic in the audit that uses the lower-star path, and it is therefore "
-            "the only one subject to the failure mode the Re6Zr work measured (registration limit L2: on "
-            "rough fields, site-shuffled fields reproduced the lower-star 'transition', so the signal came "
-            "from the value distribution and not from topology). It is also the only place the vendored "
-            "FIXED library is exercised: build_topology_fixed supplies the HEALPix quad-corner 2-complex "
-            "(the original filled every 4-clique and gave b2 = 49147 on the full sky), and "
-            "coarse_stats_fixed supplies the RANK p-value with dead/atomic bins dropped and df set to the "
-            "retained rank. The chi2 p-values are carried only as a diagnostic: that branch is still "
-            "mildly anti-conservative (0.058 instead of 0.05) and no decision uses it. "
-            + cv["reading"]),
+            "This is the only statistic in the audit that uses the lower-star path, and the only place "
+            "the vendored FIXED library is exercised: build_topology_fixed supplies the HEALPix "
+            "quad-corner 2-complex (the original filled every 4-clique and gave b2 = 49147 on the full "
+            "sky instead of 1), and coarse_stats_fixed supplies the RANK p-value with dead and atomic "
+            "bins dropped and df set to the retained rank. The chi2 p-values are carried only as a "
+            "diagnostic: that branch is still mildly anti-conservative (0.058 instead of 0.05) and no "
+            "decision anywhere in this audit uses it. This diagnostic sits OUTSIDE the multiplicity "
+            "family and changes no p-value in it."),
     }
 
 
@@ -105,10 +126,14 @@ def _desi_narrative(ad):
         sm = {k: inj.get("smallest_detected_at_95pc_" + k)
               for k in ("S1_iqr_over_median", "S2_count", "S3_Q6_site_mean")}
         def _d(v):
-            return v if isinstance(v, str) else ("A = %.1f sigma_delta at density %d per 1e6 (Mpc/h)^3, "
-                                                 "i.e. %.0f cores placed with %d galaxies each"
-                                                 % (v["amp_over_sigma_delta"], v["density_per_1e6Mpc3"],
-                                                    v["n_inj_placed_mean"], v["galaxies_per_core"]))
+            if isinstance(v, str):
+                return v
+            s = "A = %.1f sigma_delta at density %d per 1e6 (Mpc/h)^3" % (
+                v["amp_over_sigma_delta"], v["density_per_1e6Mpc3"])
+            if "n_inj_placed_mean" in v:
+                s += " (%.0f cores placed, %d galaxies each)" % (v["n_inj_placed_mean"],
+                                                                 v["galaxies_per_core"])
+            return s
         out.append(
             "INJECTION (against the clustering-free randoms baseline, so it OVERSTATES sensitivity "
             "against the real field). Amplitude-zero row at n = 30: S1 %.3f, S2 %.3f, S3 %.3f per "
@@ -297,7 +322,9 @@ def main():
             },
             {
                 "where": "scripts/cv_desi.py::cmd_inject (first version)",
-                "defect": "TWO defects, both of which made the DESI injection measure nothing. (a) the placement "
+                "defect": "TWO defects. Defect (b) ALONE flattened the grid so that it measured nothing; "
+                          "defect (a) would not have nulled the grid but would have biased the measured "
+                          "sensitivity in the wrong direction. (a) the placement "
                           "drew a uniform random subset of eroded cells -- POISSON placement -- although the "
                           "registration makes a jittered lattice the primary and says why; the unused variable "
                           "`side` is the fingerprint of the lattice that was intended. (b) the galaxies-per-core "
@@ -435,7 +462,9 @@ def main():
             "would have produced. C2 (the values of T_s permuted inside the eroded region, FULL detector rerun) "
             "is the informative control: it changes every statistic decisively, so the detector is reading "
             "spatial arrangement rather than the value distribution -- the failure mode that the lower-star path "
-            "showed on rough fields does not occur on this alpha path."
+            "showed on rough fields does not occur on this alpha path. Note that C2's p = 0.00399 is the "
+            "FLOOR of the two-sided rank convention at 500 nulls (2/501), i.e. it means 'outside the null "
+            "ensemble entirely', not a measured extremity of 0.004."
             % (_fmt((aw or {}).get("controls", {}).get("C1_uniform_no_p_value", {})
                     .get("S1_iqr_over_median", {}).get("mean")),
                _fmt(((aw or {}).get("statistics", {}).get("S1_iqr_over_median", {}) or {}).get("data")),

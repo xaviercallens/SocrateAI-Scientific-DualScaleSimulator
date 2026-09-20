@@ -11,7 +11,7 @@
  },
  "headline": {
   "verdict_test_A_cmb": "NULL. No statistic reaches the Bonferroni threshold alpha = 0.008333; the smallest p in the WMAP family is 0.5070.",
-  "verdict_test_B_desi": null,
+  "verdict_test_B_desi": "INCONCLUSIVE with respect to a clustering-matched null (registered null NOT ATTEMPTED); the detector, the absolute statistics, the randoms control and the injection sensitivity are reported.",
   "one_sentence": "The Re6Zr defect-core pipeline transfers exactly -- it reproduces its own published numbers to machine zero -- and, applied to the CMB with a spectrum-matched Gaussian null passed through the identical detector, it finds NOTHING (smallest p in the primary family 0.5070 against a Bonferroni threshold of 0.008333); the registered injection ladder never reaches 95% (best 22%), and the post-registration extension first reaches it only at A = 4.0 sigma_T with 1000 full-sky cores. On DESI the registered clustering-matched null was not built, so Test B is INCONCLUSIVE rather than null.",
   "measured_sensitivity_clause": "the registered injection ladder never reaches 95% (best 22%), and the post-registration extension first reaches it only at A = 4.0 sigma_T with 1000 full-sky cores"
  },
@@ -834,9 +834,409 @@
    "NON-MONOTONIC IN DENSITY, measured: the S1 detection rate does NOT rise monotonically with the injected density (A = 4.0: N=1000 -> 0.97, N=3000 -> 0.32). S1 measures REGULARITY of spacing, so a denser injected lattice can push the combined cloud back toward the null's own regularity before it dominates it. A single 'smallest detectable density' therefore understates the structure of this sensitivity, and the whole grid is reported rather than one number. The same falls-before-it-rises behaviour was recorded for the crystallinity statistic in audit/FLUID_TO_COSMOLOGY_BRIDGE.md sec 5.",
    "STATISTIC-BY-STATISTIC: S1 (spacing) is the most sensitive, S2 (count) only fires once the injected population is numerous enough to add candidates rather than replace them, and S3 (orientation) is the least sensitive of the three at every cell that was run. That ordering is the direct analogue of the Re6Zr finding that the H0 spread and psi6 measure different things.",
    "HOW TO READ THIS: the detector already finds ~351 candidates in the WMAP footprint from the Gaussian field alone, so an injected population does not sit on an empty sky -- it must out-compete that background. The null result on the real map is therefore a statement about LARGE injected populations only."
+  ],
+  "secondary_lower_star_diagnostic": {
+   "status": "RUN",
+   "purpose": "registered conditional SECONDARY item, outside the multiplicity family",
+   "modules_used": {
+    "topology": "lib/cmb_topology.build_topology_fixed + betti_curves_from_topology (loop/tda-simple d8175f1)",
+    "statistic": "lib/stats.coarse_stats_fixed (RANK p reported; chi2 diagnostic only)",
+    "NOT_used": "audit/reverse_zero/E5-cmb-tda/cmb_tda.py (the defective originals)"
+   },
+   "n_null": 200,
+   "null_seeds": "2000000+k (the SAME null ensemble as the alpha path)",
+   "data_vs_null_rank_p": {
+    "b0": 0.22388059701492538,
+    "b1": 0.9353233830845771
+   },
+   "data_vs_null_chi2_p_DIAGNOSTIC_ONLY": {
+    "b0": 0.23432026902051037,
+    "b1": 0.9422009941357943
+   },
+   "bins_kept_and_dropped": {
+    "b0": {
+     "kept": 7,
+     "dropped": [
+      7
+     ],
+     "reasons": {
+      "7": "atomic_modal_mass"
+     },
+     "retained_rank_used_as_df": 7,
+     "test_differs_in_dropped_bin": {}
+    },
+    "b1": {
+     "kept": 7,
+     "dropped": [
+      0
+     ],
+     "reasons": {
+      "0": "atomic_modal_mass"
+     },
+     "retained_rank_used_as_df": 7,
+     "test_differs_in_dropped_bin": {}
+    }
+   },
+   "site_shuffle_control": {
+    "b0": {
+     "n": 50,
+     "median_rank_p": 0.004975124378109453,
+     "fraction_below_0.05": 1.0,
+     "min_rank_p": 0.004975124378109453,
+     "max_rank_p": 0.004975124378109453
+    },
+    "b1": {
+     "n": 50,
+     "median_rank_p": 0.004975124378109453,
+     "fraction_below_0.05": 1.0,
+     "min_rank_p": 0.004975124378109453,
+     "max_rank_p": 0.004975124378109453
+    }
+   },
+   "control_verdict_AS_EMITTED_BY_THE_SCRIPT_SUPERSEDED": {
+    "fraction_of_shuffles_separated_from_the_null_b0": 1.0,
+    "fraction_b1": 1.0,
+    "diagnostic_stands": true,
+    "reading": "The value-shuffled field is separated from the Gaussian null by this statistic in 100% (b0) / 100% (b1) of realisations, so the lower-star path IS reading spatial arrangement on this field and the diagnostic stands."
+   },
+   "corrected_reading_of_the_shuffle_control": "THE SCRIPT'S OWN 'diagnostic_stands' FIELD IS SUPERSEDED AND SHOULD NOT BE QUOTED. It tests whether the value-shuffled field is SEPARATED FROM THE GAUSSIAN NULL (100% of shuffles on b0, 100% on b1). That is NOT the proposition registration limit L2 names. L2's failure mode is that the shuffled field looks like the REAL field, i.e. that the apparent signal lives in the value distribution rather than in the spatial arrangement; a statistic can separate shuffles from the null and still be value-driven. The numbers are therefore reported as a separation measurement and nothing is concluded from them about L2. What IS measured on this dataset, by the alpha path's C2 control, is that shuffling moves every statistic outside the null ensemble entirely (N 351 -> 1658).",
+   "shuffle_pixel_set_note": "the lower-star complex is built on the full mask, so this control permutes T_s over mask > 0, NOT over the R_disk-eroded region the alpha path's C2 control uses. The seeds are the same integers; the pixel set is not. The two controls are therefore related, not identical.",
+   "narrative": "This is the only statistic in the audit that uses the lower-star path, and the only place the vendored FIXED library is exercised: build_topology_fixed supplies the HEALPix quad-corner 2-complex (the original filled every 4-clique and gave b2 = 49147 on the full sky instead of 1), and coarse_stats_fixed supplies the RANK p-value with dead and atomic bins dropped and df set to the retained rank. The chi2 p-values are carried only as a diagnostic: that branch is still mildly anti-conservative (0.058 instead of 0.05) and no decision anywhere in this audit uses it. This diagnostic sits OUTSIDE the multiplicity family and changes no p-value in it."
+  }
+ },
+ "4_test_B_desi": {
+  "sample": "DESI DR1 LSS BGS_BRIGHT-21.5 NGC, 0.10 <= z < 0.40, volume-limited",
+  "N_gal": 217614,
+  "weights": "WEIGHT * WEIGHT_FKP (galaxies and randoms)",
+  "detector": "CV-DESI-D1: local maxima of the smoothed delta over a ball of radius R_ex = 32 Mpc/h, delta > 1.0 sigma(delta), sigma_G = 16 Mpc/h on an 8 Mpc/h grid; valid region eroded by the full ball",
+  "G1_volume_limited_gate": {
+   "rule": "interior shells (weighted random count > 2% of max); max/min of the galaxy-per-random ratio must be <= 1.5 for the sample to be treated as volume-limited",
+   "n_interior_shells": 198,
+   "ratio_max_over_min": 1.2745357751846313,
+   "passed": true
+  },
+  "data": {
+   "S2_count": 832,
+   "S1_iqr_over_median": 0.30104912004825396,
+   "S3_Q6_site_mean": 0.31372683059542245,
+   "S3_n_sites_kept": 796,
+   "sigma_delta": 0.48606644386806885,
+   "valid_volume_Mpch3": 1128246272.0,
+   "grid_shape": [
+    172,
+    258,
+    166
+   ],
+   "n_valid_cells": 2203606,
+   "n_eroded_cells": 1475204,
+   "betti_at_truncation": [
+    1,
+    0,
+    0
+   ],
+   "absolute_floor": {
+    "median_death_Mpch": 36.66060555964672,
+    "q1_Mpch": 30.72458299147443,
+    "q3_Mpch": 41.7612260356422,
+    "twice_median_Mpch": 73.32121111929344,
+    "cell_Mpch": 8.0,
+    "sigma_G_Mpch": 16.0,
+    "n_bars_below_cell": 0,
+    "n_bars_below_sigma_G": 0,
+    "frac_bars_below_sigma_G": 0.0,
+    "max_death_Mpch": 70.76722405181653
+   },
+   "truncation": {
+    "r_trunc_Mpch": 288.0,
+    "frac_h0_deaths_at_or_above_r_trunc": 0.0
+   }
+  },
+  "N1_clustering_matched_null": {
+   "status": "NOT ATTEMPTED",
+   "verdict": "registered budget clause: no DESI-footprint mock catalogues exist on disk and the CAMB port was not completed -> Test B is INCONCLUSIVE with respect to a clustering-matched null. The randoms are NOT substituted for it."
+  },
+  "N2_randoms_control_NO_P_VALUE": {
+   "note": "OFFICIAL RANDOMS, shell-matched, IDENTICAL detector. This destroys ALL clustering, so it is the analogue of Re6Zr's uniform control: reported as a CONTROL with NO p-value against the data (registration N2 / limit L4). It is NOT a substitute for the clustering-matched null.",
+   "seeds": "7100000+k",
+   "n": 100,
+   "S1_iqr_over_median": {
+    "mean": 0.2606245437430974,
+    "std": 0.011908953520523444,
+    "p2p5": 0.2399902341930379,
+    "p97p5": 0.2800798899458205
+   },
+   "S2_count": {
+    "mean": 1234.79,
+    "std": 22.771280423402022,
+    "p2p5": 1191.0,
+    "p97p5": 1281.575
+   },
+   "S3_Q6_site_mean": {
+    "mean": 0.25308557589320047,
+    "std": 0.0033927530638515,
+    "p2p5": 0.24618371469762088,
+    "p97p5": 0.2594107909035504
+   }
+  },
+  "injection_sensitivity": {
+   "criterion": "outside the two-sided central 95% interval of the randoms control ensemble (the reference ensemble actually available)",
+   "reference_interval": {
+    "S1_iqr_over_median": [
+     0.2399902341930379,
+     0.2800798899458205
+    ],
+    "S2_count": [
+     1191.0,
+     1281.575
+    ],
+    "S3_Q6_site_mean": [
+     0.24618371469762088,
+     0.2594107909035504
+    ]
+   },
+   "grid": [
+    {
+     "amp_over_sigma_delta": 0.0,
+     "density_per_1e6Mpc3": 1,
+     "n_inj_target": 1128,
+     "n_inj_placed_mean": 0,
+     "galaxies_per_core": 0,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.06666666666666667,
+     "mean_S1_iqr_over_median": 0.26020469872007157,
+     "rate_S2_count": 0.06666666666666667,
+     "mean_S2_count": 1233.1666666666667,
+     "rate_S3_Q6_site_mean": 0.06666666666666667,
+     "mean_S3_Q6_site_mean": 0.252993322996444
+    },
+    {
+     "amp_over_sigma_delta": 0.5,
+     "density_per_1e6Mpc3": 1,
+     "n_inj_target": 1128,
+     "n_inj_placed_mean": 759.5,
+     "galaxies_per_core": 9,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.0,
+     "mean_S1_iqr_over_median": 0.2594342269195861,
+     "rate_S2_count": 0.03333333333333333,
+     "mean_S2_count": 1219.8333333333333,
+     "rate_S3_Q6_site_mean": 0.13333333333333333,
+     "mean_S3_Q6_site_mean": 0.25515992515087643
+    },
+    {
+     "amp_over_sigma_delta": 0.5,
+     "density_per_1e6Mpc3": 3,
+     "n_inj_target": 3385,
+     "n_inj_placed_mean": 2272.8,
+     "galaxies_per_core": 9,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.03333333333333333,
+     "mean_S1_iqr_over_median": 0.2578954260699351,
+     "rate_S2_count": 0.03333333333333333,
+     "mean_S2_count": 1231.8666666666666,
+     "rate_S3_Q6_site_mean": 0.03333333333333333,
+     "mean_S3_Q6_site_mean": 0.25419513285000944
+    },
+    {
+     "amp_over_sigma_delta": 0.5,
+     "density_per_1e6Mpc3": 10,
+     "n_inj_target": 11282,
+     "n_inj_placed_mean": 7543.9,
+     "galaxies_per_core": 9,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.06666666666666667,
+     "mean_S1_iqr_over_median": 0.2554447690640795,
+     "rate_S2_count": 0.7,
+     "mean_S2_count": 1182.5,
+     "rate_S3_Q6_site_mean": 0.7666666666666667,
+     "mean_S3_Q6_site_mean": 0.26262159373193533
+    },
+    {
+     "amp_over_sigma_delta": 1.0,
+     "density_per_1e6Mpc3": 1,
+     "n_inj_target": 1128,
+     "n_inj_placed_mean": 755.7666666666667,
+     "galaxies_per_core": 18,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.16666666666666666,
+     "mean_S1_iqr_over_median": 0.26402040152251616,
+     "rate_S2_count": 1.0,
+     "mean_S2_count": 1136.0,
+     "rate_S3_Q6_site_mean": 1.0,
+     "mean_S3_Q6_site_mean": 0.26731637445637074
+    },
+    {
+     "amp_over_sigma_delta": 1.0,
+     "density_per_1e6Mpc3": 3,
+     "n_inj_target": 3385,
+     "n_inj_placed_mean": 2274.2,
+     "galaxies_per_core": 18,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.1,
+     "mean_S1_iqr_over_median": 0.26678097529775474,
+     "rate_S2_count": 1.0,
+     "mean_S2_count": 1105.4666666666667,
+     "rate_S3_Q6_site_mean": 1.0,
+     "mean_S3_Q6_site_mean": 0.27347730637642476
+    },
+    {
+     "amp_over_sigma_delta": 1.0,
+     "density_per_1e6Mpc3": 10,
+     "n_inj_target": 11282,
+     "n_inj_placed_mean": 7541.3,
+     "galaxies_per_core": 18,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.16666666666666666,
+     "mean_S1_iqr_over_median": 0.26902339826960436,
+     "rate_S2_count": 1.0,
+     "mean_S2_count": 1029.0666666666666,
+     "rate_S3_Q6_site_mean": 1.0,
+     "mean_S3_Q6_site_mean": 0.28552333836669236
+    },
+    {
+     "amp_over_sigma_delta": 2.0,
+     "density_per_1e6Mpc3": 1,
+     "n_inj_target": 1128,
+     "n_inj_placed_mean": 759.0,
+     "galaxies_per_core": 35,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.03333333333333333,
+     "mean_S1_iqr_over_median": 0.26414853980236125,
+     "rate_S2_count": 1.0,
+     "mean_S2_count": 916.1666666666666,
+     "rate_S3_Q6_site_mean": 1.0,
+     "mean_S3_Q6_site_mean": 0.3052145358146507
+    },
+    {
+     "amp_over_sigma_delta": 2.0,
+     "density_per_1e6Mpc3": 3,
+     "n_inj_target": 3385,
+     "n_inj_placed_mean": 2268.3,
+     "galaxies_per_core": 35,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.16666666666666666,
+     "mean_S1_iqr_over_median": 0.25171743631723614,
+     "rate_S2_count": 1.0,
+     "mean_S2_count": 954.3666666666667,
+     "rate_S3_Q6_site_mean": 1.0,
+     "mean_S3_Q6_site_mean": 0.2969899125828036
+    },
+    {
+     "amp_over_sigma_delta": 2.0,
+     "density_per_1e6Mpc3": 10,
+     "n_inj_target": 11282,
+     "n_inj_placed_mean": 7546.4,
+     "galaxies_per_core": 35,
+     "n_sims": 30,
+     "rate_S1_iqr_over_median": 0.1,
+     "mean_S1_iqr_over_median": 0.2637724291465618,
+     "rate_S2_count": 1.0,
+     "mean_S2_count": 899.2333333333333,
+     "rate_S3_Q6_site_mean": 1.0,
+     "mean_S3_Q6_site_mean": 0.3095605961125017
+    }
+   ],
+   "false_positive_rate_amp_zero": {
+    "S1_iqr_over_median": 0.06666666666666667,
+    "S2_count": 0.06666666666666667,
+    "S3_Q6_site_mean": 0.06666666666666667
+   },
+   "smallest_detected_at_95pc_S1_iqr_over_median": "NONE of the registered (amplitude, density) cells reached 95% detection on S1_iqr_over_median (best rate 0.17)",
+   "smallest_detected_at_95pc_S2_count": {
+    "amp_over_sigma_delta": 1.0,
+    "density_per_1e6Mpc3": 1,
+    "n_inj_target": 1128,
+    "n_inj_placed_mean": 755.7666666666667,
+    "galaxies_per_core": 18,
+    "n_sims": 30,
+    "rate_S1_iqr_over_median": 0.16666666666666666,
+    "mean_S1_iqr_over_median": 0.26402040152251616,
+    "rate_S2_count": 1.0,
+    "mean_S2_count": 1136.0,
+    "rate_S3_Q6_site_mean": 1.0,
+    "mean_S3_Q6_site_mean": 0.26731637445637074
+   },
+   "smallest_detected_at_95pc_S3_Q6_site_mean": {
+    "amp_over_sigma_delta": 1.0,
+    "density_per_1e6Mpc3": 1,
+    "n_inj_target": 1128,
+    "n_inj_placed_mean": 755.7666666666667,
+    "galaxies_per_core": 18,
+    "n_sims": 30,
+    "rate_S1_iqr_over_median": 0.16666666666666666,
+    "mean_S1_iqr_over_median": 0.26402040152251616,
+    "rate_S2_count": 1.0,
+    "mean_S2_count": 1136.0,
+    "rate_S3_Q6_site_mean": 1.0,
+    "mean_S3_Q6_site_mean": 0.26731637445637074
+   },
+   "union_rate_any_statistic": [
+    {
+     "amp_over_sigma_delta": 0.0,
+     "density_per_1e6Mpc3": 1,
+     "rate_any": 0.2
+    },
+    {
+     "amp_over_sigma_delta": 0.5,
+     "density_per_1e6Mpc3": 1,
+     "rate_any": 0.13333333333333333
+    },
+    {
+     "amp_over_sigma_delta": 0.5,
+     "density_per_1e6Mpc3": 3,
+     "rate_any": 0.1
+    },
+    {
+     "amp_over_sigma_delta": 0.5,
+     "density_per_1e6Mpc3": 10,
+     "rate_any": 0.8333333333333334
+    },
+    {
+     "amp_over_sigma_delta": 1.0,
+     "density_per_1e6Mpc3": 1,
+     "rate_any": 1.0
+    },
+    {
+     "amp_over_sigma_delta": 1.0,
+     "density_per_1e6Mpc3": 3,
+     "rate_any": 1.0
+    },
+    {
+     "amp_over_sigma_delta": 1.0,
+     "density_per_1e6Mpc3": 10,
+     "rate_any": 1.0
+    },
+    {
+     "amp_over_sigma_delta": 2.0,
+     "density_per_1e6Mpc3": 1,
+     "rate_any": 1.0
+    },
+    {
+     "amp_over_sigma_delta": 2.0,
+     "density_per_1e6Mpc3": 3,
+     "rate_any": 1.0
+    },
+    {
+     "amp_over_sigma_delta": 2.0,
+     "density_per_1e6Mpc3": 10,
+     "rate_any": 1.0
+    }
+   ],
+   "smallest_detected_at_95pc_any_statistic": {
+    "amp_over_sigma_delta": 1.0,
+    "density_per_1e6Mpc3": 1,
+    "rate_any": 1.0
+   },
+   "false_positive_rate_union": 0.2
+  },
+  "narrative": [
+   "WHAT WAS MEASURED. G1 (the volume-limited check) passed: over 198 interior 4 Mpc/h shells the galaxy-per-random ratio varies by a factor 1.275, inside the registered tolerance of 1.5. The detector finds 832 density-peak candidates in 1.128e+09 (Mpc/h)^3 of eroded volume. The H0 death radii have median 36.7 Mpc/h (quartiles 30.7 / 41.8), so the absolute persistence floor is satisfied with room to spare: NO bar falls below the 8 Mpc/h grid cell or below sigma_G = 16 Mpc/h, and the (3 a_ref) = 288 Mpc/h truncation removes no bar. S1 = 0.3010, S3 (Steinhardt Q6) = 0.3137 over 796 kept sites.",
+   "WHAT THIS IS NOT. These are ABSOLUTE numbers with no p-value attached, because the registered clustering-matched null was not built. They cannot be read as agreement or disagreement with anything.",
+   "THE RANDOMS CONTROL, AND WHY IT CARRIES NO P-VALUE. The official randoms, shell-matched and passed through the IDENTICAL detector, give S1 = 0.2606 +- 0.0119, N = 1235 +- 23, S3 = 0.2531 +- 0.0034, against the data's 0.3010, 832 and 0.3137. The data has FEWER peaks and a LARGER S1 than the randoms. That difference is what real galaxy clustering does to a peak detector, and it is exactly the comparison a clustering-matched null exists to absorb; quoting a p-value against an unclustered catalogue would manufacture a detection out of the fact that galaxies cluster. Registration limit L4.",
+   "INJECTION (against the clustering-free randoms baseline, so it OVERSTATES sensitivity against the real field). Amplitude-zero row at n = 30: S1 0.067, S2 0.067, S3 0.067 per statistic and 0.20 for the union, against a nominal 0.05 and 0.143; the 95% binomial interval for 0.05 at n = 30 is about [0.006, 0.17], so the criterion is calibrated. Smallest cell reaching 95%: S1 -- NONE of the registered (amplitude, density) cells reached 95% detection on S1_iqr_over_median (best rate 0.17); S2 -- A = 1.0 sigma_delta at density 1 per 1e6 (Mpc/h)^3 (756 cores placed, 18 galaxies each); S3 -- A = 1.0 sigma_delta at density 1 per 1e6 (Mpc/h)^3 (756 cores placed, 18 galaxies each); union of the three -- A = 1.0 sigma_delta at density 1 per 1e6 (Mpc/h)^3.",
+   "AN INVERSION WORTH RECORDING. In 3-D the Re6Zr SPACING statistic S1 is the LEAST sensitive of the three -- it never exceeds a 0.17 detection rate at any injected amplitude or density -- while the count S2 and the orientational Q6 both reach 1.00 at A = 1 sigma_delta. On the sphere the ordering is the opposite: there S1 is the most sensitive and S3 the least. The statistic that carried the Re6Zr result is therefore NOT the one that carries a 3-D galaxy search, which is a direct, measured limit on how far this transfer goes."
   ]
  },
- "4_test_B_desi": null,
  "5_controls": {
   "C1_uniform_random_no_p_value": {
    "note": "NOT passed through the detector; the contrast with the data is dominated by the R_disk hard-core exclusion, which the detector imposes by construction (registration L4). Reported as a pipeline sanity check with NO p-value.",
@@ -876,7 +1276,7 @@
    }
   },
   "L4_warning": "THE MOST IMPORTANT ONE, declared here so the write-up cannot misread it: any disk-extremum detector imposes a HARD-CORE EXCLUSION of radius R by construction. The contrast between the Re6Zr random control (S1 ~ 0.73, points drawn uniformly and NEVER passed through the detector) and the real data (S1 ~ 0.07-0.16) is therefore NOT by itself evidence of lattice order. In this registration the uniform/shuffled control is a PIPELINE SANITY CHECK ONLY and carries NO p-value. The only p-value-bearing nulls are ensembles passed through the IDENTICAL detector.",
-  "how_to_read_C1_and_C2": "C1 (uniform points, never passed through the detector) sits at S1 = 0.8089 against the data's 0.4542 and the null's 0.4743. That gap is the R_disk hard-core exclusion the detector imposes by construction, NOT evidence of order; it carries no p-value and it is exactly the artefact the Re6Zr random control would have produced. C2 (the values of T_s permuted inside the eroded region, FULL detector rerun) is the informative control: it changes every statistic decisively, so the detector is reading spatial arrangement rather than the value distribution -- the failure mode that the lower-star path showed on rough fields does not occur on this alpha path.",
+  "how_to_read_C1_and_C2": "C1 (uniform points, never passed through the detector) sits at S1 = 0.8089 against the data's 0.4542 and the null's 0.4743. That gap is the R_disk hard-core exclusion the detector imposes by construction, NOT evidence of order; it carries no p-value and it is exactly the artefact the Re6Zr random control would have produced. C2 (the values of T_s permuted inside the eroded region, FULL detector rerun) is the informative control: it changes every statistic decisively, so the detector is reading spatial arrangement rather than the value distribution -- the failure mode that the lower-star path showed on rough fields does not occur on this alpha path. Note that C2's p = 0.00399 is the FLOOR of the two-sided rank convention at 500 nulls (2/501), i.e. it means 'outside the null ensemble entirely', not a measured extremity of 0.004.",
   "orientational_statistic_present": "YES -- S3 is computed alongside S1 in every test, because the Re6Zr work measured that the H0 spread stays small while psi6 collapses (limit L1).",
   "absolute_floor_present": "YES -- median H0 death radius in degrees / Mpc/h and the count of bars below the resolution floor are reported for data and null (limit L3).",
   "amplitude_zero_row_present": "YES -- the A = 0 row of each injection grid measures the empirical false-positive rate of the decision rule."
@@ -911,6 +1311,21 @@
     "p": 0.5069860279441117,
     "z": 0.6643368355624418,
     "gate_passed": true
+   },
+   {
+    "test": "B/DESI-NGC/S1_iqr_over_median",
+    "p": null,
+    "status": "NOT ATTEMPTED"
+   },
+   {
+    "test": "B/DESI-NGC/S2_count",
+    "p": null,
+    "status": "NOT ATTEMPTED"
+   },
+   {
+    "test": "B/DESI-NGC/S3_Q6_site_mean",
+    "p": null,
+    "status": "NOT ATTEMPTED"
    }
   ],
   "min_p_in_family": 0.5069860279441117,
@@ -921,7 +1336,7 @@
  "7_absent_or_not_attempted": [
   "SHORTFALL AGAINST THE TASK AS ASSIGNED, stated first so 'INCONCLUSIVE' is not read as a completed result: the task named the CAMB lognormal mocks of audit/reverse_zero/E5-cosmic-web-tda-scaled/ AND a repeat of round 2's X2 calibration check as requirements of Test B. NEITHER was done. Test B therefore has no clustering-matched null and no calibration measurement, and what it delivers is a detector, a set of absolute numbers, a randoms control and an injection sensitivity -- not a test against a null.",
   "The count-vs-INDEPENDENT-EXPECTATION leg of the Re6Zr test (N vs B*A/Phi0). No theory in this programme gives a defect-core density, so S2 is only compared to an ensemble. Declared in the registration as deviation D1, not discovered afterwards.",
-  "The registered clustering-matched null for Test B (lognormal mocks): unknown. No DESI-footprint mock catalogues exist on disk; audit/reverse_zero/E5-cosmic-web-tda-scaled/ holds only Betti-curve stacks for the SDSS DR17 window and x2_lib.py is wired to that window's grid, healpix footprint and n(z). The registered budget clause applies and the official randoms were NOT substituted for it.",
+  "The registered clustering-matched null for Test B (lognormal mocks): NOT ATTEMPTED. No DESI-footprint mock catalogues exist on disk; audit/reverse_zero/E5-cosmic-web-tda-scaled/ holds only Betti-curve stacks for the SDSS DR17 window and x2_lib.py is wired to that window's grid, healpix footprint and n(z). The registered budget clause applies and the official randoms were NOT substituted for it.",
   "The G2 mock-calibration gate was consequently not run, so this round did not repeat round 2's 2.88 sigma mis-calibration measurement; it neither confirms nor refutes it.",
   "The DESI injection sensitivity is measured against a CLUSTERING-FREE baseline (the official randoms), because no clustered null was available. Sensitivity against an unclustered background OVERSTATES sensitivity against the real galaxy field, in which the same detector already finds structure.",
   "DESI SGC (the registered secondary replication for Test B) was not run, so the Test B replication leg of the decision rule could not be exercised.",
@@ -938,7 +1353,7 @@
   },
   {
    "where": "scripts/cv_desi.py::cmd_inject (first version)",
-   "defect": "TWO defects, both of which made the DESI injection measure nothing. (a) the placement drew a uniform random subset of eroded cells -- POISSON placement -- although the registration makes a jittered lattice the primary and says why; the unused variable `side` is the fingerprint of the lattice that was intended. (b) the galaxies-per-core count was derived analytically and omitted the smoothing kernel's normalisation ((2 pi)^(3/2) sigma_cells^3 ~ 126), so it evaluated to max(1, 0) = 1 galaxy per core at EVERY amplitude. Measured consequence: the whole grid was flat -- S1 ranged only over 0.2548-0.2612 and the count over 1234-1257 from A = 0 to A = 2.",
+   "defect": "TWO defects. Defect (b) ALONE flattened the grid so that it measured nothing; defect (a) would not have nulled the grid but would have biased the measured sensitivity in the wrong direction. (a) the placement drew a uniform random subset of eroded cells -- POISSON placement -- although the registration makes a jittered lattice the primary and says why; the unused variable `side` is the fingerprint of the lattice that was intended. (b) the galaxies-per-core count was derived analytically and omitted the smoothing kernel's normalisation ((2 pi)^(3/2) sigma_cells^3 ~ 126), so it evaluated to max(1, 0) = 1 galaxy per core at EVERY amplitude. Measured consequence: the whole grid was flat -- S1 ranged only over 0.2548-0.2612 and the count over 1234-1257 from A = 0 to A = 2.",
    "fix": "a real jittered cubic lattice over the eroded region (cv_desi.jittered_lattice), and an EMPIRICAL calibration of the galaxies-per-core (cv_desi.calibrate_per: inject a trial number, measure the delta increment actually produced at the core centres, scale once). The grid was rerun.",
    "found_by": "an amplitude-response check of the produced grid",
    "why_it_matters": "the first version would have reported 'NONE detected at 95%' as a sensitivity limit when it was an implementation artefact."
@@ -1025,9 +1440,12 @@
   "# DESI injection RERUN after two defects were found and fixed (see report.json 9_defects_found_and_fixed)",
   "timeout 7200 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_desi.py inject --cap NGC --n 30",
   "# POST-REGISTRATION extension of the injection ladder (registered ladder topped out at 22%)",
-  "timeout 5400 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py inject --which wmap --n 100 --ext"
+  "timeout 5400 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py inject --which wmap --n 100 --ext",
+  "timeout 7200 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_lowerstar.py --which wmap --n 200 --nshuf 50"
  ],
  "12_commits_touching_audit_cosmic_vorticity": [
+  "75be27c results(cosmic_vorticity): DESI injection rerun after the fix \u2014 and S1 is the WRONG statistic in 3-D",
+  "4a8db93 report(cosmic_vorticity): report.json \u2014 Test A NULL with its measured sensitivity (Test B section pending the reran DESI grid)",
   "ef6c205 report(cosmic_vorticity): narrative builders for Test B and for the injection grids",
   "da462b2 results(cosmic_vorticity): CMB injection sensitivity \u2014 the registered ladder is a bound, the extension gives the number",
   "9583a0c chore(cosmic_vorticity): ignore the derived disk-neighbour cache (purely geometric, rebuilt by cv_lib.disk_table)",
