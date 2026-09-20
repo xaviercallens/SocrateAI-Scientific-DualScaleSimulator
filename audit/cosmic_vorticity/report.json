@@ -1,0 +1,1039 @@
+{
+ "id": "CV",
+ "title": "Cosmic vorticity: the Re6Zr defect-core TDA pipeline transferred to the CMB and to DESI DR1",
+ "date": "2026-09-19",
+ "branch": "loop/reverse-zero",
+ "tier": "X (exploratory numerics)",
+ "registration": {
+  "file": "audit/cosmic_vorticity/registration.json",
+  "frozen_at_commit": "7ecf289",
+  "frozen_before": "any map or catalogue was read (see registration.what_was_inspected_before_freezing)"
+ },
+ "headline": {
+  "verdict_test_A_cmb": "NULL. No statistic reaches the Bonferroni threshold alpha = 0.008333; the smallest p in the WMAP family is 0.5070.",
+  "verdict_test_B_desi": null,
+  "one_sentence": "The Re6Zr defect-core pipeline transfers exactly -- it reproduces its own published numbers to machine zero -- and, applied to the CMB with a spectrum-matched Gaussian null passed through the identical detector, it finds NOTHING (smallest p in the primary family 0.5070 against a Bonferroni threshold of 0.008333); the registered injection ladder never reaches 95% (best 22%), and the post-registration extension first reaches it only at A = 4.0 sigma_T with 1000 full-sky cores. On DESI the registered clustering-matched null was not built, so Test B is INCONCLUSIVE rather than null.",
+  "measured_sensitivity_clause": "the registered injection ladder never reaches 95% (best 22%), and the post-registration extension first reaches it only at A = 4.0 sigma_T with 1000 full-sky cores"
+ },
+ "0_framing": {
+  "what_this_is": "An exploratory, tier-X search for a discrete population of defect-core candidates on the sky and in a galaxy survey, using the EXACT pipeline that succeeded on real STM vortex maps of an a-Re6Zr film (branch loop/tda-validation, audit/tda_validation/quantum_fluid/).",
+  "what_this_is_not": [
+   "This is NOT a test of K3 x T2. LeanMaster records, verbatim, '(iii) Observables: none -- N = 4, non-chiral.' Nothing in the verified mathematics predicts a defect-core population, its density, its amplitude or its scale.",
+   "The Re6Zr work validated an INSTRUMENT, not a theory (audit/FLUID_TO_COSMOLOGY_BRIDGE.md sec 0).",
+   "No result from this registration may be written as 'proved', 'certified' or 'guaranteed' (LeanFlow CLAUDE.md rule 5)."
+  ],
+  "K3xT2": "Nothing here is a test of K3 x T2. LeanMaster records, verbatim, '(iii) Observables: none -- N = 4, non-chiral.' No result below is attributed to it.",
+  "expected_outcome": "NULL. A null is the expected outcome and is a perfectly good result; it will be reported as a null WITH its measured sensitivity (the injection grid below), because a null with unmeasured sensitivity says nothing."
+ },
+ "1_hyperparameters_transferred": {
+  "source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdaval/audit/tda_validation/quantum_fluid/scripts/stm_vortex_tda.py (branch loop/tda-validation)",
+  "quoted_verbatim": {
+   "core_detection_rule_verbatim": "Vortex detector (non-TDA, fixed before looking at any image, see expectations.json): plane subtraction, Gaussian low-pass in Fourier space with real-space sigma = a_tri(B)/6, local minima = pixels equal to the minimum of a disk of radius a_tri(B)/3 (scipy.ndimage.minimum_filter, mode='nearest'). a_tri(B) = 1.075 sqrt(Phi0/B), B = mu0 H (H in kOe -> B = H/10 T).",
+   "tda_rule_verbatim": "TDA (pipeline under test): cosmic_web_tda_scaled.alpha_persistence on the minima (nm), max_alpha_sq = (3 a_tri)^2; top_bars with r_trunc = 3 a_tri.",
+   "orientational_rule_verbatim": "Cross-check (non-TDA): global |<exp(6 i theta_b)>| over scipy Delaunay bonds.",
+   "negative_control_verbatim": "Negative control: uniform random points, same count, same area, numpy default_rng(201 + image index).",
+   "meta_field_verbatim": "\"detector\": \"plane-subtract, Gaussian LP sigma=a/6, disk-min radius a/3\"",
+   "spread_statistic_verbatim_from_qf_common_py": "def spread_stats(x): ... q1, med, q3 = np.percentile(x, [25, 50, 75]); ... \"iqr_over_median\": float((q3 - q1) / med) if med > 0 else None",
+   "h0_deaths_verbatim_from_qf_common_py": "def h0_finite_deaths(by_dim): bars = np.array(by_dim[0]) ...; d = bars[:, 1]; return d[np.isfinite(d)]",
+   "alpha_call_verbatim_from_cosmic_web_tda_scaled_py": "ac = gudhi.AlphaComplex(points=xyz); st = ac.create_simplex_tree(max_alpha_square=max_alpha_sq); diag = st.persistence(homology_coeff_field=2, min_persistence=0.0)  # bars converted to RADIUS units by sqrt"
+  },
+  "invariants_transferred": {
+   "smoothing_to_spacing_ratio": "sigma_filter = a/6",
+   "exclusion_radius_to_spacing_ratio": "R_exclusion = a/3 = 2 * sigma_filter",
+   "alpha_truncation": "max_alpha_square = (3a)^2, i.e. r_trunc = 3a",
+   "persistence": "gudhi.AlphaComplex, Z/2 coefficients, min_persistence = 0.0, bars in RADIUS units (sqrt of the squared alpha value)",
+   "spacing_statistic": "S1 = IQR/median of the FINITE H0 death radii, pooled",
+   "count_statistic": "S2 = number of detected cores",
+   "orientational_statistic": "S3 = a hexatic/Steinhardt bond-orientational order parameter over Delaunay neighbours",
+   "random_control": "uniform points, same count, same footprint, a stated seed"
+  },
+  "instantiation_cmb": {
+   "sigma_s_deg": 1.0,
+   "R_disk_deg": 2.0,
+   "R_over_sigma": 2.0,
+   "Re6Zr_R_over_sigma": 2.0,
+   "nu": 1.0,
+   "a_ref_deg": 6.0,
+   "max_alpha_square": 0.09860588337107992,
+   "r_trunc_deg": 18.066529333997117,
+   "nside": 128,
+   "lmax": 384,
+   "metric": "3-D chords on the unit sphere; chord = 2 sin(theta/2)"
+  },
+  "instantiation_desi": {
+   "sigma_G_Mpch": 16.0,
+   "R_ex_Mpch": 32.0,
+   "R_over_sigma": 2.0,
+   "nu": 1.0,
+   "a_ref_Mpch": 96.0,
+   "cell_Mpch": 8.0,
+   "max_alpha_square": 82944.0,
+   "r_trunc_Mpch": 288.0,
+   "weights": "WEIGHT * WEIGHT_FKP, galaxies AND randoms"
+  },
+  "narrative": "The three invariants that carry the Re6Zr pipeline are (i) a Gaussian filter at sigma = a/6, (ii) a disk-extremum detector at radius a/3, i.e. exactly 2 sigma, and (iii) an alpha complex over Z/2 truncated at (3a)^2 with the statistic IQR/median of the finite H0 death radii. All three are reproduced exactly: R/sigma = 2 in both new tests, the truncation is 3 a_ref, and the persistence call is the one quoted from cosmic_web_tda_scaled.alpha_persistence. What does NOT transfer is the external physical scale: Re6Zr had a_tri(B) = 1.075 sqrt(Phi0/B) from the applied field, and nothing here supplies an analogue, so sigma was fixed by fiat (CMB: on simulations only) and a_ref = 6 sigma is a convention whose only effect is the truncation."
+ },
+ "2_known_answer_check": {
+  "purpose": "known-answer check of the transferred S1 statistic + truncation-inertness test",
+  "max_abs_diff_vs_published_iqr_over_median": 0.0,
+  "reproduces_published": true,
+  "max_abs_truncation_shift_in_S1": 0.0,
+  "truncation_inert_on_source_data": true,
+  "per_field": [
+   {
+    "field": "3kOe",
+    "published_iqr_over_median": 0.15773343131922335,
+    "recomputed_truncated_3a": 0.15773343131922335,
+    "recomputed_untruncated": 0.15773343131922335,
+    "published_n_bars": 1413,
+    "recomputed_n_bars_truncated": 1413
+   },
+   {
+    "field": "4kOe",
+    "published_iqr_over_median": 0.0877711082954623,
+    "recomputed_truncated_3a": 0.0877711082954623,
+    "recomputed_untruncated": 0.0877711082954623,
+    "published_n_bars": 2454,
+    "recomputed_n_bars_truncated": 2454
+   },
+   {
+    "field": "5kOe",
+    "published_iqr_over_median": 0.11183653024466199,
+    "recomputed_truncated_3a": 0.11183653024466199,
+    "recomputed_untruncated": 0.11183653024466199,
+    "published_n_bars": 2519,
+    "recomputed_n_bars_truncated": 2519
+   },
+   {
+    "field": "10kOe",
+    "published_iqr_over_median": 0.08696431183149753,
+    "recomputed_truncated_3a": 0.08696431183149753,
+    "recomputed_untruncated": 0.08696431183149753,
+    "published_n_bars": 2438,
+    "recomputed_n_bars_truncated": 2438
+   },
+   {
+    "field": "15kOe",
+    "published_iqr_over_median": 0.07866830959602299,
+    "recomputed_truncated_3a": 0.07866830959602299,
+    "recomputed_untruncated": 0.07866830959602299,
+    "published_n_bars": 2518,
+    "recomputed_n_bars_truncated": 2518
+   },
+   {
+    "field": "20kOe",
+    "published_iqr_over_median": 0.0694278500288623,
+    "recomputed_truncated_3a": 0.0694278500288623,
+    "recomputed_untruncated": 0.0694278500288623,
+    "published_n_bars": 2430,
+    "recomputed_n_bars_truncated": 2430
+   },
+   {
+    "field": "25kOe",
+    "published_iqr_over_median": 0.10522728518506051,
+    "recomputed_truncated_3a": 0.10522728518506051,
+    "recomputed_untruncated": 0.10522728518506051,
+    "published_n_bars": 2458,
+    "recomputed_n_bars_truncated": 2458
+   },
+   {
+    "field": "30kOe",
+    "published_iqr_over_median": 0.0978329915729232,
+    "recomputed_truncated_3a": 0.0978329915729232,
+    "recomputed_untruncated": 0.0978329915729232,
+    "published_n_bars": 2480,
+    "recomputed_n_bars_truncated": 2480
+   },
+   {
+    "field": "40kOe",
+    "published_iqr_over_median": 0.09833929238627606,
+    "recomputed_truncated_3a": 0.09833929238627606,
+    "recomputed_untruncated": 0.09833929238627606,
+    "published_n_bars": 2406,
+    "recomputed_n_bars_truncated": 2406
+   },
+   {
+    "field": "50kOe",
+    "published_iqr_over_median": 0.09067010180101415,
+    "recomputed_truncated_3a": 0.09067010180101415,
+    "recomputed_untruncated": 0.09067010180101415,
+    "published_n_bars": 2423,
+    "recomputed_n_bars_truncated": 2423
+   },
+   {
+    "field": "70kOe",
+    "published_iqr_over_median": 0.12904406078870054,
+    "recomputed_truncated_3a": 0.12904406078870054,
+    "recomputed_untruncated": 0.12904406078870054,
+    "published_n_bars": 2450,
+    "recomputed_n_bars_truncated": 2450
+   }
+  ],
+  "narrative": "Before any sky number was interpreted, the transferred statistic was run on the SAME saved Re6Zr vortex-core point clouds. It reproduces the published IQR/median on all 11 fields to machine zero (max |difference| = 0.000e+00) with identical bar counts, and the (3 a)^2 truncation removes no bar (max shift 0.000e+00). The instrument that is being transferred is therefore the instrument that succeeded, not a re-implementation of it."
+ },
+ "3_test_A_cmb": {
+  "detector": "CV-CMB-D1: local maxima of |T_s| in a geodesic disk of radius 2 deg, |T_s| > 1.0 sigma(T_s), T_s = the monopole+dipole-removed map smoothed at sigma_s = 1 deg, nside 128, lmax 384; mask eroded by the full disk",
+  "null": "500 spectrum-matched Gaussian simulations, X1's calibrated C_in reused verbatim, seeds 2000000+k, the SAME detector passed over every simulation",
+  "primary_wmap": {
+   "role": "PRIMARY",
+   "map": "wmap",
+   "n_null": 500,
+   "null_seeds": "2000000+k, k=0..499",
+   "fsky_mask": 0.7521158854166666,
+   "fsky_after_R_disk_erosion": 0.3969675699869792,
+   "gate": {
+    "quantity": "var(T_s) over the eroded valid region",
+    "z": 0.17541968560548474,
+    "threshold": 2.8070337683438042,
+    "passed": true,
+    "data": 0.002290203673773007,
+    "sim_mean": 0.0022590338343942396,
+    "sim_std": 0.00017768723773036474,
+    "decision": "PASS: p-values may be computed"
+   },
+   "x1_round2_gate_max_abs_z_for_reference": 0.8513073653514166,
+   "S1_H0_IQR_over_median": {
+    "name": "S1 H0 death-radius IQR/median",
+    "data": 0.4542462337412618,
+    "null_mean": 0.47434570157100076,
+    "null_std": 0.03127641636373641,
+    "null_p2p5": 0.4152482364372373,
+    "null_p97p5": 0.5347870992883951,
+    "z": -0.6426397319944687,
+    "empirical_rank_p_two_sided": 0.5349301397205589,
+    "p_value_convention": "min(1, 2*min((1+#{null<=d})/(N+1), (1+#{null>=d})/(N+1)))"
+   },
+   "S2_count": {
+    "name": "S2 detected core count",
+    "data": 351,
+    "null_mean": 362.502,
+    "null_std": 17.465167051025894,
+    "null_p2p5": 330.0,
+    "null_p97p5": 398.0,
+    "z": -0.6585679923012467,
+    "empirical_rank_p_two_sided": 0.5229540918163673,
+    "p_value_convention": "min(1, 2*min((1+#{null<=d})/(N+1), (1+#{null>=d})/(N+1)))"
+   },
+   "S3_psi6_site_mean": {
+    "name": "S3 site-averaged psi6",
+    "data": 0.4880291073281085,
+    "null_mean": 0.47580332693891986,
+    "null_std": 0.018402984351813093,
+    "null_p2p5": 0.44078365820371845,
+    "null_p97p5": 0.5144248291666854,
+    "z": 0.6643368355624418,
+    "empirical_rank_p_two_sided": 0.5069860279441117,
+    "p_value_convention": "min(1, 2*min((1+#{null<=d})/(N+1), (1+#{null>=d})/(N+1)))"
+   },
+   "absolute_floor_data": {
+    "median_death_deg": 3.2163496089242165,
+    "q1_death_deg": 2.571293108286107,
+    "q3_death_deg": 4.032732561959792,
+    "twice_median_death_deg": 6.432699217848433,
+    "pixel_scale_deg": 0.45806485490898746,
+    "n_bars_below_pixel_scale": 0,
+    "frac_bars_below_pixel_scale": 0.0,
+    "max_death_deg": 12.05196739133459
+   },
+   "absolute_floor_null_mean": {
+    "median_death_deg": 3.1844463269683416,
+    "twice_median_death_deg": 6.368892653936683,
+    "frac_bars_below_pixel_scale": 0.0,
+    "max_death_deg": 10.32875745813002
+   },
+   "S3_support_data_vs_null": {
+    "n_sites_kept_data": 162,
+    "n_sites_kept_null_mean": 171.372,
+    "n_bonds_data": 574,
+    "n_bonds_null_mean": 611.95,
+    "bond_cut": "1.5 * a_ref = 9.0 deg great-circle; a_ref = 6*sigma_s = 6.0 deg, while the detected spacing is a_obs ~ 7.6 deg, so the cut is only ~1.18 * the actual spacing and drops a substantial share of sites -- the counts above show it acts symmetrically on the data and on the null."
+   },
+   "min_attainable_p": {
+    "value": 0.003992015968063872,
+    "note": "with 500 nulls and the two-sided rank convention the smallest reachable p is 2/(N+1) = 0.00399, against the Bonferroni threshold 0.008333; the test can reach significance but only in one resolvable step."
+   },
+   "truncation_data": {
+    "r_trunc_chord": 0.314015737457663,
+    "r_trunc_deg": 18.066529333997117,
+    "frac_h0_deaths_at_or_above_r_trunc": 0.0
+   },
+   "truncation_null_mean_frac_at_trunc": 0.0,
+   "truncation_inert": true,
+   "secondary_diagnostics": {
+    "nu1.5": {
+     "S1_iqr_over_median": 0.6415284758447244,
+     "S2_count": 228,
+     "S3_psi6_site_mean": 0.47968005996532687
+    },
+    "maxima_only": {
+     "S1_iqr_over_median": 0.6500638712410801,
+     "S2_count": 179,
+     "S3_psi6_site_mean": 0.45567394449712034
+    },
+    "minima_only": {
+     "S1_iqr_over_median": 0.6467953695699895,
+     "S2_count": 172,
+     "S3_psi6_site_mean": 0.4838259522474336
+    }
+   }
+  },
+  "secondary_smica": {
+   "role": "SECONDARY -- the same sky as WMAP, NOT an independent test",
+   "map": "smica",
+   "n_null": 500,
+   "null_seeds": "2000000+k, k=0..499",
+   "fsky_mask": 0.7848358154296875,
+   "fsky_after_R_disk_erosion": 0.6248423258463541,
+   "gate": {
+    "quantity": "var(T_s) over the eroded valid region",
+    "z": -0.21532219960758534,
+    "threshold": 2.8070337683438042,
+    "passed": true,
+    "data": 2.3563493657079595e-09,
+    "sim_mean": 2.3977636199864973e-09,
+    "sim_std": 1.9233620292758188e-10,
+    "decision": "PASS: p-values may be computed"
+   },
+   "x1_round2_gate_max_abs_z_for_reference": 0.16587774952845916,
+   "S1_H0_IQR_over_median": {
+    "name": "S1 H0 death-radius IQR/median",
+    "data": 0.42327953132160556,
+    "null_mean": 0.39090293568674656,
+    "null_std": 0.02108445399733654,
+    "null_p2p5": 0.35227982019289056,
+    "null_p97p5": 0.4370413326093338,
+    "z": 1.535567183240739,
+    "empirical_rank_p_two_sided": 0.1437125748502994,
+    "p_value_convention": "min(1, 2*min((1+#{null<=d})/(N+1), (1+#{null>=d})/(N+1)))"
+   },
+   "S2_count": {
+    "name": "S2 detected core count",
+    "data": 590,
+    "null_mean": 592.488,
+    "null_std": 24.700730924740522,
+    "null_p2p5": 547.475,
+    "null_p97p5": 638.0,
+    "z": -0.1007257642529132,
+    "empirical_rank_p_two_sided": 0.9500998003992016,
+    "p_value_convention": "min(1, 2*min((1+#{null<=d})/(N+1), (1+#{null>=d})/(N+1)))"
+   },
+   "S3_psi6_site_mean": {
+    "name": "S3 site-averaged psi6",
+    "data": 0.4531130169858494,
+    "null_mean": 0.4422121530500065,
+    "null_std": 0.01059520116057316,
+    "null_p2p5": 0.42211424615668586,
+    "null_p97p5": 0.4627015312778196,
+    "z": 1.0288491714916332,
+    "empirical_rank_p_two_sided": 0.3712574850299401,
+    "p_value_convention": "min(1, 2*min((1+#{null<=d})/(N+1), (1+#{null>=d})/(N+1)))"
+   },
+   "absolute_floor_data": {
+    "median_death_deg": 2.601165273377033,
+    "q1_death_deg": 2.1042993690108434,
+    "q3_death_deg": 3.205524616509333,
+    "twice_median_death_deg": 5.202330546754066,
+    "pixel_scale_deg": 0.45806485490898746,
+    "n_bars_below_pixel_scale": 0,
+    "frac_bars_below_pixel_scale": 0.0,
+    "max_death_deg": 9.247173593490912
+   },
+   "absolute_floor_null_mean": {
+    "median_death_deg": 2.630287329603303,
+    "twice_median_death_deg": 5.260574659206606,
+    "frac_bars_below_pixel_scale": 0.0,
+    "max_death_deg": 10.038844613711891
+   },
+   "S3_support_data_vs_null": {
+    "n_sites_kept_data": 492,
+    "n_sites_kept_null_mean": 486.664,
+    "n_bonds_data": 2025,
+    "n_bonds_null_mean": 2039.304,
+    "bond_cut": "1.5 * a_ref = 9.0 deg great-circle; a_ref = 6*sigma_s = 6.0 deg, while the detected spacing is a_obs ~ 7.6 deg, so the cut is only ~1.18 * the actual spacing and drops a substantial share of sites -- the counts above show it acts symmetrically on the data and on the null."
+   },
+   "min_attainable_p": {
+    "value": 0.003992015968063872,
+    "note": "with 500 nulls and the two-sided rank convention the smallest reachable p is 2/(N+1) = 0.00399, against the Bonferroni threshold 0.008333; the test can reach significance but only in one resolvable step."
+   },
+   "truncation_data": {
+    "r_trunc_chord": 0.314015737457663,
+    "r_trunc_deg": 18.066529333997117,
+    "frac_h0_deaths_at_or_above_r_trunc": 0.0
+   },
+   "truncation_null_mean_frac_at_trunc": 0.0,
+   "truncation_inert": true,
+   "secondary_diagnostics": {
+    "nu1.5": {
+     "S1_iqr_over_median": 0.5327120459475385,
+     "S2_count": 354,
+     "S3_psi6_site_mean": 0.46281995175885593
+    },
+    "maxima_only": {
+     "S1_iqr_over_median": 0.5528580919738015,
+     "S2_count": 298,
+     "S3_psi6_site_mean": 0.4587504432619527
+    },
+    "minima_only": {
+     "S1_iqr_over_median": 0.5716121560847884,
+     "S2_count": 292,
+     "S3_psi6_site_mean": 0.43585321015142386
+    }
+   }
+  },
+  "injection_sensitivity": {
+   "criterion": "outside the two-sided central 95% interval of the 500 clean nulls",
+   "null_interval": {
+    "S1_iqr_over_median": [
+     0.4152482364372373,
+     0.5347870992883951
+    ],
+    "S2_count": [
+     330.0,
+     398.0
+    ],
+    "S3_psi6_site_mean": [
+     0.44078365820371845,
+     0.5144248291666854
+    ]
+   },
+   "grid": [
+    {
+     "amp_over_sigmaT": 0.0,
+     "n_inj_full_sky": 100,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.07,
+     "mean_S1_iqr_over_median": 0.4741800083500106,
+     "rate_S2_count": 0.01,
+     "mean_S2_count": 363.25,
+     "rate_S3_psi6_site_mean": 0.04,
+     "mean_S3_psi6_site_mean": 0.47885131158155675,
+     "rate_any": 0.12
+    },
+    {
+     "amp_over_sigmaT": 0.25,
+     "n_inj_full_sky": 100,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.02,
+     "mean_S1_iqr_over_median": 0.47495231707838204,
+     "rate_S2_count": 0.03,
+     "mean_S2_count": 361.87,
+     "rate_S3_psi6_site_mean": 0.02,
+     "mean_S3_psi6_site_mean": 0.47575431772215926,
+     "rate_any": 0.07
+    },
+    {
+     "amp_over_sigmaT": 0.25,
+     "n_inj_full_sky": 100,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.03,
+     "mean_S1_iqr_over_median": 0.47479891795653584,
+     "rate_S2_count": 0.02,
+     "mean_S2_count": 362.01,
+     "rate_S3_psi6_site_mean": 0.06,
+     "mean_S3_psi6_site_mean": 0.47671124372728463,
+     "rate_any": 0.1
+    },
+    {
+     "amp_over_sigmaT": 0.25,
+     "n_inj_full_sky": 300,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.12,
+     "mean_S1_iqr_over_median": 0.4690469795087538,
+     "rate_S2_count": 0.04,
+     "mean_S2_count": 359.07,
+     "rate_S3_psi6_site_mean": 0.01,
+     "mean_S3_psi6_site_mean": 0.4760113383129514,
+     "rate_any": 0.17
+    },
+    {
+     "amp_over_sigmaT": 0.25,
+     "n_inj_full_sky": 300,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.08,
+     "mean_S1_iqr_over_median": 0.4682015394065786,
+     "rate_S2_count": 0.05,
+     "mean_S2_count": 359.58,
+     "rate_S3_psi6_site_mean": 0.03,
+     "mean_S3_psi6_site_mean": 0.4753890312299987,
+     "rate_any": 0.14
+    },
+    {
+     "amp_over_sigmaT": 0.25,
+     "n_inj_full_sky": 1000,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.06,
+     "mean_S1_iqr_over_median": 0.47705374802783757,
+     "rate_S2_count": 0.04,
+     "mean_S2_count": 361.15,
+     "rate_S3_psi6_site_mean": 0.03,
+     "mean_S3_psi6_site_mean": 0.47599680300653213,
+     "rate_any": 0.12
+    },
+    {
+     "amp_over_sigmaT": 0.25,
+     "n_inj_full_sky": 1000,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.05,
+     "mean_S1_iqr_over_median": 0.4776632792215853,
+     "rate_S2_count": 0.05,
+     "mean_S2_count": 360.61,
+     "rate_S3_psi6_site_mean": 0.03,
+     "mean_S3_psi6_site_mean": 0.47696729416504247,
+     "rate_any": 0.12
+    },
+    {
+     "amp_over_sigmaT": 0.5,
+     "n_inj_full_sky": 100,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.07,
+     "mean_S1_iqr_over_median": 0.47829859606562364,
+     "rate_S2_count": 0.04,
+     "mean_S2_count": 360.7,
+     "rate_S3_psi6_site_mean": 0.03,
+     "mean_S3_psi6_site_mean": 0.4756756383166421,
+     "rate_any": 0.14
+    },
+    {
+     "amp_over_sigmaT": 0.5,
+     "n_inj_full_sky": 100,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.08,
+     "mean_S1_iqr_over_median": 0.47818241997146155,
+     "rate_S2_count": 0.05,
+     "mean_S2_count": 360.59,
+     "rate_S3_psi6_site_mean": 0.07,
+     "mean_S3_psi6_site_mean": 0.47714921362005763,
+     "rate_any": 0.19
+    },
+    {
+     "amp_over_sigmaT": 0.5,
+     "n_inj_full_sky": 300,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.04,
+     "mean_S1_iqr_over_median": 0.47431754500355255,
+     "rate_S2_count": 0.04,
+     "mean_S2_count": 361.17,
+     "rate_S3_psi6_site_mean": 0.06,
+     "mean_S3_psi6_site_mean": 0.4785044483514489,
+     "rate_any": 0.11
+    },
+    {
+     "amp_over_sigmaT": 0.5,
+     "n_inj_full_sky": 300,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.03,
+     "mean_S1_iqr_over_median": 0.47157482167306897,
+     "rate_S2_count": 0.05,
+     "mean_S2_count": 361.86,
+     "rate_S3_psi6_site_mean": 0.02,
+     "mean_S3_psi6_site_mean": 0.47542876230721054,
+     "rate_any": 0.1
+    },
+    {
+     "amp_over_sigmaT": 0.5,
+     "n_inj_full_sky": 1000,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.06,
+     "mean_S1_iqr_over_median": 0.47874913703693983,
+     "rate_S2_count": 0.05,
+     "mean_S2_count": 362.58,
+     "rate_S3_psi6_site_mean": 0.04,
+     "mean_S3_psi6_site_mean": 0.4793872135925442,
+     "rate_any": 0.14
+    },
+    {
+     "amp_over_sigmaT": 0.5,
+     "n_inj_full_sky": 1000,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.05,
+     "mean_S1_iqr_over_median": 0.4772111816015442,
+     "rate_S2_count": 0.04,
+     "mean_S2_count": 361.78,
+     "rate_S3_psi6_site_mean": 0.03,
+     "mean_S3_psi6_site_mean": 0.4790306718703701,
+     "rate_any": 0.12
+    },
+    {
+     "amp_over_sigmaT": 1.0,
+     "n_inj_full_sky": 100,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.06,
+     "mean_S1_iqr_over_median": 0.47806474598442494,
+     "rate_S2_count": 0.06,
+     "mean_S2_count": 361.61,
+     "rate_S3_psi6_site_mean": 0.04,
+     "mean_S3_psi6_site_mean": 0.47315776149303035,
+     "rate_any": 0.13
+    },
+    {
+     "amp_over_sigmaT": 1.0,
+     "n_inj_full_sky": 100,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.05,
+     "mean_S1_iqr_over_median": 0.47595196632710646,
+     "rate_S2_count": 0.05,
+     "mean_S2_count": 361.41,
+     "rate_S3_psi6_site_mean": 0.06,
+     "mean_S3_psi6_site_mean": 0.4753161073797613,
+     "rate_any": 0.14
+    },
+    {
+     "amp_over_sigmaT": 1.0,
+     "n_inj_full_sky": 300,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.14,
+     "mean_S1_iqr_over_median": 0.47147051658098393,
+     "rate_S2_count": 0.04,
+     "mean_S2_count": 359.66,
+     "rate_S3_psi6_site_mean": 0.03,
+     "mean_S3_psi6_site_mean": 0.48056720605524667,
+     "rate_any": 0.2
+    },
+    {
+     "amp_over_sigmaT": 1.0,
+     "n_inj_full_sky": 300,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.06,
+     "mean_S1_iqr_over_median": 0.47251339596226105,
+     "rate_S2_count": 0.06,
+     "mean_S2_count": 359.7,
+     "rate_S3_psi6_site_mean": 0.08,
+     "mean_S3_psi6_site_mean": 0.47982752198435835,
+     "rate_any": 0.16
+    },
+    {
+     "amp_over_sigmaT": 1.0,
+     "n_inj_full_sky": 1000,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.11,
+     "mean_S1_iqr_over_median": 0.4684355031104536,
+     "rate_S2_count": 0.07,
+     "mean_S2_count": 365.33,
+     "rate_S3_psi6_site_mean": 0.07,
+     "mean_S3_psi6_site_mean": 0.4779258763690386,
+     "rate_any": 0.23
+    },
+    {
+     "amp_over_sigmaT": 1.0,
+     "n_inj_full_sky": 1000,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.05,
+     "mean_S1_iqr_over_median": 0.47516291043574105,
+     "rate_S2_count": 0.04,
+     "mean_S2_count": 365.53,
+     "rate_S3_psi6_site_mean": 0.04,
+     "mean_S3_psi6_site_mean": 0.47439557895990453,
+     "rate_any": 0.12
+    },
+    {
+     "amp_over_sigmaT": 2.0,
+     "n_inj_full_sky": 100,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.1,
+     "mean_S1_iqr_over_median": 0.47620881451354136,
+     "rate_S2_count": 0.01,
+     "mean_S2_count": 365.18,
+     "rate_S3_psi6_site_mean": 0.05,
+     "mean_S3_psi6_site_mean": 0.4724100999774009,
+     "rate_any": 0.15
+    },
+    {
+     "amp_over_sigmaT": 2.0,
+     "n_inj_full_sky": 100,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.05,
+     "mean_S1_iqr_over_median": 0.4763529440709131,
+     "rate_S2_count": 0.02,
+     "mean_S2_count": 366.06,
+     "rate_S3_psi6_site_mean": 0.04,
+     "mean_S3_psi6_site_mean": 0.47284697525887104,
+     "rate_any": 0.11
+    },
+    {
+     "amp_over_sigmaT": 2.0,
+     "n_inj_full_sky": 300,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.03,
+     "mean_S1_iqr_over_median": 0.47075032877317985,
+     "rate_S2_count": 0.05,
+     "mean_S2_count": 364.46,
+     "rate_S3_psi6_site_mean": 0.05,
+     "mean_S3_psi6_site_mean": 0.4767674761345023,
+     "rate_any": 0.12
+    },
+    {
+     "amp_over_sigmaT": 2.0,
+     "n_inj_full_sky": 300,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.03,
+     "mean_S1_iqr_over_median": 0.47185690246098494,
+     "rate_S2_count": 0.03,
+     "mean_S2_count": 366.98,
+     "rate_S3_psi6_site_mean": 0.07,
+     "mean_S3_psi6_site_mean": 0.4774198843234912,
+     "rate_any": 0.13
+    },
+    {
+     "amp_over_sigmaT": 2.0,
+     "n_inj_full_sky": 1000,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.22,
+     "mean_S1_iqr_over_median": 0.4362812774906747,
+     "rate_S2_count": 0.14,
+     "mean_S2_count": 383.03,
+     "rate_S3_psi6_site_mean": 0.02,
+     "mean_S3_psi6_site_mean": 0.4783426534274707,
+     "rate_any": 0.32
+    },
+    {
+     "amp_over_sigmaT": 2.0,
+     "n_inj_full_sky": 1000,
+     "placement": "poisson",
+     "n_sims": 100,
+     "post_registration_extension": false,
+     "rate_S1_iqr_over_median": 0.1,
+     "mean_S1_iqr_over_median": 0.4653217930323996,
+     "rate_S2_count": 0.04,
+     "mean_S2_count": 374.0,
+     "rate_S3_psi6_site_mean": 0.05,
+     "mean_S3_psi6_site_mean": 0.4720349070853792,
+     "rate_any": 0.19
+    },
+    {
+     "amp_over_sigmaT": 4.0,
+     "n_inj_full_sky": 1000,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": true,
+     "rate_S1_iqr_over_median": 0.97,
+     "mean_S1_iqr_over_median": 0.35966505757279504,
+     "rate_S2_count": 0.67,
+     "mean_S2_count": 403.74,
+     "rate_S3_psi6_site_mean": 0.09,
+     "mean_S3_psi6_site_mean": 0.4917687788373907,
+     "rate_any": 0.99
+    },
+    {
+     "amp_over_sigmaT": 4.0,
+     "n_inj_full_sky": 3000,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": true,
+     "rate_S1_iqr_over_median": 0.32,
+     "mean_S1_iqr_over_median": 0.42898720644197036,
+     "rate_S2_count": 1.0,
+     "mean_S2_count": 586.45,
+     "rate_S3_psi6_site_mean": 0.68,
+     "mean_S3_psi6_site_mean": 0.436729411181872,
+     "rate_any": 1.0
+    },
+    {
+     "amp_over_sigmaT": 8.0,
+     "n_inj_full_sky": 1000,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": true,
+     "rate_S1_iqr_over_median": 1.0,
+     "mean_S1_iqr_over_median": 0.3096687540894614,
+     "rate_S2_count": 0.1,
+     "mean_S2_count": 384.39,
+     "rate_S3_psi6_site_mean": 0.42,
+     "mean_S3_psi6_site_mean": 0.5119054797716158,
+     "rate_any": 1.0
+    },
+    {
+     "amp_over_sigmaT": 8.0,
+     "n_inj_full_sky": 3000,
+     "placement": "grid",
+     "n_sims": 100,
+     "post_registration_extension": true,
+     "rate_S1_iqr_over_median": 0.99,
+     "mean_S1_iqr_over_median": 0.36407866327838145,
+     "rate_S2_count": 1.0,
+     "mean_S2_count": 714.96,
+     "rate_S3_psi6_site_mean": 0.99,
+     "mean_S3_psi6_site_mean": 0.4215526231484849,
+     "rate_any": 1.0
+    }
+   ],
+   "false_positive_rate_amp_zero": {
+    "S1_iqr_over_median": 0.07,
+    "S2_count": 0.01,
+    "S3_psi6_site_mean": 0.04,
+    "any": 0.12,
+    "n_sims": 100
+   },
+   "smallest_detected_at_95pc_S1_grid_placement": {
+    "amp_over_sigmaT": 4.0,
+    "n_inj_full_sky": 1000,
+    "placement": "grid",
+    "n_sims": 100,
+    "post_registration_extension": true,
+    "rate_S1_iqr_over_median": 0.97,
+    "mean_S1_iqr_over_median": 0.35966505757279504,
+    "rate_S2_count": 0.67,
+    "mean_S2_count": 403.74,
+    "rate_S3_psi6_site_mean": 0.09,
+    "mean_S3_psi6_site_mean": 0.4917687788373907,
+    "rate_any": 0.99
+   }
+  },
+  "injection_narrative": [
+   "FALSE-POSITIVE / CALIBRATION ROW (A = 0, 100 simulations drawn from the same C_in with different seeds and tested against the 500-null 95% interval): S1 0.07, S2 0.01, S3 0.04, any 0.12. The criterion is nominally 0.05 per statistic, so these are its measured calibration as well as its false-positive rate.",
+   "AMPLITUDE UNITS: an injected spot of peak A = 1 sigma_T reaches only 0.73 sigma(T_s) after the detector's own smoothing (loss factor 0.500, and sigma(T_s)/sigma_T = 0.688), against a detection threshold of 1.0 sigma(T_s). An injected core below A ~ 1.4 sigma_T therefore cannot become a candidate at all, which is the physical reason the registered ladder is weak.",
+   "REGISTERED LADDER: no cell reaches 95%. The strongest is A = 2.00 sigma_T with 1000 full-sky cores (~397 inside the eroded mask at fsky = 0.397), detected 22% of the time on S1. The registered grid therefore gives a BOUND, not a sensitivity.",
+   "POST-REGISTRATION EXTENSION: the smallest extended cell reaching 95% on S1 is A = 4.0 sigma_T with 1000 full-sky cores (~397 inside the eroded mask), rate 0.97.",
+   "NON-MONOTONIC IN DENSITY, measured: the S1 detection rate does NOT rise monotonically with the injected density (A = 4.0: N=1000 -> 0.97, N=3000 -> 0.32). S1 measures REGULARITY of spacing, so a denser injected lattice can push the combined cloud back toward the null's own regularity before it dominates it. A single 'smallest detectable density' therefore understates the structure of this sensitivity, and the whole grid is reported rather than one number. The same falls-before-it-rises behaviour was recorded for the crystallinity statistic in audit/FLUID_TO_COSMOLOGY_BRIDGE.md sec 5.",
+   "STATISTIC-BY-STATISTIC: S1 (spacing) is the most sensitive, S2 (count) only fires once the injected population is numerous enough to add candidates rather than replace them, and S3 (orientation) is the least sensitive of the three at every cell that was run. That ordering is the direct analogue of the Re6Zr finding that the H0 spread and psi6 measure different things.",
+   "HOW TO READ THIS: the detector already finds ~351 candidates in the WMAP footprint from the Gaussian field alone, so an injected population does not sit on an empty sky -- it must out-compete that background. The null result on the real map is therefore a statement about LARGE injected populations only."
+  ]
+ },
+ "4_test_B_desi": null,
+ "5_controls": {
+  "C1_uniform_random_no_p_value": {
+   "note": "NOT passed through the detector; the contrast with the data is dominated by the R_disk hard-core exclusion, which the detector imposes by construction (registration L4). Reported as a pipeline sanity check with NO p-value.",
+   "seeds": "201+k",
+   "n": 100,
+   "S1_iqr_over_median": {
+    "mean": 0.8089317030936749,
+    "std": 0.05552724442315965
+   },
+   "S2_count": {
+    "mean": 351.0,
+    "std": 0.0
+   },
+   "S3_psi6_site_mean": {
+    "mean": 0.46425995278812876,
+    "std": 0.017700382427933675
+   }
+  },
+  "C2_value_shuffle": {
+   "note": "values of T_s permuted inside the eroded region, FULL detector rerun",
+   "seeds": "6100000+k",
+   "n": 100,
+   "S1_iqr_over_median": {
+    "mean": 0.3849817567353185,
+    "std": 0.009978634274211891,
+    "empirical_rank_p_vs_null": 0.003992015968063872
+   },
+   "S2_count": {
+    "mean": 1658.4,
+    "std": 19.982315413708424,
+    "empirical_rank_p_vs_null": 0.003992015968063872
+   },
+   "S3_psi6_site_mean": {
+    "mean": 0.3663099312481992,
+    "std": 0.004643475988207229,
+    "empirical_rank_p_vs_null": 0.003992015968063872
+   }
+  },
+  "L4_warning": "THE MOST IMPORTANT ONE, declared here so the write-up cannot misread it: any disk-extremum detector imposes a HARD-CORE EXCLUSION of radius R by construction. The contrast between the Re6Zr random control (S1 ~ 0.73, points drawn uniformly and NEVER passed through the detector) and the real data (S1 ~ 0.07-0.16) is therefore NOT by itself evidence of lattice order. In this registration the uniform/shuffled control is a PIPELINE SANITY CHECK ONLY and carries NO p-value. The only p-value-bearing nulls are ensembles passed through the IDENTICAL detector.",
+  "how_to_read_C1_and_C2": "C1 (uniform points, never passed through the detector) sits at S1 = 0.8089 against the data's 0.4542 and the null's 0.4743. That gap is the R_disk hard-core exclusion the detector imposes by construction, NOT evidence of order; it carries no p-value and it is exactly the artefact the Re6Zr random control would have produced. C2 (the values of T_s permuted inside the eroded region, FULL detector rerun) is the informative control: it changes every statistic decisively, so the detector is reading spatial arrangement rather than the value distribution -- the failure mode that the lower-star path showed on rough fields does not occur on this alpha path.",
+  "orientational_statistic_present": "YES -- S3 is computed alongside S1 in every test, because the Re6Zr work measured that the H0 spread stays small while psi6 collapses (limit L1).",
+  "absolute_floor_present": "YES -- median H0 death radius in degrees / Mpc/h and the count of bars below the resolution floor are reported for data and null (limit L3).",
+  "amplitude_zero_row_present": "YES -- the A = 0 row of each injection grid measures the empirical false-positive rate of the decision rule."
+ },
+ "6_multiplicity_and_decision": {
+  "primary_family": [
+   "A / WMAP / S1 (H0 IQR/median)",
+   "A / WMAP / S2 (count)",
+   "A / WMAP / S3 (psi6)",
+   "B / DESI NGC / S1",
+   "B / DESI NGC / S2",
+   "B / DESI NGC / S3 (Q6)"
+  ],
+  "effective_number_of_tests": 6,
+  "correction": "Bonferroni",
+  "alpha_per_test": 0.008333333333333333,
+  "results": [
+   {
+    "test": "A/WMAP/S1_iqr_over_median",
+    "p": 0.5349301397205589,
+    "z": -0.6426397319944687,
+    "gate_passed": true
+   },
+   {
+    "test": "A/WMAP/S2_count",
+    "p": 0.5229540918163673,
+    "z": -0.6585679923012467,
+    "gate_passed": true
+   },
+   {
+    "test": "A/WMAP/S3_psi6_site_mean",
+    "p": 0.5069860279441117,
+    "z": 0.6643368355624418,
+    "gate_passed": true
+   }
+  ],
+  "min_p_in_family": 0.5069860279441117,
+  "any_below_corrected_threshold": false,
+  "note_on_independence": "the 6 primary tests are NOT independent (S1 and S3 are computed on the same point cloud), so Bonferroni is conservative for the family and this is the intended direction of the error.",
+  "decision_rule": "A discrete defect-core-candidate population is FLAGGED only if (a) the relevant gate passed, AND (b) at least one primary p < 0.008333, AND (c) the SAME statistic replicates in its secondary dataset (SMICA for Test A, SGC for Test B) at p < 0.05."
+ },
+ "7_absent_or_not_attempted": [
+  "SHORTFALL AGAINST THE TASK AS ASSIGNED, stated first so 'INCONCLUSIVE' is not read as a completed result: the task named the CAMB lognormal mocks of audit/reverse_zero/E5-cosmic-web-tda-scaled/ AND a repeat of round 2's X2 calibration check as requirements of Test B. NEITHER was done. Test B therefore has no clustering-matched null and no calibration measurement, and what it delivers is a detector, a set of absolute numbers, a randoms control and an injection sensitivity -- not a test against a null.",
+  "The count-vs-INDEPENDENT-EXPECTATION leg of the Re6Zr test (N vs B*A/Phi0). No theory in this programme gives a defect-core density, so S2 is only compared to an ensemble. Declared in the registration as deviation D1, not discovered afterwards.",
+  "The registered clustering-matched null for Test B (lognormal mocks): unknown. No DESI-footprint mock catalogues exist on disk; audit/reverse_zero/E5-cosmic-web-tda-scaled/ holds only Betti-curve stacks for the SDSS DR17 window and x2_lib.py is wired to that window's grid, healpix footprint and n(z). The registered budget clause applies and the official randoms were NOT substituted for it.",
+  "The G2 mock-calibration gate was consequently not run, so this round did not repeat round 2's 2.88 sigma mis-calibration measurement; it neither confirms nor refutes it.",
+  "The DESI injection sensitivity is measured against a CLUSTERING-FREE baseline (the official randoms), because no clustered null was available. Sensitivity against an unclustered background OVERSTATES sensitivity against the real galaxy field, in which the same detector already finds structure.",
+  "DESI SGC (the registered secondary replication for Test B) was not run, so the Test B replication leg of the decision rule could not be exercised.",
+  "The lower-star Betti diagnostic listed as a conditional secondary item was NOT run; no lower-star statistic appears anywhere in this report, so the site-shuffle failure mode that the Re6Zr work measured (limit L2) is not in play. The C2 value-shuffle control was run anyway on the alpha path.",
+  "No void-centre point cloud was built; the registration fixed density peaks and that choice was not revisited.",
+  "No physical model of a defect-core population was used at any point: the injection profiles are generic Gaussian spots / over-densities, chosen to make the sensitivity measurable, not to represent any predicted object."
+ ],
+ "9_defects_found_and_fixed_during_this_run": [
+  {
+   "where": "scripts/cv_lib.py::eroded_mask",
+   "defect": "the padded disk-neighbour table uses -1 for padding, and the sentinel appended to the mask was False, so every pixel whose disk held fewer than the maximum 64 members was treated as touching the mask. On the FULL SKY the eroded fraction came out 0.0052 instead of 1.0 and only 3 candidates survived.",
+   "fix": "sentinel set to True (padding is not a masked neighbour; real masked neighbours still veto)",
+   "found_by": "the smoke test on one simulation, before any data map was read"
+  },
+  {
+   "where": "scripts/cv_desi.py::cmd_inject (first version)",
+   "defect": "TWO defects, both of which made the DESI injection measure nothing. (a) the placement drew a uniform random subset of eroded cells -- POISSON placement -- although the registration makes a jittered lattice the primary and says why; the unused variable `side` is the fingerprint of the lattice that was intended. (b) the galaxies-per-core count was derived analytically and omitted the smoothing kernel's normalisation ((2 pi)^(3/2) sigma_cells^3 ~ 126), so it evaluated to max(1, 0) = 1 galaxy per core at EVERY amplitude. Measured consequence: the whole grid was flat -- S1 ranged only over 0.2548-0.2612 and the count over 1234-1257 from A = 0 to A = 2.",
+   "fix": "a real jittered cubic lattice over the eroded region (cv_desi.jittered_lattice), and an EMPIRICAL calibration of the galaxies-per-core (cv_desi.calibrate_per: inject a trial number, measure the delta increment actually produced at the core centres, scale once). The grid was rerun.",
+   "found_by": "an amplitude-response check of the produced grid",
+   "why_it_matters": "the first version would have reported 'NONE detected at 95%' as a sensitivity limit when it was an implementation artefact."
+  }
+ ],
+ "10_post_registration_deviations": [
+  {
+   "item": "CMB injection ladder extended beyond the registered grid",
+   "registered": "amplitudes A/sigma_T in {0, 0.25, 0.5, 1, 2}, densities {100, 300, 1000} full-sky",
+   "deviation": "an additional grid at A in {4, 8} and N_inj in {1000, 3000}, jittered-grid placement only, 100 sims per cell, written to cmb_inject_wmap_ext.json and flagged post_registration_extension = true in every affected row",
+   "reason": "the registered ladder tops out at a 22% detection rate, so it can only report 'NONE detected at 95%', which is an absence rather than a sensitivity. The extension walks the ladder up until the criterion fires so the null can be quoted with a number.",
+   "what_is_unchanged": "detector, statistics, null ensemble, seeds rules, decision rule and the p-values of the primary family. The extension changes no p-value."
+  },
+  {
+   "item": "DESI injection realisations per cell",
+   "registered": 50,
+   "deviation": 30,
+   "reason": "the grid had to be rerun after the two defects above were found; 30 was chosen to fit the remaining compute budget on a shared machine.",
+   "effect": "wider binomial error on each detection rate (a rate of 0.05 has a 95% interval of about [0.006, 0.17] at n = 30)."
+  }
+ ],
+ "11_amplitude_and_density_units": {
+  "purpose": "conversion factors that make the CMB injection amplitudes and densities readable",
+  "map": "wmap",
+  "sigma_T_prepped_unsmoothed": 0.06649183319273408,
+  "sigma_Ts_smoothed": 0.04575004382724494,
+  "ratio_sigma_Ts_over_sigma_T": 0.6880550833157703,
+  "one_spot_at_A_equals_1_sigma_T": {
+   "theta0_deg": 1.0,
+   "peak_before_smoothing_over_sigma_T": 0.9999999999996356,
+   "peak_after_smoothing_over_sigma_T": 0.5000126406217734,
+   "peak_after_smoothing_over_sigma_Ts": 0.7267043769405622,
+   "detector_threshold_in_sigma_Ts": 1.0,
+   "reading": "an A = 1 sigma_T spot reaches 0.73 sigma(T_s) after the detector's own smoothing, against a threshold of 1.0 sigma(T_s); the smoothing loss is the factor 0.500."
+  },
+  "footprint": {
+   "fsky_mask": 0.7521158854166666,
+   "fsky_after_R_disk_erosion": 0.3969675699869792,
+   "full_sky_deg2": 41252.96124941928,
+   "usable_deg2": 16376.087781948987,
+   "note": "registered injection densities are FULL-SKY counts; only the eroded fraction is usable, so the effective in-mask count is N_inj * fsky_eroded."
+  },
+  "registered_densities_converted": [
+   {
+    "N_inj_full_sky": 100,
+    "effective_in_mask_count": 39.69675699869792,
+    "density_per_deg2_full_sky": 0.0024240684055476798,
+    "mean_separation_deg_full_sky": 21.825401843824743
+   },
+   {
+    "N_inj_full_sky": 300,
+    "effective_in_mask_count": 119.09027099609375,
+    "density_per_deg2_full_sky": 0.007272205216643039,
+    "mean_separation_deg_full_sky": 12.60090162970397
+   },
+   {
+    "N_inj_full_sky": 1000,
+    "effective_in_mask_count": 396.9675699869792,
+    "density_per_deg2_full_sky": 0.024240684055476795,
+    "mean_separation_deg_full_sky": 6.901798067492473
+   }
+  ],
+  "detected_population_for_comparison": {
+   "N_data_wmap": 351,
+   "note": "the injected populations are to be compared with the ~350 candidates the detector already finds in the WMAP footprint from the Gaussian field alone; an injected population must compete with that background, it is not added to an empty sky."
+  },
+  "tier": "X"
+ },
+ "8_commands": [
+  "# CV run commands (all foreground, prlimit --as=8589934592, shared machine)",
+  "# registration frozen at commit 7ecf289",
+  "timeout 900 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py data --which wmap",
+  "timeout 2400 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py null --which wmap --n 500",
+  "timeout 3600 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py control --which wmap --n 100",
+  "timeout 3600 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_desi.py gate1 --cap NGC",
+  "timeout 3600 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_desi.py data --cap NGC",
+  "timeout 3600 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py data --which smica",
+  "timeout 5400 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_re6zr_check.py",
+  "timeout 5400 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_desi.py control --cap NGC --n 100",
+  "timeout 3600 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py null --which smica --n 500",
+  "timeout 5400 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_desi.py inject --cap NGC --n 50",
+  "timeout 7200 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py inject --which wmap --n 100",
+  "timeout 900 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb_ampcheck.py",
+  "# DESI injection RERUN after two defects were found and fixed (see report.json 9_defects_found_and_fixed)",
+  "timeout 7200 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_desi.py inject --cap NGC --n 30",
+  "# POST-REGISTRATION extension of the injection ladder (registered ladder topped out at 22%)",
+  "timeout 5400 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py inject --which wmap --n 100 --ext"
+ ],
+ "12_commits_touching_audit_cosmic_vorticity": [
+  "ef6c205 report(cosmic_vorticity): narrative builders for Test B and for the injection grids",
+  "da462b2 results(cosmic_vorticity): CMB injection sensitivity \u2014 the registered ladder is a bound, the extension gives the number",
+  "9583a0c chore(cosmic_vorticity): ignore the derived disk-neighbour cache (purely geometric, rebuilt by cv_lib.disk_table)",
+  "b82ae01 results(cosmic_vorticity): Test A on WMAP and SMICA is a NULL; two defects found and fixed",
+  "c4b467b test(cosmic_vorticity): known-answer check \u2014 the transferred S1 reproduces the Re6Zr numbers exactly",
+  "4d88357 feat(cosmic_vorticity): vendored FIXED TDA library + the two registered pipelines",
+  "7ecf289 registration(cosmic_vorticity): STEP 0 \u2014 pre-registered transfer of the Re6Zr defect-core TDA pipeline to WMAP/SMICA and DESI DR1 BGS_BRIGHT-21.5"
+ ]
+}
