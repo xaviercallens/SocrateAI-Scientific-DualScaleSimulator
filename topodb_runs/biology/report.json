@@ -1,7 +1,7 @@
 {
  "title": "Persistent homology over a wide variety of real biological datasets",
  "branch": "topo/bio",
- "git_commit": "e9d88cd0b80e29fb95ad2573944893650876747b",
+ "git_commit": "b35c796b4e0354df9d041f04495d6fb3c2667e18",
  "preregistration": "topodb_runs/biology/expectations.json, committed alone at dde7a07 before any biological persistence diagram was computed",
  "binding_method_rules": [
   "(a) A non-Euclidean metric (Hi-C contact, scRNA correlation, sequence Hamming) is given to Rips DIRECTLY. No MDS-then-alpha anywhere: that route produced a FALSE loop of dominance 11.1 on the tree-like influenza HA segment in the earlier validation. bio_common.py contains no MDS function.",
@@ -44,6 +44,12 @@
     "runs": 1
    },
    {
+    "dataset": "astro/cobe_dmr",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 1
+   },
+   {
     "dataset": "astro/crystallography/wmap_ilc9_lens_fields",
     "domain": "astro",
     "provenance": "observation",
@@ -71,7 +77,31 @@
     "dataset": "astro/desi_dr1_bgs_bright_215_ngc",
     "domain": "astro",
     "provenance": "observation",
-    "runs": 0
+    "runs": 1
+   },
+   {
+    "dataset": "astro/desi_dr1_bgs_bright_215_sgc",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 1
+   },
+   {
+    "dataset": "astro/desi_dr1_bgs_bright_ngc",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 2
+   },
+   {
+    "dataset": "astro/desi_dr1_lrg_ngc",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 2
+   },
+   {
+    "dataset": "astro/haslam408",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 1
    },
    {
     "dataset": "astro/planck_smica",
@@ -92,6 +122,18 @@
     "runs": 1
    },
    {
+    "dataset": "astro/sdss_spec_bulk",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 1
+   },
+   {
+    "dataset": "astro/wmap_ilc",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 1
+   },
+   {
     "dataset": "astro/wmap_ilc9_e5_superseded",
     "domain": "astro",
     "provenance": "observation",
@@ -99,6 +141,12 @@
    },
    {
     "dataset": "astro/wmap_ilc9_nside128",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 1
+   },
+   {
+    "dataset": "astro/wmap_kband",
     "domain": "astro",
     "provenance": "observation",
     "runs": 1
@@ -1438,28 +1486,28 @@
   ],
   "summary": {
    "datasets_by_domain": {
-    "astro": 11,
+    "astro": 19,
     "biology": 98,
     "mathematics": 60,
     "quantum_fluid": 22,
     "synthetic": 42
    },
    "runs_by_method": {
-    "alpha": 174,
+    "alpha": 181,
     "chain_complex": 153,
     "cubical": 18,
-    "lower_star_graph": 56,
+    "lower_star_graph": 60,
     "rips": 148,
     "witness": 4
    },
    "runs_by_tier": {
     "B": 159,
-    "X": 394
+    "X": 405
    },
    "controls_passed": {
-    "not_run": 43,
-    "failed": 86,
-    "passed": 495
+    "not_run": 53,
+    "failed": 87,
+    "passed": 519
    },
    "findings_by_verdict": {
     "artefact": 5,
@@ -1468,8 +1516,8 @@
     "null": 28,
     "recovered": 159
    },
-   "statistics_with_p": 186,
-   "bars": 7244
+   "statistics_with_p": 260,
+   "bars": 7594
   },
   "findings_by_verdict": {
    "artefact": 5,
@@ -1479,12 +1527,12 @@
    "recovered": 159
   },
   "controls": {
-   "not_run": 43,
-   "failed": 86,
-   "passed": 495
+   "not_run": 53,
+   "failed": 87,
+   "passed": 519
   },
-  "statistics_with_p_value": 186,
-  "statistics_without_p_value_no_null_defined": 3562
+  "statistics_with_p_value": 260,
+  "statistics_without_p_value_no_null_defined": 3704
  },
  "protein_fold_separation": {
   "registered": {
@@ -2131,15 +2179,15 @@
   "u2os": {
    "dominance": 1.5096,
    "S": 0.02207,
-   "p_S": null,
-   "p_dom": null,
-   "null_complete": false,
-   "null_draws_reached": 81,
+   "p_S": 0.00498,
+   "p_dom": 0.00498,
+   "null_complete": true,
+   "null_draws_reached": 200,
    "n_cells": 400,
    "n_genes": 97,
    "expects_loop": true,
    "criteria_met": false,
-   "neg_median_dom": null
+   "neg_median_dom": 1.066910872559081
   },
   "mesc": {
    "dominance": 1.0411,
@@ -2157,15 +2205,15 @@
   "pbmc3k": {
    "dominance": 1.2091,
    "S": 0.00559,
-   "p_S": null,
-   "p_dom": null,
-   "null_complete": false,
-   "null_draws_reached": 41,
+   "p_S": 0.00498,
+   "p_dom": 0.01493,
+   "null_complete": true,
+   "null_draws_reached": 200,
    "n_cells": 400,
    "n_genes": 500,
    "expects_loop": false,
    "criteria_met": false,
-   "neg_median_dom": null
+   "neg_median_dom": 1.1979878225639133
   }
  },
  "ecg": {
