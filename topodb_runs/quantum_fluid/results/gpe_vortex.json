@@ -1,0 +1,446 @@
+{
+ "by_omega": {
+  "0.00": {
+   "Lbox": 24.0,
+   "Omega": 0.0,
+   "converged": true,
+   "crosscheck_agrees": false,
+   "crosscheck_difference": 1,
+   "dx": 0.0625,
+   "file": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/quantum_fluid/gpe/psi_Omega0.00.npz",
+   "grid": [
+    384,
+    384
+   ],
+   "mask_area": 87.28515625,
+   "mask_cells": 22345,
+   "mu": 17.941819732269035,
+   "n_cores_cubical_H0": 1,
+   "n_cores_phase_winding": 0,
+   "n_winding_positive_charge": 0,
+   "sha256": "5b29cb026ff47fc2a8130227ae5df2135df8e3f789f1aa39e3ec41464027232a",
+   "site_shuffle_control": {
+    "diff_over_se": -350.3059032288188,
+    "n_shuffles": 20,
+    "note": "site-shuffle destroys the spatial arrangement while preserving the value histogram; the cubical core count must not survive it",
+    "real_n_cores_cubical": 1,
+    "separates": true,
+    "shuffled_mean": 1653.8,
+    "shuffled_std": 21.100261909075417
+   }
+  },
+  "0.70": {
+   "Lbox": 24.0,
+   "Omega": 0.7,
+   "a_density_nm_units": 2.8027882933557815,
+   "a_h0": 2.174065891365761,
+   "a_h1": 2.4450627043138717,
+   "betti_alpha": {
+    "0": 1,
+    "1": 0,
+    "2": 0
+   },
+   "converged": false,
+   "crosscheck_agrees": false,
+   "crosscheck_difference": 3,
+   "dx": 0.0625,
+   "file": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/quantum_fluid/gpe/psi_Omega0.70_ext.npz",
+   "grid": [
+    384,
+    384
+   ],
+   "mask_area": 122.45703125,
+   "mask_cells": 31349,
+   "mu": 13.917776895996154,
+   "n_cores_cubical_H0": 21,
+   "n_cores_phase_winding": 18,
+   "n_null": 200,
+   "n_winding_positive_charge": 18,
+   "null_median": {
+    "h0_iqr_over_median": 0.6730610658836486,
+    "psi6": 0.11490720028517576
+   },
+   "observed": {
+    "h0_iqr_over_median": 0.06574476175268298,
+    "psi6": 0.3698587105305745
+   },
+   "p_values_rank": {
+    "h0_iqr_over_median": 0.004975124378109453,
+    "psi6": 0.014925373134328358
+   },
+   "sha256": "d12ded69f3b2f7173581f4fe4d7c6e553a70aa75dc9ce9cb93bacb9f043042f4",
+   "site_shuffle_control": {
+    "diff_over_se": -422.3807586580701,
+    "n_shuffles": 20,
+    "note": "site-shuffle destroys the spatial arrangement while preserving the value histogram; the cubical core count must not survive it",
+    "real_n_cores_cubical": 21,
+    "separates": true,
+    "shuffled_mean": 2201.65,
+    "shuffled_std": 23.088559481859594
+   },
+   "top_h0_bars": [
+    [
+     0.0,
+     8.408364880067344
+    ],
+    [
+     0.0,
+     1.2405895775799505
+    ],
+    [
+     0.0,
+     1.1362286851686152
+    ],
+    [
+     0.0,
+     1.1327855600244912
+    ],
+    [
+     0.0,
+     1.1319231422671772
+    ],
+    [
+     0.0,
+     1.1288994917617776
+    ],
+    [
+     0.0,
+     1.1008696846130335
+    ],
+    [
+     0.0,
+     1.097315616629965
+    ],
+    [
+     0.0,
+     1.0915155747858112
+    ],
+    [
+     0.0,
+     1.0870329456828804
+    ]
+   ],
+   "top_h1_bars": [
+    [
+     1.1490485194281397,
+     1.4724062677678669
+    ],
+    [
+     1.171354050874457,
+     1.4736218624489341
+    ],
+    [
+     1.1780048015606728,
+     1.4491455808511235
+    ],
+    [
+     1.1405179744309162,
+     1.4085401058653757
+    ],
+    [
+     1.200585794518659,
+     1.4321378763791108
+    ],
+    [
+     1.21875,
+     1.4437927108340907
+    ],
+    [
+     1.1600444495794116,
+     1.3302492918352782
+    ],
+    [
+     1.2597277731716483,
+     1.4292621408751487
+    ],
+    [
+     1.2203515118604147,
+     1.3896879887097964
+    ],
+    [
+     1.1625672023586422,
+     1.325654917861268
+    ]
+   ]
+  },
+  "0.80": {
+   "Lbox": 24.0,
+   "Omega": 0.8,
+   "a_density_nm_units": 2.817736705512107,
+   "a_h0": 2.053459796468187,
+   "a_h1": 2.251783361673726,
+   "betti_alpha": {
+    "0": 1,
+    "1": 0,
+    "2": 0
+   },
+   "converged": true,
+   "crosscheck_agrees": false,
+   "crosscheck_difference": 5,
+   "dx": 0.0625,
+   "file": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/quantum_fluid/gpe/psi_Omega0.80_ext.npz",
+   "grid": [
+    384,
+    384
+   ],
+   "mask_area": 144.39453125,
+   "mask_cells": 36965,
+   "mu": 11.957802949373164,
+   "n_cores_cubical_H0": 26,
+   "n_cores_phase_winding": 21,
+   "n_null": 200,
+   "n_winding_positive_charge": 21,
+   "null_median": {
+    "h0_iqr_over_median": 0.6718379613358143,
+    "psi6": 0.10722518943426973
+   },
+   "observed": {
+    "h0_iqr_over_median": 0.04166696224385673,
+    "psi6": 0.3426122237838934
+   },
+   "p_values_rank": {
+    "h0_iqr_over_median": 0.004975124378109453,
+    "psi6": 0.004975124378109453
+   },
+   "sha256": "496b938bf0fe4e924166720d15de46cd4e75b99c2e8f91bd4659c480820fabe3",
+   "site_shuffle_control": {
+    "diff_over_se": -398.7149833022069,
+    "n_shuffles": 20,
+    "note": "site-shuffle destroys the spatial arrangement while preserving the value histogram; the cubical core count must not survive it",
+    "real_n_cores_cubical": 26,
+    "separates": true,
+    "shuffled_mean": 2515.55,
+    "shuffled_std": 27.923721287219504
+   },
+   "top_h0_bars": [
+    [
+     0.0,
+     8.45321011653632
+    ],
+    [
+     0.0,
+     1.0739275173399738
+    ],
+    [
+     0.0,
+     1.0666280103672507
+    ],
+    [
+     0.0,
+     1.0541954870895625
+    ],
+    [
+     0.0,
+     1.0504835196232256
+    ],
+    [
+     0.0,
+     1.0430199542674148
+    ],
+    [
+     0.0,
+     1.0406766128341696
+    ],
+    [
+     0.0,
+     1.0402073110683274
+    ],
+    [
+     0.0,
+     1.0387981336621663
+    ],
+    [
+     0.0,
+     1.0350309476049497
+    ]
+   ],
+   "top_h1_bars": [
+    [
+     1.0481568644530264,
+     1.4192166222938605
+    ],
+    [
+     1.068914461030442,
+     1.383801078754742
+    ],
+    [
+     1.149898093310881,
+     1.4380723704336118
+    ],
+    [
+     1.0574327697305395,
+     1.3454291451571145
+    ],
+    [
+     1.0643366478704002,
+     1.3157186167199981
+    ],
+    [
+     1.0698276730389806,
+     1.3135353872495894
+    ],
+    [
+     1.0933034802834938,
+     1.3301080154216331
+    ],
+    [
+     1.0775587280979166,
+     1.2581392603400807
+    ],
+    [
+     1.0941963375007249,
+     1.2466622970025312
+    ],
+    [
+     1.0870329456828804,
+     1.2341340080249408
+    ]
+   ]
+  },
+  "0.90": {
+   "Lbox": 24.0,
+   "Omega": 0.9,
+   "a_density_nm_units": 2.6388641885455257,
+   "a_h0": 1.8843445522627427,
+   "a_h1": 2.1147251726257994,
+   "betti_alpha": {
+    "0": 1,
+    "1": 0,
+    "2": 0
+   },
+   "converged": false,
+   "crosscheck_agrees": false,
+   "crosscheck_difference": 9,
+   "dx": 0.0625,
+   "file": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/quantum_fluid/gpe/psi_Omega0.90_ext.npz",
+   "grid": [
+    384,
+    384
+   ],
+   "mask_area": 199.01171875,
+   "mask_cells": 50947,
+   "mu": 9.070329125424843,
+   "n_cores_cubical_H0": 42,
+   "n_cores_phase_winding": 33,
+   "n_null": 200,
+   "n_winding_positive_charge": 33,
+   "null_median": {
+    "h0_iqr_over_median": 0.6899489248118267,
+    "psi6": 0.08890310266369439
+   },
+   "observed": {
+    "h0_iqr_over_median": 0.04281346403670879,
+    "psi6": 0.1072209055081351
+   },
+   "p_values_rank": {
+    "h0_iqr_over_median": 0.004975124378109453,
+    "psi6": 0.3482587064676617
+   },
+   "sha256": "5c61a49d35e3e4094c67cdc8b2c11f6233f97d6cfbbcf33ccd38b1da58702fe4",
+   "site_shuffle_control": {
+    "diff_over_se": -357.24442790940924,
+    "n_shuffles": 20,
+    "note": "site-shuffle destroys the spatial arrangement while preserving the value histogram; the cubical core count must not survive it",
+    "real_n_cores_cubical": 42,
+    "separates": true,
+    "shuffled_mean": 3385.15,
+    "shuffled_std": 41.85095735558444
+   },
+   "top_h0_bars": [
+    [
+     0.0,
+     7.916592565636577
+    ],
+    [
+     0.0,
+     1.0179060921813956
+    ],
+    [
+     0.0,
+     1.0004881620988826
+    ],
+    [
+     0.0,
+     1.0004881620988826
+    ],
+    [
+     0.0,
+     0.993140536379419
+    ],
+    [
+     0.0,
+     0.9732757188998398
+    ],
+    [
+     0.0,
+     0.9707640354380667
+    ],
+    [
+     0.0,
+     0.9702609185162515
+    ],
+    [
+     0.0,
+     0.9692539012044264
+    ],
+    [
+     0.0,
+     0.9626826125468352
+    ]
+   ],
+   "top_h1_bars": [
+    [
+     0.9560661587986472,
+     1.3268832759582472
+    ],
+    [
+     0.9787787352103641,
+     1.3307138452055969
+    ],
+    [
+     1.0087507744730608,
+     1.3184227660583328
+    ],
+    [
+     0.9560661587986472,
+     1.2604270430112676
+    ],
+    [
+     0.9812699042567239,
+     1.2778065661821083
+    ],
+    [
+     0.9965761699438734,
+     1.252565235029313
+    ],
+    [
+     1.0063276367565386,
+     1.2547994597751737
+    ],
+    [
+     1.0179060921813956,
+     1.2431274959795509
+    ],
+    [
+     1.014061296224247,
+     1.2384369097890373
+    ],
+    [
+     1.0355025953613057,
+     1.2456703656629013
+    ]
+   ]
+  }
+ },
+ "meta": {
+  "command": "prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python compute_gpe.py",
+  "cubical": "sublevel-set persistence of |psi|^2/max inside the condensate mask; cells outside the mask are set to 10 so they enter last",
+  "mask_frac": 0.15,
+  "n_null": 200,
+  "pers_thresh": 0.1,
+  "script": "/mnt/disks/disk-socrateai-local-1/wt-topo-qfluid/topodb_runs/quantum_fluid/scripts/compute_gpe.py",
+  "seed": 20260920,
+  "source": "generated by audit/tda_validation/quantum_fluid/scripts/gpe_rotating.py (earlier run), seed 7",
+  "winding": "plaquette phase circulation of arg(psi), non-periodic, charge = round(circ/2pi), restricted to the same mask"
+ }
+}

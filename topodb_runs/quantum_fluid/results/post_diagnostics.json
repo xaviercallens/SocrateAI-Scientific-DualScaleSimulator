@@ -1,0 +1,82 @@
+{
+ "colloid": {
+  "0.11": {
+   "a_density_px": 41.16171161897775,
+   "a_nn_over_a_density": 0.4729425985428735,
+   "a_nn_over_a_density_expected_poisson": 0.4652894100130281,
+   "a_nn_over_a_density_expected_triangular": 1.0,
+   "d_contact_px": 12.084598930832714,
+   "frac_nn_below_0.6_median": 0.00496,
+   "frac_nn_below_0.8_median": 0.28216,
+   "nn_median_px": 19.986647735924837,
+   "nn_mode_px": 12.391721596273399,
+   "nn_p0.1_px": 11.838527198825634,
+   "nn_p1_px": 12.076242730958366,
+   "phi_implied_from_geometry": 0.07816941111782641,
+   "phi_published": 0.11
+  },
+  "0.89": {
+   "a_density_px": 13.63142567760327,
+   "a_nn_over_a_density": 0.9183116710870017,
+   "a_nn_over_a_density_expected_poisson": 0.4652894100130281,
+   "a_nn_over_a_density_expected_triangular": 1.0,
+   "d_contact_px": 11.095425326095036,
+   "frac_nn_below_0.6_median": 3.277882487912808e-05,
+   "frac_nn_below_0.8_median": 0.0005654347291649594,
+   "nn_median_px": 12.521396625647482,
+   "nn_mode_px": 12.270968693134531,
+   "nn_p0.1_px": 10.210700725715755,
+   "nn_p1_px": 11.070137151171306,
+   "phi_implied_from_geometry": 0.6009595689045569,
+   "phi_published": 0.89
+  }
+ },
+ "colloid_conclusion": "The two concentrations give a CONSISTENT hard-core diameter: the nearest-neighbour mode is 12.27 px at phi = 0.89 and 12.39 px at phi = 0.11, agreeing to 1.0 per cent, and the 1st percentiles are 11.07 and 12.08 px. A common contact diameter near 12 px is therefore a real property of the particles, not an estimator artefact. At phi = 0.89 there are essentially no spurious close pairs (a fraction 0.00003 of nearest-neighbour distances lie below 0.6 of the median), so the STM border-over-detection failure mode is NOT present here. a_nn/a_density = 0.918 at phi = 0.89 matches roughly 5 per cent positional disorder on the calibration curve in step0_re6zr_20kOe.json, and 0.473 at phi = 0.11 matches the Poisson value 0.465 almost exactly. The point sets are thus internally consistent; what does not fit is the published concentration label: a lattice constant of 13.63 px with a contact diameter of about 12 px implies a projected 2-D area fraction of 0.60, not 0.89. The most likely reading is that the deposit's concentration label is not the 2-D projected area fraction of touching discs in this quasi-2-D cell. NOT resolved here.",
+ "command": "prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python post_diagnostics.py",
+ "gpe_edge": {
+  "0.00": {
+   "Omega": 0.0,
+   "expected_cubical": 1,
+   "mask_inradius": 5.25594901040716,
+   "n_cubical_H0": 1,
+   "n_winding": 0,
+   "residual_vs_winding_plus_one": 0
+  },
+  "0.70": {
+   "Omega": 0.7,
+   "expected_cubical": 19,
+   "mask_inradius": 5.436063028516133,
+   "median_dist_to_mask_edge_matched": 2.0183942542802784,
+   "median_dist_to_mask_edge_unmatched": 0.0625,
+   "n_cubical_H0": 21,
+   "n_local_minima_proxy": 127,
+   "n_unmatched": 109,
+   "n_winding": 18,
+   "residual_vs_winding_plus_one": 2
+  },
+  "0.80": {
+   "Omega": 0.8,
+   "expected_cubical": 22,
+   "mask_inradius": 5.423113151133766,
+   "median_dist_to_mask_edge_matched": 1.8221724671391564,
+   "median_dist_to_mask_edge_unmatched": 0.0625,
+   "n_cubical_H0": 26,
+   "n_local_minima_proxy": 179,
+   "n_unmatched": 158,
+   "n_winding": 21,
+   "residual_vs_winding_plus_one": 4
+  },
+  "0.90": {
+   "Omega": 0.9,
+   "expected_cubical": 34,
+   "mask_inradius": 6.112551124530575,
+   "median_dist_to_mask_edge_matched": 2.4598335817693036,
+   "median_dist_to_mask_edge_unmatched": 0.0625,
+   "n_cubical_H0": 42,
+   "n_local_minima_proxy": 229,
+   "n_unmatched": 196,
+   "n_winding": 33,
+   "residual_vs_winding_plus_one": 8
+  }
+ }
+}
