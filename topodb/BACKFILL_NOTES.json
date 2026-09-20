@@ -1,0 +1,707 @@
+{
+  "_what_this_is": "A machine-written record of the TopoDB backfill: what each committed source contributed, what was skipped and why, and every place where a source's own numbers disagree with its narrative. No number in the database was computed here; all of them were read from the committed files named below.",
+  "generated": "2026-09-20T07:52:32+00:00",
+  "db_path": "/mnt/disks/disk-socrateai-local-1/topodb/topodb.sqlite",
+  "rules_applied": [
+    "expected= is passed to add_betti only where the source itself pre-stated the expectation, so `matches` is NULL wherever no pre-registration existed",
+    "a p_value is stored only with the null model and the null count the same source states; where a source reports a statistic with no null, the statistic is stored alone",
+    "runs whose source records an error, timeout or crash are listed under `skipped`, not ingested as results",
+    "api.add_run has no `notes` column, so a superseded run is marked in params_json under 'superseded', in the dataset notes, and in the caveat of its finding",
+    "api.add_bars truncates to the 50 longest bars per dimension; several sources had already truncated further before committing, and each module says so",
+    "the word 'proved' is asserted nowhere; where it appears it is a verbatim quotation of a source refusing the word (\"never 'proved'\", \"nothing here is proved\")",
+    "the database is shared with other sessions, so the reset before an ingest is ownership-scoped: it deletes only runs carrying the `_backfill_source` marker and only datasets and dataset-level findings named in the sidecar manifest that nothing else refers to"
+  ],
+  "shared_database": {
+    "note": "this database lives outside git and other sessions write to it",
+    "rows_removed_by_the_ownership_scoped_reset_before_this_ingest": {
+      "runs": 406,
+      "datasets": 136,
+      "findings": 94
+    },
+    "runs_present_that_this_backfill_does_not_own": 147,
+    "owned_manifest": "/mnt/disks/disk-socrateai-local-1/topodb/backfill_owned.json"
+  },
+  "sources": [
+    {
+      "source": "a1_simple_suite",
+      "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdasimple",
+      "git_head": "d8175f1db4d395edf7151125a631c44009d500ca",
+      "ingested": {
+        "datasets": 24,
+        "runs": 56,
+        "betti": 155,
+        "bars": 468,
+        "statistics": 397,
+        "controls": 55,
+        "findings": 42
+      },
+      "skipped": [
+        {
+          "what": "P6 variant N3000 part pipeline",
+          "why": "the source records status='error' error=\"MemoryError('std::bad_alloc')\": no Betti numbers were produced",
+          "wall_sec": 245.87866401672363,
+          "peak_rss_mb": 5588.0
+        },
+        {
+          "what": "simple_suite killed/crashed run",
+          "why": "exit_code=124: no result was produced",
+          "args": "--case P6 --part pipeline",
+          "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case P6 --part pipeline"
+        },
+        {
+          "what": "simple_suite deviation from the pre-registration",
+          "why": "recorded verbatim from report.json deviations_from_expectations",
+          "detail": "evaluate() first lacked the pre-registered clause 'if the case expects no bar in any dim >= 1, use p_1 < 5 p_2'; it was added before any affected case was aggregated and P6 Rips was rerun (only P6 over Z/3 expects no bar in dims >= 1)."
+        },
+        {
+          "what": "simple_suite deviation from the pre-registration",
+          "why": "recorded verbatim from report.json deviations_from_expectations",
+          "detail": "P6 post-hoc N = 1000, 2000 (and a failed N = 3000) after N = 6000 exceeded the budget; the pre-registered result stays FAIL."
+        },
+        {
+          "what": "simple_suite deviation from the pre-registration",
+          "why": "recorded verbatim from report.json deviations_from_expectations",
+          "detail": "P7 extended past the pre-registered N list (8000, 16000), following the task's 'N as large as fits the budget'; post-hoc landmark runs P7lm are labelled and do not change the P7 result."
+        },
+        {
+          "what": "simple_suite deviation from the pre-registration",
+          "why": "recorded verbatim from report.json deviations_from_expectations",
+          "detail": "F1shuf (shuffled-site control) added post hoc because TEST_USE_CASES gained TDA-N3 during this run."
+        },
+        {
+          "what": "simple_suite deviation from the pre-registration",
+          "why": "recorded verbatim from report.json deviations_from_expectations",
+          "detail": "F3 per-bin diagnostic added post hoc after the b1 KS failure; it does not change the gate."
+        },
+        {
+          "what": "simple_suite deviation from the pre-registration",
+          "why": "recorded verbatim from report.json deviations_from_expectations",
+          "detail": "The P5 direct run frees the AlphaComplex object before persistence (memory); the complex is unchanged."
+        },
+        {
+          "what": "simple_suite deviation from the pre-registration",
+          "why": "recorded verbatim from report.json deviations_from_expectations",
+          "detail": "All cheap and medium cases were rerun at the committed runner (9da5954) and matched the earlier runs exactly apart from timing fields. The case files without a script_sha256 key were produced by the pre-commit working copy: ['F3chunk_000.json', 'F3chunk_025.json', 'F3chunk_050.json', 'F3chunk_100.json', 'F3chunk_150.json', 'P6_direct_N2000.json', 'P6_pipeline_N1000.json', 'P6_pipeline_N2000.json', 'P6_pipeline_N3000.json', 'P6_rips.json', 'P7_N1000.json', 'P7_N16000.json', 'P7_N2000.json', 'P7_N250.json', 'P7_N4000.json', 'P7_N500.json', 'P7_N8000.json', 'P7lm_N16000.json', 'P7lm_N8000.json', 'killed___case_P6___part_pipeline_.json']. A spot-check reran one per group at the final script (spot/): {'P7_N4000.json': {'identical_ignoring_timing': True}, 'P6_pipeline_N1000.json': {'identical_ignoring_timing': True}, 'F3chunk_000.json maps 0-4': {'identical': True, 'n_maps_compared': 5}}."
+        },
+        {
+          "what": "simple_suite deviation from the pre-registration",
+          "why": "recorded verbatim from report.json deviations_from_expectations",
+          "detail": "P6 Rips with n = 2000 (post hoc, --nref) added after the advisor review; reference only, not gated."
+        },
+        {
+          "what": "simple_suite deviation from the pre-registration",
+          "why": "recorded verbatim from report.json deviations_from_expectations",
+          "detail": "The --outdir and --nref options and the F3 zero-variance/df diagnostics were added to simple_suite.py after 9da5954; they do not change any gated computation."
+        },
+        {
+          "what": "simple_suite P6 (RP2), pre-registered design",
+          "why": "FAIL (over budget): alpha in R4 on the (xy, xz, y^2 - z^2, 2yz) embedding does not fit the 6 GiB / 590 s cap at N = 6000 (the recorded run hit the 590 s timeout, exit 124; an earlier identical attempt, before error capture was added, ended in std::bad_alloc) nor at N = 3000 (std::bad_alloc, peak RSS 5588 MB). This is a Delaunay-size limit of gudhi/CGAL in R4 for this point set, not pipeline logic."
+        },
+        {
+          "what": "simple_suite P7 (T3 in R6)",
+          "why": "not recovered within budget: None"
+        },
+        {
+          "what": "simple_suite N2 (shuffled torus)",
+          "why": "FAIL of the p-value half; the ratio half passes: shuffling the columns destroys the two dominant H1 bars (p2/p3 = 1.02) but keeps the torus marginals, so the cloud is structureless but NOT uniform in its bounding box. Its 2nd H1 bar (0.149) exceeds the maximum H1 persistence of all 50 uniform-box nulls (P9c max 0.148), p = 0.0196. The pre-registered uniform null is mismatched for a non-uniform density; this is a null-design lesson (match the marginals or density), not a pipeline defect."
+        },
+        {
+          "what": "simple_suite Rips reference paths (P2, P3a, P3b, P5, P10a, P10b)",
+          "why": "FAIL on the pre-registered subsample sizes; P1, P4 and P6 Z/3 pass; P6 Z/2 fails the H1 rule (p_1 / p_2 = 4.918 (required >= 5)): subsamples of 400-1000 points are too sparse: the longest H0 bar beyond the expected components (nearest-neighbour connection scale) is {'P2': '0.263', 'P3a': '0.466', 'P3b': '0.314', 'P10a': '0.59', 'P10b': '0.232'}, which exceeds 0.2 x P_all, and in several cases the noise H1 bars are within 5x of the true ones (rules: {'P3a': 'p_2 / p_3 = 1.409 (required >= 5)', 'P3b': 'p_2 / p_3 = 2.578 (required >= 5)', 'P10b': 'p_1 / p_2 = 2.852 (required >= 5)'}). Pipeline alpha on the full clouds passes the same cases. These are sample-size failures of the reference design, not gudhi or pipeline defects."
+        },
+        {
+          "what": "simple_suite per-null persistence diagrams",
+          "why": "the 50 Poisson seeds per P9 case are summarised by quantiles in results.json; no per-seed diagram was saved, so only the quantile statistics could be carried"
+        },
+        {
+          "what": "simple_suite full persistence diagrams",
+          "why": "results.json stores only the 6 longest bars per dimension (top_bars_birth_death_capped); the full diagrams were not committed"
+        }
+      ],
+      "discrepancies": [
+        {
+          "where": "simple_suite P2",
+          "detail": "the Rips reference engine observed [144, 16, 1] where the alpha pipeline observed [1, 0, 1] and the pre-registration expected [1, 0, 1]; both engines are ingested as separate runs"
+        },
+        {
+          "where": "simple_suite P3a",
+          "detail": "the Rips reference engine observed [630, 64, 1] where the alpha pipeline observed [1, 2, 1] and the pre-registration expected [1, 2, 1]; both engines are ingested as separate runs"
+        },
+        {
+          "where": "simple_suite P3b",
+          "detail": "the Rips reference engine observed [155, 22, 1] where the alpha pipeline observed [1, 2, 1] and the pre-registration expected [1, 2, 1]; both engines are ingested as separate runs"
+        },
+        {
+          "where": "simple_suite P10a",
+          "detail": "the Rips reference engine observed [464, 59, 1] where the alpha pipeline observed [2, 0, 2] and the pre-registration expected [2, 0, 2]; both engines are ingested as separate runs"
+        },
+        {
+          "where": "simple_suite P10b",
+          "detail": "the Rips reference engine observed [89, 10, 1] where the alpha pipeline observed [2, 1, 1] and the pre-registration expected [2, 1, 1]; both engines are ingested as separate runs"
+        },
+        {
+          "where": "simple_suite F1shuf",
+          "detail": "on the shuffled field the Freudenthal pipeline reports max_nu b0 = 6340 while CubicalComplex and the direct detector both report 7341; both numbers are ingested, on separate runs, exactly as the source records them"
+        },
+        {
+          "where": "simple_suite F3",
+          "detail": "the full-sky topology diagnostic records Betti {'function': 'cmb_tda.build_topology(full-sky mask, nside 64) -> gudhi.SimplexTree, constant filtration', 'n_vertices': 49152, 'n_edges': 196596, 'n_triangles': 196592, 'euler_char_V_minus_E_plus_T': 49148, 'betti_numbers': [1, 0, 49147], 'expected_if_triangulated_S2': [1, 0, 1], 'pass_b0_b1': True, 'b2_equals_1': False, 'wall_sec': 6.4906699657440186, 'status': 'ok', 'started': '2026-09-19T19:09:51', 'loadavg_start': [9.77392578125, 9.90478515625, 11.3349609375], 'wall_sec_total': 6.604187488555908, 'peak_rss_mb': 258.5078125, 'git_head': '9da59549e958d7b0a9df7350f6e27cfc28d163fa', 'script_sha256': 'cb16c4300e2d283b8b7b685c3a3b09464713d93dc78d103a31d53cc3a4629d0c', 'code_under_test_sha256': {'audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py': '67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95', 'audit/reverse_zero/E5-cmb-tda/cmb_tda.py': 'a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d'}, 'versions': {'python': '3.10.12', 'gudhi': '3.13.0', 'numpy': '2.2.6'}} where a closed 2-sphere has (1,0,1); the source reports this as a defect of the sublevel construction under test, and the number is ingested as recorded"
+        }
+      ]
+    },
+    {
+      "source": "a2_tda_fixed",
+      "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdasimple",
+      "git_head": "d8175f1db4d395edf7151125a631c44009d500ca",
+      "ingested": {
+        "datasets": 8,
+        "runs": 21,
+        "betti": 19,
+        "bars": 0,
+        "statistics": 209,
+        "controls": 35,
+        "findings": 8
+      },
+      "skipped": [
+        {
+          "what": "tda_fixed persistence diagrams",
+          "why": "this source works on Betti CURVES over a nu grid and on combinatorial counts of the sky complex; the only birth/death data it records is the P2 regression's top-3 persistence values per dimension, which are persistences, not birth/death pairs, so no bars could be stored"
+        },
+        {
+          "what": "tda_fixed f3_curve_chunks",
+          "why": "the 200 committed F3 Betti curves are stored chunked for provenance; they are the input to the D1 columns already ingested, not separate runs"
+        }
+      ],
+      "discrepancies": [
+        {
+          "where": "tda_fixed D2",
+          "detail": "the original complex reports b2 = 49147 on the full sky where a closed 2-sphere has b2 = 1; the number is ingested as recorded, with the pre-stated expectation attached, so its betti row carries matches = 0"
+        }
+      ]
+    },
+    {
+      "source": "b1_quantum_fluid",
+      "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdaval",
+      "git_head": "810ff51aae7558b1bd220b6acac0b261ddc95c4d",
+      "ingested": {
+        "datasets": 23,
+        "runs": 45,
+        "betti": 42,
+        "bars": 42,
+        "statistics": 670,
+        "controls": 38,
+        "findings": 7
+      },
+      "skipped": [
+        {
+          "what": "quantum_fluid domain06 local dataset (domain06_supercon_abrikosov_vortices.npz)",
+          "why": "the source records verdict = None; report.json local_file_domain06 explains it was assessed and not used as a measurement. Its alpha signature (h0 median 0.4744607148323764) is recorded in the source but is a signature of a synthetic lattice with unit spacing, not a measurement, so no run was created for it"
+        },
+        {
+          "what": "quantum_fluid: huggingface_datasets",
+          "why": "searched https://huggingface.co/api/datasets?search= {gross-pitaevskii, superfluid, vortex, bose-einstein, quantum-turbulence, abrikosov, vortex lattice}: no quantum-fluid vortex dataset (only unrelated LLM/text sets)."
+        },
+        {
+          "what": "quantum_fluid: the_well_polymathic_ai",
+          "why": "https://huggingface.co/api/datasets?author=polymathic-ai lists 21 datasets (active_matter, MHD, shear_flow, rayleigh_benard, ...): none is a GPE / superfluid dataset."
+        },
+        {
+          "what": "quantum_fluid: zenodo",
+          "why": "searched zenodo.org/api/records (type=dataset) for vortex-lattice STM, Gross-Pitaevskii vortex, BEC vortex-lattice images, Bitter decoration; used 10.5281/zenodo.14780459 (Duhan et al.). Other candidates seen but not used: 20728008 (classical-field simulation of vortex-lattice melting, no files listed in the API), 5510351 (generalised GP circulation-statistics sample data)."
+        },
+        {
+          "what": "quantum_fluid: experimental_BEC_vortex_images",
+          "why": "no public raw image set of Abo-Shaeer et al. 2001 found; test 2 is therefore a known-physics simulation."
+        },
+        {
+          "what": "quantum_fluid persistence diagrams",
+          "why": "only top3_h0_bars (three H0 bars) is committed, in calib_pipeline.json and gpe_tda.json; stm_vortex_tda.json and xy_analysis.json keep no bars at all, only pooled H0 death statistics and classifier outputs"
+        },
+        {
+          "what": "quantum_fluid p-values",
+          "why": "no p_value, n_null or null-model description exists in any of the seven result JSONs; the nulls are structural (random_control.per_seed, E1e_shuffle.<T>.shuffled, f_short_rand) and only their means and a diff_over_se are reported, so every statistic is stored without a p-value"
+        }
+      ],
+      "discrepancies": [
+        {
+          "where": "quantum_fluid E3d",
+          "detail": "the pre-stated psi6 rule has three sub-rules; two pass and 'value_3kOe_below_0.2' fails (observed 0.22881552252608955). The post-hoc stm_psi6_variants.json shows the value depends strongly on the psi6 definition (three definitions at 3 kOe give {'global_bonds_le_1.6a': 0.2584319302522192, 'per_site_mean_abs': 0.5790828906278018, 'abs_mean_of_site_psi6': 0.25190722792785114}), and its own note says 'POST-HOC descriptive; does not change the pre-registered E3d verdict'"
+        }
+      ]
+    },
+    {
+      "source": "b2_genetics",
+      "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdaval",
+      "git_head": "810ff51aae7558b1bd220b6acac0b261ddc95c4d",
+      "ingested": {
+        "datasets": 12,
+        "runs": 61,
+        "betti": 30,
+        "bars": 275,
+        "statistics": 401,
+        "controls": 21,
+        "findings": 6
+      },
+      "skipped": [
+        {
+          "what": "genetics statistic P1_over_P2 on run 1422",
+          "why": "the source records a non-finite value (inf); the database stores only finite statistics, so it was not carried"
+        },
+        {
+          "what": "genetics statistic P1_over_P2 on run 1423",
+          "why": "the source records a non-finite value (inf); the database stores only finite statistics, so it was not carried"
+        },
+        {
+          "what": "genetics statistic P1_over_P2 on run 1424",
+          "why": "the source records a non-finite value (inf); the database stores only finite statistics, so it was not carried"
+        },
+        {
+          "what": "genetics test 2 deviation from the pre-registration",
+          "why": "Caulobacter masked offset-1 diagonal imputed with E(2) (see module docstring)"
+        },
+        {
+          "what": "genetics test 2 deviation from the pre-registration",
+          "why": "null sizes 500 (alpha) / 50 (Rips) instead of 1000 / 200 (compute); recorded in expectations_addendum_ecoli.json before the E. coli computation"
+        },
+        {
+          "what": "genetics full persistence diagrams",
+          "why": "every alpha and Rips block commits at most the five longest H1 bars (top_h1_bars_birth_death); the full diagrams were not saved"
+        },
+        {
+          "what": "genetics posthoc_diagnostics.json non-finite ratios",
+          "why": "three P1_over_P2 values are the bare literal Infinity (the noiseless synthetic ring and chain); the database stores only finite statistics, so those three were not carried, while their bars and the rest of their block were"
+        },
+        {
+          "what": "genetics local_datasets_assessment.json",
+          "why": "an assessment of candidate local datasets rather than a persistent-homology run; report.json local_datasets_assessment records the verdict, and the file also contains bare NaN literals"
+        },
+        {
+          "what": "genetics: none_of_the_pre-stated_tests",
+          "why": "all four pre-stated tests (1a, 1b, 2, 3) and the addendum (2b) were run; nothing is ABSENT"
+        },
+        {
+          "what": "genetics: urls_failed",
+          "why": "{'https://raw.githubusercontent.com/scverse/scanpy_usage/master/180209_cell_cycle/data/regev_lab_cell_cycle_genes.txt': 'HTTP 404 (1 try); not needed: the tinyatlas lists were used instead', 'https://raw.githubusercontent.com/hbc/tinyatlas/master/cell_cycle/README.md': 'HTTP 404 (1 try); documentation only'}"
+        }
+      ],
+      "discrepancies": [
+        {
+          "where": "genetics test 2b (E. coli)",
+          "detail": "the alpha path passes the pre-stated criteria (verdict PASS) while the Rips cross-check on the same matrix fails (verdict_rips_crosscheck FAIL); both are ingested as separate runs with their own statistics"
+        }
+      ]
+    },
+    {
+      "source": "b3_crystallography",
+      "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdaval",
+      "git_head": "810ff51aae7558b1bd220b6acac0b261ddc95c4d",
+      "ingested": {
+        "datasets": 2,
+        "runs": 8,
+        "betti": 6,
+        "bars": 0,
+        "statistics": 44,
+        "controls": 12,
+        "findings": 4
+      },
+      "skipped": [
+        {
+          "what": "crystallography gated A4/C12 harmonic lens (real_map_result_*.json, injection_*.json, probe_wmap.json, bandfrac_wmap.json)",
+          "why": "the gated statistic C_B(G, R) is the fraction of band power in the G-invariant spherical-harmonic subspace; no persistent homology enters it, so no run record was created. Its NULL verdict and its p-values (with n_null = 200 and the null-model prose from lens_spec.json section 10) are carried as findings instead",
+          "n_null": 200,
+          "null_model": "N_NULL = 200 Gaussian realisations from hp.synfast using the pseudo-C_\u2113/f_sky spectrum estimated by hp.anafast on the SAME masked data map, with \u2113 = 0 and \u2113 = 1 zeroed before synfast (the mask-induced monopole/dipole residual in a masked-map anafast estimate is not physical CMB anisotropy; this follows the v2 fix already documented in audit/reverse_zero/E5-cmb-tda/cmb_tda.py). Base seed stated in "
+        },
+        {
+          "what": "crystallography tier-B group checks (groups_check.json)",
+          "why": "exact group-theoretic checks (|Aut(D_4)| = 1152 with negative controls, Hurwitz closure, the 24->12 double cover, invariant dimensions by two methods, Wigner matrices) with all_checks_pass = True. These are tier B but are not homology computations, so no run record was created",
+          "all_checks_pass": true
+        },
+        {
+          "what": "crystallography persistence diagrams",
+          "why": "no birth, death, top_bars, persistence_intervals or dgm key exists in any JSON in this directory; the code computes persistence and keeps only interval COUNTS (n_H0_bars / n_H1_bars, betti_of_folded_set) and Betti curves"
+        },
+        {
+          "what": "crystallography cosmic-web application of the point-set lens",
+          "why": "the cosmic-web application (SDSS/DESI point set with the CAMB lognormal mocks of audit/reverse_zero/E5-cosmic-web-tda-scaled/ as null) was NOT run in this session; only this synthetic known-answer test was"
+        },
+        {
+          "what": "crystallography stated limitation",
+          "why": "m_G and r_G are exactly orthogonal over the FULL sphere by construction, but the reported overlap is computed over unmasked pixels only, where that orthogonality does not hold: the measured normalised overlap is 6.66e-2 (A_4) and 3.29e-2 (C_12) on WMAP.  This is the mask restricting the inner product, not a failure of the projector; the harmonic-space identity ||T||^2 = ||m_G||^2 + ||r_G||^2 holds"
+        },
+        {
+          "what": "crystallography stated limitation",
+          "why": "The push of branch loop/tda-validation to GitHub at commit 33e4bca was NOT made by this work.  A bulk push of every branch (main, loop/reverse-zero, loop/k3t2-rigidity, loop/tda-validation, loop/tda-k3t2, loop/tda-simple) by some other process at 2026-09-19 22:30:23-29 UTC carried the then-current head of this branch, which happened to be the pre-registration commit.  No git push was issued here; "
+        },
+        {
+          "what": "crystallography stated limitation",
+          "why": "The orientation grid has 192 points and the normaliser of A_4 in SO(3) is S_4 (order 24), so of order 8 effectively independent placements cover SO(3)/N(A_4).  A signal at an orientation far from every grid point is attenuated.  The injection tests use a RANDOM orientation not drawn from the grid, so the measured sensitivity already includes this loss."
+        },
+        {
+          "what": "crystallography stated limitation",
+          "why": "The statistic is a power FRACTION, so a coherent injected component interferes linearly with the invariant subspace's own random content before it dominates it quadratically.  The cross term is destructive as often as constructive, which is why crystallinity can DROP at small injected amplitude (measured: C at the true orientation fell from 0.1479 to 0.0958 when f went from 0 to 0.05 in a fixed-or"
+        },
+        {
+          "what": "crystallography stated limitation",
+          "why": "Band 1 (l = 2..8) has only sum_l d_l = 6 invariant dimensions out of 77, so its crystallinity fluctuates strongly and its max over 192 orientations sits far above the analytic mean 6/77 = 0.0779.  A narrow low-l pattern therefore has to be very large to exceed that maximum."
+        },
+        {
+          "what": "crystallography stated limitation",
+          "why": "The mask is handled by pseudo-alm (mask multiply, then map2alm).  The mask breaks isotropy and creates a preferred orientation; that is absorbed because every null passes through the identical code path, but the lens does not deconvolve the mask coupling."
+        },
+        {
+          "what": "crystallography stated limitation",
+          "why": "b2 and any 'Euler characteristic' from cmb_tda.build_topology are not used: simple_suite/report.json documents a hollow-tetrahedron defect in that complex which leaves b0 and b1 unaffected but produces tens of thousands of spurious H2 classes, and flags that b0 - b1 is not the Euler characteristic of the complex actually built."
+        },
+        {
+          "what": "crystallography stated limitation",
+          "why": "audit/tda_validation/tda_fixed/ does not exist on branch loop/tda-simple (checked with `git ls-tree -r --name-only loop/tda-simple | grep -i tda_fixed`, which returns nothing); the only directory there is simple_suite/."
+        },
+        {
+          "what": "crystallography stated limitation",
+          "why": "The cosmic-web (3-D point set) path is delivered with its synthetic known-answer test only.  It was NOT applied to a real galaxy catalogue and the CAMB lognormal mocks of audit/reverse_zero/E5-cosmic-web-tda-scaled/ were NOT used as a null in this session."
+        },
+        {
+          "what": "crystallography broadband sensitivity extra rungs",
+          "why": "the section is named RUN_AFTER_THE_DATA and carries an ORDERING_WARNING: these two rungs (f = 0.3, 0.5, broadband) were run AFTER the WMAP result had been computed and committed.  Every other sensitivity number in this report was produced before any real map was read.  They exist only to bracket a threshold that the pre-data broadband ladder left unbounded; they change no data test, no decision rule and no p-value, and the WMAP result was not revisited."
+        }
+      ],
+      "discrepancies": [
+        {
+          "where": "crystallography TDA secondary",
+          "detail": "the source declares that audit/tda_validation/tda_fixed/ 'does not exist on branch loop/tda-simple', so this leg was run on the UNFIXED complex; the tda_fixed backfill (source a2) shows that complex returns b2 = 49147 on the full sky where a closed sphere has b2 = 1. This leg uses only b0 and b1, which the defect does not touch, and says so."
+        },
+        {
+          "where": "crystallography correction to an earlier commit message",
+          "detail": "audit(crystallography): Planck SMICA leg -- also NULL; all 4 pre-registered tests complete: they are NOT independent experiments.  WMAP and Planck observe the SAME sky, and at l <= 64 both are strongly signal-dominated, so the CMB realisation is common to both.  The two p-values are CORRELATED, not independent confirmations, and their agreement is largely expected even under the null.  Cor"
+        },
+        {
+          "where": "crystallography correction to an earlier commit message",
+          "detail": "audit(crystallography): Planck SMICA leg -- also NULL; all 4 pre-registered tests complete: over-read.  The two null ensembles are also built from SIMILAR spectra and SIMILAR masks (f_sky 0.752 vs 0.785), so the agreement is unsurprising on those grounds too.  It is a reasonable consistency check, not evidence that the mask and the spectrum do not matter."
+        },
+        {
+          "where": "crystallography correction to an earlier commit message",
+          "detail": "audit(crystallography): pre-registered injection ladder (no sensitivity), point-set known-answer test, nulls: the DOMINANT cause is neither of those: the pre-registered ladder simply stopped at f = 0.2, about 25x below the 95% threshold.  The two ladders agree where they overlap -- pre-registered f = 0.2 gave power 0.09, the extended equal-power-per-l ladder gives 0.12 at the same f -- so the uneven draw is"
+        }
+      ]
+    },
+    {
+      "source": "c_k3t2_chain_and_sampling",
+      "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdak3t2",
+      "git_head": "35ae6ad7bcfb45f1bf389aaff27d7b2123e7c8da",
+      "ingested": {
+        "datasets": 51,
+        "runs": 155,
+        "betti": 665,
+        "bars": 0,
+        "statistics": 256,
+        "controls": 206,
+        "findings": 5
+      },
+      "skipped": [
+        {
+          "what": "k3t2 Part B T4_rips observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "N=25600 seed=0: error/memory (rc=127, 101.2 s)"
+        },
+        {
+          "what": "k3t2 Part B T4_rips_fps observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "grid exhausted"
+        },
+        {
+          "what": "k3t2 Part B orbifold_rips observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "N=25600 seed=0: error/memory (rc=1, 235.3 s)"
+        },
+        {
+          "what": "k3t2 Part B orbifold_rips_fps observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "grid exhausted"
+        },
+        {
+          "what": "k3t2 Part B K3_rips observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "N=8000 seed=0: error/memory (rc=127, 68.2 s)"
+        },
+        {
+          "what": "k3t2 Part B K3_rips_fps observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "N=8000 seed=0: error/memory (rc=127, 108.0 s)"
+        },
+        {
+          "what": "k3t2 Part B null4m_rips observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "grid exhausted"
+        },
+        {
+          "what": "k3t2 Part B quadric_rips observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "N=4000 seed=0: error/memory (rc=1, 35.0 s)"
+        },
+        {
+          "what": "k3t2 Part B T3_witness observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "N=16000 seed=0: timeout (rc=124, 500.0 s)"
+        },
+        {
+          "what": "k3t2 Part B T4_witness observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "N=64000 seed=0: timeout (rc=124, 500.0 s)"
+        },
+        {
+          "what": "k3t2 Part B K3_witness observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": "N=10000 seed=0: timeout (rc=124, 500.0 s)"
+        },
+        {
+          "what": "k3t2 Part B explore K3xT2 N=4000 observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": null
+        },
+        {
+          "what": "k3t2 Part B explore K3xT2 N=8000 observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": null
+        },
+        {
+          "what": "k3t2 Part B explore K3xT2 N=16000 observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": null
+        },
+        {
+          "what": "k3t2 Part B explore K3xT2 N=32000 observed Betti vector",
+          "why": "the run did not satisfy the pre-registered window criterion and the source records no single observed Betti vector for it, only the window statistics",
+          "stopped_because": null
+        },
+        {
+          "what": "k3t2 Part B run index 5 (K3, N=2000, tau=1.0)",
+          "why": "the source records reason='error/memory': the run produced no barcode"
+        },
+        {
+          "what": "k3t2 Part B run index 6 (K3, N=2000, tau=1.2)",
+          "why": "the source records reason='error/memory': the run produced no barcode"
+        },
+        {
+          "what": "k3t2 Part B run index 7 (K3, N=4000, tau=0.95)",
+          "why": "the source records reason='error/memory': the run produced no barcode"
+        },
+        {
+          "what": "k3t2 Part B run index 8 (null4, N=4000, tau=0.8)",
+          "why": "the source records reason='timeout': the run produced no barcode"
+        },
+        {
+          "what": "k3t2 Part B run index 14 (K3xT2, N=64000, tau=0.8)",
+          "why": "the source records reason='timeout': the run produced no barcode"
+        },
+        {
+          "what": "k3t2 Part B run index 18 (K3, N=40000, tau=0.5)",
+          "why": "the source records reason='timeout': the run produced no barcode"
+        },
+        {
+          "what": "k3t2 full barcodes (B_*.json, B_explore.json)",
+          "why": "the per-run JSONs record Betti CURVES on an epsilon grid rather than birth/death pairs, so no persistence diagram could be stored for the Part B runs; the curves are carried as beta2_at_eps_* statistics instead"
+        },
+        {
+          "what": "k3t2 Part A bars",
+          "why": "Part A computes exact cellular homology of an unfiltered chain complex; there is no filtration and therefore no barcode to store"
+        },
+        {
+          "what": "k3t2 stated limitation",
+          "why": "Part B uses one embedding per space (Fermat quartic with the Fubini-Study projector metric, not Ricci-flat) and a sampler that is not uniform in any natural measure; a different metric or sampler could change the scales, but the combinatorial cost barrier (Rips complexes in 4-6 dimensions) is independent of that."
+        },
+        {
+          "what": "k3t2 stated limitation",
+          "why": "tau was chosen by hand per space (1.2 tori/orbifold, 0.8 K3/quadric/null, 0.9 or less for witness; all recorded); larger tau exceeded the memory cap, so every 'not recovered' is relative to that cap and to these four complex constructions."
+        },
+        {
+          "what": "k3t2 stated limitation",
+          "why": "The negative Part B results are bounded by compute: they say these methods at 8 GiB and about 8 minutes per run do not recover the topology, not that no method can."
+        },
+        {
+          "what": "k3t2 stated limitation",
+          "why": "A4's D(O(-2)) is an algebraic mapping cylinder (chain level), not a geometric cell decomposition of the Eguchi-Hanson space; its homology is determined by the stated class, and the result is the homology of that homotopy pushout."
+        }
+      ],
+      "discrepancies": [
+        {
+          "where": "k3t2 Part B, K3",
+          "detail": "the exact Part A chain complex gives b2(K3) = 22 over F2/F3/F5, while the Part B point sample of the same space reads a stable b2 plateau of 27 (28 under farthest-point subsampling). Both numbers are ingested: the 22 as a tier-B chain_complex run, the 27 as a tier-X rips run whose betti row carries expected=22 and matches=0"
+        }
+      ]
+    },
+    {
+      "source": "d1_cosmic_vorticity",
+      "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse",
+      "git_head": "91f2045fd4ae538d3c5fb9a58fd7cc91f34c9551",
+      "ingested": {
+        "datasets": 4,
+        "runs": 15,
+        "betti": 19,
+        "bars": 0,
+        "statistics": 449,
+        "controls": 11,
+        "findings": 8
+      },
+      "skipped": [
+        {
+          "what": "cosmic_vorticity: absent or not attempted",
+          "why": "SHORTFALL AGAINST THE TASK AS ASSIGNED, stated first so 'INCONCLUSIVE' is not read as a completed result: the task named the CAMB lognormal mocks of audit/reverse_zero/E5-cosmic-web-tda-scaled/ AND a repeat of round 2's X2 calibration check as requirements of Test B. NEITHER was done. Test B therefore has no clustering-matched null and no calibration measurement, and what it delivers is a detector, a set of absolute numbers, a randoms control and an injection sensitivity -- not a test against a null."
+        },
+        {
+          "what": "cosmic_vorticity: absent or not attempted",
+          "why": "The count-vs-INDEPENDENT-EXPECTATION leg of the Re6Zr test (N vs B*A/Phi0). No theory in this programme gives a defect-core density, so S2 is only compared to an ensemble. Declared in the registration as deviation D1, not discovered afterwards."
+        },
+        {
+          "what": "cosmic_vorticity: absent or not attempted",
+          "why": "The registered clustering-matched null for Test B (lognormal mocks): NOT ATTEMPTED. No DESI-footprint mock catalogues exist on disk; audit/reverse_zero/E5-cosmic-web-tda-scaled/ holds only Betti-curve stacks for the SDSS DR17 window and x2_lib.py is wired to that window's grid, healpix footprint and n(z). The registered budget clause applies and the official randoms were NOT substituted for it."
+        },
+        {
+          "what": "cosmic_vorticity: absent or not attempted",
+          "why": "The G2 mock-calibration gate was consequently not run, so this round did not repeat round 2's 2.88 sigma mis-calibration measurement; it neither confirms nor refutes it."
+        },
+        {
+          "what": "cosmic_vorticity: absent or not attempted",
+          "why": "The DESI injection sensitivity is measured against a CLUSTERING-FREE baseline (the official randoms), because no clustered null was available. Sensitivity against an unclustered background OVERSTATES sensitivity against the real galaxy field, in which the same detector already finds structure."
+        },
+        {
+          "what": "cosmic_vorticity: absent or not attempted",
+          "why": "DESI SGC (the registered secondary replication for Test B) was not run, so the Test B replication leg of the decision rule could not be exercised."
+        },
+        {
+          "what": "cosmic_vorticity: absent or not attempted",
+          "why": "The lower-star Betti diagnostic listed as a conditional secondary item was NOT run; no lower-star statistic appears anywhere in this report, so the site-shuffle failure mode that the Re6Zr work measured (limit L2) is not in play. The C2 value-shuffle control was run anyway on the alpha path."
+        },
+        {
+          "what": "cosmic_vorticity: absent or not attempted",
+          "why": "No void-centre point cloud was built; the registration fixed density peaks and that choice was not revisited."
+        },
+        {
+          "what": "cosmic_vorticity: absent or not attempted",
+          "why": "No physical model of a defect-core population was used at any point: the injection profiles are generic Gaussian spots / over-densities, chosen to make the sensitivity measurable, not to represent any predicted object."
+        },
+        {
+          "what": "cosmic_vorticity post-registration deviation",
+          "why": "registered: amplitudes A/sigma_T in {0, 0.25, 0.5, 1, 2}, densities {100, 300, 1000} full-sky; item: CMB injection ladder extended beyond the registered grid"
+        },
+        {
+          "what": "cosmic_vorticity post-registration deviation",
+          "why": "registered: 50; item: DESI injection realisations per cell"
+        },
+        {
+          "what": "cosmic_vorticity persistence diagrams",
+          "why": "no birth/death pairs are committed anywhere in audit/cosmic_vorticity: the H0 bars are consumed in memory and only their summary (n, median, q1, q3, IQR/median, mean, cv), a Betti vector at one truncation radius and floor diagnostics were saved"
+        },
+        {
+          "what": "cosmic_vorticity 500-realisation null rows (cmb_null_*.json)",
+          "why": "each of the 500 null realisations records the same summary statistics rather than a diagram; they are the null behind the stored p-values, not separate runs"
+        }
+      ],
+      "discrepancies": [
+        {
+          "where": "cosmic_vorticity defect found during the run",
+          "detail": "scripts/cv_lib.py::eroded_mask: the padded disk-neighbour table uses -1 for padding, and the sentinel appended to the mask was False, so every pixel whose disk held fewer than the maximum 64 members was treated as touching the mask. On the FULL SKY the eroded fraction came out 0.0052 instead of 1.0 and only 3 candidates survived."
+        },
+        {
+          "where": "cosmic_vorticity defect found during the run",
+          "detail": "scripts/cv_desi.py::cmd_inject (first version): TWO defects. Defect (b) ALONE flattened the grid so that it measured nothing; defect (a) would not have nulled the grid but would have biased the measured sensitivity in the wrong direction. (a) the placement drew a uniform random subset of eroded cells -- POISSON placement -- although the registration makes a jittered lattice the primary and says why; the unused variable `side` is the fingerprint of the lattice that was intended. (b) the galaxies-per-core count was derived analytically and omitted the smoothing kernel's normalisation ((2 pi)^(3/2) sigma_cells^3 ~ 126), so it evaluated to max(1, 0) = 1 galaxy per core at EVERY amplitude. Measured consequence: the whole grid was flat -- S1 ranged only over 0.2548-0.2612 and the count over 1234-1257 from A = 0 to A = 2."
+        }
+      ]
+    },
+    {
+      "source": "d2_reverse_zero",
+      "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse",
+      "git_head": "91f2045fd4ae538d3c5fb9a58fd7cc91f34c9551",
+      "ingested": {
+        "datasets": 4,
+        "runs": 5,
+        "betti": 3,
+        "bars": 9,
+        "statistics": 74,
+        "controls": 8,
+        "findings": 5
+      },
+      "skipped": [
+        {
+          "what": "X1-cmb wmap per-null curves",
+          "why": "null_chunk_*.npz and string_a*_chunk_*.npz hold Betti CURVES with shape (100, 4, 41) over the nu grid, not birth/death pairs; no persistence diagram exists to store, so only the data curves, the null mean/std and the statistics are carried"
+        },
+        {
+          "what": "X1-cmb smica per-null curves",
+          "why": "null_chunk_*.npz and string_a*_chunk_*.npz hold Betti CURVES with shape (100, 4, 41) over the nu grid, not birth/death pairs; no persistence diagram exists to store, so only the data curves, the null mean/std and the statistics are carried"
+        },
+        {
+          "what": "E5 CMB per-simulation Betti curves (chunks/*.npz)",
+          "why": "the null ensemble is stored as Betti curves over the nu grid, not as diagrams; no bars exist to ingest"
+        },
+        {
+          "what": "E5 cosmic web full diagrams and the 20 null realisations' diagrams",
+          "why": "only the top three bars per dimension of the real sample were committed; the per-null diagrams were summarised into bottleneck mean/std/min/max and not saved"
+        },
+        {
+          "what": "E5-cosmic-web e5b lognormal/Poisson null follow-up (e5b_lognormal_and_poisson_null_report.json, e5b_r_range_decomposition.json)",
+          "why": "these follow-ups report correlation-function and Betti-stack diagnostics rather than a persistent-homology run with its own Betti numbers or bars, so no run record was created"
+        }
+      ],
+      "discrepancies": [
+        {
+          "where": "E5 cosmic web",
+          "detail": "the real Betti curves leave the 95% null envelope at 9 (H0), 18 (H1) and 23 (H2) of 77 r-points, yet the run reports no p-value and its own interpretation says such an excursion at small r is not diagnostic; both the counts and that caveat are ingested"
+        }
+      ]
+    },
+    {
+      "source": "e_k3t2_rigidity",
+      "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2",
+      "git_head": "d90d27ae8224316c080db43137fab460c65129d1",
+      "ingested": {
+        "datasets": 9,
+        "runs": 40,
+        "betti": 129,
+        "bars": 0,
+        "statistics": 65,
+        "controls": 41,
+        "findings": 10
+      },
+      "skipped": [
+        {
+          "what": "k3t2_rigidity v3 could not do",
+          "why": "Parity of the K3 intersection form: no triangulation of the resolved K3 exists here, so the chain-level cup pairing was computed only on T^4 (control, even, nondegenerate rank 6) and on the singular quotient Q (rank 0 mod 2, q identically 0). This does not decide the K3 parity; no odd-form control complex (e.g. CP^2) was built."
+        },
+        {
+          "what": "k3t2_rigidity v3 could not do",
+          "why": "Mayer-Vietoris over Z/2 for the resolved space: needs the ranks of phi_1, phi_2 (link H_1, H_2 nonzero mod 2) and the maps into the disc bundle; not computed. Only Z/3 and Z/5 used."
+        },
+        {
+          "what": "k3t2_rigidity v3 could not do",
+          "why": "The homology of the resolved piece (disc bundle over S^2) and its gluing to the RP^3 link are a declared tier-L input, not derived from a triangulation."
+        },
+        {
+          "what": "k3t2_rigidity v3 could not do",
+          "why": "Torsion / integral homology of the resolved space not computed (fields only)."
+        },
+        {
+          "what": "k3t2_rigidity v3 could not do",
+          "why": "No realizable negative control for phi_3 (a wrong rank gives b4 != 1, an impossible closed connected manifold, which is not an object to test)."
+        },
+        {
+          "what": "k3t2_rigidity bars",
+          "why": "both rounds compute the homology of unfiltered simplicial and cubical complexes through gudhi's Betti numbers; there is no filtration and therefore no barcode"
+        },
+        {
+          "what": "k3t2_rigidity v2 even-intersection-form criterion",
+          "why": "NOT EVALUATED -- the intersection form is a pairing on H_2 that GUDHI Betti numbers do not supply; this track builds no such pairing. See could_not_do."
+        }
+      ],
+      "discrepancies": []
+    }
+  ],
+  "totals": {
+    "datasets": 137,
+    "runs": 406,
+    "betti": 1068,
+    "bars": 794,
+    "statistics": 2565,
+    "controls": 427,
+    "findings": 95
+  }
+}
