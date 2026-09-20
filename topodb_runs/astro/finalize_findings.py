@@ -27,11 +27,21 @@ def load(name):
 
 def pointcloud_findings(db):
     n = 0
+    seen = set()
+    # the run scripts accumulate into a shared dict, so the same dataset appears
+    # in several JSONs; keep the LAST occurrence of each dataset only.
+    merged = {}
     for f in sorted(glob.glob(os.path.join(RESULTS, "pointclouds_*.json"))):
         d = json.load(open(f))
-        for ds, v in d.items():
-            if not isinstance(v, dict) or "p_values" not in v:
+        for k, v in d.items():
+            if isinstance(v, dict) and "p_values" in v:
+                merged[k] = (v, os.path.basename(f))
+    for ds, (v, fname) in sorted(merged.items()):
+        if True:
+            f = fname
+            if ds in seen:
                 continue
+            seen.add(ds)
             pv = v["p_values"]
             if not pv:
                 continue
@@ -98,7 +108,7 @@ def pointcloud_findings(db):
                    "sample size." if is_desi else ""))
             db.add_finding(run_id=v["run_id"], dataset_id=ds, claim=claim,
                            verdict="recovered" if below else "null", tier="X",
-                           caveat=caveat, reference=f"topodb_runs/astro/results/{os.path.basename(f)}")
+                           caveat=caveat, reference=f"topodb_runs/astro/results/{f}")
             n += 1
     return n
 

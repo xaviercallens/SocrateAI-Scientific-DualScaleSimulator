@@ -141,3 +141,49 @@ This is the same failure mode the prior campaign measured (a persistence-ratio
 rule firing on 9 of 12 density-matched nulls), reproduced here on our own
 pipeline. It is the direct empirical justification for §0's scope limit: **the
 count of long bars is not a detector without a null.**
+
+---
+
+## AMENDMENT A3 — 2026-09-20, after the DESI runs: the declared alpha cap truncates the LRG sample
+
+**What was measured.** §1 fixed `max_alpha_square = 900`, i.e. a circumradius cap
+of 30 Mpc/h, as an absolute hyperparameter. Against each sample's own H0 death
+median (its typical nearest-neighbour scale) that cap is:
+
+| sample | H0 death median (Mpc/h) | cap / median | H2 bars > 5 Mpc/h |
+|---|---|---|---|
+| SDSS bulk | 2.51 | 11.9× | — |
+| BGS_BRIGHT-21.5 SGC | 3.99 | 7.5× | 50 |
+| BGS_BRIGHT-21.5 NGC | 4.55 | 6.6× | 114 |
+| BGS_BRIGHT NGC | 5.75 | 5.2× | 112 |
+| **LRG NGC** | **14.12** | **2.1×** | **0** |
+
+**The LRG H2 result is an artefact of the cap, not a property of the sky.** LRG
+sits at 0.4 < z < 1.1 over a far larger volume, so its galaxies are ~3× further
+apart; a 30 Mpc/h cap is only twice the typical spacing and the alpha complex is
+truncated before voids of the sample's own characteristic size can be born. The
+longest H2 bar is 3.81 Mpc/h and *both the data and all 20 nulls* contain exactly
+zero H2 bars over 5 Mpc/h — a statistic with no variance in the null, which is
+the signature of a saturated, not a null, measurement. Run 146 is kept with a
+`negative` control recording this, and its H2 statistics must not be read.
+
+**The amendment.** For a re-run the cap is declared *scale-free*, in units the
+sample sets itself: `max_alpha_square = (6 × H0-death-median)²`, computed from an
+unweighted pilot pass on the data. 6× is the smallest multiple that covers every
+sample in the table above without re-tuning per sample. The re-run is recorded as
+a **separate run**, not as a replacement, so both are in the record.
+
+**Scope.** The four samples at 5.2× and above are unaffected; their absolute cap
+already exceeded 6× would-be-scale only marginally for BGS_BRIGHT NGC (5.2×), so
+that sample is re-run too and both runs are kept.
+
+**A3 footnote, measured and stated rather than hidden.** The pilot that sets the
+scale uses 15 000 points while the run uses 60 000, and the H0 death median
+depends on density: the LRG pilot gives 23.97 Mpc/h against 14.12 Mpc/h for the
+full 60 000-point cloud (ratio 1.70, close to the (60000/15000)^(1/3) = 1.59
+expected from pure density scaling). The cap is therefore ≈ 10× the full sample's
+own median rather than the nominal 6×. That errs on the generous side — it cannot
+truncate — which is the direction that matters here, but the rule is "6× the
+pilot's median", not "6× the run's median", and the run records both numbers.
+Effect of lifting the cap on LRG: the longest H2 bar goes from **3.81 Mpc/h
+(saturated) to 34.33 Mpc/h**.
