@@ -1,0 +1,26 @@
+{
+ "verdicts": {
+  "A_noisy_circle": {
+   "dominance": 39.4994,
+   "n_bars_ge_half": 1,
+   "b0": 1,
+   "passed": true
+  },
+  "D_distance_matrix_path": {
+   "dominance": 39.4994,
+   "passed": true
+  },
+  "B_delay_embedded_sine": {
+   "dominance": 174.1682,
+   "tau": 17,
+   "passed": true
+  },
+  "C_random_cloud": {
+   "dominance": 1.0436,
+   "passed": true
+  },
+  "alpha_circle_dominance": 36.0958
+ },
+ "all_passed": true,
+ "seed": 20260920
+}
