@@ -410,10 +410,27 @@ def cmd_analyze(a):
         z = [g for g in grid if g["amp_over_sigma_delta"] == 0.0]
         if z:
             res["injection"]["false_positive_rate_amp_zero"] = {k: z[0]["rate_" + k] for k in keys}
-        det = [g for g in grid if g["amp_over_sigma_delta"] > 0 and g["rate_S1_iqr_over_median"] >= 0.95]
-        res["injection"]["smallest_detected_at_95pc_S1"] = (
-            min(det, key=lambda g: (g["amp_over_sigma_delta"], g["density_per_1e6Mpc3"])) if det else
-            "NONE of the registered (amplitude, density) cells reached 95% detection on S1")
+        for k in keys:
+            det = [g for g in grid if g["amp_over_sigma_delta"] > 0 and g["rate_" + k] >= 0.95]
+            res["injection"]["smallest_detected_at_95pc_" + k] = (
+                min(det, key=lambda g: (g["amp_over_sigma_delta"], g["density_per_1e6Mpc3"])) if det else
+                "NONE of the registered (amplitude, density) cells reached 95%% detection on %s "
+                "(best rate %.2f)" % (k, max((g["rate_" + k] for g in grid
+                                              if g["amp_over_sigma_delta"] > 0), default=float("nan"))))
+        # union rule, recomputed per realisation (not the max of the marginals)
+        union = []
+        for cc in inj["cells"]:
+            r = cc["rows"]
+            rate = float(np.mean([any((x[k] < lo[k]) or (x[k] > hi[k]) for k in keys) for x in r]))
+            union.append(dict(amp_over_sigma_delta=cc["amp_over_sigma_delta"],
+                              density_per_1e6Mpc3=cc["density_per_1e6Mpc3"], rate_any=rate))
+        res["injection"]["union_rate_any_statistic"] = union
+        du = [u for u in union if u["amp_over_sigma_delta"] > 0 and u["rate_any"] >= 0.95]
+        res["injection"]["smallest_detected_at_95pc_any_statistic"] = (
+            min(du, key=lambda u: (u["amp_over_sigma_delta"], u["density_per_1e6Mpc3"])) if du else
+            "NONE reached 95% on the union of the three statistics")
+        res["injection"]["false_positive_rate_union"] = next(
+            (u["rate_any"] for u in union if u["amp_over_sigma_delta"] == 0.0), None)
     json.dump(res, open(os.path.join(OUT, "desi_analysis_%s.json" % a.cap), "w"), indent=1)
     print(json.dumps({"N": dat["primary"]["S2_count"], "S1": dat["primary"]["S1_iqr_over_median"],
                       "S3": dat["primary"]["S3_Q6_site_mean"],

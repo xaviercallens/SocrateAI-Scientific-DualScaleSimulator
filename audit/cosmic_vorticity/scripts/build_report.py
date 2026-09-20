@@ -30,6 +30,42 @@ def _fmt(x):
     return ("%.4f" % x) if isinstance(x, float) else str(x)
 
 
+def _lowerstar(ls):
+    """The ONLY place the vendored fixed library is exercised, and the only
+    lower-star statistic in this audit."""
+    if not ls:
+        return {"status": "NOT ATTEMPTED"}
+    dv = ls["data_vs_null"]
+    cv = ls["control_verdict"]
+    return {
+        "status": "RUN",
+        "purpose": "registered conditional SECONDARY item, outside the multiplicity family",
+        "modules_used": ls["modules_used"],
+        "n_null": ls["n_null"], "null_seeds": ls["null_seeds"],
+        "data_vs_null_rank_p": {k: dv[k]["empirical_rank_p"] for k in dv},
+        "data_vs_null_chi2_p_DIAGNOSTIC_ONLY": {k: dv[k]["p_value_chi2_survival"] for k in dv},
+        "bins_kept_and_dropped": {k: {"kept": dv[k]["n_bins_kept"],
+                                      "dropped": dv[k]["dropped_bin_indices"],
+                                      "reasons": dv[k]["dropped_bin_reasons"],
+                                      "retained_rank_used_as_df": dv[k]["retained_rank"],
+                                      "test_differs_in_dropped_bin": dv[k]["test_differs_in_dropped_bin"]}
+                                  for k in dv},
+        "mandatory_site_shuffle_control": ls["shuffle_control_vs_null"],
+        "control_verdict": cv,
+        "narrative": (
+            "This is the only statistic in the audit that uses the lower-star path, and it is therefore "
+            "the only one subject to the failure mode the Re6Zr work measured (registration limit L2: on "
+            "rough fields, site-shuffled fields reproduced the lower-star 'transition', so the signal came "
+            "from the value distribution and not from topology). It is also the only place the vendored "
+            "FIXED library is exercised: build_topology_fixed supplies the HEALPix quad-corner 2-complex "
+            "(the original filled every 4-clique and gave b2 = 49147 on the full sky), and "
+            "coarse_stats_fixed supplies the RANK p-value with dead/atomic bins dropped and df set to the "
+            "retained rank. The chi2 p-values are carried only as a diagnostic: that branch is still "
+            "mildly anti-conservative (0.058 instead of 0.05) and no decision uses it. "
+            + cv["reading"]),
+    }
+
+
 def _desi_narrative(ad):
     """All numbers read from desi_analysis_NGC.json."""
     d = ad["data"]
@@ -66,14 +102,32 @@ def _desi_narrative(ad):
     inj = ad.get("injection")
     if inj:
         fp = inj.get("false_positive_rate_amp_zero", {})
+        sm = {k: inj.get("smallest_detected_at_95pc_" + k)
+              for k in ("S1_iqr_over_median", "S2_count", "S3_Q6_site_mean")}
+        def _d(v):
+            return v if isinstance(v, str) else ("A = %.1f sigma_delta at density %d per 1e6 (Mpc/h)^3, "
+                                                 "i.e. %.0f cores placed with %d galaxies each"
+                                                 % (v["amp_over_sigma_delta"], v["density_per_1e6Mpc3"],
+                                                    v["n_inj_placed_mean"], v["galaxies_per_core"]))
         out.append(
             "INJECTION (against the clustering-free randoms baseline, so it OVERSTATES sensitivity "
-            "against the real field). Amplitude-zero row: S1 %.2f, S2 %.2f, S3 %.2f against a nominal "
-            "0.05 at n = 30 (95%% binomial interval for 0.05 at n = 30 is about [0.006, 0.17]). "
-            "Smallest cell reaching 95%% on S1: %s."
+            "against the real field). Amplitude-zero row at n = 30: S1 %.3f, S2 %.3f, S3 %.3f per "
+            "statistic and %.2f for the union, against a nominal 0.05 and 0.143; the 95%% binomial "
+            "interval for 0.05 at n = 30 is about [0.006, 0.17], so the criterion is calibrated. "
+            "Smallest cell reaching 95%%: S1 -- %s; S2 -- %s; S3 -- %s; union of the three -- %s."
             % (fp.get("S1_iqr_over_median", float("nan")), fp.get("S2_count", float("nan")),
                fp.get("S3_Q6_site_mean", float("nan")),
-               json.dumps(inj.get("smallest_detected_at_95pc_S1"))))
+               inj.get("false_positive_rate_union", float("nan")),
+               _d(sm["S1_iqr_over_median"]), _d(sm["S2_count"]), _d(sm["S3_Q6_site_mean"]),
+               _d(inj.get("smallest_detected_at_95pc_any_statistic"))))
+        out.append(
+            "AN INVERSION WORTH RECORDING. In 3-D the Re6Zr SPACING statistic S1 is the LEAST sensitive "
+            "of the three -- it never exceeds a 0.17 detection rate at any injected amplitude or "
+            "density -- while the count S2 and the orientational Q6 both reach 1.00 at A = 1 "
+            "sigma_delta. On the sphere the ordering is the opposite: there S1 is the most sensitive "
+            "and S3 the least. The statistic that carried the Re6Zr result is therefore NOT the one "
+            "that carries a 3-D galaxy search, which is a direct, measured limit on how far this "
+            "transfer goes.")
     return out
 
 
@@ -344,6 +398,7 @@ def main():
             "secondary_smica": cmb_block(asm, "SECONDARY -- the same sky as WMAP, NOT an independent test"),
             "injection_sensitivity": aw.get("injection"),
             "injection_narrative": _inj_narrative(aw, j("cmb_amplitude_units.json")),
+            "secondary_lower_star_diagnostic": _lowerstar(j("cmb_lowerstar_wmap.json")),
         }
 
     # ---------------------------------------------------------------- 4

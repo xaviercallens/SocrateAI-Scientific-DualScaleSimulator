@@ -16,3 +16,4 @@ timeout 900 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb
 timeout 7200 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_desi.py inject --cap NGC --n 30
 # POST-REGISTRATION extension of the injection ladder (registered ladder topped out at 22%)
 timeout 5400 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_cmb.py inject --which wmap --n 100 --ext
+timeout 7200 prlimit --as=8589934592 -- $PY audit/cosmic_vorticity/scripts/cv_lowerstar.py --which wmap --n 200 --nshuf 50
