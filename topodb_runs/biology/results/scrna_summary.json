@@ -2,15 +2,15 @@
  "u2os": {
   "dominance": 1.5096,
   "S": 0.02207,
-  "p_S": null,
-  "p_dom": null,
-  "null_complete": false,
-  "null_draws_reached": 81,
+  "p_S": 0.00498,
+  "p_dom": 0.00498,
+  "null_complete": true,
+  "null_draws_reached": 200,
   "n_cells": 400,
   "n_genes": 97,
   "expects_loop": true,
   "criteria_met": false,
-  "neg_median_dom": null
+  "neg_median_dom": 1.066910872559081
  },
  "mesc": {
   "dominance": 1.0411,
@@ -28,14 +28,14 @@
  "pbmc3k": {
   "dominance": 1.2091,
   "S": 0.00559,
-  "p_S": null,
-  "p_dom": null,
-  "null_complete": false,
-  "null_draws_reached": 41,
+  "p_S": 0.00498,
+  "p_dom": 0.01493,
+  "null_complete": true,
+  "null_draws_reached": 200,
   "n_cells": 400,
   "n_genes": 500,
   "expects_loop": false,
   "criteria_met": false,
-  "neg_median_dom": null
+  "neg_median_dom": 1.1979878225639133
  }
 }

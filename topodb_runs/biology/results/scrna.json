@@ -2,9 +2,9 @@
  "block": "scrna",
  "script": "topodb_runs/biology/run_scrna.py",
  "command": "see per-run command field",
- "git_commit": "7ca4b0e8eda10665e17ffb5d30ecd3f98d8a030c",
- "wall_sec_total": 0.61,
- "peak_mb": 157.6,
+ "git_commit": "b35c796b4e0354df9d041f04495d6fb3c2667e18",
+ "wall_sec_total": 0.37,
+ "peak_mb": 157.9,
  "datasets": [
   {
    "id": "biology/scrna_u2os",
@@ -65,11 +65,11 @@
    "tier": "X",
    "max_dim": 1,
    "preprocessing": "CPM log2(x+1); cell-cycle genes (tinyatlas list) detected in >= 5% of cells; z-scored per gene",
-   "seed": "cells 20260920; null seeds 0..-1",
+   "seed": "cells 20260920; null seeds 0..199",
    "script": "topodb_runs/biology/run_scrna.py",
    "command": "see per-run command field",
-   "wall_sec": 8.57,
-   "peak_mb": 157.3,
+   "wall_sec": 6.35,
+   "peak_mb": 157.4,
    "betti": {
     "1": 0
    },
@@ -1459,15 +1459,23 @@
    "stats": [
     {
      "name": "h1_dominance_P1_over_P2",
-     "value": 1.5096134857271633
+     "value": 1.5096134857271633,
+     "null_model": "gene-wise permutation across cells",
+     "n_null": 200,
+     "p_value": 0.004975124378109453,
+     "p_method": "rank"
     },
     {
      "name": "h1_S_longest_over_total",
-     "value": 0.022074415146802515
+     "value": 0.022074415146802515,
+     "null_model": "gene-wise permutation across cells",
+     "n_null": 200,
+     "p_value": 0.004975124378109453,
+     "p_method": "rank"
     },
     {
-     "name": "null_draws_reached_before_stopping",
-     "value": 81.0
+     "name": "null_frac_dominance_ge_2",
+     "value": 0.0
     },
     {
      "name": "h1_max_persistence",
@@ -1476,31 +1484,35 @@
     {
      "name": "h1_finite_bar_count",
      "value": 344.0
+    },
+    {
+     "name": "negative_control_median_dominance",
+     "value": 1.066910872559081
     }
    ],
    "controls": [
     {
      "kind": "shuffle",
      "description": "gene-wise permutation destroys cell-cell covariance and keeps every gene's marginal",
-     "passed": null,
-     "detail": "NOT RUN TO COMPLETION: the gene-permutation null did not complete: 81 of 200 draws at roughly 13 s each on a 400-cell correlation metric. No p-value is stored, because a p-value without its null is not storable."
+     "passed": true,
+     "detail": "0.000 of 200 permutations reach dominance >= 2; null S q95 = 0.0017"
     },
     {
      "kind": "negative",
      "description": "the same number of random expressed genes outside the selected set",
-     "passed": null,
-     "detail": "0 draws, median dominance None"
+     "passed": true,
+     "detail": "10 draws, median dominance 1.066910872559081"
     },
     {
      "kind": "known_answer",
      "description": "published cell-cycle loop should appear as a dominant H1",
-     "passed": null,
-     "detail": "dominance 1.510; NOT RUN TO COMPLETION: the gene-permutation null did not complete: 81 of 200 draws at roughly 13 s each on a 400-cell correlation metric. No p-value is stored, because a p-value without its null is not storable."
+     "passed": false,
+     "detail": "dominance 1.510, p_S 0.0050"
     }
    ],
    "findings": [
     {
-     "claim": "u2os: Rips on the cell-cell Spearman metric over 97 genes gives H1 dominance 1.51 and S 0.0221. NO p-value: the gene-permutation null did not complete: 81 of 200 draws at roughly 13 s each on a 400-cell correlation metric. No p-value is stored, because a p-value without its null is not storable. Pre-stated criteria (dominance >= 2 and p <= 0.01): NOT MET.",
+     "claim": "u2os: Rips on the cell-cell Spearman metric over 97 genes gives H1 dominance 1.51 and S 0.0221 (p 0.0050 and 0.0050 against 200 gene-wise permutations). Pre-stated criteria (dominance >= 2 and p <= 0.01): NOT MET.",
      "verdict": "failed",
      "tier": "X",
      "caveat": "This is a different pipeline from the earlier genetics validation (Rips on the correlation metric in full dimension, not alpha on a 3-D PCA), pre-stated before running. Nothing was tuned after seeing the result.",
@@ -1531,7 +1543,7 @@
    "script": "topodb_runs/biology/run_scrna.py",
    "command": "see per-run command field",
    "wall_sec": 3.42,
-   "peak_mb": 157.4,
+   "peak_mb": 157.5,
    "betti": {
     "1": 0
    },
@@ -4825,11 +4837,11 @@
    "tier": "X",
    "max_dim": 1,
    "preprocessing": "CPM log2(x+1); 500 most variable genes detected in >= 5% of cells (no cell-cycle list used); z-scored per gene",
-   "seed": "cells 20260920; null seeds 0..-1",
+   "seed": "cells 20260920; null seeds 0..199",
    "script": "topodb_runs/biology/run_scrna.py",
    "command": "see per-run command field",
-   "wall_sec": 6.57,
-   "peak_mb": 157.6,
+   "wall_sec": 4.63,
+   "peak_mb": 157.8,
    "betti": {
     "1": 0
    },
@@ -8593,15 +8605,23 @@
    "stats": [
     {
      "name": "h1_dominance_P1_over_P2",
-     "value": 1.2091139779297284
+     "value": 1.2091139779297284,
+     "null_model": "gene-wise permutation across cells",
+     "n_null": 200,
+     "p_value": 0.014925373134328358,
+     "p_method": "rank"
     },
     {
      "name": "h1_S_longest_over_total",
-     "value": 0.005593062167813801
+     "value": 0.005593062167813801,
+     "null_model": "gene-wise permutation across cells",
+     "n_null": 200,
+     "p_value": 0.004975124378109453,
+     "p_method": "rank"
     },
     {
-     "name": "null_draws_reached_before_stopping",
-     "value": 41.0
+     "name": "null_frac_dominance_ge_2",
+     "value": 0.0
     },
     {
      "name": "h1_max_persistence",
@@ -8610,25 +8630,29 @@
     {
      "name": "h1_finite_bar_count",
      "value": 938.0
+    },
+    {
+     "name": "negative_control_median_dominance",
+     "value": 1.1979878225639133
     }
    ],
    "controls": [
     {
      "kind": "shuffle",
      "description": "gene-wise permutation destroys cell-cell covariance and keeps every gene's marginal",
-     "passed": null,
-     "detail": "NOT RUN TO COMPLETION: the gene-permutation null did not complete: 41 of 200 draws at roughly 13 s each on a 400-cell correlation metric. No p-value is stored, because a p-value without its null is not storable."
+     "passed": true,
+     "detail": "0.000 of 200 permutations reach dominance >= 2; null S q95 = 0.0019"
     },
     {
      "kind": "negative",
      "description": "the same number of random expressed genes outside the selected set",
-     "passed": null,
-     "detail": "0 draws, median dominance None"
+     "passed": true,
+     "detail": "10 draws, median dominance 1.1979878225639133"
     }
    ],
    "findings": [
     {
-     "claim": "pbmc3k: Rips on the cell-cell Spearman metric over 500 genes gives H1 dominance 1.21 and S 0.0056. NO p-value: the gene-permutation null did not complete: 41 of 200 draws at roughly 13 s each on a 400-cell correlation metric. No p-value is stored, because a p-value without its null is not storable. No loop was expected and none is claimed.",
+     "claim": "pbmc3k: Rips on the cell-cell Spearman metric over 500 genes gives H1 dominance 1.21 and S 0.0056 (p 0.0149 and 0.0050 against 200 gene-wise permutations). No loop was expected and none is claimed.",
      "verdict": "null",
      "tier": "X",
      "caveat": "breadth dataset; the gene set is the 500 most variable genes, not a cell-cycle list",
