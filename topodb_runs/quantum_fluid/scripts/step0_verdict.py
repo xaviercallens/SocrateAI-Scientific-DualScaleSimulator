@@ -67,6 +67,7 @@ def main():
     ratios = np.array([r["ratio_afft_over_adensity_interior"] for r in ok])
 
     S0 = json.load(open(os.path.join(q.RESULTS, "step0_re6zr_20kOe.json")))
+    DG = json.load(open(os.path.join(q.RESULTS, "step0_diagnostics.json")))
     r20 = rows["20kOe"]
 
     out = {
@@ -78,23 +79,25 @@ def main():
         },
         "why_the_pipeline_is_not_at_fault": {
             "synthetic_perfect_lattice_all_estimators": "a recovered to 1e-13 (a_nn, a_h1, a_h0 all 34.566)",
-            "a_fft_on_synthetic_conductance_maps": "-0.36 to -0.68 per cent at sigma/a = 0 to 0.15 with a core width a/6",
-            "a_fft_on_a_synthetic_a=36.0_lattice": 35.861,
+            "a_fft_on_synthetic_conductance_maps": DG["synthetic_a_fft_bias"],
+            "a_fft_on_a_synthetic_a=36.0_lattice": DG["synthetic_a_true_36nm_recovered"],
             "a_h1_disorder_bias_at_measured_disorder": "+0.4 per cent (sigma/a ~ 0.05), far too small for +4 per cent",
             "four_independent_routes_on_real_20kOe_maps_nm": {
-                "fft_azimuthal_first_ring": 35.99,
-                "six_resolved_bragg_spots": [36.18, 36.18, 35.40, 35.40, 35.22, 35.22],
-                "g_of_r_first_peak": 35.86,
-                "delaunay_bond_mode": 36.29,
-                "sqrt3_median_H1_alpha": 36.04,
+                "fft_azimuthal_first_ring": S0["a_fft"]["median"],
+                "six_resolved_bragg_spots": [s["a_nm"] for s in DG["bragg_spots"]],
+                "g_of_r_first_peak": DG["g_of_r_first_peak_nm"],
+                "delaunay_bond_mode": DG["delaunay_bond"]["mode_nm"],
+                "sqrt3_median_H1_alpha": r20["a_fft_nm"] and fields["20kOe"]["a_h1_nm"],
             },
+            "source": "results/step0_diagnostics.json, produced by scripts/step0_diagnostics.py",
         },
         "border_over_detection": {
             "cause": "ndimage.minimum_filter(mode='nearest') replicates edge values, so border pixels "
                      "compare against copies of themselves and become spurious minima",
-            "evidence_20kOe": {"points_exactly_on_a_border_line_img00": 9,
-                               "min_pairwise_distance_nm": 19.89,
-                               "note": "no duplicate/plateau points; the excess is genuinely at the border"},
+            "evidence_20kOe": {**DG["border"],
+                               "note": "no duplicate/plateau points (minimum pairwise distance is "
+                                       "19.9 nm, far above the 1.38 nm pixel); the excess is genuinely "
+                                       "at the border"},
             "effect": "the full-frame count 122 matched B*A/Phi0 = 121 only because of this excess; "
                       "the interior density corresponds to a = %.2f nm, consistent with the spacing" % r20["a_density_interior_nm"],
         },

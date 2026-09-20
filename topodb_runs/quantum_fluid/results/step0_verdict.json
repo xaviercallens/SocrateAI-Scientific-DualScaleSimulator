@@ -48,9 +48,21 @@
   "cause": "ndimage.minimum_filter(mode='nearest') replicates edge values, so border pixels compare against copies of themselves and become spurious minima",
   "effect": "the full-frame count 122 matched B*A/Phi0 = 121 only because of this excess; the interior density corresponds to a = 35.67 nm, consistent with the spacing",
   "evidence_20kOe": {
-   "min_pairwise_distance_nm": 19.89,
-   "note": "no duplicate/plateau points; the excess is genuinely at the border",
-   "points_exactly_on_a_border_line_img00": 9
+   "a_density_full_nm": 34.34230762973343,
+   "a_density_interior_nm": 35.674670305164426,
+   "frac_nn_below_half_a": 0.0016326530612244899,
+   "min_pairwise_distance_img00_nm": 19.886868753731065,
+   "n_full_median": 122.0,
+   "n_interior_median": 92.0,
+   "nn_min_nm": 14.196708749095356,
+   "nn_percentiles_nm": {
+    "1": 20.68359375,
+    "10": 26.77351643417384,
+    "5": 24.67204091459608,
+    "50": 32.27936772253147
+   },
+   "note": "no duplicate/plateau points (minimum pairwise distance is 19.9 nm, far above the 1.38 nm pixel); the excess is genuinely at the border",
+   "points_exactly_on_a_border_line_median": 8.5
   }
  },
  "command": "prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python step0_verdict.py",
@@ -322,23 +334,73 @@
   "quantity": "a_fft / a_density_interior; equals 1 for a triangular lattice and is INDEPENDENT of any scan-length calibration error (the factor cancels)"
  },
  "why_the_pipeline_is_not_at_fault": {
-  "a_fft_on_a_synthetic_a=36.0_lattice": 35.861,
-  "a_fft_on_synthetic_conductance_maps": "-0.36 to -0.68 per cent at sigma/a = 0 to 0.15 with a core width a/6",
+  "a_fft_on_a_synthetic_a=36.0_lattice": 35.846721727079206,
+  "a_fft_on_synthetic_conductance_maps": [
+   {
+    "a_fft_nm": 34.44240595711318,
+    "core_a_over": 6.0,
+    "rel_error": -0.0035805533279249513,
+    "sigma_over_a": 0.0
+   },
+   {
+    "a_fft_nm": 34.44100558624344,
+    "core_a_over": 4.0,
+    "rel_error": -0.003621066083302704,
+    "sigma_over_a": 0.0
+   },
+   {
+    "a_fft_nm": 34.49493654987005,
+    "core_a_over": 6.0,
+    "rel_error": -0.002060842299800858,
+    "sigma_over_a": 0.05
+   },
+   {
+    "a_fft_nm": 34.39599751745751,
+    "core_a_over": 4.0,
+    "rel_error": -0.004923150352656558,
+    "sigma_over_a": 0.05
+   },
+   {
+    "a_fft_nm": 34.43895365830302,
+    "core_a_over": 6.0,
+    "rel_error": -0.003680428396886426,
+    "sigma_over_a": 0.1
+   },
+   {
+    "a_fft_nm": 34.3738449904421,
+    "core_a_over": 4.0,
+    "rel_error": -0.005564023372345295,
+    "sigma_over_a": 0.1
+   },
+   {
+    "a_fft_nm": 34.32935649883439,
+    "core_a_over": 6.0,
+    "rel_error": -0.006851076264243305,
+    "sigma_over_a": 0.15
+   },
+   {
+    "a_fft_nm": 58.69588039780798,
+    "core_a_over": 4.0,
+    "rel_error": 0.6980729145559421,
+    "sigma_over_a": 0.15
+   }
+  ],
   "a_h1_disorder_bias_at_measured_disorder": "+0.4 per cent (sigma/a ~ 0.05), far too small for +4 per cent",
   "four_independent_routes_on_real_20kOe_maps_nm": {
-   "delaunay_bond_mode": 36.29,
-   "fft_azimuthal_first_ring": 35.99,
-   "g_of_r_first_peak": 35.86,
+   "delaunay_bond_mode": 36.294480578188384,
+   "fft_azimuthal_first_ring": 35.98968259724337,
+   "g_of_r_first_peak": 35.86240342844804,
    "six_resolved_bragg_spots": [
-    36.18,
-    36.18,
-    35.4,
-    35.4,
-    35.22,
-    35.22
+    36.176152507645284,
+    36.176152507645284,
+    35.40039739785621,
+    35.40039739785621,
+    35.22440369012337,
+    35.22440369012337
    ],
-   "sqrt3_median_H1_alpha": 36.04
+   "sqrt3_median_H1_alpha": 36.04337184419168
   },
+  "source": "results/step0_diagnostics.json, produced by scripts/step0_diagnostics.py",
   "synthetic_perfect_lattice_all_estimators": "a recovered to 1e-13 (a_nn, a_h1, a_h0 all 34.566)"
  }
 }
