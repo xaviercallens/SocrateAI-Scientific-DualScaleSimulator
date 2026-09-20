@@ -77,6 +77,31 @@ def _inj_narrative(a, units):
         "POST-REGISTRATION EXTENSION: even at the extended amplitudes and densities no cell reached 95% on S1. "
         "The sensitivity of this test to the injected population is therefore not bounded from below by any "
         "cell that was run, and the null below must be read as close to uninformative against such a population.")
+    # non-monotonicity in density, measured rather than asserted
+    byd = {}
+    for g in grid:
+        if g["amp_over_sigmaT"] > 0:
+            byd.setdefault(g["amp_over_sigmaT"], []).append((g["n_inj_full_sky"],
+                                                             g["rate_S1_iqr_over_median"]))
+    nonmono = []
+    for A, rows in sorted(byd.items()):
+        rows.sort()
+        if any(rows[i][1] > rows[i + 1][1] + 0.1 for i in range(len(rows) - 1)):
+            nonmono.append("A = %.1f: %s" % (A, ", ".join("N=%d -> %.2f" % r for r in rows)))
+    if nonmono:
+        parts.append(
+            "NON-MONOTONIC IN DENSITY, measured: the S1 detection rate does NOT rise monotonically with "
+            "the injected density (%s). S1 measures REGULARITY of spacing, so a denser injected lattice "
+            "can push the combined cloud back toward the null's own regularity before it dominates it. "
+            "A single 'smallest detectable density' therefore understates the structure of this "
+            "sensitivity, and the whole grid is reported rather than one number. The same "
+            "falls-before-it-rises behaviour was recorded for the crystallinity statistic in "
+            "audit/FLUID_TO_COSMOLOGY_BRIDGE.md sec 5." % "; ".join(nonmono))
+    parts.append(
+        "STATISTIC-BY-STATISTIC: S1 (spacing) is the most sensitive, S2 (count) only fires once the "
+        "injected population is numerous enough to add candidates rather than replace them, and S3 "
+        "(orientation) is the least sensitive of the three at every cell that was run. That ordering is "
+        "the direct analogue of the Re6Zr finding that the H0 spread and psi6 measure different things.")
     parts.append(
         "HOW TO READ THIS: the detector already finds ~%s candidates in the WMAP footprint from the Gaussian "
         "field alone, so an injected population does not sit on an empty sky -- it must out-compete that "
@@ -395,11 +420,41 @@ def main():
             "INCONCLUSIVE with respect to a clustering-matched null (registered null NOT ATTEMPTED); "
             "the detector, the absolute statistics, the randoms control and the injection sensitivity "
             "are reported.")
+    # the sensitivity clause is decided by the measured grid, not asserted
+    sens = "no sensitivity statement is available"
+    if aw and "injection" in aw:
+        g = [x for x in aw["injection"]["grid"] if x["placement"] == "grid"
+             and x["amp_over_sigmaT"] > 0 and x["rate_S1_iqr_over_median"] >= 0.95]
+        reg_cells = [x for x in aw["injection"]["grid"] if x["placement"] == "grid"
+                     and x["amp_over_sigmaT"] > 0 and not x.get("post_registration_extension")]
+        best = max((x["rate_S1_iqr_over_median"] for x in reg_cells), default=float("nan"))
+        if g:
+            b = min(g, key=lambda x: (x["amp_over_sigmaT"], x["n_inj_full_sky"]))
+            sens = ("the registered injection ladder never reaches 95%% (best %.0f%%), and the "
+                    "post-registration extension first reaches it only at A = %.1f sigma_T with %d "
+                    "full-sky cores" % (100 * best, b["amp_over_sigmaT"], b["n_inj_full_sky"]))
+        else:
+            sens = ("NO injected cell that was run, registered or extended, reaches 95%% detection "
+                    "(best %.0f%%), so the null is close to uninformative against the populations "
+                    "tested" % (100 * best))
+    rep["headline"]["measured_sensitivity_clause"] = sens
     rep["headline"]["one_sentence"] = (
-        "The Re6Zr defect-core pipeline transfers cleanly (it reproduces its own published numbers to "
-        "machine zero) and, applied to the CMB with a spectrum-matched Gaussian null, finds NOTHING: a "
-        "null, as expected, with a measured sensitivity; on DESI the registered clustering-matched null "
-        "was not built, so that test is inconclusive rather than null.")
+        "The Re6Zr defect-core pipeline transfers exactly -- it reproduces its own published numbers to "
+        "machine zero -- and, applied to the CMB with a spectrum-matched Gaussian null passed through "
+        "the identical detector, it finds NOTHING (smallest p in the primary family %s against a "
+        "Bonferroni threshold of %.6f); %s. On DESI the registered clustering-matched null was not "
+        "built, so Test B is INCONCLUSIVE rather than null."
+        % (("%.4f" % min(ps)) if ps else "n/a", ALPHA, sens))
+
+    # ---------------------------------------------------------------- commits
+    import subprocess
+    try:
+        log = subprocess.run(["git", "-C", os.path.dirname(os.path.dirname(L.CV)), "log",
+                              "--format=%h %s", "--", "audit/cosmic_vorticity"],
+                             capture_output=True, text=True, timeout=60).stdout.strip().splitlines()
+    except Exception as e:                                          # noqa: BLE001
+        log = ["git log unavailable: %r" % (e,)]
+    rep["12_commits_touching_audit_cosmic_vorticity"] = log
 
     json.dump(rep, open(os.path.join(L.CV, "report.json"), "w"), indent=1)
     print(json.dumps(rep["headline"], indent=1))
