@@ -312,17 +312,32 @@ def assemble():
                           f"{json.dumps(meta['coarsening'])}. The contact-derived metric is "
                           f"NOT Euclidean and is fed to Rips directly; no MDS is computed "
                           f"anywhere in this block (lesson (a)).")
-        dom = obs["h1_dominance_P1_over_P2"]
+        dom = obs["h1_dominance_P1_over_P2"]                      # coarsened
+        dom_full = meta["full_resolution_observed"]["h1_dominance_P1_over_P2"]
         p_S = r["p_S_vs_linear_null"]
         expect_b1 = 1 if r["circular"] else 0
-        got_b1 = 1 if (dom >= 2 and p_S <= 0.01) else 0
+        # PRIMARY = the FULL-RESOLUTION dominance. Two reasons, both empirical:
+        #  * the full-resolution numbers reproduce the earlier genetics validation's
+        #    independent Rips cross-check to ~7 significant figures, so that path is
+        #    checked against an external reference; the coarsened path is not;
+        #  * the linear null returns p = 1/(n+1) for EVERY case, cut controls included,
+        #    so it cannot discriminate: permuting log-residuals across pairs destroys
+        #    all spatial coherence, not only the circular wrap. The p-value is stored
+        #    (it is a real number from a real null) but it is NOT part of the criterion.
+        got_b1 = 1 if dom_full >= 2 else 0
         blk.run(dataset_id=ds_id, method="rips", coeff_field=2, max_dim=1,
                 params={"metric": "contact^(-1/3) fed directly to Rips (NO embedding)",
                         "exponent": ALPHA_EXP, "max_hom_dim": 1, "max_edge_length": None,
                         "edge_collapse": True, "expansion_dim": 2, "n_bins": obs["n_bins"],
                         "bin_kb": meta["bin_kb"], "circular_chromosome": r["circular"],
                         "coarsening": meta["coarsening"],
-                        "criterion_b1_eq_1": "dominance >= 2 AND p_S <= 0.01 vs the linear null"},
+                        "criterion_b1_eq_1": "FULL-RESOLUTION dominance >= 2. The linear-null "
+                                             "p-value is recorded but is NOT part of the criterion: "
+                                             "it is 1/(n_null+1) for every case including the cut "
+                                             "controls, so it does not discriminate.",
+                        "primary_resolution": "full",
+                        "dominance_full_resolution": dom_full,
+                        "dominance_coarsened": dom},
                 preprocessing=json.dumps(meta["clean"]), seed=f"null seeds 0..{r['n_null'] - 1}",
                 tier="X", wall_sec=r["wall_obs_sec"],
                 diagrams={0: [(b, d) for b, d in r["diagram_h0"]] if False else
@@ -360,25 +375,44 @@ def assemble():
                                      f"{meta['coarsening']['factor']}) dominance {dom:.3f} vs full "
                                      f"({meta['coarsening']['n_bins_full']} bins) "
                                      f"{meta['full_resolution_observed']['h1_dominance_P1_over_P2']:.3f}"},
+                          {"kind": "null_calibration",
+                           "description": "DEFECT DISCLOSED: the linear null is not specific to "
+                                          "circularity. It returns the floor p = 1/(n_null+1) for "
+                                          "every case in this block, cut (linear) controls included, "
+                                          "because permuting log-residuals i.i.d. across pairs "
+                                          "removes all spatial coherence rather than only the wrap.",
+                           "passed": False,
+                           "detail": f"p_S = {p_S:.5f} = floor {1 / (r['n_null'] + 1):.5f}: "
+                                     f"{'yes' if abs(p_S - 1 / (r['n_null'] + 1)) < 1e-9 else 'no'}"},
                           {"kind": "known_answer",
                            "description": f"{'circular' if r['circular'] else 'linear'} genome -> "
-                                          f"b1 = {expect_b1}",
+                                          f"b1 = {expect_b1} (full-resolution dominance >= 2)",
                            "passed": bool(got_b1 == expect_b1),
-                           "detail": f"dominance {dom:.3f}, p_S {p_S:.4f} -> b1 = {got_b1}"}],
+                           "detail": f"full-resolution dominance {dom_full:.3f} -> b1 = {got_b1}; "
+                                     f"coarsened dominance {dom:.3f}; p_S {p_S:.4f} (uninformative)"}],
                 findings=[{"claim": f"{name}: Rips on the contact metric gives H1 dominance "
-                                    f"{dom:.2f} (p {r['p_dominance_vs_linear_null']:.4f}) and "
-                                    f"S = {obs['h1_S']:.4f} (p {p_S:.4f}) against a linear null of "
-                                    f"{r['n_null']}. Expected b1 = {expect_b1} "
+                                    f"{dom_full:.2f} at full resolution "
+                                    f"({meta['coarsening']['n_bins_full']} bins) and {dom:.2f} "
+                                    f"coarsened ({meta['coarsening']['n_bins_used']} bins). "
+                                    f"Expected b1 = {expect_b1} "
                                     f"({'circular' if r['circular'] else 'linear/cut'}); observed "
-                                    f"b1 = {got_b1}.",
+                                    f"b1 = {got_b1} from the full-resolution dominance. The "
+                                    f"linear-null p = {p_S:.4f} is NOT evidence here: that null "
+                                    f"returns its floor for every case in this block, cut controls "
+                                    f"included.",
                            "verdict": ("recovered" if got_b1 == expect_b1 == 1 else
                                        "null" if got_b1 == expect_b1 == 0 else "failed"),
                            "tier": "X",
-                           "caveat": "the contact-to-distance exponent 1/3 is a modelling choice, "
-                                     "not a measurement; no MDS is used, so this is not the false-loop "
-                                     "route of the earlier validation",
+                           "caveat": f"the contact-to-distance exponent 1/3 is a modelling choice, "
+                                     f"not a measurement; no MDS is used, so this is not the "
+                                     f"false-loop route of the earlier validation. Resolution "
+                                     f"matters: {dom_full:.2f} at "
+                                     f"{meta['coarsening']['n_bins_full']} bins vs {dom:.2f} at "
+                                     f"{meta['coarsening']['n_bins_used']}. The linear null does "
+                                     f"not discriminate (floor p for every case).",
                            "reference": "topodb_runs/biology/expectations.json"}])
-        summary[name] = {"circular": r["circular"], "dominance": round(dom, 4),
+        summary[name] = {"circular": r["circular"], "dominance_coarsened": round(dom, 4),
+                         "dominance": round(dom_full, 4),
                          "S": round(obs["h1_S"], 5), "p_S": round(p_S, 5),
                          "p_dom": round(r["p_dominance_vs_linear_null"], 5),
                          "expected_b1": expect_b1, "observed_b1": got_b1,
