@@ -1,0 +1,103 @@
+{
+ "caulo_full": {
+  "circular": true,
+  "dominance_coarsened": 1.5608,
+  "dominance": 1.358,
+  "S": 0.39233,
+  "p_S": 0.00498,
+  "p_dom": 0.00498,
+  "expected_b1": 1,
+  "observed_b1": 0,
+  "n_bins": 202,
+  "n_null": 200,
+  "dominance_full_res": 1.358,
+  "n_bins_full": 405
+ },
+ "caulo_cut_ter": {
+  "circular": false,
+  "dominance_coarsened": 1.9036,
+  "dominance": 1.216,
+  "S": 0.22032,
+  "p_S": 0.00498,
+  "p_dom": 0.00498,
+  "expected_b1": 0,
+  "observed_b1": 0,
+  "n_bins": 182,
+  "n_null": 200,
+  "dominance_full_res": 1.216,
+  "n_bins_full": 365
+ },
+ "caulo_cut_ori": {
+  "circular": false,
+  "dominance_coarsened": 2.96,
+  "dominance": 1.6384,
+  "S": 0.35084,
+  "p_S": 0.00498,
+  "p_dom": 0.00498,
+  "expected_b1": 0,
+  "observed_b1": 0,
+  "n_bins": 182,
+  "n_null": 200,
+  "dominance_full_res": 1.6384,
+  "n_bins_full": 365
+ },
+ "ecoli_full": {
+  "circular": true,
+  "dominance_coarsened": 38.3132,
+  "dominance": 2.0649,
+  "S": 0.97456,
+  "p_S": 0.00498,
+  "p_dom": 0.00498,
+  "expected_b1": 1,
+  "observed_b1": 1,
+  "n_bins": 154,
+  "n_null": 200,
+  "dominance_full_res": 2.0649,
+  "n_bins_full": 464
+ },
+ "ecoli_cut_ter": {
+  "circular": false,
+  "dominance_coarsened": 1.4458,
+  "dominance": 1.1439,
+  "S": 0.41229,
+  "p_S": 0.00498,
+  "p_dom": 0.04975,
+  "expected_b1": 0,
+  "observed_b1": 0,
+  "n_bins": 209,
+  "n_null": 200,
+  "dominance_full_res": 1.1439,
+  "n_bins_full": 418
+ },
+ "bsub_full": {
+  "circular": true,
+  "dominance_coarsened": 3.0187,
+  "dominance": 2.8607,
+  "S": 0.3257,
+  "p_S": 0.00498,
+  "p_dom": 0.00498,
+  "expected_b1": 1,
+  "observed_b1": 1,
+  "n_bins": 202,
+  "n_null": 200,
+  "dominance_full_res": 2.8607,
+  "n_bins_full": 404
+ },
+ "bsub_cut_ter": {
+  "circular": false,
+  "dominance_coarsened": 1.1424,
+  "dominance": 1.0273,
+  "S": 0.13863,
+  "p_S": 0.00498,
+  "p_dom": 0.24378,
+  "expected_b1": 0,
+  "observed_b1": 0,
+  "n_bins": 182,
+  "n_null": 200,
+  "dominance_full_res": 1.0273,
+  "n_bins_full": 364
+ },
+ "gm12878_chr1q": {
+  "status": "ABSENT: not computed"
+ }
+}
