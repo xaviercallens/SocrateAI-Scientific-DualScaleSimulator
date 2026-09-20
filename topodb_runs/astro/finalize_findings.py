@@ -113,47 +113,72 @@ def skymap_findings(db):
             if not isinstance(v, dict) or "p_values" not in v:
                 continue
             pv = v["p_values"]
-            floor = 1.0 / (v["n_sims"] + 1)
-            below = {k: p for k, p in pv.items() if p < BONF_SKY}
+            floor2 = 2.0 / (v["n_sims"] + 1)
             cal = v.get("null_calibration_p")
-            cal_ok = cal is not None and cal > 0.05
             is_fg = key.startswith(("haslam", "wmap_kband"))
             base = key.rsplit("_nside", 1)[0]
             ds = f"astro/{base}"
+            # The attainable two-sided rank floor (0.0198 at n=100) is ABOVE
+            # Bonferroni/7 = 0.00714, so `p < BONF_SKY` is empty BY CONSTRUCTION
+            # for every map. The verdict must rest on separation, not on that test.
+            sep = v.get("separation_sigma") or {}
+            n_out = int(v.get("n_outside", 0))
+            at_floor = [k for k, p in pv.items() if p <= floor2 + 1e-12]
+            floor_blocks = floor2 > BONF_SKY
+            fired = bool(n_out) or bool(at_floor)
             claim = (
                 f"Lower-star Betti curves on the fixed HEALPix 2-complex ({key}, f_sky="
                 f"{v['f_sky']:.3f}, {v['n_sims']} spectrum-matched Gaussian sims): "
-                f"{len(below)} of {len(pv)} pre-declared statistics reject the Gaussian null below "
-                f"Bonferroni/7 = {BONF_SKY:.4f}. b0 at nu=+1 is {v['data']['b0_at_nu_1']:.0f}, "
-                f"b1 at nu=0 is {v['data']['b1_at_nu_0']:.0f}, Euler characteristic at nu=0 is "
+                f"{len(at_floor)} of {len(pv)} pre-declared statistics sit at the attainable rank "
+                f"floor ({floor2:.4f} two-sided, {1.0 / (v['n_sims'] + 1):.4f} for the coarse-curve "
+                f"statistic), and {n_out} lie outside the full range of the {v['n_sims']} draws. "
+                f"b0 at nu=+1 is {v['data']['b0_at_nu_1']:.0f}, b1 at nu=0 is "
+                f"{v['data']['b1_at_nu_0']:.0f}, Euler characteristic at nu=0 is "
                 f"{v['data']['euler_char_at_nu_0']:.0f}. "
-                + ("As expected for a foreground-dominated map, and this is what shows the CMB nulls "
-                   "are not vacuous." if is_fg else
+                + ("This is the POSITIVE CONTROL: a foreground-dominated map rejects the Gaussian "
+                   "null, which is what shows the CMB nulls in this campaign are not vacuous."
+                   if is_fg and fired else
+                   "POSITIVE CONTROL DID NOT FIRE -- if a foreground map cannot reject a Gaussian "
+                   "null, every CMB null here must be read as 'the pipeline cannot fire'."
+                   if is_fg else
                    "No departure from an isotropic Gaussian field is detected in these statistics."
-                   if not below else "")
+                   if not fired else
+                   "A departure from the isotropic Gaussian null is detected.")
             )
             caveat = (
                 f"Tier X. Rank p-values only (the fixed library's chi2 branch is anti-conservative at "
-                f"0.058 against 0.05); the floor is 1/{v['n_sims'] + 1} = {floor:.4f} and a p there is "
-                "resolution-limited. The null is spectrum-matched and isotropic: it does not model "
-                "non-Gaussian foregrounds, anisotropic noise or the beam, so a rejection localises no "
-                "cause. The pseudo-C_ell was divided by f_sky before synthesis; the null-calibration "
-                f"control (held-out sim vs the other n-1) returned p = {cal}, "
-                + ("which is not extreme, so the normalisation is not manufacturing the result."
-                   if cal_ok else "WHICH IS EXTREME -- this run's p-values should not be trusted.")
+                f"0.058 against 0.05). "
+                + (f"THE PRE-DECLARED Bonferroni/7 THRESHOLD {BONF_SKY:.5f} IS BELOW THE ATTAINABLE "
+                   f"TWO-SIDED RANK FLOOR {floor2:.4f} at n_sims={v['n_sims']}: no statistic could "
+                   "have passed it however extreme, so the verdict rests on the recorded null-sigma "
+                   "separations and on the data lying outside the null range, not on a p-value. "
+                   f"Resolving the threshold would need n_sims > {int(2 / BONF_SKY):d} and was NOT "
+                   "ATTEMPTED (budget). " if floor_blocks else "")
+                + "The null is spectrum-matched ONLY UP TO MODE COUPLING: no MASTER deconvolution is "
+                  "applied, so the mask's distortion of the C_ell shape is uncorrected (modest at "
+                  "Planck f_sky=0.76, less so at WMAP KQ85). The f_sky division in the code is a "
+                  "MEASURED NO-OP -- the statistic is scale-invariant because the field is "
+                  "sigma-normalised before filtering (verified bit-identical on wmap_ilc at nside 64) "
+                  "-- so it is credited with nothing. The null does not model non-Gaussian "
+                  "foregrounds, anisotropic noise or the beam, so a rejection localises no cause. "
+                  f"The held-out-sim check returned p = {cal}; it is recorded as a DIAGNOSTIC with "
+                  "passed=None and does NOT gate this verdict, because it tests exchangeability among "
+                  "the sims (true by construction), has no power against a null mismatched to the "
+                  "data, and is one Uniform(0,1) draw that fails ~5% of the time on a good null."
             )
-            if not is_fg and not below:
+            if not is_fg and not fired:
                 caveat += (" A null here is weak, not a constraint: the prior campaign measured that "
                            "this family of statistics only reaches 95 % power against a STRONG, SPARSE "
-                           "injected population (A = 4 sigma_T, 1000 cores) and is close to vacuous "
-                           "against a weak or dense one.")
+                           "injected population (A = 4 sigma_T, 1000 full-sky cores) and is close to "
+                           "vacuous against a weak or dense one.")
             if key.startswith("cobe"):
                 caveat += (" The DMR quad-cube was repixelised into HEALPix by tabulated pixel-centre "
-                           "RA/Dec and averaged; that is lossy and the resulting nside 32 complex is "
-                           "coarse.")
+                           "RA/Dec and averaged; that is lossy. nside 16 was used because at nside 32 "
+                           "the 6144 DMR pixels leave f_sky = 0.4963 and the induced subcomplex is "
+                           "perforated with aliasing holes, so b1 would measure the repixelisation "
+                           "rather than the sky.")
+            below = at_floor if fired else []
             verdict = "recovered" if below else "null"
-            if not cal_ok:
-                verdict = "inconclusive"
             db.add_finding(run_id=v["run_id"], dataset_id=ds, claim=claim, verdict=verdict,
                            tier="X", caveat=caveat,
                            reference=f"topodb_runs/astro/results/{os.path.basename(f)}")

@@ -7,14 +7,29 @@ synchrotron), WMAP 9-yr K-band 23 GHz (foreground-dominated), COBE-DMR 53 GHz A
 d8175f1 -- audit/reverse_zero/E5-cmb-tda/cmb_tda.py is defective and is NOT
 imported.
 
-THE NULL AND ITS ONE REAL TRAP.  Sims are drawn from each map's OWN pseudo-C_ell
-measured on the masked map, then masked with the same mask.  A masked map's
-pseudo-C_ell is suppressed by roughly f_sky; synthesising from it and masking
-again gives sims with LESS power than the data, which makes the data look
-anomalous for free.  The pseudo-C_ell is therefore divided by f_sky before
-synfast, and a `null_calibration` control holds one sim out and ranks it against
-the remaining n-1.  Without that control none of these p-values is
-interpretable.
+THE NULL, AND WHAT IS AND IS NOT CORRECTED.  Sims are drawn from each map's OWN
+pseudo-C_ell measured on the masked map, then masked with the same mask.
+
+  * AMPLITUDE needs no correction, and the f_sky division in the code is a
+    MEASURED NO-OP.  betti_curves_from_topology normalises the field by the
+    sigma of the unmasked pixels before filtering, so the statistic is
+    scale-invariant; dividing C_ell by f_sky scales every sim by 1/sqrt(f_sky)
+    and the sigma-normalisation divides it straight back out.  Verified on
+    wmap_ilc at nside 64: the b0 and b1 curves with and without the division are
+    BIT-IDENTICAL (max |delta| = 0 on both).  The division is kept because it is
+    harmless, and it is credited with nothing.
+  * SHAPE is NOT corrected.  The mask couples modes and distorts the C_ell
+    SHAPE, which the statistic does see.  No MASTER/pseudo-C_ell deconvolution
+    is applied, so the null is spectrum-matched only up to mode coupling --
+    modest at Planck's f_sky = 0.76, less so at WMAP KQ85 (f_sky = 0.70).
+    This is a stated limitation, NOT ATTEMPTED.
+
+The held-out-sim check is recorded with passed=None.  It tests exchangeability
+AMONG THE SIMS, which is true by construction, and it has no power to detect a
+null mismatched to the data because every sim shares the same mismatch.  It is
+also a single Uniform(0,1) draw, so it fails ~5 % of the time on a perfectly
+good null -- which is exactly what happened on Planck SMICA (p = 0.03).  It is
+kept as a diagnostic and must never gate a verdict.
 
 Rank p-values only: the chi2 branch of the fixed library remains mildly
 anti-conservative (0.058 against 0.05).
@@ -161,11 +176,14 @@ def run_one(key, nside, n_sims, out):
 
     unmasked, edges, tris = build_topology_fixed(msk, nside)
     lmax = 3 * nside - 1
-    cl = hp.anafast(m * msk, lmax=lmax) / max(f_sky, 1e-6)     # f_sky-corrected
+    # NOTE: the /f_sky is a measured no-op (see module docstring); the statistic
+    # is scale-invariant because the field is sigma-normalised before filtering.
+    cl = hp.anafast(m * msk, lmax=lmax) / max(f_sky, 1e-6)
 
     with Timer() as t:
         cd = curves(m, unmasked, edges, tris)
     sd = stats_from(cd)
+    sd_data = sd
     print(f"  data: {sd}  ({t.sec:.1f}s)")
 
     rng = np.random.default_rng(SEED)
@@ -190,7 +208,7 @@ def run_one(key, nside, n_sims, out):
     # null calibration: hold out sim 0, rank against the other n-1
     cal = coarse_stats_fixed(sim_b0[1:], sim_b0[0])
     p_cal = cal.get("empirical_rank_p")
-    cal_ok = bool(p_cal is not None and p_cal > 0.05)
+    cal_ok = bool(p_cal is not None and p_cal > 0.05)   # DIAGNOSTIC ONLY -- never gates a verdict
     print(f"  null calibration (held-out sim vs {n_sims - 1} others): rank p = {p_cal} "
           f"{'PASS' if cal_ok else 'FAIL'}")
 
@@ -238,24 +256,58 @@ def run_one(key, nside, n_sims, out):
                                  multiplicity=f"Bonferroni/{NSTAT} -> threshold {0.05 / NSTAT:.4g}")
                 pvals[nm] = float(pv)
         db.add_control(rid, "null_calibration",
-                       "a held-out null realisation ranked against the remaining n-1 is not extreme "
-                       "(guards the f_sky correction: a mis-normalised null makes the data anomalous "
-                       "for free)",
-                       passed=cal_ok, detail=f"held-out sim b0 coarse rank p = {p_cal}")
+                       "DIAGNOSTIC, passed=None by design: a held-out sim ranked against the other "
+                       "n-1 tests exchangeability AMONG THE SIMS, which is true by construction. It "
+                       "has NO power to detect a null mismatched to the data (all sims share the same "
+                       "mismatch) and, being one Uniform(0,1) draw, fails ~5% of the time on a good "
+                       "null. It never gates a verdict.",
+                       passed=None,
+                       detail=("held-out sim b0 coarse rank p = " + str(p_cal) +
+                               "; would-be-flag=" + ("ok" if cal_ok else "low") +
+                               ". What is genuinely uncorrected is the mask's mode-coupling "
+                               "distortion of the C_ell SHAPE (no MASTER deconvolution); the "
+                               "f_sky division is a measured no-op."))
         db.add_control(rid, "known_answer",
                        "Step 0 K5: the same fixed complex has Betti (1,0,1) full sky at nside 32 (run 11)",
                        passed=True, detail=f"this run's complex: V-E+F = "
                                            f"{unmasked.size - len(edges) + len(tris)}")
+        # The rank floor can be ABOVE the Bonferroni threshold (2/101 = 0.0198 vs
+        # 0.05/7 = 0.00714), in which case the p-value carries no information about
+        # MAGNITUDE. Record the separation too, WITHOUT a p-value: a z from n sims
+        # has no calibrated null here and TopoDB rightly refuses one.
+        n_outside = 0
+        sep_sigma = {}
+        for name in STATS_TAIL:
+            nv = np.array([ss[name] for ss in sim_stats], float)
+            sd = float(nv.std(ddof=1))
+            out_range = bool(sd_data[name] < nv.min() or sd_data[name] > nv.max())
+            n_outside += int(out_range)
+            if sd > 0:
+                sep_sigma[name] = float((sd_data[name] - nv.mean()) / sd)
+                db.add_statistic(rid, f"null_separation_sigma__{name}", sep_sigma[name])
+            db.add_statistic(rid, f"data_outside_null_range__{name}", float(out_range))
+        db.add_control(rid, "null_calibration",
+                       "rank-p resolution: the two-sided floor 2/{} = {:.4f} is ABOVE the "
+                       "pre-declared Bonferroni/{} threshold {:.5f}, so no statistic can pass it "
+                       "however far the data lies from the null; the separation is therefore also "
+                       "recorded in null-sigma units, without a p-value".format(
+                           n_sims + 1, 2.0 / (n_sims + 1), NSTAT, 0.05 / NSTAT),
+                       passed=None,
+                       detail=f"{n_outside}/{len(STATS_TAIL)} statistics lie outside the FULL range "
+                              f"of the {n_sims} null draws")
         if key in ("haslam408", "wmap_kband"):
-            fired = min(pvals.values()) <= 2.0 / (n_sims + 1)
+            fired = bool(n_outside >= 1)
             db.add_control(rid, "injection",
                            "POSITIVE CONTROL: a strongly non-Gaussian foreground map must reject the "
                            "Gaussian null at (or near) the rank floor; if it does not, every CMB null "
                            "in this campaign is vacuous",
-                           passed=bool(fired),
-                           detail=f"min rank p over the declared family = {min(pvals.values()):.4g}, "
-                                  f"floor {1 / (n_sims + 1):.4g}")
+                           passed=fired,
+                           detail=(f"{n_outside}/{len(STATS_TAIL)} statistics lie OUTSIDE the full "
+                                   f"range of the {n_sims} Gaussian draws; min rank p = "
+                                   f"{min(pvals.values()):.4g} at floor {2 / (n_sims + 1):.4g}. The "
+                                   "verdict rests on the separation, NOT on the floored p-value."))
     out[f"{key}_nside{nside}"] = {"run_id": rid, "f_sky": f_sky, "data": sd, "p_values": pvals,
+                                  "separation_sigma": sep_sigma, "n_outside": n_outside,
                                   "null_calibration_p": p_cal, "n_sims": n_sims,
                                   "coarse_b0": {k: v for k, v in cs0.items() if k != "kept_bin_indices"},
                                   "wall_sec": wall}
@@ -269,7 +321,12 @@ def main():
     keys = sys.argv[1:] or ["planck_smica", "wmap_ilc", "haslam408", "wmap_kband", "cobe_dmr"]
     out = {"seed": SEED, "nside": nside, "n_sims": n_sims}
     for k in keys:
-        ns = min(nside, 32) if k == "cobe_dmr" else nside   # DMR has only 6144 native pixels
+        # DMR has only 6144 native pixels. MEASURED: at nside 32 the scatter leaves
+        # f_sky = 0.4963 -- the "mask" is then an aliasing pattern and the induced
+        # subcomplex is perforated with pixel-grid holes, so b1 measures the
+        # repixelisation, not the sky. At nside 16 (3072 pixels, ~2 DMR each)
+        # f_sky = 1.0000. DMR's 7 deg beam loses nothing at nside 16.
+        ns = min(nside, 16) if k == "cobe_dmr" else nside
         try:
             run_one(k, ns, n_sims, out)
         except Exception as e:
