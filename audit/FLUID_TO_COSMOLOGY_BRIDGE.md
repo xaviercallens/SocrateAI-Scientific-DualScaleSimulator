@@ -98,3 +98,27 @@ Nothing approaches the 0.0125 threshold. The two maps are the same sky and are n
 ## 6. Next step already defined: the vortex-core statistic, transferred from Re₆Zr
 
 The lens above tests a *global* symmetry of the field. The quantum-fluid validation succeeded on something else entirely: a **point cloud of defect cores**, with two statistics that have published answer keys (spacing regularity through the H₀-death-radius spread, and core count against an independent expectation). That pipeline, with its hyperparameters, is being transferred to the CMB and to DESI as a search for a discrete population of defect-core candidates, with the nulls and mandatory controls listed in §3. It is registered before it is run, and a null result is the expected outcome.
+
+## 7. Result of the transferred vortex-core pipeline: CMB NULL, DESI INCONCLUSIVE
+
+Run on this branch (`audit/cosmic_vorticity/`, commits `7ecf289`..`c59d8ac`), registration committed alone before any data was read.
+
+**The transfer is faithful, and this is the strongest single check of the round.** Re-run on the *same saved Re₆Zr vortex-core point clouds*, the transferred code reproduces the published `IQR/median` on **all 11 fields to machine zero** (max difference 0.000e+00, identical bar counts). The instrument applied to the sky is the instrument that succeeded on the superconductor, not a re-implementation of it. The invariants carried over verbatim: filter width σ, exclusion radius R = 2σ, truncation (3·a_ref)², Z/2 persistence, and the IQR/median of finite H₀ death radii.
+
+**Test A — CMB: NULL.** 500 spectrum-matched Gaussian nulls per map, X1's calibrated spectrum reused verbatim, the same detector passed over every simulation, and a new fail-closed gate on the variance of the *smoothed* field (the quantity this test actually reads).
+
+| Map | gate | spacing (IQR/median) | p | core count | p | orientational ψ₆ | p |
+|---|---|---|---|---|---|---|---|
+| WMAP 9-yr ILC (primary) | PASS (z = +0.18) | 0.4542 | **0.535** | 351 | **0.523** | 0.4880 | **0.507** |
+| Planck SMICA (secondary, same sky) | PASS (z = −0.22) | 0.4233 | 0.144 | 590 | 0.950 | 0.4531 | 0.371 |
+
+Bonferroni threshold 0.0083 over the registered family of 6. Nothing is close. The absolute persistence floor is satisfied (median H₀ death 3.22°, no bar below the 0.458° pixel scale).
+
+**Measured sensitivity, and it is weak.** The registered injection ladder never reached 95%: its strongest cell fires 22% of the time. A declared post-registration extension brackets it: **A = 4 σ_T with 1000 full-sky cores** (~397 inside the eroded mask) is the smallest detected at 95%. The reason is measured, not guessed: a 1 σ_T spot survives the detector's own smoothing at only 0.73 σ of the smoothed field, against a 1.0 σ threshold, so anything below ≈1.4 σ_T cannot become a candidate at all. The amplitude-zero row gives false-positive rates of 0.07 / 0.01 / 0.04 per statistic (0.12 union), against a nominal 0.05.
+**So the CMB null excludes only a large, sparse population of strong cores, and is near-vacuous against a weak or dense one.** The spacing statistic is also non-monotonic in density: a denser injected lattice pushes the cloud back toward the null's own regularity.
+
+**Test B — DESI DR1 BGS_BRIGHT-21.5: INCONCLUSIVE, by the registered rule.** The volume-limited check passed and the detector found 832 density peaks in 1.13×10⁹ (Mpc/h)³. But **the clustering-matched null was never built**: no DESI-footprint lognormal mocks exist on disk, and porting the SDSS-window mock code was outside budget. The official random catalogue gives the data *fewer* peaks and a *larger* spacing spread, which is what ordinary clustering does to a peak detector — so the randoms were **not** substituted for the missing null, and no p-value is quoted. Round 2's 2.88σ mock mis-calibration is therefore neither confirmed nor refuted this round.
+
+**The finding that most limits this transfer.** In three dimensions the Re₆Zr *spacing* statistic is the **least** sensitive of the three (never reaching 95%), while the count and the orientational statistic saturate at A = 1 σ_δ. On the sphere the ordering is the opposite. **The statistic that carried the Re₆Zr result is not the statistic that would carry a 3-D galaxy search.** A transfer of method is not a transfer of sensitivity.
+
+**Two defects were found in the new code by its own controls, before any data map was read**: an eroded-mask padding bug that made the full-sky eroded fraction 0.005 instead of 1.0, and a DESI injection routine that placed one galaxy per core at every amplitude. Uncorrected, the second would have been reported as "nothing detected at 95%" when it was an artefact. Both are recorded with their before/after numbers.
