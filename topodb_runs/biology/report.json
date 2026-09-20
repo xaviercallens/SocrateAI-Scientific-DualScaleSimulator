@@ -1,7 +1,7 @@
 {
  "title": "Persistent homology over a wide variety of real biological datasets",
  "branch": "topo/bio",
- "git_commit": "8752f278efeb66b3988d70bb18719fbc448d5d13",
+ "git_commit": "e9d88cd0b80e29fb95ad2573944893650876747b",
  "preregistration": "topodb_runs/biology/expectations.json, committed alone at dde7a07 before any biological persistence diagram was computed",
  "binding_method_rules": [
   "(a) A non-Euclidean metric (Hi-C contact, scRNA correlation, sequence Hamming) is given to Rips DIRECTLY. No MDS-then-alpha anywhere: that route produced a FALSE loop of dominance 11.1 on the tree-like influenza HA segment in the earlier validation. bio_common.py contains no MDS function.",
@@ -38,6 +38,12 @@
   "path": "/mnt/disks/disk-socrateai-local-1/topodb/topodb.sqlite",
   "datasets_with_run_counts": [
    {
+    "dataset": "astro/camels_hi_illustristng_lh",
+    "domain": "astro",
+    "provenance": "simulation",
+    "runs": 1
+   },
+   {
     "dataset": "astro/crystallography/wmap_ilc9_lens_fields",
     "domain": "astro",
     "provenance": "observation",
@@ -60,6 +66,18 @@
     "domain": "astro",
     "provenance": "observation",
     "runs": 8
+   },
+   {
+    "dataset": "astro/desi_dr1_bgs_bright_215_ngc",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 0
+   },
+   {
+    "dataset": "astro/planck_smica",
+    "domain": "astro",
+    "provenance": "observation",
+    "runs": 1
    },
    {
     "dataset": "astro/planck_smica_nside128",
@@ -657,6 +675,18 @@
    },
    {
     "dataset": "biology/scrna_mesc",
+    "domain": "biology",
+    "provenance": "experiment",
+    "runs": 1
+   },
+   {
+    "dataset": "biology/scrna_pbmc3k",
+    "domain": "biology",
+    "provenance": "experiment",
+    "runs": 1
+   },
+   {
+    "dataset": "biology/scrna_u2os",
     "domain": "biology",
     "provenance": "experiment",
     "runs": 1
@@ -1352,6 +1382,12 @@
     "runs": 1
    },
    {
+    "dataset": "synthetic/step0_known_answers",
+    "domain": "synthetic",
+    "provenance": "synthetic_control",
+    "runs": 6
+   },
+   {
     "dataset": "synthetic/tda_fixed/F1_gate5_regression",
     "domain": "synthetic",
     "provenance": "synthetic_control",
@@ -1402,53 +1438,53 @@
   ],
   "summary": {
    "datasets_by_domain": {
-    "astro": 8,
-    "biology": 96,
+    "astro": 11,
+    "biology": 98,
     "mathematics": 60,
     "quantum_fluid": 22,
-    "synthetic": 41
+    "synthetic": 42
    },
    "runs_by_method": {
-    "alpha": 170,
+    "alpha": 174,
     "chain_complex": 153,
-    "cubical": 16,
-    "lower_star_graph": 54,
-    "rips": 146,
+    "cubical": 18,
+    "lower_star_graph": 56,
+    "rips": 148,
     "witness": 4
    },
    "runs_by_tier": {
     "B": 159,
-    "X": 384
+    "X": 394
    },
    "controls_passed": {
-    "not_run": 36,
+    "not_run": 43,
     "failed": 86,
-    "passed": 484
+    "passed": 495
    },
    "findings_by_verdict": {
     "artefact": 5,
-    "failed": 25,
+    "failed": 26,
     "inconclusive": 18,
-    "null": 27,
-    "recovered": 157
+    "null": 28,
+    "recovered": 159
    },
-   "statistics_with_p": 166,
-   "bars": 7054
+   "statistics_with_p": 186,
+   "bars": 7244
   },
   "findings_by_verdict": {
    "artefact": 5,
-   "failed": 25,
+   "failed": 26,
    "inconclusive": 18,
-   "null": 27,
-   "recovered": 157
+   "null": 28,
+   "recovered": 159
   },
   "controls": {
-   "not_run": 36,
+   "not_run": 43,
    "failed": 86,
-   "passed": 484
+   "passed": 495
   },
-  "statistics_with_p_value": 166,
-  "statistics_without_p_value_no_null_defined": 3533
+  "statistics_with_p_value": 186,
+  "statistics_without_p_value_no_null_defined": 3562
  },
  "protein_fold_separation": {
   "registered": {
@@ -1593,6 +1629,9 @@
     "auc_size_only_n_CA": 0.4107,
     "p_perm_size": 0.38396,
     "beats_size_baseline": true,
+    "auc_unbanded_h1_bar_count_per_residue": 0.9321,
+    "p_perm_unbanded": 0.0001,
+    "band_adds_nothing": true,
     "alpha_values": [
      1.83,
      1.871,
@@ -2090,13 +2129,25 @@
  },
  "scrna": {
   "u2os": {
-   "status": "ABSENT: not computed"
+   "dominance": 1.5096,
+   "S": 0.02207,
+   "p_S": null,
+   "p_dom": null,
+   "null_complete": false,
+   "null_draws_reached": 81,
+   "n_cells": 400,
+   "n_genes": 97,
+   "expects_loop": true,
+   "criteria_met": false,
+   "neg_median_dom": null
   },
   "mesc": {
    "dominance": 1.0411,
    "S": 0.00543,
    "p_S": 0.00498,
    "p_dom": 0.39303,
+   "null_complete": true,
+   "null_draws_reached": 200,
    "n_cells": 269,
    "n_genes": 97,
    "expects_loop": true,
@@ -2104,7 +2155,17 @@
    "neg_median_dom": 1.038090410916423
   },
   "pbmc3k": {
-   "status": "ABSENT: not computed"
+   "dominance": 1.2091,
+   "S": 0.00559,
+   "p_S": null,
+   "p_dom": null,
+   "null_complete": false,
+   "null_draws_reached": 41,
+   "n_cells": 400,
+   "n_genes": 500,
+   "expects_loop": false,
+   "criteria_met": false,
+   "neg_median_dom": null
   }
  },
  "ecg": {
