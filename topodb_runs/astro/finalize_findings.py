@@ -36,12 +36,16 @@ def pointcloud_findings(db):
         for k, v in d.items():
             if isinstance(v, dict) and "p_values" in v:
                 merged[k] = (v, os.path.basename(f))
-    for ds, (v, fname) in sorted(merged.items()):
+    for key_, (v, fname) in sorted(merged.items()):
         if True:
             f = fname
-            if ds in seen:
+            # the A3 re-runs are keyed "<dataset>_scalefree"; the dataset id is
+            # the same row, so strip the suffix (a FK violation otherwise).
+            scalefree = key_.endswith("_scalefree")
+            ds = key_[: -len("_scalefree")] if scalefree else key_
+            if key_ in seen:
                 continue
-            seen.add(ds)
+            seen.add(key_)
             pv = v["p_values"]
             if not pv:
                 continue
@@ -71,6 +75,10 @@ def pointcloud_findings(db):
                 f"{int(v['data']['n_h1_bars_over_5mpc'])} H1 bars longer than 5 Mpc/h; "
                 f"H0-death IQR/median = {v['data']['h0_death_iqr_over_median']:.4f}; "
                 f"longest H2 bar {v['data']['max_persistence_h2']:.2f} Mpc/h."
+                + (" AMENDMENT A3 RE-RUN: the alpha cap is scale-free here "
+                   f"({v.get('max_alpha_square', 0) ** 0.5:.0f} Mpc/h, from the sample's own pilot "
+                   f"H0-death median {v.get('scale', 0):.2f} Mpc/h) because the pre-declared absolute "
+                   "cap of 30 Mpc/h saturated this sample." if scalefree else "")
             )
             if is_desi:
                 caveat = (
