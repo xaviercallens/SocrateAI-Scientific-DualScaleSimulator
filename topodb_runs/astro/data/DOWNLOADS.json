@@ -1,0 +1,35 @@
+{
+ "files": {
+  "DMR_SKYMAP_GALACTIC_53A_4YR.parquet": {
+   "bytes": 322124,
+   "description": "COBE-DMR 4-year 53 GHz channel A galactic-frame sky map, 6144 quad-cube pixels with tabulated RA/Dec, SIGNAL, N_OBS, SERROR.",
+   "downloaded": "2026-09-20",
+   "repixelisation": "Binned into HEALPix by the tabulated pixel-centre RA/Dec and averaged. This is a repixelisation, not a reprojection, and it is LOSSY. nside 16 is used: at nside 32 the 6144 pixels leave f_sky = 0.4963 and the induced subcomplex is perforated with aliasing holes, so b1 would measure the repixelisation rather than the sky. At nside 16 f_sky = 1.0000 and DMR's 7 deg beam loses nothing.",
+   "repo": "astro-legacy-archive/cobe-dmr-four-year-sky-maps",
+   "sha256": "683396659de1eae2588e4e64c0244266fc8a240f2ffbe02d17b5590e2acc613a",
+   "url": "https://huggingface.co/datasets/astro-legacy-archive/cobe-dmr-four-year-sky-maps/resolve/main/DMR_SKYMAP_GALACTIC_53A_4YR.parquet"
+  },
+  "haslam-408mhz.parquet": {
+   "bytes": 11483110,
+   "description": "Haslam 408 MHz all-sky map, destriped source-subtracted 'dsds' reprocessing (Remazeilles et al. 2015) of the 1965-1978 Jodrell Bank/Effelsberg/Parkes survey. HEALPix nside 512, row-packed 3072x1024 in one TEMPERATURE column.",
+   "doi": "10.57967/hf/10163",
+   "downloaded": "2026-09-20",
+   "healpix_ordering": "RING -- DETERMINED EMPIRICALLY (the parquet carries no FITS header): the galactic plane/pole mean-brightness contrast is 3.54 read as RING against 1.99 read as NESTED, and the plane/pole std ratio 13.94 against 4.65.",
+   "licence": "heasarc-free-use",
+   "repo": "astro-legacy-archive/haslam-408mhz",
+   "repo_sha": "577cc05543d4e59bfa585b425ccbd0e6909327d3",
+   "sha256": "cc611f459d50589d750799fbf3f4db6e9ba26b69eb9b3ff8f7a12eefcc82360e",
+   "url": "https://huggingface.co/datasets/astro-legacy-archive/haslam-408mhz/resolve/main/haslam-408mhz.parquet"
+  },
+  "k-band-hdu-1.parquet": {
+   "bytes": 51683674,
+   "description": "WMAP 9-year K band (23 GHz) sky map, HEALPix nside 512. Foreground-dominated.",
+   "downloaded": "2026-09-20",
+   "healpix_ordering": "NESTED -- DETERMINED EMPIRICALLY: plane/pole contrast 27.61 as NESTED against 5.08 as RING, std ratio 71.82 against 4.30.",
+   "repo": "astro-legacy-archive/wmap-band-maps-9yr",
+   "sha256": "1ae554c28d9bd67ad8708726b683c0e2d66965a81c68d62bb5732ab90984f099",
+   "url": "https://huggingface.co/datasets/astro-legacy-archive/wmap-band-maps-9yr/resolve/main/k-band-hdu-1.parquet"
+  }
+ },
+ "note": "Files fetched from the public internet for this campaign. The files themselves are NOT committed (see .gitignore); this manifest and the TopoDB dataset rows are the record. Every sha256 below was computed on the file as downloaded."
+}
