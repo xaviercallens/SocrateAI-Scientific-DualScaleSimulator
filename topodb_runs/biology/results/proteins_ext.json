@@ -2,9 +2,9 @@
  "block": "proteins_ext",
  "script": "topodb_runs/biology/run_proteins_ext.py",
  "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
- "git_commit": "c060fe9021f81f2388725a26d1a0ccba84e6027b",
- "wall_sec_total": 8.42,
- "peak_mb": 104.8,
+ "git_commit": "8ad3b9db769ab439b14d97aa4fa337addc4d0482",
+ "wall_sec_total": 4.73,
+ "peak_mb": 103.3,
  "datasets": [
   {
    "id": "biology/rcsb_1tit",
@@ -288,7 +288,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 96.7,
+   "peak_mb": 95.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -1644,8 +1644,8 @@
    "seed": "20260920",
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
-   "wall_sec": 0.01,
-   "peak_mb": 96.7,
+   "wall_sec": 0.0,
+   "peak_mb": 95.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -2630,7 +2630,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.0,
-   "peak_mb": 96.7,
+   "peak_mb": 95.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -3707,7 +3707,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 97.0,
+   "peak_mb": 95.7,
    "betti": {
     "0": 1,
     "1": 0,
@@ -5084,7 +5084,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 97.0,
+   "peak_mb": 95.8,
    "betti": {
     "0": 1,
     "1": 0,
@@ -6541,7 +6541,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 97.3,
+   "peak_mb": 96.0,
    "betti": {
     "0": 1,
     "1": 0,
@@ -7870,7 +7870,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 98.4,
+   "peak_mb": 97.0,
    "betti": {
     "0": 1,
     "1": 0,
@@ -10491,7 +10491,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 99.0,
+   "peak_mb": 97.7,
    "betti": {
     "0": 1,
     "1": 0,
@@ -13112,7 +13112,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 99.0,
+   "peak_mb": 97.7,
    "betti": {
     "0": 1,
     "1": 0,
@@ -14813,7 +14813,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.0,
-   "peak_mb": 99.0,
+   "peak_mb": 97.7,
    "betti": {
     "0": 1,
     "1": 0,
@@ -16125,8 +16125,8 @@
    "seed": "20260920",
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
-   "wall_sec": 0.02,
-   "peak_mb": 104.5,
+   "wall_sec": 0.03,
+   "peak_mb": 101.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -20458,8 +20458,8 @@
    "seed": "20260920",
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
-   "wall_sec": 0.03,
-   "peak_mb": 104.5,
+   "wall_sec": 0.05,
+   "peak_mb": 101.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -25644,7 +25644,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 104.5,
+   "peak_mb": 101.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -27981,7 +27981,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.02,
-   "peak_mb": 104.5,
+   "peak_mb": 101.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -32185,8 +32185,8 @@
    "seed": "20260920",
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
-   "wall_sec": 0.02,
-   "peak_mb": 104.5,
+   "wall_sec": 0.03,
+   "peak_mb": 102.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -38419,7 +38419,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 104.5,
+   "peak_mb": 102.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -41208,7 +41208,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.0,
-   "peak_mb": 104.5,
+   "peak_mb": 102.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -41689,7 +41689,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.01,
-   "peak_mb": 104.5,
+   "peak_mb": 102.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -43514,7 +43514,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": 0.03,
-   "peak_mb": 104.5,
+   "peak_mb": 102.5,
    "betti": {
     "0": 1,
     "1": 0,
@@ -50357,7 +50357,7 @@
    "script": "topodb_runs/biology/run_proteins_ext.py",
    "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_proteins_ext.py",
    "wall_sec": null,
-   "peak_mb": 104.8,
+   "peak_mb": 103.3,
    "betti": {},
    "expected_betti": null,
    "bars": {},
@@ -50370,6 +50370,15 @@
      "p_value": 0.0001,
      "p_method": "rank",
      "multiplicity": "post hoc; not corrected, and not pre-registered"
+    },
+    {
+     "name": "auc_unbanded_h1_bar_count_per_residue_extended",
+     "value": 0.9321,
+     "null_model": "10000 permutations of the same labels",
+     "n_null": 10000,
+     "p_value": 0.0001,
+     "p_method": "rank",
+     "multiplicity": "post hoc; reported to show whether the pre-registered 4.5 A band contributes anything over an unbanded bar count"
     },
     {
      "name": "auc_size_only_n_CA_extended",
@@ -50410,6 +50419,12 @@
      "description": "size-only confound control on the enlarged panel: AUC from n_CA alone",
      "passed": true,
      "detail": "topology AUC 0.932 vs size AUC 0.411"
+    },
+    {
+     "kind": "injection",
+     "description": "band-necessity control: the same test on the UNBANDED count of H1 bars per residue. If it matches the banded AUC, the pre-registered 4.5 A cut-off is doing no work and the statistic is simply 'H1 bars per residue'.",
+     "passed": true,
+     "detail": "banded AUC 0.932 vs unbanded 0.932 (p 0.0001); on the registered panel both were 1.000"
     },
     {
      "kind": "shuffle",

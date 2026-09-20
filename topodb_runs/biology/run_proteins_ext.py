@@ -177,12 +177,21 @@ def main() -> int:
 
     prim_vals = np.array([r["alpha"]["h1_small_bar_density"] for r in A + B])
     a_prim, p_prim, _ = perm_auc_p(prim_vals, labels)
+    # Does the pre-registered 4.5 A band do any work?  The same test on the UNBANDED
+    # count of H1 bars per residue answers that directly.  On the registered panel the
+    # two gave an identical AUC of 1.000, which says the band was decorative; this
+    # records the comparison on the enlarged panel too, so the honest reading of the
+    # primary statistic is in the database rather than only in a commit message.
+    unb_vals = np.array([r["alpha"]["h1_bar_count_per_residue"] for r in A + B])
+    a_unb, p_unb, _ = perm_auc_p(unb_vals, labels)
     size_vals = np.array([float(r["n"]) for r in A + B])
     a_size, p_size, _ = perm_auc_p(size_vals, labels)
     out["enlarged_panel"] = {
         "auc_h1_small_bar_density": round(a_prim, 4), "p_perm": round(p_prim, 5),
         "auc_size_only_n_CA": round(a_size, 4), "p_perm_size": round(p_size, 5),
         "beats_size_baseline": bool(abs(a_prim - 0.5) > abs(a_size - 0.5)),
+        "auc_unbanded_h1_bar_count_per_residue": round(a_unb, 4), "p_perm_unbanded": round(p_unb, 5),
+        "band_adds_nothing": bool(abs(a_unb - a_prim) < 0.02),
         "alpha_values": sorted(round(r["alpha"]["h1_small_bar_density"], 3) for r in A),
         "beta_values": sorted(round(r["alpha"]["h1_small_bar_density"], 3) for r in B)}
 
@@ -225,6 +234,11 @@ def main() -> int:
                     "null_model": f"{N_PERM} permutations of the all-alpha/all-beta labels",
                     "n_null": N_PERM, "p_value": round(p_prim, 5), "p_method": "rank",
                     "multiplicity": "post hoc; not corrected, and not pre-registered"},
+                   {"name": "auc_unbanded_h1_bar_count_per_residue_extended", "value": round(a_unb, 4),
+                    "null_model": f"{N_PERM} permutations of the same labels", "n_null": N_PERM,
+                    "p_value": round(p_unb, 5), "p_method": "rank",
+                    "multiplicity": "post hoc; reported to show whether the pre-registered 4.5 A "
+                                    "band contributes anything over an unbanded bar count"},
                    {"name": "auc_size_only_n_CA_extended", "value": round(a_size, 4),
                     "null_model": f"{N_PERM} permutations of the same labels", "n_null": N_PERM,
                     "p_value": round(p_size, 5), "p_method": "rank"},
@@ -245,6 +259,13 @@ def main() -> int:
                        "size-only confound control on the enlarged panel: AUC from n_CA alone",
                        "passed": out["enlarged_panel"]["beats_size_baseline"],
                        "detail": f"topology AUC {a_prim:.3f} vs size AUC {a_size:.3f}"},
+                      {"kind": "injection", "description":
+                       "band-necessity control: the same test on the UNBANDED count of H1 bars per "
+                       "residue. If it matches the banded AUC, the pre-registered 4.5 A cut-off is "
+                       "doing no work and the statistic is simply 'H1 bars per residue'.",
+                       "passed": bool(abs(a_unb - a_prim) < 0.02),
+                       "detail": f"banded AUC {a_prim:.3f} vs unbanded {a_unb:.3f} "
+                                 f"(p {p_unb:.4f}); on the registered panel both were 1.000"},
                       {"kind": "shuffle", "description":
                        "threshold-free control: the same association measured as a Spearman "
                        "correlation across all protein chains, so it does not depend on the "

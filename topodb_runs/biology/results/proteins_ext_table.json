@@ -889,6 +889,9 @@
    "auc_size_only_n_CA": 0.4107,
    "p_perm_size": 0.38396,
    "beats_size_baseline": true,
+   "auc_unbanded_h1_bar_count_per_residue": 0.9321,
+   "p_perm_unbanded": 0.0001,
+   "band_adds_nothing": true,
    "alpha_values": [
     1.83,
     1.871,
