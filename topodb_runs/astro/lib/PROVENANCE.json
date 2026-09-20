@@ -1,0 +1,19 @@
+{
+  "copied_on": "2026-09-20",
+  "why": "The task requires the FIXED TDA library for anything on a sphere or a field. audit/reverse_zero/E5-cmb-tda/cmb_tda.py is defective (D1 chi2 p-values not uniform, D2 complex built by filling every 3-clique -> hollow tetrahedra) and must NOT be imported.",
+  "source_repo": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdasimple",
+  "source_branch": "loop/tda-simple",
+  "source_commit": "d8175f1db4d395edf7151125a631c44009d500ca",
+  "source_dir": "audit/tda_validation/tda_fixed/",
+  "files": {
+    "stats.py": {
+      "sha256": "9ae09e5489a3d1d474c4d2be44d341a968b26d049e76a9b1e791021545af8a61",
+      "use": "coarse_stats_fixed / rank p-values; the chi2 branch is mildly anti-conservative (0.058 vs 0.05) so only the RANK p-value is used in topodb_runs/astro."
+    },
+    "cmb_topology.py": {
+      "sha256": "1f21825c75e560b98f7cc5546178aeb23db9cffb4b2ee29db44555f09dbc5a39",
+      "use": "build_topology_fixed / betti_curves_from_topology / complex_betti. Full-sky complex Betti is (1,0,1); this is checked as a known-answer control in step0_known_answers.py."
+    }
+  },
+  "modifications": "none - byte-identical copies, verified by sha256 above"
+}
