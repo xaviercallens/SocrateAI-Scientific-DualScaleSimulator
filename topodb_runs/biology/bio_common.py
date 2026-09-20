@@ -73,6 +73,24 @@ def rips_from_distance(dmat, max_hom_dim: int = 1, max_edge: float | None = None
     return _diagrams(st, max_hom_dim, coeff)
 
 
+def rips_collapsed_from_distance(dmat, max_hom_dim: int = 1, coeff: int = 2):
+    """Rips on a GIVEN metric, full (untruncated) matrix, via edge collapse.
+
+    Building the full 2-skeleton of a few hundred points is ~10^7 triangles; gudhi's
+    `collapse_edges()` on the 1-skeleton followed by `expansion(max_hom_dim + 1)`
+    computes the same persistent homology at a fraction of the cost.  This is the
+    route the earlier genetics validation used for its Rips cross-check.
+
+    Still Rips on the given metric: no embedding, so lesson (a) holds.
+    """
+    D = np.asarray(dmat, dtype=float)
+    rc = gudhi.RipsComplex(distance_matrix=D)
+    st = rc.create_simplex_tree(max_dimension=1)
+    st.collapse_edges()
+    st.expansion(max_hom_dim + 1)
+    return _diagrams(st, max_hom_dim, coeff)
+
+
 def alpha_from_points(points, max_hom_dim: int = 2, coeff: int = 2):
     """Alpha complex; filtration values are converted from squared to plain radii.
 
