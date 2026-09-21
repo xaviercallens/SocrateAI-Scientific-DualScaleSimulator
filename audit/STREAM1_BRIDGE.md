@@ -281,11 +281,13 @@ should expect different numbers from before 2026-09-21, and the old numbers shou
 ### S1-F9 — Other copies of the manuscript carried the same error; one is stale in general. *(fixed here; a re-sync decision is left to the user)*
 
 `τ = i` did not appear only in `papers/T-dulaity alone/T_duality_Alone.tex`. Grepping the tracked tree
-(excluding `.claude/worktrees/`, which is untracked scratch) found it in **three** further live files,
-all corrected to `τ = i/√12` on 2026-09-21:
+(excluding `.claude/worktrees/`, which is untracked scratch) found it in **ten** places across four live files, all corrected to `τ = i/√12` on
+2026-09-21. The first pass on the main manuscript caught only 2 of its 5 sites, so the grep was
+re-run across the whole tracked tree rather than one glob:
 
 | file | sites |
 |---|---|
+| `papers/T-dulaity alone/T_duality_Alone.tex` (3 sites missed by the first pass) | 3 |
 | `zenodo_bundle/T_duality_Alone.tex` (tracked) | 5 |
 | `papers/T-dulaity alone/submission/COVER_LETTER_SCIPOST.tex` | 1 |
 | `papers/T-dulaity alone/submission/COVER_LETTER_JHEP.tex` | 1 |
