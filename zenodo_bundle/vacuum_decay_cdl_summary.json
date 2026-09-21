@@ -1,16 +1,18 @@
 {
   "initial_flux": 5,
   "final_flux": 4,
-  "phi_true": 2.05,
+  "phi_true": 1.9253905296791056,
   "phi_false": 0.0,
-  "phi_initial_shot": 1.823975,
-  "v_true": -0.32249750000000055,
+  "phi_initial_shot": 1.633347411066308,
+  "v_true": -0.3645189696908122,
   "v_false": 1.3,
-  "delta_v": -1.6224975000000006,
-  "euclidean_bounce_action": 137.14781958669903,
+  "delta_v": -1.6645189696908123,
+  "euclidean_bounce_action": 57.0433339985048,
   "central_charge_false": 600,
   "central_charge_true": 500,
   "delta_c": -100,
   "c_theorem_satisfied": true,
-  "bubble_wall_radius": 2.82
+  "bubble_wall_radius": 2.38,
+  "convergence_achieved": true,
+  "final_boundary_error": 2.0667362302763466e-6
 }

@@ -219,6 +219,7 @@ def main():
         # corrects claims should ship the document that establishes them.
         BUNDLE_DIR / "STREAM1_BRIDGE.md",
         BUNDLE_DIR / "PRE_REGISTRATION.md",
+        BUNDLE_DIR / "TELEMETRY_PROVENANCE.json",
         WORKSPACE_DIR / "zenodo_deposit_bundle.zip"
     ]
 
