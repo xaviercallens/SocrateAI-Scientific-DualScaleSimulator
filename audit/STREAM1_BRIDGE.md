@@ -278,6 +278,24 @@ the trajectory the solver actually produces:
 Every point was being moved, by up to `3.175` in `y`. Anyone re-running the LeanFlow solver path
 should expect different numbers from before 2026-09-21, and the old numbers should not be trusted.
 
+### S1-F9 — Other copies of the manuscript carried the same error; one is stale in general. *(fixed here; a re-sync decision is left to the user)*
+
+`τ = i` did not appear only in `papers/T-dulaity alone/T_duality_Alone.tex`. Grepping the tracked tree
+(excluding `.claude/worktrees/`, which is untracked scratch) found it in **three** further live files,
+all corrected to `τ = i/√12` on 2026-09-21:
+
+| file | sites |
+|---|---|
+| `zenodo_bundle/T_duality_Alone.tex` (tracked) | 5 |
+| `papers/T-dulaity alone/submission/COVER_LETTER_SCIPOST.tex` | 1 |
+| `papers/T-dulaity alone/submission/COVER_LETTER_JHEP.tex` | 1 |
+
+**Left for the user, not done here.** `zenodo_bundle/T_duality_Alone.tex` is a **stale snapshot**: it
+differs from the corrected paper in more than this, and still carries `\min(y) = 0.289`, a number the
+tier-honesty pass withdrew as untraceable to any committed output (the cover letters already record
+that withdrawal). Only the factual `τ = i` error was corrected in it. Re-syncing the deposit bundle to
+the current manuscript is a deposit-scope decision and was not taken.
+
 ### S1-F5 — Convention now binding on any future `proofs/` work. *(no change needed today)*
 
 `Sym²` is **contravariant**. Any future Lean or Python code in this repository that composes a `Sym²`
