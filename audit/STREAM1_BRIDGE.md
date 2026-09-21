@@ -25,6 +25,34 @@ Caveats on the pins, stated because they matter:
 - LeanMaster went v3.42 → v3.43 → v3.44 on 2026-09-20 and **v3.44 amended a v3.43 claim**. Cite the SHA,
   never "at HEAD".
 
+
+### Re-pin 2026-09-21b — all three streams advanced the same day
+
+The pins in the table above are the ones the findings were **made against** and are left as written.
+Verified afterwards against the streams' new HEADs:
+
+| Project | pinned for the findings | HEAD at re-pin |
+|---|---|---|
+| Stream 1 — LeanProposal | `bb74acb` | `d440fe9f6332928fba128afc2090df1c32612149` |
+| LeanMaster | `ede49f0` (v3.44.0) | `73c47331acd16e3ca5b0d29791275ffe1a31c8c6` (v3.45.0-5-g73c4733) |
+| Stream 2 — K3-DarkMatter | (not used then) | `da84a9092dad7c7e904c335d2cd19c212d987fb3` |
+
+Stream 1 spent the day on renames, quarantining legacy physics into `Agora/Unverified/`, and
+mutation-testing its own gates ("my audit tool could not see 9% of the declarations it reported on";
+"one of them can never report green"). **Renames are a correctness risk to this repository**, because
+`tests/test_stream1_bridge.py` transcribes their theorems by name. Re-checked at their new HEAD: all
+**17** names this repository cites still resolve —
+
+`root_orthogonal_iff_selfdual`, `height_ge_two`, `height_fricke`, `height_eq_two_iff`,
+`rhoAL_fricke`, `rhoAL_isometry`, `rhoAL_det`, `rho_isometry`, `rho_mul`, `rho_det`,
+`rho_trace`, `sym2_contravariant`, `sym2_not_covariant`, `no_isometry_G0N_TN`,
+`G0N_det_ne_TN_det`, `s7_P2_eval`, `zOf_fricke`.
+
+So S1-F1…S1-F14 stand unchanged. LeanMaster's day is the same lesson from the other side — v3.45.0
+release gates, "a sorry does not fail the build", "read the exit code", and 39 "100% Certified" claims
+removed from docstrings — which is the same class of defect as this repository's **S1-F14**, where a
+gate reported success without running.
+
 ## Note on which "Stream 1"
 
 Two different things carry that name. LeanMaster's internal Stream 1 is its 2026-09-15
