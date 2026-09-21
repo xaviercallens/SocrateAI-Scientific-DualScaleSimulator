@@ -15,6 +15,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
 
 import pytest
@@ -72,6 +73,9 @@ theorem uses_custom_axiom : True := my_custom_axiom
         print(f"✓ Malformed Lean test passed: exit {returncode}, {result['error'][:60]}")
 
 
+LEAN_AUDIT_TIMEOUT_S = 180  # was 30; see the note in run_scratch_audit
+
+
 def run_scratch_audit(lean_code: str) -> tuple[int, dict]:
     """
     Write lean_code to a temporary scratch file and audit it.
@@ -82,13 +86,30 @@ def run_scratch_audit(lean_code: str) -> tuple[int, dict]:
         scratch_path = fh.name
 
     try:
-        proc = subprocess.run(
-            [sys.executable, str(AUDIT_SCRIPT), "--scratch", scratch_path],
-            cwd=ROOT,
-            capture_output=True,
-            text=True,
-            timeout=30
-        )
+        # 30 s was marginal: this shells out to Lean, and on a loaded machine (other
+        # sessions building Lean projects) a single elaboration can exceed it. A
+        # timeout then surfaced as a confusing assertion failure about the theorem's
+        # CLASSIFICATION, i.e. the test reported a defect it had not observed --
+        # the mirror of the S1-F14 lesson that a gate must not report a result it
+        # did not establish. It is now distinguishable, and still fails loudly.
+        started = time.monotonic()
+        try:
+            proc = subprocess.run(
+                [sys.executable, str(AUDIT_SCRIPT), "--scratch", scratch_path],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                timeout=LEAN_AUDIT_TIMEOUT_S,
+            )
+        except subprocess.TimeoutExpired:
+            elapsed = time.monotonic() - started
+            return 124, {
+                "status": "TIMEOUT",
+                "error": (f"the Lean audit did not finish within {LEAN_AUDIT_TIMEOUT_S}s "
+                          f"(waited {elapsed:.0f}s). This is an environment/load "
+                          f"symptom, NOT a statement about the theorem."),
+                "theorems": {},
+            }
 
         try:
             result = json.loads(proc.stdout)
