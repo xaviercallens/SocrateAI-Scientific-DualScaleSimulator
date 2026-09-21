@@ -121,3 +121,57 @@ Source: branch `loop/reverse-zero`, round 2 (registration `audit/reverse_zero_r2
 - Both defects are being repaired on branch `loop/tda-simple` with a regression suite that fails on the old code.
 
 **A9. Reorientation of the TDA search (no prediction is registered by this note).** Searches for smooth continuous defects (cosmic strings) returned nothing at N = 400, N = 25000 and on the CMB. Future TDA work will instead target **residual discrete angular anisotropy** matching the finite symmetry groups that Stream 8 singles out: the order-192 Kummer group `(Z_2)^4 |x A_4` (Frame shapes `1^24, 1^8 2^8, 1^6 3^6, 1^4 2^2 4^4`, verified at `VERIFIED_FOUNDATION.md:194`), the Hurwitz lattice `D_4` and its automorphism group of order 1152, and the attractive Kummer surface with `D = 12` at `tau = omega`. **This is an exploratory lens (tier X), not a prediction**: LeanMaster derives no CMB observable from any of it. Per A5, no threshold is registered here; any such test enters this file with its statistic, null, seeds and decision rule before its data are loaded.
+
+## Addendum 2026-09-21 (appended; A1-A9 and the original rules above unchanged)
+
+**A10. Stream 1 bridge — no prediction is registered by this addendum.** Per A5, nothing enters this
+file as a prediction without its statistic, null, seeds and decision rule stated before its data are
+loaded. A10 is bookkeeping: it records what the newest Lean 4 formalization in the programme licenses
+and forbids, so that a later session does not re-open a route that is already closed. Full evidence
+and reproduction commands: `audit/STREAM1_BRIDGE.md`.
+
+- **Pins.** "Stream 1" here is the repository `SocrateAI-DualScaleTopologicalUniverseModel-LeanProposal`
+  at commit `bb74acb56f386a97e433f94eb0b2632ed03bc4ca` (Zenodo concept 10.5281/zenodo.22853239),
+  **not** LeanMaster's internal 2026-09-15 Stream 1. LeanMaster is pinned at
+  `ede49f06800cde8177867c02bb08d44f7be275c5` (v3.44.0). LeanMaster released v3.42 → v3.43 → v3.44 in
+  one day and v3.44 amended a v3.43 claim, so these are cited by SHA and not "at HEAD".
+
+- **A10.1 The zero-parameter closure of A7 is sharpened, not reopened.** Dolgachev (1996) Thm 7.1 —
+  literature, quoted through Stream 1's `paper/sections/02-preliminaries.tex`, and **not**
+  kernel-proved there — states that the coarse moduli space of `M_n`-polarized K3 surfaces is the
+  Fricke modular curve `H/Γ₀(n)+`. A modular curve is one complex dimension. So the geometry does not
+  contain zero moduli to be derived: it contains **one**. A7 said `2 → 0` is not reachable; A10
+  records *why* on the mathematics side, and that **1** is the floor there. Tier L for the moduli
+  statement; Tier A for the lattice facts it rests on in Stream 1 (`root_orthogonal_iff_selfdual`,
+  `height_ge_two`/`height_fricke`/`height_eq_two_iff`, `rhoAL_isometry`, `rhoAL_det`).
+
+- **A10.2 Reading that modulus as a cosmological free parameter is Tier C and is NOT registered.**
+  Stream 1's README states program-wide: "No exact physical observable exists anywhere in this program
+  (F5b)"; "The Sym² relation supplies **no physical coupling**"; and the coincidence that one integer
+  matrix is both the Fricke involution and the Narain T-duality generator "is a fact about a lattice
+  isometry and **not** a physical identification". `mu_sym` still has no unit bridge in any harness
+  (A7). **Sym² is therefore closed as a route to parameter reduction**, and this line is written so
+  that a future session does not re-open it.
+
+- **A10.3 Corrections to previously reported material.** Two claims in `T_duality_Alone.tex` were
+  wrong and are withdrawn there with a dated note: (i) the Fricke point of this model is
+  `τ = i/√12` (level 12), not `τ = i` (level 1) — the implemented potential is stationary at the
+  former and not the latter; (ii) the `SL(2,ℤ)` fold was described as keeping trajectories in the
+  physical domain, but `S : τ ↦ −1/τ` is not a symmetry of the implemented potential
+  (`max |V(Sτ) − V(τ)| = 8.77`, against `6.7e-16` for `T`), so it moved reported trajectory points to
+  physically inequivalent points. The `S`-step is now off by default. **This changes solver output for
+  any trajectory that previously left the fundamental domain**; results computed with the old default
+  are affected and are not re-reported here.
+
+- **A10.4 A defect disclosed in paper-support code.** `papers/T-dulaity alone/t_duality_calculus.py`
+  printed "Symmetric square modular invariant verified for `L_3 = Sym^2 L_2`" conditioned on
+  `c_eff == 1701`, an arithmetic identity in the hard-coded `E_0 = −425/6` alone that could never
+  fail. Stream 1 proves the relation **with a prefactor**, `L₃ = P₂·Sym²(L₂)`, `P₂ = 1 − 26z − 27z²`,
+  so the printed form was also wrong as stated. Corrected. No source is recorded anywhere in this
+  repository for `E_0 = −425/6`; it is now marked unsourced.
+
+- **A10.5 Conventions now binding on future work** (no current occurrence in this repository, recorded
+  before one is written): `Sym²` is **contravariant**, `sym2(MM') = sym2(M')sym2(M)`, with Stream 1's
+  negative control `sym2_not_covariant`; and the two rank-3 lattices of signature (2,1) —
+  `⟨1⟩ + U(2N)` with `det = −4N²` and `U + ⟨2N⟩` with `det = −2N` — are **not isometric**
+  (`no_isometry_G0N_TN`) and must not be named interchangeably.
