@@ -138,3 +138,86 @@ Recorded so the next attempt has a bar to clear, **not** registered as a predict
    `FRICKE_Y` and nothing else observable, because the potential is a hand-built well — so **no
    observable currently depends on the level at all**, and no level can be falsified. Fixing that is
    prior to arguing for any particular `N`.
+
+---
+
+## 7. Addendum 2026-09-21b — reconciled with Stream 2's independent register
+
+Stream 2 (`SocrateAI-Scientific-Agora-K3-DarkMatter`, commit `da84a90`) published
+`briefs/THOUGHT_EXPERIMENTS_K3_SELECTION_2026_09_21.md`, a GE-7…GE-15 register asking the same
+question — "which K3?", seen from the modular curve. Read as a source; nothing of theirs was rebuilt.
+
+### 7.1 They reached the same negative conclusion by a different route
+
+Their **GE-8** (*"la poussière d'étoiles"*) shows that **`ρ = 20` alone selects nothing**: CM points are
+dense on the modular curve, so requiring maximal Picard number cuts out no piece of it. What makes any
+list finite is a **bound on `|D|`** — and that bound, not the cut, does the work.
+
+This is the same shape as §4 of this note: my genus-0 criterion excludes most levels and separates
+neither 7 nor 12, so it is a negative control. **Two independent criteria, from two streams, each
+selects nothing.** Their commit message states it plainly: *"nothing selects, nothing executed."*
+
+Their **GE-9** is worth recording against a temptation: the three singular points of the `s₇` operator
+are `ρ = 20` points (`D = −28, −7, −3`), which looks like a discovery and **is forced** — a fixed point
+of a finite-order integer matrix satisfies an integer quadratic equation, hence is automatically CM.
+Consistent with Stream 1's `s7_singular_points_are_selfdual`. One of their three was *not* predicted by
+the prior hand estimate, and they record that clause as **REFUTED** rather than quietly absorbing it.
+
+### 7.2 What this repository can contribute: nobody had run the criterion at level 12
+
+Their certificate `data/certificates/A2_MEMBERSHIP.json` (checker `f091e43`) gives the exact occurrence
+criterion, **Tier E** on their side:
+
+> `D` occurs in the level-`n` family **iff** `D` is a square modulo `4n`.
+
+They computed the `n = 7` and `n = 10` columns. **This repository is at `n = 12`** (§1), and that column
+did not exist. `scripts/level_membership.py` transcribes their criterion and applies it;
+`--self-test` **reproduces both of their columns for all 39 discriminants in their certificate**, so
+the transcription is validated against their own data before being extended.
+
+```
+  level n= 7: 27 of 50 discriminants |D| <= 100
+  level n=10: 22 of 50
+  level n=12: 16 of 50            <- this repository; the most restrictive of the three
+
+  Stream 8's two "most attractive" K3s (the self-dual torus points):
+    tau = omega (D = -3): n7=True   n10=False  n12=False
+    tau = i     (D = -4): n7=False  n10=True   n12=False
+```
+
+### 7.3 The finding: level 12 excludes the programme's own leading candidate
+
+LeanMaster Stream 8's **E2** proposes, as its *candidate answer* to "which K3":
+
+> **E2 — "The self-dual points are the most attractive K3s."** … Their forms `(1,0,1)`, `(1,1,1)` are
+> the two most attractive K3s, `D = 4, 3` … *Candidate answer:* the dual-scale K3 is the attractive K3
+> over the self-dual torus.
+
+**At level 12, neither `D = −3` nor `D = −4` is admitted.** So the level this repository is implicitly
+committed to **contains neither of the two surfaces that Stream 8's candidate answer names.** Level 7
+admits `D = −3` and level 10 admits `D = −4`; level 12 admits neither.
+
+What this does and does not mean:
+
+- It **does not** falsify anything physical. Nothing here is a physical claim, and Stream 2 records that
+  the `ρ = 20` cut is not adopted by the programme at all.
+- It **is** a concrete internal inconsistency: the constant in this repository's code and the candidate
+  answer in the programme's own Stream 8 cannot both be right. One of the two must give.
+- Given §1 — level 12 is **fitted**, arrived at through a hard-coded constant in a potential with no
+  modular symmetry, while `D = 3, 4` at least come from an argument — **the constant is the weaker of
+  the two and should be the one that moves.**
+
+This does not make level 7 or 10 right either. It removes 12 from contention on the programme's own
+terms, and it is the first statement in this repository about the level that could have come out
+otherwise.
+
+### 7.4 Recorded, not registered
+
+Per A5 no prediction is registered. Tiers: the criterion is Stream 2's Tier E, transcribed and
+validated here; "level 12 admits neither `D = −3` nor `D = −4`" is Tier A about the arithmetic;
+E2 is Stream 8's own **Tier C** candidate, not a theorem; and any reading of any of this as a statement
+about our universe remains Tier C and forbidden by Stream 1's program-wide note.
+
+**Open question handed back, not answered here:** Stream 2's GE-8 asks *who bounds `|D|`?* and routes it
+to their GE-13. This repository has nothing to offer on that until spec item L5 gives the level an
+observable consequence at all (`specs/LEANFLOW_ARCHITECTURE.md`).
