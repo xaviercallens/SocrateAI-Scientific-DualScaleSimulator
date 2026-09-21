@@ -33,10 +33,20 @@ pub const ORBIFOLD_Y: f64 = {y_o_float}_f64;
 pub const ATTRACTOR_TOLERANCE: f64 = 1e-3;
 """
 
+    out_dir = os.path.dirname(os.path.abspath(output_rs_file))
+    if not os.path.isdir(out_dir):
+        print(f"[!] SKIPPED: target directory {out_dir} does not exist, so no config.rs "
+              f"was written. Nothing in this repository consumes it (see "
+              f"audit/STREAM1_BRIDGE.md S1-F13). Set LEANFLOW_CONFIG_RS_OUT to an "
+              f"existing path to generate it.")
+        return None
+
     with open(output_rs_file, 'w') as f:
         f.write(config_content)
-        
-    print(f"Generated {output_rs_file} with exact certified bounds.")
+
+    print(f"Generated {output_rs_file}. NOTE: this file is not read by rust_simulator/; "
+          f"the constants are consumed only by the Python layer.")
+    return output_rs_file
     
 def validate_output(csv_file):
     # 4. Epistemic Bounding - Output Validator
@@ -138,5 +148,13 @@ if __name__ == "__main__":
     else:
         generate_config_rs(
             axioms_file="axioms.json",
-            output_rs_file="../rusty-SUNDIALS/examples/config.rs"
+            # NOTE (audit/STREAM1_BRIDGE.md S1-F13): this default points OUTSIDE the
+            # repository at a sibling project that does not exist here, so the
+            # "exact certified bounds" this bridge generates were written nowhere and
+            # consumed by nothing. rust_simulator/ contains no config.rs and no
+            # reference to FRICKE_Y; the constant is used only by the Python layer.
+            # Kept as the documented intent, but the caller must now pass an explicit
+            # path and the script reports plainly when the target is absent.
+            output_rs_file=os.environ.get(
+                "LEANFLOW_CONFIG_RS_OUT", "../rusty-SUNDIALS/examples/config.rs")
         )

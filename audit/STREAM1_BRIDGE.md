@@ -371,6 +371,28 @@ assertion is a statement about a named configuration.
 present at `grid_size=32, t_max=15` (5 of 197 nodes) and at the Rust defaults `48/25` (5 of 215), and
 **absent** at `t_max=10`. Full suite: 136 passed, 2 skipped, run twice.
 
+### S1-F13 — Remaining implementation claims swept before the deposit. *(3 manuscript corrections + 1 script fix)*
+
+Prompted by S1-F10: if one architecture paragraph described a system that does not exist, its
+neighbours were worth checking too. The tier-honesty pass had already hedged most of them
+("is designed to", "intended design", "pending hardware verification", "not bundled with this
+codebase and was not used for any result reported here"). Four things it had missed:
+
+| Site | Claim | Finding |
+|---|---|---|
+| Contributions list, item (i) | "embeds … **directly into the adaptive Backward Differentiation Formula (BDF) integrator**" | **No BDF integrator is used for any result.** The BDF suite is `rusty-SUNDIALS`, which §`sec:leanflow` itself records as not bundled and not used; the actual solver is SciPy Radau. It also contradicts S1-F2: the projections are applied *after* integration, and the `SL(2,ℤ)` fold is not a symmetry of the potential. Corrected in place |
+| Contributions list, item (vi) | "**Operating on** serverless spot GPU and TPU infrastructure…" | Asserted in the present tense, while the body (fig. caption) says no timing harness or execution log for it exists. Changed to an explicit design target |
+| Comparison table header | "LeanFlow (**Rust/FFI**, Ours)" | **There is no FFI.** `extern "C"`, `#[no_mangle]`, `ctypes`, `cffi`, `pyo3`, `libc::` return no match anywhere. The Rust crate is driven by `subprocess.run` on a built binary. Header changed to "SciPy + Rust subprocess" |
+| `scripts/exact_math_middleware.py` | "Generated … with exact certified bounds", the "Lean 4 Consilience Bridge" | Its default output path is `../rusty-SUNDIALS/examples/config.rs` — **outside the repository, at a sibling project that does not exist**. So the generated constants were written nowhere and consumed by nothing: `rust_simulator/` contains no `config.rs` and no reference to `FRICKE_Y`. The script now skips with a plain message instead of failing silently, honours `LEANFLOW_CONFIG_RS_OUT`, and states that `rust_simulator/` does not read the file |
+
+Checked and found already honest: the Lyapunov paragraph ("No Lyapunov-exponent computation, log, or
+output file for this trajectory exists in this repository"), the solver-telemetry figure caption
+("pending hardware verification", "not backed by an execution log"), and the `rusty-SUNDIALS` scope
+sentence in §`sec:leanflow`.
+
+Also noted, no manuscript claim attached: `rayon` is declared in `rust_simulator/Cargo.toml` but
+**never used** — no `par_iter`, no `rayon::` anywhere in the crate.
+
 ### S1-F5 — Convention now binding on any future `proofs/` work. *(no change needed today)*
 
 `Sym²` is **contravariant**. Any future Lean or Python code in this repository that composes a `Sym²`
