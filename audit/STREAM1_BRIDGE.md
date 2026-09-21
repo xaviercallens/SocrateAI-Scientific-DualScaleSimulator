@@ -299,6 +299,24 @@ committed output (the cover letters already recorded that withdrawal; this copy 
 `.tex` and `.pdf` have now been **re-synced from `papers/T-dulaity alone/`** and are byte-identical to
 the corrected manuscript. **No Zenodo deposit was made** — that remains a separate decision.
 
+### S1-F10 — The "Dual-Tier Execution Architecture" paragraph did not match the code. *(defect, manuscript; the last open item from the recovery notes)*
+
+This paragraph (`T_duality_Alone.tex` §"Dual-Tier Execution Architecture") had been flagged as
+unverified since 2026-09-18. Audited 2026-09-21 against the code; four of its claims are false and are
+now withdrawn in a dated note in the manuscript.
+
+| Claim in the paragraph | What the repository contains |
+|---|---|
+| "compiled ahead-of-time into Rust contract assertions" in the inner loop | **None.** All **41** `assert` statements in `rust_simulator/src/` are inside `#[cfg(test)]` modules — measured 0 before the test module in each of the five files — so they are unit tests, compiled out of release builds |
+| "SIMD-vectorized boundary guards" | **Absent.** `simd`, `std::simd`, `packed_simd`, `#[repr(simd)]` return no match anywhere in `rust_simulator/src/` |
+| `τ_im > 0` and `w(t) ≥ −1` enforced "during implicit time-stepping" in Rust | Implemented in **Python** (`leanflow/core/projections.py`) and applied to the solution array **after** integration. Defective in three ways: S1-F2, S1-F3, S1-F8 |
+| "non-blocking Unix domain socket IPC / C-FFI using structured JSON-RPC payloads" | `leanflow/bridge/lean_ipc.py` makes a **blocking** `subprocess.run` CLI call with a 15 s timeout. No socket, no C-FFI, no JSON-RPC anywhere in the repository |
+
+Also recorded: the Rust crate is not an inner loop of the Python solver at all — `workshopcosmo.py`
+invokes a built binary through `subprocess.run` as a separate batch process. The paragraph's own
+closing sentence already conceded that the socket-IPC gate "has not been exercised end-to-end in this
+repository"; the corrections above go further, because the mechanism described does not exist.
+
 ### S1-F5 — Convention now binding on any future `proofs/` work. *(no change needed today)*
 
 `Sym²` is **contravariant**. Any future Lean or Python code in this repository that composes a `Sym²`
