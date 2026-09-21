@@ -48,7 +48,6 @@ records that this repository's N = 12 is fitted, not forced.
 
 from __future__ import annotations
 
-import math
 from typing import Tuple
 
 import mpmath
@@ -83,12 +82,9 @@ def gamma0_plus_invariant(tau: complex, N: int, dps: int = 25) -> mpmath.mpc:
         return _J_NORM * (mpmath.kleinj(t) + mpmath.kleinj(N * t))
 
 
-def self_dual_tau(N: int) -> complex:
-    """The level-N self-dual point ``tau = i/sqrt(N)``, fixed by ``W_N``.
-
-    Stream 1 `root_orthogonal_iff_selfdual`: the self-dual locus is `N tau^2 = -1`.
-    """
-    return complex(0.0, 1.0 / math.sqrt(N))
+# Re-exported, NOT redefined: a second copy of this definition would drift from the
+# one the Gamma_0(N)+ tests pin to Stream 1's `root_orthogonal_iff_selfdual`.
+from leanflow.core.gamma0n_plus import self_dual_tau  # noqa: E402,F401
 
 
 def modular_potential(tau: complex, N: int = 12, mode: str = "ratio",

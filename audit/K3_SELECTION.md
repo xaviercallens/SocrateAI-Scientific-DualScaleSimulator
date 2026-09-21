@@ -141,10 +141,23 @@ Recorded so the next attempt has a bar to clear, **not** registered as a predict
 
    **Update 2026-09-21: the obstruction is now liftable, though not yet lifted.**
    `leanflow/core/modular_potential.py` (spec item L1) is a genuinely `Γ₀(N)⁺`-invariant potential
-   built from `F_N(τ) = j(τ) + j(Nτ)`, and it *does* read the level. Measured over 14 random points of
-   the domain, `mode="log"`: mean `|V₇ − V₁₂| = 0.068`, max `0.099`, and **no probe where the
-   dependence vanishes**. The potential currently integrated gives exactly `0.0` by construction,
-   since it takes no level argument.
+   built from `F_N(τ) = j(τ) + j(Nτ)`, and it *does* read the level. The potential currently
+   integrated cannot: `compute_potential` has no level parameter at all, so `N` reaches it only
+   through a module constant.
+
+   **How much of that dependence is real, measured rather than assumed.** Over 14 random domain
+   points:
+
+   | | mean `\|V₇ − V₁₂\|` at the same `τ` | after rescaling so `12·Im τ' = 7·Im τ` |
+   |---|---|---|
+   | `mode="log"` | `0.068` | `0.016` — **76% removed** |
+   | `mode="ratio"` | `0.043` | `0.041` — essentially unchanged |
+
+   In `log` mode `V` is dominated by `j(Nτ) ~ e^{2πNy}`, so it is close to a function of the product
+   `N·y`: **most of its apparent level-dependence is a stretched imaginary axis, not structure.**
+   About a quarter survives. In `ratio` mode the rescaling removes almost nothing, so that dependence
+   *is* structural — it sits in where the wells are and what shape they have. Read the `log` number as
+   the weaker of the two.
 
    So the level can now in principle have consequences. It does not yet, because the modular potential
    is **opt-in and not adopted** — adopting it would change every reported trajectory, a decision

@@ -100,7 +100,9 @@ and any function of it is too. Verified to `~1e-30` at 30 digits, with a negativ
   to `1.0` at `τ=i`, `0.3+0.9i` and `0.1+5i` alike. Hence the two modes.
 - `mode="ratio"` has a clean minimum — measured `V ~ r²` with fitted slope **2.000 over four decades**
   and gradient `(0, −5e-9)` — but saturates to `1` away from the well, so the plateau is near
-  forceless. `mode="log"` spreads over the domain (`0 → 0.97`) but its minimum is **needle-like**:
+  forceless. **Consequence for L2/L3, if adoption ever happens:** a trajectory started outside the
+  basin feels essentially no force, so `ratio` cannot be the dynamical default on its own; it needs a
+  long-range term, or `log` for the outer region. `mode="log"` spreads over the domain (`0 → 0.97`) but its minimum is **needle-like**:
   quadratic only for `r ≲ 1e-7`.
 - **The invariance is exact but not usable at float64.** `F_N` reaches `1e55` on this domain, so
   computing the transformed point in double precision costs ~13 digits: the same check reads `1e-30`
@@ -162,11 +164,14 @@ constant alone.
 its numerical tolerance, and the difference survives a seed change. Until then, no level-selection
 claim may be made in any manuscript — and `audit/K3_SELECTION.md` records level 12 as *fitted*.
 
-**Status.** The *precondition* is met: with L1's potential the level moves the landscape everywhere —
-mean `|V₇ − V₁₂| = 0.068`, max `0.099` over 14 random domain points, with no probe where it vanishes,
-against exactly `0.0` for the potential currently integrated, which takes no level argument
-(`test_level_changes_the_landscape_unlike_the_old_potential`). **The criterion itself is NOT met**,
-because it asks for two *runs*, and that needs the adoption decision in L1. The claim stays closed.
+**Status.** The *precondition* is met: with L1's potential the level moves the landscape, against
+exactly nothing for the potential currently integrated, which has no level parameter at all
+(`test_level_changes_the_landscape_unlike_the_old_potential`). How much is real was measured, not
+assumed: in `mode="log"` the mean `|V₇ − V₁₂| = 0.068` drops to `0.016` once `τ` is rescaled so that
+`12·Im τ' = 7·Im τ`, so **≈76% of it is a stretched axis** — `V` there is close to a function of `N·y`.
+In `mode="ratio"` the same rescaling changes almost nothing (`0.043 → 0.041`), so that dependence is
+structural. **The criterion itself is NOT met**, because it asks for two *runs*, and that needs the
+adoption decision in L1. The claim stays closed.
 
 ### L6 — Retire or implement the performance story
 

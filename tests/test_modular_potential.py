@@ -205,15 +205,34 @@ def test_level_changes_the_landscape_unlike_the_old_potential():
     rng = random.Random(11)
     pts = [complex(rng.uniform(-0.5, 0.5), 10 ** rng.uniform(-0.5, 0.5)) for _ in range(8)]
 
-    # Old: identical, because compute_potential takes no level argument.
-    old = [wc.compute_potential(t.real, t.imag)[0] for t in pts]
-    assert old == [wc.compute_potential(t.real, t.imag)[0] for t in pts]
+    # Old: it cannot depend on the level, because it has no level parameter.
+    # (Asserting that two calls agree would only test determinism.)
+    import inspect
+    params = inspect.signature(wc.compute_potential).parameters
+    assert "N" not in params and "level" not in params, \
+        f"compute_potential grew a level argument: {list(params)}"
 
     # New: the level moves the landscape at every probe.
     devs = [abs(modular_potential(t, 7, mode="log") - modular_potential(t, 12, mode="log"))
             for t in pts]
     assert min(devs) > 1e-3, f"level dependence vanished somewhere: min={min(devs)}"
     assert sum(devs) / len(devs) > 0.01
+
+    # MOST OF THAT IS A REPARAMETRIZATION, not structure. In log mode V is
+    # essentially a function of N*Im(tau); rescaling so that 12*Im(tau') = 7*Im(tau)
+    # removes ~76% of the apparent difference. Recorded so the number in
+    # audit/K3_SELECTION.md 6.3 is not read as stronger than it is.
+    resc = [abs(modular_potential(t, 7, mode="log")
+                - modular_potential(complex(t.real, t.imag * 7 / 12), 12, mode="log"))
+            for t in pts]
+    assert sum(resc) / len(resc) < 0.5 * sum(devs) / len(devs)
+
+    # Ratio mode is different: the rescaling does NOT remove its level dependence,
+    # so that one is genuine structure rather than a stretched axis.
+    d_r = [abs(modular_potential(t, 7) - modular_potential(t, 12)) for t in pts]
+    r_r = [abs(modular_potential(t, 7)
+               - modular_potential(complex(t.real, t.imag * 7 / 12), 12)) for t in pts]
+    assert sum(r_r) / len(r_r) > 0.8 * sum(d_r) / len(d_r)
 
     # ... and the wells sit at different places, as they must.
     assert abs(self_dual_tau(7) - self_dual_tau(12)) > 0.08
