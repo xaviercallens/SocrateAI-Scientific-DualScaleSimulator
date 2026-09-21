@@ -30,9 +30,17 @@ def metric_positivity_projection(
     min_y: float = FRICKE_Y
 ) -> Union[np.ndarray, "torch.Tensor"]:
     """
-    Orthogonal projection enforcing Poincaré target-space metric positivity:
-    tau_im = y >= min_y > 0.
-    Precludes coordinate runaways and division-by-zero singularities.
+    Clamps tau_im = y to y >= min_y.
+
+    NOTE (``audit/STREAM1_BRIDGE.md`` S1-F3): the DEFAULT ``min_y = FRICKE_Y``
+    = 1/sqrt(12) is not a positivity guard. It is the level-12 self-dual point
+    (Stream 1 ``root_orthogonal_iff_selfdual``: N tau^2 = -1 at N = 12), so the
+    default imposes a modelling choice, not just ``y > 0``. Pass an explicit
+    ``min_y`` (e.g. 1e-6) if only positivity is wanted.
+
+    A clamp is also not the involution: a trajectory crossing the self-dual point
+    would be mapped by tau -> -1/(N tau), which preserves the dual-scale height
+    (Stream 1 ``height_fricke``), whereas pinning discards the momentum.
     """
     if TORCH_AVAILABLE and isinstance(state, torch.Tensor):
         projected = state.clone()
@@ -56,12 +64,31 @@ def metric_positivity_projection(
 def modular_domain_fold(
     x: float,
     y: float,
-    max_folds: int = 20
+    max_folds: int = 20,
+    apply_S: bool = False,
 ) -> Tuple[float, float, int]:
     """
-    Folds the modulus tau = x + i y back into the fundamental modular domain:
-    F = { tau in H : |tau| >= 1, |Re(tau)| <= 1/2 }
-    using SL(2, Z) generators T: tau -> tau +/- 1 and S: tau -> -1/tau.
+    Folds the modulus tau = x + i y using SL(2, Z) generators.
+
+    T: tau -> tau +/- 1  is always applied: it IS a symmetry of this repository's
+    ``workshopcosmo.compute_potential``, verified to 6.7e-16.
+
+    S: tau -> -1/tau  is applied ONLY if ``apply_S=True``, and defaults to OFF.
+    See ``audit/STREAM1_BRIDGE.md`` finding S1-F2. Two measured reasons:
+
+    * ``V`` is NOT S-invariant: max |V(S tau) - V(tau)| = 8.77 over the domain.
+      Folding by S therefore moves a trajectory point to a physically
+      INEQUIVALENT point of the potential -- it corrupts, it does not symmetrise.
+      (It is not Fricke-invariant either: 35.8. No fold beyond T is licensed.)
+    * This model's own Fricke saddle is tau = i/sqrt(12), the level-12 self-dual
+      point (Stream 1 ``root_orthogonal_iff_selfdual``: N tau^2 = -1). Since
+      |i/sqrt(12)| = 0.2887 < 1 it lies outside F, and S maps it to i*sqrt(12).
+      The relevant involution at level N is the FRICKE involution
+      tau -> -1/(N tau) (``leanflow.core.gamma0n_plus.fricke_involution``), not S.
+
+    Use ``leanflow.core.gamma0n_plus.is_invariant_under`` to check invariance
+    before enabling a fold for any new potential.
+
     Returns (x_folded, y_folded, fold_count).
     """
     folds = 0
@@ -75,6 +102,9 @@ def modular_domain_fold(
             x -= shift
             folds += abs(shift)
 
+        if not apply_S:
+            break
+
         # 2. S-transformation: If |tau| < 1, invert tau -> -1/tau
         norm_sq = x * x + y * y
         if norm_sq < 1.0 - 1e-9:
@@ -86,9 +116,11 @@ def modular_domain_fold(
             # Inside fundamental domain F
             break
 
-    # Final real part clamp
+    # Final real part clamp. NOTE: the former `y = max(FRICKE_Y, y)` here was
+    # unreachable dead code (finding S1-F3): after a successful S-fold y >= sqrt(3)/2
+    # = 0.8660 > FRICKE_Y = 0.2887, measured 0 binds in 200000 draws. Removed rather
+    # than left to imply a floor that never applied.
     x = max(-0.5, min(0.5, x))
-    y = max(FRICKE_Y, y)
     return float(x), float(y), folds
 
 

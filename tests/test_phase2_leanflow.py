@@ -81,15 +81,34 @@ class TestStringDatasets:
 
 
 class TestCoreProjectionsAndDSL:
-    def test_modular_domain_fold(self):
+    def test_modular_domain_fold_S_step_is_opt_in(self):
+        """The S-step now requires apply_S=True (audit/STREAM1_BRIDGE.md S1-F2).
+
+        S is not a symmetry of this repository's potential, so folding by it moved
+        trajectory points to physically inequivalent points. T is a symmetry and is
+        still always applied.
+        """
         # Test point outside fundamental domain: tau = 0.2 + 0.4i (|tau|^2 = 0.2 < 1)
         x_in, y_in = 0.2, 0.4
-        x_out, y_out, folds = modular_domain_fold(x_in, y_in)
+
+        # Default: T only, so this point is left alone.
+        x_def, y_def, folds_def = modular_domain_fold(x_in, y_in)
+        assert folds_def == 0
+        assert (x_def, y_def) == (x_in, y_in)
+
+        # Opt in to the full SL(2, Z) fold: lands in F = {|x| <= 1/2, |tau| >= 1}.
+        x_out, y_out, folds = modular_domain_fold(x_in, y_in, apply_S=True)
         assert folds > 0
-        # In fundamental domain: |x| <= 0.5, |tau| >= 1.0 - 1e-6, y >= Fricke
         assert abs(x_out) <= 0.5001
         assert (x_out**2 + y_out**2) >= 0.999
         assert y_out >= FRICKE_Y
+
+    def test_modular_domain_fold_T_step_always_applies(self):
+        """T: tau -> tau +/- 1 is a genuine symmetry of the potential and stays on."""
+        x_out, y_out, folds = modular_domain_fold(3.2, 1.5)
+        assert folds == 3
+        assert abs(x_out - 0.2) < 1e-12
+        assert y_out == 1.5
 
     def test_weak_energy_condition_lock(self):
         # Violating WEC: rho = 1.0, p = -2.0 (rho + p = -1.0 < 0, w = -2.0)

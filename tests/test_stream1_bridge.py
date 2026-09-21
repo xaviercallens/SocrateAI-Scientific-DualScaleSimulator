@@ -249,7 +249,14 @@ def test_sl2z_fold_moves_the_repo_own_fricke_saddle():
     from leanflow.core.projections import modular_domain_fold
     from workshopcosmo import FRICKE_Y
 
-    x_f, y_f, folds = modular_domain_fold(0.0, FRICKE_Y)
+    # With the S-step enabled -- the behaviour before the S1-F2 fix, kept as the
+    # regression guard for why it is now opt-in.
+    x_f, y_f, folds = modular_domain_fold(0.0, FRICKE_Y, apply_S=True)
     assert folds >= 1
     assert abs(y_f - math.sqrt(N_REPO)) < 1e-9          # -> i*sqrt(12), not fixed
     assert abs(y_f - FRICKE_Y) > 1.0
+
+    # Default is now T-only, which leaves the saddle where it is.
+    x_d, y_d, folds_d = modular_domain_fold(0.0, FRICKE_Y)
+    assert folds_d == 0
+    assert abs(y_d - FRICKE_Y) < 1e-15

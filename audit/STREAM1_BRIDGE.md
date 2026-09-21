@@ -275,6 +275,109 @@ taken**: deleting them or moving them to a scratch directory is the user's decis
   **not independent corroboration**: Stream 1 obtains it by invoking LeanMaster's theorem directly.
 - No threshold, statistic or decision rule is registered by this note (`PRE_REGISTRATION.md` A5).
 
+## Part 6 — Dolgachev Thm 7.1: one degree of freedom, and an exact integer Fricke isometry
+
+Added 2026-09-21, prompted by the user. Both halves check out; the tiers differ and that matters.
+
+### 6.1 The Fricke involution is an exact integer matrix isometry — kernel-proved, Tier A
+
+`Agora/Geometry/ModularAction.lean` at `bb74acb`, verbatim:
+
+```lean
+/-- `ρ(W)` for the Atkin–Lehner element `W = [[Na, b], [Nc, Nd]]/√N`. The `√N`
+    cancels in the symmetric square, so this is again an INTEGER matrix — which
+    is why Atkin–Lehner involutions are lattice isometries at all. -/
+def rhoAL (N a b c d : K) : Matrix (Fin 3) (Fin 3) K :=
+  !![N * d ^ 2, -(c ^ 2), 2 * N * c * d;
+     -(b ^ 2), N * a ^ 2, -(2 * N * a * b);
+     b * d, -(a * c), N * a * d + b * c]
+
+theorem rhoAL_isometry (N a b c d : K) (h : (N * a * d - b * c) ^ 2 = 1) :
+    (rhoAL N a b c d)ᵀ * TNR N * rhoAL N a b c d = TNR N
+
+theorem rhoAL_fricke (N : K) : rhoAL N 0 (-1) 1 0 = !![0, -1, 0; -1, 0, 0; 0, 0, -1]
+
+theorem rhoAL_fricke_eq_neg_swap (N : ℤ) : rhoAL N 0 (-1) 1 0 = -swap
+
+/-- The Atkin–Lehner elements are also determinant-cubes, hence also land in
+    `SO(2,1)` when `Nad − bc = 1`. So the WHOLE of `Γ₀(N)⁺`, Fricke included,
+    acts by orientation-preserving isometries of `U ⊕ ⟨2N⟩`. -/
+theorem rhoAL_det (N a b c d : K) : (rhoAL N a b c d).det = (N * a * d - b * c) ^ 3
+```
+
+The Fricke matrix `!![0,-1,0; -1,0,0; 0,0,-1]` carries **no `N` and no `√N`** — the `√N` of the
+Atkin–Lehner element cancels in the symmetric square. So the involution is an exact integer isometry
+of `U ⊕ ⟨2N⟩` **for every level `N` at once**, of determinant `+1`. Verified here for
+`N ∈ {1, 2, 7, 12, 49}` (`tests/test_stream1_bridge.py`): `FᵀT_N F = T_N`, `F² = I`, `det F = 1`.
+
+On the period line it is the Möbius map `τ ↦ −1/(Nτ)` (`rhoAL_mulVec_period_field` at
+`(0,−1,1,0)`), which fixes `τ = i/√N` — the self-dual point of `root_orthogonal_iff_selfdual`. At
+`N = 12` that is exactly this repository's `FRICKE_Y`.
+
+### 6.2 `X₀(N)⁺` — one degree of freedom. **Literature (Tier L), not kernel-proved**
+
+From Stream 1's `paper/sections/02-preliminaries.tex`, verbatim:
+
+> for the rank-19 lattices `M_n = U ⊕ E₈² ⊕ ⟨−2n⟩`, Dolgachev computes
+> `(M_n)^⊥ = U ⊕ ⟨2n⟩` (\cite{Dolgachev1996}, §7) and proves that the coarse moduli space of
+> `M_n`-polarized K3 surfaces is the Fricke modular curve `H/Γ₀(n)+` (\cite{Dolgachev1996}, Thm 7.1).
+
+A modular **curve** is one complex dimension. So the moduli space of `M_n`-polarized K3 surfaces
+carries **exactly one modulus** — the degree of freedom that survives after the rank-19 polarization
+is fixed and the Fricke involution is quotiented out. That is the "one degree of freedom `X₀(N)⁺`".
+
+**Tier discipline, stated because it is easy to lose.** Stream 1 labels the surrounding statement
+explicitly, `ModularAction.lean:47`:
+
+> NO physics. That `Γ₀(N)⁺ ≅ O⁺(U⊕⟨2N⟩)/±1` is Dolgachev's theorem (literature, not proved here):
+> we prove the inclusion `⊇` constructively, which is the direction the applications need.
+
+So:
+
+| Claim | Tier | Status |
+|---|---|---|
+| Fricke = exact integer matrix isometry of `U ⊕ ⟨2N⟩`, `det = +1`, all `N` | **A** | kernel-proved, 0 sorry, re-verified here |
+| self-dual locus is `Nτ² = −1`, height `≥ 2` with equality exactly there | **A** | kernel-proved, re-verified here |
+| `Γ₀(N)⁺ ≅ O⁺(U⊕⟨2N⟩)/±1`; moduli space is `H/Γ₀(N)⁺` (Dolgachev Thm 7.1) | **L** | literature; Stream 1 proves only `⊇` |
+| the Hauptmodul identification of this period line with the `s₇` family | **L/B** | Stream 1: "NOT kernel-proved … PASS(40) exact plus literature" |
+| that this one modulus **is** a cosmological degree of freedom of our universe | **C** | no support anywhere; see below |
+
+### 6.3 What this does and does not say about the parameter count
+
+It is a real sharpening of `PRE_REGISTRATION.md` A7 and worth recording, **as mathematics**:
+
+- A7 closed "zero free parameters by derivation" as **not reachable**. Dolgachev Thm 7.1 says why
+  more precisely than "not reachable": for an `M_n`-polarized K3, the mathematics does not have zero
+  moduli to offer. It has **one**, and `X₀(N)⁺` is its moduli space. Chasing `2 → 0` was chasing a
+  number the geometry does not contain; `1` is the floor on that side.
+- The residual modulus has a canonical coordinate (a Hauptmodul of `X₀(N)⁺`) and a canonical
+  involution acting on it (Fricke, `τ ↦ −1/(Nτ)`), both now executable here
+  (`leanflow/core/gamma0n_plus.py`).
+
+**It does not say the universe has one degree of freedom.** That step needs an identification of this
+modulus with a physical field, and Stream 1 states program-wide that there is none
+(README, quoted in Part 2): "No exact physical observable exists anywhere in this program (F5b)",
+"the Sym² relation supplies **no physical coupling**", and the Fricke/Narain matrix coincidence "is a
+fact about a lattice isometry and **not** a physical identification". A7's `mu_sym` has no unit
+bridge in any harness. So:
+
+> **`X₀(N)⁺` gives one degree of freedom to the moduli space of `M_n`-polarized K3 surfaces. Reading
+> it as the free parameter of a cosmology is Tier C, and no prediction is registered from it here.**
+
+### 6.4 Consequence for the code — already applied
+
+Finding S1-F2 said the `SL(2,ℤ)` fold uses the wrong group. Part 6.1 makes the right one explicit:
+at level `N` the group is `Γ₀(N)⁺` and the involution is `τ ↦ −1/(Nτ)`, with the integer matrices
+now transcribed in `leanflow/core/gamma0n_plus.py`.
+
+**But swapping `Γ₀(12)⁺` in for `SL(2,ℤ)` would not have been a fix.** The implemented potential is
+not invariant under it either — measured `max |V(Fricke τ) − V(τ)| = 35.81`, against `8.77` for `S`
+and `6.7e-16` for `T`. `compute_potential` is a hand-built double well,
+`a·cos²(πx) + b·sin²(πx) + cos²(πx)(y−y_F)² + sin²(πx)(y−y_O)²`, with the two stationary points
+placed by construction; it is periodic in `x` and has no modular symmetry at all. The fix applied was
+therefore to make the `S`-step **opt-in and off by default**, leaving only `T`, which is a genuine
+symmetry. `gamma0n_plus.is_invariant_under` is provided so the check is run before any future fold.
+
 ## Reproducing the measurements
 
 ```bash

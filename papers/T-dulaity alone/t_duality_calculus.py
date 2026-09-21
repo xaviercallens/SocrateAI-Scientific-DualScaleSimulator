@@ -36,14 +36,45 @@ def run_t_duality_calculus():
 
     # 3. R-R Sector: Modular Equivalence and Central Charge
     print("\n--- Ramond-Ramond Sector: Fourier-Mukai and Modular Equivalence ---")
-    # Central charge equation c_eff = 1 - 24 E_0, where E_0 = -425/6
+    # Central charge equation c_eff = 1 - 24 E_0, where E_0 = -425/6.
+    #
+    # CORRECTION 2026-09-21 (audit/STREAM1_BRIDGE.md, finding S1-F4). This block
+    # used to print "Symmetric square modular invariant verified for
+    # L_3 = Sym^2 L_2" whenever c_eff == 1701. That was wrong twice over:
+    #
+    #  1. Non-sequitur. 1 - 24*(-425/6) = 1701 is an arithmetic identity about two
+    #     hard-coded rationals. It says nothing about L_2, L_3 or Sym^2, and the
+    #     test could never fail.
+    #  2. The relation is wrong as stated. Stream 1 proves the operator identity
+    #     with a NON-TRIVIAL prefactor, L_3 = P_2 . Sym^2(L_2) where
+    #     P_2 = 1 - 26z - 27z^2 (Agora/Sequences/PartnerOperators.lean s7_P2;
+    #     Agora/Geometry/SelfDual.lean s7_P2_eval, s7_P2_discriminant, at commit
+    #     bb74acb56f386a97e433f94eb0b2632ed03bc4ca). P_2 is not 1: its roots
+    #     {-1, 1/27} are exactly the images of the Fricke fixed points h = +-1/7.
+    #
+    # No source is recorded anywhere in this repository for E_0 = -425/6; it is
+    # labelled "Fractional Pole" with no citation. It is reported, not relied on.
     E_0 = sp.Rational(-425, 6)
     c_eff = 1 - 24 * E_0
-    
-    print(f"Fractional Pole E_0 = {E_0}")
+
+    print(f"Fractional Pole E_0 = {E_0}  [UNSOURCED: no citation in this repository]")
     print(f"Central Charge c_eff = 1 - 24 * E_0 = {c_eff}")
-    if c_eff == 1701:
-        print("Symmetric square modular invariant verified for L_3 = Sym^2 L_2.")
+    print("  (an arithmetic identity in E_0 alone; it verifies nothing about Sym^2)")
+
+    # What IS kernel-proved about the symmetric square, checked here rather than
+    # asserted: P_2 vanishes exactly at the images of the Fricke fixed points.
+    h = sp.Symbol("h")
+    z_of_h = h / (1 + 13 * h + 49 * h**2)
+    P2 = lambda z: 1 - 26 * z - 27 * z**2
+    for h_fix, z_expected in ((sp.Rational(1, 7), sp.Rational(1, 27)),
+                              (sp.Rational(-1, 7), sp.Integer(-1))):
+        z_val = sp.simplify(z_of_h.subs(h, h_fix))
+        assert z_val == z_expected, (h_fix, z_val, z_expected)
+        assert sp.simplify(P2(z_val)) == 0, (h_fix, z_val)
+        print(f"  z({h_fix}) = {z_val} and P_2 = 0 there  [Stream 1 zOf_selfdual_*, s7_P2_eval]")
+    # Negative control: P_2 is not identically 1, so "L_3 = Sym^2 L_2" is false as stated.
+    assert sp.simplify(P2(sp.Rational(1, 2))) != 1
+    print("  P_2 is not identically 1 -> L_3 = P_2 . Sym^2(L_2), NOT L_3 = Sym^2(L_2)")
 
     # 4. Anomaly Cancellation at Orientifold Limits
     print("\n--- Anomaly Cancellation at Orientifold Limits ---")
@@ -74,7 +105,12 @@ def run_t_duality_calculus():
     print(f"BEM Constraint 2: {constraint_2}")
     print("Symmetric Flux-Topology Exchange confirmed algebraically.")
 
-    print("\nCalculus verification complete. Hallucination bounds are strictly zero.")
+    print("\nCalculus verification complete.")
+    print("SCOPE: this script checks arithmetic and symbolic identities only. It is")
+    print("not a physical verification, and it does not verify the Lean development.")
+    print("Stream 1 (bb74acb) records program-wide that no exact physical observable")
+    print("exists anywhere in this programme and that the Sym^2 relation supplies no")
+    print("physical coupling. See audit/STREAM1_BRIDGE.md.")
 
 if __name__ == "__main__":
     run_t_duality_calculus()
