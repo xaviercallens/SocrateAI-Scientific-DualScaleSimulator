@@ -33,3 +33,7 @@ data/real2/cmb/*.fits
 data/real2/dark_energy/*.cov
 data/real2/cosmic_web/*.csv
 
+
+# Workflow worktrees created by other Claude Code sessions. These are embedded
+# git repositories belonging to other sessions; they must never be committed here.
+.claude/worktrees/
