@@ -57,7 +57,7 @@ Each row was measured; see the named finding in `audit/STREAM1_BRIDGE.md` for th
 Ordered by dependency. Each item is written so that "done" is decidable by a test. **None of these is a
 physics claim**, and none is registered as a prediction (`PRE_REGISTRATION.md` A5).
 
-### L1 — A potential that is actually modular *(blocks L2, L3, L5)*
+### L1 — A potential that is actually modular *(blocks L2, L3, L5)* — **BUILT 2026-09-21, opt-in; not yet adopted**
 
 **Problem.** Every fold, projection and duality claim presupposes an invariance the implemented
 potential does not have. Until that is fixed, the "native duality engine" cannot exist, because there
@@ -72,8 +72,44 @@ curve has genus 0 (`scripts/fricke_genus.py`).
 ok_T, _ = is_invariant_under(V, lambda z: z + 1,            atol=1e-9)   # already true
 ok_F, _ = is_invariant_under(V, lambda z: -1/(N*z),         atol=1e-9)   # MUST become true
 ```
-Both `True`, using `leanflow.core.gamma0n_plus.is_invariant_under`. Today the Fricke deviation is
-`35.81`. Plus a negative control: a deliberately non-invariant perturbation must fail the same check.
+Both `True`, using `leanflow.core.gamma0n_plus.is_invariant_under`. Plus a negative control: a
+deliberately non-invariant perturbation must fail the same check.
+
+**STATUS: criterion met.** `leanflow/core/modular_potential.py`, 20 tests in
+`tests/test_modular_potential.py`.
+
+| | `T : τ↦τ+1` | Fricke `τ↦−1/(Nτ)` |
+|---|---|---|
+| new `modular_potential`, `mode="ratio"` | True, `2.2e-15` | **True, `6.7e-16`** |
+| new `modular_potential`, `mode="log"` | True, `0.0` | **True, `4.5e-13`** |
+| old `compute_potential` (still the default) | True, `3.6e-15` | **False, `32.8`** |
+
+**The construction.** `j` is `SL(2,ℤ)`-invariant, so `W_N : τ ↦ −1/(Nτ)` sends `j(τ) ↦ j(Nτ)` and
+`j(Nτ) ↦ j(τ)` — it *swaps* them. And for `g = [[a,b],[Nc,d]] ∈ Γ₀(N)`, `N·gτ = g'(Nτ)` with
+`g' = [[a,bN],[c,d]]` of determinant `ad−Nbc = 1`. Hence
+
+```
+F_N(τ) = j(τ) + j(Nτ)   is Γ₀(N)⁺-invariant,
+```
+
+and any function of it is too. Verified to `~1e-30` at 30 digits, with a negative control that
+`S : τ↦−1/τ` (the `N=1` map) does *not* fix it.
+
+**Three things measured and disclosed rather than smoothed over.**
+- The first form tried, `V = u/(1+u)`, was invariant but **useless**: `j(Nτ) ~ e^{2πNy}` saturates it
+  to `1.0` at `τ=i`, `0.3+0.9i` and `0.1+5i` alike. Hence the two modes.
+- `mode="ratio"` has a clean minimum — measured `V ~ r²` with fitted slope **2.000 over four decades**
+  and gradient `(0, −5e-9)` — but saturates to `1` away from the well, so the plateau is near
+  forceless. `mode="log"` spreads over the domain (`0 → 0.97`) but its minimum is **needle-like**:
+  quadratic only for `r ≲ 1e-7`.
+- **The invariance is exact but not usable at float64.** `F_N` reaches `1e55` on this domain, so
+  computing the transformed point in double precision costs ~13 digits: the same check reads `1e-30`
+  in `mpmath` and `1e-13` from a float64 `τ`. A test records this.
+
+**Not adopted, deliberately.** No default changed, no telemetry regenerated, the manuscript untouched
+— the Zenodo draft is under review. Switching the simulation over would change every reported
+trajectory and is a separate decision. What this unblocks is L2, L3 and L5, which were all waiting on
+an invariance that did not exist.
 
 ### L2 — Fold by the right group, and only after checking *(depends on L1)*
 

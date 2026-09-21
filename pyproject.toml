@@ -16,6 +16,10 @@ dependencies = [
     "numpy>=1.22.0",
     "scipy>=1.8.0",
     "scikit-learn>=1.0.0",
+    # Required by leanflow/core/modular_potential.py (Klein j at high precision).
+    # It was previously present only transitively via sympy; declared explicitly so
+    # a change in sympy's dependencies cannot silently break the modular tests.
+    "mpmath>=1.3.0",
 ]
 
 [project.optional-dependencies]
