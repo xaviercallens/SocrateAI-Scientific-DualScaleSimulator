@@ -1,6 +1,6 @@
 {
   "title": "Tiered Formal and Numerical Methods for T-Duality and Frontier String Dynamics on K3 × T²: Closing the Loop via LeanFlow Stiff Solvers with Native Duality, Topological Data Analysis, and Lean 4 Checking",
-  "description": "Corrected version of the manuscript 'Tiered Formal and Numerical Methods for T-Duality and Frontier String Dynamics on K3 × T²: Closing the Loop via LeanFlow Stiff Solvers with Native Duality, Topological Data Analysis, and Lean 4 Checking' and its reproducible artifacts. This version withdraws claims made in the version issued as Zenodo record 22683565 (DOI 10.5281/zenodo.22683565); see the Correction notice in the manuscript. The repository couples numerical integration (SciPy Radau and solve_bvp solvers; custom explicit Rust integrators) with Lean 4 checking of discrete algebraic invariants and topological data analysis (TDA Mapper) of simulation output. Status of the contents, by evidence tier: (1) Kernel-checked foundation: integer O(d,d;Z) T-duality charge action and the generalized metric at B = 0, K3/Mukai/K3×T² lattice signatures, flux-tadpole arithmetic and Mathieu-moonshine dimension facts are kernel-checked in the external LeanMaster project (release v2.2.0) and restated in lean_foundation/, depending only on Lean's three standard axioms. They do not cover the field-level Buscher rules for metric, B-field and dilaton. (2) Local Lean files in proofs/ are superseded and are not a verification of the physics they name: BuscherRules.lean rests on five global axioms, one of which (inv_inv) proves False when instantiated at Nat, and many other theorems hold by construction of their definitions. (3) All simulation outputs (moduli geodesics, Kummer-orbifold Langevin dynamics, flat-space Coleman bounce, tachyon condensation, TDA Mapper graphs) are exploratory numerics and will be regenerated after numerics fixes. (4) No benchmark or cost figure is claimed: all speed and cost comparisons are pending hardware verification. The external rusty-SUNDIALS integrator is planned but is not present in this repository and was not used.",
+  "description": "Corrected version of the manuscript and its reproducible artifacts. This version supersedes Zenodo record 22683565 (DOI 10.5281/zenodo.22683565) and withdraws claims made there; see the Correction notices in the manuscript. &lt;br&gt;&lt;br&gt;&lt;b&gt;New in this version (2026-09-21): corrections found by bridging to an external Lean 4 formalization.&lt;/b&gt; The full evidence record, with reproduction commands, is included as STREAM1_BRIDGE.md; the pre-registration and its addendum A10 are included as PRE_REGISTRATION.md. &lt;ul&gt;&lt;li&gt;&lt;b&gt;The Fricke point was misstated.&lt;/b&gt; The manuscript named it tau = i. The implemented potential is stationary at tau = i/sqrt(12) (dV/dy = 0) and not at tau = i (dV/dy = 1.423). By the self-dual locus N*tau^2 = -1 these are levels 1 and 12, and level 12 is what the repository uses elsewhere. Corrected in 10 places across 4 files.&lt;/li&gt;&lt;li&gt;&lt;b&gt;A numerics defect in the invariant-projection layer.&lt;/b&gt; The solver applied S : tau -&gt; -1/tau to the solution array after integration, but the implemented potential is not S-invariant (measured max |V(S tau) - V(tau)| = 8.77, against 6.7e-16 for T : tau -&gt; tau + 1), so the fold moved trajectory points to physically inequivalent points. The S-step is now off by default. Folding under Gamma_0(12)+ would not have been valid either (35.81): the potential is a hand-built double well with no modular symmetry.&lt;/li&gt;&lt;li&gt;&lt;b&gt;The projections were applied to the wrong state components.&lt;/b&gt; Both used state indices (0,1), but the cosmology state is [a, x, y, u, v]: index 0 is the scale factor and Im(tau) is at index 2. The scale factor was being folded (1.98e9 reported folds on one run) and Re(tau), legitimately 0 at the Fricke point and 0.5 at the orbifold point, was clamped to 1/sqrt(12). The solver now requires explicit modulus indices.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Blast radius, measured.&lt;/b&gt; No committed simulation artifact is affected: workshopcosmo.py imports no leanflow module (verified in a clean interpreter) and calls SciPy directly. On the leanflow solver path the change is large -- the old fold moved 100% of trajectory points, max |dy| = 3.175 -- so numbers from that path predating 2026-09-21 should not be trusted.&lt;/li&gt;&lt;li&gt;&lt;b&gt;A previously untraceable number is now identified.&lt;/b&gt; The reported min(y) = 0.289 is 1/sqrt(12) = 0.28867..., the value of the metric-positivity clamp, not a minimum attained by any trajectory. It is withdrawn as a physical result.&lt;/li&gt;&lt;li&gt;&lt;b&gt;The 'Dual-Tier Execution Architecture' section described a system that does not exist.&lt;/b&gt; There are no Rust contract assertions in any inner loop (all 41 asserts in rust_simulator/src/ are inside #[cfg(test)] modules and are compiled out of release builds); there is no SIMD anywhere in the crate; the metric-positivity and Weak Energy Condition bounds are Python and are applied after integration, not during time-stepping; and the 'non-blocking Unix domain socket IPC / C-FFI with JSON-RPC' is in fact a blocking subprocess CLI call with a 15 s timeout. All four withdrawn.&lt;/li&gt;&lt;li&gt;&lt;b&gt;A false claim in paper-support code.&lt;/b&gt; t_duality_calculus.py printed 'Symmetric square modular invariant verified for L_3 = Sym^2 L_2' whenever c_eff == 1701, an unrelated arithmetic identity that could never fail; and the relation is wrong as stated, since the kernel-proved form carries a non-trivial prefactor, L_3 = P_2 . Sym^2(L_2) with P_2 = 1 - 26z - 27z^2.&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;Parameter count, stated by tier.&lt;/b&gt; Dolgachev (1996) Thm 7.1 -- literature, Tier L, not kernel-proved -- gives the coarse moduli space of M_n-polarized K3 surfaces as the Fricke modular curve H/Gamma_0(n)+, a curve, hence ONE modulus. The programme's earlier target of zero free parameters by derivation is therefore unreachable on the mathematics side, where the floor is one, not zero. &lt;b&gt;Reading that modulus as a cosmological free parameter is Tier C and is NOT registered as a prediction.&lt;/b&gt; The external formalization states program-wide that no exact physical observable exists anywhere in it, that the Sym^2 relation supplies no physical coupling, and that the coincidence between the Fricke involution and the Narain T-duality generator is a fact about a lattice isometry and not a physical identification. &lt;br&gt;&lt;br&gt;&lt;b&gt;Kernel-checked dependencies, pinned by commit.&lt;/b&gt; SocrateAI-DualScaleTopologicalUniverseModel-LeanProposal at commit bb74acb56f386a97e433f94eb0b2632ed03bc4ca (DOI 10.5281/zenodo.22853239), zero sorry; and SocrateAI-Scientific-Agora-LeanMaster at commit ede49f06800cde8177867c02bb08d44f7be275c5 (v3.44.0). Transcribed into leanflow/core/gamma0n_plus.py and guarded by 34 tests. &lt;br&gt;&lt;br&gt;&lt;b&gt;Status of the remaining contents, by evidence tier.&lt;/b&gt; (1) The integer O(d,d;Z) T-duality charge action and generalized metric at B = 0, K3/Mukai/K3xT2 lattice signatures, flux-tadpole arithmetic and Mathieu-moonshine dimension facts are kernel-checked in LeanMaster and restated in lean_foundation/. They do not cover the field-level Buscher rules for metric, B-field and dilaton. (2) Local Lean files in proofs/ are superseded and are not a verification of the physics they name: BuscherRules.lean rests on five global axioms, one of which (inv_inv) proves False when instantiated at Nat. (3) All simulation telemetry in this bundle is the 2026-09-17 output, unchanged, and remains exploratory; the TDA Mapper output is not seeded. (4) No benchmark or cost figure is claimed; the external rusty-SUNDIALS integrator is not present in this repository and was not used.",
   "creators": [
     {
       "name": "Callens, Xavier",
@@ -9,21 +9,26 @@
     }
   ],
   "keywords": [
-    "string-theory",
-    "T-duality",
-    "K3-surface",
-    "Lean4",
-    "topological-data-analysis",
+    "Dolgachev",
     "Double-Field-Theory",
-    "generalized-geometry",
-    "Mukai-lattice",
-    "neuro-symbolic",
-    "stiff-solvers",
+    "Fricke-involution",
+    "K3-surface",
     "Langevin-dynamics",
-    "vacuum-decay",
-    "tachyon-condensation",
+    "Lean4",
     "Lean4-checking",
-    "numerical-integration"
+    "Mukai-lattice",
+    "T-duality",
+    "erratum",
+    "generalized-geometry",
+    "modular-curve",
+    "neuro-symbolic",
+    "numerical-integration",
+    "reproducibility",
+    "stiff-solvers",
+    "string-theory",
+    "tachyon-condensation",
+    "topological-data-analysis",
+    "vacuum-decay"
   ],
   "license": {
     "id": "Apache-2.0"
@@ -37,5 +42,24 @@
       "identifier": "zenodo"
     }
   ],
-  "notes": "Artifact bundle includes: (1) compiled manuscript T_duality_Alone.pdf and its LaTeX source T_duality_Alone.tex; (2) local Lean 4 files in proofs/ (superseded; see the manuscript's Correction notice for what they do and do not establish) and the lean_foundation/ project restating kernel-checked LeanMaster theorems; (3) Rust simulator crate rust_simulator/ and Python driver workshopcosmo.py; (4) simulation telemetry summaries (tda_mapper_skeleton.json, kummer_langevin_summary.json, vacuum_decay_cdl_summary.json, tachyon_condensation_summary.json). Telemetry values are exploratory, some committed summaries disagree with each other, and the TDA Mapper output is not seeded; values will be regenerated."
+  "notes": "Artifact bundle: (1) the corrected manuscript T_duality_Alone.pdf and its LaTeX source; (2) STREAM1_BRIDGE.md, the full evidence record for the 2026-09-21 corrections, with pinned commit SHAs, verbatim theorem quotations and runnable reproduction commands; (3) PRE_REGISTRATION.md including addendum A10, which records that NO new prediction is registered by this version; (4) local Lean 4 files in proofs/ (superseded; see the manuscript's Correction notices); (5) the Rust simulator crate and the Python driver workshopcosmo.py; (6) simulation telemetry summaries. Telemetry values are the 2026-09-17 outputs, unchanged in this version, exploratory, and not seeded; they were deliberately not regenerated as part of a deposit.",
+  "version": "2.0.0-corrected-2026-09-21",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.22683565",
+      "relation": "isNewVersionOf",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.22853239",
+      "relation": "references",
+      "scheme": "doi",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/xaviercallens/SocrateAI-Scientific-DualScaleSimulator",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
 }

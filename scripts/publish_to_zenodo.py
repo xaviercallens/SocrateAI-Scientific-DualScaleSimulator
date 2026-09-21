@@ -215,6 +215,10 @@ def main():
         BUNDLE_DIR / "kummer_langevin_summary.json",
         BUNDLE_DIR / "vacuum_decay_cdl_summary.json",
         BUNDLE_DIR / "tachyon_condensation_summary.json",
+        # The evidence record for the 2026-09-21 corrections. A deposit that
+        # corrects claims should ship the document that establishes them.
+        BUNDLE_DIR / "STREAM1_BRIDGE.md",
+        BUNDLE_DIR / "PRE_REGISTRATION.md",
         WORKSPACE_DIR / "zenodo_deposit_bundle.zip"
     ]
 
