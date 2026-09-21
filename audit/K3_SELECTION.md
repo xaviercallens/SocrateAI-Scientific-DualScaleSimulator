@@ -261,3 +261,62 @@ about our universe remains Tier C and forbidden by Stream 1's program-wide note.
 **Open question handed back, not answered here:** Stream 2's GE-8 asks *who bounds `|D|`?* and routes it
 to their GE-13. This repository has nothing to offer on that until spec item L5 gives the level an
 observable consequence at all (`specs/LEANFLOW_ARCHITECTURE.md`).
+
+
+---
+
+## 8. Addendum 2026-09-21c — the Atkin–Lehner structure of level 12, and a flaw in §4
+
+Stream 2 `af04382` added five checkers and certificates for GE-9…GE-12. `ATKIN_LEHNER_DISC_FORM.json`
+(GE-11) sweeps the Atkin–Lehner group over `n = 1..30`; `scripts/level_membership.py --self-test`
+reproduces its `pairs_n_Q_without_trace0_representative` **exactly** before anything below is said.
+
+### 8.1 A flaw in §4 of this note: "`Γ₀(N)⁺`" is ambiguous, and my validation could not see it
+
+`scripts/fricke_genus.py` quotients `X₀(N)` by the **Fricke involution alone**, which is Dolgachev's
+convention and the one the moduli statement needs. But some authors write `Γ₀(N)⁺` for `Γ₀(N)`
+extended by **all** Atkin–Lehner involutions — a group of order `2^ω(N)`. The two agree only when `N`
+has one prime factor.
+
+**My Ogg's-primes validation used only primes**, where `ω(p) = 1` and the conventions coincide. So it
+**cannot distinguish them**, and the composite-`N` rows — including `N = 12`, the level of this
+repository — are Fricke-only *by construction, not by test*. The caveat is now in the script. This is
+the same shape as the defects logged elsewhere in this audit: a check that passes for a reason
+narrower than the claim it appears to support.
+
+### 8.2 Level 12 has a richer Atkin–Lehner group than level 7, and one of its involutions acts freely
+
+`W(n)` is indexed by the Hall divisors `Q | n` with `gcd(Q, n/Q) = 1`:
+
+| level | `\|W(n)\|` | cosets, and whether each fixes a point of `H` |
+|---|---|---|
+| `n = 7` | 2 | `w₇` (Fricke): **fixes** |
+| `n = 10` | 4 | `w₂`: **free** · `w₅`: fixes · `w₁₀` (Fricke): fixes |
+| **`n = 12`** | **4** | `w₃`: fixes · **`w₄`: acts freely** · `w₁₂` (Fricke): fixes |
+
+So at level 12 the Fricke involution — whose fixed point `i/√12` **is** this repository's `FRICKE_Y` —
+is one of three non-trivial Atkin–Lehner involutions, and `w₄` has **no fixed point in `H` at all**.
+Level 7 has only Fricke. Whatever singles out `i/√12` at level 12, it is not "the" Atkin–Lehner fixed
+point: there is more than one, and `w₃` supplies another that nothing in this repository uses.
+
+A subtlety kept from Stream 2 rather than flattened: a coset with no order-2 element may still fix a
+point of `H`, by an element of order 4 or 6 — that happens at `(n,Q) = (10,2)` and `(26,2)`. At
+`(12,4)` **both** of their keys agree that there is nothing, so `w₄` really is free.
+
+### 8.3 What Stream 2 proved about the discriminant form, and its limit
+
+Their GE-11 finding, quoted: the map `w_Q ↦` its multiplier on the discriminant form is a **group
+isomorphism `W(n) → O(q_A)`** for every `n ≤ 30`, with Fricke `↦ −1`; and into `O(q_A)/{±1}` the map
+is **not** injective for `n > 1`, with kernel `{1, w_n}`. Stream 1 `b34be5b` proves the `Q = N` case in
+Lean (`rhoAL_disc_multiplier`), explicitly **not** the general `Q`.
+
+At `N = 12` the discriminant group is `ℤ/24` (§1), and `|W(12)| = 4`, so `O(q_A)` has order 4 there if
+the isomorphism holds at 12 — which is inside their swept range and therefore checked by them, not by
+me. This note asserts nothing further about it.
+
+### 8.4 Tiers
+
+`|W(12)| = 4` and `w₄` free: **Tier A**, computed here and reproducing Stream 2's sweep.
+`W(n) ≅ O(q_A)`: **Stream 2's Tier E**, `PASS(30)`, not re-derived here. The `Q = N` multiplier:
+**Tier A**, Lean, Stream 1. That any of it selects a K3, or says anything about our universe:
+**Tier C**, and nothing here supports it.

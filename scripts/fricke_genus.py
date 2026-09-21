@@ -7,6 +7,18 @@ Stream 1 -- gives the coarse moduli space of M_n-polarized K3 surfaces as the
 Fricke modular curve H/Gamma_0(n)+. A Hauptmodul (a single uniformizing
 coordinate on that moduli space) exists exactly when that curve has genus 0.
 
+⚠️ WHICH GROUP "Gamma_0(N)+" MEANS -- a limitation of the validation below.
+This file computes the quotient of X0(N) by the FRICKE involution w_N alone,
+which is Dolgachev's convention and the one the K3 moduli statement needs. Some
+authors write Gamma_0(N)+ for Gamma_0(N) extended by ALL Atkin-Lehner
+involutions, a group of order 2^omega(N). The two agree only when N has ONE prime
+factor. The Ogg's-primes check in the self-test uses only PRIMES, where
+omega(p) = 1 and the conventions coincide -- so it CANNOT distinguish them and
+does not validate the composite-N rows. At this repository's N = 12 the
+Atkin-Lehner group W(12) = {1, w_3, w_4, w_12} has order 4, so the distinction is
+live exactly where it matters here. Treat the composite-N values as the
+Fricke-only quotient by construction, not by test.
+
 WHAT IT DOES NOT DO. It does NOT select a level. Both levels in play in this
 programme -- Stream 1's N = 7 and this repository's implicit N = 12 -- have
 genus 0, so the criterion passes both. It is included as a NEGATIVE CONTROL and

@@ -25,6 +25,7 @@ requiring rho = 20 cuts out nothing; what makes any list finite is a bound on
 |D|. No physical reading is claimed anywhere.
 """
 import json
+import math
 import os
 import sys
 
@@ -72,7 +73,66 @@ def report(levels=(7, 10, 12), d_max=100):
         print(f"    {name}: {cols}")
 
 
+def hall_divisors(n: int):
+    """Hall divisors Q | n with gcd(Q, n/Q) = 1 -- these index the Atkin-Lehner
+    group W(n), of order 2^omega(n)."""
+    return [Q for Q in range(1, n + 1) if n % Q == 0 and math.gcd(Q, n // Q) == 1]
+
+
+def has_trace0_representative(n: int, Q: int, a_bound: int = 25, b_bound: int = 600) -> bool:
+    """Does the Atkin-Lehner coset w_Q contain an ORDER-2 elliptic element?
+
+    An element of w_Q is M = [[Qa, b], [nc, Qd]] with det M = Q. It is elliptic of
+    order 2 (hence has a fixed point in H that it fixes as an involution) exactly
+    when its trace Q(a+d) vanishes, i.e. d = -a, which gives
+
+        -Q^2 a^2 - n b c = Q.
+
+    Reproduces Stream 2's `pairs_n_Q_without_trace0_representative` exactly over
+    their whole sweep range n = 1..30 (see `--self-test`).
+
+    NOTE the distinction their certificate draws and this function does NOT: a
+    coset with no trace-0 element may still have a fixed point in H, fixed by an
+    element of order 4 or 6. At n = 10 and n = 26 with Q = 2 that is what happens.
+    """
+    for a in range(-a_bound, a_bound + 1):
+        r = -Q * Q * a * a - Q
+        if r % n:
+            continue
+        t = r // n
+        if t == 0:
+            return True
+        for b in list(range(1, b_bound)) + list(range(-b_bound, 0)):
+            if t % b == 0:
+                return True
+    return False
+
+
+def _self_test_atkin_lehner() -> bool:
+    """Validate the trace-0 test against Stream 2's ATKIN_LEHNER_DISC_FORM certificate."""
+    path = os.path.join(os.path.dirname(CERT), "ATKIN_LEHNER_DISC_FORM.json")
+    if not os.path.exists(path):
+        print(f"[!] {path} not found -- skipping Atkin-Lehner check", file=sys.stderr)
+        return True
+    sw = json.load(open(path))["leg_W_sweep"]
+    theirs = {tuple(x) for x in sw["pairs_n_Q_without_trace0_representative"]}
+    lo, hi = sw["n_range"]
+    mine = {(n, Q) for n in range(lo, hi + 1) for Q in hall_divisors(n)
+            if Q > 1 and not has_trace0_representative(n, Q)}
+    ok = mine == theirs
+    print(f"trace-0 sweep vs Stream 2 certificate (n = {lo}..{hi}): "
+          f"{'PASS' if ok else f'FAIL +{sorted(mine - theirs)} -{sorted(theirs - mine)}'}")
+    return ok
+
+
 if __name__ == "__main__":
     if "--self-test" in sys.argv:
-        sys.exit(0 if _self_test() else 1)
+        sys.exit(0 if (_self_test() and _self_test_atkin_lehner()) else 1)
     report()
+    print("\n  Atkin-Lehner group W(n) and which cosets fix a point of H:")
+    for n in (7, 10, 12):
+        parts = ", ".join(
+            f"w_{Q}{'(Fricke)' if Q == n else ''}:"
+            f"{'fixes' if has_trace0_representative(n, Q) else 'FREE'}"
+            for Q in hall_divisors(n) if Q > 1)
+        print(f"    n={n:2d}  |W(n)|={len(hall_divisors(n))}   {parts}")
