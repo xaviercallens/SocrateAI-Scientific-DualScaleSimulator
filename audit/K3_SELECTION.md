@@ -26,6 +26,13 @@ T(X) = U ⊕ ⟨24⟩,   rank 3,   signature (2,1),   det = −24
 and coarse moduli space the Fricke modular curve `X₀(12)⁺` — **one modulus** (Dolgachev 1996 Thm 7.1,
 Tier L literature; see `PRE_REGISTRATION.md` A10.1).
 
+**Added 2026-09-21, from Stream 1 `b34be5b`:** the discriminant group `T_N^∨/T_N` is cyclic of order
+`2N`, so at this level it is **`ℤ/24`**, consistent with `det T(X) = −24` above. On it the Fricke
+involution acts as **`−1`** (`rhoAL_fricke_multiplier`), and every Atkin–Lehner element of the Fricke
+coset acts by a multiplier `m ≡ −1 mod 2N`. Verified against this repository's transcription
+(`tests/test_stream1_bridge.py`). Stream 1 proves only the `Q = N` case; the general Hall-divisor rule
+is Stream 2's and is not proved there.
+
 **Nobody derived this.** `FRICKE_Y` is a hard-coded constant, and the potential it sits in is a
 hand-built double well,
 

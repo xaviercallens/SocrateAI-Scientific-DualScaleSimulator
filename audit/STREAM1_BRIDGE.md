@@ -12,7 +12,7 @@ Quotations below were taken with `grep`/`sed` from the working trees at these co
 
 | Project | Path | Commit | Tag |
 |---|---|---|---|
-| **Stream 1** — DualScaleTopologicalUniverseModel-LeanProposal | `~/SocrateAI-DualScaleTopologicalUniverseModel-LeanProposal` | `bb74acb56f386a97e433f94eb0b2632ed03bc4ca` | Zenodo concept 10.5281/zenodo.22853239 |
+| **Stream 1** — DualScaleTopologicalUniverseModel-LeanProposal | `~/SocrateAI-DualScaleTopologicalUniverseModel-LeanProposal` | `bb74acb56f386a97e433f94eb0b2632ed03bc4ca` | Zenodo **v1** 10.5281/zenodo.22853239 (concept is …238 — see the erratum below) |
 | **LeanMaster** — Agora-LeanMaster | `~/SocrateAI-Scientific-Agora-LeanMaster` | `ede49f06800cde8177867c02bb08d44f7be275c5` | v3.44.0 |
 | This repo | `~/SocrateAI-Scientific-DualScaleSimulator` | `f0747ee` + working tree | — |
 
@@ -52,6 +52,48 @@ So S1-F1…S1-F14 stand unchanged. LeanMaster's day is the same lesson from the 
 release gates, "a sorry does not fail the build", "read the exit code", and 39 "100% Certified" claims
 removed from docstrings — which is the same class of defect as this repository's **S1-F14**, where a
 gate reported success without running.
+
+### Re-pin 2026-09-21c — Stream 1 answered Stream 2 on the discriminant group
+
+Stream 1 `b34be5b` (13:49) adds four theorems about what `rho_AL` does on the **discriminant group**
+of `U ⊕ ⟨2N⟩`, requested by Stream 2. They are statements about the third column of the very matrix
+this repository already transcribed, so they were checkable here immediately, and all four hold
+against `leanflow/core/gamma0n_plus.rho_AL`:
+
+| Stream 1 theorem | statement | checked here |
+|---|---|---|
+| `rhoAL_w_image` | `ρ_AL·w = 2N(cd)e − 2N(ab)f + (Nad+bc)w` | ✓ exactly, `N ∈ {2,7,12}`, 4 elements each |
+| — (their stated *reason*) | the `e`, `f` components are divisible by `2N`, which is **why** the action descends to the discriminant group at all | ✓ |
+| `rhoAL_disc_multiplier`(`_congr`) | under `Nad − bc = 1`, `m = Nad+bc = 2Nad − 1`, and `2N ∣ (m+1)` | ✓, `N ∈ {2,7,12,30}` |
+| `rhoAL_fricke_multiplier` | **the Fricke involution acts as `−1` on the whole discriminant group** | ✓, `N ∈ {1,2,7,12,49}` |
+
+Their negative control is carried over too: at `N = 7, a = d = 1, b = c = 2` the normalization fails
+(`Nad − bc = 3`) and the multiplier is `11`, not `−1` — so the theorem constrains the hypothesis, not
+`rho_AL` alone. Added to `gamma0n_plus.py` as `discriminant_group_order`, `rho_AL_on_w` and
+`atkin_lehner_multiplier`; the bridge suite grows from 37 to **57** tests.
+
+**Scope, quoted rather than paraphrased**, because it is easy to overstate: Stream 1 records that
+Stream 2 states the rule for a general Hall divisor `Q` (`m ≡ −1 mod 2Q`, `m ≡ +1 mod 2N/Q`), and that
+"What is proved here is the case their `Q = N` … The general-`Q` statement needs a parameterization
+this file does not have, and is **NOT** proved here."
+
+### Erratum 2026-09-21 — a DOI of Stream 1's was labelled wrongly here
+
+This document, and the Zenodo record published from it (`10.5281/zenodo.22872083`), cite
+`10.5281/zenodo.22853239` as Stream 1's **concept DOI**. That label is wrong. Verified against the
+Zenodo API:
+
+| DOI | what it actually is |
+|---|---|
+| `10.5281/zenodo.22853238` | the **concept** DOI |
+| `10.5281/zenodo.22853239` | **v1**, version index 0, `is_last: false` — what was cited |
+| `10.5281/zenodo.22864700` | v2 |
+| `10.5281/zenodo.22875834` | **v3**, version index 2, `is_last: true` — current as of 2026-09-21 |
+
+**The DOI cited resolves correctly and pins the exact version audited** (the `bb74acb` text), which is
+the more precise citation for an audit; only the word "concept" is wrong. The published record cannot
+be edited, so this erratum stands as the correction; if a v3 of that record is ever deposited for
+other reasons, the label should be fixed then. Nothing in any finding depends on it.
 
 ## Note on which "Stream 1"
 

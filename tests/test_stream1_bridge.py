@@ -314,3 +314,65 @@ def test_two_and_four_component_layouts_keep_the_old_default():
     r = Solver(method="RK45").solve(rhs4, np.array([3.2, 1.5, 0.0, 0.0]), (0.0, 1.0))
     assert abs(r.y[0, -1] - 0.2) < 1e-9             # T-folded 3.2 -> 0.2
     assert r.telemetry.modular_folds_count > 0
+
+
+# ---------------------------------------------------------------------------
+# The discriminant-group action (Stream 1 commit b34be5b, 2026-09-21)
+# ---------------------------------------------------------------------------
+
+def test_discriminant_group_is_cyclic_of_order_2N():
+    """`T_N^v / T_N` is cyclic of order `2N`, and `det T_N = -2N`."""
+    from leanflow.core.gamma0n_plus import discriminant_group_order
+    for N in (2, 7, 12, 30):
+        assert discriminant_group_order(N) == 2 * N
+        assert round(np.linalg.det(gram_U_plus_2N(N))) == -2 * N
+
+
+@pytest.mark.parametrize("N", [2, 7, 12])
+@pytest.mark.parametrize("g", [(0, -1, 1, 0), (1, 4, -2, -1), (1, 1, 1, 1), (2, 3, 1, 2)])
+def test_rhoAL_w_image(N, g):
+    """`rhoAL_w_image`: rho_AL . [0,0,1] = [2N(cd), -(2N(ab)), Nad+bc]."""
+    from leanflow.core.gamma0n_plus import rho_AL_on_w
+    a, b, c, d = g
+    assert np.array_equal(rho_AL_on_w(N, a, b, c, d),
+                          np.array([2 * N * (c * d), -(2 * N * (a * b)), N * a * d + b * c]))
+
+
+@pytest.mark.parametrize("N", [2, 7, 12, 30])
+def test_action_descends_because_e_f_components_are_divisible_by_2N(N):
+    """Stream 1's stated reason the action descends to the discriminant group at
+    all -- the part that is easy to assume rather than check."""
+    from leanflow.core.gamma0n_plus import rho_AL_on_w
+    for g in [(0, -1, 1, 0), (1, 4, -2, -1), (2, 3, 1, 2)]:
+        img = rho_AL_on_w(N, *g)
+        assert img[0] % (2 * N) == 0 and img[1] % (2 * N) == 0
+
+
+def test_atkin_lehner_multiplier_is_minus_one_mod_2N():
+    """`rhoAL_disc_multiplier` + `..._congr`: under `Nad - bc = 1`,
+    `m = 2Nad - 1` and `2N | (m+1)`."""
+    from leanflow.core.gamma0n_plus import atkin_lehner_multiplier
+    for N in (2, 7, 12, 30):
+        for (a, b, c, d) in [(0, -1, 1, 0), (1, 1, N - 1, 1)]:
+            if N * a * d - b * c != 1:
+                continue
+            m = atkin_lehner_multiplier(N, a, b, c, d)
+            assert m == 2 * N * a * d - 1
+            assert (m + 1) % (2 * N) == 0
+
+
+def test_fricke_acts_as_minus_one_on_the_discriminant_group():
+    """`rhoAL_fricke_multiplier`: at `(0,-1,1,0)` the multiplier is exactly `-1`."""
+    from leanflow.core.gamma0n_plus import atkin_lehner_multiplier
+    for N in (1, 2, 7, 12, 49):
+        assert atkin_lehner_multiplier(N, 0, -1, 1, 0) == -1
+
+
+def test_multiplier_negative_control_needs_the_normalization():
+    """`rhoAL_disc_multiplier_not_constant`: at `N=7, a=d=1, b=c=2` the hypothesis
+    `Nad - bc = 1` FAILS (it is 3) and the multiplier is `11`, not `-1`. So the
+    theorem says something about the hypothesis, not about `rho_AL` alone."""
+    from leanflow.core.gamma0n_plus import atkin_lehner_multiplier
+    assert 7 * 1 * 1 - 2 * 2 == 3            # normalization fails
+    assert atkin_lehner_multiplier(7, 1, 2, 2, 1) == 11
+    assert (11 + 1) % 14 != 0                 # and the congruence fails with it
