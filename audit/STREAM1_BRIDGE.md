@@ -225,6 +225,59 @@ now says only that `c_eff = 1 − 24 E_0 = 1701` "is an exact arithmetic identit
 record of it. The script is a survivor of that cleanup. Separately, no source is recorded anywhere in
 this repository for `E_0 = −425/6`; it is labelled "Fractional Pole" with no citation.
 
+### S1-F8 — The solver projected the WRONG state components. *(defect, numerics, found while measuring S1-F2)*
+
+`solver.py` applied both projections at state indices `(0, 1)`, and
+`projections.py`'s docstring said "Assumes y is at index 1 in `[x, y, vx, vy]` or `[x, y]`". But the
+canonical cosmology state of `workshopcosmo.cosmology_rhs` is documented in its own docstring as
+
+```python
+y_vec = [a, x, y, u, v] where u = dx/dt, v = dy/dt
+```
+
+so index 0 is the **scale factor** and `Im τ` is at index **2**. Applied to that state the solver
+
+- fed `(a, x)` to `modular_domain_fold` as if it were `(Re τ, Im τ)`, T-folding the scale factor by
+  `round(a)`. Measured on a `t ≤ 200` run: **`modular_folds_count = 1 984 560 473`** — the count is
+  large precisely because `a` grows;
+- clamped `y_out[1]`, i.e. **`Re τ`**, up to `FRICKE_Y = 1/√12`. `Re τ` is legitimately `0` at the
+  Fricke point and `0.5` at the orbifold point, so the floor is meaningless there and actively wrong;
+- never touched the real modulus at index 2.
+
+**Fix.** `Solver` takes `modulus_indices=(re, im)`. Left unset it uses `(0, 1)` only for the
+2- and 4-component layouts the docstrings name, and otherwise **skips the projections with a
+`RuntimeWarning`** rather than guessing. With `modulus_indices=(1, 2)` the same run gives
+`Re τ ∈ [−0.5000, 0.5000]`, `Im τ ∈ [0.2894, 0.9672]` — spanning the Fricke saddle `0.2887` up
+toward the orbifold point `0.8660` — and leaves the scale factor alone (`max a = 1.51e4`).
+
+### Blast radius of the S1-F2 and S1-F8 changes — measured
+
+**No committed simulation artifact is affected.** Every tracked output
+(`swampland_geodesic_telemetry.csv`, `kummer_langevin_pointcloud.csv`, `parameter_sweep_results.json`,
+`tda_mapper_skeleton.json`, `vacuum_decay_cdl_summary.json`, and the `*_summary.json` files) is written
+by `workshopcosmo.py`, `parameter_sweep*.py`, `scripts/tda_mapper.py` or the Rust simulator. Checked in
+a clean interpreter:
+
+```
+$ python3 -c "import workshopcosmo, sys; print([k for k in sys.modules if k.startswith('leanflow')])"
+[]        # workshopcosmo imports NO leanflow module; it calls scipy.solve_ivp directly
+```
+
+`leanflow.core.solver.Solver` — the only code path that folds — is used only inside the `leanflow`
+package, its tests, `scripts/generate_colab_notebook.py` and the Hugging Face deployment copy.
+
+**On that path the change is large, not cosmetic.** Replaying the old `apply_S=True` behaviour over
+the trajectory the solver actually produces:
+
+| horizon | points | points the old S-fold would move | max \|Δx\| | max \|Δy\| |
+|---|---|---|---|---|
+| `t ≤ 5`   | 155  | 155 (100%) | 6.36e-01 | 3.175 |
+| `t ≤ 50`  | 1419 | 1419 (100%) | 7.16e-01 | 3.175 |
+| `t ≤ 200` | 2831 | 2831 (100%) | 7.16e-01 | 3.175 |
+
+Every point was being moved, by up to `3.175` in `y`. Anyone re-running the LeanFlow solver path
+should expect different numbers from before 2026-09-21, and the old numbers should not be trusted.
+
 ### S1-F5 — Convention now binding on any future `proofs/` work. *(no change needed today)*
 
 `Sym²` is **contravariant**. Any future Lean or Python code in this repository that composes a `Sym²`

@@ -260,3 +260,57 @@ def test_sl2z_fold_moves_the_repo_own_fricke_saddle():
     x_d, y_d, folds_d = modular_domain_fold(0.0, FRICKE_Y)
     assert folds_d == 0
     assert abs(y_d - FRICKE_Y) < 1e-15
+
+
+# ---------------------------------------------------------------------------
+# S1-F8 -- the solver's state-layout contract
+# ---------------------------------------------------------------------------
+
+def test_solver_skips_projections_on_an_undeclared_state_layout():
+    """S1-F8.  The projections used to assume (Re tau, Im tau) = indices (0, 1).
+
+    For ``workshopcosmo.cosmology_rhs`` the state is ``[a, x, y, u, v]``: index 0 is
+    the SCALE FACTOR and Im tau is at index 2.  Guessing (0, 1) there folded the
+    scale factor as if it were Re tau and clamped Re tau -- which is legitimately
+    0 at the Fricke point and 0.5 at the orbifold point -- to 1/sqrt(12).
+    An undeclared layout must now skip, not guess.
+    """
+    import numpy as np
+    import workshopcosmo as wc
+    from leanflow.core.solver import Solver
+
+    y0 = np.array([1e-10, 0.001, wc.FRICKE_Y + 0.001, 0.0, 0.0])
+    rhs = lambda t, y: wc.cosmology_rhs(t, y)
+
+    with pytest.warns(RuntimeWarning, match="modulus_indices"):
+        r = Solver(method="Radau").solve(rhs, y0, (0.0, 50.0))
+    assert r.telemetry.modular_folds_count == 0
+    assert r.telemetry.projections_applied == 0
+
+
+def test_solver_projects_the_right_components_when_told():
+    """S1-F8.  With ``modulus_indices=(1, 2)`` the cosmology state projects correctly."""
+    import numpy as np
+    import workshopcosmo as wc
+    from leanflow.core.solver import Solver
+
+    y0 = np.array([1e-10, 0.001, wc.FRICKE_Y + 0.001, 0.0, 0.0])
+    rhs = lambda t, y: wc.cosmology_rhs(t, y)
+    r = Solver(method="Radau", modulus_indices=(1, 2)).solve(rhs, y0, (0.0, 50.0))
+
+    # Re(tau) is T-folded into [-1/2, 1/2]; Im(tau) respects the floor; a is untouched.
+    assert r.y[1].min() >= -0.5 - 1e-9 and r.y[1].max() <= 0.5 + 1e-9
+    assert r.y[2].min() >= wc.FRICKE_Y - 1e-9
+    assert r.y[0].max() > 1.0                       # the scale factor grew, unprojected
+    assert r.telemetry.modular_folds_count > 0
+
+
+def test_two_and_four_component_layouts_keep_the_old_default():
+    """S1-F8.  The layouts the projection docstrings name are unchanged: (0, 1)."""
+    import numpy as np
+    from leanflow.core.solver import Solver
+
+    rhs4 = lambda t, y: np.array([y[2], y[3], 0.0, 0.0])
+    r = Solver(method="RK45").solve(rhs4, np.array([3.2, 1.5, 0.0, 0.0]), (0.0, 1.0))
+    assert abs(r.y[0, -1] - 0.2) < 1e-9             # T-folded 3.2 -> 0.2
+    assert r.telemetry.modular_folds_count > 0

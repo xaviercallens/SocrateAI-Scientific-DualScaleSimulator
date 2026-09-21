@@ -159,9 +159,18 @@ and reproduction commands: `audit/STREAM1_BRIDGE.md`.
   former and not the latter; (ii) the `SL(2,ℤ)` fold was described as keeping trajectories in the
   physical domain, but `S : τ ↦ −1/τ` is not a symmetry of the implemented potential
   (`max |V(Sτ) − V(τ)| = 8.77`, against `6.7e-16` for `T`), so it moved reported trajectory points to
-  physically inequivalent points. The `S`-step is now off by default. **This changes solver output for
-  any trajectory that previously left the fundamental domain**; results computed with the old default
-  are affected and are not re-reported here.
+  physically inequivalent points. The `S`-step is now off by default. **This changes solver output**, and the blast radius was
+  measured rather than left open: **no committed simulation artifact is affected**, because every
+  tracked output is written by `workshopcosmo.py`, `parameter_sweep*.py`, `scripts/tda_mapper.py` or
+  the Rust simulator, none of which import `leanflow` (verified in a clean interpreter). On the
+  `leanflow` solver path itself the change is large — the old `S`-fold moved **100% of trajectory
+  points**, by up to `3.175` in `y` — so numbers produced on that path before 2026-09-21 should not be
+  trusted. (iii) A third defect, **S1-F8**, was found while making that measurement: the solver applied
+  both projections at state indices `(0, 1)`, but the cosmology state is `[a, x, y, u, v]`, so it was
+  folding the **scale factor** as `Re τ` (reporting 1.98e9 folds on a `t ≤ 200` run) and clamping
+  `Re τ` — legitimately `0` at the Fricke point and `0.5` at the orbifold point — to `1/√12`, while
+  never touching the real modulus at index 2. The solver now takes explicit `modulus_indices` and
+  skips with a warning rather than guessing an unknown layout.
 
 - **A10.4 A defect disclosed in paper-support code.** `papers/T-dulaity alone/t_duality_calculus.py`
   printed "Symmetric square modular invariant verified for `L_3 = Sym^2 L_2`" conditioned on
