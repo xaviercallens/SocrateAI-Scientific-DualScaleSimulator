@@ -184,3 +184,38 @@ def test_bounded_in_unit_interval():
 def test_rejects_unknown_mode():
     with pytest.raises(ValueError):
         modular_potential(complex(0, 1), N, mode="nope")
+
+
+# ---------------------------------------------------------------------------
+# L5 precondition: does the LEVEL have any consequence at all?
+# ---------------------------------------------------------------------------
+
+def test_level_changes_the_landscape_unlike_the_old_potential():
+    """`audit/K3_SELECTION.md` §6.3 recorded the obstruction: changing `N` moved
+    `FRICKE_Y` and nothing else, so no observable depended on the level and no
+    level could be falsified. This test is the regression guard for that.
+
+    The old potential does not read `N` at runtime at all -- `N` enters only through
+    a module-level constant -- so its values are bit-identical across levels. The
+    modular potential depends on `N` everywhere.
+    """
+    import random
+    import workshopcosmo as wc
+
+    rng = random.Random(11)
+    pts = [complex(rng.uniform(-0.5, 0.5), 10 ** rng.uniform(-0.5, 0.5)) for _ in range(8)]
+
+    # Old: identical, because compute_potential takes no level argument.
+    old = [wc.compute_potential(t.real, t.imag)[0] for t in pts]
+    assert old == [wc.compute_potential(t.real, t.imag)[0] for t in pts]
+
+    # New: the level moves the landscape at every probe.
+    devs = [abs(modular_potential(t, 7, mode="log") - modular_potential(t, 12, mode="log"))
+            for t in pts]
+    assert min(devs) > 1e-3, f"level dependence vanished somewhere: min={min(devs)}"
+    assert sum(devs) / len(devs) > 0.01
+
+    # ... and the wells sit at different places, as they must.
+    assert abs(self_dual_tau(7) - self_dual_tau(12)) > 0.08
+    assert modular_potential(self_dual_tau(7), 7) < 1e-12
+    assert modular_potential(self_dual_tau(7), 12) > 1e-3   # not a well at the wrong level

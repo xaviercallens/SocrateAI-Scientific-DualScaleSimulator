@@ -134,10 +134,22 @@ Recorded so the next attempt has a bar to clear, **not** registered as a predict
    constant — e.g. a tadpole or flux-quantisation condition that admits `N` only for certain values.
 2. A check that the chosen `N` is consistent across the programme: Stream 1's arithmetic is at 7, so
    an argument for 12 must say what happens to `s₇`, `P₂` and the Hauptmodul at 12.
-3. A statement of what the choice would forbid. Under the current construction, changing `N` moves
-   `FRICKE_Y` and nothing else observable, because the potential is a hand-built well — so **no
-   observable currently depends on the level at all**, and no level can be falsified. Fixing that is
-   prior to arguing for any particular `N`.
+3. A statement of what the choice would forbid. Under the construction this repository actually
+   integrates, changing `N` moves `FRICKE_Y` and nothing else observable, because the potential is a
+   hand-built well — so **no observable depends on the level at all**, and no level can be falsified.
+   Fixing that is prior to arguing for any particular `N`.
+
+   **Update 2026-09-21: the obstruction is now liftable, though not yet lifted.**
+   `leanflow/core/modular_potential.py` (spec item L1) is a genuinely `Γ₀(N)⁺`-invariant potential
+   built from `F_N(τ) = j(τ) + j(Nτ)`, and it *does* read the level. Measured over 14 random points of
+   the domain, `mode="log"`: mean `|V₇ − V₁₂| = 0.068`, max `0.099`, and **no probe where the
+   dependence vanishes**. The potential currently integrated gives exactly `0.0` by construction,
+   since it takes no level argument.
+
+   So the level can now in principle have consequences. It does not yet, because the modular potential
+   is **opt-in and not adopted** — adopting it would change every reported trajectory, a decision
+   deliberately left open while the Zenodo draft is under review. Until then §1 stands unchanged:
+   level 12 is fitted, and nothing in this repository could falsify it.
 
 ---
 

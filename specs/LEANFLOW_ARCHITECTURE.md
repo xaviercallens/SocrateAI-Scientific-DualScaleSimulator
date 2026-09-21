@@ -150,7 +150,7 @@ missing file**, and rename the module so it does not say IPC.
 compiler output attached. A test asserts this by pointing the bridge at a deliberately broken file.
 **No path returns `True` without a Lean exit code of 0.**
 
-### L5 — Give the level observable consequences *(depends on L1; prerequisite for any K3 claim)*
+### L5 — Give the level observable consequences *(depends on L1; prerequisite for any K3 claim)* — **precondition met; criterion NOT met**
 
 **Problem.** `audit/K3_SELECTION.md` §6: changing `N` currently moves `FRICKE_Y` and nothing else, so
 **no observable depends on the level and no level can be falsified.**
@@ -161,6 +161,12 @@ constant alone.
 **Acceptance criterion.** Two runs at different `N` produce a stated observable differing by more than
 its numerical tolerance, and the difference survives a seed change. Until then, no level-selection
 claim may be made in any manuscript — and `audit/K3_SELECTION.md` records level 12 as *fitted*.
+
+**Status.** The *precondition* is met: with L1's potential the level moves the landscape everywhere —
+mean `|V₇ − V₁₂| = 0.068`, max `0.099` over 14 random domain points, with no probe where it vanishes,
+against exactly `0.0` for the potential currently integrated, which takes no level argument
+(`test_level_changes_the_landscape_unlike_the_old_potential`). **The criterion itself is NOT met**,
+because it asks for two *runs*, and that needs the adoption decision in L1. The claim stays closed.
 
 ### L6 — Retire or implement the performance story
 
