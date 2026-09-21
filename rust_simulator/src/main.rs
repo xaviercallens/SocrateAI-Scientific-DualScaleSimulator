@@ -7,11 +7,32 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
     let mut mode = "all".to_string();
 
+    // The CLI flags below used to be PARSED NOWHERE: main() read only --mode and
+    // then built every config with Config::default(), so the --grid-size / --t-max /
+    // --output-csv / --output-json that workshopcosmo.py passes were silently
+    // ignored and the documented invocation did not control the simulation.
+    // Recorded as S1-F11 in audit/STREAM1_BRIDGE.md.
+    let mut grid_size: Option<usize> = None;
+    let mut t_max: Option<f64> = None;
+    let mut seed: Option<u64> = None;
+    let mut output_csv: Option<String> = None;
+    let mut output_json: Option<String> = None;
+
     let mut i = 1;
     while i < args.len() {
-        if args[i] == "--mode" && i + 1 < args.len() {
-            mode = args[i + 1].clone();
-            i += 1;
+        let next = |i: usize| -> Option<String> { args.get(i + 1).cloned() };
+        match args[i].as_str() {
+            "--mode" => { if let Some(v) = next(i) { mode = v; i += 1; } }
+            "--grid-size" => { if let Some(v) = next(i) { grid_size = v.parse().ok(); i += 1; } }
+            "--t-max" => { if let Some(v) = next(i) { t_max = v.parse().ok(); i += 1; } }
+            "--seed" => { if let Some(v) = next(i) { seed = v.parse().ok(); i += 1; } }
+            "--output-csv" => { if let Some(v) = next(i) { output_csv = Some(v); i += 1; } }
+            "--output-json" => { if let Some(v) = next(i) { output_json = Some(v); i += 1; } }
+            other => {
+                if other.starts_with("--") {
+                    eprintln!("warning: unrecognised flag {} ignored", other);
+                }
+            }
         }
         i += 1;
     }
@@ -23,7 +44,13 @@ fn main() {
 
     if mode == "kummer" || mode == "all" {
         println!("\n>>> Running Loop 0: Kummer Orbifold Langevin Dynamics...");
-        let config = KummerConfig::default();
+        let mut config = KummerConfig::default();
+        if let Some(v) = grid_size { config.grid_size = v; }
+        if let Some(v) = t_max { config.t_max = v; }
+        if let Some(v) = seed { config.seed = v; }
+        if let Some(ref v) = output_csv { config.output_csv = v.clone(); }
+        if let Some(ref v) = output_json { config.output_json = v.clone(); }
+        println!("    config: grid_size={} t_max={} seed={}", config.grid_size, config.t_max, config.seed);
         let mut sim = KummerLangevinSimulator::new(config);
         let (summary, records) = sim.run_simulation();
         sim.export_results(&summary, &records).expect("Failed to export Kummer telemetry");
@@ -32,7 +59,11 @@ fn main() {
 
     if mode == "swampland" || mode == "all" {
         println!("\n>>> Running Loop 1: Swampland Distance Conjecture Geodesic Flow...");
-        let config = SwamplandConfig::default();
+        let mut config = SwamplandConfig::default();
+        if let Some(v) = t_max { config.s_max = v; }
+        if let Some(ref v) = output_csv { config.output_csv = v.clone(); }
+        if let Some(ref v) = output_json { config.output_json = v.clone(); }
+        println!("    config: s_max={}", config.s_max);
         let sim = SwamplandSimulator::new(config);
         let (summary, records) = sim.run_simulation();
         sim.export_results(&summary, &records).expect("Failed to export Swampland telemetry");
@@ -41,7 +72,12 @@ fn main() {
 
     if mode == "tachyon" || mode == "all" {
         println!("\n>>> Running Loop 2: Tachyon Condensation & Sen Soliton Formation...");
-        let config = TachyonConfig::default();
+        let mut config = TachyonConfig::default();
+        if let Some(v) = t_max { config.t_max = v; }
+        if let Some(v) = seed { config.seed = v; }
+        if let Some(ref v) = output_csv { config.output_csv = v.clone(); }
+        if let Some(ref v) = output_json { config.output_json = v.clone(); }
+        println!("    config: t_max={} seed={}", config.t_max, config.seed);
         let mut sim = TachyonSimulator::new(config);
         let (summary, records) = sim.run_simulation();
         sim.export_results(&summary, &records).expect("Failed to export Tachyon telemetry");
@@ -50,7 +86,9 @@ fn main() {
 
     if mode == "vacuum-decay" || mode == "all" {
         println!("\n>>> Running Loop 3: Flat-Space Coleman Bounce & Holographic c-Theorem...");
-        let config = VacuumDecayConfig::default();
+        let mut config = VacuumDecayConfig::default();
+        if let Some(ref v) = output_csv { config.output_csv = v.clone(); }
+        if let Some(ref v) = output_json { config.output_json = v.clone(); }
         let sim = VacuumDecaySimulator::new(config);
         match sim.run_simulation() {
             Ok((summary, records)) => {

@@ -1,0 +1,55 @@
+{
+  "generated_utc": "2026-09-21T10:44:05Z",
+  "purpose": "Provenance for the simulation telemetry deposited with this record. Regenerated 2026-09-21 through the DOCUMENTED workshopcosmo driver with every stochastic stage seeded, and verified byte-identical across THREE independent full reruns.",
+  "reproduce": [
+    "cargo build --release --manifest-path rust_simulator/Cargo.toml",
+    "python3 -c \"import workshopcosmo as wc; wc.run_full_tda_langevin_pipeline(); wc.run_swampland_distance_simulation(); wc.run_tachyon_condensation_simulation(); wc.run_vacuum_decay_simulation()\""
+  ],
+  "determinism_check": {
+    "method": "sha256 of every listed file after three independent full reruns",
+    "runs_compared": 3,
+    "result": "all byte-identical"
+  },
+  "environment": {
+    "git_commit": "269a4fe6223e53e2933918b3ec2fae13a605f425",
+    "rustc": "rustc 1.96.1 (31fca3adb 2026-06-26)",
+    "python": "Python 3.10.12"
+  },
+  "seeds": {
+    "rust_simulator": 42,
+    "tda_mapper": 42,
+    "note": "Before 2026-09-21 the Rust binary ignored every CLI flag except --mode and always used Config::default(), and the Mapper defaulted to an UNSEEDED run. Both fixed: audit/STREAM1_BRIDGE.md S1-F11. Honouring the flags then exposed a test-order dependence on this shared point-cloud file, S1-F12."
+  },
+  "configs_used": {
+    "kummer": {
+      "grid_size": 32,
+      "t_max": 15.0,
+      "seed": 42
+    },
+    "tda_mapper": {
+      "seed": 42,
+      "intervals": 10,
+      "overlap": 0.35,
+      "max_points": 6000
+    },
+    "swampland": "workshopcosmo defaults (deterministic geodesic integrator)",
+    "tachyon": {
+      "t_max": 20,
+      "seed": 42
+    },
+    "vacuum_decay": "workshopcosmo defaults (deterministic shooting solver, no RNG)"
+  },
+  "scope": "Exploratory numerics. NO number in the manuscript derives from them -- verified by grep: none of these telemetry values appears in T_duality_Alone.tex, the tier-honesty pass having already removed them. Deposited so the pipeline can be rerun, not as evidence for any physical claim. The equivalence-class counts are configuration-dependent: domain walls are present at grid_size=32/t_max=15 and at the Rust defaults 48/25, and absent from a shorter t_max=10 run.",
+  "sha256": {
+    "kummer_langevin_pointcloud.csv": "21239aa1f1ea569ebbe554ba5933750792cb3ebfc3bda0ecafda78bb5869d204",
+    "kummer_langevin_summary.json": "b0534a2287f65a7c2a96dc95cfd126f2f1ac15de694302ecd03ec56a1474245d",
+    "swampland_geodesic_summary.json": "d4d29cbf868b10d979f92cf8affee4b5371a8c0fe8193f2fd68171319ca975aa",
+    "swampland_geodesic_telemetry.csv": "255a7cdeaa3bcc568387e30e507f4891ec98011f89425c75c730e8184c0b371d",
+    "tachyon_condensation_summary.json": "a0af54f0681d4df5da0d5184162bbb13c63eac64410783a1ad06d05fc96ee480",
+    "tachyon_condensation_telemetry.csv": "726b1dec67d61a949513b8c25cbf4b7c7da497315e0ef216530df1ff34a0f3af",
+    "vacuum_decay_cdl_summary.json": "d90b3ec066d3be3cfe3884d5c4a3fc2eb598bee777396ad8b2b5d0e560ad9282",
+    "vacuum_decay_cdl_telemetry.csv": "204b4183e4286845bd253f64c293938244ba22998f95e7d16f78a26f45ae31c4",
+    "tda_mapper_skeleton.json": "5c330ffc7d35ecdbceace175bd8f9e757aaa9052fae2d4bf9cf0284bc8fa47e9",
+    "tda_mapper_graph.png": "9b377e240dd8cc1c1bde74ede9befb6cb557fa938d8bf689f0103fb1bff94676"
+  }
+}

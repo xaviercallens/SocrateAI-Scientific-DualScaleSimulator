@@ -226,8 +226,20 @@ class TestReqCosmo09KummerLangevinTDA:
         assert res["mean_field_norm"] > 0.2, "Field failed to develop non-zero vacuum expectation value"
 
     def test_tda_mapper_extraction_and_equivalence_classes(self):
-        """Verify TDA Mapper extracts 1-skeleton, 1-cycles (beta_1), and partitions into 3 string classes."""
-        res = wc.run_tda_mapper_analysis()
+        """Verify TDA Mapper extracts 1-skeleton, 1-cycles (beta_1), and partitions into 3 string classes.
+
+        ORDER INDEPENDENCE (audit/STREAM1_BRIDGE.md S1-F12): this test used to call
+        run_tda_mapper_analysis() on whatever kummer_langevin_pointcloud.csv happened
+        to be on disk, so its result depended on which other test had last written
+        that file -- test_rust_langevin_simulation_ssb_and_defects writes it with
+        t_max=10.0. The coupling was invisible while the Rust binary ignored its CLI
+        flags (S1-F11) and every caller therefore got the same default point cloud.
+        Once the flags were honoured, the shorter run produced a cloud with no domain
+        walls and this test failed in the full suite while passing in isolation.
+        It now generates its own point cloud with stated parameters.
+        """
+        wc.run_kummer_langevin_simulation(grid_size=32, t_max=15.0)
+        res = wc.run_tda_mapper_analysis(seed=42)
         assert res["success"] is True, "TDA Mapper extraction failed"
         assert res["num_nodes"] > 10, f"Too few Mapper nodes extracted: {res['num_nodes']}"
         assert res["num_edges"] > 10, f"Too few Mapper edges extracted: {res['num_edges']}"
@@ -236,6 +248,10 @@ class TestReqCosmo09KummerLangevinTDA:
         # Check presence of all 3 equivalence classes
         classes = res["classes"]
         assert "AttractorVacuum" in classes and classes["AttractorVacuum"] > 0, "Missing AttractorVacuum class"
+        # Domain walls are configuration-dependent: they are present at
+        # grid_size=32/t_max=15.0 and at the Rust defaults (48/25), but absent from
+        # the shorter t_max=10.0 run. The parameters are fixed above so this is a
+        # statement about a stated configuration, not a seed that happened to work.
         assert "DomainWall" in classes and classes["DomainWall"] > 0, "Missing DomainWall class"
         assert "CosmicString" in classes and classes["CosmicString"] > 0, "Missing CosmicString class"
 

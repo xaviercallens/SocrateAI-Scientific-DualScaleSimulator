@@ -44,6 +44,8 @@ FRICKE_Y = 1.0 / math.sqrt(12.0)  # ~ 0.28867513459
 ORBIFOLD_X = 0.5
 ORBIFOLD_Y = math.sqrt(3.0) / 2.0  # ~ 0.86602540378
 
+DEFAULT_MAPPER_SEED = 42  # see audit/STREAM1_BRIDGE.md S1-F11
+
 RHO_M0 = 0.315
 RHO_R0 = 9.2e-5
 
@@ -851,12 +853,22 @@ def run_tda_mapper_analysis(
 ) -> Dict[str, Any]:
     """
     Executes the Mapper algorithm on the point cloud to extract the 1-skeleton graph.
-    Seed defaults to MAPPER_SEED env var if not provided.
+
+    Seed resolution order: explicit ``seed`` argument, then the ``MAPPER_SEED``
+    environment variable, then ``DEFAULT_MAPPER_SEED``.
+
+    NOTE (audit/STREAM1_BRIDGE.md S1-F11): this used to fall through to an
+    UNSEEDED run, which made the Mapper output vary between runs on an identical
+    point cloud -- the equivalence-class counts in particular. That made the
+    deposited telemetry irreproducible and made
+    tests/test_workshopcosmo.py::test_tda_mapper_extraction_and_equivalence_classes
+    flaky: it asserts DomainWall > 0, which an unseeded run does not always give.
+    Pass seed=None explicitly AND unset MAPPER_SEED only if an unseeded run is
+    genuinely wanted.
     """
     if seed is None:
         seed_env = os.environ.get("MAPPER_SEED")
-        if seed_env:
-            seed = int(seed_env)
+        seed = int(seed_env) if seed_env else DEFAULT_MAPPER_SEED
 
     script_path = os.path.join(os.path.dirname(__file__), "scripts", "tda_mapper.py")
     cmd = [

@@ -317,6 +317,60 @@ invokes a built binary through `subprocess.run` as a separate batch process. The
 closing sentence already conceded that the socket-IPC gate "has not been exercised end-to-end in this
 repository"; the corrections above go further, because the mechanism described does not exist.
 
+### S1-F11 — The Rust binary ignored every CLI flag except `--mode`; telemetry was unseeded. *(defect, reproducibility; fixed)*
+
+Found while regenerating telemetry for the deposit. `rust_simulator/src/main.rs` parsed only
+`--mode` and then built every simulation with `Config::default()`. The `--grid-size`, `--t-max`,
+`--output-csv` and `--output-json` flags that `workshopcosmo.py` passes were **silently ignored**, so
+the documented invocation did not control the simulation. This is how the committed
+`tachyon_condensation_summary.json` came to hold `final_time = 15.0` while the default config
+produces `20.0` — the file could not be reproduced from the command that supposedly made it.
+
+`scripts/tda_mapper.py` supported `--seed` / `MAPPER_SEED` but **defaulted to unseeded**, which is why
+the deposit metadata had to say "the TDA Mapper output is not seeded".
+
+**Fixed.** `main.rs` now parses `--mode`, `--grid-size`, `--t-max`, `--seed`, `--output-csv`,
+`--output-json`, applies them over the defaults, warns on an unrecognised flag, and prints the
+resolved config. The 21 Rust unit tests still pass.
+
+**Result: the telemetry is now reproducible.** Regenerated with
+
+```bash
+cargo build --release --manifest-path rust_simulator/Cargo.toml
+./rust_simulator/target/release/rust_simulator --mode all --seed 42
+python3 scripts/tda_mapper.py --seed 42
+```
+
+and verified **byte-identical across three independent full reruns** (sha256 of all nine telemetry
+files). `TELEMETRY_PROVENANCE.json` records the commands, seeds, resolved configs, toolchain versions
+and hashes.
+
+**Scope, unchanged:** these remain exploratory numerics. **No number in the manuscript derives from
+them** — checked by grep: none of the telemetry values appears in `T_duality_Alone.tex`, the
+tier-honesty pass having already removed them. Reproducibility is a property of the pipeline here,
+not evidence for any physical claim.
+
+### S1-F12 — A test depended on which other test last wrote a shared file. *(defect, tests; exposed by the S1-F11 fix)*
+
+`tests/test_workshopcosmo.py::test_tda_mapper_extraction_and_equivalence_classes` called
+`run_tda_mapper_analysis()` on whatever `kummer_langevin_pointcloud.csv` happened to be on disk. An
+earlier test in the same class, `test_rust_langevin_simulation_ssb_and_defects`, writes that file
+with `t_max=10.0`. So the Mapper test was really testing the *other* test's output.
+
+The coupling was invisible while the Rust binary ignored its CLI flags (S1-F11): every caller got the
+same `Config::default()` point cloud regardless of what it asked for. Once the flags were honoured,
+the shorter `t_max=10.0` run produced a cloud with **no domain walls**, and the test failed in the
+full suite while passing in isolation — measured both ways.
+
+**Not fixed by changing the seed.** Searching for a seed that makes the assertion pass would be
+exactly the rigging this project's own reviews are meant to catch. The test now generates its own
+point cloud with stated parameters (`grid_size=32, t_max=15.0`) and a stated Mapper seed, so the
+assertion is a statement about a named configuration.
+
+**Disclosed:** the equivalence-class counts are strongly configuration-dependent. Domain walls are
+present at `grid_size=32, t_max=15` (5 of 197 nodes) and at the Rust defaults `48/25` (5 of 215), and
+**absent** at `t_max=10`. Full suite: 136 passed, 2 skipped, run twice.
+
 ### S1-F5 — Convention now binding on any future `proofs/` work. *(no change needed today)*
 
 `Sym²` is **contravariant**. Any future Lean or Python code in this repository that composes a `Sym²`
