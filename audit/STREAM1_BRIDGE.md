@@ -393,6 +393,57 @@ sentence in §`sec:leanflow`.
 Also noted, no manuscript claim attached: `rayon` is declared in `rust_simulator/Cargo.toml` but
 **never used** — no `par_iter`, no `rayon::` anywhere in the crate.
 
+### S1-F14 — The Lean bridge reported verification for a check it never ran. *(defect, verification honesty; fixed)*
+
+Found while writing the acceptance criterion for L4 in `specs/LEANFLOW_ARCHITECTURE.md`. This is the
+most serious kind of defect this audit has turned up, because the false claim was emitted by **running
+code**, not by prose.
+
+`leanflow/bridge/lean_ipc.py` contained:
+
+```python
+lean_verified = False
+if is_neutral:
+    lean_file = os.path.join(self.workspace_dir, "proofs", "KummerLangevinTDA.lean")
+    if os.path.exists(lean_file):
+        try:
+            res = subprocess.run(["lake", "build", "KummerLangevinTDA"], ...)
+            lean_verified = (res.returncode == 0)
+        except Exception:
+            lean_verified = True          # <-- "Fallback to local verified arithmetic"
+    else:
+        lean_verified = True              # <-- file missing => report success
+```
+
+**`proofs/KummerLangevinTDA.lean` does not exist in this repository.** So the missing-file branch ran
+every time: `lake` was never invoked, and the result nevertheless reported
+
+```
+"lean_verified": True,
+"certificate": "SocrateAI.Cosmology.KummerTadpole.tadpole_cancellation_proved"
+```
+
+— naming a Lean theorem as the certificate for a check that never happened. The exception handler did
+the same thing on a timeout or a missing `lake`.
+
+**Fixed.** No path now reports verification without a Lean exit code of `0`. A missing file gives
+`lean_verified = False`, `lean_status = "lean_file_absent"` and a stated reason; a failed build gives
+`build_failed` with the compiler output attached; an exception gives `build_error: <type>`. The
+certificate is attached only when a Lean build actually succeeded — charge neutrality, which is Python
+arithmetic, is reported separately as `is_neutral` and is genuine.
+
+**Two tests were asserting the false claim** and have been corrected rather than deleted:
+`test_lean_verification_client` asserted `lean_verified is True` and
+`test_topological_defect_extractor` asserted `lean_certified is True`. Both held *only* because Lean
+was never run. They now assert `False` with the stated reason, and that the certificate is absent —
+so a regression that reintroduces the fallback fails the suite.
+
+Full suite after the fix: 136 passed, 2 skipped.
+
+**Related, not fixed here:** `audit/physics_findings.json` records that the charges fed to this check
+are themselves constructed to sum to zero (cosmic strings paired `+1/−1`), so even a real Lean build
+would be checking `sum([1,-1,0,…]) = 0`. Recorded in `specs/LEANFLOW_ARCHITECTURE.md` §2 L4.
+
 ### S1-F5 — Convention now binding on any future `proofs/` work. *(no change needed today)*
 
 `Sym²` is **contravariant**. Any future Lean or Python code in this repository that composes a `Sym²`

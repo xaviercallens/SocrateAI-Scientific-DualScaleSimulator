@@ -219,16 +219,28 @@ class TestWorkingGroups:
         summary = lf.extract_topological_defects(grid)
         assert summary.num_nodes > 0
         assert summary.num_edges > 0
+        # Python arithmetic on the charges -- genuine.
         assert summary.is_tadpole_neutral is True
-        assert summary.lean_certified is True
+        # audit/STREAM1_BRIDGE.md S1-F14: this used to assert True, which held only
+        # because proofs/KummerLangevinTDA.lean is ABSENT and the bridge reported
+        # success for a Lean check it never ran. With no Lean file there is no Lean
+        # certification, and the test now says so.
+        assert summary.lean_certified is False
 
     def test_lean_verification_client(self):
         client = LeanVerificationClient()
         # Neutral charges
         res_neutral = client.verify_tadpole_cancellation([1, -1, 2, -2])
+        # Charge neutrality is Python arithmetic and is genuinely established.
         assert res_neutral["is_neutral"] is True
-        assert res_neutral["lean_verified"] is True
-        assert res_neutral["certificate"] is not None
+        # S1-F14: NO path may report Lean verification without a Lean exit code of 0.
+        # proofs/KummerLangevinTDA.lean does not exist, so the honest answer is False
+        # with a stated reason -- previously this returned True with Lean never run.
+        assert res_neutral["lean_verified"] is False
+        assert res_neutral["lean_status"] == "lean_file_absent"
+        assert "does not exist" in res_neutral["lean_output"]
+        # And the Lean certificate may not be attached to an unverified result.
+        assert res_neutral["certificate"] is None
 
         # Non-neutral charges
         res_charged = client.verify_tadpole_cancellation([1, 2, 3])

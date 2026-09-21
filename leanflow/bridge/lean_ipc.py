@@ -59,20 +59,37 @@ class LeanVerificationClient:
         net_charge = sum(charges)
         is_neutral = (net_charge == 0)
 
-        # Run Lean 4 kernel verification if net charge is zero
+        # Run Lean 4 kernel verification if net charge is zero.
+        #
+        # CORRECTION 2026-09-21 (audit/STREAM1_BRIDGE.md S1-F14). This block used to
+        # set lean_verified = True when the Lean file was MISSING, and again when the
+        # build raised. proofs/KummerLangevinTDA.lean does not exist in this
+        # repository, so the missing-file branch always ran: Lean was NEVER invoked
+        # and the result nevertheless reported lean_verified = True together with a
+        # named Lean certificate. That is a false verification claim emitted by
+        # running code, not merely a documentation error.
+        #
+        # Rule now: NO path reports verification without a Lean exit code of 0.
         lean_verified = False
+        lean_status = "not_attempted"
+        lean_output = None
         if is_neutral:
             lean_file = os.path.join(self.workspace_dir, "proofs", "KummerLangevinTDA.lean")
-            if os.path.exists(lean_file):
-                # We verify the module builds with zero sorry
+            if not os.path.exists(lean_file):
+                lean_status = "lean_file_absent"
+                lean_output = f"{lean_file} does not exist; no Lean check was run"
+            else:
                 cmd = ["lake", "build", "KummerLangevinTDA"]
                 try:
-                    res = subprocess.run(cmd, cwd=self.workspace_dir, capture_output=True, text=True, timeout=15)
+                    res = subprocess.run(cmd, cwd=self.workspace_dir, capture_output=True,
+                                         text=True, timeout=15)
                     lean_verified = (res.returncode == 0)
-                except Exception:
-                    lean_verified = True  # Fallback to local verified arithmetic
-            else:
-                lean_verified = True
+                    lean_status = "build_ok" if lean_verified else "build_failed"
+                    if not lean_verified:
+                        lean_output = (res.stderr or res.stdout or "")[-2000:]
+                except Exception as exc:                      # timeout, lake missing, ...
+                    lean_status = f"build_error: {type(exc).__name__}"
+                    lean_output = str(exc)[:2000]
 
         elapsed_ms = (time.perf_counter() - start_time) * 1000.0
 
@@ -81,9 +98,15 @@ class LeanVerificationClient:
             "charges": charges,
             "net_charge": net_charge,
             "is_neutral": is_neutral,
-            "lean_verified": is_neutral and lean_verified,
+            "lean_verified": bool(is_neutral and lean_verified),
+            "lean_status": lean_status,
+            "lean_output": lean_output,
             "latency_ms": elapsed_ms,
-            "certificate": "SocrateAI.Cosmology.KummerTadpole.tadpole_cancellation_proved" if is_neutral else None
+            # The certificate names a Lean theorem, so it may only be attached when a
+            # Lean build actually succeeded (S1-F14). `is_neutral` alone is arithmetic
+            # done in Python and is reported separately as `is_neutral`.
+            "certificate": ("SocrateAI.Cosmology.KummerTadpole.tadpole_cancellation_proved"
+                            if (is_neutral and lean_verified) else None),
         }
 
         if is_neutral:
