@@ -4,7 +4,11 @@ Which CM discriminants occur in the level-n K3 family?
 
 CRITERION, taken from Stream 2 (SocrateAI-Scientific-Agora-K3-DarkMatter),
 brief `briefs/THOUGHT_EXPERIMENTS_K3_SELECTION_2026_09_21.md` GE-8 and
-certificate `data/certificates/A2_MEMBERSHIP.json` (checker f091e43):
+certificate `data/certificates/A2_MEMBERSHIP.json`.
+
+VALIDATED AGAINST: Stream 2 commit `da84a90`, certificate checker version
+`f091e43`. That repository moves daily, so if the self-test ever fails, compare
+against this SHA before assuming the criterion changed.
 
     D occurs in the level-n family  <=>  D is a square modulo 4n.
 

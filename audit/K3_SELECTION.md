@@ -170,8 +170,9 @@ criterion, **Tier E** on their side:
 
 > `D` occurs in the level-`n` family **iff** `D` is a square modulo `4n`.
 
-They computed the `n = 7` and `n = 10` columns. **This repository is at `n = 12`** (§1), and that column
-did not exist. `scripts/level_membership.py` transcribes their criterion and applies it;
+They computed the `n = 7` and `n = 10` columns; **their certificate contains no `n = 12` column**, and
+this repository is at `n = 12` (§1). (That is what was checked — not that no other stream has computed
+it somewhere else.) `scripts/level_membership.py` transcribes their criterion and applies it;
 `--self-test` **reproduces both of their columns for all 39 discriminants in their certificate**, so
 the transcription is validated against their own data before being extended.
 
@@ -185,7 +186,7 @@ the transcription is validated against their own data before being extended.
     tau = i     (D = -4): n7=False  n10=True   n12=False
 ```
 
-### 7.3 The finding: level 12 excludes the programme's own leading candidate
+### 7.3 The finding: level 12 contains neither surface that E2 names
 
 LeanMaster Stream 8's **E2** proposes, as its *candidate answer* to "which K3":
 
@@ -197,19 +198,26 @@ LeanMaster Stream 8's **E2** proposes, as its *candidate answer* to "which K3":
 committed to **contains neither of the two surfaces that Stream 8's candidate answer names.** Level 7
 admits `D = −3` and level 10 admits `D = −4`; level 12 admits neither.
 
-What this does and does not mean:
+**What this is: arithmetic.** Which CM discriminants lie on `X₀(12)⁺`, computed and validated against
+Stream 2's certificate.
 
-- It **does not** falsify anything physical. Nothing here is a physical claim, and Stream 2 records that
-  the `ρ = 20` cut is not adopted by the programme at all.
-- It **is** a concrete internal inconsistency: the constant in this repository's code and the candidate
-  answer in the programme's own Stream 8 cannot both be right. One of the two must give.
-- Given §1 — level 12 is **fitted**, arrived at through a hard-coded constant in a potential with no
-  modular symmetry, while `D = 3, 4` at least come from an argument — **the constant is the weaker of
-  the two and should be the one that moves.**
+**What it is not: a contradiction between two answers.** §3 of this note separates the two objects and
+that separation applies here too. E2 asks *which attractive (`ρ = 20`, rigid) surface*; a level asks
+*which `ρ = 19` polarized family*, a one-dimensional moduli space. A family not containing a particular
+rigid point is not a competing proposition to a claim about that point — the two are not answers to the
+same question, and it would be the same conflation §3 refuses to say they cannot both hold.
 
-This does not make level 7 or 10 right either. It removes 12 from contention on the programme's own
-terms, and it is the first statement in this repository about the level that could have come out
-otherwise.
+So this note does **not** say level 12 is wrong, does not rank 12 against `D = 3, 4`, and does not put
+any level in or out of contention — nothing selects, as both this note (§4) and Stream 2's GE-8
+establish independently.
+
+What it does is **constrain what a level-12 story would have to give up**: it could not also claim the
+attractive surfaces over the self-dual torus points, because they are not in that family. Levels 7 and
+10 each keep one of them. That is a cost, stated, and it is the first statement in this repository
+about the level that could have come out otherwise.
+
+The separate argument that level 12 is **fitted rather than forced** stands on §1 alone — a hard-coded
+constant in a potential with no modular symmetry — and does not need this computation to support it.
 
 ### 7.4 Recorded, not registered
 
