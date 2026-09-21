@@ -292,11 +292,12 @@ re-run across the whole tracked tree rather than one glob:
 | `papers/T-dulaity alone/submission/COVER_LETTER_SCIPOST.tex` | 1 |
 | `papers/T-dulaity alone/submission/COVER_LETTER_JHEP.tex` | 1 |
 
-**Left for the user, not done here.** `zenodo_bundle/T_duality_Alone.tex` is a **stale snapshot**: it
-differs from the corrected paper in more than this, and still carries `\min(y) = 0.289`, a number the
-tier-honesty pass withdrew as untraceable to any committed output (the cover letters already record
-that withdrawal). Only the factual `τ = i` error was corrected in it. Re-syncing the deposit bundle to
-the current manuscript is a deposit-scope decision and was not taken.
+**Resolved 2026-09-21 on the user's instruction.** `zenodo_bundle/T_duality_Alone.tex` was a **stale
+pre-tier-honesty snapshot**: it differed from the corrected paper in more than the `τ = i` error, and
+still carried `\min(y) = 0.289`, a number the tier-honesty pass withdrew as untraceable to any
+committed output (the cover letters already recorded that withdrawal; this copy did not). The bundle's
+`.tex` and `.pdf` have now been **re-synced from `papers/T-dulaity alone/`** and are byte-identical to
+the corrected manuscript. **No Zenodo deposit was made** — that remains a separate decision.
 
 ### S1-F5 — Convention now binding on any future `proofs/` work. *(no change needed today)*
 
