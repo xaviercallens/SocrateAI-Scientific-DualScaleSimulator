@@ -1,0 +1,24 @@
+64 runs on 7 processes
+  N= 7 ratio common    seed=3 rtol=1e-08 ok=False 5.3s w0=None tau=None
+  N= 7 ratio common    seed=2 rtol=1e-10 ok=False 5.5s w0=None tau=None
+  N= 7 ratio common    seed=0 rtol=1e-08 ok=False 5.6s w0=None tau=None
+  N= 7 ratio common    seed=1 rtol=1e-10 ok=False 5.8s w0=None tau=None
+  N= 7 ratio common    seed=1 rtol=1e-08 ok=False 5.9s w0=None tau=None
+  N= 7 ratio common    seed=0 rtol=1e-10 ok=False 6.0s w0=None tau=None
+  N= 7 ratio common    seed=2 rtol=1e-08 ok=False 6.1s w0=None tau=None
+  N= 7 ratio common    seed=3 rtol=1e-10 ok=False 5.0s w0=None tau=None
+  N= 7 ratio self_dual seed=3 rtol=1e-08 ok=True 350.1s w0=-0.2215505223864352 tau=[-1.7293025409648885e-07, 0.377963994346058]
+  N= 7 ratio self_dual seed=2 rtol=1e-08 ok=True 382.2s w0=-0.22173379292949383 tau=[-5.27986069884732e-07, 0.37796386950679617]
+  N= 7 ratio self_dual seed=0 rtol=1e-08 ok=True 412.3s w0=-0.221778239256907 tau=[-1.0076912818169774e-06, 0.3779634616391455]
+  N= 7 ratio self_dual seed=1 rtol=1e-08 ok=True 458.9s w0=-0.2214148279772565 tau=[-1.0290688614545022e-06, 0.37796254965057635]
+/home/callensxavier_gmail_com/.local/lib/python3.10/site-packages/scipy/integrate/_ivp/common.py:345: RuntimeWarning: overflow encountered in multiply
+  new_factor = NUM_JAC_FACTOR_INCREASE * factor[ind]
+  N= 7 log   common    seed=0 rtol=1e-10 ok=False 203.5s w0=None tau=None
+  N= 7 log   common    seed=1 rtol=1e-10 ok=False 263.5s w0=None tau=None
+  N= 7 ratio self_dual seed=2 rtol=1e-10 ok=True 1372.5s w0=-0.22173379575296154 tau=[-5.280092591284755e-07, 0.3779638694802866]
+  N= 7 ratio self_dual seed=0 rtol=1e-10 ok=True 1591.1s w0=-0.22177824389137635 tau=[-1.0077137719064337e-06, 0.3779634616165702]
+/home/callensxavier_gmail_com/.local/lib/python3.10/site-packages/scipy/integrate/_ivp/common.py:345: RuntimeWarning: overflow encountered in multiply
+  new_factor = NUM_JAC_FACTOR_INCREASE * factor[ind]
+  N= 7 log   common    seed=2 rtol=1e-10 ok=False 242.0s w0=None tau=None
+  N= 7 ratio self_dual seed=3 rtol=1e-10 ok=True 1353.9s w0=-0.22155052081270035 tau=[-1.729420298657119e-07, 0.37796399431346506]
+  N= 7 ratio self_dual seed=1 rtol=1e-10 ok=True 1754.4s w0=-0.2214148191637708 tau=[-1.029082961419555e-06, 0.37796254962423403]
