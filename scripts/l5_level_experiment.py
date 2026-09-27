@@ -44,17 +44,33 @@ LEVELS = (7, 12)
 MODES = ("ratio", "log")
 FD_STEP = 1e-7
 Y_FLOOR = 1e-8
+# mpmath forms q = exp(2 pi i N tau) exactly (arbitrary precision), but jtheta's
+# to_fixed step needs a bounded number of bits, so |Im tau| must stay finite for
+# evaluation. Both modes are documented to approach their y->infinity asymptote
+# (ratio: 1.0; log: w/(scale+w) -> 1.0) well before y=60, so clamping there changes
+# no reachable value -- it only bounds what Radau's Jacobian probes can ask for.
+Y_CAP = 60.0
+CLAMP_EVENTS: list = []  # (job-local) real trajectory points that needed clamping, not FD probes
+
+
+def _bounded(x: float, y: float) -> tuple[float, float]:
+    xe = math.fmod(x, 1.0) if math.isfinite(x) else 0.0
+    ye = y if math.isfinite(y) else Y_CAP
+    ye = min(max(ye, Y_FLOOR), Y_CAP)
+    return xe, ye
 
 
 def potential(x: float, y: float, N: int, mode: str):
     """V and its central-difference gradient. mpmath at dps 25 makes h=1e-7 safe.
 
-    x is reduced mod 1 before evaluation. This is exact, not an approximation:
-    T = [[1,1],[0,1]] lies in Gamma_0(N), so V(x+1, y) = V(x, y). It is needed
-    because Radau's numerical Jacobian probes x ~ 3e12, where mpmath cannot
-    form q = exp(2 pi i tau) and overflows.
+    x is reduced mod 1 before evaluation (exact: T=[[1,1],[0,1]] is in Gamma_0(N),
+    so V(x+1,y)=V(x,y)) and y is clamped to [Y_FLOOR, Y_CAP] (an evaluation-domain
+    bound, see Y_CAP). Both guard the same failure: with zero force in the flat
+    region, Radau's numerical Jacobian enlarges its probe step without bound.
     """
-    f = lambda a, b: modular_potential_xy(math.fmod(a, 1.0), b, N=N, mode=mode)
+    if not math.isfinite(y) or y < Y_FLOOR or y > Y_CAP:
+        CLAMP_EVENTS.append((x, y))  # the *state*, not an FD probe, left the evaluation domain
+    f = lambda a, b: modular_potential_xy(*_bounded(a, b), N=N, mode=mode)
     v = f(x, y)
     dvx = (f(x + FD_STEP, y) - f(x - FD_STEP, y)) / (2 * FD_STEP)
     dvy = (f(x, y + FD_STEP) - f(x, y - FD_STEP)) / (2 * FD_STEP)
@@ -89,15 +105,16 @@ def run_one(job: dict) -> dict:
         x0 += float(rng.uniform(-1e-3, 1e-3))
         y0 += float(rng.uniform(-1e-3, 1e-3))
     t0 = time.time()
+    CLAMP_EVENTS.clear()
     try:
         sol = solve_ivp(rhs, (0.0, t_max), [1e-10, x0, y0, 0.0, 0.0], method="Radau",
                         t_eval=np.linspace(0.0, t_max, 500), rtol=rtol, atol=rtol * 1e-2,
                         first_step=1e-22, max_step=0.5, args=(N, mode))
     except Exception as exc:  # recorded as a failed run, never dropped
         return dict(job, x0=x0, y0=y0, success=False, message=f"{type(exc).__name__}: {exc}"[:300],
-                    seconds=round(time.time() - t0, 1))
+                    seconds=round(time.time() - t0, 1), clamp_events=len(CLAMP_EVENTS))
     out = dict(job, x0=x0, y0=y0, success=bool(sol.success), message=sol.message,
-               nfev=int(sol.nfev), seconds=round(time.time() - t0, 1))
+               nfev=int(sol.nfev), seconds=round(time.time() - t0, 1), clamp_events=len(CLAMP_EVENTS))
     if not sol.success or sol.y.shape[1] < 10:
         return out
 

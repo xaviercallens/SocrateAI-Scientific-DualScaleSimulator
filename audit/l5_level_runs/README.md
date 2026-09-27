@@ -30,3 +30,48 @@ Cost: an rtol 1e-10 run takes 23-29 min on one core, so the full 64-run design t
 Before a rerun: guard the Jacobian probes (clamp Im tau to a bounded range, or pass an explicit
 Jacobian), use rtol 1e-9 as the tolerance reference, drop ratio mode from the common start
 (already answered: no force), and run serially or on 2-3 processes while memory is short.
+
+## 2026-09-27, second attempt: found why, not yet fixed
+
+Fixed one crash (`math.fmod` on `inf` when a Jacobian probe pushed a coordinate to infinity) by
+clamping the evaluation domain to `y in [1e-8, 60]`; `Y_CAP=60` is justified because both modes
+are documented to reach their `y -> infinity` asymptote well before that (measured below).
+`scripts/l5_level_experiment.py` `_bounded`/`Y_CAP`/`CLAMP_EVENTS`.
+
+That crash gone, log mode from the common start (`0.2, 1.2`) still would not finish — not a
+crash this time, a stall (`RuntimeWarning: overflow encountered in multiply` from
+`scipy...common.py:345/367` repeating without bound). Traced the real cause:
+
+**`dV/dx` is exactly `0.0` in float64 whenever `|j(N*tau)| >> |ref|`,** for *both* modes, not an
+approximation — measured directly on `gamma0_plus_invariant`, not just on `V`. `F_N(tau) =
+j(tau) + j(N*tau)` and `|j(N*tau)| ~ exp(2*pi*N*y)` depends only on `y`; its `x`-dependence is a
+pure phase. Once `|F_N|` exceeds `|ref|` by more than float64's ~1e-16 relative precision, that
+phase cannot survive the float() cast, and `V`, a function of `|F_N - ref|`, loses **all**
+`x`-dependence to machine precision. Measured `|F_N|/|ref|` and the `x`-spread of `|F_N|` across
+`x in {0.05, 0.2, 0.35}`, both `N`:
+
+| y | N=7 relative x-spread | N=7 \|F\|/\|ref\| | N=12 relative x-spread | N=12 \|F\|/\|ref\| |
+|---|---|---|---|---|
+| 1.2 | 0 | 2.5e15 | 0 | 3.5e29 |
+| 0.8 | 1.3e-12 | 5.8e7 | 0 | 2.8e16 |
+| 0.5 | 8.0e-5 | 107 | 3.0e-12 | 4.2e6 |
+| 0.4 | 6.4e-2 | 1.24 | 3.7e-7 | 2210 |
+
+So the crossover from "x is dynamically inert" to "x matters" happens within a factor of ~2 in y,
+right where the self-dual points sit (Im = 0.378 at N=7, 0.289 at N=12). A Jacobian column that
+goes from identically zero to O(1) over that short a range is a textbook stiff kink, and is almost
+certainly what stalls Radau's adaptive numerical-Jacobian step search — not a bug in this script,
+a genuine feature of the potential's steepness (`j(N*tau)` is a modular function; its q-expansion
+is inherently exponential in y).
+
+**This is itself indirect evidence for L5, without a completed ODE run:** at the *same* point
+(0.2, 1.2), `dV/dy` already differs between levels: 0.1116 (N=7) vs 0.0747 (N=12), a 33% difference,
+in a regime where `dV/dx` is identically zero at both. That is a level-dependent force from the
+dynamics, at a point neither level's self-dual constant was used to reach — but it is one point,
+not an integrated trajectory, and does not by itself meet the stated L5 criterion (two *runs*).
+
+**Not done, and not attempted further this session:** completing an ODE run through the stiff
+transition (needs either a bounded/analytic Jacobian, a max_step small enough to resolve the
+crossover, or accepting non-convergence there as a reportable outcome), and the full 64-run design.
+Whether to keep debugging the integrator or to test level-dependence more cheaply — by sampling
+`dV/dy(y; N)` directly across a grid, no ODE at all — was left to the user rather than decided here.
