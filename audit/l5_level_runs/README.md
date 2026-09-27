@@ -74,4 +74,36 @@ not an integrated trajectory, and does not by itself meet the stated L5 criterio
 transition (needs either a bounded/analytic Jacobian, a max_step small enough to resolve the
 crossover, or accepting non-convergence there as a reportable outcome), and the full 64-run design.
 Whether to keep debugging the integrator or to test level-dependence more cheaply — by sampling
-`dV/dy(y; N)` directly across a grid, no ODE at all — was left to the user rather than decided here.
+`dV/dy(y; N)` directly across a grid, no ODE at all — was left to the user rather than decided
+here. **User chose the grid scan.**
+
+## 2026-09-27, third pass: grid scan (`scripts/l5_force_scan.py`, no ODE)
+
+Not the L5 acceptance criterion (that needs completed runs); a cheaper, prior question: is there
+a level-dependent force anywhere along y, robust to what shouldn't matter? Scanned `dV/dy(x, y; N)`
+for `N in {7, 12}`, both modes, `y` log-spaced over `[0.20, 2.00]` (24 points), at 5 arbitrary `x`
+probes standing in for "seed". Tolerance at each point is measured, not assumed: the larger of the
+spread from halving the finite-difference step and from raising `dps` 25->30, each isolated with
+the other held fixed. A cell is flagged only if **every** x-probe exceeds tolerance **and** the
+sign of `dV/dy(N=12) - dV/dy(N=7)` agrees across all 5. Full grid: `audit/l5_level_runs/force_scan.json`.
+
+**Result: 28 of 48 (mode, y) cells pass.** Two very different regimes:
+
+- **`mode="log"`: level-dependent from y=0.30 to y=2.00, essentially the whole scanned range**
+  (21 of 24 y-values; the 3 misses are y=0.20-0.27, inside the wells' immediate mixing zone,
+  where the sign varies by which x-probe — itself informative, not a null result). The difference
+  decays smoothly with y (0.70 at y=0.30 down to 0.017 at y=2.00) but stays 6-9 orders of
+  magnitude above its shrinking tolerance throughout. This is the mode the earlier single-point
+  check (0.2, 1.2) already flagged, now shown to hold over a 7x range in y, not just one point.
+- **`mode="ratio"`: level-dependent only in a band, y=0.36-0.90** (8 of 24), matching the
+  documented saturation: beyond y~1.0 the difference is machine-zero at both levels (confirms the
+  `dV/dx`-plateau finding above extends to `dV/dy` in this mode) and below y~0.33 the sign is
+  x-dependent, same caveat as log mode's near-well band.
+
+**Reading this against L5:** it is evidence *for* the level reaching an observable through the
+dynamics — robust to x, to two independent numerical-precision checks, and (in log mode) to a
+wide range of y — but it is a force-field measurement, not a completed trajectory. It does not
+by itself satisfy the stated criterion, and it does not tell you whether an actual field, released
+somewhere, spends enough time in the y=0.3-2.0 band for the difference to show up in `w0`/`wa`
+rather than washing out. It does say where to aim any further integrator work: log mode, `y > 0.4`
+or so, safely past the near-well mixing zone and the `dV/dx`-plateau's own stiff transition.
