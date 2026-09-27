@@ -31,7 +31,7 @@ section "last CI runs"
 if command -v gh >/dev/null; then gh run list -L 3 2>&1 | cut -f1-5,7; else echo "gh not installed"; fi
 
 section "Zenodo (public API, read-only)"
-curl -sL --max-time 15"https://zenodo.org/api/records/22683564/versions/latest" \
+curl -sL --max-time 15 "https://zenodo.org/api/records/22683564/versions/latest" \
   | python3 -c 'import json,sys; r=json.load(sys.stdin); print(r.get("id"), r.get("doi"), r["metadata"].get("version"), r["metadata"].get("publication_date"))' \
   2>/dev/null || echo "(unreachable)"
 
