@@ -82,7 +82,38 @@ Workflows: `.claude/workflows/level-explicit-parameter.js` (D2, code) and
 - **LeanMaster**: nothing is asked. The local `proofs/` remain review-only; `BuscherRules.inv_inv`
   and four `HoloAlg` theorems still fail the axiom audit (5/83), unchanged since 2026-09-17.
 
-## 5. What this note does NOT claim
+## 5. Replies received (appended 2026-09-28, same day)
+
+**From the Stream 2 criteria session, speaking for LeanMaster** (cross-session message; quoted
+where marked, otherwise paraphrased): *no structural criterion on their side excludes N = 7 or
+N = 12*, and none would responsibly be read as favouring one.
+- **G11, `DualScaleDyons/RankJump.lean`** (reported "just merged to main"; the LeanProposal receipt
+  `7d56c4d` cites it at LeanMaster `73f6fb1` — **not verified here**, the local clone is still at
+  `dcfe944` of 2026-09-21 and does not contain the file): six kernel-checked ρ = 20 rank-jump rows
+  across **N = 7 and N = 10 — not N = 12** — "No selection. Six rows are six lattices. Nothing here
+  ranks them."
+- **Stream 9** (T⁶/ℤ₂×ℤ₂ orientifold, a different compactification, flagged by them as not
+  transferring to K3 selection): "The tadpole bounds an integer, never the quanta" — finiteness from
+  SUSY/ISD, not from a level.
+- **Stream 8, `WHICH_K3.md`**: three criteria (black-hole attractor, enhanced-symmetry/trapping,
+  GTVW B-field) disagree with each other; "there is no single preferred K3 — ill-posed until one says
+  which physics is doing the selecting." The `D = 12` is the trapping criterion's answer alone.
+
+**From Stream 1 (LeanProposal)**, same day: note received, left untracked for the owner to file.
+Attribution correction accepted: GE-8 is Stream 2's conclusion (as the table above says); Stream 1's
+part is only the kernel-level lattice arithmetic behind it, consistent with T0 D7′/AM-6 (ρ = 20
+adopted narrowly, no ranking; a selector must be named by T0 text). The discriminant-form work there
+gives `W(N) → O(q_A)` as an explicit isomorphism (PASS(30), Stream 2 checker) and `no_isometry_G0N_TN`;
+**neither excludes any level, and no criterion in that repo distinguishes 7 from 12.** They will flag
+a kernel-checked exclusion of 7 or 12, if one ever appears, as a *candidate* for (ii) and will not call
+it a selection until T0 names it. (The slip was ours: the message that reached them was addressed as
+if to Stream 2; the note itself attributes GE-8 correctly.)
+
+**Effect on the decisions: none.** D2 stands as written (no level chosen; both run; selection only by
+(i) or (ii)); (ii) is now confirmed empty by Stream 1, Stream 2 and LeanMaster alike. No ruling was
+filed anywhere, none was requested. Stream 3: no reply yet.
+
+## 6. What this note does NOT claim
 
 No zero-parameter derivation (6 → 2 free parameters was by imported values and a hypothesis
 change, `audit/zero_param_loop/REPORT.md`). No K3 selection. No physical observable. No change to any
