@@ -1,0 +1,36 @@
+{
+ "gate": "D2 gate 5: F1 (256x256 grid, Freudenthal, 7 Gaussian wells, seed 21)",
+ "committed_suite_result": {
+  "max_nu_b0": 7,
+  "b0_at_max_nu": 1,
+  "b1_at_max_nu": 0,
+  "max_nu_b1": 1,
+  "n_edges": 195585,
+  "n_triangles": 130050,
+  "nu_points": 4001
+ },
+ "original_function_rerun": {
+  "max_nu_b0": 7,
+  "b0_at_max_nu": 1,
+  "b1_at_max_nu": 0,
+  "max_nu_b1": 1,
+  "wall_sec": 0.8900823593139648
+ },
+ "fixed_function": {
+  "max_nu_b0": 7,
+  "b0_at_max_nu": 1,
+  "b1_at_max_nu": 0,
+  "max_nu_b1": 1,
+  "wall_sec": 0.45632195472717285
+ },
+ "curves_identical_b0": true,
+ "curves_identical_b1": true,
+ "euler_char_true_at_final_nu": 1,
+ "b0_minus_b1_at_final_nu": 1,
+ "euler_note": "a 256x256 disc has chi = 1 and b0-b1 = 1; both agree here because b2 = 0",
+ "gate_5_pass": true,
+ "tier": "X",
+ "_peak_rss_mb": 197.02734375,
+ "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step f1",
+ "_generated": "2026-09-19T22:33:51"
+}

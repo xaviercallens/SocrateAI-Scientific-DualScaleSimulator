@@ -1,0 +1,201 @@
+{
+ "N": 500,
+ "expected_betti": [
+  1,
+  3,
+  3,
+  1
+ ],
+ "function": "gudhi.RipsComplex(L=1.6) + collapse_edges + expansion(4), Z/2 (pipeline alpha_persistence cannot report H3)",
+ "info": {
+  "L": 1.6,
+  "n_points": 500,
+  "graph_simplices": 11340,
+  "after_collapse_simplices": 3967,
+  "collapse_iterations": 7,
+  "expanded_simplices": 13708,
+  "expansion_dim": 4
+ },
+ "wall_sec": 0.16918635368347168,
+ "evaluation": {
+  "cap": 1.6,
+  "P_all": 0.9680977328168913,
+  "per_dim": {
+   "0": {
+    "expected": 1,
+    "observed_beta": 481,
+    "rule": "p_1 / p_2 = 1.684 >= 5",
+    "rule_pass": false,
+    "pass": false,
+    "gated": true,
+    "n_bars": 500,
+    "top_persistence": [
+     1.6,
+     0.9499786820503737,
+     0.909140614737633,
+     0.8721255052427558,
+     0.8639763448410341,
+     0.8525219258626021
+    ],
+    "top_bars_birth_death_capped": [
+     [
+      0.0,
+      1.6
+     ],
+     [
+      0.0,
+      0.9499786820503737
+     ],
+     [
+      0.0,
+      0.909140614737633
+     ],
+     [
+      0.0,
+      0.8721255052427558
+     ],
+     [
+      0.0,
+      0.8639763448410341
+     ],
+     [
+      0.0,
+      0.8525219258626021
+     ]
+    ],
+    "n_infinite": 1
+   },
+   "1": {
+    "expected": 3,
+    "observed_beta": 104,
+    "rule": "p_3 / p_4 = 1.514 >= 5",
+    "rule_pass": false,
+    "pass": false,
+    "gated": true,
+    "n_bars": 321,
+    "top_persistence": [
+     0.9680977328168913,
+     0.8979810822334234,
+     0.8798743316433307,
+     0.5810475837117384,
+     0.5306622611093195,
+     0.5275660800435616
+    ],
+    "top_bars_birth_death_capped": [
+     [
+      0.6319022671831088,
+      1.6
+     ],
+     [
+      0.7020189177665767,
+      1.6
+     ],
+     [
+      0.7201256683566694,
+      1.6
+     ],
+     [
+      0.6915127147787372,
+      1.2725602984904756
+     ],
+     [
+      0.7296995188959681,
+      1.2603617800052875
+     ],
+     [
+      0.795792961387212,
+      1.3233590414307737
+     ]
+    ],
+    "n_infinite": 3
+   },
+   "2": {
+    "expected": 3,
+    "observed_beta": 18,
+    "rule": "p_3 / p_4 = 1.013 >= 5",
+    "rule_pass": false,
+    "pass": false,
+    "gated": true,
+    "n_bars": 122,
+    "top_persistence": [
+     0.3689115728345693,
+     0.31528228171298234,
+     0.30315449817152973,
+     0.29918135879590113,
+     0.2975254327092076,
+     0.2832309614931834
+    ],
+    "top_bars_birth_death_capped": [
+     [
+      1.2132181957361434,
+      1.5821297685707127
+     ],
+     [
+      1.2847177182870178,
+      1.6
+     ],
+     [
+      1.2342395027522082,
+      1.537394000923738
+     ],
+     [
+      1.300818641204099,
+      1.6
+     ],
+     [
+      1.3024745672907925,
+      1.6
+     ],
+     [
+      1.306093754004918,
+      1.5893247154981014
+     ]
+    ],
+    "n_infinite": 12
+   },
+   "3": {
+    "expected": 1,
+    "observed_beta": 0,
+    "rule": "p_1 / p_2 = inf >= 5",
+    "rule_pass": true,
+    "pass": false,
+    "gated": true,
+    "n_bars": 1,
+    "top_persistence": [
+     0.05693517845298435
+    ],
+    "top_bars_birth_death_capped": [
+     [
+      1.5430648215470157,
+      1.6
+     ]
+    ],
+    "n_infinite": 1
+   }
+  },
+  "pass": false,
+  "observed_betti_vector": [
+   481,
+   104,
+   18,
+   0
+  ]
+ },
+ "pass": false,
+ "status": "ok",
+ "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case P7 --n 500",
+ "started": "2026-09-19T18:49:43",
+ "loadavg_start": [
+  10.4267578125,
+  12.86669921875,
+  14.18310546875
+ ],
+ "wall_sec_total": 0.1699528694152832,
+ "peak_rss_mb": 157.0859375,
+ "git_head": "033f017e11b321d97b5b3ecb3619463fb7e1269d",
+ "versions": {
+  "python": "3.10.12",
+  "gudhi": "3.13.0",
+  "numpy": "2.2.6"
+ }
+}

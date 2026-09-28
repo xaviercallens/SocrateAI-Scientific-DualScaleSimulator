@@ -1,0 +1,98 @@
+{
+  "title": "Pre-registration of the two TDA fixes and their acceptance tests",
+  "written": "2026-09-19",
+  "branch": "loop/tda-simple",
+  "written_before": "any line of tda_fixed/{stats.py,cmb_topology.py,pointcloud.py} was written and before any acceptance number was computed; committed in its own commit, as expectations.json was for the suite (033f017)",
+  "tier_of_every_observed_number": "X (numerics)",
+  "rules": [
+    "The kept-bin rule and its threshold are fixed HERE. If an acceptance fails with these values it is reported as a failure; the threshold is not moved afterwards.",
+    "Selection of bins uses the ENSEMBLE only; it never looks at the test vector.",
+    "Never write 'proved'. Nothing is true by construction: every acceptance has a negative control that must fail."
+  ],
+
+  "defect_1": {
+    "id": "D1",
+    "where": "audit/reverse_zero/E5-cmb-tda/cmb_tda.py :: coarse_stats",
+    "defect": "chi2 p-values are miscalibrated. Measured causes (suite results.json, F3, commit 8a5a2ce): (a) df is always N_BINS=8 even when a coarse bin is identically constant across the whole ensemble (b0 bin 7: std 0, value 1.0 in 100/100 sims; b1 bin 0: std 0, value 0.0 in 100/100 sims); (b) cov = np.cov(...) + 1e-8*I followed by np.linalg.pinv inverts the ridge instead of dropping the dead direction, giving that direction a weight of 1e8; (c) bins that are atomic but not dead (b1 bin 1: value 0.0 in 74/100 sims, std 0.1202; b0 bin 6: modal value in 74/100 sims, std 0.1758) are not Gaussian, so a single extra count gives |z| ~ 6 and a chi2 survival p ~ 1e-6.",
+    "before_numbers_from_the_suite": {
+      "source": "audit/tda_validation/simple_suite/results.json cases.F3.statistics",
+      "b0": {"ks_p_uniform": 0.02052679244545007, "n_below_0.05": 3},
+      "b1": {"ks_p_uniform": 0.00010907605871558121, "n_below_0.05": 9},
+      "chi": {"ks_p_uniform": 0.39745050547226574, "n_below_0.05": 9},
+      "note": "acceptance requires KS p > 0.05 AND n_below_0.05 <= 9 for all three; b0 and b1 fail the KS clause before the fix"
+    },
+    "fix_declared_now": {
+      "step_1_drop_dead_bins": "drop coarse bin j if the ensemble std over the n sims is exactly 0.0 (ddof=1). Dropped indices, their constant value, and whether the TEST vector differs in a dropped bin are returned, never silently discarded.",
+      "step_2_drop_atomic_bins": "drop coarse bin j if the most frequent single value of the ensemble in bin j occurs in MORE THAN HALF of the n sims (modal mass > 0.50). Rationale: a chi2 reference distribution requires the coarse statistic to be approximately Gaussian; a bin whose ensemble is a point mass in the majority of realisations is not. Threshold 0.50 is the 'majority' boundary and is fixed here. The measured modal masses of the F3 ensemble are {1.00, 0.74, 0.17, 0.16, 0.14, 0.12, 0.08, 0.08, 0.05, 0.04, 0.03, ...}: the selection is therefore identical for any threshold in (0.18, 0.74]. The sensitivity of the acceptance over thresholds 0.3/0.4/0.5/0.6/0.7/0.9/1.0 will be reported in the results table.",
+      "step_3_conditioning": "on the KEPT block only: eigen-decompose the sample covariance C (no ridge). Retain eigen-directions with lambda_i > tau * lambda_max, tau = 1e-10 (a pure numerical-rank safeguard, stated; it replaces the 1e-8 additive ridge, which INVERTED degenerate directions instead of dropping them). k = number of retained directions. C^{-1} is rebuilt from the retained directions only.",
+      "step_4_df": "df = k (the retained rank of the kept block), NOT N_BINS. Hartlap factor = (n - k - 2)/(n - 1), computed with the retained rank.",
+      "step_5_rank_p": "pooled-exchangeable rank p. The n sims and the test vector are pooled into n+1 candidates. The kept-bin set is chosen ONCE from the pooled n+1 set (symmetric in the data and the sims). Each candidate x is then scored against the OTHER n members of the pool (mean, covariance, conditioning and Hartlap all recomputed from those n). rank_p = (#{score_j >= score_data, j = 1..n} + 1) / (n + 1). Under exchangeability of the pooled n+1 this is uniform on {1/(n+1), ..., 1}; it is NOT uniform when the test vector is drawn from a different law (see the negative control).",
+      "step_6_output": "the result dict returns BOTH p_value_chi2_survival and empirical_rank_p, plus n_bins_kept, kept_bin_indices, dropped_bin_indices, dropped_bin_reasons, dropped_bin_ensemble_values, test_differs_in_dropped_bin, retained_rank, df, hartlap_factor and the condition number of the kept block."
+    },
+    "acceptance_D1": {
+      "case": "the suite's F3 case: HEALPix nside 64, C_ell = exp(-l(l+1)sigma_b^2)/(l(l+1)) for 2<=l<=191, C_0=C_1=0, Gaussian beam FWHM 3 deg; 200 realisations hp.synfast(cl, 64, new=True) with np.random.seed(30000+i), i=0..199; i<100 = ensemble, i>=100 = 100 independent test maps; nu grid = 41 points on [-4,4] sigma; 8 coarse bins",
+      "gate": "for b0, b1 AND the Euler curve: KS of the 100 chi2 p-values against U(0,1) has p > 0.05, and #{p < 0.05} <= 9 of 100",
+      "reported_columns": [
+        "A: before (original coarse_stats, original build_topology curves)",
+        "B: zero-variance drop + df = kept bins + eigen conditioning ONLY (the minimal enumerated fix), same curves",
+        "C: B + atomic-bin drop (the full declared fix), same curves",
+        "D: C applied to curves recomputed with the FIXED topology (the full fixed pipeline)"
+      ],
+      "prediction_written_before_running": {
+        "b0": "column B and C pass (the suite's own df-recount diagnostic already gave KS p = 0.9477, n<0.05 = 4 with df = 7)",
+        "b1": "column B is predicted to FAIL the n<0.05 clause (the suite's df-recount diagnostic gave KS p = 0.1621 but n<0.05 = 10 > 9); column C is predicted to pass. This is the reason the atomic-bin rule exists and it is reported as its own column, not merged into a single 'after'.",
+        "chi": "essentially unchanged (smallest covariance eigenvalue 0.2262, so the 1e-8 ridge was negligible and no bin is dead or atomic): KS p ~ 0.40, n<0.05 = 9. It sits exactly ON the acceptance limit already. If the new conditioning moves it to 10 that is reported with the binomial context P(X >= 10 | p = 0.05, n = 100) = 0.0282, and nothing is adjusted.",
+        "rank_p": "approximately uniform for all three. If b1 again shows ~12/100 below 0.05, exchangeability is broken in the implementation and that is reported as a defect, not as noise."
+      },
+      "known_caveat_not_introduced_here": "the 100 test p-values share ONE 100-sim ensemble, so they are correlated; a KS test against U(0,1) assumes independence and is therefore anti-conservative. This is a property of the F3 design (commit 033f017), not of the fix. A marginal KS p (0.02-0.10) is to be read with this caveat, never with a moved threshold."
+    },
+    "negative_control_D1": {
+      "construction": "20 maps drawn from a DIFFERENT law: the same C_ell form with Gaussian beam FWHM 6 deg instead of 3 deg, np.random.seed(40000+i), i=0..19, same nside 64, same complex, same 100-map (3 deg) ensemble",
+      "gate": "at least 15 of the 20 control maps must have chi2 p < 0.05 under the FIXED statistic. A statistic that cannot reject is not a statistic."
+    }
+  },
+
+  "defect_2": {
+    "id": "D2",
+    "where": "audit/reverse_zero/E5-cmb-tda/cmb_tda.py :: build_topology (and the euler_chi key of betti_curves_from_topology)",
+    "defect": "build_topology takes the 8-neighbour pixel adjacency graph and inserts EVERY 3-clique. Each group of 4 pixels meeting at a grid corner is a 4-clique; filling all four of its triangles makes a hollow tetrahedron, i.e. a 2-sphere. Measured at nside 64, full sky (suite case F3topo): V = 49152, E = 196596, F = 196592, V - E + F = 49148, Betti = (1, 0, 49147). The expected value for a triangulated S2 is (1, 0, 1) and chi = 2. Third clause: betti_curves_from_topology returns chi = b0 - b1 under the key 'euler_chi'; for a 2-complex the Euler characteristic is b0 - b1 + b2, so that key is mislabelled.",
+    "fix_declared_now": {
+      "construction": "a genuine 2-complex on the pixel centres, built from the HEALPix quad-grid structure, NOT from cliques. Verified empirically before writing this file (healpy 1.20.0, nside 8/16/32/64): hp.get_all_neighbours returns [SW, W, NW, N, NE, E, SE, S]; the EVEN indices (SW, NW, NE, SE) are the edge-sharing neighbours (they share 2 pixel corners; measured 160/160 sampled pairs) and the ODD indices (W, N, E, S) are corner-only neighbours (share 1 corner; measured 159/159). Exactly 24 neighbour entries are -1 at every nside tested, all of them at odd (corner-only) positions.",
+      "faces": "for each pixel p and each k in 0..3, the group G = {p, nb[2k], nb[2k+1], nb[(2k+2) mod 8]} is the set of pixels meeting at one corner of p; its cycle is p - nb[2k] - nb[2k+1] - nb[2k+2] - p. Groups are canonicalised as frozensets and de-duplicated (each corner is enumerated once per member pixel). If nb[2k+1] == -1 the corner has only 3 pixels and contributes ONE triangle. A 4-pixel corner contributes TWO triangles, split along a single diagonal chosen canonically: the diagonal through the smallest pixel index in the group and its opposite in the cycle. Exactly one of the two diagonals is added, so no 4-clique is ever filled.",
+      "edges": "the 4-adjacency (edge-sharing, even-index) pairs, plus exactly one diagonal per 4-pixel corner. The second diagonal is NOT added: with both diagonals present and only two of the four triangles filled the quad carries an unfilled 1-cycle, so a complex that keeps the full 8-adjacency 1-skeleton and is still a surface does not exist without adding a vertex at the pixel centre. This is a stated, deliberate change to the 1-skeleton and its effect on the b0/b1 curves is measured below.",
+      "euler_chi_key": "betti_curves_from_topology in the fixed library returns the TRUE Euler characteristic of the filtered subcomplex, chi(nu) = #{sigma : filt(sigma) <= nu} weighted by (-1)^dim, under the key 'euler_char_true'. The old quantity is still returned, under the explicit key 'b0_minus_b1', and the two differ by b2(nu)."
+    },
+    "acceptance_D2": {
+      "combinatorial_prediction_written_before_running": "with V = npix, Q = number of 4-pixel corners, T3 = number of 3-pixel corners: T3 = 8 (24 missing entries / 3 members each), Q = (4V - 3*T3)/4 = V - 6, edges = 2V + Q, faces = 2Q + T3, so V - E + F = -V + Q + T3 = 2 exactly. Predicted at nside 32: V = 12288, Q = 12282, E = 36858, F = 24572, chi = 2. At nside 64: V = 49152, Q = 49146, E = 147450, F = 98300, chi = 2.",
+      "gate_1": "the enumerated V, E, F match the prediction and V - E + F = 2 at nside 8, 16, 32 and 64 (the combinatorial check is run BEFORE gudhi, so a dedup/ordering error cannot hide behind a homology computation)",
+      "gate_2": "gudhi Betti numbers of the full-sky complex with a constant filtration are exactly (1, 0, 1) at nside 32 AND nside 64",
+      "gate_3": "masked-sky sanity: a disk mask (all pixels within 30 deg of the north pole, nside 32) gives Betti exactly (1, 0, 0)",
+      "gate_4_smooth_field_regression": "on a smooth test field (the F3 C_ell, beam FWHM 3 deg, nside 64, np.random.seed(30000)), the b0 and b1 curves on the fixed complex are compared with the curves on the old complex on the same 41-point nu grid. TOLERANCE DECLARED NOW: max |delta b0| <= 0.15 * max(b0_old) and max |delta b1| <= 0.15 * max(b1_old), and the nu of the peak of each curve within 1 grid step. Both curves are reported in full whatever the outcome; the 1-skeleton genuinely changed (one diagonal per quad instead of two), so exact equality is NOT expected and is not claimed.",
+      "gate_5_filtration_code_untouched": "the F1 case (256x256 grid, Freudenthal triangulation, 7 Gaussian wells, seed 21) is re-run through the fixed library's betti_curves_from_topology with externally supplied edges/triangles; it must give the SAME numbers as the committed F1 result (max_nu b0 = 7, b0 at max nu = 1, b1 at max nu = 0), EXACTLY. F1 does not use build_topology, so the topology fix must not move it."
+    },
+    "negative_control_D2": {
+      "old_complex": "the unit test asserts that the ORIGINAL build_topology fails these gates (b2 = 49147 at nside 64, chi = 49148), so the test is known to be able to fail",
+      "shuffled_field": "not applicable to a topology gate"
+    }
+  },
+
+  "regression_P2": {
+    "id": "P2",
+    "why": "the alpha/point-cloud path is not implicated in either defect; it is re-run unchanged as a regression that the fixed library did not disturb the other path",
+    "construction": "5000 points, normalised Gaussian vectors (np.random.default_rng(12)) + isotropic noise sigma 0.02, alpha_persistence(max_alpha_sq = inf)",
+    "gate": "observed Betti vector (1, 0, 1) under the suite's dominant/zero rules, identical to the committed P2 case result"
+  },
+
+  "e5_impact": {
+    "question": "are the committed CMB results in audit/reverse_zero/E5-cmb-tda/ affected, and by how much",
+    "recomputable": "YES for the statistics defect: chunks/null_merged.npz holds sim_b0, sim_b1, sim_chi and the superlevel arrays (100 x 41) plus the WMAP data curves, so all six p-values (b0/b1/euler_chi x sublevel/superlevel) are recomputed with the fixed statistic and reported old vs new.",
+    "not_recomputable_here": "the TOPOLOGY defect: those curves were produced by the broken build_topology at nside 128 on the KQ85 mask. Recomputing them means regenerating 100 synfast sims x 2 directions at nside 128 (the committed run took 4 chunks and about 3.7 s/sim/direction). That is NOT done here; the stated proxy for how far those curves could move is the smooth-field b0/b1 comparison of gate_4.",
+    "headline_to_watch": "superlevel b1 is the most significant value of the committed E5 run (chi2 p = 0.010915, rank p = 0.019802). If the fixed statistic moves it, that is the finding.",
+    "framing": "this is NOT a revalidation of E5. It is a recomputation of one of its two defective steps."
+  },
+
+  "provenance": {
+    "original_files_are_not_rewritten": "audit/reverse_zero/E5-cmb-tda/cmb_tda.py and audit/reverse_zero/E5-cosmic-web-tda-scaled/*.py are the committed record of past runs. Only a marked comment block is added at the top of each affected function (coarse_stats, build_topology, betti_curves_from_topology) naming the defect, the date and the fixed replacement. No behaviour changes.",
+    "hash_note": "every committed case JSON of the suite carries code_under_test_sha256 for cmb_tda.py (a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d at the time of the run). The comment-only edit changes that hash; both the old and the new sha256 are recorded in validation_results.json so the provenance chain stays traceable."
+  }
+}

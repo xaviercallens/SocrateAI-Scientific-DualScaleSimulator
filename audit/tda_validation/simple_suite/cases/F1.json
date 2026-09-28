@@ -1,0 +1,84 @@
+{
+ "centres": [
+  [
+   183.0990474082243,
+   148.74601779590972
+  ],
+  [
+   169.12103332005134,
+   47.463183092752956
+  ],
+  [
+   153.62002551128523,
+   222.23889763599274
+  ],
+  [
+   112.98741378251219,
+   52.031004336079086
+  ],
+  [
+   68.64977624520932,
+   161.72361427925026
+  ],
+  [
+   224.5773590363722,
+   71.05915290527307
+  ],
+  [
+   138.2327170300783,
+   105.26195418339834
+  ]
+ ],
+ "sigma_px": 10.0,
+ "grid": 256,
+ "cubical": {
+  "function": "gudhi.CubicalComplex(top_dimensional_cells=f)",
+  "n_H0_bars_positive_persistence": 7,
+  "n_H0_bars_total": 7,
+  "wall_sec": 0.4069204330444336
+ },
+ "direct_local_minima_8nbr": 7,
+ "pipeline": {
+  "function": "cmb_tda.betti_curves_from_topology (Freudenthal grid triangulation, sublevel)",
+  "n_edges": 195585,
+  "n_triangles": 130050,
+  "nu_points": 4001,
+  "max_nu_b0": 7,
+  "b0_at_max_nu": 1,
+  "b1_at_max_nu": 0,
+  "max_nu_b1": 1,
+  "wall_sec": 1.8907766342163086
+ },
+ "n_minimum_values_listed": 7,
+ "minimum_values_first20": [
+  -0.9999945609180741,
+  -0.9996284854038624,
+  -0.9993863409210029,
+  -0.9990898026311984,
+  -0.9990052663505861,
+  -0.9989932436568072,
+  -0.9988548649519328
+ ],
+ "pass": true,
+ "status": "ok",
+ "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case F1",
+ "started": "2026-09-19T19:09:35",
+ "loadavg_start": [
+  8.9541015625,
+  9.76220703125,
+  11.3134765625
+ ],
+ "wall_sec_total": 2.338898181915283,
+ "peak_rss_mb": 220.21484375,
+ "git_head": "9da59549e958d7b0a9df7350f6e27cfc28d163fa",
+ "script_sha256": "cb16c4300e2d283b8b7b685c3a3b09464713d93dc78d103a31d53cc3a4629d0c",
+ "code_under_test_sha256": {
+  "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
+  "audit/reverse_zero/E5-cmb-tda/cmb_tda.py": "a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d"
+ },
+ "versions": {
+  "python": "3.10.12",
+  "gudhi": "3.13.0",
+  "numpy": "2.2.6"
+ }
+}

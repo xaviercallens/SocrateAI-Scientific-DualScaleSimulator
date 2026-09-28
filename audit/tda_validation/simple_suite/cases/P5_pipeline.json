@@ -1,0 +1,193 @@
+{
+ "expected_betti": {
+  "Z/2": [
+   1,
+   2,
+   1
+  ],
+  "Z/3": [
+   1,
+   1,
+   0
+  ]
+ },
+ "pipeline_Z2": {
+  "function": "cosmic_web_tda_scaled.alpha_persistence (Z/2 hard-coded)",
+  "info": {
+   "n_points": 8000,
+   "pipeline_runtime_sec": 132.57980108261108,
+   "betti_numbers_at_truncation": [
+    1,
+    0,
+    0,
+    0
+   ]
+  },
+  "wall_sec": 139.84337949752808,
+  "evaluation": {
+   "cap": 1.0000609667442388,
+   "P_all": 0.9539685575072324,
+   "per_dim": {
+    "0": {
+     "expected": 1,
+     "observed_beta": 1,
+     "rule": "p_1 / p_2 = 10.98 >= 5",
+     "rule_pass": true,
+     "pass": true,
+     "gated": true,
+     "n_bars": 8000,
+     "top_persistence": [
+      1.0000609667442388,
+      0.09110689863815526,
+      0.09094750526044487,
+      0.0889367377460302,
+      0.0866889459413552,
+      0.08555856644654806
+     ],
+     "top_bars_birth_death_capped": [
+      [
+       0.0,
+       1.0000609667442388
+      ],
+      [
+       0.0,
+       0.09110689863815526
+      ],
+      [
+       0.0,
+       0.09094750526044487
+      ],
+      [
+       0.0,
+       0.0889367377460302
+      ],
+      [
+       0.0,
+       0.0866889459413552
+      ],
+      [
+       0.0,
+       0.08555856644654806
+      ]
+     ],
+     "n_infinite": 1
+    },
+    "1": {
+     "expected": 2,
+     "observed_beta": 2,
+     "rule": "p_2 / p_3 = 5.971 >= 5",
+     "rule_pass": true,
+     "pass": true,
+     "gated": true,
+     "n_bars": 8050,
+     "top_persistence": [
+      0.9539685575072324,
+      0.9346007999267401,
+      0.15651877363775057,
+      0.14199258080506674,
+      0.13777797474078451,
+      0.13105265224554474
+     ],
+     "top_bars_birth_death_capped": [
+      [
+       0.046031599383409394,
+       1.0000001568906418
+      ],
+      [
+       0.06539920019664328,
+       1.0000000001233833
+      ],
+      [
+       0.06680832357203047,
+       0.22332709720978103
+      ],
+      [
+       0.069096888679824,
+       0.21108946948489074
+      ],
+      [
+       0.067930264170247,
+       0.20570823891103152
+      ],
+      [
+       0.07425589961492857,
+       0.2053085518604733
+      ]
+     ],
+     "n_infinite": 0
+    },
+    "2": {
+     "expected": 1,
+     "observed_beta": 1,
+     "rule": "p_1 / p_2 = 1.24e+04 >= 5",
+     "rule_pass": true,
+     "pass": true,
+     "gated": true,
+     "n_bars": 3428,
+     "top_persistence": [
+      0.7497809981298602,
+      6.0450497033404105e-05,
+      5.350582566032713e-05,
+      4.907155007871644e-05,
+      4.763644768801534e-05,
+      4.6942316447307064e-05
+     ],
+     "top_bars_birth_death_capped": [
+      [
+       0.2502799686143786,
+       1.0000609667442388
+      ],
+      [
+       1.000000000139591,
+       1.0000604506366244
+      ],
+      [
+       1.0000000011215364,
+       1.0000535069471967
+      ],
+      [
+       1.0000000087959595,
+       1.0000490803460382
+      ],
+      [
+       1.0000000103989855,
+       1.0000476468466735
+      ],
+      [
+       1.0000001277434736,
+       1.0000470700599209
+      ]
+     ],
+     "n_infinite": 0
+    }
+   },
+   "pass": true,
+   "observed_betti_vector": [
+    1,
+    2,
+    1
+   ]
+  }
+ },
+ "status": "ok",
+ "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case P5 --part pipeline",
+ "started": "2026-09-19T19:15:04",
+ "loadavg_start": [
+  3.06591796875,
+  7.25244140625,
+  9.9384765625
+ ],
+ "wall_sec_total": 139.84611678123474,
+ "peak_rss_mb": 5267.171875,
+ "git_head": "9da59549e958d7b0a9df7350f6e27cfc28d163fa",
+ "script_sha256": "cb16c4300e2d283b8b7b685c3a3b09464713d93dc78d103a31d53cc3a4629d0c",
+ "code_under_test_sha256": {
+  "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
+  "audit/reverse_zero/E5-cmb-tda/cmb_tda.py": "a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d"
+ },
+ "versions": {
+  "python": "3.10.12",
+  "gudhi": "3.13.0",
+  "numpy": "2.2.6"
+ }
+}

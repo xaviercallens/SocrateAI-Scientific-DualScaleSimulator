@@ -1,0 +1,48 @@
+{
+ "gate": "regression guard: the tests must FAIL on the originals and PASS on the fix",
+ "tests": "audit/tda_validation/tda_fixed/tests",
+ "tier": "X",
+ "modes": {
+  "against_fixed_library": {
+   "command": " OMP_NUM_THREADS=1 /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python -m pytest audit/tda_validation/tda_fixed/tests -q",
+   "exit_code": 0,
+   "summary_line": "============================= 30 passed in 28.78s ==============================",
+   "n_failed": 0,
+   "failed_tests": [],
+   "wall_sec": 29.3733012676239
+  },
+  "against_original_implementations": {
+   "command": "TDA_GUARD_AGAINST_ORIGINAL=1 OMP_NUM_THREADS=1 /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python -m pytest audit/tda_validation/tda_fixed/tests -q",
+   "exit_code": 1,
+   "summary_line": "======================== 19 failed, 11 passed in 43.37s ========================",
+   "n_failed": 19,
+   "failed_tests": [
+    "test_F3_acceptance_on_the_committed_curves[b0]",
+    "test_F3_acceptance_on_the_committed_curves[b1]",
+    "test_FIXED_reports_the_dead_bin_instead_of_inverting_it",
+    "test_dead_and_atomic_bins_are_both_dropped_with_a_reason",
+    "test_df_is_the_retained_rank_not_the_nominal_bin_count",
+    "test_disk_mask_gives_a_disc",
+    "test_euler_key_is_the_true_euler_characteristic_not_b0_minus_b1",
+    "test_fail_closed_when_no_bin_survives",
+    "test_fixed_complex_is_a_surface_every_edge_in_at_most_two_triangles",
+    "test_fixed_full_sky_betti_is_1_0_1[16]",
+    "test_fixed_full_sky_betti_is_1_0_1[32]",
+    "test_fixed_full_sky_betti_is_1_0_1[8]",
+    "test_fixed_full_sky_has_euler_characteristic_2[16]",
+    "test_fixed_full_sky_has_euler_characteristic_2[32]",
+    "test_fixed_full_sky_has_euler_characteristic_2[8]",
+    "test_negative_control_the_statistic_does_reject",
+    "test_no_four_clique_is_completely_filled",
+    "test_pvalues_are_uniform_after_the_fix_and_were_not_before",
+    "test_rank_p_kept_bin_set_is_symmetric_in_the_data_and_the_sims"
+   ],
+   "wall_sec": 45.45077085494995
+  }
+ },
+ "guard_pass": true,
+ "verdict": "the guard is green on the fixed library and fails on 19 tests when the original implementations are substituted",
+ "_peak_rss_mb": 89.42578125,
+ "_command": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python run_validation.py --step guard",
+ "_generated": "2026-09-19T22:54:30"
+}

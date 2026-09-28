@@ -1,0 +1,1 @@
+{"status": "killed_or_crashed", "exit_code": 124, "args": "--case P6 --part pipeline", "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case P6 --part pipeline", "pass": false}

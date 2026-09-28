@@ -1,0 +1,149 @@
+{
+ "function": "gudhi.PeriodicCubicalComplex / gudhi.CubicalComplex",
+ "tori": {
+  "T1": {
+   "grid": [
+    64
+   ],
+   "expected": [
+    1,
+    1
+   ],
+   "infinite_bars_per_dim": [
+    1,
+    1
+   ],
+   "betti_numbers": [
+    1,
+    1
+   ],
+   "nonperiodic_control_betti": [
+    1,
+    0
+   ],
+   "pass": true,
+   "wall_sec": 0.0003616809844970703
+  },
+  "T2": {
+   "grid": [
+    24,
+    24
+   ],
+   "expected": [
+    1,
+    2,
+    1
+   ],
+   "infinite_bars_per_dim": [
+    1,
+    2,
+    1
+   ],
+   "betti_numbers": [
+    1,
+    2,
+    1
+   ],
+   "nonperiodic_control_betti": [
+    1,
+    0,
+    0
+   ],
+   "pass": true,
+   "wall_sec": 0.0035600662231445312
+  },
+  "T3": {
+   "grid": [
+    12,
+    12,
+    12
+   ],
+   "expected": [
+    1,
+    3,
+    3,
+    1
+   ],
+   "infinite_bars_per_dim": [
+    1,
+    3,
+    3,
+    1
+   ],
+   "betti_numbers": [
+    1,
+    3,
+    3,
+    1
+   ],
+   "nonperiodic_control_betti": [
+    1,
+    0,
+    0,
+    0
+   ],
+   "pass": true,
+   "wall_sec": 0.03147149085998535
+  },
+  "T4": {
+   "grid": [
+    6,
+    6,
+    6,
+    6
+   ],
+   "expected": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "infinite_bars_per_dim": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "betti_numbers": [
+    1,
+    4,
+    6,
+    4,
+    1
+   ],
+   "nonperiodic_control_betti": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "pass": true,
+   "wall_sec": 0.07171368598937988
+  }
+ },
+ "pass": true,
+ "status": "ok",
+ "command": "OMP_NUM_THREADS=1 timeout 590 prlimit --as=6442450944 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python simple_suite.py --case F2",
+ "started": "2026-09-19T19:09:47",
+ "loadavg_start": [
+  9.9287109375,
+  9.93701171875,
+  11.35302734375
+ ],
+ "wall_sec_total": 0.10855579376220703,
+ "peak_rss_mb": 158.1015625,
+ "git_head": "9da59549e958d7b0a9df7350f6e27cfc28d163fa",
+ "script_sha256": "cb16c4300e2d283b8b7b685c3a3b09464713d93dc78d103a31d53cc3a4629d0c",
+ "code_under_test_sha256": {
+  "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py": "67031732596ff656cfa798927417105629cad64b52321acd26c6046118603e95",
+  "audit/reverse_zero/E5-cmb-tda/cmb_tda.py": "a1e92c458358d1a1ef51a0732ef7cd757a4b79b06b2ed1e6bf494e1d88307f6d"
+ },
+ "versions": {
+  "python": "3.10.12",
+  "gudhi": "3.13.0",
+  "numpy": "2.2.6"
+ }
+}

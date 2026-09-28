@@ -1,0 +1,316 @@
+{
+  "title": "TDA known-answer suite on simple spaces (LeanFlow TEST_USE_CASES section 2) -- expectations written BEFORE any homology was computed",
+  "written": "2026-09-19",
+  "branch": "loop/tda-simple",
+  "rules": "LeanFlow CLAUDE.md sections 2, 4, 5, 6 apply. Expected topology is tier L (literature). Every observed number will be tier X (numerics). Nothing here is 'proved'.",
+  "disclosure_pre_expectation_probes": {
+    "statement": "Before this file was written, three timing-only probes were run in the scratchpad (not committed) to decide which complexes are feasible. They printed ONLY simplex counts, wall time and ru_maxrss; no diagram, bar or Betti number was printed or inspected.",
+    "probes": [
+      {
+        "what": "gudhi.AlphaComplex on N=2000 random points of the flat torus (cos a, sin a, cos b, sin b) in R4, build + persistence Z/2",
+        "printed": "385255 simplices, 61.1 s build, 62.5 s total, 162.5 MB"
+      },
+      {
+        "what": "same, N=8000",
+        "printed": "1925431 simplices, 318.8 s build, 334.5 s total, 662.1 MB"
+      },
+      {
+        "what": "gudhi.RipsComplex flat T3 in R6, max_edge_length=2.0, collapse_edges to fixpoint, expansion(4), persistence Z/2, N=300",
+        "printed": "graph 9987, collapsed 7119, expanded 430330 simplices, 2.4 s, 68.8 MB"
+      },
+      {
+        "what": "same, N=600",
+        "printed": "graph 38787, collapsed 33544, expanded 26307501 simplices, 119.7 s, 1794.6 MB"
+      },
+      {
+        "what": "sparse Rips (sparse=0.7), max_edge_length=2.0, max_dimension=4, flat T3, N=1000",
+        "printed": "14581721 simplices, 59.8 s, 1034.4 MB"
+      },
+      {
+        "what": "same, N=3000",
+        "printed": "aborted: 'cannot allocate memory for thread-local data' under the 6 GiB address-space cap"
+      }
+    ],
+    "consequence": "Alpha is used in R3 (pipeline function) and in R4 (pipeline for Z/2, direct gudhi for Z/3). Alpha is not used in R5/R6. Rips thresholds are kept below the Vietoris-Rips circle threshold sqrt(3)*radius (L = 1.2 for references, 1.6 for T3) because L = 2.0 exceeds it on every circle factor."
+  },
+  "hardware_and_limits": {
+    "cpu": "Intel Xeon @ 2.20GHz, 8 cores (nproc=8)",
+    "ram_total_gb": 29,
+    "contention": "shared machine, load average 19-24 at the time of writing; all wall-clock times are under contention and are not benchmarks",
+    "per_process_cap": "prlimit --as=6442450944 (6 GiB address space), timeout <= 600 s, OMP_NUM_THREADS=1",
+    "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python (3.10.12; gudhi 3.13.0, numpy 2.2.6, scipy 1.15.3, healpy 1.20.0)"
+  },
+  "code_under_test": {
+    "cosmic_web_tda_scaled": "audit/reverse_zero/E5-cosmic-web-tda-scaled/cosmic_web_tda_scaled.py: alpha_persistence, betti_curve, euler_curve, top_bars, build_circle_cloud, build_planted_void_cloud",
+    "cmb_tda": "audit/reverse_zero/E5-cmb-tda/cmb_tda.py: build_topology, betti_curves_from_topology, coarse_stats (N_BINS=8, NU grid [-4,4] 41 points)",
+    "import_method": "importlib.util.spec_from_file_location under a module name != '__main__'; both files guard main() with if __name__ == '__main__'",
+    "reference_paths": "gudhi.RipsComplex (+ SimplexTree.collapse_edges, expansion), gudhi.AlphaComplex directly, gudhi.CubicalComplex, gudhi.PeriodicCubicalComplex",
+    "limitations_known_from_source_before_running": [
+      "alpha_persistence hard-codes homology_coeff_field=2: the Z/3 halves of P5 and P6 cannot go through it and use gudhi.AlphaComplex directly on the same points (same complex: simplex counts compared).",
+      "alpha_persistence keeps only dims 0,1,2 (by_dim = {0:[],1:[],2:[]}); betti_curve/euler_curve use dims 0-2 only. beta_3 (P7) is invisible to the pipeline; P7 uses Rips directly.",
+      "betti_curves_from_topology returns Betti CURVES (b0, b1, chi=b0-b1) on a caller grid, not bars; it standardises the field by its std. 'chi' there is b0-b1, not the Euler characteristic of the complex (b2 ignored).",
+      "build_topology links 8-neighbour HEALPix pixels and fills every 3-clique; 4 mutually adjacent pixels around a pixel corner then give 4 triangles with no tetrahedron (a hollow 2-sphere). Expectation for the full-sky complex, if it were a triangulated S2: (b0,b1,b2) = (1,0,1). Prediction written in advance: b2 > 1 is likely (extra hollow tetrahedra); b0 and b1 are unaffected."
+    ]
+  },
+  "definitions": {
+    "bars": "Alpha: radius units (sqrt of gudhi alpha^2, as alpha_persistence does). Rips: edge length. Infinite deaths are replaced by a cap: the truncation radius if the complex is truncated (r_trunc, or L for Rips); otherwise the largest finite death over all dimensions of that diagram.",
+    "persistence_order": "p_1 >= p_2 >= ... per dimension; p_j = 0 if fewer than j bars.",
+    "dominant_rule": "For an expected beta_k = b >= 1: PASS_k iff p_b >= 5 * p_{b+1}.",
+    "zero_rule": "For an expected beta_k = 0 (k >= 1): PASS_k iff p_1 < 0.2 * P_all (P_all as in observed_beta), i.e. observed beta_k = 0. If the case expects no bar in any dim >= 1 (P9, N1), the no-dominant-bar rule p_1 < 5 p_2 applies instead.",
+    "observed_beta": "observed beta_k = number of bars in dim k with persistence >= 0.2 * P_all, P_all = max persistence over all bars of the diagram in dims >= 1 (capped infinite bars included) -- for H0 the cap-based infinite bar counts. A case PASSES iff, for every checked dimension, observed beta_k == expected beta_k AND the dominant/zero rule holds.",
+    "checked_dimensions": "0..(manifold dimension) for manifolds; dims above that are reported but not gated unless stated.",
+    "null_pvalue": "p = (1 + #{null seeds with max persistence in dim k >= observed p_b in dim k}) / (1 + 50), comparing the b-th (weakest expected) bar of the signal to the MAX bar of each null seed (conservative). Minimum attainable p = 1/51 = 0.0196."
+  },
+  "cases": [
+    {
+      "id": "P1",
+      "doc_id": "TDA-1",
+      "space": "circle S1 (unit radius) in R3",
+      "expected_betti": [
+        1,
+        1
+      ],
+      "tier_expected": "L",
+      "source": "H_*(S1) = (Z, Z); Hatcher, Algebraic Topology (CUP 2002), Ch. 2",
+      "construction": "pipeline build_circle_cloud(n=2000, noise_sigma=0.05, seed=11) (isotropic N(0,0.05) in x, y, z)",
+      "method_primary": "pipeline alpha_persistence(max_alpha_sq=inf) + top_bars",
+      "method_reference": "gudhi.RipsComplex on a random subsample n=400 (seed 101), L=1.2, collapse_edges, expansion(3), Z/2",
+      "pass": "dominant_rule for H0 (b=1) and H1 (b=1); zero_rule for H2 (reported, gated); observed_beta == (1,1,0)",
+      "null": "P9a (matched), p-value reported, gate p <= 0.05"
+    },
+    {
+      "id": "P2",
+      "doc_id": "TDA-2",
+      "space": "sphere S2 (unit radius) in R3",
+      "expected_betti": [
+        1,
+        0,
+        1
+      ],
+      "tier_expected": "L",
+      "source": "H_*(S2) = (Z, 0, Z); Hatcher 2002 Ch. 2",
+      "construction": "N=5000 uniform on S2 (normalised Gaussian vectors, seed 12) + isotropic noise sigma=0.02",
+      "method_primary": "pipeline alpha_persistence(max_alpha_sq=inf)",
+      "method_reference": "Rips n=400 (seed 102), L=1.2, collapse, expansion(3)",
+      "pass": "dominant_rule H0, H2 (b=1); zero_rule H1; observed_beta == (1,0,1)",
+      "null": "P9b (matched), p-value on the H2 bar, gate p <= 0.05"
+    },
+    {
+      "id": "P3a",
+      "doc_id": "TDA-3",
+      "space": "torus T2 embedded in R3 (R=2.5, r=1)",
+      "expected_betti": [
+        1,
+        2,
+        1
+      ],
+      "tier_expected": "L",
+      "source": "H_*(T2) = (Z, Z^2, Z); Kunneth / Hatcher 2002 Ch. 2",
+      "construction": "N=8000 area-uniform (rejection on v with weight (R + r cos v)/(R + r), seed 13) + isotropic noise sigma=0.02",
+      "method_primary": "pipeline alpha_persistence(max_alpha_sq=inf)",
+      "method_reference": "Rips n=1000 (seed 103), L=1.2, collapse, expansion(3)",
+      "pass": "dominant_rule H0 (b=1), H1 (b=2), H2 (b=1); observed_beta == (1,2,1)",
+      "null": "P9c (matched), p-values on the 2nd H1 bar and the H2 bar, gate p <= 0.05"
+    },
+    {
+      "id": "P3b",
+      "doc_id": "TDA-3",
+      "space": "flat (Clifford) torus (cos a, sin a, cos b, sin b) in R4",
+      "expected_betti": [
+        1,
+        2,
+        1
+      ],
+      "tier_expected": "L",
+      "source": "as P3a",
+      "construction": "N=8000, a, b uniform (seed 14), no noise",
+      "method_primary": "pipeline alpha_persistence(max_alpha_sq=inf) (Z/2)",
+      "method_reference": "Rips n=1000 (seed 104), L=1.2, collapse, expansion(3)",
+      "pass": "as P3a; H3 (ambient R4) reported only by the reference path, not gated",
+      "null": "no matched R4 Poisson null (50 x alpha in R4 at N=8000 exceeds the budget): p-value not computed, stated"
+    },
+    {
+      "id": "P4",
+      "doc_id": "TDA-4",
+      "space": "figure-eight = wedge of two unit circles centred at (-1,0,0) and (1,0,0), touching at the origin, in R3",
+      "expected_betti": [
+        1,
+        2
+      ],
+      "tier_expected": "L",
+      "source": "H_1(S1 v S1) = Z^2; Hatcher 2002 Ch. 2",
+      "construction": "N=2000 (each point picks a circle with prob 1/2, angle uniform, seed 15) + isotropic noise sigma=0.05",
+      "method_primary": "pipeline alpha_persistence(max_alpha_sq=inf)",
+      "method_reference": "Rips n=400 (seed 105), L=1.2, collapse, expansion(3)",
+      "pass": "dominant_rule H1 (b=2), H0 (b=1); zero_rule H2; observed_beta == (1,2,0)"
+    },
+    {
+      "id": "P5",
+      "space": "Klein bottle K in R4: ((R + r cos v) cos u, (R + r cos v) sin u, r sin v cos(u/2), r sin v sin(u/2)), R=2, r=1",
+      "expected_betti": {
+        "Z/2": [
+          1,
+          2,
+          1
+        ],
+        "Z/3": [
+          1,
+          1,
+          0
+        ]
+      },
+      "tier_expected": "L",
+      "source": "H_*(K; Z) = (Z, Z + Z/2, 0); universal coefficients give (1,2,1) over Z/2 and (1,1,0) over Z/3. Hatcher 2002 Ch. 2 and Sec. 3.A",
+      "construction": "N=8000, u, v uniform in [0, 2pi) (parameter-uniform, not area-uniform; seed 16), no noise",
+      "method_primary": "pipeline alpha_persistence (Z/2 only, hard-coded)",
+      "method_direct": "gudhi.AlphaComplex on the same points, one simplex tree, compute_persistence with homology_coeff_field=2 then 3",
+      "method_reference": "Rips n=1000 (seed 106), L=1.2, collapse, expansion(3), fields 2 and 3",
+      "pass": "Z/2: dominant_rule H0 b=1, H1 b=2, H2 b=1; Z/3: H0 b=1, H1 b=1, zero_rule H2; observed_beta equal to the expectation in both fields"
+    },
+    {
+      "id": "P6",
+      "space": "real projective plane RP2",
+      "expected_betti": {
+        "Z/2": [
+          1,
+          1,
+          1
+        ],
+        "Z/3": [
+          1,
+          0,
+          0
+        ]
+      },
+      "tier_expected": "L",
+      "source": "H_*(RP2; Z) = (Z, Z/2, 0); universal coefficients. Hatcher 2002 Ch. 2 (cellular homology of RP^n) and Sec. 3.A",
+      "construction": "N=6000 uniform on S2 (seed 17) mapped by (x,y,z) -> (xy, xz, y^2 - z^2, 2yz) in R4 (an embedding of RP2) for alpha; the reference uses the Veronese map (x^2, y^2, z^2, sqrt2 xy, sqrt2 xz, sqrt2 yz) in R6",
+      "method_primary": "pipeline alpha_persistence on the R4 embedding (Z/2 only)",
+      "method_direct": "gudhi.AlphaComplex R4, fields 2 and 3 on one tree",
+      "method_reference": "Rips on the R6 Veronese, n=600 (seed 107), L=1.2, collapse, expansion(3), fields 2 and 3",
+      "pass": "Z/2: dominant_rule b=1 in H0, H1, H2; Z/3: H0 b=1, zero_rule H1, H2; observed_beta equal to the expectation in both fields"
+    },
+    {
+      "id": "P7",
+      "space": "flat 3-torus T3 = (cos a, sin a, cos b, sin b, cos c, sin c) in R6",
+      "expected_betti": [
+        1,
+        3,
+        3,
+        1
+      ],
+      "tier_expected": "L",
+      "source": "Kunneth: beta_k(T^n) = binomial(n, k)",
+      "construction": "N in {250, 500, 1000, 2000, 4000}, angles uniform (seed 7 for every N; independent draws per N), no noise",
+      "method": "gudhi.RipsComplex(max_edge_length=1.6) -> 1-skeleton -> collapse_edges to fixpoint -> expansion(4) -> persistence Z/2 (dims 0-3). The pipeline alpha_persistence cannot report H3 (see limitations). L=1.6 lies below the circle threshold sqrt(3)=1.732 (Adamaszek & Adams, Pacific J. Math. 290 (2017) 1-40) so infinite/capped bars are expected; the design band is 2 x covering radius < L < sqrt(3).",
+      "pass": "dominant_rule with b = 1, 3, 3, 1 in H0..H3 and observed_beta == (1,3,3,1), bars capped at L. Reported: the smallest N in the list that passes, or 'not recovered within budget' (a run exceeding 590 s or 6 GiB is recorded as over budget and larger N are not attempted)."
+    },
+    {
+      "id": "P8",
+      "doc_id": "TDA-5",
+      "space": "6 planted spherical voids (radius 15) in a uniform box of side 100",
+      "expected": "6 H2 bars whose death radius is within 5% of 15; the 7th H2 bar's death is not within 5% of 15",
+      "tier_expected": "L (construction)",
+      "source": "construction; pipeline control in cosmic_web_tda_scaled.py (death in [15.05, 15.14] reported there)",
+      "construction": "pipeline build_planted_void_cloud(n_fill=15000, box=100, void_radius=15, n_voids=6, seed=42) exactly as the pipeline's own control; robustness seeds 0..4 reported",
+      "method": "pipeline alpha_persistence(max_alpha_sq=37.5^2) + top_bars(dim 2, k=8, r_trunc=37.5)",
+      "pass": "seed 42: 6 of 6 top-persistence H2 bars have |death - 15|/15 < 0.05 and bar 7 does not (TDA-5 rule, used instead of the 5x rule for this case). The pipeline's own gate (20% and gap > 1) and the ratio p6/p7 are reported, not gated. Robustness seeds: reported, not gated."
+    },
+    {
+      "id": "P9",
+      "doc_id": "TDA-N1",
+      "space": "homogeneous Poisson (binomial) points in a box: contractible",
+      "expected": "no dominant bar in H1 or H2",
+      "tier_expected": "L (construction)",
+      "construction": "three matched nulls, 50 seeds each: P9a N=2000 in the bounding box of the P1 cloud (seeds 5000-5049); P9b N=5000 in the P2 bounding box (6000-6049); P9c N=8000 in the P3a bounding box (7000-7049)",
+      "method": "pipeline alpha_persistence(max_alpha_sq=inf)",
+      "pass": "per null set: in >= 48 of 50 seeds p_1 < 5 p_2 in both H1 and H2. Reported: distribution (min, 5/50/95 percentiles, max) of the max H1 and H2 persistence; these distributions are the null for P1-P3 p-values"
+    },
+    {
+      "id": "P10a",
+      "space": "two concentric spheres, radii 1 and 2.5, centred at the origin",
+      "expected_betti": [
+        2,
+        0,
+        2
+      ],
+      "tier_expected": "L",
+      "source": "disjoint union of two S2",
+      "construction": "inner N=1500, outer N=4500, uniform, noise sigma=0.02 (seed 18). Radial gap 1.5 >> point spacing (about 0.05 inner, 0.07 outer); in the union-of-balls picture the second H0 bar and the outer-sphere H2 bar die near r = 0.75",
+      "method_primary": "pipeline alpha_persistence(max_alpha_sq=inf)",
+      "method_reference": "Rips n=600 (seed 108), L=1.2, collapse, expansion(3)",
+      "pass": "dominant_rule H0 b=2, H2 b=2; zero_rule H1; observed_beta == (2,0,2)"
+    },
+    {
+      "id": "P10b",
+      "space": "unit sphere at the origin plus a disjoint unit circle centred at (4,0,0) in the xy-plane",
+      "expected_betti": [
+        2,
+        1,
+        1
+      ],
+      "tier_expected": "L",
+      "source": "disjoint union S2 + S1",
+      "construction": "sphere N=3000, circle N=1000, noise sigma=0.02 (seed 19)",
+      "method_primary": "pipeline alpha_persistence(max_alpha_sq=inf)",
+      "method_reference": "Rips n=600 (seed 109), L=1.2, collapse, expansion(3)",
+      "pass": "dominant_rule H0 b=2, H1 b=1, H2 b=1; observed_beta == (2,1,1). Note: the Rips reference at L=1.2 cannot merge the two components (gap 2), so its H0 second bar is capped at L: allowed by the rule"
+    },
+    {
+      "id": "F1",
+      "doc_id": "TDA-6",
+      "space": "256x256 grid, f = -sum_{i=1..7} exp(-|x - c_i|^2 / (2 * 10^2)), equal depths",
+      "expected": "7 local minima -> exactly 7 sublevel H0 bars",
+      "tier_expected": "L (Morse theory: sublevel H0 births = local minima; Edelsbrunner & Harer, Computational Topology, AMS 2010)",
+      "construction": "7 centres drawn (seed 21) uniformly in [30, 226]^2 with minimum pairwise distance >= 50 px (5 sigma), so every saddle value (about -0.09) lies above every minimum (about -1): max_nu b0(nu) = 7",
+      "method_primary": "gudhi.CubicalComplex(top_dimensional_cells=f): count of H0 bars with persistence > 0 (the essential bar counts as 1)",
+      "method_pipeline": "cmb_tda.betti_curves_from_topology on a Freudenthal triangulation of the grid (4-neighbour edges + one diagonal, 2 triangles per square), unmasked = all vertices, sublevel=True, nu_grid = 4001 points spanning the standardised [min, max]; statistic = max_nu b0(nu)",
+      "cross_check": "direct count of strict 8-neighbour local minima of f",
+      "pass": "CubicalComplex count == 7 AND pipeline max_nu b0 == 7 AND direct count == 7; additionally the pipeline b0 at nu = max is 1 and b1 at nu = max is 0 (a disk)"
+    },
+    {
+      "id": "F2",
+      "space": "periodic cubical tori T^n, n = 1..4",
+      "expected": "beta_k = binomial(n, k): n=1 (1,1); n=2 (1,2,1); n=3 (1,3,3,1); n=4 (1,4,6,4,1)",
+      "tier_expected": "L (Kunneth)",
+      "construction": "field = 1 + 1e-3 * N(0,1) (seed 22+n) on grids 64 (n=1), 24^2, 12^3, 6^4",
+      "method": "gudhi.PeriodicCubicalComplex(top_dimensional_cells=field, periodic_dimensions=[True]*n); essential (infinite) bars per dimension and betti_numbers()",
+      "negative_control": "gudhi.CubicalComplex on the same field (non-periodic): (1, 0, ..., 0)",
+      "pass": "number of infinite bars in dim k == binomial(n, k) for every k, and betti_numbers() equal; negative control gives 1 then zeros"
+    },
+    {
+      "id": "F3",
+      "doc_id": "TDA-7",
+      "space": "HEALPix nside 64, full sky, Gaussian isotropic field",
+      "expected": "p-values of an independent realisation against a same-C_ell ensemble are uniform on [0,1]",
+      "tier_expected": "L (construction: exchangeability)",
+      "construction": "C_ell = exp(-l(l+1) sigma_b^2) / (l(l+1)) for 2 <= l <= 191, C_0 = C_1 = 0, Gaussian beam FWHM 3 deg (sigma_b = FWHM/sqrt(8 ln 2) in radians); 200 realisations hp.synfast(cl, 64, new=True) with np.random.seed(30000 + i), i = 0..199; i < 100 = ensemble, i >= 100 = 100 independent test maps",
+      "method": "pipeline build_topology(mask = ones, nside = 64), betti_curves_from_topology(sublevel=True, nu_grid = cmb_tda NU grid [-4,4], 41 points), pipeline coarse_stats(sim_curves = ensemble, data_curve = test map) for b0, b1 and chi: Hartlap chi2 survival p-value and empirical rank p-value",
+      "pass": "for each of b0, b1, chi and the Hartlap p-value: KS test against U(0,1) with p_KS >= 0.01, and #{p < 0.05} <= 9 of 100 (the 97% binomial quantile for rate 0.05). The literal TEST_USE_CASES TDA-7 rule (#{p < 0.05} <= 5 of 100) is also reported; note that a perfectly calibrated test exceeds 5 of 100 with probability about 0.38. Empirical rank p-values: reported (discrete, KS reported, not gated).",
+      "topology_diagnostic": "gudhi persistence of the full-sky build_topology complex with a constant filtration: expected for S2 (1,0,1); b2 is predicted to exceed 1 (hollow tetrahedra), reported as a pipeline finding, b0 = 1 and b1 = 0 gated"
+    },
+    {
+      "id": "N1",
+      "space": "negative control: isotropic Gaussian blob in R3",
+      "expected": "no dominant H1 (and no dominant H2)",
+      "construction": "N=2000, N(0, I3) (seed 31)",
+      "method": "pipeline alpha_persistence(max_alpha_sq=inf)",
+      "pass": "p_1 < 5 p_2 in H1 and in H2"
+    },
+    {
+      "id": "N2",
+      "space": "negative control: P3a torus with x, y, z columns permuted independently",
+      "expected": "the two dominant H1 bars and the H2 bar of P3a are destroyed",
+      "construction": "P3a cloud, each column permuted with np.random.default_rng(32 + column)",
+      "method": "pipeline alpha_persistence(max_alpha_sq=inf)",
+      "pass": "H1: p_2 < 5 p_3 (no longer two dominant bars) AND the P9c p-value of the 2nd H1 bar > 0.05"
+    },
+    {
+      "id": "C0",
+      "space": "method check: collapse_edges preserves the Rips diagram",
+      "construction": "random subsample n=300 (seed 40) of the P3a cloud, L=1.2",
+      "method": "RipsComplex expansion(3) with and without collapse_edges",
+      "pass": "bottleneck distance 0 (<= 1e-12) in dims 0, 1, 2"
+    }
+  ]
+}
