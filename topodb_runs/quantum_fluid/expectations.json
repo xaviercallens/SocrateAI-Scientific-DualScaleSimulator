@@ -1,0 +1,73 @@
+{
+  "_purpose": "Pre-stated expectations for the TopoDB quantum-fluid breadth run. Committed ALONE, before any computation in topodb_runs/quantum_fluid/ was performed (CLAUDE.md rule 4: 'Write the expected result down before computing it, with its source').",
+  "_author_agent": "topo/qfluid worktree agent, 2026-09-20",
+  "_extends": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdaval/audit/tda_validation/quantum_fluid/ (report.json, expectations.json). Its measured limits are taken as binding, see 'binding_limits_inherited'.",
+
+  "binding_limits_inherited": {
+    "alpha_H0_spread_meaning": "The alpha-path H0 death spread (IQR/median of finite H0 deaths) measures REGULAR SPACING, not orientational order. It must always be reported paired with an orientational statistic (psi6 or Q6).",
+    "lower_star_site_shuffle": "The lower-star path failed a site-shuffle negative control on rough fields (prior E1e: |diff/se| up to 5.07 at high T). Therefore ANY lower-star or cubical (pixel-grid sublevel) statistic recorded here must carry a site-shuffle control, and its pass/fail must be stored."
+  },
+
+  "step0_re6zr_reproduction": {
+    "target_quantity": "vortex-lattice constant a of the Abrikosov lattice in a-Re6Zr at H = 20 kOe, T = 460 mK",
+    "target_value_nm": 34.566,
+    "target_source": "a_tri(B) = 1.075 * sqrt(Phi0/B) with Phi0 = 2.067833848e-15 Wb and B = mu0*H = 2.0 T at H = 20 kOe. Duhan et al., Nat. Commun. 16, 2100 (2025). Numerically 1.0746*sqrt(Phi0/B) is the triangular-lattice constant at areal density B/Phi0.",
+    "primary_estimator": {
+      "name": "a_fft",
+      "definition": "Detector-free and TDA-free. Per .sxm image: plane-subtract the Input_7 forward conductance channel, apply a 2-D Hann window, zero-pad by a factor 4, take |FFT|^2, azimuthally average S(q) (q in rad/nm), exclude q < 0.4*q1_expected, locate the maximum of the first ring and refine it by a 3-point parabolic fit on the azimuthal average, then a = 4*pi/(sqrt(3)*q1).",
+      "why": "It depends neither on the local-minimum vortex detector nor on the alpha complex, so it is an independent length measurement. The count-density estimator a = sqrt(2/(sqrt(3)*n)) is NOT used as the gate because it is algebraically equivalent to the flux-count statement count = B*A/Phi0 and would reproduce the target by construction.",
+      "aggregation": "median over the 20 images at 20 kOe; IQR reported"
+    },
+    "pass_tolerance": "PASS if |median(a_fft) - 34.566| / 34.566 <= 0.03 (3 per cent). Stated before computing. If it fails, STOP and report (task instruction).",
+    "secondary_estimators_recorded_not_gating": [
+      "a_density = sqrt(2/(sqrt(3)*N/A)) from the detected minima",
+      "a_nn = median nearest-neighbour distance over interior points (>= a_tri from the scan border), times 1.0 (for a perfect triangular lattice a_nn = a)",
+      "a_h1 = sqrt(3) * median(H1 alpha death radius) (the prior run's estimator, which returned 36.04 nm)",
+      "a_h0 = 2 * median(H0 alpha death radius)"
+    ],
+    "expected_estimator_biases_prestated": "On a synthetic PERFECT triangular lattice with matched N and A, all five estimators must return a within 1 per cent (bias ~ 0). Under increasing positional disorder, a_h1 is expected to be biased HIGH (right-skewed circumradius distribution) and a_h0 biased LOW (nearest-of-six is a minimum statistic). The prior run's +4.3 per cent at 20 kOe is predicted to be the a_h1 disorder bias, not a measurement of a different lattice."
+  },
+
+  "gudhi_convention_assertion": "GUDHI AlphaComplex filtration values are SQUARED circumradii. Every length reported here is sqrt(filtration). Asserted in qf_lib.assert_alpha_convention() on an equilateral triangle of side s, whose H1 death radius must equal s/sqrt(3).",
+
+  "statistics_and_nulls": {
+    "with_null_and_p_value": {
+      "h0_iqr_over_median": "null = uniform random points in the same rectangle at the same count; rank p, n_null stated per run",
+      "psi6_global": "same null",
+      "h1_total_persistence_over_a2": "same null"
+    },
+    "without_p_value": [
+      "n_detected", "count_over_flux_expectation", "a_fft_nm", "a_density_nm", "a_nn_nm", "a_h1_nm", "a_h0_nm",
+      "betti numbers themselves"
+    ],
+    "p_floor_note": "The minimum attainable rank p is 1/(n_null+1); n_null is always recorded so that floor is visible."
+  },
+
+  "dataset_2_xy": {
+    "cross_check_non_tda": "helicity-modulus crossing T_Ups(L) measured in the prior run: 0.9279 (L=32), 0.9147 (L=64), 0.9108 (L=128), extrapolating with T_inf + c/(ln L)^2 to 0.8915 against the published T_BKT = 0.89289. Recorded in the dataset notes as a non-TDA cross-check; NOT re-derived here.",
+    "expectation": "Vortex-core point clouds from plaquette phase winding. Vortex count per site is expected to rise steeply through T ~ 0.9 and the alpha H0 median spacing to fall like 1/sqrt(density). No orientational order is expected at any T (psi6 ~ random level): the XY vortex gas is not a lattice.",
+    "mandatory_control": "site-shuffle control for any lower-star statistic (inherited binding limit)."
+  },
+
+  "dataset_3_gpe": {
+    "cross_check": "TDA core count from the CUBICAL sublevel-set filtration of |psi|^2 (persistent H0 classes above a persistence threshold), compared against a plaquette phase-winding count recomputed independently from psi. The agreement or its failure is the recorded finding. The cached vortex_positions_*.npy are NOT used for the cross-check.",
+    "expectation": "Ground-state rotating BEC at Omega = 0.7, 0.8, 0.9 forms a triangular Abrikosov vortex lattice; the two counts should agree to within a few cores, discrepancies concentrated at the condensate edge where |psi|^2 is small.",
+    "mandatory_control": "site-shuffle control on the cubical path (inherited binding limit)."
+  },
+
+  "dataset_5_disorder_series": {
+    "design": "Take the 20 kOe Re6Zr minima (the most ordered field, prior psi6 = 0.637). Add isotropic Gaussian positional noise with sigma/a = 0, 0.02, 0.05, 0.10, 0.15, 0.20, 0.30 (seed stated). Recompute every statistic at each step.",
+    "prediction_prestated": "psi6 degrades FIRST: it should fall to near the uniform-random level by sigma/a ~ 0.15, while h0_iqr_over_median stays close to its ordered value until sigma/a ~ 0.10 and only then rises toward the Poisson value 0.70. n_detected is unchanged by construction. This is the quantitative form of the inherited binding limit (H0 spread = regular spacing, not orientational order). If instead h0_iqr_over_median moves first, the prediction is wrong and that is what gets recorded."
+  },
+
+  "dataset_4_breadth": {
+    "plan": "Search Zenodo / Figshare / Materials Cloud / Hugging Face for a second and third real defect-lattice dataset with a published lattice constant. If a search fails after 3 attempts, record the dataset as ABSENT with every URL tried, and substitute a clearly-labelled simulation with a known answer, provenance='simulation'.",
+    "fallback_simulations": [
+      "Abrikosov triangular lattice with controlled Gaussian disorder and a known a (synthetic_control)",
+      "2-D Coulomb-gas / lattice vortex configuration at stated temperature (simulation)"
+    ]
+  },
+
+  "tiers": "Everything computed numerically here is tier X (CLAUDE.md rule 5: A = Lean kernel, B = exact arithmetic with a negative control, L = literature with citation, X = numerics). Literature-quoted comparison values carry tier L on the finding only.",
+  "language_rule": "Never 'proved', 'certified' or 'guaranteed' for any result in this directory."
+}

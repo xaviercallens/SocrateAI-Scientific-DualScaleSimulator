@@ -1,0 +1,6 @@
+# Downloaded data files are NOT committed (LeanFlow CLAUDE.md rule 8).
+# Their URL + sha256 are in DOWNLOADS.json beside this file, and in the
+# TopoDB `dataset` rows (source, sha256, local_path).
+*.parquet
+*.fits
+*.npy

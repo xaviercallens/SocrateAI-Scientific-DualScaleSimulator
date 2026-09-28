@@ -1,0 +1,131 @@
+{
+ "title": "Pre-registration for the TopoDB biology persistent-homology block",
+ "date": "2026-09-20",
+ "branch": "topo/bio",
+ "honesty_note": [
+  "This file is committed ALONE, before any biological dataset is computed on.",
+  "Exception, stated plainly: the Step 0 known-answer rules below were written in the",
+  "docstring of step0_known_answer.py and that script was run BEFORE this file was",
+  "committed; its numbers are already known (circle 39.50, sine 174.17, random 1.04).",
+  "Everything else in this file is pre-stated: no biological persistence diagram has",
+  "been computed at the time of this commit."
+ ],
+ "seeds": {
+  "global": 20260920,
+  "influenza_genome_subsample": 20260919,
+  "note": "the influenza subsample seed is inherited from the earlier genetics validation run so that the alignment files on disk are the ones the seed refers to"
+ },
+ "method_discipline": {
+  "binding_rule_a": "Never embed a non-Euclidean distance into 3-D and then run alpha. The earlier genetics validation produced a FALSE dominant H1 (dominance 11.1) that way on the tree-like influenza HA segment. Hi-C, scRNA correlation/cosine and sequence Hamming are computed with Rips on the given metric only; bio_common.py contains no MDS function.",
+  "binding_rule_b": "Alpha is used only where coordinates are genuinely Euclidean (protein/RNA atoms in Angstrom).",
+  "gudhi_convention": "create_simplex_tree(max_dimension = max_hom_dim + 1), because the d-skeleton yields homology only to d-1. Step 0 runs through the same helper, so a regression would show there as b1 = 0 on the circle."
+ },
+
+ "step0_known_answer": {
+  "A_noisy_circle_rips": "dominance(H1) >= 5 AND exactly one H1 bar with persistence >= P1/2",
+  "B_delay_embedded_sine": "dominance(H1) >= 5",
+  "C_uniform_random_cloud": "dominance(H1) < 2",
+  "D_distance_matrix_path": "|dom_D - dom_A| / dom_A < 1e-6",
+  "gate": "if any fails, the biology block stops and reports the failure"
+ },
+
+ "test_P_protein_fold_separation": {
+  "question": "Does any persistence statistic of the C-alpha point cloud separate all-alpha from all-beta proteins?",
+  "data": "~30 protein chains fetched from https://files.rcsb.org/download/XXXX.pdb, plus the three verified-genuine local files 1CRN, 1UBQ, 4OBE",
+  "fold_class_rule": {
+   "derived_from": "the PDB header's own HELIX and SHEET records, counted by this pipeline; no CATH/SCOP lookup is required",
+   "helix_frac": "residues covered by HELIX records / residues with a C-alpha in the chain",
+   "sheet_frac": "residues covered by SHEET records / residues with a C-alpha in the chain",
+   "all_alpha": "helix_frac >= 0.30 AND sheet_frac <= 0.05",
+   "all_beta": "sheet_frac >= 0.30 AND helix_frac <= 0.05",
+   "alpha_beta": "helix_frac >= 0.10 AND sheet_frac >= 0.10",
+   "other": "anything else; excluded from the separation test",
+   "note": "if a structure has no HELIX/SHEET records at all it is classed 'unannotated' and excluded"
+  },
+  "primary_statistic": {
+   "name": "h1_small_bar_density",
+   "definition": "(number of H1 alpha-complex bars whose death radius < 4.5 A) / n_CA",
+   "rationale": "an alpha helix repeats its CA i->i+3/i+4 contacts every 5.4 A of pitch, so a helical chain produces many SMALL, short-lived H1 classes per residue; a beta barrel produces few small classes and one large one",
+   "direction": "all-alpha > all-beta",
+   "complex": "alpha complex on the C-alpha coordinates, filtration reported as the plain radius (sqrt of the squared alpha value), Z/2 coefficients, max_hom_dim 2"
+  },
+  "secondary_statistics_prestated": [
+   {"name": "h1_large_loop_max_pers", "definition": "max persistence among H1 bars with death radius >= 6.0 A, else 0", "direction": "all-beta > all-alpha"},
+   {"name": "h1_dominance_P1_over_P2", "direction": "all-beta > all-alpha (a barrel should give one dominant loop)"},
+   {"name": "h1_total_pers_per_residue", "direction": "none stated"}
+  ],
+  "null_and_controls": {
+   "null": "label permutation: 10000 random reassignments of the all-alpha / all-beta labels among the same structures, AUC recomputed each time; p = rank p on |AUC - 0.5|",
+   "size_baseline_control": "AUC computed from n_CA alone, on the same labels. This is the confound control: chain length correlates with fold class, and a label permutation does NOT protect against a size classifier.",
+   "unbanded_control": "AUC from (total H1 bar count)/n_CA, to show whether the scale band matters"
+  },
+  "decision_rule": "Separation is claimed ONLY IF all three hold: (i) AUC >= 0.75; (ii) permutation p <= 0.01; (iii) |AUC_primary - 0.5| > |AUC_size_baseline - 0.5|. If (iii) fails the honest verdict is 'does not separate beyond chain length'. Any other outcome is reported as inconclusive or null.",
+  "expected_outcome_stated_in_advance": "unknown; the pipeline has never been run on protein folds here"
+ },
+
+ "test_R_rna": {
+  "question": "Do RNA backbone (P atom) point clouds differ in persistence from protein C-alpha clouds?",
+  "prestated": "no quantitative expectation; these are recorded for breadth and contrast, with statistics but no p-value (no null is defined)"
+ },
+
+ "test_H_hic_circular_vs_linear": {
+  "question": "Does Rips on the contact-derived metric give H1 = 1 for a circular bacterial chromosome and H1 = 0 for a linear human chromosome arm?",
+  "data": ["Caulobacter crescentus GSM1120445 (Le et al. 2013 Science)", "E. coli GSM2870407 (Lioy et al. 2018 Cell)", "human GM12878 chr1q 250 kb KR (Rao et al. 2014)"],
+  "metric": "d = C^(-1/3) on the ICE/iteratively-corrected contact matrix, Rips on that metric directly (NO MDS, per rule (a))",
+  "primary_statistic": "h1_dominance_P1_over_P2",
+  "criteria": {
+   "circular_positive": "dominance >= 2 AND p <= 0.01 against the linear null",
+   "linear_negative": "dominance < 2 OR p > 0.01",
+   "cut_control": "cutting the circular chromosome at ter must reduce the dominance"
+  },
+  "null": "linear null: random contact matrices generated from the observed distance-decay curve of the same dataset with no circular wrap, n = 200 (compute-limited; the earlier run used 500 for alpha / 50 for Rips)",
+  "prior_result_to_reproduce": "the earlier validation reached alpha P1/P2 = 3.57 (p = 0.002) for E. coli and FAILED for Caulobacter (1.05). Failure to reproduce is reported as such."
+ },
+
+ "test_F_influenza": {
+  "question": "Do single influenza segments (tree-like) give H1 ~ 0 while concatenated genomes (reassortment) give H1 > 0? (Chan, Carlsson & Rabadan 2013 PNAS)",
+  "data": "alignments prepared by the earlier genetics validation run: influenza/work/aln_seg{1..8}.npy, 300 avian complete 8-segment genomes, subsample seed 20260919",
+  "metric": "Hamming (p-distance) over aligned sites, Rips on that matrix directly (NO MDS, per rule (a))",
+  "primary_statistics": ["A = max H1 persistence", "B = number of H1 bars with persistence >= 0.005"],
+  "null": "site bootstrap: resample alignment columns with replacement within each segment, n = 200",
+  "criteria": {
+   "i": "A_concatenated significant (p <= 0.01) against the pooled single-segment site-bootstrap null",
+   "ii": "A for each single segment <= half A_concatenated",
+   "iii": "B_concatenated > max single-segment B"
+  },
+  "false_positive_guard": "the alpha-on-MDS-3 route is NOT run; the earlier validation showed it gives dominance 11.1 on segment 4 (HA), which is a tree, i.e. a FALSE loop"
+ },
+
+ "test_C_cellcycle": {
+  "question": "Does Rips on the cell-cycle-gene correlation metric give a dominant H1 loop?",
+  "data": ["GSE146773 U2OS FUCCI (Mahdessian et al. 2021)", "E-MTAB-2805 mESC (Buettner et al. 2015)"],
+  "metric": "cell-cell distance d = sqrt(2(1 - rho)) on Spearman correlation of z-scored cell-cycle genes; Rips on that metric directly",
+  "prior_result": "the earlier validation FAILED both (alpha on PCA-3: P1/P2 = 1.53 and 1.61, gene-permutation p = 0.37 and 0.08) although the phase angle was recovered. This is a DIFFERENT pipeline (Rips on the correlation metric, full dimension), so it is a fair new run.",
+  "criteria": {"i": "dominance >= 2", "ii": "p <= 0.01 vs the gene-permutation null"},
+  "null": "gene-wise permutation of the expression matrix, n = 200 (compute-limited), recomputing the metric and the diagram each time",
+  "negative_control": "the same number of random non-cell-cycle expressed genes",
+  "commitment": "no tuning. Whatever comes out of this pre-stated setting is the reported result; a second FAIL is the finding."
+ },
+
+ "test_B_breadth_pbmc3k": {
+  "question": "none. pbmc3k is a breadth dataset: discrete immune cell types, no cell cycle worth speaking of and no loop expected.",
+  "prestated": "recorded with statistics and NO p-value, because no null is defined for 'we expect nothing in particular'"
+ },
+
+ "test_E_physionet_delay_embedding": {
+  "question": "Does a real periodic physiological signal give a dominant H1 loop under delay embedding? This is a real-data known-answer case: a heartbeat is periodic, so it MUST.",
+  "criteria": {"i": "dominance >= 5 for the periodic recording", "ii": "a phase-randomised surrogate of the same signal gives a lower dominance"},
+  "null": "phase-randomised (amplitude-adjusted Fourier transform) surrogates of the same recording, n = 200"
+ },
+
+ "synthetic_control_ingested_deliberately": {
+  "id": "synthetic/bio_datasets_01_hic_contact_map",
+  "reason": "the local /mnt/disks/disk-socrateai-local-1/bio_datasets/*.npy arrays carry real-source labels but are SYNTHETIC (all 23 files written within 0.79 s; the contact map is an exactly monotone function of the coordinate distances, Spearman -1.0). One is ingested as a LABELLED synthetic control so the DB records why it must not be used as data.",
+  "provenance_recorded_as": "synthetic_control"
+ },
+
+ "tiers": {
+  "X": "every run in this block is tier X (numerics). Nothing here is tier A, B or L.",
+  "language": "the words 'proved', 'certified' and 'guaranteed' do not appear in any finding."
+ }
+}

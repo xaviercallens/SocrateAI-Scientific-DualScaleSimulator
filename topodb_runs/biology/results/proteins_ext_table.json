@@ -1,0 +1,955 @@
+{
+ "seed": 20260920,
+ "new_rows": [
+  {
+   "id": "1TIT",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 89,
+   "helix_frac": 0.0,
+   "sheet_frac": 0.5955056179775281,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "3f2efc602095f0482278df61b6dacd13d99340f2c99f9aa1fe14a8db92c62d79",
+   "url": "https://files.rcsb.org/download/1TIT.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 166.0,
+    "h1_small_bar_density": 1.6741573033707866,
+    "h1_bar_count_per_residue": 1.8651685393258426,
+    "h1_large_loop_max_pers": 0.0,
+    "h1_dominance_P1_over_P2": 1.081950305039887,
+    "h1_max_persistence": 2.996804962842199,
+    "h1_total_pers_per_residue": 0.4246769043698564
+   },
+   "alpha_top_h1_bars": [
+    [
+     1.9155,
+     4.9123
+    ],
+    [
+     2.0549,
+     4.8248
+    ],
+    [
+     2.4254,
+     4.1686
+    ],
+    [
+     1.968,
+     3.6466
+    ],
+    [
+     1.9136,
+     3.3785
+    ]
+   ]
+  },
+  {
+   "id": "1CSP",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 67,
+   "helix_frac": 0.04477611940298507,
+   "sheet_frac": 0.4925373134328358,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "0b3335beb32172e4e8fab1cf6533db795f88de71f46192904aff67a23a6f5b9e",
+   "url": "https://files.rcsb.org/download/1CSP.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 112.0,
+    "h1_small_bar_density": 1.5522388059701493,
+    "h1_bar_count_per_residue": 1.671641791044776,
+    "h1_large_loop_max_pers": 0.0,
+    "h1_dominance_P1_over_P2": 1.2630440860259984,
+    "h1_max_persistence": 2.340097206470386,
+    "h1_total_pers_per_residue": 0.3723513805469893
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.3774,
+     4.7175
+    ],
+    [
+     2.1671,
+     4.0199
+    ],
+    [
+     2.1748,
+     3.5065
+    ],
+    [
+     2.5097,
+     3.6456
+    ],
+    [
+     2.1048,
+     3.0458
+    ]
+   ]
+  },
+  {
+   "id": "1MJC",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 69,
+   "helix_frac": 0.043478260869565216,
+   "sheet_frac": 0.4927536231884058,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "f945636068adbd1006fc1a1b0c7131e0fb8f8113f90401e28be45b3896ec9aa1",
+   "url": "https://files.rcsb.org/download/1MJC.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 125.0,
+    "h1_small_bar_density": 1.681159420289855,
+    "h1_bar_count_per_residue": 1.8115942028985508,
+    "h1_large_loop_max_pers": 0.0,
+    "h1_dominance_P1_over_P2": 1.3238084487937243,
+    "h1_max_persistence": 2.4470165945427143,
+    "h1_total_pers_per_residue": 0.37285218992210745
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.3411,
+     4.7881
+    ],
+    [
+     2.1373,
+     3.9858
+    ],
+    [
+     2.2243,
+     3.6684
+    ],
+    [
+     2.4035,
+     3.6642
+    ],
+    [
+     2.0427,
+     3.0235
+    ]
+   ]
+  },
+  {
+   "id": "1WIT",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 93,
+   "helix_frac": 0.03225806451612903,
+   "sheet_frac": 0.5913978494623656,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "ff882456927b7811b282d2664e21953cbbb8736aae4e5a798b481cfeef5a43ae",
+   "url": "https://files.rcsb.org/download/1WIT.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 166.0,
+    "h1_small_bar_density": 1.6344086021505377,
+    "h1_bar_count_per_residue": 1.7849462365591398,
+    "h1_large_loop_max_pers": 0.0,
+    "h1_dominance_P1_over_P2": 1.0083836600126819,
+    "h1_max_persistence": 2.753594596220189,
+    "h1_total_pers_per_residue": 0.4567651538186599
+   },
+   "alpha_top_h1_bars": [
+    [
+     1.9132,
+     4.6668
+    ],
+    [
+     1.9164,
+     4.6471
+    ],
+    [
+     1.9186,
+     3.8014
+    ],
+    [
+     1.9194,
+     3.1737
+    ],
+    [
+     1.917,
+     3.0684
+    ]
+   ]
+  },
+  {
+   "id": "1FNA",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 91,
+   "helix_frac": 0.0,
+   "sheet_frac": 0.7472527472527473,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "7fa85df488b9a4b2c25b5abc16fef182c9b50a590774cfc6d15a43efd16741c9",
+   "url": "https://files.rcsb.org/download/1FNA.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 179.0,
+    "h1_small_bar_density": 1.6703296703296704,
+    "h1_bar_count_per_residue": 1.967032967032967,
+    "h1_large_loop_max_pers": 0.0,
+    "h1_dominance_P1_over_P2": 1.1760177011591304,
+    "h1_max_persistence": 2.7186845289440873,
+    "h1_total_pers_per_residue": 0.418102722308866
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.2401,
+     4.9588
+    ],
+    [
+     2.1547,
+     4.4664
+    ],
+    [
+     2.0355,
+     3.9406
+    ],
+    [
+     1.9921,
+     3.6221
+    ],
+    [
+     3.3212,
+     4.9069
+    ]
+   ]
+  },
+  {
+   "id": "1TTG",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 94,
+   "helix_frac": 0.0,
+   "sheet_frac": 0.5319148936170213,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "dda89113ee7c02a47092cd9d50f53b4e5ec589bbe8c93af7d0659e909a612e46",
+   "url": "https://files.rcsb.org/download/1TTG.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 146.0,
+    "h1_small_bar_density": 1.202127659574468,
+    "h1_bar_count_per_residue": 1.553191489361702,
+    "h1_large_loop_max_pers": 0.0,
+    "h1_dominance_P1_over_P2": 1.636879962485299,
+    "h1_max_persistence": 3.0823597927104838,
+    "h1_total_pers_per_residue": 0.41905666328818114
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.2055,
+     5.2878
+    ],
+    [
+     2.1792,
+     4.0623
+    ],
+    [
+     1.9959,
+     3.7284
+    ],
+    [
+     2.0965,
+     3.8131
+    ],
+    [
+     2.4835,
+     3.7655
+    ]
+   ]
+  },
+  {
+   "id": "1BEB",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 156,
+   "helix_frac": 0.16025641025641027,
+   "sheet_frac": 0.36538461538461536,
+   "fold_class": "alpha_beta",
+   "annotated": true,
+   "sha256": "51438430174c259acc512441fa5cb44d9dbd50e9671c828ecbe272d43b5048a6",
+   "url": "https://files.rcsb.org/download/1BEB.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 321.0,
+    "h1_small_bar_density": 1.891025641025641,
+    "h1_bar_count_per_residue": 2.0576923076923075,
+    "h1_large_loop_max_pers": 0.03895960586640257,
+    "h1_dominance_P1_over_P2": 1.1025015882012323,
+    "h1_max_persistence": 2.8325367736433975,
+    "h1_total_pers_per_residue": 0.4543331165361066
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.0235,
+     4.856
+    ],
+    [
+     2.0811,
+     4.6503
+    ],
+    [
+     2.2282,
+     4.7567
+    ],
+    [
+     2.2337,
+     4.4081
+    ],
+    [
+     2.8643,
+     4.8064
+    ]
+   ]
+  },
+  {
+   "id": "2SOD",
+   "kind": "pdb",
+   "chain": "O",
+   "n": 151,
+   "helix_frac": 0.033112582781456956,
+   "sheet_frac": 0.36423841059602646,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "8ec197d72a8dd3fdbe8b90551db020a6f50af427959a0a8f32c588778e6b0d8d",
+   "url": "https://files.rcsb.org/download/2SOD.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 334.0,
+    "h1_small_bar_density": 2.0860927152317883,
+    "h1_bar_count_per_residue": 2.2119205298013247,
+    "h1_large_loop_max_pers": 0.0,
+    "h1_dominance_P1_over_P2": 1.1924402933715288,
+    "h1_max_persistence": 2.781779052556521,
+    "h1_total_pers_per_residue": 0.45983843892740023
+   },
+   "alpha_top_h1_bars": [
+    [
+     1.9391,
+     4.7209
+    ],
+    [
+     2.0628,
+     4.3956
+    ],
+    [
+     2.136,
+     3.7816
+    ],
+    [
+     1.9585,
+     3.5284
+    ],
+    [
+     2.0783,
+     3.6386
+    ]
+   ]
+  },
+  {
+   "id": "1REI",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 107,
+   "helix_frac": 0.04672897196261682,
+   "sheet_frac": 0.45794392523364486,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "b43434afcccaeacb40935b463dd4435128b4fa34ab54fff6d9408d5f0df0c9f7",
+   "url": "https://files.rcsb.org/download/1REI.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 208.0,
+    "h1_small_bar_density": 1.8224299065420562,
+    "h1_bar_count_per_residue": 1.9439252336448598,
+    "h1_large_loop_max_pers": 0.0006622499599187037,
+    "h1_dominance_P1_over_P2": 1.2361807444515829,
+    "h1_max_persistence": 2.405912587106213,
+    "h1_total_pers_per_residue": 0.4291421241631185
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.2357,
+     4.6416
+    ],
+    [
+     2.168,
+     4.1143
+    ],
+    [
+     2.2946,
+     4.1747
+    ],
+    [
+     2.3177,
+     4.0948
+    ],
+    [
+     2.3401,
+     3.7024
+    ]
+   ]
+  },
+  {
+   "id": "1HOE",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 74,
+   "helix_frac": 0.0,
+   "sheet_frac": 0.6756756756756757,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "7901b846b0722de0124c868aefce6d0ee272a2ac3a39f13960916a393f9fe398",
+   "url": "https://files.rcsb.org/download/1HOE.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 155.0,
+    "h1_small_bar_density": 2.0,
+    "h1_bar_count_per_residue": 2.0945945945945947,
+    "h1_large_loop_max_pers": 0.0,
+    "h1_dominance_P1_over_P2": 1.012534057531603,
+    "h1_max_persistence": 2.270748704824488,
+    "h1_total_pers_per_residue": 0.4152684668090587
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.0738,
+     4.3445
+    ],
+    [
+     2.082,
+     4.3246
+    ],
+    [
+     3.19,
+     4.6351
+    ],
+    [
+     1.9483,
+     3.0752
+    ],
+    [
+     3.1634,
+     4.2004
+    ]
+   ]
+  },
+  {
+   "id": "7AHL",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 293,
+   "helix_frac": 0.04778156996587031,
+   "sheet_frac": 0.46757679180887374,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "888288e5b638cd1ee1c74a91d0e8eb14e012ca8fad8fd8ea91d41b51244bf25b",
+   "url": "https://files.rcsb.org/download/7AHL.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 545.0,
+    "h1_small_bar_density": 1.6655290102389078,
+    "h1_bar_count_per_residue": 1.8600682593856654,
+    "h1_large_loop_max_pers": 0.2352336555277681,
+    "h1_dominance_P1_over_P2": 1.4215006164177615,
+    "h1_max_persistence": 3.9535349740928716,
+    "h1_total_pers_per_residue": 0.4260758405916332
+   },
+   "alpha_top_h1_bars": [
+    [
+     1.9786,
+     5.9321
+    ],
+    [
+     1.9799,
+     4.7612
+    ],
+    [
+     2.0002,
+     4.6699
+    ],
+    [
+     2.1498,
+     4.723
+    ],
+    [
+     2.171,
+     4.5251
+    ]
+   ]
+  },
+  {
+   "id": "2OMF",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 340,
+   "helix_frac": 0.05,
+   "sheet_frac": 0.55,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "40d7701d5bf44857759606b44b2b60e0c1edc79519a2521f8d33e08ae6342d45",
+   "url": "https://files.rcsb.org/download/2OMF.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 676.0,
+    "h1_small_bar_density": 1.8970588235294117,
+    "h1_bar_count_per_residue": 1.988235294117647,
+    "h1_large_loop_max_pers": 6.7809569432710886,
+    "h1_dominance_P1_over_P2": 2.8571927821571816,
+    "h1_max_persistence": 6.7809569432710886,
+    "h1_total_pers_per_residue": 0.502431141427506
+   },
+   "alpha_top_h1_bars": [
+    [
+     1.9345,
+     8.7155
+    ],
+    [
+     2.3005,
+     4.6738
+    ],
+    [
+     2.0818,
+     4.0753
+    ],
+    [
+     2.0448,
+     3.9145
+    ],
+    [
+     2.1782,
+     4.0175
+    ]
+   ]
+  },
+  {
+   "id": "1BXW",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 172,
+   "helix_frac": 0.0,
+   "sheet_frac": 0.5930232558139535,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "c05ecb943a2a1cdc4ff97b51a481174ed81feafb37cde3dc4df4ee04dd549e3a",
+   "url": "https://files.rcsb.org/download/1BXW.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 314.0,
+    "h1_small_bar_density": 1.6686046511627908,
+    "h1_bar_count_per_residue": 1.8255813953488371,
+    "h1_large_loop_max_pers": 0.14107983758548315,
+    "h1_dominance_P1_over_P2": 1.0878530944650397,
+    "h1_max_persistence": 2.769882437865415,
+    "h1_total_pers_per_residue": 0.4384819837652692
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.0651,
+     4.8349
+    ],
+    [
+     2.0452,
+     4.5914
+    ],
+    [
+     2.1771,
+     4.3309
+    ],
+    [
+     2.4089,
+     4.1759
+    ],
+    [
+     2.1895,
+     3.653
+    ]
+   ]
+  },
+  {
+   "id": "1PRN",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 289,
+   "helix_frac": 0.01730103806228374,
+   "sheet_frac": 0.5847750865051903,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "2bea893ad2aba42c148b68db539a7cb78ab84274553234668f053873587978c4",
+   "url": "https://files.rcsb.org/download/1PRN.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 550.0,
+    "h1_small_bar_density": 1.806228373702422,
+    "h1_bar_count_per_residue": 1.9031141868512111,
+    "h1_large_loop_max_pers": 6.437264917061481,
+    "h1_dominance_P1_over_P2": 2.3552029875884832,
+    "h1_max_persistence": 6.437264917061481,
+    "h1_total_pers_per_residue": 0.4761999581453578
+   },
+   "alpha_top_h1_bars": [
+    [
+     1.9364,
+     8.3737
+    ],
+    [
+     2.0107,
+     4.7439
+    ],
+    [
+     2.0631,
+     4.3493
+    ],
+    [
+     2.2794,
+     4.4012
+    ],
+    [
+     2.3067,
+     4.345
+    ]
+   ]
+  },
+  {
+   "id": "1TBG",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 340,
+   "helix_frac": 0.07647058823529412,
+   "sheet_frac": 0.47058823529411764,
+   "fold_class": "other",
+   "annotated": true,
+   "sha256": "73d3fde5ddfa89819b52793f7280edd29520f5931b314b7cac6ba9dcb123e50a",
+   "url": "https://files.rcsb.org/download/1TBG.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 810.0,
+    "h1_small_bar_density": 2.2294117647058824,
+    "h1_bar_count_per_residue": 2.3823529411764706,
+    "h1_large_loop_max_pers": 0.33763125335075905,
+    "h1_dominance_P1_over_P2": 1.8572074055051189,
+    "h1_max_persistence": 3.931843882128233,
+    "h1_total_pers_per_residue": 0.49385222245204136
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.0279,
+     5.9597
+    ],
+    [
+     2.4177,
+     4.5348
+    ],
+    [
+     2.8913,
+     4.7008
+    ],
+    [
+     2.7284,
+     4.5336
+    ],
+    [
+     1.99,
+     3.7951
+    ]
+   ]
+  },
+  {
+   "id": "1PIN",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 153,
+   "helix_frac": 0.2549019607843137,
+   "sheet_frac": 0.16339869281045752,
+   "fold_class": "alpha_beta",
+   "annotated": true,
+   "sha256": "00f64fbdb2fb900101abf9d9ea85fbd9e8e57f3ddce1cbac70bff51e322bbe13",
+   "url": "https://files.rcsb.org/download/1PIN.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 334.0,
+    "h1_small_bar_density": 1.9934640522875817,
+    "h1_bar_count_per_residue": 2.183006535947712,
+    "h1_large_loop_max_pers": 0.023198100279232747,
+    "h1_dominance_P1_over_P2": 1.2237888536740669,
+    "h1_max_persistence": 2.758747173971636,
+    "h1_total_pers_per_residue": 0.4060522030763742
+   },
+   "alpha_top_h1_bars": [
+    [
+     1.9591,
+     4.7178
+    ],
+    [
+     2.1711,
+     4.4254
+    ],
+    [
+     2.1494,
+     3.8312
+    ],
+    [
+     2.7076,
+     4.2082
+    ],
+    [
+     2.0239,
+     3.2571
+    ]
+   ]
+  },
+  {
+   "id": "1E0L",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 37,
+   "helix_frac": 0.0,
+   "sheet_frac": 0.4864864864864865,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "bdebcf8d1e81159c2dc0818aa011ba23d3c2340fa03eb50c7750c250c0ccf5ac",
+   "url": "https://files.rcsb.org/download/1E0L.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 45.0,
+    "h1_small_bar_density": 1.1891891891891893,
+    "h1_bar_count_per_residue": 1.2162162162162162,
+    "h1_large_loop_max_pers": 0.0,
+    "h1_dominance_P1_over_P2": 2.601313421839521,
+    "h1_max_persistence": 2.0748818199429437,
+    "h1_total_pers_per_residue": 0.2400493998003326
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.4106,
+     4.4855
+    ],
+    [
+     2.1271,
+     2.9247
+    ],
+    [
+     2.0075,
+     2.8008
+    ],
+    [
+     2.4063,
+     3.1152
+    ],
+    [
+     2.2793,
+     2.9216
+    ]
+   ]
+  },
+  {
+   "id": "1CD8",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 114,
+   "helix_frac": 0.043859649122807015,
+   "sheet_frac": 0.4649122807017544,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "c0a45452086146c150e7bc30f50ee47250651ef2340b14965238feac37e28fb2",
+   "url": "https://files.rcsb.org/download/1CD8.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 215.0,
+    "h1_small_bar_density": 1.736842105263158,
+    "h1_bar_count_per_residue": 1.8859649122807018,
+    "h1_large_loop_max_pers": 0.009105146199991587,
+    "h1_dominance_P1_over_P2": 1.0427582437057956,
+    "h1_max_persistence": 2.5991646050412727,
+    "h1_total_pers_per_residue": 0.4118408681502957
+   },
+   "alpha_top_h1_bars": [
+    [
+     2.124,
+     4.7232
+    ],
+    [
+     1.9893,
+     4.4819
+    ],
+    [
+     2.1361,
+     4.3873
+    ],
+    [
+     2.6262,
+     4.3555
+    ],
+    [
+     2.6298,
+     4.1706
+    ]
+   ]
+  },
+  {
+   "id": "1AF6",
+   "kind": "pdb",
+   "chain": "A",
+   "n": 421,
+   "helix_frac": 0.040380047505938245,
+   "sheet_frac": 0.5225653206650831,
+   "fold_class": "all_beta",
+   "annotated": true,
+   "sha256": "199f9949bffd761e46d4e7659a4b2d4ea92fc1bc9c91155074a28b6677cfb84e",
+   "url": "https://files.rcsb.org/download/1AF6.pdb",
+   "panel": "post_hoc_extension",
+   "alpha": {
+    "h1_bar_count": 888.0,
+    "h1_small_bar_density": 1.9097387173396674,
+    "h1_bar_count_per_residue": 2.1092636579572446,
+    "h1_large_loop_max_pers": 5.436075340264498,
+    "h1_dominance_P1_over_P2": 1.8958491326123084,
+    "h1_max_persistence": 5.436075340264498,
+    "h1_total_pers_per_residue": 0.4996073022638053
+   },
+   "alpha_top_h1_bars": [
+    [
+     1.9651,
+     7.4012
+    ],
+    [
+     2.3054,
+     5.1728
+    ],
+    [
+     2.0418,
+     4.2705
+    ],
+    [
+     1.9675,
+     3.9238
+    ],
+    [
+     2.036,
+     3.9588
+    ]
+   ]
+  }
+ ],
+ "analysis": {
+  "n_all_alpha": 14,
+  "n_all_beta": 20,
+  "all_alpha_ids": [
+   "256B",
+   "1BZ1",
+   "2MHR",
+   "1MBA",
+   "1LMB",
+   "1ENH",
+   "2ZTA",
+   "1ROP",
+   "1A1Z",
+   "3ICB",
+   "1PRB",
+   "2RH1",
+   "5CYT",
+   "1HTM"
+  ],
+  "all_beta_ids": [
+   "1TEN",
+   "1QJ8",
+   "1SHG",
+   "1TTF",
+   "1TIT",
+   "1CSP",
+   "1MJC",
+   "1WIT",
+   "1FNA",
+   "1TTG",
+   "2SOD",
+   "1REI",
+   "1HOE",
+   "7AHL",
+   "2OMF",
+   "1BXW",
+   "1PRN",
+   "1E0L",
+   "1CD8",
+   "1AF6"
+  ],
+  "n_beta_added_by_extension": 16,
+  "absent": [],
+  "n_perm": 10000,
+  "seed": 20260920,
+  "enlarged_panel": {
+   "auc_h1_small_bar_density": 0.9321,
+   "p_perm": 0.0001,
+   "auc_size_only_n_CA": 0.4107,
+   "p_perm_size": 0.38396,
+   "beats_size_baseline": true,
+   "auc_unbanded_h1_bar_count_per_residue": 0.9321,
+   "p_perm_unbanded": 0.0001,
+   "band_adds_nothing": true,
+   "alpha_values": [
+    1.83,
+    1.871,
+    1.889,
+    1.935,
+    1.976,
+    2.029,
+    2.043,
+    2.053,
+    2.136,
+    2.286,
+    2.315,
+    2.349,
+    2.396,
+    2.4
+   ],
+   "beta_values": [
+    1.138,
+    1.189,
+    1.202,
+    1.552,
+    1.632,
+    1.634,
+    1.663,
+    1.666,
+    1.669,
+    1.67,
+    1.674,
+    1.681,
+    1.696,
+    1.737,
+    1.806,
+    1.822,
+    1.897,
+    1.91,
+    2.0,
+    2.086
+   ]
+  },
+  "continuous_test_all_protein_chains": {
+   "helix_frac": {
+    "spearman_rho_vs_h1_small_bar_density": 0.6904,
+    "p_perm": 0.0005,
+    "n_perm": 2000,
+    "n_chains": 58
+   },
+   "sheet_frac": {
+    "spearman_rho_vs_h1_small_bar_density": -0.6242,
+    "p_perm": 0.0005,
+    "n_perm": 2000,
+    "n_chains": 58
+   },
+   "n_CA_size_control": {
+    "spearman_rho_vs_h1_small_bar_density": 0.4379,
+    "p_perm": 0.0005,
+    "n_perm": 2000,
+    "n_chains": 58
+   }
+  }
+ }
+}

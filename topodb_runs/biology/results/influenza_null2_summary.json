@@ -1,0 +1,26 @@
+{
+ "post_hoc": true,
+ "A_obs": 0.0419901360335202,
+ "B_obs": 101.0,
+ "p_A": 0.004975124378109453,
+ "p_B": 0.004975124378109453,
+ "n_null_total": 200,
+ "criteria": {
+  "i_A_concat_p_le_0.01_vs_pooled_single_segment_bootstrap": true,
+  "ii_every_single_segment_A_le_half_A_concat": true,
+  "iii_B_concat_gt_max_single_B": true
+ },
+ "verdict": "PASS",
+ "null_A_q50_q95_q99_max": [
+  0.005592186106185924,
+  0.016456270724616542,
+  0.01831762430358026,
+  0.021281315286841018
+ ],
+ "null_B_q50_q95_max": [
+  1.0,
+  10.0,
+  13.0
+ ],
+ "earlier_validation_p_A": 0.0024937655860349127
+}

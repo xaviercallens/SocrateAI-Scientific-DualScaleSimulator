@@ -1,0 +1,1994 @@
+{
+ "block": "influenza",
+ "script": "topodb_runs/biology/run_influenza.py",
+ "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+ "git_commit": "353d9a2de6040ae07e7e859ca46c46807206d3e4",
+ "wall_sec_total": 0.03,
+ "peak_mb": 99.9,
+ "datasets": [
+  {
+   "id": "biology/influenza_seg1_pb2",
+   "domain": "biology",
+   "title": "Influenza A avian segment 1 (PB2), 300 genomes, 2369 aligned columns",
+   "source": "NCBI Influenza Virus Resource (genomeset.dat + influenza.fna); https://ftp.ncbi.nlm.nih.gov/genomes/INFLUENZA/",
+   "provenance": "observation",
+   "n_objects": 300,
+   "ambient_dim": 2369,
+   "units": "p-distance (fraction of differing non-gap columns)",
+   "sha256": "2ebe6b0bbd5c667ca7f868d124f3cd26eb99754c417df43a02b529bfacbaa068",
+   "local_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics/influenza/work/aln_seg1.npy",
+   "notes": "alignment produced by the earlier genetics validation run (pyfamsa 0.7.0) and reused byte-for-byte; 14717 unique avian 8-segment sets, 300 subsampled with seed 20260919. A single segment is expected to be TREE-like, i.e. H1 ~ 0."
+  },
+  {
+   "id": "biology/influenza_seg2_pb1",
+   "domain": "biology",
+   "title": "Influenza A avian segment 2 (PB1), 300 genomes, 2341 aligned columns",
+   "source": "NCBI Influenza Virus Resource (genomeset.dat + influenza.fna); https://ftp.ncbi.nlm.nih.gov/genomes/INFLUENZA/",
+   "provenance": "observation",
+   "n_objects": 300,
+   "ambient_dim": 2341,
+   "units": "p-distance (fraction of differing non-gap columns)",
+   "sha256": "9c10f6e2ae774904e7dcbdf0e51a66813085006a42c743efd4de115b3a223e26",
+   "local_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics/influenza/work/aln_seg2.npy",
+   "notes": "alignment produced by the earlier genetics validation run (pyfamsa 0.7.0) and reused byte-for-byte; 14717 unique avian 8-segment sets, 300 subsampled with seed 20260919. A single segment is expected to be TREE-like, i.e. H1 ~ 0."
+  },
+  {
+   "id": "biology/influenza_seg3_pa",
+   "domain": "biology",
+   "title": "Influenza A avian segment 3 (PA), 300 genomes, 2255 aligned columns",
+   "source": "NCBI Influenza Virus Resource (genomeset.dat + influenza.fna); https://ftp.ncbi.nlm.nih.gov/genomes/INFLUENZA/",
+   "provenance": "observation",
+   "n_objects": 300,
+   "ambient_dim": 2255,
+   "units": "p-distance (fraction of differing non-gap columns)",
+   "sha256": "55af5e960ca9563444f005c17196c62cd1523729d25633ec59fb7be1bcf783c8",
+   "local_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics/influenza/work/aln_seg3.npy",
+   "notes": "alignment produced by the earlier genetics validation run (pyfamsa 0.7.0) and reused byte-for-byte; 14717 unique avian 8-segment sets, 300 subsampled with seed 20260919. A single segment is expected to be TREE-like, i.e. H1 ~ 0."
+  },
+  {
+   "id": "biology/influenza_seg4_ha",
+   "domain": "biology",
+   "title": "Influenza A avian segment 4 (HA), 300 genomes, 1918 aligned columns",
+   "source": "NCBI Influenza Virus Resource (genomeset.dat + influenza.fna); https://ftp.ncbi.nlm.nih.gov/genomes/INFLUENZA/",
+   "provenance": "observation",
+   "n_objects": 300,
+   "ambient_dim": 1918,
+   "units": "p-distance (fraction of differing non-gap columns)",
+   "sha256": "3e8b60adc6d4248dedba2de750b958693b50785ef761acfab2cac44ede0db9a0",
+   "local_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics/influenza/work/aln_seg4.npy",
+   "notes": "alignment produced by the earlier genetics validation run (pyfamsa 0.7.0) and reused byte-for-byte; 14717 unique avian 8-segment sets, 300 subsampled with seed 20260919. A single segment is expected to be TREE-like, i.e. H1 ~ 0."
+  },
+  {
+   "id": "biology/influenza_seg5_np",
+   "domain": "biology",
+   "title": "Influenza A avian segment 5 (NP), 300 genomes, 1583 aligned columns",
+   "source": "NCBI Influenza Virus Resource (genomeset.dat + influenza.fna); https://ftp.ncbi.nlm.nih.gov/genomes/INFLUENZA/",
+   "provenance": "observation",
+   "n_objects": 300,
+   "ambient_dim": 1583,
+   "units": "p-distance (fraction of differing non-gap columns)",
+   "sha256": "3eb98f5770e7fd02371007bd2211665e6cefd288f8c7c8f543db3a138f597eff",
+   "local_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics/influenza/work/aln_seg5.npy",
+   "notes": "alignment produced by the earlier genetics validation run (pyfamsa 0.7.0) and reused byte-for-byte; 14717 unique avian 8-segment sets, 300 subsampled with seed 20260919. A single segment is expected to be TREE-like, i.e. H1 ~ 0."
+  },
+  {
+   "id": "biology/influenza_seg6_na",
+   "domain": "biology",
+   "title": "Influenza A avian segment 6 (NA), 300 genomes, 1557 aligned columns",
+   "source": "NCBI Influenza Virus Resource (genomeset.dat + influenza.fna); https://ftp.ncbi.nlm.nih.gov/genomes/INFLUENZA/",
+   "provenance": "observation",
+   "n_objects": 300,
+   "ambient_dim": 1557,
+   "units": "p-distance (fraction of differing non-gap columns)",
+   "sha256": "e2cd9024b6324b9ba0661a877a9430f31dec359940c90e4c5ebd2d3419deb4d9",
+   "local_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics/influenza/work/aln_seg6.npy",
+   "notes": "alignment produced by the earlier genetics validation run (pyfamsa 0.7.0) and reused byte-for-byte; 14717 unique avian 8-segment sets, 300 subsampled with seed 20260919. A single segment is expected to be TREE-like, i.e. H1 ~ 0."
+  },
+  {
+   "id": "biology/influenza_seg7_m",
+   "domain": "biology",
+   "title": "Influenza A avian segment 7 (M), 300 genomes, 1063 aligned columns",
+   "source": "NCBI Influenza Virus Resource (genomeset.dat + influenza.fna); https://ftp.ncbi.nlm.nih.gov/genomes/INFLUENZA/",
+   "provenance": "observation",
+   "n_objects": 300,
+   "ambient_dim": 1063,
+   "units": "p-distance (fraction of differing non-gap columns)",
+   "sha256": "830465fd7316c63cdf3092f23ddf052604bd00dba170e2ba7a8257431675ad5b",
+   "local_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics/influenza/work/aln_seg7.npy",
+   "notes": "alignment produced by the earlier genetics validation run (pyfamsa 0.7.0) and reused byte-for-byte; 14717 unique avian 8-segment sets, 300 subsampled with seed 20260919. A single segment is expected to be TREE-like, i.e. H1 ~ 0."
+  },
+  {
+   "id": "biology/influenza_seg8_ns",
+   "domain": "biology",
+   "title": "Influenza A avian segment 8 (NS), 300 genomes, 922 aligned columns",
+   "source": "NCBI Influenza Virus Resource (genomeset.dat + influenza.fna); https://ftp.ncbi.nlm.nih.gov/genomes/INFLUENZA/",
+   "provenance": "observation",
+   "n_objects": 300,
+   "ambient_dim": 922,
+   "units": "p-distance (fraction of differing non-gap columns)",
+   "sha256": "e59903e9175abc348957cdd788f32c3dec32c3b17a6265ce7cb6b36f32f17708",
+   "local_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics/influenza/work/aln_seg8.npy",
+   "notes": "alignment produced by the earlier genetics validation run (pyfamsa 0.7.0) and reused byte-for-byte; 14717 unique avian 8-segment sets, 300 subsampled with seed 20260919. A single segment is expected to be TREE-like, i.e. H1 ~ 0."
+  },
+  {
+   "id": "biology/influenza_concatenated_genomes",
+   "domain": "biology",
+   "title": "Influenza A avian concatenated 8-segment genomes, 300 genomes, 14008 aligned columns",
+   "source": "NCBI Influenza Virus Resource (genomeset.dat + influenza.fna); https://ftp.ncbi.nlm.nih.gov/genomes/INFLUENZA/",
+   "provenance": "observation",
+   "n_objects": 300,
+   "ambient_dim": 14008,
+   "units": "p-distance (fraction of differing non-gap columns)",
+   "local_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics/influenza/work",
+   "notes": "concatenation of the eight per-segment alignments (sha256 each: {\"aln_seg1.npy\": \"2ebe6b0bbd5c667ca7f868d124f3cd26eb99754c417df43a02b529bfacbaa068\", \"aln_seg2.npy\": \"9c10f6e2ae774904e7dcbdf0e51a66813085006a42c743efd4de115b3a223e26\", \"aln_seg3.npy\": \"55af5e960ca9563444f005c17196c62cd1523729d25633ec59fb7be1bcf783c8\", \"aln_seg4.npy\": \"3e8b60adc6d4248dedba2de750b958693b50785ef761acfab2cac44ede0db9a0\", \"aln_seg5.npy\": \"3eb98f5770e7fd02371007bd2211665e6cefd288f8c7c8f543db3a138f597eff\", \"aln_seg6.npy\": \"e2cd9024b6324b9ba0661a877a9430f31dec359940c90e4c5ebd2d3419deb4d9\", \"aln_seg7.npy\": \"830465fd7316c63cdf3092f23ddf052604bd00dba170e2ba7a8257431675ad5b\", \"aln_seg8.npy\": \"e59903e9175abc348957cdd788f32c3dec32c3b17a6265ce7cb6b36f32f17708\"}). Reassortment is expected to create H1 classes."
+  }
+ ],
+ "runs": [
+  {
+   "dataset_id": "biology/influenza_seg1_pb2",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "max_edge_length": null,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_genomes": 300,
+    "aln_len": 2369,
+    "bar_threshold_B": 0.005
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "gap/ambiguous columns excluded pairwise; p-distance over columns where both sequences are A/C/G/T",
+   "seed": "20260919",
+   "script": "topodb_runs/biology/run_influenza.py",
+   "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+   "wall_sec": 0.78,
+   "peak_mb": 99.9,
+   "betti": {
+    "1": 2
+   },
+   "expected_betti": {
+    "1": 0
+   },
+   "bars": {
+    "1": [
+     [
+      0.027741655830082357,
+      0.028070175438596492
+     ],
+     [
+      0.028065630397236616,
+      0.02850877192982456
+     ],
+     [
+      0.03650586701434159,
+      0.04224738675958188
+     ],
+     [
+      0.05263157894736842,
+      0.05394736842105263
+     ],
+     [
+      0.05397236614853195,
+      0.06023067065356685
+     ],
+     [
+      0.13356461405030357,
+      0.135146804835924
+     ],
+     [
+      0.133419689119171,
+      0.13546690048224463
+     ]
+    ]
+   },
+   "stats": [
+    {
+     "name": "A_max_h1_persistence",
+     "value": 0.006258304505034902
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005",
+     "value": 2.0
+    },
+    {
+     "name": "n_h1_bars",
+     "value": 7.0
+    },
+    {
+     "name": "h1_dominance_P1_over_P2",
+     "value": 1.0900083571467332
+    },
+    {
+     "name": "median_pdistance",
+     "value": 0.14649122807017545
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "a clonally evolving single segment is a tree: no H1 bar above 0.005 expected",
+     "passed": true,
+     "detail": "B = 2 vs concatenated 101"
+    },
+    {
+     "kind": "negative",
+     "description": "the MDS-then-alpha route is NOT computed: it gave dominance 11.1 on this same segment 4 (HA) in the earlier validation, a FALSE loop on a tree",
+     "passed": null,
+     "detail": "no embedding is computed anywhere in this block"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "Segment 1 (PB2): Rips on the p-distance metric gives max H1 persistence 0.00626 and 2 bars above 0.005 over 300 genomes.",
+     "verdict": "null",
+     "tier": "X",
+     "caveat": "no per-segment null was run; only the concatenated statistic has a site-bootstrap p-value",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"
+    }
+   ],
+   "note": null
+  },
+  {
+   "dataset_id": "biology/influenza_seg2_pb1",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "max_edge_length": null,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_genomes": 300,
+    "aln_len": 2341,
+    "bar_threshold_B": 0.005
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "gap/ambiguous columns excluded pairwise; p-distance over columns where both sequences are A/C/G/T",
+   "seed": "20260919",
+   "script": "topodb_runs/biology/run_influenza.py",
+   "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+   "wall_sec": 0.74,
+   "peak_mb": 99.9,
+   "betti": {
+    "1": 1
+   },
+   "expected_betti": {
+    "1": 0
+   },
+   "bars": {
+    "1": [
+     [
+      0.017903930131004366,
+      0.01834061135371179
+     ],
+     [
+      0.02158894645941278,
+      0.022135416666666668
+     ],
+     [
+      0.06865284974093264,
+      0.07216940363007779
+     ],
+     [
+      0.06453009961022088,
+      0.07622347336509311
+     ],
+     [
+      0.07553798858146685,
+      0.0764163372859025
+     ],
+     [
+      0.08287056813327638,
+      0.08354755784061697
+     ],
+     [
+      0.08479789103690685,
+      0.08539228435197226
+     ],
+     [
+      0.0905595899188381,
+      0.0907108591365024
+     ]
+    ]
+   },
+   "stats": [
+    {
+     "name": "A_max_h1_persistence",
+     "value": 0.011693373754872227
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005",
+     "value": 1.0
+    },
+    {
+     "name": "n_h1_bars",
+     "value": 8.0
+    },
+    {
+     "name": "h1_dominance_P1_over_P2",
+     "value": 3.3252366161562787
+    },
+    {
+     "name": "median_pdistance",
+     "value": 0.11058315334773218
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "a clonally evolving single segment is a tree: no H1 bar above 0.005 expected",
+     "passed": true,
+     "detail": "B = 1 vs concatenated 101"
+    },
+    {
+     "kind": "negative",
+     "description": "the MDS-then-alpha route is NOT computed: it gave dominance 11.1 on this same segment 4 (HA) in the earlier validation, a FALSE loop on a tree",
+     "passed": null,
+     "detail": "no embedding is computed anywhere in this block"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "Segment 2 (PB1): Rips on the p-distance metric gives max H1 persistence 0.01169 and 1 bars above 0.005 over 300 genomes.",
+     "verdict": "null",
+     "tier": "X",
+     "caveat": "no per-segment null was run; only the concatenated statistic has a site-bootstrap p-value",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"
+    }
+   ],
+   "note": null
+  },
+  {
+   "dataset_id": "biology/influenza_seg3_pa",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "max_edge_length": null,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_genomes": 300,
+    "aln_len": 2255,
+    "bar_threshold_B": 0.005
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "gap/ambiguous columns excluded pairwise; p-distance over columns where both sequences are A/C/G/T",
+   "seed": "20260919",
+   "script": "topodb_runs/biology/run_influenza.py",
+   "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+   "wall_sec": 0.79,
+   "peak_mb": 99.9,
+   "betti": {
+    "1": 0
+   },
+   "expected_betti": {
+    "1": 0
+   },
+   "bars": {
+    "1": [
+     [
+      0.015930814747382796,
+      0.016415868673050615
+     ],
+     [
+      0.06307977736549165,
+      0.06366530241018645
+     ],
+     [
+      0.06834030683403068,
+      0.0697350069735007
+     ]
+    ]
+   },
+   "stats": [
+    {
+     "name": "A_max_h1_persistence",
+     "value": 0.0013947001394700176
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005",
+     "value": 0.0
+    },
+    {
+     "name": "n_h1_bars",
+     "value": 3.0
+    },
+    {
+     "name": "h1_dominance_P1_over_P2",
+     "value": 2.38196495966626
+    },
+    {
+     "name": "median_pdistance",
+     "value": 0.10730593607305935
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "a clonally evolving single segment is a tree: no H1 bar above 0.005 expected",
+     "passed": true,
+     "detail": "B = 0 vs concatenated 101"
+    },
+    {
+     "kind": "negative",
+     "description": "the MDS-then-alpha route is NOT computed: it gave dominance 11.1 on this same segment 4 (HA) in the earlier validation, a FALSE loop on a tree",
+     "passed": null,
+     "detail": "no embedding is computed anywhere in this block"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "Segment 3 (PA): Rips on the p-distance metric gives max H1 persistence 0.00139 and 0 bars above 0.005 over 300 genomes.",
+     "verdict": "null",
+     "tier": "X",
+     "caveat": "no per-segment null was run; only the concatenated statistic has a site-bootstrap p-value",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"
+    }
+   ],
+   "note": null
+  },
+  {
+   "dataset_id": "biology/influenza_seg4_ha",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "max_edge_length": null,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_genomes": 300,
+    "aln_len": 1918,
+    "bar_threshold_B": 0.005
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "gap/ambiguous columns excluded pairwise; p-distance over columns where both sequences are A/C/G/T",
+   "seed": "20260919",
+   "script": "topodb_runs/biology/run_influenza.py",
+   "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+   "wall_sec": 1.51,
+   "peak_mb": 99.9,
+   "betti": {
+    "1": 4
+   },
+   "expected_betti": {
+    "1": 0
+   },
+   "bars": {
+    "1": [
+     [
+      0.050808314087759814,
+      0.051564310544611816
+     ],
+     [
+      0.14269406392694065,
+      0.1432648401826484
+     ],
+     [
+      0.1767497034400949,
+      0.17793594306049823
+     ],
+     [
+      0.1955241460541814,
+      0.1963151207115629
+     ],
+     [
+      0.22638146167557932,
+      0.22697563874034463
+     ],
+     [
+      0.3329512893982808,
+      0.3346727898966705
+     ],
+     [
+      0.3297935103244838,
+      0.335693215339233
+     ],
+     [
+      0.3437316068275456,
+      0.34397163120567376
+     ],
+     [
+      0.3447461629279811,
+      0.34533648170011805
+     ],
+     [
+      0.34517465956187093,
+      0.3465405085748078
+     ],
+     [
+      0.3433806146572104,
+      0.34658094681472823
+     ],
+     [
+      0.35214579659024103,
+      0.3538371411833626
+     ],
+     [
+      0.3589435774309724,
+      0.36134453781512604
+     ],
+     [
+      0.36395759717314485,
+      0.36463022508038584
+     ],
+     [
+      0.36708111308466546,
+      0.36746635459332944
+     ],
+     [
+      0.36342182890855457,
+      0.37095825984714875
+     ],
+     [
+      0.370939161252215,
+      0.37107291049199764
+     ],
+     [
+      0.3714967203339296,
+      0.3726893261776983
+     ],
+     [
+      0.37209302325581395,
+      0.3726893261776983
+     ],
+     [
+      0.37367178276269186,
+      0.3754427390791027
+     ],
+     [
+      0.3884297520661157,
+      0.3893805309734513
+     ],
+     [
+      0.3919716646989374,
+      0.3920653442240373
+     ],
+     [
+      0.38787522071806946,
+      0.39433293978748524
+     ],
+     [
+      0.41572364502680165,
+      0.4162194394752534
+     ],
+     [
+      0.4158823529411765,
+      0.416270783847981
+     ],
+     [
+      0.41562313655336913,
+      0.4163679808841099
+     ],
+     [
+      0.4165222414789139,
+      0.41895845523698066
+     ],
+     [
+      0.4150268336314848,
+      0.4198927933293627
+     ],
+     [
+      0.41256668642560756,
+      0.4203670811130847
+     ],
+     [
+      0.4373125374925015,
+      0.4383971291866029
+     ],
+     [
+      0.4368421052631579,
+      0.43899521531100477
+     ],
+     [
+      0.43876337693222356,
+      0.44086021505376344
+     ],
+     [
+      0.4395734597156398,
+      0.44166666666666665
+     ],
+     [
+      0.43966547192353644,
+      0.44205495818399043
+     ],
+     [
+      0.4412285883047844,
+      0.44240992321323097
+     ],
+     [
+      0.44504181600955794,
+      0.44563918757467147
+     ],
+     [
+      0.4597156398104265,
+      0.46199880311190905
+     ],
+     [
+      0.46217986896962476,
+      0.46277546158427635
+     ],
+     [
+      0.46467065868263474,
+      0.46875
+     ],
+     [
+      0.4675707547169811,
+      0.471563981042654
+     ],
+     [
+      0.4701102727800348,
+      0.4722877358490566
+     ],
+     [
+      0.4731182795698925,
+      0.4731823599523242
+     ],
+     [
+      0.46919431279620855,
+      0.47359050445103856
+     ],
+     [
+      0.47044776119402987,
+      0.4737152982870644
+     ],
+     [
+      0.47336923997606223,
+      0.47516457211250746
+     ]
+    ]
+   },
+   "stats": [
+    {
+     "name": "A_max_h1_persistence",
+     "value": 0.007800394687477119
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005",
+     "value": 4.0
+    },
+    {
+     "name": "n_h1_bars",
+     "value": 45.0
+    },
+    {
+     "name": "h1_dominance_P1_over_P2",
+     "value": 1.0350250338699678
+    },
+    {
+     "name": "median_pdistance",
+     "value": 0.4547069271758437
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "a clonally evolving single segment is a tree: no H1 bar above 0.005 expected",
+     "passed": true,
+     "detail": "B = 4 vs concatenated 101"
+    },
+    {
+     "kind": "negative",
+     "description": "the MDS-then-alpha route is NOT computed: it gave dominance 11.1 on this same segment 4 (HA) in the earlier validation, a FALSE loop on a tree",
+     "passed": null,
+     "detail": "no embedding is computed anywhere in this block"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "Segment 4 (HA): Rips on the p-distance metric gives max H1 persistence 0.00780 and 4 bars above 0.005 over 300 genomes.",
+     "verdict": "null",
+     "tier": "X",
+     "caveat": "no per-segment null was run; only the concatenated statistic has a site-bootstrap p-value",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"
+    }
+   ],
+   "note": null
+  },
+  {
+   "dataset_id": "biology/influenza_seg5_np",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "max_edge_length": null,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_genomes": 300,
+    "aln_len": 1583,
+    "bar_threshold_B": 0.005
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "gap/ambiguous columns excluded pairwise; p-distance over columns where both sequences are A/C/G/T",
+   "seed": "20260919",
+   "script": "topodb_runs/biology/run_influenza.py",
+   "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+   "wall_sec": 0.61,
+   "peak_mb": 99.9,
+   "betti": {
+    "1": 0
+   },
+   "expected_betti": {
+    "1": 0
+   },
+   "bars": {
+    "1": [
+     [
+      0.023376623376623377,
+      0.024675324675324677
+     ],
+     [
+      0.03636363636363636,
+      0.038386467143786594
+     ],
+     [
+      0.04090909090909091,
+      0.04155844155844156
+     ],
+     [
+      0.048051948051948054,
+      0.048701298701298704
+     ],
+     [
+      0.05649350649350649,
+      0.05886243386243386
+     ],
+     [
+      0.05855263157894737,
+      0.05942492012779553
+     ],
+     [
+      0.08376623376623377,
+      0.08571428571428572
+     ],
+     [
+      0.08769633507853403,
+      0.08835078534031414
+     ],
+     [
+      0.1318181818181818,
+      0.13246753246753246
+     ]
+    ]
+   },
+   "stats": [
+    {
+     "name": "A_max_h1_persistence",
+     "value": 0.0023689273689273677
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005",
+     "value": 0.0
+    },
+    {
+     "name": "n_h1_bars",
+     "value": 9.0
+    },
+    {
+     "name": "h1_dominance_P1_over_P2",
+     "value": 1.1710951762121353
+    },
+    {
+     "name": "median_pdistance",
+     "value": 0.10324675324675325
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "a clonally evolving single segment is a tree: no H1 bar above 0.005 expected",
+     "passed": true,
+     "detail": "B = 0 vs concatenated 101"
+    },
+    {
+     "kind": "negative",
+     "description": "the MDS-then-alpha route is NOT computed: it gave dominance 11.1 on this same segment 4 (HA) in the earlier validation, a FALSE loop on a tree",
+     "passed": null,
+     "detail": "no embedding is computed anywhere in this block"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "Segment 5 (NP): Rips on the p-distance metric gives max H1 persistence 0.00237 and 0 bars above 0.005 over 300 genomes.",
+     "verdict": "null",
+     "tier": "X",
+     "caveat": "no per-segment null was run; only the concatenated statistic has a site-bootstrap p-value",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"
+    }
+   ],
+   "note": null
+  },
+  {
+   "dataset_id": "biology/influenza_seg6_na",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "max_edge_length": null,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_genomes": 300,
+    "aln_len": 1557,
+    "bar_threshold_B": 0.005
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "gap/ambiguous columns excluded pairwise; p-distance over columns where both sequences are A/C/G/T",
+   "seed": "20260919",
+   "script": "topodb_runs/biology/run_influenza.py",
+   "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+   "wall_sec": 1.43,
+   "peak_mb": 99.9,
+   "betti": {
+    "1": 0
+   },
+   "expected_betti": {
+    "1": 0
+   },
+   "bars": {
+    "1": [
+     [
+      0.027972027972027972,
+      0.028671328671328673
+     ],
+     [
+      0.053109713487071976,
+      0.05559416261292564
+     ],
+     [
+      0.07768361581920905,
+      0.08056171470805618
+     ],
+     [
+      0.09412597310686482,
+      0.09500351864883885
+     ],
+     [
+      0.20464135021097046,
+      0.2047853624208304
+     ],
+     [
+      0.3372988103568929,
+      0.33799860041987406
+     ],
+     [
+      0.3472222222222222,
+      0.3490427098674521
+     ],
+     [
+      0.3520710059171598,
+      0.35233918128654973
+     ],
+     [
+      0.35465529495380244,
+      0.3575418994413408
+     ],
+     [
+      0.35439360929557007,
+      0.357592722183345
+     ],
+     [
+      0.3995801259622113,
+      0.401541695865452
+     ],
+     [
+      0.39717891610987377,
+      0.4018232819074334
+     ],
+     [
+      0.4197786998616874,
+      0.4241773962804006
+     ],
+     [
+      0.42398286937901497,
+      0.42461964038727523
+     ],
+     [
+      0.42825278810408923,
+      0.42938254080908445
+     ],
+     [
+      0.43026706231454004,
+      0.43066764490095377
+     ],
+     [
+      0.4436416184971098,
+      0.44486121530382594
+     ],
+     [
+      0.4446074834922964,
+      0.4475421863536317
+     ],
+     [
+      0.448690728945506,
+      0.4489650249821556
+     ],
+     [
+      0.44942196531791906,
+      0.45014450867052025
+     ],
+     [
+      0.44971264367816094,
+      0.4511494252873563
+     ],
+     [
+      0.4540229885057471,
+      0.45408532176428057
+     ],
+     [
+      0.4522760646108664,
+      0.45408532176428057
+     ],
+     [
+      0.4547413793103448,
+      0.45545977011494254
+     ],
+     [
+      0.45408532176428057,
+      0.455531453362256
+     ],
+     [
+      0.45871559633027525,
+      0.46042120551924476
+     ],
+     [
+      0.459479015918958,
+      0.46205860255447034
+     ],
+     [
+      0.4598046581517656,
+      0.4638205499276411
+     ],
+     [
+      0.4648493543758967,
+      0.4651329978432782
+     ],
+     [
+      0.4647577092511013,
+      0.4658246656760773
+     ],
+     [
+      0.4644616467276566,
+      0.46619718309859154
+     ],
+     [
+      0.46708683473389356,
+      0.4679625629949604
+     ],
+     [
+      0.46741573033707867,
+      0.46806912096168296
+     ],
+     [
+      0.4660956459671663,
+      0.46823697359029265
+     ],
+     [
+      0.46495489243580845,
+      0.468975468975469
+     ],
+     [
+      0.46882043576258453,
+      0.4695717505634861
+     ],
+     [
+      0.46508279337652986,
+      0.4695717505634861
+     ],
+     [
+      0.46902017291066284,
+      0.4697406340057637
+     ],
+     [
+      0.47079276773296247,
+      0.4711203897007655
+     ],
+     [
+      0.4708423326133909,
+      0.4715622750179986
+     ]
+    ]
+   },
+   "stats": [
+    {
+     "name": "A_max_h1_persistence",
+     "value": 0.004644365797559613
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005",
+     "value": 0.0
+    },
+    {
+     "name": "n_h1_bars",
+     "value": 40.0
+    },
+    {
+     "name": "h1_dominance_P1_over_P2",
+     "value": 1.0346202033414234
+    },
+    {
+     "name": "median_pdistance",
+     "value": 0.4740796393688956
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "a clonally evolving single segment is a tree: no H1 bar above 0.005 expected",
+     "passed": true,
+     "detail": "B = 0 vs concatenated 101"
+    },
+    {
+     "kind": "negative",
+     "description": "the MDS-then-alpha route is NOT computed: it gave dominance 11.1 on this same segment 4 (HA) in the earlier validation, a FALSE loop on a tree",
+     "passed": null,
+     "detail": "no embedding is computed anywhere in this block"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "Segment 6 (NA): Rips on the p-distance metric gives max H1 persistence 0.00464 and 0 bars above 0.005 over 300 genomes.",
+     "verdict": "null",
+     "tier": "X",
+     "caveat": "no per-segment null was run; only the concatenated statistic has a site-bootstrap p-value",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"
+    }
+   ],
+   "note": null
+  },
+  {
+   "dataset_id": "biology/influenza_seg7_m",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "max_edge_length": null,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_genomes": 300,
+    "aln_len": 1063,
+    "bar_threshold_B": 0.005
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "gap/ambiguous columns excluded pairwise; p-distance over columns where both sequences are A/C/G/T",
+   "seed": "20260919",
+   "script": "topodb_runs/biology/run_influenza.py",
+   "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+   "wall_sec": 0.53,
+   "peak_mb": 99.9,
+   "betti": {
+    "1": 0
+   },
+   "expected_betti": {
+    "1": 0
+   },
+   "bars": {
+    "1": [
+     [
+      0.006993006993006993,
+      0.008982035928143712
+     ],
+     [
+      0.014256619144602852,
+      0.015060240963855422
+     ],
+     [
+      0.015274949083503055,
+      0.01606425702811245
+     ],
+     [
+      0.014256619144602852,
+      0.016293279022403257
+     ],
+     [
+      0.016145307769929364,
+      0.017154389505549948
+     ],
+     [
+      0.017137096774193547,
+      0.017311608961303463
+     ],
+     [
+      0.022954091816367265,
+      0.0249500998003992
+     ],
+     [
+      0.02710843373493976,
+      0.028112449799196786
+     ],
+     [
+      0.02914572864321608,
+      0.029531568228105907
+     ],
+     [
+      0.048879837067209775,
+      0.04989816700610998
+     ],
+     [
+      0.05089820359281437,
+      0.05220883534136546
+     ],
+     [
+      0.05258033106134372,
+      0.05289421157684631
+     ],
+     [
+      0.05702647657841141,
+      0.05788423153692615
+     ],
+     [
+      0.05928853754940711,
+      0.060362173038229376
+     ]
+    ]
+   },
+   "stats": [
+    {
+     "name": "A_max_h1_persistence",
+     "value": 0.002036659877800405
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005",
+     "value": 0.0
+    },
+    {
+     "name": "n_h1_bars",
+     "value": 14.0
+    },
+    {
+     "name": "h1_dominance_P1_over_P2",
+     "value": 1.0203665987780026
+    },
+    {
+     "name": "median_pdistance",
+     "value": 0.08080808080808081
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "a clonally evolving single segment is a tree: no H1 bar above 0.005 expected",
+     "passed": true,
+     "detail": "B = 0 vs concatenated 101"
+    },
+    {
+     "kind": "negative",
+     "description": "the MDS-then-alpha route is NOT computed: it gave dominance 11.1 on this same segment 4 (HA) in the earlier validation, a FALSE loop on a tree",
+     "passed": null,
+     "detail": "no embedding is computed anywhere in this block"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "Segment 7 (M): Rips on the p-distance metric gives max H1 persistence 0.00204 and 0 bars above 0.005 over 300 genomes.",
+     "verdict": "null",
+     "tier": "X",
+     "caveat": "no per-segment null was run; only the concatenated statistic has a site-bootstrap p-value",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"
+    }
+   ],
+   "note": null
+  },
+  {
+   "dataset_id": "biology/influenza_seg8_ns",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "max_edge_length": null,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_genomes": 300,
+    "aln_len": 922,
+    "bar_threshold_B": 0.005
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "gap/ambiguous columns excluded pairwise; p-distance over columns where both sequences are A/C/G/T",
+   "seed": "20260919",
+   "script": "topodb_runs/biology/run_influenza.py",
+   "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+   "wall_sec": 0.48,
+   "peak_mb": 99.9,
+   "betti": {
+    "1": 0
+   },
+   "expected_betti": {
+    "1": 0
+   },
+   "bars": {
+    "1": [
+     [
+      0.011574074074074073,
+      0.01179245283018868
+     ],
+     [
+      0.024719101123595506,
+      0.02485207100591716
+     ],
+     [
+      0.024277456647398842,
+      0.025433526011560695
+     ],
+     [
+      0.052132701421800945,
+      0.054502369668246446
+     ],
+     [
+      0.08554913294797688,
+      0.08654970760233918
+     ]
+    ]
+   },
+   "stats": [
+    {
+     "name": "A_max_h1_persistence",
+     "value": 0.0023696682464455013
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005",
+     "value": 0.0
+    },
+    {
+     "name": "n_h1_bars",
+     "value": 5.0
+    },
+    {
+     "name": "h1_dominance_P1_over_P2",
+     "value": 2.0497630331753536
+    },
+    {
+     "name": "median_pdistance",
+     "value": 0.1026252983293556
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "a clonally evolving single segment is a tree: no H1 bar above 0.005 expected",
+     "passed": true,
+     "detail": "B = 0 vs concatenated 101"
+    },
+    {
+     "kind": "negative",
+     "description": "the MDS-then-alpha route is NOT computed: it gave dominance 11.1 on this same segment 4 (HA) in the earlier validation, a FALSE loop on a tree",
+     "passed": null,
+     "detail": "no embedding is computed anywhere in this block"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "Segment 8 (NS): Rips on the p-distance metric gives max H1 persistence 0.00237 and 0 bars above 0.005 over 300 genomes.",
+     "verdict": "null",
+     "tier": "X",
+     "caveat": "no per-segment null was run; only the concatenated statistic has a site-bootstrap p-value",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"
+    }
+   ],
+   "note": null
+  },
+  {
+   "dataset_id": "biology/influenza_concatenated_genomes",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "metric": "hamming p-distance fed directly to Rips (NO embedding)",
+    "max_hom_dim": 1,
+    "max_edge_length": null,
+    "edge_collapse": true,
+    "expansion_dim": 2,
+    "n_genomes": 300,
+    "aln_len": 14008,
+    "bar_threshold_B": 0.005,
+    "criteria": {
+     "i_A_concat_significant_p_le_0.01": false,
+     "ii_every_single_segment_A_le_half_A_concat": true,
+     "iii_B_concat_gt_max_single_B": true
+    }
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "eight per-segment alignments concatenated column-wise",
+   "seed": "genome subsample 20260919; bootstrap seeds 0..199",
+   "script": "topodb_runs/biology/run_influenza.py",
+   "command": "timeout 590 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/run_influenza.py --n-null 200",
+   "wall_sec": 4.42,
+   "peak_mb": 99.9,
+   "betti": {
+    "1": 101
+   },
+   "expected_betti": {
+    "1": 1
+   },
+   "bars": {
+    "1": [
+     [
+      0.026400122081489393,
+      0.0276209369754311
+     ],
+     [
+      0.050857613661897984,
+      0.05130317555422409
+     ],
+     [
+      0.05491286057692308,
+      0.058032022851988274
+     ],
+     [
+      0.05915345498055639,
+      0.05948205089932084
+     ],
+     [
+      0.053783661802316834,
+      0.06228842247799594
+     ],
+     [
+      0.05924404897710853,
+      0.06415525114155252
+     ],
+     [
+      0.0593291245150985,
+      0.06450140716513272
+     ],
+     [
+      0.06002103365384615,
+      0.06518496420047733
+     ],
+     [
+      0.06293026040107752,
+      0.06771499510947257
+     ],
+     [
+      0.061386138613861385,
+      0.06861281170673436
+     ],
+     [
+      0.062057662221560006,
+      0.07122103851598004
+     ],
+     [
+      0.06997794173575721,
+      0.07129008202833706
+     ],
+     [
+      0.06205035971223022,
+      0.07410727625877783
+     ],
+     [
+      0.07770961145194274,
+      0.07861018993066024
+     ],
+     [
+      0.07831686133572927,
+      0.07871785314945956
+     ],
+     [
+      0.08571642461446324,
+      0.08766282377601438
+     ],
+     [
+      0.08814953271028038,
+      0.08819144177724765
+     ],
+     [
+      0.08519269776876268,
+      0.08888721917499437
+     ],
+     [
+      0.08860566282530719,
+      0.08987417615338526
+     ],
+     [
+      0.09112800060200166,
+      0.09269095533777212
+     ],
+     [
+      0.09599400973418196,
+      0.09628517823639775
+     ],
+     [
+      0.08732670283303194,
+      0.09709468613578202
+     ],
+     [
+      0.09677660608780196,
+      0.09796255920607473
+     ],
+     [
+      0.08825740490151857,
+      0.09896302975653742
+     ],
+     [
+      0.09558214796417551,
+      0.10114977079732472
+     ],
+     [
+      0.09410795837388636,
+      0.10224215246636771
+     ],
+     [
+      0.08519709776348268,
+      0.104586597702898
+     ],
+     [
+      0.10096081669419006,
+      0.10532633158289573
+     ],
+     [
+      0.0911415250413596,
+      0.10645015787099685
+     ],
+     [
+      0.09162929745889387,
+      0.10652663165791448
+     ],
+     [
+      0.08671641791044776,
+      0.10689191209448348
+     ],
+     [
+      0.10526711813393529,
+      0.10733869150454443
+     ],
+     [
+      0.10762197406880011,
+      0.10791476407914764
+     ],
+     [
+      0.10690223087288517,
+      0.10959724509657134
+     ],
+     [
+      0.10674283996091108,
+      0.10968372023138757
+     ],
+     [
+      0.09925149700598802,
+      0.11042025619896621
+     ],
+     [
+      0.1066442901823175,
+      0.11091616446715996
+     ],
+     [
+      0.10145573380867498,
+      0.11116176582326572
+     ],
+     [
+      0.11076162660076387,
+      0.11160155962627823
+     ],
+     [
+      0.11236123612361236,
+      0.11283667191837347
+     ],
+     [
+      0.11193471099131476,
+      0.1130028627391894
+     ],
+     [
+      0.11281514176703823,
+      0.11334975001865533
+     ],
+     [
+      0.10157894736842105,
+      0.11341756919374248
+     ],
+     [
+      0.09957293773881772,
+      0.11396396396396397
+     ],
+     [
+      0.09101760668457178,
+      0.11414020371479928
+     ],
+     [
+      0.11131032421933364,
+      0.11683566954965702
+     ],
+     [
+      0.10386001802343046,
+      0.11741074812400515
+     ],
+     [
+      0.10414915565064568,
+      0.11921340576937792
+     ],
+     [
+      0.10341671751067724,
+      0.11941413839485876
+     ],
+     [
+      0.11936479265447429,
+      0.12060263653483992
+     ],
+     [
+      0.11116005873715125,
+      0.12146022684594006
+     ],
+     [
+      0.11764265948694937,
+      0.12163375224416517
+     ],
+     [
+      0.10843193050771305,
+      0.12207695181172955
+     ],
+     [
+      0.08762075937991462,
+      0.1228978978978979
+     ],
+     [
+      0.12145051322394546,
+      0.12388842441286008
+     ],
+     [
+      0.08928170174518762,
+      0.124297173701177
+     ],
+     [
+      0.0942001371846658,
+      0.1250566037735849
+     ],
+     [
+      0.12258354563164993,
+      0.12625731872091278
+     ],
+     [
+      0.11549925484351714,
+      0.12653608400983093
+     ],
+     [
+      0.11724806201550388,
+      0.12669007245835512
+     ],
+     [
+      0.10440357170113715,
+      0.12678639663737104
+     ],
+     [
+      0.09493197787412169,
+      0.12722493428464138
+     ],
+     [
+      0.09979085748431431,
+      0.1281666916504272
+     ],
+     [
+      0.11876645355396766,
+      0.12834829849845317
+     ],
+     [
+      0.121179706601467,
+      0.12836026652370375
+     ],
+     [
+      0.10893540400630204,
+      0.12850590269945109
+     ],
+     [
+      0.1044179734620024,
+      0.12896944278010786
+     ],
+     [
+      0.11821159265747581,
+      0.12902487410346405
+     ],
+     [
+      0.11893259719346676,
+      0.12911877394636015
+     ],
+     [
+      0.12553302910151867,
+      0.12943991624915877
+     ],
+     [
+      0.12506668699032086,
+      0.12969179127250535
+     ],
+     [
+      0.10033720494567254,
+      0.1298759864712514
+     ],
+     [
+      0.11108614232209738,
+      0.12992756385817766
+     ],
+     [
+      0.10837955329036127,
+      0.1299625468164794
+     ],
+     [
+      0.12815315315315315,
+      0.1301997296891425
+     ],
+     [
+      0.08924812030075188,
+      0.1302095066456409
+     ],
+     [
+      0.12925430210325048,
+      0.13027342270696055
+     ],
+     [
+      0.1146548541897379,
+      0.13126474056603774
+     ],
+     [
+      0.10303307422648987,
+      0.13176081730769232
+     ],
+     [
+      0.13135011441647598,
+      0.13257055682684973
+     ],
+     [
+      0.13120780195048762,
+      0.13274402576972058
+     ],
+     [
+      0.12047196753344355,
+      0.13279031534897623
+     ],
+     [
+      0.1305447023672719,
+      0.13298843578819233
+     ],
+     [
+      0.12036895868272603,
+      0.13306269733874607
+     ],
+     [
+      0.12195305446885345,
+      0.1334532913480282
+     ],
+     [
+      0.11341281669150521,
+      0.13374793945751537
+     ],
+     [
+      0.10845808383233532,
+      0.13392116964353004
+     ],
+     [
+      0.11944275274056029,
+      0.13424080619688653
+     ],
+     [
+      0.0927404028886355,
+      0.1347305389221557
+     ],
+     [
+      0.11202185792349727,
+      0.1348459553801791
+     ],
+     [
+      0.13472357662590953,
+      0.13502744154574844
+     ],
+     [
+      0.10322628939291863,
+      0.1350682465876706
+     ],
+     [
+      0.1103663645365222,
+      0.13509036144578312
+     ],
+     [
+      0.1332336448598131,
+      0.1352927978460848
+     ],
+     [
+      0.12315567600120446,
+      0.13557157878924442
+     ],
+     [
+      0.11867659476471942,
+      0.13561013046815043
+     ],
+     [
+      0.1010017942583732,
+      0.1360186368076952
+     ],
+     [
+      0.13201295278258904,
+      0.13634314903846154
+     ],
+     [
+      0.10352571300247025,
+      0.136401295473375
+     ],
+     [
+      0.11560780767201749,
+      0.13663708828395246
+     ],
+     [
+      0.13470919324577862,
+      0.1367136866183759
+     ],
+     [
+      0.13517572844698109,
+      0.13697397044482784
+     ],
+     [
+      0.12803059273422562,
+      0.13708101608297008
+     ],
+     [
+      0.11545958914379967,
+      0.13718006286484058
+     ],
+     [
+      0.09667016649167541,
+      0.13751789616456936
+     ],
+     [
+      0.10001496110113704,
+      0.1375338753387534
+     ],
+     [
+      0.12466620889600977,
+      0.1377647147486623
+     ],
+     [
+      0.1347842401500938,
+      0.13787400390918658
+     ],
+     [
+      0.13106905064711602,
+      0.13869446135118685
+     ],
+     [
+      0.10294005345551738,
+      0.13869446135118685
+     ],
+     [
+      0.13273871983210914,
+      0.1387053169119856
+     ],
+     [
+      0.10361879073949203,
+      0.13899932488185432
+     ],
+     [
+      0.1052001496445941,
+      0.1390161472024033
+     ],
+     [
+      0.1316241871589805,
+      0.13903061224489796
+     ],
+     [
+      0.0979261810286741,
+      0.13909056171188383
+     ],
+     [
+      0.11335276096540386,
+      0.13925561273961362
+     ],
+     [
+      0.1210967250571211,
+      0.1395035885167464
+     ],
+     [
+      0.1395889588958896,
+      0.13973899107074716
+     ],
+     [
+      0.11624441132637854,
+      0.14005392450569204
+     ],
+     [
+      0.11251969094591553,
+      0.1402671043796165
+     ],
+     [
+      0.12919198739590368,
+      0.1402994057022493
+     ],
+     [
+      0.11773233633450328,
+      0.1406062424969988
+     ],
+     [
+      0.10217604096077103,
+      0.14088855421686747
+     ],
+     [
+      0.10827834433113377,
+      0.14093357271095153
+     ],
+     [
+      0.10466890448581019,
+      0.14157014157014158
+     ],
+     [
+      0.118512840168647,
+      0.14167749827968498
+     ],
+     [
+      0.11991869918699187,
+      0.14168362348330696
+     ],
+     [
+      0.14151084517576665,
+      0.14209618125890913
+     ],
+     [
+      0.12987907546303382,
+      0.1421076300404737
+     ],
+     [
+      0.11482929763874267,
+      0.14274958590573708
+     ],
+     [
+      0.13546982888021616,
+      0.14285714285714285
+     ],
+     [
+      0.13861083517994957,
+      0.14315663372267146
+     ],
+     [
+      0.13030187237294613,
+      0.14347992351816444
+     ],
+     [
+      0.11204586063132817,
+      0.1438945871078835
+     ],
+     [
+      0.12124144090503126,
+      0.1448146761512542
+     ],
+     [
+      0.11156870086110071,
+      0.14531013615733737
+     ],
+     [
+      0.1462515978645011,
+      0.14646616541353383
+     ],
+     [
+      0.14693295292439373,
+      0.1474354174466492
+     ],
+     [
+      0.14062149007862224,
+      0.15023614963640453
+     ],
+     [
+      0.1259259259259259,
+      0.15040528369858902
+     ],
+     [
+      0.1227146189150553,
+      0.15119581464872944
+     ],
+     [
+      0.1479050599099443,
+      0.15203606081442433
+     ],
+     [
+      0.1468184248720495,
+      0.1526780371035308
+     ],
+     [
+      0.12430454995808246,
+      0.15375810759252193
+     ],
+     [
+      0.1289859452924286,
+      0.1540785498489426
+     ],
+     [
+      0.1359085475194262,
+      0.1574067093856012
+     ],
+     [
+      0.13486866862346655,
+      0.1582674199623352
+     ],
+     [
+      0.1559681697612732,
+      0.16076562263579966
+     ],
+     [
+      0.12308845577211394,
+      0.16320874840835892
+     ],
+     [
+      0.15623363996709297,
+      0.16681668166816682
+     ],
+     [
+      0.1624419578290325,
+      0.17169179229480738
+     ],
+     [
+      0.1753810975609756,
+      0.1792273108283167
+     ]
+    ]
+   },
+   "stats": [
+    {
+     "name": "A_max_h1_persistence",
+     "value": 0.0419901360335202,
+     "null_model": "site bootstrap: alignment columns resampled with replacement",
+     "n_null": 200,
+     "p_value": 0.7562189054726368,
+     "p_method": "rank"
+    },
+    {
+     "name": "B_n_h1_bars_ge_0.005",
+     "value": 101.0,
+     "null_model": "site bootstrap: alignment columns resampled with replacement",
+     "n_null": 200,
+     "p_value": 0.845771144278607,
+     "p_method": "rank"
+    },
+    {
+     "name": "n_h1_bars",
+     "value": 152.0
+    },
+    {
+     "name": "h1_dominance_P1_over_P2",
+     "value": 1.0200599483486772
+    },
+    {
+     "name": "median_pdistance",
+     "value": 0.18546072812421546
+    },
+    {
+     "name": "max_single_segment_A",
+     "value": 0.011693373754872227
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "reassorting whole genomes must show more H1 than any single clonal segment (Chan/Carlsson/Rabadan 2013)",
+     "passed": true,
+     "detail": "{\"i_A_concat_significant_p_le_0.01\": false, \"ii_every_single_segment_A_le_half_A_concat\": true, \"iii_B_concat_gt_max_single_B\": true}"
+    },
+    {
+     "kind": "shuffle",
+     "description": "site bootstrap (n=200) breaks the linkage that carries reassortment while keeping per-site composition",
+     "passed": false,
+     "detail": "null A q50/q95/q99/max = [0.04291, 0.04571, 0.04656, 0.04691]"
+    },
+    {
+     "kind": "negative",
+     "description": "the MDS-then-alpha route that produced a FALSE loop (dominance 11.1 on the tree-like HA segment) is not computed",
+     "passed": null,
+     "detail": "lesson (a) of the earlier genetics validation"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "Concatenated influenza genomes give max H1 persistence 0.04199 (site-bootstrap p 0.7562, n=200) and 101 bars above 0.005, against at most 0.01169 and 4 for any single segment. Verdict FAIL.",
+     "verdict": "inconclusive",
+     "tier": "X",
+     "caveat": "300 avian genomes, one subsample (seed 20260919); Rips on the p-distance metric, never an embedding",
+     "reference": "Chan, Carlsson & Rabadan, PNAS 110:18566 (2013)"
+    }
+   ],
+   "note": null
+  }
+ ]
+}

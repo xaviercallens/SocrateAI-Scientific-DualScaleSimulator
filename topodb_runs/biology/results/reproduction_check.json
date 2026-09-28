@@ -1,0 +1,75 @@
+{
+ "block": "reproduction_check",
+ "script": "topodb_runs/biology/check_reproduction.py",
+ "command": "timeout 300 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/check_reproduction.py",
+ "git_commit": "a11f01e08fc851f9c7fcd35f1a96bb73edd7e720",
+ "wall_sec_total": 0.0,
+ "peak_mb": 33.4,
+ "datasets": [
+  {
+   "id": "biology/reproduction_check_vs_earlier_validation",
+   "domain": "biology",
+   "title": "Cross-implementation reproduction check: this block vs the 2026-09-19 genetics validation",
+   "source": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdaval/audit/tda_validation/genetics/report.json",
+   "provenance": "simulation",
+   "n_objects": 33,
+   "notes": "Not a biological dataset: an analysis-level record comparing two independently written implementations of 'Rips on the given metric' over the same raw files."
+  }
+ ],
+ "runs": [
+  {
+   "dataset_id": "biology/reproduction_check_vs_earlier_validation",
+   "method": "rips",
+   "coeff_field": 2,
+   "params": {
+    "check": "numerical agreement with the earlier validation's Rips cross-check",
+    "tolerance_relative": 0.0001,
+    "quantities_compared": 33,
+    "metric": "n/a -- this run compares previously computed numbers"
+   },
+   "tier": "X",
+   "max_dim": 1,
+   "preprocessing": "none",
+   "seed": null,
+   "script": "topodb_runs/biology/check_reproduction.py",
+   "command": "timeout 300 prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python topodb_runs/biology/check_reproduction.py",
+   "wall_sec": null,
+   "peak_mb": 33.4,
+   "betti": {},
+   "expected_betti": null,
+   "bars": {},
+   "stats": [
+    {
+     "name": "n_quantities_compared",
+     "value": 33.0
+    },
+    {
+     "name": "n_agreeing_to_relative_1e-4",
+     "value": 33.0
+    },
+    {
+     "name": "n_disagreeing",
+     "value": 0.0
+    }
+   ],
+   "controls": [
+    {
+     "kind": "known_answer",
+     "description": "two independent implementations must give the same persistence statistics on the same raw files",
+     "passed": true,
+     "detail": "33/33 quantities agree to relative 0.0001; disagreements: []"
+    }
+   ],
+   "findings": [
+    {
+     "claim": "33 of 33 persistence statistics computed here agree with the 2026-09-19 genetics validation to a relative 0.0001, using independently written code on the same raw files.",
+     "verdict": "recovered",
+     "tier": "X",
+     "caveat": "this checks implementation agreement, not biological truth; both implementations could share a conceptual error, and the earlier run's own verdicts (Caulobacter FAIL, E. coli PASS, influenza PASS) are unchanged by it",
+     "reference": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdaval/audit/tda_validation/genetics/report.json"
+    }
+   ],
+   "note": null
+  }
+ ]
+}
