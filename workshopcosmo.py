@@ -39,8 +39,14 @@ def _output_path(name: str) -> str:
 # =============================================================================
 # CONSTANTS & GROUND TRUTH PARAMETERS
 # =============================================================================
+DEFAULT_LEVEL = 12
+
+def fricke_y(level: int) -> float:
+    """Fricke point y-coordinate as a function of modular level."""
+    return 1.0 / math.sqrt(float(level))
+
 FRICKE_X = 0.0
-FRICKE_Y = 1.0 / math.sqrt(12.0)  # ~ 0.28867513459
+FRICKE_Y = fricke_y(DEFAULT_LEVEL)  # ~ 0.28867513459 for level=12
 ORBIFOLD_X = 0.5
 ORBIFOLD_Y = math.sqrt(3.0) / 2.0  # ~ 0.86602540378
 
@@ -150,35 +156,103 @@ def get_library_axiom_status(lib_name: str, audit_report: Dict[str, Any]) -> Dic
 # REQ-COSMO-01: AXE 1 - QUINTESSENCE & MODULUS TAU DYNAMICS
 # =============================================================================
 
-def compute_potential(x: float, y: float, a_pot: float = 1.0, b_pot: float = 0.01) -> Tuple[float, float, float]:
+def compute_potential(
+    x: float,
+    y: float,
+    a_pot: float = 1.0,
+    b_pot: float = 0.01,
+    level: int = DEFAULT_LEVEL,
+    potential: str = "double_well"
+) -> Tuple[float, float, float]:
     """
     Computes potential V(x, y) and derivatives (V, dV/dx, dV/dy) on Poincaré target space.
-    Saddle at Fricke point (0, 1/sqrt(12)), minimum at Orbifold point (0.5, sqrt(3)/2).
 
-    a_pot, b_pot: potential-shape parameters (defaults preserve original hard-coded values).
+    Parameters:
+    - x, y: modulus coordinates
+    - a_pot, b_pot: potential-shape parameters for double_well (defaults preserve original hard-coded values)
+    - level: modular level N (used for modular_log and modular_ratio potentials)
+    - potential: one of {"double_well", "modular_log", "modular_ratio"}
+
+    For double_well: Saddle at Fricke point (0, fricke_y(level)), minimum at Orbifold point (0.5, sqrt(3)/2).
+    For modular potentials: calls leanflow.core.modular_potential.modular_potential_xy with central-difference gradient.
     """
-    pi = math.pi
+    if potential not in {"double_well", "modular_log", "modular_ratio"}:
+        raise ValueError(f"potential must be one of {{'double_well', 'modular_log', 'modular_ratio'}}, got {potential}")
 
-    cos_pi_x = math.cos(pi * x)
-    sin_pi_x = math.sin(pi * x)
-    cos2 = cos_pi_x * cos_pi_x
-    sin2 = sin_pi_x * sin_pi_x
-    sin2x = math.sin(2.0 * pi * x)
+    if potential == "double_well":
+        # Original double_well potential with level-aware fricke_y
+        pi = math.pi
+        fricke_y_level = fricke_y(level)
 
-    dyf = y - FRICKE_Y
-    dyo = y - ORBIFOLD_Y
+        cos_pi_x = math.cos(pi * x)
+        sin_pi_x = math.sin(pi * x)
+        cos2 = cos_pi_x * cos_pi_x
+        sin2 = sin_pi_x * sin_pi_x
+        sin2x = math.sin(2.0 * pi * x)
 
-    v = a_pot * cos2 + b_pot * sin2 + cos2 * (dyf ** 2) + sin2 * (dyo ** 2)
-    dv_dx = -pi * sin2x * (a_pot - b_pot + (dyf ** 2) - (dyo ** 2))
-    dv_dy = 2.0 * cos2 * dyf + 2.0 * sin2 * dyo
+        dyf = y - fricke_y_level
+        dyo = y - ORBIFOLD_Y
 
-    return v, dv_dx, dv_dy
+        v = a_pot * cos2 + b_pot * sin2 + cos2 * (dyf ** 2) + sin2 * (dyo ** 2)
+        dv_dx = -pi * sin2x * (a_pot - b_pot + (dyf ** 2) - (dyo ** 2))
+        dv_dy = 2.0 * cos2 * dyf + 2.0 * sin2 * dyo
+
+        return v, dv_dx, dv_dy
+
+    else:
+        # Modular potentials: use leanflow
+        from leanflow.core.modular_potential import modular_potential_xy
+
+        # Helper function to compute central-difference gradient
+        h = 1e-7
+
+        def _bounded(xx: float, yy: float) -> Tuple[float, float]:
+            """Reduce x mod 1 and clamp y to valid range."""
+            xe = math.fmod(xx, 1.0) if math.isfinite(xx) else 0.0
+            ye = yy if math.isfinite(yy) else 60.0
+            ye = min(max(ye, 1e-8), 60.0)
+            return xe, ye
+
+        mode = "log" if potential == "modular_log" else "ratio"
+
+        # Clamp evaluation point
+        x_eval, y_eval = _bounded(x, y)
+
+        # Central-difference derivatives
+        v = float(modular_potential_xy(x_eval, y_eval, N=level, mode=mode))
+
+        # dV/dx using central difference with period-1 reduction
+        x_plus, _ = _bounded(x + h, y)
+        x_minus, _ = _bounded(x - h, y)
+        v_plus_x = float(modular_potential_xy(x_plus, y_eval, N=level, mode=mode))
+        v_minus_x = float(modular_potential_xy(x_minus, y_eval, N=level, mode=mode))
+        dv_dx = (v_plus_x - v_minus_x) / (2.0 * h)
+
+        # dV/dy using central difference
+        _, y_plus = _bounded(x, y + h)
+        _, y_minus = _bounded(x, y - h)
+        v_plus_y = float(modular_potential_xy(x_eval, y_plus, N=level, mode=mode))
+        v_minus_y = float(modular_potential_xy(x_eval, y_minus, N=level, mode=mode))
+        dv_dy = (v_plus_y - v_minus_y) / (2.0 * h)
+
+        return v, dv_dx, dv_dy
 
 
-def cosmology_rhs(_t: float, y_vec: np.ndarray, a_pot: float = 1.0, b_pot: float = 0.01) -> np.ndarray:
+def cosmology_rhs(
+    _t: float,
+    y_vec: np.ndarray,
+    a_pot: float = 1.0,
+    b_pot: float = 0.01,
+    level: int = DEFAULT_LEVEL,
+    potential: str = "double_well"
+) -> np.ndarray:
     """
     RHS for Einstein-Klein-Gordon system in Poincaré metric:
     y_vec = [a, x, y, u, v] where u = dx/dt, v = dy/dt.
+
+    Parameters:
+    - level: modular level N (forwarded to compute_potential)
+    - potential: one of {"double_well", "modular_log", "modular_ratio"}
     """
     a = max(float(y_vec[0]), 1e-20)
     x = float(y_vec[1])
@@ -186,7 +260,7 @@ def cosmology_rhs(_t: float, y_vec: np.ndarray, a_pot: float = 1.0, b_pot: float
     u = float(y_vec[3])
     v = float(y_vec[4])
 
-    v_pot, dv_dx, dv_dy = compute_potential(x, y, a_pot, b_pot)
+    v_pot, dv_dx, dv_dy = compute_potential(x, y, a_pot, b_pot, level=level, potential=potential)
     t_kin = (u * u + v * v) / (2.0 * y * y)
 
     a3 = a * a * a
@@ -205,15 +279,26 @@ def cosmology_rhs(_t: float, y_vec: np.ndarray, a_pot: float = 1.0, b_pot: float
 
 
 def run_quintessence_simulation(
-    t_max: float = 70.0, num_points: int = 500, a_pot: float = 1.0, b_pot: float = 0.01
+    t_max: float = 70.0,
+    num_points: int = 500,
+    a_pot: float = 1.0,
+    b_pot: float = 0.01,
+    level: int = DEFAULT_LEVEL,
+    potential: str = "double_well"
 ) -> Dict[str, Any]:
     """
     Solves the hyper-stiff cosmology ODE system using SciPy's Radau stiff integrator.
 
-    a_pot, b_pot: potential-shape parameters forwarded to compute_potential/cosmology_rhs
-    (defaults preserve original hard-coded values).
+    Parameters:
+    - t_max, num_points: time span and evaluation points
+    - a_pot, b_pot: potential-shape parameters for double_well
+    - level: modular level N (forwarded to compute_potential/cosmology_rhs)
+    - potential: one of {"double_well", "modular_log", "modular_ratio"}
+
+    The returned dict includes "level" and "potential" keys for provenance tracking.
     """
-    y0 = [1e-10, 0.001, FRICKE_Y + 0.001, 0.0, 0.0]
+    fricke_y_level = fricke_y(level)
+    y0 = [1e-10, 0.001, fricke_y_level + 0.001, 0.0, 0.0]
     t_span = (0.0, t_max)
     t_eval = np.linspace(0.0, t_max, num_points)
 
@@ -227,7 +312,7 @@ def run_quintessence_simulation(
         atol=1e-10,
         first_step=1e-22,
         max_step=0.5,
-        args=(a_pot, b_pot),
+        args=(a_pot, b_pot, level, potential),
     )
 
     if not sol.success:
@@ -242,7 +327,7 @@ def run_quintessence_simulation(
             atol=1e-9,
             first_step=1e-22,
             max_step=0.5,
-            args=(a_pot, b_pot),
+            args=(a_pot, b_pot, level, potential),
         )
 
     t_arr = sol.t
@@ -266,7 +351,7 @@ def run_quintessence_simulation(
         u_val = u_arr[i]
         v_val = v_arr[i]
 
-        v_pot, _, _ = compute_potential(x_val, y_val, a_pot, b_pot)
+        v_pot, _, _ = compute_potential(x_val, y_val, a_pot, b_pot, level=level, potential=potential)
         t_kin = (u_val * u_val + v_val * v_val) / (2.0 * y_val * y_val)
 
         a3 = a_val ** 3
@@ -302,11 +387,13 @@ def run_quintessence_simulation(
         "omega_r": omega_r_arr,
         "initial_state": {"a": y0[0], "x": y0[1], "y": y0[2]},
         "final_state": {"a": float(a_arr[-1]), "x": final_x, "y": final_y},
-        "fricke_saddle": {"x": FRICKE_X, "y": FRICKE_Y},
+        "fricke_saddle": {"x": FRICKE_X, "y": fricke_y_level},
         "orbifold_attractor": {"x": ORBIFOLD_X, "y": ORBIFOLD_Y},
         "attractor_distance": attractor_dist,
         "is_attractor_converged": attractor_dist < 1e-3,
         "is_modulus_positive": bool(np.all(y_arr > 0)),
+        "level": level,
+        "potential": potential,
     }
 
 
@@ -1485,6 +1572,8 @@ def main():
     parser.add_argument("--langevin-tda", action="store_true", help="Run AXE 6 Kummer Langevin Simulation, TDA Mapper & Lean 4 Certification")
     parser.add_argument("--plot", action="store_true", help="Generate publication plots")
     parser.add_argument("--export-report", action="store_true", help="Export summary JSON and Markdown report")
+    parser.add_argument("--level", type=int, default=DEFAULT_LEVEL, help=f"Modular level N (default: {DEFAULT_LEVEL})")
+    parser.add_argument("--potential", type=str, default="double_well", choices=["double_well", "modular_log", "modular_ratio"], help="Potential type (default: double_well)")
 
     args = parser.parse_args()
 
@@ -1498,9 +1587,10 @@ def main():
 
     # 1. Quintessence
     print("\n[*] Running AXE 1: Quintessence ODE & Modulus Flow...")
-    quint_res = run_quintessence_simulation()
+    quint_res = run_quintessence_simulation(level=args.level, potential=args.potential)
     print(f"    -> Attractor reached: {quint_res['is_attractor_converged']} (dist = {quint_res['attractor_distance']:.2e})")
     print(f"    -> Final tau: {quint_res['final_state']['x']:.5f} + {quint_res['final_state']['y']:.5f}i")
+    print(f"    -> Level: {quint_res['level']}, Potential: {quint_res['potential']}")
 
     # Export Quintessence CSV
     quint_csv_path = _output_path("cosmo_quintessence_py.csv")
