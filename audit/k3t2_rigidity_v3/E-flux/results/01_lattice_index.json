@@ -1,0 +1,288 @@
+{
+  "script": "01_lattice_index.py",
+  "results": [
+    {
+      "id": "E01a",
+      "quantity": "Gamma_{3,3} (A.3) and full Gamma_{3,19} (A.2): det, evenness, signature",
+      "computed": {
+        "det_H33": -1,
+        "H33_even_diagonal": true,
+        "H33_signature": [
+          3,
+          3,
+          0
+        ],
+        "E8_leading_principal_minors": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          1
+        ],
+        "E8_positive_definite_by_Sylvester": true,
+        "det_full_A2": -1,
+        "full_even_diagonal": true,
+        "full_signature": [
+          3,
+          19,
+          0
+        ],
+        "note": "A symmetric integer matrix with even diagonal has even q(x)=x^T G x for all integer x; so evenness of the FULL lattice is verified by exact computation (tier B) from the parsed Gram."
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "TT_E8_cartan_A4"
+      ],
+      "script": "01_lattice_index.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 01_lattice_index.py"
+    },
+    {
+      "id": "E01b",
+      "quantity": "index of span(TT (A.6) basis) in unimodular Gamma_{3,3}",
+      "computed": {
+        "T_H_Ttranspose_equals_A6": true,
+        "abs_det_A6": 64,
+        "index_from_transition_matrix_det": 8,
+        "index_from_sqrt_disc_ratio": "8",
+        "two_routes_agree": true,
+        "transition_matrix_rows_e1_to_e6_in_fg_coords": [
+          [
+            "1",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "1"
+          ],
+          [
+            "1",
+            "-1",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "-1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "-1"
+          ]
+        ],
+        "consequence": "index > 1 => TT's (A.6) forms span a proper SUBLATTICE D of Gamma_{3,3}; any count restricted to fluxes 2*D is a count of a SUBFAMILY of the unimodular count. For ANY isometric embedding into a unimodular lattice |det T|^2 * |det H| = |det A6| forces the same index."
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "TT_A6_gram_A6_A7",
+        "embedding_A6_into_U3"
+      ],
+      "script": "01_lattice_index.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 01_lattice_index.py"
+    },
+    {
+      "id": "E01c",
+      "quantity": "is span(A.6) isometric to U(2)^3 (the pullback lattice)? parity-of-norm/2 test",
+      "computed": {
+        "D_contains_vector_of_norm_2": true,
+        "norm_of_e1": 2,
+        "U(2)^3_all_norms_divisible_by_4_on_window": true,
+        "D_isometric_to_U2_cubed": false,
+        "note": "D = 2*I_{3,3} (odd unimodular scaled), U(2)^3 = 2*U^3 (even unimodular scaled): different Z-lattices of the same rank/signature/determinant -64. So TT's (A.6) integral basis is NOT U(2)^3; we make no claim on which is geometrically correct, only that the two differ as Z-lattices (tier B)."
+      },
+      "shared_inputs": [
+        "TT_A6_gram_A6_A7"
+      ],
+      "script": "01_lattice_index.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 01_lattice_index.py"
+    },
+    {
+      "id": "E01d",
+      "quantity": "finite symmetry group G (order, isometry check, orientation of positive 3-block)",
+      "computed": {
+        "name": "(Z2 x Z2) wr S3 = block permutations x per-block swap(x<->y) x per-block sign, acting on U+U+U",
+        "order_G": 384,
+        "all_distinct": true,
+        "n_isometries_g^T H g == H": 384,
+        "orientation_det_on_positive_plane_counts": {
+          "1": 192,
+          "-1": 192
+        },
+        "order_G_plus_(det_pos=+1)": 192,
+        "G_preserves_the_sublattice_D_(A.6)": true,
+        "justification": "(a) every element is an integer matrix with g^T H g = H, i.e. an element of O(Gamma_{3,3}) extended by the identity on the rest of Gamma_{3,19}, hence in O(Gamma_{3,19}); (b) the SUSY/tadpole conditions used (4.8)-(4.10), (2.8), (3.10)-(3.15), (3.31) are polynomial in inner products of the flux vectors, so they are preserved when all four flux vectors are moved by an isometry (checked symbolically in 03/04); (c) TT quotient the moduli by O+(3,19) (2.13),(2.16),(5.4): Omega is an ORIENTED spacelike plane and orientation reversal is Omega<->Omegabar; G+ = elements with det +1 on the positive 3-block (every element preserves the positive/negative splitting, asserted).",
+        "not_quotiented": "S-duality (H3<->F3), T-duality/SL(2,Z) on T2 and the full infinite O(Gamma) are NOT quotiented; counts 'modulo G' are counts of G-orbits inside the stated window, nothing more."
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "group_G_definition"
+      ],
+      "script": "01_lattice_index.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 01_lattice_index.py"
+    },
+    {
+      "id": "E01e",
+      "quantity": "v2's group (perm within pos/neg block of the e_i, sign flips; order 2304): how many elements map Gamma_{3,3} to itself",
+      "computed": {
+        "order_v2_group": 2304,
+        "n_elements_integral_in_U3_coordinates": 384,
+        "example_not_in_O(Gamma)": {
+          "perm": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            4
+          ],
+          "signs": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "matrix_in_fg_coords": [
+            [
+              "1",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1/2",
+              "1/2",
+              "1/2",
+              "-1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1/2",
+              "1/2",
+              "-1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "1/2",
+              "-1/2",
+              "1/2",
+              "1/2"
+            ],
+            [
+              "0",
+              "0",
+              "-1/2",
+              "1/2",
+              "1/2",
+              "1/2"
+            ]
+          ]
+        },
+        "consequence": "v2's group is NOT a subgroup of O(Gamma_{3,3}); only the subgroup counted here preserves the unimodular lattice. v3 uses G (order in E01d), verified to be a subgroup of O(Gamma)."
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "TT_A6_gram_A6_A7",
+        "embedding_A6_into_U3"
+      ],
+      "script": "01_lattice_index.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 01_lattice_index.py"
+    },
+    {
+      "id": "E01e2",
+      "quantity": "alpha_x^2 mod 8 for alpha_x = 2*lambda, lambda in Gamma: unimodular EVEN lattice vs ODD unimodular control",
+      "computed": {
+        "lambdas_checked_in_window_[-2,2]^6": 15625,
+        "residues_alpha_sq_mod_8_even_lattice_U3": [
+          0
+        ],
+        "residues_alpha_sq_mod_8_odd_control_I33": [
+          0,
+          4
+        ],
+        "structural_reason_even_case": "even Gram diagonal => q(lambda) in 2Z => (2 lambda)^2 = 4 q in 8Z (all of Gamma_{3,19}, E01a)",
+        "control_meaning": "the odd lattice <1>^3+<-1>^3 is unimodular with the SAME signature; it differs only in evenness, the property the divisibility depends on. It is realizable as a lattice but is NOT H^2(K3,Z); it is a control for the logic, HYPOTHETICAL as a physical spectrum."
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "flux_quantisation_even_coefficients",
+        "TT_E8_cartan_A4"
+      ],
+      "script": "01_lattice_index.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 01_lattice_index.py"
+    }
+  ],
+  "rigidity": [
+    {
+      "parameter_inserted": "the factor 8 in 'alpha_x^2 in 8Z' (hence the admissible set {8,16,24} of alpha_x^2 <= 24)",
+      "selecting_condition": "Gamma even (Gram diagonal even) and flux quantisation alpha = 2*lambda, lambda in Gamma; the target 8 does not appear in the condition",
+      "condition_uses_true_value": false,
+      "solution_set": "alpha_x^2 in 8Z for every lambda (even lattice); odd unimodular control gives alpha_x^2 in 4Z (residue 4 mod 8 occurs)",
+      "classification": "RIGID_GIVEN_DEFINITION",
+      "input_it_depends_on": "flux_quantisation_even_coefficients (TT eq 2.5) and evenness of H^2(K3,Z) (from A.2, checked in E01a)",
+      "negative_control": "odd unimodular lattice I_{3,3}: residues mod 8 of alpha^2 include 4 (E01e2) -- perturbs the SAME property (evenness) the 8 depends on",
+      "control_perturbs_same_parameter": true,
+      "note": "The admissible set {alpha_x^2 <= 24} = {8,16,24} is the same in the unimodular lattice and in the subfamily 2D: the index changes counts, not the divisibility."
+    },
+    {
+      "parameter_inserted": "the index 8 of span(A.6) in Gamma_{3,3}",
+      "selecting_condition": "|det T|^2 * |det H33| = |det A6| for any isometric embedding of the A.6 Gram into a unimodular lattice (identity; nothing is chosen)",
+      "condition_uses_true_value": false,
+      "solution_set": "index = sqrt(|det A6|/|det H33|) = 8",
+      "classification": "VERIFIED_IDENTITY",
+      "input_it_depends_on": "TT_A6_gram_A6_A7 (the determinant 64) -- a typed literature Gram",
+      "negative_control": "perturbing the Gram to diag(2,2,2,-2,-2,-4) (det 128) gives sqrt(128) = 8*sqrt(2): not an integer, so no finite-index embedding into a unimodular lattice exists",
+      "control_perturbs_same_parameter": true
+    }
+  ],
+  "literature_checks": [],
+  "could_not_do": [],
+  "provenance": {
+    "tt_txt_sha256": "620609d9b212fedcd4603dd87b717f836aab418c6436d3908ee9fcef2b30fdc6",
+    "tt_txt": "audit/k3t2_rigidity_v2/sources/hep-th_0301139_TripathyTrivedi.txt"
+  }
+}

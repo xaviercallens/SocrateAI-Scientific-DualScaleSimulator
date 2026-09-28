@@ -1,0 +1,89 @@
+[
+  {
+    "name": "K_trivial",
+    "value": "K3 surface: compact complex surface with c1 = 0 (K = O) and b1 = 0",
+    "tier": "L",
+    "why": "definition of K3; not derived"
+  },
+  {
+    "name": "hodge_h0_O",
+    "value": 1,
+    "tier": "L",
+    "why": "h^0(O)=1 for compact connected complex manifold"
+  },
+  {
+    "name": "hodge_h1_O_from_b1",
+    "value": "h^1(O) = b1/2 (Hodge decomposition)",
+    "tier": "L",
+    "why": "b1=0 gives h^1(O)=0"
+  },
+  {
+    "name": "serre_duality",
+    "value": "h^2(O) = h^0(K) = h^0(O)",
+    "tier": "L",
+    "why": "Serre duality on a surface with K=O"
+  },
+  {
+    "name": "noether_formula",
+    "value": "chi(O) = (c1^2 + c2)/12",
+    "tier": "L",
+    "why": "Noether; constant 12 is literature"
+  },
+  {
+    "name": "hirzebruch_signature",
+    "value": "tau = (c1^2 - 2 c2)/3",
+    "tier": "L",
+    "why": "Hirzebruch signature theorem, dim 4 (p1 = c1^2 - 2c2)"
+  },
+  {
+    "name": "hodge_index",
+    "value": "b2+ = (b2 + tau)/2, b2- = (b2 - tau)/2",
+    "tier": "L",
+    "why": "Hodge index / definition of signature"
+  },
+  {
+    "name": "betti_odd_vanish",
+    "value": "b1 = b3 = 0 (b3 = b1 by Poincare duality)",
+    "tier": "L",
+    "why": "from b1 = 0"
+  },
+  {
+    "name": "k3_lattice_identification",
+    "value": "H^2(K3,Z) is even unimodular; candidate family m U + n(-E8)",
+    "tier": "L",
+    "why": "FROM MEMORY (Nikulin/Milnor classification of indefinite even unimodular lattices); used only to define the candidate family scanned"
+  },
+  {
+    "name": "typed_gram_3U_2mE8",
+    "value": "Gram = 3U (+) 2(-E8), assembled from computed E8 Gram",
+    "tier": "L",
+    "why": "typed structural input; its rank and signature are NOT independent of it. Only a consistency check against the Hodge chain"
+  },
+  {
+    "name": "U_gram",
+    "value": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "tier": "B",
+    "why": "definition of the hyperbolic plane"
+  },
+  {
+    "name": "e8_root_system",
+    "value": "roots of E8 = {+-e_i+-e_j} u {(+-1/2)^8 with even number of minus signs}",
+    "tier": "L",
+    "why": "FROM MEMORY definition; Gram then computed from simple roots selected by a generic functional"
+  },
+  {
+    "name": "eta_definition",
+    "value": "eta = [[0,I],[I,0]]; H(G,0)=diag(G,G^-1); K_i coordinate swap",
+    "tier": "B",
+    "why": "definitions of O(d,d) conventions"
+  }
+]

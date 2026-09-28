@@ -1,0 +1,42 @@
+{
+ "args": {
+  "QMAX_small": 40,
+  "QMAX_large": 60,
+  "QCHK": 8
+ },
+ "agree": {
+  "A_series": true,
+  "B_series": true,
+  "E4_series": true,
+  "E6_series": true,
+  "cB_D_le_16QCHK": true,
+  "part2_G1_to_G4_solutions_equal": true,
+  "part3_NcM_equal": true
+ },
+ "all_agree": true,
+ "part2_solutions": {
+  "G_1": [
+   "2"
+  ],
+  "G_2": [
+   "9/4",
+   "3/4"
+  ],
+  "G_3": [
+   "50/27",
+   "16/9",
+   "10/27"
+  ],
+  "G_4": [
+   "475/384",
+   "443/192",
+   "15/16",
+   "199/384"
+  ]
+ },
+ "part3_solution": [
+  "324",
+  "3",
+  "648"
+ ]
+}

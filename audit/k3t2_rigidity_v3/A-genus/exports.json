@@ -1,0 +1,49 @@
+{
+ "chi_from_genus": "24",
+ "shared_inputs": [
+  "k"
+ ],
+ "chi_from_genus_by_k": {
+  "1": "12",
+  "2": "24",
+  "3": "36",
+  "4": "48",
+  "5": "60",
+  "6": "72"
+ },
+ "source": "Z(tau,0) = k * phi_{0,1}(tau,0) computed in run_track_a_v3.py (results.json details.phi01); value shown for the declared k=2; NOT independent of k",
+ "mu_N_solution_by_k": {
+  "1": "12",
+  "2": "24",
+  "3": "36",
+  "4": "48",
+  "5": "60",
+  "6": "72"
+ },
+ "A_n_k2": [
+  "-1",
+  "45",
+  "231",
+  "770",
+  "2277",
+  "5796",
+  "13915",
+  "30843",
+  "65550",
+  "132825",
+  "260568",
+  "494385",
+  "915124"
+ ],
+ "twining_chi_from_cycle_shape": {
+  "2A": 8,
+  "3A": 6,
+  "5A": 4,
+  "7A": 3
+ },
+ "twining_shared_inputs": [
+  "k",
+  "perm24_premise"
+ ],
+ "path": "audit/k3t2_rigidity_v3/A-genus/exports.json"
+}

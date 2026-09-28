@@ -1,0 +1,313 @@
+{
+  "script": "06_literature_and_moduli.py",
+  "results": [
+    {
+      "id": "E06a",
+      "quantity": "moduli that remain unfixed, quoted from TT with line numbers (lines found by grep on the pinned text)",
+      "computed": {
+        "quotes": {
+          "abstract": {
+            "line": 20,
+            "lines": "20-21",
+            "text": "Poincare invariant, vacua in this model. All the complex structure moduli and some of the Ka\u0308hler moduli are stabilised in these vacua. We obtain in an explicit fashion the"
+          },
+          "summary_3.4": {
+            "line": 767,
+            "text": "Unlike the complex structure, the Ka\u0308hler moduli are not completely determined. Instead"
+          },
+          "3.4_18": {
+            "line": 769,
+            "text": "18 dimensional subspace of the K3 Ka\u0308hler moduli space, and the Ka\u0308hler modulus of the"
+          },
+          "T2_volume_3.4": {
+            "line": 699,
+            "text": "moduli in the K3 Ka\u0308hler moduli space, besides the Ka\u0308hler modulus of the T 2 , unfixed."
+          },
+          "overall_volume_2.1": {
+            "line": 144,
+            "text": "moduli. An important Ka\u0308hler modulus which is left unfixed is the overall volume. Since"
+          },
+          "open_string_2.2": {
+            "line": 196,
+            "text": "count here, there are moduli that arise from the open string sector. These include moduli"
+          },
+          "D3_positions_2.4": {
+            "line": 308,
+            "lines": "308-309",
+            "text": "are present, their location in the K3 \u00d7 T 2 /Z2 space gives rise to moduli. Turning on flux does not freeze these fields as long as the conditions for supersymmetry are met, this can"
+          },
+          "D7_positions_2.4": {
+            "line": 317,
+            "text": "Perturbing around such a solution, one can show that generically the 7-brane moduli"
+          },
+          "conclusion_volume": {
+            "line": 1750,
+            "text": "Finally, from the viewpoint of moduli stabilisation, the most serious limitation of these"
+          },
+          "4.1_twenty": {
+            "line": 844,
+            "text": "conditions allowing for all twenty Ka\u0308hler moduli of K3, and the one Ka\u0308hler modulus of"
+          }
+        },
+        "summary": "ALL complex structure moduli of K3 x T2 and the dilaton-axion are fixed in the first branch (c != 0); of the closed-string Kahler moduli the volume, the T2 Kahler modulus and (22 - dim V_flux) K3 Kahler directions (18 for dim V_flux=4, 20 for dim V_flux=2) remain unfixed; open-string moduli (D3 positions, 7-brane gauge fields, 7-brane positions, expected but not shown to be lifted) are not analysed. Second branch: see E05c (N=2, only partial fixing)."
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3"
+      ],
+      "script": "06_literature_and_moduli.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 06_literature_and_moduli.py"
+    },
+    {
+      "id": "E06b",
+      "quantity": "TT section 6 check: alpha_x -> alpha_x + 2 n v with v null and orthogonal to V_flux: N_flux constant, V_flux acquires a null vector (no spacelike Kahler form)",
+      "computed": {
+        "rows": [
+          {
+            "n": 0,
+            "N_flux": 16,
+            "alpha_x": [
+              2,
+              2,
+              0,
+              0,
+              0,
+              0
+            ],
+            "coordinate_rank": 2,
+            "gram_signature_(pos,neg,null)": [
+              2,
+              0,
+              2
+            ],
+            "null_vector_in_V_flux": false
+          },
+          {
+            "n": 1,
+            "N_flux": 16,
+            "alpha_x": [
+              2,
+              2,
+              0,
+              0,
+              2,
+              0
+            ],
+            "coordinate_rank": 3,
+            "gram_signature_(pos,neg,null)": [
+              2,
+              0,
+              2
+            ],
+            "null_vector_in_V_flux": true
+          },
+          {
+            "n": 2,
+            "N_flux": 16,
+            "alpha_x": [
+              2,
+              2,
+              0,
+              0,
+              4,
+              0
+            ],
+            "coordinate_rank": 3,
+            "gram_signature_(pos,neg,null)": [
+              2,
+              0,
+              2
+            ],
+            "null_vector_in_V_flux": true
+          },
+          {
+            "n": 3,
+            "N_flux": 16,
+            "alpha_x": [
+              2,
+              2,
+              0,
+              0,
+              6,
+              0
+            ],
+            "coordinate_rank": 3,
+            "gram_signature_(pos,neg,null)": [
+              2,
+              0,
+              2
+            ],
+            "null_vector_in_V_flux": true
+          },
+          {
+            "n": 4,
+            "N_flux": 16,
+            "alpha_x": [
+              2,
+              2,
+              0,
+              0,
+              8,
+              0
+            ],
+            "coordinate_rank": 3,
+            "gram_signature_(pos,neg,null)": [
+              2,
+              0,
+              2
+            ],
+            "null_vector_in_V_flux": true
+          },
+          {
+            "n": 5,
+            "N_flux": 16,
+            "alpha_x": [
+              2,
+              2,
+              0,
+              0,
+              10,
+              0
+            ],
+            "coordinate_rank": 3,
+            "gram_signature_(pos,neg,null)": [
+              2,
+              0,
+              2
+            ],
+            "null_vector_in_V_flux": true
+          }
+        ],
+        "N_flux_constant": true,
+        "null_vector_appears_for_n_ne_0": true,
+        "meaning": "an infinite family of inequivalent flux data with the SAME D3 charge exists, but only n=0 is an allowed vacuum: this is why the O(Gamma)-orbit count of admissible fluxes can be finite while window counts grow"
+      },
+      "shared_inputs": [
+        "TT_H33_gram_A3",
+        "sec41_conditions_4.8_4.10",
+        "N_flux_formula_2.8",
+        "flux_quantisation_even_coefficients"
+      ],
+      "script": "06_literature_and_moduli.py",
+      "command": "cd audit/k3t2_rigidity_v3/E-flux/scripts && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python 06_literature_and_moduli.py"
+    }
+  ],
+  "rigidity": [],
+  "literature_checks": [
+    {
+      "id": "L06a",
+      "claim": "TT: total induced D3 charge = (#O7)*2 + (#D7)*1",
+      "tier": "L",
+      "arithmetic": "4*2 + 16*1 = 24",
+      "value": 24,
+      "inputs": {
+        "#O7": "4 (computed here, tier B: half-lattice fixed points of x->-x on T2; from 00_track_d_poll.json)",
+        "D3 per O7 = 2": "quoted TT",
+        "#D7 = 16": "quoted TT",
+        "D3 per D7 = 1": "quoted TT"
+      },
+      "expected_from_source": 24,
+      "source_lines": [
+        {
+          "line": 162,
+          "text": "plane is located at each of these fixed points. To cancel the resulting 7\u2212brane charge 16"
+        },
+        {
+          "line": 162,
+          "lines": "162-163",
+          "text": "plane is located at each of these fixed points. To cancel the resulting 7\u2212brane charge 16 D7-branes need to be added."
+        },
+        {
+          "line": 165,
+          "text": "the K3 (besides filling spacetime). As a result, it turns out, 2 units of D3 brane charge are"
+        },
+        {
+          "line": 167,
+          "text": "D7-brane, 1 giving rise to a total of 24 units of three brane charge. This charge needs to"
+        }
+      ],
+      "agrees": true,
+      "independence_note": "this is quotation arithmetic: 2, 16 and 1 are quoted; only the O7 count is computed. It is not an independent derivation of 24."
+    },
+    {
+      "id": "L06b",
+      "claim": "TT footnote 1: F-theory 24 (p,q) 7-branes with 1 unit of D3 charge each",
+      "tier": "L",
+      "arithmetic": "24*1 = 24",
+      "value": 24,
+      "expected_from_source": 24,
+      "source_lines": [
+        {
+          "line": 183,
+          "text": "there are 24 (p, q) 7-branes each of which acquires one unit of 3-brane charge on wrapping K3."
+        }
+      ],
+      "agrees": true,
+      "independence_note": "24 and 1 are both quoted; the 24 is the same input, not a second derivation"
+    },
+    {
+      "id": "L06c",
+      "claim": "BLPSSW hep-th/9605184: 24 expected, 8 five-branes in the GP model, 24-8 = 16 = number of T4/Z2 orbifold singularities (hidden instantons)",
+      "tier": "L",
+      "arithmetic": "24 - 8 = 16; #T4/Z2 singular points from Track D = 16",
+      "value": 16,
+      "expected_from_source": 16,
+      "inputs": {
+        "24": "quoted BLPSSW n1+n5=24",
+        "8": "quoted BLPSSW eight five-branes",
+        "#singular": "16 read from audit/k3t2_rigidity_v3/D-tda/exports.json (also computed here tier B: 16)"
+      },
+      "source_lines": [
+        {
+          "line": 205,
+          "text": "is a similar requirement, namely n1 + n5 = 24, where n1 is the number of"
+        },
+        {
+          "line": 968,
+          "text": "implicit in the five-branes of the GP model. Since 24 are expected, 24\u22128 = 16"
+        }
+      ],
+      "agrees": true,
+      "note": "BLPSSW themselves say 'one might intuitively think that one instanton is hiding at each singularity': the equality 16(hidden)+8=24 is an inference from their subtraction and singularity count, not a printed sentence"
+    },
+    {
+      "id": "L06d",
+      "claim": "Euler characteristic of the resolved T4/Z2 from the singular-point count: (chi(T4) - n)/2 + n*chi(P1) (standard formula; FROM MEMORY as a formula)",
+      "tier": "L",
+      "arithmetic": "(0-16)/2 + 16*2 = 24",
+      "value": 24,
+      "expected_from_source": "Track D export chi = 24",
+      "agrees": true,
+      "note": "cross-track consistency only; no relation of this 24 to the TT tadpole 24 is claimed or tested here. The F-theory relation chi(CY4)/24 = 24 for K3 x K3 (Sethi-Vafa-Witten, FROM MEMORY) is a tier-L statement not checked in this track"
+    },
+    {
+      "id": "L06e",
+      "claim": "TT unfixed Kahler directions of K3: b2 - dim V_flux = 22-4 = 18 (dim V=4, section 3.4) and 22-2 = 20 (dim V=2, section 4.1)",
+      "tier": "L",
+      "arithmetic": "22-4 = 18; 22-2 = 20",
+      "value": [
+        18,
+        20
+      ],
+      "inputs": {
+        "b2": "22 read from Track D export (rank of H^2), dim V_flux quoted"
+      },
+      "expected_from_source": [
+        18,
+        20
+      ],
+      "source_lines": [
+        {
+          "line": 768,
+          "lines": "768-769",
+          "text": "the Ka\u0308hler two-form of K3 must meet four conditions, (3.34). This generically leaves an 18 dimensional subspace of the K3 Ka\u0308hler moduli space, and the Ka\u0308hler modulus of the"
+        },
+        {
+          "line": 844,
+          "text": "conditions allowing for all twenty Ka\u0308hler moduli of K3, and the one Ka\u0308hler modulus of"
+        }
+      ],
+      "agrees": true
+    }
+  ],
+  "could_not_do": []
+}

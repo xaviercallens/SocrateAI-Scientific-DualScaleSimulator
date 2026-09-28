@@ -1,0 +1,56 @@
+[
+ {
+  "name": "k",
+  "value": "2 (scanned k=1..6 as hypotheticals)",
+  "tier": "C",
+  "why": "Overall factor of Z_K3 = k*phi_{0,1}; weak Jacobi forms of weight 0 index 1 are one-dimensional so nothing modular fixes k. k=2 is the K3 elliptic genus (chi=24). NORMALISATION."
+ },
+ {
+  "name": "perm24_premise",
+  "value": "Z_g(tau,0) = (k/2)*fix(g); fix(g) = number of 1-cycles of g in the 24-point permutation action built from the Golay code",
+  "tier": "L",
+  "why": "Mathieu moonshine premise; at k=2 this is chi(g)=fix(g). Ties the number of points (24) to Z(tau,0)=12k, so it is itself compatible with k=2 only."
+ },
+ {
+  "name": "ground_state_invariance",
+  "value": "y^{+-1} q^0 coefficient of Z_g equals that of Z (=k)",
+  "tier": "L",
+  "why": "The two RR ground states (h^{0,0},h^{2,0}) are g-invariant."
+ },
+ {
+  "name": "twined_form_structure",
+  "value": "Z_g = (k chi/24) phi_{0,1} + T_g phi_{-2,1}, T_g in M_2(Gamma_0(ord g)) with trivial multiplier for 2A,3A,5A,7A; also 4B (level 4) and 11A (level 11) reduced to a family",
+  "tier": "L",
+  "why": "Standard structure of twining genera; trivial-multiplier classes selected by the frame-shape condition sum a m_a = sum (N/a) m_a = 24 (checked in results)."
+ },
+ {
+  "name": "moonshine_module_premise",
+  "value": "K_n (raw dimension h_n) is a virtual-free M24 module, so raw twined traces are rational integers with nonnegative integer eigenvalue multiplicities",
+  "tier": "L",
+  "why": "Used for integrality, congruence and multiplicity checks; failing them would falsify the pairing, passing them is necessary, not sufficient."
+ },
+ {
+  "name": "golay_and_generators",
+  "value": "QR-mod-23 Golay code; generators x->x+1, x->2x, x->-1/x, delta",
+  "tier": "L",
+  "why": "Group generators quoted FROM MEMORY; verified by code preservation and group order (m24_shapes.json)."
+ },
+ {
+  "name": "dim_M2_formula",
+  "value": "dim M_2(Gamma_0(N)) = genus + cusps - 1",
+  "tier": "L",
+  "why": "Standard index formula."
+ },
+ {
+  "name": "expected_M24_order",
+  "value": "244823040",
+  "tier": "L",
+  "why": "FROM MEMORY; expected-field comparison only."
+ },
+ {
+  "name": "expected_F_g_v2",
+  "value": "F_2A=16 Lambda_2, F_3A=6 Lambda_3, F_5A=2 Lambda_5, F_7A=Lambda_7",
+  "tier": "L",
+  "why": "FROM MEMORY (v2 task); expected-field comparison only, never used in computation."
+ }
+]

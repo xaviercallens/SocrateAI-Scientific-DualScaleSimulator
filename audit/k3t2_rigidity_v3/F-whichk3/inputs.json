@@ -1,0 +1,104 @@
+{
+ "duality_group": {
+  "name": "duality_group",
+  "value": "SL2Z_tau x SL2Z_rho, exchange tau<->rho, (tau,rho)->(-conj tau,-conj rho); formal group (kernel (+-1,+-1) order 4 not divided out)",
+  "tier": "L",
+  "why": "given in task statement"
+ },
+ "narain_convention": {
+  "name": "narain_convention",
+  "value": "G=(rho2/tau2)[[1,tau1],[tau1,|tau|^2]], B12=rho1, p_{L,R}=e^*(n+(B+-G)w)/sqrt2 (alpha'=1)",
+  "tier": "L",
+  "why": "standard convention (FROM MEMORY); root counts of the enhanced algebra are convention independent up to the exchange of L/R and tau<->rho"
+ },
+ "search_bound_N": {
+  "name": "search_bound_N",
+  "value": 6,
+  "tier": "B",
+  "why": "entries of SL2Z matrices searched in [-N,N]"
+ },
+ "H2_A_equals_U3": {
+  "name": "H2_A_equals_U3",
+  "value": "H^2(A,Z)=Lambda^2 H^1(A,Z) with wedge pairing (computed, signature (3,3), even unimodular)",
+  "tier": "B",
+  "why": "checked in this script (GRAM6)"
+ },
+ "Nikulin_TKm": {
+  "name": "Nikulin_TKm",
+  "value": "T(Km A) = T(A)(2)",
+  "tier": "L",
+  "why": "Nikulin/Morrison, quoted"
+ },
+ "binary_form_disc_bound": {
+  "name": "binary_form_disc_bound",
+  "value": 50,
+  "tier": "B",
+  "why": "list bound"
+ },
+ "rank4_root_lattices": {
+  "name": "rank4_root_lattices",
+  "value": "Cartan matrices of A4,D4,A3+A1,A2+A2,A2+A1+A1,A1^4",
+  "tier": "L",
+  "why": "standard root lattices given in task"
+ },
+ "complex_structure_J_equals_g": {
+  "name": "complex_structure_J_equals_g",
+  "value": "complex structure on R^4/L chosen so that the automorphism g acts as i (g^2=-1) or omega (g^2+g+1=0)",
+  "tier": "B",
+  "why": "'compatible with an automorphism of order 3 or 4'; other J commuting with g (a continuous family for order 3) are NOT enumerated"
+ },
+ "QR_golay_construction": {
+  "name": "QR_golay_construction",
+  "value": "extended QR code mod 23 built from shifts of an indicator of Q, N, Q+0, N+0 with all-ones; the variant with dim 12, 759 octads and PSL(2,23)-invariance is used (tested, not typed)",
+  "tier": "B",
+  "why": "task item 4(b)"
+ },
+ "delta_search_family": {
+  "name": "delta_search_family",
+  "value": "x->c1 x^k (QR), c2 x^k (NQR), 0/inf fixed",
+  "tier": "B",
+  "why": "search space for the extra M24 generator; the solution is returned by the scan"
+ },
+ "Aut_G24_is_M24": {
+  "name": "Aut_G24_is_M24",
+  "value": "Aut(G24)=M24 of order 244823040 (used only to say the generated group IS the automorphism group; we compute its order and check it preserves G24, not that it is the full automorphism group)",
+  "tier": "L",
+  "why": "FROM MEMORY"
+ },
+ "sampling_seed": {
+  "name": "sampling_seed",
+  "value": 20260919,
+  "tier": "B",
+  "why": "cycle-shape sampling only"
+ },
+ "Lefschetz_fixed_point_formula": {
+  "name": "Lefschetz_fixed_point_formula",
+  "value": "for a finite-order automorphism with isolated fixed points, #Fix = sum (-1)^k tr(g|H^k)",
+  "tier": "L",
+  "why": "task item 5"
+ },
+ "Km_cohomology": {
+  "name": "Km_cohomology",
+  "value": "H^2(Km A) = pi_* H^2(A) (rank 6, translations act trivially) + 16 exceptional curves E_p permuted as p->p+t; H^1=H^3=0",
+  "tier": "L",
+  "why": "standard structure of the Kummer surface"
+ },
+ "hol_tangent_eigenvalues_distinct_at_nodes": {
+  "name": "hol_tangent_eigenvalues_distinct_at_nodes",
+  "value": "for the chosen symplectic (M,t) the holomorphic tangent eigenvalues (lambda, lambda^-1) are distinct, so g has 2 fixed points on each fixed exceptional curve",
+  "tier": "B",
+  "why": "true for (i,-i),(omega,omega^2),(tau,tau^-1) since lambda^2 != 1; for translations there are no fixed nodes"
+ },
+ "Nikulin_fixed_points": {
+  "name": "Nikulin_fixed_points",
+  "value": "symplectic automorphisms of K3 of order 2,3,4,5,6,7,8 have 8,6,4,4,2,3,2 fixed points",
+  "tier": "L",
+  "why": "FROM MEMORY; used only as an 'expected' comparison, filled after computing"
+ },
+ "identification_H*(Km)_with_24_points": {
+  "name": "identification_H*(Km)_with_24_points",
+  "value": "identify the 24 = rank H^*(K3) with the 24 permuted points of M24",
+  "tier": "C",
+  "why": "conjectural identification asked for in item 5"
+ }
+}

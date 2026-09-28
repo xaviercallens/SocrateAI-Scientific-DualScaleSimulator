@@ -1,0 +1,38 @@
+[
+ {
+  "name": "involution",
+  "value": "v -> -v on Z_N^4, N even; T^4/Z2 as the canonical-representative image of the Kuhn triangulation",
+  "tier": "definition",
+  "why": "defines the orbifold; regularity of the image complex is CHECKED in 00_premise.py (f-vector halving), not assumed"
+ },
+ {
+  "name": "kuhn_triangulation",
+  "value": "Freudenthal/Kuhn triangulation of (R/NZ)^4, N in {4,6,8} (odd N and N=3,5,7 used as controls)",
+  "tier": "definition",
+  "why": "the simplicial model; validated by the T^4 Betti control (1,4,6,4,1)"
+ },
+ {
+  "name": "resolution_local_model",
+  "value": "each singular point is replaced by a disc bundle over S^2 (Eguchi-Hanson T*S^2) whose boundary is the RP^3 link; homotopy type S^2, Betti (1,0,1); H_0 of the link maps isomorphically to H_0 of its own piece",
+  "tier": "L (FROM MEMORY; standard Kummer construction)",
+  "why": "the resolved space is not triangulated here; Mayer-Vietoris needs the homology of the glued piece. b2, b4, chi of the resolved space are (computed data of Q) + (this input)"
+ },
+ {
+  "name": "coefficient_fields",
+  "value": "Z/3 and Z/5 for Mayer-Vietoris (odd, so H_1=H_2=0 for RP^3); Z/2 for the link/Q/U Betti numbers only",
+  "tier": "definition",
+  "why": "with Z/2 the link has H_1,H_2 != 0 and phi_1, phi_2 ranks would be needed (not computed)"
+ },
+ {
+  "name": "target_chi_K3",
+  "value": 24,
+  "tier": "L (FROM MEMORY)",
+  "why": "used ONLY in the normalisation column of the j-scan and in 'expected' fields; never in a computation path"
+ },
+ {
+  "name": "T2_betti_source",
+  "value": "gudhi.PeriodicCubicalComplex on T^2 (computed in 01_controls.py); not typed",
+  "tier": "B",
+  "why": "input to Kunneth"
+ }
+]

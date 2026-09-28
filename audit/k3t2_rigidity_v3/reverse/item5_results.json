@@ -1,0 +1,105 @@
+{
+  "theorem": "DualScaleMoonshine.Twining.twined_div24 / twined_2A",
+  "lean_range": [
+    0,
+    9
+  ],
+  "scanned_range": [
+    0,
+    40
+  ],
+  "regression_matches_table2A_through_q9": true,
+  "quotient_series_full": [
+    -2,
+    -6,
+    14,
+    -28,
+    42,
+    -56,
+    86,
+    -138,
+    188,
+    -238,
+    336,
+    -478,
+    616,
+    -786,
+    1050,
+    -1386,
+    1764,
+    -2212,
+    2814,
+    -3612,
+    4510,
+    -5544,
+    6936,
+    -8666,
+    10612,
+    -12936,
+    15862,
+    -19420,
+    23532,
+    -28348,
+    34272,
+    -41412,
+    49618,
+    -59178,
+    70758,
+    -84530,
+    100310,
+    -118692,
+    140616,
+    -166320,
+    195888
+  ],
+  "divisibility_by_24_holds_beyond_q9": true,
+  "failing_indices_beyond_q9": [],
+  "c_dependence_scan": {
+    "description": "Divisibility-by-24 (checked from q^0, the coefficient that actually carries the c-dependence) as a function of c in F_2A = c*Lambda_2, for c = -16 (CDH's value) plus six others.",
+    "rows": [
+      {
+        "c": -16,
+        "predicted_by_congruence_c_eq_8_mod_12": true,
+        "divisible_by_24_for_all_n_in_range": true,
+        "first_failing_index": null
+      },
+      {
+        "c": -15,
+        "predicted_by_congruence_c_eq_8_mod_12": false,
+        "divisible_by_24_for_all_n_in_range": false,
+        "first_failing_index": 0
+      },
+      {
+        "c": -4,
+        "predicted_by_congruence_c_eq_8_mod_12": true,
+        "divisible_by_24_for_all_n_in_range": true,
+        "first_failing_index": null
+      },
+      {
+        "c": 8,
+        "predicted_by_congruence_c_eq_8_mod_12": true,
+        "divisible_by_24_for_all_n_in_range": true,
+        "first_failing_index": null
+      },
+      {
+        "c": -3,
+        "predicted_by_congruence_c_eq_8_mod_12": false,
+        "divisible_by_24_for_all_n_in_range": false,
+        "first_failing_index": 0
+      },
+      {
+        "c": 20,
+        "predicted_by_congruence_c_eq_8_mod_12": true,
+        "divisible_by_24_for_all_n_in_range": true,
+        "first_failing_index": null
+      },
+      {
+        "c": 32,
+        "predicted_by_congruence_c_eq_8_mod_12": true,
+        "divisible_by_24_for_all_n_in_range": true,
+        "first_failing_index": null
+      }
+    ],
+    "matches_hand_derived_congruence_c_eq_8_mod_12": true
+  }
+}

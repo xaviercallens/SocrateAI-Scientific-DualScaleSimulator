@@ -1,0 +1,330 @@
+{
+ "track": "B-dyons (v3)",
+ "branch": "loop/k3t2-rigidity",
+ "inputs_file": "audit/k3t2_rigidity_v3/B-dyons/inputs.json",
+ "inputs": [
+  {
+   "name": "K3_elliptic_genus_factor_k",
+   "value": 2,
+   "tier": "L",
+   "why": "Z_K3(tau,z) = k*phi_{0,1}(tau,z) with k=2 typed (this was `twoB` in v2 theta_forms.py:135). Everything downstream that uses c(D) = k*cB(D) depends on it. FROM MEMORY / standard (Eguchi-Ooguri-Tachikawa; DMVV normalisation). Cross-checked, not derived, against Track D chi in part1_euler_numbers.py."
+  },
+  {
+   "name": "DMVV_product_formula",
+   "value": "sum_N p^N chi(Sym^N X; q,y) = prod_{m>0,n>=0,l} (1 - p^m q^n y^l)^(-c(nm,l)), c(n,l)=coefficient of Z_X",
+   "tier": "L",
+   "why": "Dijkgraaf-Moore-Verlinde-Verlinde generating function; typed structural input. For K3 the coefficients depend only on D=4nm-l^2 (index 1), c(nm,l)=c(4nm-l^2). FROM MEMORY."
+  },
+  {
+   "name": "Jacobi_theta_definitions",
+   "value": "phi_{-2,1} = -theta1^2/eta^6 ; phi_{0,1} = 4 sum_{i=2,3,4} (theta_i(z)/theta_i(0))^2",
+   "tier": "L",
+   "why": "standard definitions (Eichler-Zagier / DMZ); typed. Checked by computation: index-1 D-dependence, q^0 terms y-2+1/y and y+10+1/y. FROM MEMORY."
+  },
+  {
+   "name": "Sym_k_Euler_numbers_comparison_formula",
+   "value": "sum_k e(Hilb^k(S)) p^k = prod_m (1-p^m)^(-chi(S))",
+   "tier": "L",
+   "why": "Goettsche's formula, used only as the comparison target with chi(S) taken from Track D exports. FROM MEMORY."
+  },
+  {
+   "name": "immortal_ansatz_form",
+   "value": "Delta*psi_1 = G_2/A = N*A_{2,1} + c*E4*A - M*Hhat(tau,z), A_{2,1}=sum_s q^{s^2+s} y^{2s+1}/(1-q^s y)^2 (|q|<|y|<1), Hhat = sum_{n,l} H(4n-l^2) q^n y^l",
+   "tier": "L",
+   "why": "DMZ mock-Jacobi decomposition ansatz (polar Appell-Lerch term + mock Eisenstein Hhat + holomorphic term); the FORM is typed, the three coefficients (N,c,M) are SOLVED. FROM MEMORY."
+  },
+  {
+   "name": "weak_Jacobi_ring_monomials",
+   "value": "weight-0 index-m weak Jacobi forms spanned by E4^i E6^j A^a B^b with a+b=m, -2a+4i+6j=0",
+   "tier": "L",
+   "why": "Eichler-Zagier structure result: ring of weak Jacobi forms of even weight is polynomial in A,B over M_*(SL2Z). The monomial list is typed; coefficients are solved exactly; rank and residual are reported. FROM MEMORY."
+  },
+  {
+   "name": "Hurwitz_H0",
+   "value": "-1/12",
+   "tier": "L",
+   "why": "H(0) convention for Zagier's Eisenstein series; not obtainable by counting. Used only in Hhat's n-l^2 = 0 terms. FROM MEMORY."
+  },
+  {
+   "name": "Kronecker_Hurwitz_relation",
+   "value": "sum_s H(4n-s^2) = 2 sigma_1(n) - sum_{d|n} min(d,n/d)",
+   "tier": "L",
+   "why": "classical class-number relation used only as external structural check of the H table. FROM MEMORY."
+  },
+  {
+   "name": "Track_D_chi_K3",
+   "value": 24,
+   "tier": "B (computed in Track D, imported)",
+   "why": "chi of the resolved Kummer surface, read at run time from Track D exports.json (v3 if present else v2); this line records the value at authoring time, scripts re-read the file."
+  },
+  {
+   "name": "DMZ_5_16_coefficients_for_comparison",
+   "value": "4 Dpsi_1 = 9B^2/A + 3E4 A ; 27 Dpsi_2 = 50 B^3/A + 48 E4 A B + 10 E6 A^2",
+   "tier": "L",
+   "why": "FROM MEMORY / v2 note (arXiv:1208.4074 eq. 5.16 as recorded in v2). NOT used in any computation path; only placed in an `expected` field after the solve."
+  }
+ ],
+ "results": [
+  {
+   "id": "B1_hurwitz",
+   "quantity": "Hurwitz class numbers H(D), D<=400: reduced-form counting vs Dirichlet L-function route, Kronecker-Hurwitz relation n<=100",
+   "computed": "201 values of D; counting == Dirichlet for all: True; 120 fundamental discriminants use the pure formula h=-(1/|D|)sum chi(a)a; KH failures: []; wrong-weight control breaks {'num_D_where_counting_differs_from_dirichlet': 10, 'num_n_where_kronecker_hurwitz_breaks': 43}",
+   "shared_inputs": [
+    "Hurwitz_H0",
+    "Kronecker_Hurwitz_relation"
+   ],
+   "script": "hurwitz.py",
+   "command": "cd audit/k3t2_rigidity_v3/B-dyons && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python hurwitz.py 400"
+  },
+  {
+   "id": "B2_euler",
+   "quantity": "e(Hilb^k(K3)), k=0..8, from the DMVV product evaluated at y=1 (own expansion)",
+   "computed": [
+    "1",
+    "24",
+    "324",
+    "3200",
+    "25650",
+    "176256",
+    "1073720",
+    "5930496",
+    "30178575"
+   ],
+   "extra": {
+    "equals_Goettsche_with_chi_from_TrackD": true,
+    "chi_TrackD": "24",
+    "TrackD_source_file": "audit/k3t2_rigidity_v3/D-tda/exports.json",
+    "q_positive_coeffs_vanish": true,
+    "k_solved_from_chi_D": "2",
+    "declared_k_equals_solved_k (a consistency check between typed k=2 and Track D chi; NOT an independent derivation of 24: 24 = k x 12)": true
+   },
+   "shared_inputs": [
+    "K3_elliptic_genus_factor_k",
+    "DMVV_product_formula",
+    "Jacobi_theta_definitions",
+    "Sym_k_Euler_numbers_comparison_formula",
+    "Track_D_chi_K3"
+   ],
+   "script": "part1_euler.py",
+   "command": "cd audit/k3t2_rigidity_v3/B-dyons && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python part1_euler.py 40 8 4"
+  },
+  {
+   "id": "B3_G_solutions",
+   "quantity": "coefficients of G_1..G_4 in weak-Jacobi monomial basis, solved exactly (Delta psi_m = G_{m+1}/A, m=0..3)",
+   "computed": {
+    "G_1": {
+     "monomials": [
+      "E4^0 E6^0 A^0 B^1"
+     ],
+     "solution": [
+      "2"
+     ],
+     "rank_M": 1,
+     "rank_augmented": 1,
+     "num_equations": 62,
+     "residual_rows": 0,
+     "all_neighbours_fail": true
+    },
+    "G_2": {
+     "monomials": [
+      "E4^0 E6^0 A^0 B^2",
+      "E4^1 E6^0 A^2 B^0"
+     ],
+     "solution": [
+      "9/4",
+      "3/4"
+     ],
+     "rank_M": 2,
+     "rank_augmented": 2,
+     "num_equations": 88,
+     "residual_rows": 0,
+     "all_neighbours_fail": true
+    },
+    "G_3": {
+     "monomials": [
+      "E4^0 E6^0 A^0 B^3",
+      "E4^1 E6^0 A^2 B^1",
+      "E4^0 E6^1 A^3 B^0"
+     ],
+     "solution": [
+      "50/27",
+      "16/9",
+      "10/27"
+     ],
+     "rank_M": 3,
+     "rank_augmented": 3,
+     "num_equations": 110,
+     "residual_rows": 0,
+     "all_neighbours_fail": true
+    },
+    "G_4": {
+     "monomials": [
+      "E4^0 E6^0 A^0 B^4",
+      "E4^1 E6^0 A^2 B^2",
+      "E4^0 E6^1 A^3 B^1",
+      "E4^2 E6^0 A^4 B^0"
+     ],
+     "solution": [
+      "475/384",
+      "443/192",
+      "15/16",
+      "199/384"
+     ],
+     "rank_M": 4,
+     "rank_augmented": 4,
+     "num_equations": 128,
+     "residual_rows": 0,
+     "all_neighbours_fail": true
+    }
+   },
+   "extra": {
+    "solved_equals_expected_after_computing (DMZ 5.16, FROM MEMORY)": {
+     "G_2": true,
+     "G_3": true,
+     "immortal_c_equals_3": true
+    }
+   },
+   "shared_inputs": [
+    "K3_elliptic_genus_factor_k",
+    "DMVV_product_formula",
+    "Jacobi_theta_definitions",
+    "weak_Jacobi_ring_monomials"
+   ],
+   "script": "part2_psi_m.py",
+   "command": "cd audit/k3t2_rigidity_v3/B-dyons && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python part2_psi_m.py 40 7 2"
+  },
+  {
+   "id": "B4_immortal",
+   "quantity": "(N,c,M) in Delta psi_1 = N A_{2,1} + c E4 A - M Hhat, exact linear solve",
+   "computed": {
+    "N": "324",
+    "c": "3",
+    "M": "648",
+    "num_rows": 106,
+    "rank_M": 3,
+    "rank_augmented": 3,
+    "residual_rows": 0,
+    "all_26_integer_neighbours_fail": true,
+    "k_scan_solutions": {
+     "1": [
+      "90",
+      "1",
+      "180"
+     ],
+     "2": [
+      "324",
+      "3",
+      "648"
+     ],
+     "3": [
+      "702",
+      "6",
+      "1404"
+     ],
+     "4": [
+      "1224",
+      "10",
+      "2448"
+     ],
+     "5": [
+      "1890",
+      "15",
+      "3780"
+     ],
+     "6": [
+      "2700",
+      "21",
+      "5400"
+     ]
+    }
+   },
+   "shared_inputs": [
+    "K3_elliptic_genus_factor_k",
+    "DMVV_product_formula",
+    "Jacobi_theta_definitions",
+    "immortal_ansatz_form",
+    "Hurwitz_H0",
+    "Kronecker_Hurwitz_relation"
+   ],
+   "script": "part3_immortal.py",
+   "command": "cd audit/k3t2_rigidity_v3/B-dyons && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python part3_immortal.py 40 8 20 60"
+  },
+  {
+   "id": "B5_margin",
+   "quantity": "theta-cache truncation stability, QMAX 40 vs 60",
+   "computed": {
+    "A_series": true,
+    "B_series": true,
+    "E4_series": true,
+    "E6_series": true,
+    "cB_D_le_16QCHK": true,
+    "part2_G1_to_G4_solutions_equal": true,
+    "part3_NcM_equal": true
+   },
+   "shared_inputs": [
+    "Jacobi_theta_definitions"
+   ],
+   "script": "theta_margin_check.py",
+   "command": "cd audit/k3t2_rigidity_v3/B-dyons && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python theta_margin_check.py 40 60 8"
+  }
+ ],
+ "rigidity": [
+  {
+   "parameter_inserted": "overall factor k in Z_K3 = k*phi_{0,1}",
+   "selecting_condition": "k*(cB(0)+2cB(-1)) = chi from Track D (contains the target chi)",
+   "condition_uses_true_value": true,
+   "solution_set": "{2} (exact solve k = chi/12)",
+   "classification": "NORMALISATION",
+   "input_it_depends_on": "Track D chi; typed k=2 is a declared input",
+   "negative_control": "k in 1..6 (all integers) each change e(Hilb^k); values other than 2 are HYPOTHETICAL (no realizable object), so not counted as discrimination",
+   "control_perturbs_same_parameter": true
+  },
+  {
+   "parameter_inserted": "coefficients x of G_2,G_3,G_4 in the weak-Jacobi monomial basis",
+   "selecting_condition": "linear identity for all (n,l), n<=QCHK (target-free)",
+   "condition_uses_true_value": false,
+   "solution_set": "unique (rank = #unknowns, zero residual) for k=2",
+   "classification": "RIGID_GIVEN_DEFINITION",
+   "input_it_depends_on": "K3_elliptic_genus_factor_k, weak_Jacobi_ring_monomials",
+   "negative_control": "every neighbour x_i +- 1/d fails (all_neighbours_fail true for G_1..G_4)",
+   "control_perturbs_same_parameter": true
+  },
+  {
+   "parameter_inserted": "(N,c,M) immortal decomposition",
+   "selecting_condition": "exact identity of series for all (n,l) in window (target-free)",
+   "condition_uses_true_value": false,
+   "solution_set": "unique (324,3,648) for k=2; k-dependent for other k (scan)",
+   "classification": "RIGID_GIVEN_DEFINITION",
+   "input_it_depends_on": "immortal_ansatz_form, K3_elliptic_genus_factor_k",
+   "negative_control": "all 26 joint integer neighbours fail",
+   "control_perturbs_same_parameter": true
+  },
+  {
+   "parameter_inserted": "k (again) tested against solvability of the G_2 and immortal systems",
+   "selecting_condition": "solvability of the linear systems",
+   "condition_uses_true_value": false,
+   "solution_set": "every k in 1..6 admits a solution",
+   "classification": "NON_DISCRIMINATING",
+   "input_it_depends_on": "-",
+   "negative_control": "k=1..6, all consistent",
+   "control_perturbs_same_parameter": true
+  },
+  {
+   "parameter_inserted": "Hurwitz values H(D)",
+   "selecting_condition": "two independent computations agree; Kronecker-Hurwitz identity",
+   "condition_uses_true_value": false,
+   "solution_set": "counted == Dirichlet for all D<=400",
+   "classification": "VERIFIED_IDENTITY",
+   "input_it_depends_on": "Hurwitz_H0",
+   "negative_control": "wrong weight breaks both",
+   "control_perturbs_same_parameter": true
+  }
+ ],
+ "could_not_do": [
+  "Delta*psi_3 (G_4) is solved as coefficients in a monomial basis only; no literature line was available to compare (no DMZ formula for m=3 quoted), and the mock/polar decomposition for m=3 was not attempted.",
+  "The immortal decomposition for m>=2 (needs A_{2,m} plus extra mock pieces) was not done.",
+  "Track D exports.json was read from the v3 D-tda directory as found at run time (a parallel track, status: depends on declared local-model inputs); rerun part1_euler.py if it changes.",
+  "k_norm=2 is a typed input; the check chi=k*12=24 against Track D is a cross-check, not an independent derivation of 24.",
+  "Truncation margins were checked only by QMAX 40 vs 60 agreement (theta_margin_check.py); no rigorous bound on the margin."
+ ]
+}

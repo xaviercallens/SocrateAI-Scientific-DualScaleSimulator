@@ -1,0 +1,273 @@
+{
+  "theorem": "DualScaleDyons.KummerD4.trapping_rank_table",
+  "lean_range": [
+    1,
+    8
+  ],
+  "scanned_range": [
+    1,
+    32
+  ],
+  "regression_matches_lean_table_ranks_0_to_8": true,
+  "best_table_full": [
+    0,
+    2,
+    6,
+    12,
+    24,
+    40,
+    72,
+    126,
+    240,
+    242,
+    246,
+    252,
+    264,
+    312,
+    364,
+    420,
+    480,
+    544,
+    612,
+    684,
+    760,
+    840,
+    924,
+    1012,
+    1104,
+    1200,
+    1300,
+    1404,
+    1512,
+    1624,
+    1740,
+    1860,
+    1984
+  ],
+  "beyond_lean_range": [
+    {
+      "rank": 9,
+      "best_roots": 242,
+      "D_n_roots": 144,
+      "D_n_is_optimal": false,
+      "tie_with_other_combo": true,
+      "alternative_optimal_combos": [
+        "A1+best(8)",
+        "E8+best(1)"
+      ]
+    },
+    {
+      "rank": 10,
+      "best_roots": 246,
+      "D_n_roots": 180,
+      "D_n_is_optimal": false,
+      "tie_with_other_combo": true,
+      "alternative_optimal_combos": [
+        "A2+best(8)",
+        "E8+best(2)"
+      ]
+    },
+    {
+      "rank": 11,
+      "best_roots": 252,
+      "D_n_roots": 220,
+      "D_n_is_optimal": false,
+      "tie_with_other_combo": true,
+      "alternative_optimal_combos": [
+        "A3+best(8)",
+        "E8+best(3)"
+      ]
+    },
+    {
+      "rank": 12,
+      "best_roots": 264,
+      "D_n_roots": 264,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": true,
+      "alternative_optimal_combos": [
+        "D4+best(8)",
+        "E8+best(4)"
+      ]
+    },
+    {
+      "rank": 13,
+      "best_roots": 312,
+      "D_n_roots": 312,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 14,
+      "best_roots": 364,
+      "D_n_roots": 364,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 15,
+      "best_roots": 420,
+      "D_n_roots": 420,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 16,
+      "best_roots": 480,
+      "D_n_roots": 480,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": true,
+      "alternative_optimal_combos": [
+        "E8+best(8)"
+      ]
+    },
+    {
+      "rank": 17,
+      "best_roots": 544,
+      "D_n_roots": 544,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 18,
+      "best_roots": 612,
+      "D_n_roots": 612,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 19,
+      "best_roots": 684,
+      "D_n_roots": 684,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 20,
+      "best_roots": 760,
+      "D_n_roots": 760,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 21,
+      "best_roots": 840,
+      "D_n_roots": 840,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 22,
+      "best_roots": 924,
+      "D_n_roots": 924,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 23,
+      "best_roots": 1012,
+      "D_n_roots": 1012,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 24,
+      "best_roots": 1104,
+      "D_n_roots": 1104,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 25,
+      "best_roots": 1200,
+      "D_n_roots": 1200,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 26,
+      "best_roots": 1300,
+      "D_n_roots": 1300,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 27,
+      "best_roots": 1404,
+      "D_n_roots": 1404,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 28,
+      "best_roots": 1512,
+      "D_n_roots": 1512,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 29,
+      "best_roots": 1624,
+      "D_n_roots": 1624,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 30,
+      "best_roots": 1740,
+      "D_n_roots": 1740,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 31,
+      "best_roots": 1860,
+      "D_n_roots": 1860,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    },
+    {
+      "rank": 32,
+      "best_roots": 1984,
+      "D_n_roots": 1984,
+      "D_n_is_optimal": true,
+      "tie_with_other_combo": false,
+      "alternative_optimal_combos": []
+    }
+  ],
+  "num_ranks_beyond_8": 24,
+  "num_ranks_where_Dn_strictly_optimal": 19,
+  "num_ranks_where_Dn_ties_another_combo": 5,
+  "num_ranks_where_Dn_is_not_optimal": 3,
+  "tie_ranks": [
+    9,
+    10,
+    11,
+    12,
+    16
+  ],
+  "negative_control_rank24_vs_3xE8": {
+    "rank": 24,
+    "D24_roots": 1104,
+    "3xE8_roots": 720,
+    "best_at_24": 1104,
+    "D24_beats_3xE8": true
+  }
+}

@@ -1,0 +1,37 @@
+"""Writes inputs.json: every typed normalisation / structural / literature input of Track B v3.
+
+Run: cd audit/k3t2_rigidity_v3/B-dyons && <venv-python> declare_inputs.py
+(no arguments)
+"""
+import json
+from common import HERE
+
+INPUTS = [
+ {"name": "K3_elliptic_genus_factor_k", "value": 2, "tier": "L",
+  "why": "Z_K3(tau,z) = k*phi_{0,1}(tau,z) with k=2 typed (this was `twoB` in v2 theta_forms.py:135). "
+         "Everything downstream that uses c(D) = k*cB(D) depends on it. FROM MEMORY / standard (Eguchi-Ooguri-Tachikawa; "
+         "DMVV normalisation). Cross-checked, not derived, against Track D chi in part1_euler_numbers.py."},
+ {"name": "DMVV_product_formula", "value": "sum_N p^N chi(Sym^N X; q,y) = prod_{m>0,n>=0,l} (1 - p^m q^n y^l)^(-c(nm,l)), c(n,l)=coefficient of Z_X",
+  "tier": "L", "why": "Dijkgraaf-Moore-Verlinde-Verlinde generating function; typed structural input. For K3 the coefficients depend only on D=4nm-l^2 (index 1), c(nm,l)=c(4nm-l^2). FROM MEMORY."},
+ {"name": "Jacobi_theta_definitions", "value": "phi_{-2,1} = -theta1^2/eta^6 ; phi_{0,1} = 4 sum_{i=2,3,4} (theta_i(z)/theta_i(0))^2",
+  "tier": "L", "why": "standard definitions (Eichler-Zagier / DMZ); typed. Checked by computation: index-1 D-dependence, q^0 terms y-2+1/y and y+10+1/y. FROM MEMORY."},
+ {"name": "Sym_k_Euler_numbers_comparison_formula", "value": "sum_k e(Hilb^k(S)) p^k = prod_m (1-p^m)^(-chi(S))",
+  "tier": "L", "why": "Goettsche's formula, used only as the comparison target with chi(S) taken from Track D exports. FROM MEMORY."},
+ {"name": "immortal_ansatz_form", "value": "Delta*psi_1 = G_2/A = N*A_{2,1} + c*E4*A - M*Hhat(tau,z), A_{2,1}=sum_s q^{s^2+s} y^{2s+1}/(1-q^s y)^2 (|q|<|y|<1), Hhat = sum_{n,l} H(4n-l^2) q^n y^l",
+  "tier": "L", "why": "DMZ mock-Jacobi decomposition ansatz (polar Appell-Lerch term + mock Eisenstein Hhat + holomorphic term); the FORM is typed, the three coefficients (N,c,M) are SOLVED. FROM MEMORY."},
+ {"name": "weak_Jacobi_ring_monomials", "value": "weight-0 index-m weak Jacobi forms spanned by E4^i E6^j A^a B^b with a+b=m, -2a+4i+6j=0",
+  "tier": "L", "why": "Eichler-Zagier structure result: ring of weak Jacobi forms of even weight is polynomial in A,B over M_*(SL2Z). The monomial list is typed; coefficients are solved exactly; rank and residual are reported. FROM MEMORY."},
+ {"name": "Hurwitz_H0", "value": "-1/12", "tier": "L",
+  "why": "H(0) convention for Zagier's Eisenstein series; not obtainable by counting. Used only in Hhat's n-l^2 = 0 terms. FROM MEMORY."},
+ {"name": "Kronecker_Hurwitz_relation", "value": "sum_s H(4n-s^2) = 2 sigma_1(n) - sum_{d|n} min(d,n/d)", "tier": "L",
+  "why": "classical class-number relation used only as external structural check of the H table. FROM MEMORY."},
+ {"name": "Track_D_chi_K3", "value": 24, "tier": "B (computed in Track D, imported)",
+  "why": "chi of the resolved Kummer surface, read at run time from Track D exports.json (v3 if present else v2); this line records the value at authoring time, scripts re-read the file."},
+ {"name": "DMZ_5_16_coefficients_for_comparison", "value": "4 Dpsi_1 = 9B^2/A + 3E4 A ; 27 Dpsi_2 = 50 B^3/A + 48 E4 A B + 10 E6 A^2", "tier": "L",
+  "why": "FROM MEMORY / v2 note (arXiv:1208.4074 eq. 5.16 as recorded in v2). NOT used in any computation path; only placed in an `expected` field after the solve."},
+]
+
+if __name__ == "__main__":
+    with open(HERE / "inputs.json", "w") as f:
+        json.dump(INPUTS, f, indent=1)
+    print("wrote inputs.json with", len(INPUTS), "inputs")

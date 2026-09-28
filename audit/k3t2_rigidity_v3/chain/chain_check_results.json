@@ -1,0 +1,187 @@
+{
+ "links": [
+  {
+   "link": "A.chi_from_genus (Z(tau,0) at declared k) == D.chi",
+   "A_value": "24",
+   "A_source": "audit/k3t2_rigidity_v3/A-genus/exports.json",
+   "D_value": "24",
+   "D_source": "audit/k3t2_rigidity_v3/D-tda/exports.json",
+   "consistent": true,
+   "file_pointer_A_to_D": [],
+   "method": "CROSS_METHOD",
+   "shared_declared_inputs": [],
+   "independent_corroboration": false,
+   "caveat": "A's own rigidity table classifies k as NORMALISATION with a non-unique admissible solution set (k in [2, 4, 6] (integrality parity) with no upper bound); k=2 (scanned k=1..6 as hypotheticals) was one admissible choice, informed by k=2 being the literature K3 elliptic-genus factor (see A/inputs.json 'k'.why: 'Overall factor of Z_K3 = k*phi_{0,1}; weak Jacobi forms of weight 0 index 1 are one-dimensional so nothing modular fixes k. k=2 is the K3 elliptic genus (chi=24). NORMALISATION.'), not uniquely forced by Track A's internal tests. So agreement with D, though not a file-level POINTER, is not full independent corroboration of the numeral 24."
+  },
+  {
+   "link": "B (DMVV product at z=0 == Goettsche with chi read from D) == D.chi",
+   "B_own_series_chi": "24",
+   "B_product_equals_goettsche": true,
+   "B_chi_of_D_as_seen_by_B": "24",
+   "B_source": "audit/k3t2_rigidity_v3/B-dyons/part1_euler_results.json",
+   "D_value": "24",
+   "D_source": "audit/k3t2_rigidity_v3/D-tda/exports.json",
+   "consistent": true,
+   "file_pointer_B_to_D": [
+    "audit/k3t2_rigidity_v3/B-dyons/build_results.py",
+    "audit/k3t2_rigidity_v3/B-dyons/common.py"
+   ],
+   "method": "POINTER",
+   "shared_declared_inputs": [],
+   "independent_corroboration": false,
+   "caveat": "B's declared factor k was reverse-solved from D's chi (k_solved_exactly_from_chi_D == declared k: True, see part1_euler_results.json 'k_solved_exactly_from_chi_D' and 'declared_k_equals_solved_k'), and B's own script (common.py:find_trackD_exports) opens D-tda/exports.json directly. So this link is a POINTER, not an independent cross-check of the numeral 24, even though the DMVV-vs-Goettsche IDENTITY at fixed k is itself a real, target-free computation (see B's own rigidity table, 'coefficients of G_2,...' entries)."
+  },
+  {
+   "link": "C.chi_top (Noether) == D.chi, and C.b2 (Hodge index) == D.b2",
+   "C_chi_top": "24",
+   "C_b2": "22",
+   "C_source": "audit/k3t2_rigidity_v3/C-lattices/exports.json",
+   "D_chi": "24",
+   "D_b2": "22",
+   "D_source": "audit/k3t2_rigidity_v3/D-tda/exports.json",
+   "consistent": true,
+   "file_pointer_C_to_D": [],
+   "method": "CROSS_METHOD",
+   "shared_declared_inputs": [],
+   "independent_corroboration": true,
+   "caveat": "Neither end is unconditional even though no shared declared input or file pointer was found between them: C's own note on C1_chi_top reads 'chi_top = (declared Noether constant 12) x (computed chi(O)=2): not independent of noether_formula' (a typed-constant x computed-number pattern, not a free derivation of 24), and D's own exports.json 'status' field reads 'computed by exact Mayer-Vietoris on GUDHI Betti numbers; depends on declared input resolution_local_model (tier L)' (a declared local-model input, tier L). C.b2=22 also follows arithmetically from C's own chi_top=24 given b0=b4=1, b1=b3=0 (not a second independent number)."
+  },
+  {
+   "link": "C's SELECTED lattice m*U+n(-E8) signature == C's own Hodge-index signature, and its rank == D.b2",
+   "selected_m_n": [
+    3,
+    2
+   ],
+   "selected_lattice_signature": [
+    "3",
+    "19"
+   ],
+   "C_derived_hodge_signature": [
+    "3",
+    "19"
+   ],
+   "selected_lattice_rank": "22",
+   "D_b2": "22",
+   "C_source": "audit/k3t2_rigidity_v3/C-lattices/01_lattices.json",
+   "D_source": "audit/k3t2_rigidity_v3/D-tda/exports.json",
+   "consistent": true,
+   "file_pointer_C_to_D": [],
+   "method": "POINTER",
+   "method_reason": "not a file-level pointer to D (file_pointer_C_to_D is empty): both ends of the signature comparison are computed WITHIN Track C (the selected lattice vs C's own Hodge-index signature), and the lattice family searched is itself a declared input, so this is not an independent second route to D's numbers.",
+   "shared_declared_inputs": [
+    "k3_lattice_identification"
+   ],
+   "independent_corroboration": false,
+   "caveat": "the lattice FAMILY mU+n(-E8) is itself a declared input (k3_lattice_identification: 'FROM MEMORY (Nikulin/Milnor classification of indefinite even unimodular lattices); used only to define the candidate family scanned'); given that family, (m,n)=(3,2) is picked because it is the only one in 0<=m,n<=30 whose signature matches C's own Hodge-index result -- a within-Track-C selection, not a second independent route to chi=24. C's typed-Gram cross-check note reads 'typed input (decl.py typed_gram_3U_2mE8): rank/signature are consequences of the typed matrix, NOT independent of it'."
+  },
+  {
+   "link": "E.n_singular (imported from D) == D.n_singular",
+   "E_value": "16",
+   "E_source": "audit/k3t2_rigidity_v3/E-flux/results/00_track_d_poll.json",
+   "D_value": "16",
+   "D_source": "audit/k3t2_rigidity_v3/D-tda/exports.json",
+   "consistent": true,
+   "file_pointer_E_to_D": [
+    "audit/k3t2_rigidity_v3/E-flux/scripts/poll_track_d.py"
+   ],
+   "method": "POINTER",
+   "shared_declared_inputs": [],
+   "independent_corroboration": false,
+   "caveat": "E reads this number directly from D-tda/exports.json (poll_track_d.py); sha256 of the file it read is recorded in E's own results (00_track_d_poll.json 'sha256_of_export_used')."
+  },
+  {
+   "link": "E's own combinatorial count of order-2 fixed points on (R/Z)^4 == D.n_singular",
+   "E_value": "16",
+   "E_source": "audit/k3t2_rigidity_v3/E-flux/results/00_track_d_poll.json",
+   "D_value": "16",
+   "D_source": "audit/k3t2_rigidity_v3/D-tda/exports.json",
+   "consistent": true,
+   "file_pointer_E_to_D": null,
+   "method": "CROSS_METHOD",
+   "shared_declared_inputs": [],
+   "independent_corroboration": true,
+   "caveat": "genuinely different method (exact enumeration of 2-torsion points of (R/Z)^4, not GUDHI/Mayer-Vietoris), but the underlying fact (2^4=16 fixed points of an order-2 involution on a 4-torus) is an elementary counting identity, not a deep independent check."
+  },
+  {
+   "link": "F.M24_cycle_shapes_all_orders (+order) == A.m24_shapes classes (+order)",
+   "F_n_shapes": 20,
+   "F_order": "244823040",
+   "F_source": "audit/k3t2_rigidity_v3/F-whichk3/exports.json",
+   "F_sample_size": 40000,
+   "A_n_shapes": 20,
+   "A_order": "244823040",
+   "A_source": "audit/k3t2_rigidity_v3/A-genus/m24_shapes.json",
+   "A_sample_size": 4000,
+   "shapes_match": true,
+   "consistent": true,
+   "file_pointer_A_to_F": [],
+   "file_pointer_F_to_A": [],
+   "method": "CROSS_METHOD",
+   "shared_declared_inputs": [],
+   "shared_unnamed_premise": "Golay code from QR mod 23, Aut(G24)=M24 (each FROM MEMORY, under differently named inputs: A='golay_and_generators', F='QR_golay_construction'/'Aut_G24_is_M24')",
+   "independent_corroboration": true,
+   "caveat": "the two implementations were written independently (A-genus/m24_shapes.py, F-whichk3/f4_codes.py) and neither script's source references the other track's directory, so this IS independent corroboration of the group's structure -- but the cycle-SHAPE SETS were each built from a finite random sample (A: 4000 elements, F: 40000 elements), not an exhaustive class enumeration, so 'all shapes agree' means 'every shape either sampler happened to hit agrees', not 'the full conjugacy-class list was independently enumerated twice'. Both ends also share the unnamed literature premise above (see 'shared_unnamed_premise')."
+  },
+  {
+   "link": "F: T(A)/T(Km A) discriminants (rank-2 T cases) satisfy TKm_disc==4*T_disc (from Nikulin_TKm: T(Km A)=T(A)(2)) and are found in F's own reduced binary-form enumeration (F2_binary_forms)",
+   "n_rank2_T_cases_checked": 2,
+   "discriminant_relation_checks": [
+    {
+     "tau": "i",
+     "tau_prime": "i",
+     "T_disc": 4,
+     "TKm_disc": 16,
+     "TKm_disc_equals_4x_T_disc": true
+    },
+    {
+     "tau": "e^{i pi/3}",
+     "tau_prime": "e^{i pi/3}",
+     "T_disc": 3,
+     "TKm_disc": 12,
+     "TKm_disc_equals_4x_T_disc": true
+    }
+   ],
+   "all_rank2_T_and_TKm_in_binary_list": true,
+   "n_rank4_T_cases_out_of_scope": 2,
+   "binary_form_enumeration": {
+    "count": 48,
+    "bound": 50
+   },
+   "source": "audit/k3t2_rigidity_v3/F-whichk3/results.json",
+   "consistent": true,
+   "method": "POINTER",
+   "shared_declared_inputs": [],
+   "independent_corroboration": false,
+   "caveat": "internal self-consistency check within Track F (both quantities computed by f2_abelian.py); rank-4-T cases (mixed CM points, e.g. tau=i, tau'=e^{i pi/3}) are outside the scope of the rank-2 binary-form list by construction and correctly report T_in_binary_list=False -- not a failure."
+  }
+ ],
+ "all_consistent": true,
+ "n_links": 8,
+ "n_independent_corroborations": 3,
+ "independent_link_names": [
+  "C.chi_top (Noether) == D.chi, and C.b2 (Hodge index) == D.b2",
+  "E's own combinatorial count of order-2 fixed points on (R/Z)^4 == D.n_singular",
+  "F.M24_cycle_shapes_all_orders (+order) == A.m24_shapes classes (+order)"
+ ],
+ "command": "cd audit/k3t2_rigidity_v3/chain && /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python chain_check.py",
+ "files_read": [
+  "audit/k3t2_rigidity_v3/A-genus/exports.json",
+  "audit/k3t2_rigidity_v3/A-genus/results.json",
+  "audit/k3t2_rigidity_v3/A-genus/inputs.json",
+  "audit/k3t2_rigidity_v3/A-genus/m24_shapes.json",
+  "audit/k3t2_rigidity_v3/B-dyons/exports.json",
+  "audit/k3t2_rigidity_v3/B-dyons/part1_euler_results.json",
+  "audit/k3t2_rigidity_v3/B-dyons/inputs.json",
+  "audit/k3t2_rigidity_v3/C-lattices/exports.json",
+  "audit/k3t2_rigidity_v3/C-lattices/inputs.json",
+  "audit/k3t2_rigidity_v3/C-lattices/results.json",
+  "audit/k3t2_rigidity_v3/C-lattices/01_lattices.json",
+  "audit/k3t2_rigidity_v3/D-tda/exports.json",
+  "audit/k3t2_rigidity_v3/D-tda/inputs.json",
+  "audit/k3t2_rigidity_v3/E-flux/results/00_track_d_poll.json",
+  "audit/k3t2_rigidity_v3/E-flux/inputs.json",
+  "audit/k3t2_rigidity_v3/F-whichk3/exports.json",
+  "audit/k3t2_rigidity_v3/F-whichk3/results.json",
+  "audit/k3t2_rigidity_v3/F-whichk3/inputs.json"
+ ]
+}

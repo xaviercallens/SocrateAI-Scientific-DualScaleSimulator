@@ -1,0 +1,129 @@
+{
+ "args": [
+  4,
+  6,
+  8
+ ],
+ "cubical_T2": {
+  "betti_Z3": [
+   1,
+   2,
+   1
+  ],
+  "betti_Z2": [
+   1,
+   2,
+   1
+  ],
+  "expected_after_computing": "C(2,k) = [1,2,1] (standard torus cohomology, tier L)",
+  "matches_expected": true
+ },
+ "cubical_T4": {
+  "betti_Z3": [
+   1,
+   4,
+   6,
+   4,
+   1
+  ],
+  "betti_Z2": [
+   1,
+   4,
+   6,
+   4,
+   1
+  ],
+  "expected_after_computing": "C(4,k) = [1,4,6,4,1] (standard torus cohomology, tier L)",
+  "matches_expected": true
+ },
+ "kuhn_T4_N=4": {
+  "betti_Z3": [
+   1,
+   4,
+   6,
+   4,
+   1
+  ],
+  "betti_Z2": [
+   1,
+   4,
+   6,
+   4,
+   1
+  ],
+  "fvector": [
+   256,
+   3840,
+   12800,
+   15360,
+   6144
+  ],
+  "chi_from_f": 0
+ },
+ "kuhn_T4_N=6": {
+  "betti_Z3": [
+   1,
+   4,
+   6,
+   4,
+   1
+  ],
+  "betti_Z2": [
+   1,
+   4,
+   6,
+   4,
+   1
+  ],
+  "fvector": [
+   1296,
+   19440,
+   64800,
+   77760,
+   31104
+  ],
+  "chi_from_f": 0
+ },
+ "kuhn_T4_N=8": {
+  "betti_Z3": [
+   1,
+   4,
+   6,
+   4,
+   1
+  ],
+  "betti_Z2": [
+   1,
+   4,
+   6,
+   4,
+   1
+  ],
+  "fvector": [
+   4096,
+   61440,
+   204800,
+   245760,
+   98304
+  ],
+  "chi_from_f": 0
+ },
+ "S2_tetra_boundary": {
+  "betti_Z3": [
+   1,
+   0,
+   1
+  ],
+  "betti_Z2": [
+   1,
+   0,
+   1
+  ],
+  "fvector": [
+   4,
+   6,
+   4
+  ],
+  "chi_from_f": 2
+ }
+}
