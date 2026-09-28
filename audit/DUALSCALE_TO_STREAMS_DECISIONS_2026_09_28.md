@@ -109,9 +109,18 @@ a kernel-checked exclusion of 7 or 12, if one ever appears, as a *candidate* for
 it a selection until T0 names it. (The slip was ours: the message that reached them was addressed as
 if to Stream 2; the note itself attributes GE-8 correctly.)
 
+**From Stream 2 (via the Stream 3 session)**, same day: copy filed untracked in K3-DarkMatter
+`briefs/`; no ruling. Cross-reference offered: T0 adopted a **C6 selector AM-8** (K3-DarkMatter main
+`da4bdaa`; `briefs/T0_DECISIONS_2026_09_28_STREAM2.md`, `briefs/STREAM2_AM8_SELECTOR_COMPARISON_2026_09_28.md`):
+minimal `|disc T|` within a register family, verified unique on the modular curve — `cooper_s7 → T = A₂
+(D = −3)`, `cooper_s10` (advisory) `→ ⟨2⟩ ⊕ ⟨2⟩ (D = −4)`. By their own text this is a
+**lattice-geometric selection of a point within a family, not a discrimination between levels**, and
+"makes no claim your L5/simulator work should treat as settling anything". Recorded as such: it is
+not a (ii)-type selector for D2, and it is not read as one.
+
 **Effect on the decisions: none.** D2 stands as written (no level chosen; both run; selection only by
-(i) or (ii)); (ii) is now confirmed empty by Stream 1, Stream 2 and LeanMaster alike. No ruling was
-filed anywhere, none was requested. Stream 3: no reply yet.
+(i) or (ii)); (ii) is now confirmed empty by Stream 1, Stream 2 and LeanMaster alike, and AM-8 does not
+fill it. No ruling was filed anywhere, none was requested. All three streams have replied.
 
 ## 6. What this note does NOT claim
 
