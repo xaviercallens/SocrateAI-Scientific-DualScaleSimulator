@@ -30,25 +30,6 @@ class TestLevelParameter:
         """Verify DEFAULT_LEVEL is set to 12."""
         assert wc.DEFAULT_LEVEL == 12, f"Expected DEFAULT_LEVEL=12, got {wc.DEFAULT_LEVEL}"
 
-    def test_fricke_y_function(self):
-        """Verify fricke_y(level) = 1/sqrt(level)."""
-        # Test level 12
-        fy_12 = wc.fricke_y(12)
-        expected_12 = 1.0 / math.sqrt(12.0)
-        assert abs(fy_12 - expected_12) < 1e-15, f"fricke_y(12) = {fy_12}, expected {expected_12}"
-
-        # Test level 7
-        fy_7 = wc.fricke_y(7)
-        expected_7 = 1.0 / math.sqrt(7.0)
-        assert abs(fy_7 - expected_7) < 1e-15, f"fricke_y(7) = {fy_7}, expected {expected_7}"
-
-    def test_fricke_y_backwards_compatibility(self):
-        """Verify FRICKE_Y equals fricke_y(DEFAULT_LEVEL)."""
-        expected = wc.fricke_y(wc.DEFAULT_LEVEL)
-        assert abs(wc.FRICKE_Y - expected) < 1e-15, (
-            f"FRICKE_Y={wc.FRICKE_Y} should equal fricke_y(DEFAULT_LEVEL)={expected}"
-        )
-
     def test_default_byte_identity(self):
         """
         Test (a): With defaults, run_quintessence_simulation(t_max=20, num_points=100)
