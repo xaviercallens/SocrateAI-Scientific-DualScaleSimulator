@@ -1491,7 +1491,8 @@ def plot_simulations(quint_res: Dict[str, Any], symm_res: Dict[str, Any], nanogr
         # Panel 1: Modulus trajectory in Upper Half Plane (x, y)
         ax1 = axs[0, 0]
         ax1.plot(quint_res["x"], quint_res["y"], "b-", lw=2, label=r"Modulus flow $\tau(t)$")
-        ax1.plot(FRICKE_X, FRICKE_Y, "ro", markersize=8, label=r"Fricke Saddle $\tau_F$")
+        saddle = quint_res.get("fricke_saddle", {"x": FRICKE_X, "y": FRICKE_Y})
+        ax1.plot(saddle["x"], saddle["y"], "ro", markersize=8, label=r"Fricke Saddle $\tau_F$")
         ax1.plot(ORBIFOLD_X, ORBIFOLD_Y, "g*", markersize=12, label=r"Orbifold Attractor $\tau_O$")
         ax1.set_xlabel(r"$\text{Re}(\tau) = x$")
         ax1.set_ylabel(r"$\text{Im}(\tau) = y$")
