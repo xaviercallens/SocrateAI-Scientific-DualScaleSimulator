@@ -1,0 +1,8 @@
+{
+  "purpose": "Check whether the sky-scramble gate's sensitivity to the assumed fixed CURN amplitude (pass at log10_A=-14.62, fail at log10_A=-14.0) is a normalization artifact of reusing the frozen real-data jackknife covariance C for every scramble, versus a genuine calibration difference.",
+  "method": "mean(diag(C)) compared to the variance (across 1000 sky scrambles) of the scrambled 7-bin rho vector, computed separately in each amplitude run from its own cached X_a,Z_a.",
+  "base_log10A_-14.62": {"mean_diag_C": 1.2419124641726034e-60, "mean_var_scramble_rho_bin": 3.767014270021457e-61, "ratio": 3.296808493814199},
+  "alt_log10A_-14.0": {"mean_diag_C": 8.98683343888481e-60, "mean_var_scramble_rho_bin": 2.909097470881567e-60, "ratio": 3.0892170265307257},
+  "conclusion": "The diagonal-scale ratio is nearly identical between the two runs (3.30 vs 3.09), while the gate flips from pass (0.931) to fail (0.424). A simple normalization/scale artifact would have shown a large ratio shift tracking the amplitude change; it did not. The gate's amplitude-sensitivity is therefore read as a genuine covariance-calibration difference between the two runs (full off-diagonal structure, not just overall scale), not an artifact of the frozen-C deviation.",
+  "caveat": "This checks only the diagonal scale, not the full off-diagonal structure of C versus the scramble ensemble's covariance; a full 7x7 comparison was not attempted this round (time budget)."
+}

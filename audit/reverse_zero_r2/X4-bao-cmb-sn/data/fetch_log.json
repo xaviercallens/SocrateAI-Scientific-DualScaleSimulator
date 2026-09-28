@@ -1,0 +1,38 @@
+{
+ "attempts": {
+  "abs": 1,
+  "pdf": 1,
+  "eprint": 1
+ },
+ "sha256": {
+  "abs": "aa9c9747260adac3331a04412b9626855236c77dab7901e8af9f9c03248724d8",
+  "pdf": "09effe1d0d8caa0173bf8c826a621fb3606ab884a4d2931b198212a4f47310b5",
+  "eprint": "9a01121d3a36ff2fd00b39023906e030a4044b9581a5596b7c0e7b535ec4a110"
+ },
+ "bytes": {
+  "abs": 41513,
+  "pdf": 6273047,
+  "eprint": 5832773
+ },
+ "arxiv_metadata": {
+  "title": [
+   "Distance Priors from Planck Final Release"
+  ],
+  "author": [
+   "Chen, Lu",
+   "Huang, Qing-Guo",
+   "Wang, Ke"
+  ],
+  "doi": [
+   "10.1088/1475-7516/2019/02/028"
+  ],
+  "date": [
+   "2018/08/17"
+  ],
+  "arxiv_id": [
+   "1808.05724"
+  ]
+ },
+ "tex_member": "distance-priors-2018.tex",
+ "tex_sha256": "b63854bd0fd48bd80d6bff224be64b3ab0bb0b8a730486da04bf2fc2883e2888"
+}

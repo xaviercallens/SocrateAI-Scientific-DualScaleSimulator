@@ -1,0 +1,47 @@
+{
+ "purpose": "conversion factors that make the CMB injection amplitudes and densities readable",
+ "map": "wmap",
+ "sigma_T_prepped_unsmoothed": 0.06649183319273408,
+ "sigma_Ts_smoothed": 0.04575004382724494,
+ "ratio_sigma_Ts_over_sigma_T": 0.6880550833157703,
+ "one_spot_at_A_equals_1_sigma_T": {
+  "theta0_deg": 1.0,
+  "peak_before_smoothing_over_sigma_T": 0.9999999999996356,
+  "peak_after_smoothing_over_sigma_T": 0.5000126406217734,
+  "peak_after_smoothing_over_sigma_Ts": 0.7267043769405622,
+  "detector_threshold_in_sigma_Ts": 1.0,
+  "reading": "an A = 1 sigma_T spot reaches 0.73 sigma(T_s) after the detector's own smoothing, against a threshold of 1.0 sigma(T_s); the smoothing loss is the factor 0.500."
+ },
+ "footprint": {
+  "fsky_mask": 0.7521158854166666,
+  "fsky_after_R_disk_erosion": 0.3969675699869792,
+  "full_sky_deg2": 41252.96124941928,
+  "usable_deg2": 16376.087781948987,
+  "note": "registered injection densities are FULL-SKY counts; only the eroded fraction is usable, so the effective in-mask count is N_inj * fsky_eroded."
+ },
+ "registered_densities_converted": [
+  {
+   "N_inj_full_sky": 100,
+   "effective_in_mask_count": 39.69675699869792,
+   "density_per_deg2_full_sky": 0.0024240684055476798,
+   "mean_separation_deg_full_sky": 21.825401843824743
+  },
+  {
+   "N_inj_full_sky": 300,
+   "effective_in_mask_count": 119.09027099609375,
+   "density_per_deg2_full_sky": 0.007272205216643039,
+   "mean_separation_deg_full_sky": 12.60090162970397
+  },
+  {
+   "N_inj_full_sky": 1000,
+   "effective_in_mask_count": 396.9675699869792,
+   "density_per_deg2_full_sky": 0.024240684055476795,
+   "mean_separation_deg_full_sky": 6.901798067492473
+  }
+ ],
+ "detected_population_for_comparison": {
+  "N_data_wmap": 351,
+  "note": "the injected populations are to be compared with the ~350 candidates the detector already finds in the WMAP footprint from the Gaussian field alone; an injected population must compete with that background, it is not added to an empty sky."
+ },
+ "tier": "X"
+}

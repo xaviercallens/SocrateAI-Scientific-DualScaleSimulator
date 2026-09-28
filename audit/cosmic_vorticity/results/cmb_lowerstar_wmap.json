@@ -1,0 +1,120 @@
+{
+ "which": "wmap",
+ "n_null": 200,
+ "null_seeds": "2000000+k (the SAME null ensemble as the alpha path)",
+ "n_shuffle": 50,
+ "shuffle_seeds": "6100000+k (the SAME seeds as the C2 control)",
+ "nu_grid": "np.linspace(-4, 4, 41), X1's registered grid",
+ "filtration": "lower-star on the HEALPix quad-corner 2-complex of lib/cmb_topology.build_topology_fixed",
+ "complex_info": {
+  "nside": 128,
+  "npix": 196608,
+  "neighbour_order": [
+   "SW",
+   "W",
+   "NW",
+   "N",
+   "NE",
+   "E",
+   "SE",
+   "S"
+  ],
+  "n_missing_neighbour_entries": 24,
+  "missing_neighbour_entries_by_direction": {
+   "SW": 0,
+   "W": 8,
+   "NW": 0,
+   "N": 4,
+   "NE": 0,
+   "E": 8,
+   "SE": 0,
+   "S": 4
+  },
+  "n_missing_at_edge_sharing_positions": 0,
+  "n_quad_corner_rows_before_dedup": 786408,
+  "n_tri_corner_rows_before_dedup": 24,
+  "n_quad_corners": 196602,
+  "n_tri_corners": 8,
+  "degenerate_quad_rows": 0,
+  "degenerate_tri_rows": 0,
+  "dedup_factor_quads": 4.0,
+  "dedup_factor_tris": 3.0,
+  "predicted_n_quad_corners_V_minus_6": 196602,
+  "predicted_n_tri_corners": 8,
+  "construction": "HEALPix quad-corner 2-complex: 4-adjacency edges + one canonical diagonal per 4-pixel corner; 2 triangles per 4-pixel corner, 1 per 3-pixel corner; no clique filling",
+  "diagonal_rule": "through the smallest pixel index of the corner group and its opposite in the cycle",
+  "n_full_sky_adjacency_edges": 393216,
+  "n_full_sky_diagonals": 196602,
+  "predicted_full_sky_edges_2V_plus_Q": 589818,
+  "predicted_full_sky_faces_2Q_plus_T3": 393212,
+  "n_vertices": 147872,
+  "n_edges": 430554,
+  "n_triangles": 281810,
+  "euler_char_V_minus_E_plus_F": -872,
+  "masked": true,
+  "tier": "X"
+ },
+ "modules_used": {
+  "topology": "lib/cmb_topology.build_topology_fixed + betti_curves_from_topology (loop/tda-simple d8175f1)",
+  "statistic": "lib/stats.coarse_stats_fixed (RANK p reported; chi2 diagnostic only)",
+  "NOT_used": "audit/reverse_zero/E5-cmb-tda/cmb_tda.py (the defective originals)"
+ },
+ "fsky_mask": 0.7521158854166666,
+ "data_vs_null": {
+  "b0": {
+   "empirical_rank_p": 0.22388059701492538,
+   "p_value_chi2_survival": 0.23432026902051037,
+   "df": 7,
+   "retained_rank": 7,
+   "n_bins_kept": 7,
+   "dropped_bin_indices": [
+    7
+   ],
+   "dropped_bin_reasons": {
+    "7": "atomic_modal_mass"
+   },
+   "test_differs_in_dropped_bin": {},
+   "hartlap_factor": 0.9597989949748744,
+   "data_chi2_hartlap": 9.263014342408233
+  },
+  "b1": {
+   "empirical_rank_p": 0.9353233830845771,
+   "p_value_chi2_survival": 0.9422009941357943,
+   "df": 7,
+   "retained_rank": 7,
+   "n_bins_kept": 7,
+   "dropped_bin_indices": [
+    0
+   ],
+   "dropped_bin_reasons": {
+    "0": "atomic_modal_mass"
+   },
+   "test_differs_in_dropped_bin": {},
+   "hartlap_factor": 0.9597989949748744,
+   "data_chi2_hartlap": 2.2879537872273046
+  }
+ },
+ "shuffle_control_vs_null": {
+  "b0": {
+   "n": 50,
+   "median_rank_p": 0.004975124378109453,
+   "fraction_below_0.05": 1.0,
+   "min_rank_p": 0.004975124378109453,
+   "max_rank_p": 0.004975124378109453
+  },
+  "b1": {
+   "n": 50,
+   "median_rank_p": 0.004975124378109453,
+   "fraction_below_0.05": 1.0,
+   "min_rank_p": 0.004975124378109453,
+   "max_rank_p": 0.004975124378109453
+  }
+ },
+ "control_verdict": {
+  "fraction_of_shuffles_separated_from_the_null_b0": 1.0,
+  "fraction_b1": 1.0,
+  "diagnostic_stands": true,
+  "reading": "The value-shuffled field is separated from the Gaussian null by this statistic in 100% (b0) / 100% (b1) of realisations, so the lower-star path IS reading spatial arrangement on this field and the diagnostic stands."
+ },
+ "tier": "X"
+}

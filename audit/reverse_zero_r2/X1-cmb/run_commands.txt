@@ -1,0 +1,73 @@
+X1 CMB TDA (round 2) -- exact commands run, in order.
+All python commands run with: prlimit --as=10737418240 -- <PY> x1_cmb.py <args>, PY =
+/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python
+cwd for all: audit/reverse_zero_r2/X1-cmb (relative to worktree
+/mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse)
+
+=== Planck PR3 SMICA fetch (data/real2/cmb/) ===
+Attempt 1 (IRSA, direct path): FAILED (HTTP 404) --
+  curl -sIL -m 30 "https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/maps/component-maps/cmb/COM_CMB_IQU-smica_1024_R3.00_full.fits"
+  curl -sIL -m 30 "https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/masks/COM_Mask_CMB-common-Mask-Int_1024_R3.00.fits"
+Attempt 2 (Planck Legacy Archive AIO endpoint): SUCCEEDED (HTTP 200, image/fits) --
+  curl -sL -m 480 -o data/real2/cmb/planck_smica_2048_R3.fits \
+    "https://pla.esac.esa.int/pla/aio/product-action?MAP.MAP_ID=COM_CMB_IQU-smica_2048_R3.00_full.fits"
+  curl -sL -m 280 -o data/real2/cmb/planck_common_mask_int_2048_R3.fits \
+    "https://pla.esac.esa.int/pla/aio/product-action?MAP.MAP_ID=COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits"
+  sha256sum:
+    planck_smica_2048_R3.fits              60952c645eb33d151905ddf5837477e15ca02a3261feca4ceca3c3feece4f9ac  (2013312960 B)
+    planck_common_mask_int_2048_R3.fits    23f49a3479073408b83a7f1bb2cca490d9be7f934b2e0e891524b6a1d06a5fc4  (201335040 B)
+  Headers verified: SMICA TTYPE1=I_STOKES, NSIDE=2048, ORDERING=NESTED, TUNIT1=K_CMB;
+  mask TTYPE1=TMASK, NSIDE=2048, ORDERING=NESTED. NOT ABSENT (fetched on attempt 2 of 3 allowed).
+
+=== WMAP (primary family) ===
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py calibrate --which wmap
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py gate --which wmap
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which wmap --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which wmap --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which wmap --k0 200 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which wmap --k0 300 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which wmap --k0 400 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which wmap --amp-idx 0 --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which wmap --amp-idx 0 --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which wmap --amp-idx 1 --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which wmap --amp-idx 1 --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which wmap --amp-idx 2 --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which wmap --amp-idx 2 --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which wmap --amp-idx 3 --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which wmap --amp-idx 3 --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py analyze --which wmap
+
+=== SMICA (separate, conditional family; no pooling with WMAP) ===
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py calibrate --which smica            (iteration 0)
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py calibrate --which smica --resume   (iteration 1)
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py calibrate --which smica --resume   (iteration 2)
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py calibrate --which smica --resume   (iteration 3)
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py calibrate --which smica --resume   (iteration 4)
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py calibrate --which smica --resume   (iteration 5)
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py gate --which smica
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which smica --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which smica --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which smica --k0 200 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which smica --k0 300 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py null --which smica --k0 400 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which smica --amp-idx 0 --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which smica --amp-idx 0 --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which smica --amp-idx 1 --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which smica --amp-idx 1 --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which smica --amp-idx 2 --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which smica --amp-idx 2 --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which smica --amp-idx 3 --k0 0   --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py string --which smica --amp-idx 3 --k0 100 --n 100 --workers 6
+cd audit/reverse_zero_r2/X1-cmb && <PY> x1_cmb.py analyze --which smica
+
+DEVIATION FROM REGISTRATION (recorded, registration.json NOT edited):
+  - Registered null count is up to N=2000 (seeds 2000000+k, k<2000). Under the 10-minute-per-command
+    memory-safety cap AND a machine shared with several other agents (load average 18-27 on 8 cores
+    during this run), N=500 (seeds 2000000+k, k in [0,499]) was run for both WMAP and SMICA instead.
+    This is recorded in result.json as N_shortfall_vs_registered=true; p-value resolution is 1/501
+    instead of 1/2001. The registered decision rule (p_corr = 1-(1-p_min)^2 vs 0.05) is applied exactly
+    to this N=500 ensemble.
+  - Registered string-injection count (200 sims per Gmu/amplitude) WAS run in full for both maps.
+  - cmd_calibrate was made resumable (one iteration per process invocation, --resume flag) purely to
+    fit the per-command time cap under variable CPU load; the calibration algorithm, iteration count
+    (6), seeds and correction formula are unchanged from registration.json.

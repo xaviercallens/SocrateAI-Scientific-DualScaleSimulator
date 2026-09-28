@@ -1,0 +1,278 @@
+{
+  "id": "CV",
+  "title": "Cosmic vorticity: pre-registered transfer of the Re6Zr defect-core TDA pipeline to the CMB and to a galaxy survey",
+  "date_frozen": "2026-09-19",
+  "branch": "loop/reverse-zero",
+  "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-reverse",
+  "tier": "X (exploratory numerics)",
+
+  "framing": {
+    "what_this_is": "An exploratory, tier-X search for a discrete population of defect-core candidates on the sky and in a galaxy survey, using the EXACT pipeline that succeeded on real STM vortex maps of an a-Re6Zr film (branch loop/tda-validation, audit/tda_validation/quantum_fluid/).",
+    "what_this_is_not": [
+      "This is NOT a test of K3 x T2. LeanMaster records, verbatim, '(iii) Observables: none -- N = 4, non-chiral.' Nothing in the verified mathematics predicts a defect-core population, its density, its amplitude or its scale.",
+      "The Re6Zr work validated an INSTRUMENT, not a theory (audit/FLUID_TO_COSMOLOGY_BRIDGE.md sec 0).",
+      "No result from this registration may be written as 'proved', 'certified' or 'guaranteed' (LeanFlow CLAUDE.md rule 5)."
+    ],
+    "expected_outcome": "NULL. A null is the expected outcome and is a perfectly good result; it will be reported as a null WITH its measured sensitivity (the injection grid below), because a null with unmeasured sensitivity says nothing.",
+    "what_a_detection_would_mean": "A p-value below the corrected threshold that replicates in the secondary dataset would mean: the point cloud produced by THIS detector on THIS map is more (or less) regularly spaced, or more numerous, or more orientationally ordered, than the spectrum-matched Gaussian null. It would be a signal in need of an astrophysical or systematic explanation FIRST (foregrounds, point sources, mask edges, component-separation residuals, survey completeness). It would NOT single out K3 x T2, would NOT revive P2, and would NOT be evidence for the 'topological friction' conjecture of FLUID_TO_COSMOLOGY_BRIDGE.md sec 2.",
+    "what_a_detection_would_not_mean": "It would not establish that the detected points are physical defects, and it would not measure any dual-scale, T-duality or extra-dimension parameter."
+  },
+
+  "what_was_inspected_before_freezing": {
+    "statement": "Declared so it is not discovered later. Nothing below is a statistic of the fields under test.",
+    "items": [
+      "The Re6Zr scripts, their docstrings and their committed results (audit/tda_validation/quantum_fluid/, branch loop/tda-validation).",
+      "The X1 CMB null recipe and its saved input spectrum cl_in.npz (a POWER SPECTRUM, already committed on this branch at audit/reverse_zero_r2/X1-cmb/wmap/cl_in.npz; fsky = 0.7521158854166666). It was used to draw Gaussian SIMULATIONS (seeds 9000001, 9000002) for the detector-scale probe below. No temperature map was read, and no topological statistic of any real map was computed.",
+      "DESI DR1 BGS_BRIGHT-21.5 FITS column NAMES and the sample's redshift range (0.10005 <= z <= 0.39999, N_NGC = 217614, N_random_NGC = 13248857). No position, weight or density statistic was computed.",
+      "That the E5/X2 lognormal mock family exists only as Betti-curve stacks (e5b_mock_betti_stacks.npz) and an SDSS-DR17-footprint generator (x2_lib.py); NO mock point catalogues for the DESI footprint exist on disk."
+    ]
+  },
+
+  "hyperparameters_quoted_from_the_Re6Zr_scripts": {
+    "source_file": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdaval/audit/tda_validation/quantum_fluid/scripts/stm_vortex_tda.py (branch loop/tda-validation)",
+    "core_detection_rule_verbatim": "Vortex detector (non-TDA, fixed before looking at any image, see expectations.json): plane subtraction, Gaussian low-pass in Fourier space with real-space sigma = a_tri(B)/6, local minima = pixels equal to the minimum of a disk of radius a_tri(B)/3 (scipy.ndimage.minimum_filter, mode='nearest'). a_tri(B) = 1.075 sqrt(Phi0/B), B = mu0 H (H in kOe -> B = H/10 T).",
+    "tda_rule_verbatim": "TDA (pipeline under test): cosmic_web_tda_scaled.alpha_persistence on the minima (nm), max_alpha_sq = (3 a_tri)^2; top_bars with r_trunc = 3 a_tri.",
+    "orientational_rule_verbatim": "Cross-check (non-TDA): global |<exp(6 i theta_b)>| over scipy Delaunay bonds.",
+    "negative_control_verbatim": "Negative control: uniform random points, same count, same area, numpy default_rng(201 + image index).",
+    "meta_field_verbatim": "\"detector\": \"plane-subtract, Gaussian LP sigma=a/6, disk-min radius a/3\"",
+    "spread_statistic_verbatim_from_qf_common_py": "def spread_stats(x): ... q1, med, q3 = np.percentile(x, [25, 50, 75]); ... \"iqr_over_median\": float((q3 - q1) / med) if med > 0 else None",
+    "h0_deaths_verbatim_from_qf_common_py": "def h0_finite_deaths(by_dim): bars = np.array(by_dim[0]) ...; d = bars[:, 1]; return d[np.isfinite(d)]",
+    "alpha_call_verbatim_from_cosmic_web_tda_scaled_py": "ac = gudhi.AlphaComplex(points=xyz); st = ac.create_simplex_tree(max_alpha_square=max_alpha_sq); diag = st.persistence(homology_coeff_field=2, min_persistence=0.0)  # bars converted to RADIUS units by sqrt",
+    "extracted_invariants_that_are_transferred_exactly": {
+      "smoothing_to_spacing_ratio": "sigma_filter = a/6",
+      "exclusion_radius_to_spacing_ratio": "R_exclusion = a/3 = 2 * sigma_filter",
+      "alpha_truncation": "max_alpha_square = (3a)^2, i.e. r_trunc = 3a",
+      "persistence": "gudhi.AlphaComplex, Z/2 coefficients, min_persistence = 0.0, bars in RADIUS units (sqrt of the squared alpha value)",
+      "spacing_statistic": "S1 = IQR/median of the FINITE H0 death radii, pooled",
+      "count_statistic": "S2 = number of detected cores",
+      "orientational_statistic": "S3 = a hexatic/Steinhardt bond-orientational order parameter over Delaunay neighbours",
+      "random_control": "uniform points, same count, same footprint, a stated seed"
+    },
+    "measured_answer_key_from_Re6Zr_for_calibration_of_expectations": {
+      "source": "audit/tda_validation/quantum_fluid/results/stm_vortex_tda.json",
+      "S1_real_vortex_lattice_range_over_11_fields": [0.0694278500288623, 0.15773343131922335],
+      "S1_uniform_random_control_range_over_11_fields": [0.7244829887644259, 0.755010080300043],
+      "S1_at_the_most_ordered_field_20kOe": 0.0694278500288623,
+      "S3_psi6_real_range": [0.09024312812695556, 0.6372711272233341],
+      "S3_psi6_random_control_approx": 0.04,
+      "lattice_constant_recovered_nm": 36.0,
+      "lattice_constant_published_nm": 34.6,
+      "count_ratio_range": [1.0049672501280003, 1.1055471675651596]
+    }
+  },
+
+  "measured_limits_of_the_instrument_that_this_registration_respects": {
+    "L1": "The alpha-path H0 spread measures REGULAR SPACING, not orientational order: on the Re6Zr data it stayed small (0.069-0.158) while psi6 collapsed (0.637 at 20 kOe down to 0.090 at 70 kOe). Therefore an EXPLICIT ORIENTATIONAL STATISTIC (S3) is registered alongside S1 in every test.",
+    "L2": "On rough fields the lower-star path FAILED a site-shuffle control (site-shuffled XY fields reproduced the 'transition'). Therefore the only lower-star item in this registration is a SECONDARY diagnostic, and it carries a mandatory value-shuffle control; if the shuffle control fires, that diagnostic is withdrawn.",
+    "L3": "Ratios alone are meaningless: an ABSOLUTE PERSISTENCE FLOOR is reported with every S1 (median H0 death radius in degrees / Mpc/h, and the count of bars below the resolution floor).",
+    "L4": "THE MOST IMPORTANT ONE, declared here so the write-up cannot misread it: any disk-extremum detector imposes a HARD-CORE EXCLUSION of radius R by construction. The contrast between the Re6Zr random control (S1 ~ 0.73, points drawn uniformly and NEVER passed through the detector) and the real data (S1 ~ 0.07-0.16) is therefore NOT by itself evidence of lattice order. In this registration the uniform/shuffled control is a PIPELINE SANITY CHECK ONLY and carries NO p-value. The only p-value-bearing nulls are ensembles passed through the IDENTICAL detector.",
+    "L5": "Sampled persistent homology cannot recover 4-dimensional topology at feasible sample sizes (branch loop/tda-k3t2). Nothing in this registration attempts to recover any manifold's homology; the statistics are 2-D/3-D point-set statistics only."
+  },
+
+  "software": {
+    "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python",
+    "versions": "gudhi 3.13.0, healpy 1.20.0, astropy 6.1.7",
+    "memory_and_time_policy": "every command run in the FOREGROUND as `timeout <s> prlimit --as=8589934592 -- <python> ...` (shared machine)",
+    "fixed_tda_library": {
+      "requirement": "the DEFECTIVE originals in audit/reverse_zero/E5-cmb-tda/cmb_tda.py are NOT used",
+      "source_branch": "loop/tda-simple",
+      "source_worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdasimple",
+      "source_commit": "d8175f1db4d395edf7151125a631c44009d500ca",
+      "copied_to": "audit/cosmic_vorticity/lib/",
+      "files": [
+        {"name": "stats.py", "sha256_at_source": "9ae09e5489a3d1d474c4d2be44d341a968b26d049e76a9b1e791021545af8a61", "fixes": "dead/atomic-bin drop, no ridge, df = retained rank, pooled rank p"},
+        {"name": "cmb_topology.py", "sha256_at_source": "1f21825c75e560b98f7cc5546178aeb23db9cffb4b2ee29db44555f09dbc5a39", "fixes": "HEALPix quad-corner 2-complex; full-sky Betti (1,0,1); true Euler characteristic"}
+      ],
+      "p_value_preference": "RANK p-values are used. The chi2 branch of coarse_stats_fixed is still mildly anti-conservative (0.058 vs 0.05) and is reported only as a diagnostic, never as a decision."
+    }
+  },
+
+  "statistics_common_to_both_tests": {
+    "S1_spacing": {
+      "name": "H0 death-radius spread",
+      "definition": "IQR/median = (q3 - q1)/median of the FINITE H0 death radii of the alpha complex on the detected point cloud, exactly qf_common.spread_stats(qf_common.h0_finite_deaths(by_dim))['iqr_over_median']",
+      "alpha_complex": "gudhi.AlphaComplex, Z/2, min_persistence = 0.0, max_alpha_square = (3 * a_ref)^2 with a_ref FROZEN a priori (below), NOT recomputed per realisation",
+      "why_a_ref_is_frozen": "a per-realisation a_ref would move the truncation, and truncation bites the upper tail of the H0 deaths, biasing IQR/median by a realisation-dependent amount",
+      "truncation_inertness_check": "the fraction of H0 bars with death >= r_trunc is reported for data and for the null mean; if it exceeds 0.01 the truncation is NOT inert and this is disclosed",
+      "scale_invariance": "IQR/median is invariant under an overall rescaling of the point cloud, so it is insensitive to the chord-vs-arc convention to first order"
+    },
+    "S2_count": {
+      "name": "detected core count",
+      "definition": "N = number of detector-selected points inside the eroded valid region",
+      "registered_caveat_stated_BEFORE_running": "Under a SPECTRUM-MATCHED Gaussian null, the extremum count of the field is largely fixed by the spectrum. S2 therefore has little power against anything that does not change the two-point function. This is registered now so the (expected) null on S2 is not over-read. The Re6Zr version of S2 compared the count to an INDEPENDENT physical expectation (B*A/Phi0); that leg DOES NOT TRANSFER, because no theory in this programme gives a defect-core density. This is listed under deviations."
+    },
+    "S3_orientational": {
+      "name": "bond-orientational order",
+      "cmb": "site-averaged hexatic order on the sphere: psi6_j = |mean over spherical-Delaunay neighbours k of exp(6 i beta_jk)|, where beta_jk is the bearing (position angle) of k seen from j in j's local tangent frame; spherical Delaunay = scipy.spatial.ConvexHull of the unit vectors (the exact spherical analogue of Re6Zr's scipy.spatial.Delaunay bonds). Bonds longer than 1.5 * a_ref are dropped; sites with fewer than 3 remaining bonds are dropped. Statistic S3 = mean_j |psi6_j| over kept sites.",
+      "desi": "Steinhardt bond-orientational order Q6_j over neighbours within 1.5 * a_ref (sites with fewer than 4 neighbours dropped); statistic S3 = mean_j Q6_j over kept sites",
+      "declared_substitution": "Re6Zr's PRE-REGISTERED psi6 was the GLOBAL average |<exp(6 i theta_b)>| over all Delaunay bonds. That construction does NOT transfer to the sphere (there is no global orientation reference, so the global average vanishes by symmetry) nor to 3-D. The site-averaged / Steinhardt forms are the standard analogues and are declared here as SUBSTITUTIONS, not transfers. qf_common.psi6_local (the per-site form) exists in the Re6Zr code and the 1.6a bond cut appears in its post-hoc variant script stm_psi6_variants.py."
+    },
+    "p_value_convention": "two-sided empirical rank p from the null ensemble: p = min(1, 2 * min( (1 + #{null <= data})/(N+1), (1 + #{null >= data})/(N+1) )), the same convention as X2 (audit/reverse_zero_r2/X2-cosmic-web/x2_analyze.py)."
+  },
+
+  "TEST_A_cmb": {
+    "primary_map": "WMAP 9-yr ILC v5, data/real2/cmb/wmap_ilc_9yr_v5.fits, field 0",
+    "primary_mask": "data/real2/cmb/wmap_temperature_kq85_analysis_mask_r9_9yr_v5.fits, field 0",
+    "secondary_map": "Planck PR3 SMICA, data/real2/cmb/planck_smica_2048_R3.fits (NESTED), mask data/real2/cmb/planck_common_mask_int_2048_R3.fits",
+    "downgrade_recipe_verbatim_from_X1": "m128 = hp.ud_grade(m, NSIDE); mask128 = (hp.ud_grade(np.asarray(mk, dtype=np.float64), NSIDE) >= 0.5).astype(np.uint8)  -- NSIDE = 128. Both maps are handled by the SAME code path; SMICA is read with healpy's read_map (which converts NESTED to RING) and downgraded from 2048 to 128 by ud_grade, mask threshold 0.5.",
+    "nside": 128,
+    "lmax": 384,
+    "preprocessing": "X1's prep_map: least-squares fit and removal of monopole + dipole on the UNMASKED pixels (the analogue of Re6Zr's plane subtraction). Then band-limited smoothing: alm = hp.map2alm(T_prepped, lmax=384, iter=1); alm = hp.smoothalm(alm, sigma=sigma_s); T_s = hp.alm2map(alm, 128, lmax=384, pixwin=False). The mask is applied ONCE (masked pixels are set to 0 before map2alm and excluded from every statistic).",
+
+    "detector": {
+      "name": "CV-CMB-D1",
+      "rule": "A pixel p inside the eroded valid region is a defect-core candidate iff (i) |T_s(p)| > nu * sigma(T_s), where sigma(T_s) is the standard deviation of T_s over the unmasked pixels of THAT realisation, and (ii) |T_s(p)| >= max over all pixels within a geodesic disk of radius R_disk centred on p (hp.query_disc), i.e. p is a local maximum of |T_s| in that disk.",
+      "transfer_note": "This is Re6Zr's 'local minima = pixels equal to the minimum of a disk of radius a/3' with two declared changes: (a) the disk is geodesic instead of Euclidean; (b) |T_s| instead of T_s, because a CMB defect-core population may be hot or cold while a vortex core is always a conductance minimum. Both changes are listed under deviations. The sign-split (maxima only / minima only) is a registered SECONDARY diagnostic.",
+      "sigma_s": {"value_deg": 1.0, "how_chosen": "on SIMULATIONS ONLY, seeds 9000001 and 9000002 drawn from the X1 cl_in spectrum. Registered because Re6Zr's sigma = a/6 came from external physics (B) and no external a exists here. The probe measured a_obs/sigma_s = 7.58-7.87 across sigma_s in [0.75, 2.0] deg, i.e. the detector is self-consistent at the Re6Zr regime; sigma_s = 1.0 deg was taken as the round value in that range. Probe output for sigma_s = 1.0, nu = 1.0, full sky: n = 823 (seed 9000001) and 830 (seed 9000002) peaks, a_obs = 7.61 and 7.58 deg, S1 = 0.3344 and 0.3315, 2*median H0 death = 2.66 and 2.68 deg."},
+      "R_disk_deg": 2.0,
+      "R_disk_rule": "R_disk = 2 * sigma_s, EXACTLY the Re6Zr ratio (a/3) / (a/6) = 2",
+      "nu": 1.0,
+      "nu_secondary_diagnostic": 1.5,
+      "mask_erosion": "a candidate is kept only if every pixel of its R_disk disk is unmasked, so no peak is an artefact of a truncated neighbourhood. The eroded fsky is reported.",
+      "a_ref_deg": 6.0,
+      "a_ref_rule": "a_ref = 6 * sigma_s, i.e. the inverse of Re6Zr's sigma = a/6. FROZEN a priori, identical for data, every null, every injection and every control.",
+      "chord_convention": "the point cloud is the set of unit vectors (3-D CHORDS), and gudhi.AlphaComplex is built on them directly. Verified feasible: 3000 exactly co-spherical points give Betti [1, 0] in 1.02 s. chord = 2 sin(theta/2); the chord/arc ratio is 0.99873 at 5 deg and 0.99492 at 10 deg. The maximum great-circle length of an H0-bar (MST) edge is reported so the distortion is quantified. No patching and no projection, hence no patch-edge effects.",
+      "max_alpha_square": "(3 * 2*sin(radians(6.0)/2))^2 = (3 * 0.104672...)^2"
+    },
+
+    "null": {
+      "family": "spectrum-matched Gaussian simulations, the X1 recipe, gate-validated in round 2 at max|z| = 0.85 against the threshold 2.807",
+      "input_spectrum": "audit/reverse_zero_r2/X1-cmb/{wmap,smica}/cl_in.npz key 'cl_in' -- the SAME calibrated C_in produced by X1's <=6 iterations x 300 sims (seeds 1000000+1000*iter+k), reused, not refitted",
+      "why_regenerated": "X1's saved null chunks contain BETTI CURVES, not maps, so the maps must be redrawn. The registered recipe and seeds are reused verbatim.",
+      "sim_recipe_verbatim_from_X1": "np.random.seed(seed); alm = hp.synalm(cl_in, lmax=LMAX, new=True); return hp.alm2map(alm, NSIDE, lmax=LMAX, pixwin=False)",
+      "seeds": "2000000 + k for k = 0 .. 499 (X1's registered null seeds)",
+      "n_sims": 500,
+      "detector_applied": "the SAME detector CV-CMB-D1, with the SAME mask and the SAME frozen a_ref, is passed over every simulation"
+    },
+
+    "gate_fail_closed": {
+      "statement": "X1's gate validated BAND POWERS of T for Betti curves of T. This registration reads the SMOOTHED field T_s, so the null is re-gated for the quantity actually used, before any p-value is computed.",
+      "quantity": "var(T_s) over the eroded valid region",
+      "rule": "z = (var_data - mean(var_sim)) / std(var_sim) over the 500 nulls; the gate PASSES iff |z| <= 2.807 (X1's threshold, norm.isf(0.025/10))",
+      "on_failure": "NO p-values are reported for that map; the map is recorded as NOT TESTED by CV for a mis-specified null (LeanFlow CLAUDE.md rule 1, fail closed). The count S2 is a TEST statistic and is therefore NOT used as a gate."
+    },
+
+    "controls": {
+      "C1_uniform_random": "N_data points drawn uniformly on the sphere inside the eroded valid region, seed 201 + k (the Re6Zr seed rule, k = 0..99), NOT passed through the detector. Reported as a PIPELINE SANITY CHECK with no p-value (see limit L4).",
+      "C2_value_shuffle": "the values of T_s inside the eroded valid region are randomly permuted among those pixels (seeds 6100000 + k, k = 0..99) and the FULL detector is run on the shuffled field. This is the direct analogue of the site-shuffle control that the lower-star path failed on rough fields. Reported for all three statistics.",
+      "C3_absolute_floor": "median and quartiles of the H0 death radii in DEGREES (great-circle, converted from the chord by 2*arcsin(d/2)); the count and fraction of H0 bars whose death radius is below the nside-128 pixel scale (sqrt(4*pi/196608) rad = 0.45815 deg); the same for the null mean.",
+      "C4_truncation_inertness": "fraction of H0 bars with death >= r_trunc, data and null"
+    },
+
+    "injection_known_answer_control": {
+      "purpose": "measure the smallest detectable (amplitude, density) at 95% and the false-positive rate",
+      "base_field": "a clean Gaussian null realisation (seeds 4100000 + 10000*amp_idx + 1000*dens_idx + k)",
+      "placement_primary": "JITTERED GEODESIC GRID. N_inj centres on a Fibonacci sphere, each displaced by a Gaussian of standard deviation 0.25 * d_nn in a random tangent direction, where d_nn is the Fibonacci nearest-neighbour spacing. Placement seed 5100000 + 10000*amp_idx + 1000*dens_idx + k.",
+      "why_regular_placement_is_primary": "S1 is sensitive to REGULAR spacing (low IQR/median). A Poisson-placed injected subpopulation pushes IQR/median UP -- the direction the statistic was not built for -- and would understate the sensitivity. The Poisson variant is kept as a contrast.",
+      "placement_contrast": "Poisson (uniform) placement at the same N_inj, same seeds + 500000",
+      "profile": "T += s * A * sigma_T * exp(-theta^2 / (2 * theta_0^2)) with theta_0 = sigma_s = 1.0 deg, sigma_T = the standard deviation of the prepped map over the mask, and s = +1 or -1 with equal probability (placement rng)",
+      "amplitudes_A_over_sigma_T": [0.0, 0.25, 0.5, 1.0, 2.0],
+      "densities_N_inj_full_sky": [100, 300, 1000],
+      "n_sims_per_cell": 100,
+      "amplitude_zero_row": "A = 0 is run ONCE with 100 simulations (the density is irrelevant when the amplitude is zero). Its detection rate IS the empirical false-positive rate of the decision rule, and it is reported as such -- the round-2 X1 report could not separate its smallest-amplitude rate from the false-positive rate because it had no A = 0 row.",
+      "detection_criterion": "an injected realisation is 'detected' by statistic S iff S falls outside the two-sided central 95% interval of the 500 CLEAN nulls",
+      "reported": "detection rate per cell for S1, S2 and S3; the smallest (A, N_inj) with rate >= 0.95; the A = 0 rate"
+    },
+
+    "secondary_items_outside_the_multiplicity_family": [
+      "Planck SMICA (same sky as WMAP, explicitly NOT an independent test -- audit/FLUID_TO_COSMOLOGY_BRIDGE.md sec 5)",
+      "nu = 1.5 detector variant",
+      "sign-split detector (maxima of T_s only / minima only)",
+      "a lower-star Betti diagnostic on T_s using lib/cmb_topology.build_topology_fixed + betti_curves_from_topology and lib/stats.coarse_stats_fixed (RANK p), with the C2 value-shuffle control mandatory; if the shuffle control fires, this diagnostic is WITHDRAWN. Conditional on the compute budget; if not run it is reported as NOT ATTEMPTED."
+    ]
+  },
+
+  "TEST_B_galaxy_survey": {
+    "sample": "DESI DR1 LSS BGS_BRIGHT-21.5 (volume-limited, M_r < -21.5), NGC cap PRIMARY, SGC cap SECONDARY",
+    "data_files": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/desi_dr1_lss/BGS_BRIGHT-21.5_{NGC,SGC}_clustering.dat.fits, official randoms BGS_BRIGHT-21.5_{NGC,SGC}_0_clustering.ran.fits, manifest audit/data_r3_manifest.json on main",
+    "redshift_range": "0.10 <= z < 0.40 (the sample's own range), subject to gate G1",
+    "weights": "w = WEIGHT * WEIGHT_FKP for galaxies AND for randoms (DESI's WEIGHT already = WEIGHT_COMP * WEIGHT_SYS * WEIGHT_ZFAIL). Applied; not skipped.",
+    "geometry": "comoving distance from z with astropy.cosmology.Planck18, times h, so all lengths are Mpc/h (the X2 convention, x2_lib.radecz_to_r)",
+
+    "point_cloud_choice": "DENSITY PEAKS (not void centres). Stated once, here, and not revisited.",
+
+    "detector": {
+      "name": "CV-DESI-D1",
+      "grid": "Cartesian grid of cells L_cell = 8 Mpc/h covering the sample bounding box padded by 40 Mpc/h",
+      "fields": "D = CIC deposit of w_gal; R = CIC deposit of w_ran; alpha = sum(w_gal)/sum(w_ran); both smoothed with a Gaussian of sigma_G = 16 Mpc/h (scipy.ndimage.gaussian_filter)",
+      "delta": "delta = (D_s - alpha * R_s) / (alpha * R_s) on VALID cells; a cell is valid iff alpha*R_s >= 0.5 * median(alpha*R_s over cells with alpha*R_s > 0)",
+      "rule": "a valid cell is a density-peak candidate iff (i) delta > nu * sigma(delta over valid cells) with nu = 1.0, and (ii) delta is the maximum of delta over all valid cells within a Euclidean ball of radius R_ex = 2 * sigma_G = 32 Mpc/h, and (iii) the entire R_ex ball lies inside the valid region (erosion)",
+      "transfer_note": "sigma_G plays the role of Re6Zr's sigma = a/6 and R_ex = 2*sigma_G reproduces Re6Zr's R = a/3 exactly; the sign is flipped (maxima of delta, since galaxies over-density marks structure, whereas a vortex core is a conductance minimum)",
+      "a_ref_Mpc_over_h": 96.0,
+      "a_ref_rule": "a_ref = 6 * sigma_G, frozen a priori, identical for data, randoms, mocks, injections",
+      "max_alpha_square": "(3 * 96.0)^2 = 288^2 = 82944",
+      "alpha_complex": "gudhi.AlphaComplex on the 3-D peak positions in Mpc/h"
+    },
+
+    "gates_run_in_this_order": {
+      "G1_volume_limited_check": "comoving number density n(r) in 4 Mpc/h shells over the chosen z range; if max/min of n over the interior shells exceeds 1.5, the range is restricted to the largest contiguous window satisfying it, and the restriction is reported. This is a property of the sample, computed before any topology.",
+      "G2_mock_calibration": {
+        "rule": "the SAME check round 2's X2 ran and FAILED at 2.88 sigma: the gridded Landy-Szalay xi(r) of the data over G = [20, 60) Mpc/h must be consistent with the lognormal-mock ensemble at two-sided empirical p >= 0.05 (Hartlap-corrected chi2 on 10 bins, X2's x2_analyze.py convention).",
+        "on_failure": "the DESI test against the mock null is INCONCLUSIVE, by the same rule that made X2 inconclusive. No p-value against the mocks is reported. The absolute statistics, the randoms control and the injection sensitivity are still reported.",
+        "declared_prior": "X2 measured this family mis-calibrated at 2.88 sigma on SDSS DR17. A repeat failure on DESI is a likely outcome and is registered as such BEFORE it is run."
+      }
+    },
+
+    "null_and_controls": {
+      "N1_lognormal_mocks": {
+        "construction": "port of audit/reverse_zero_r2/X2-cosmic-web/x2_lib.py (CAMB P(k) -> Gaussian field -> lognormal transform -> bias fitted ONLY to xi(r) on F = [8, 20) Mpc/h -> RSD from the Gaussian field -> Poisson sample -> shell-matched to the DESI footprint) to the DESI BGS_BRIGHT-21.5 footprint",
+        "seeds": "7200000 + k",
+        "n_mocks_target": 100,
+        "budget_clause": "NO mock point catalogues for the DESI footprint exist on disk (only SDSS-DR17-footprint Betti stacks). If the port cannot be completed within the compute budget of this run, it is reported as NOT ATTEMPTED and Test B is INCONCLUSIVE with respect to a clustering-matched null. It is not silently replaced by the randoms."
+      },
+      "N2_official_randoms_IS_A_CONTROL_NOT_A_NULL": "the official random catalogue subsampled to the data's weighted count and shell-matched (seeds 7100000 + k, k = 0 .. 99) and passed through the IDENTICAL detector. It destroys ALL clustering, so it is the analogue of Re6Zr's uniform control: it is reported as a control with NO p-value, and it is NOT substituted for the mock null if G2 fails.",
+      "C3_absolute_floor": "median and quartiles of the H0 death radii in Mpc/h; count and fraction below the grid resolution floor L_cell = 8 Mpc/h and below sigma_G = 16 Mpc/h",
+      "C4_truncation_inertness": "as in Test A"
+    },
+
+    "injection_known_answer_control": {
+      "base": "a randoms-derived (clustering-free) realisation if N1 is unavailable, otherwise a lognormal mock; stated in the report",
+      "placement_primary": "jittered cubic lattice inside the valid region, jitter 0.25 * lattice spacing, seeds 7300000 + 10000*amp_idx + 1000*dens_idx + k",
+      "profile": "a compact Gaussian over-density of galaxies added at each centre: n_extra drawn so that the peak delta contribution is A * sigma_delta, with radial width sigma_G",
+      "amplitudes_A_over_sigma_delta": [0.0, 0.5, 1.0, 2.0],
+      "densities_n_inj_per_1e6_Mpc3h3": [1, 3, 10],
+      "n_sims_per_cell": 50,
+      "amplitude_zero_row": "A = 0 run once with 50 realisations; its rate is the false-positive rate",
+      "detection_criterion": "outside the two-sided central 95% interval of the control ensemble used as the reference"
+    }
+  },
+
+  "multiplicity": {
+    "primary_family": [
+      "A / WMAP / S1 (H0 IQR/median)",
+      "A / WMAP / S2 (count)",
+      "A / WMAP / S3 (psi6)",
+      "B / DESI NGC / S1",
+      "B / DESI NGC / S2",
+      "B / DESI NGC / S3 (Q6)"
+    ],
+    "effective_number_of_tests": 6,
+    "correction": "Bonferroni",
+    "alpha_family": 0.05,
+    "alpha_per_test": 0.008333333333333333,
+    "note_on_independence": "the 6 primary tests are NOT independent (S1 and S3 are computed on the same point cloud), so Bonferroni is conservative for the family and this is the intended direction of the error.",
+    "secondary_items": "Planck SMICA, DESI SGC, the nu variants, the sign-split, the lower-star diagnostic and both injection contrasts are reported OUTSIDE the correction and are explicitly flagged as non-independent replications, never as additional evidence."
+  },
+
+  "decision_rule": {
+    "flag_a_population": "A discrete defect-core-candidate population is FLAGGED only if (a) the relevant gate passed, AND (b) at least one primary p < 0.008333, AND (c) the SAME statistic replicates in its secondary dataset (SMICA for Test A, SGC for Test B) at p < 0.05.",
+    "null_verdict": "otherwise the result is reported as a NULL, together with the injection sensitivity (smallest detected amplitude and density at 95%) and the measured false-positive rate. A null whose sensitivity is not measured is reported as UNINFORMATIVE, not as a null.",
+    "inconclusive_verdict": "if a gate fails, the affected test is INCONCLUSIVE and no p-value for it is reported.",
+    "forbidden_language": "the words 'proved', 'certified' and 'guaranteed' are not used for any result here; no result is attributed to K3 x T2."
+  },
+
+  "declared_deviations_and_substitutions": [
+    "D1: Re6Zr's count-vs-INDEPENDENT-EXPECTATION leg (N vs B*A/Phi0) does NOT transfer. No theory in this programme gives a defect-core density, so S2 is compared to the null ensemble instead. This strictly weakens the test and is declared before running.",
+    "D2: the CMB detector uses |T_s| (both signs) rather than a single sign, because a CMB defect-core population may be hot or cold; the sign-split is a registered secondary diagnostic.",
+    "D3: the disk is geodesic on the sphere, Euclidean in 3-D, instead of a pixel disk footprint.",
+    "D4: S3 is the SITE-AVERAGED psi6 (sphere) / Steinhardt Q6 (3-D) rather than Re6Zr's global bond average, which is identically zero on the sphere by symmetry. Substitution, not transfer.",
+    "D5: sigma_s (CMB) and sigma_G (DESI) are chosen by fiat, not from external physics as Re6Zr's a_tri(B) was. sigma_s was fixed on SIMULATIONS; sigma_G = 16 Mpc/h is a round value at twice the grid cell. Both are frozen here.",
+    "D6: no absolute physical expectation exists for a_ref; a_ref = 6*sigma (CMB) and 6*sigma_G (DESI) is a convention that reproduces the Re6Zr filter-to-spacing ratio and fixes the alpha truncation. Because S1 is scale-invariant, a_ref affects only the truncation, whose inertness is checked (C4).",
+    "D7: the CMB point cloud lives on a sphere embedded in R^3 and the alpha complex is Euclidean in R^3 (chords). Great-circle distances are reported alongside."
+  ],
+
+  "commands": {
+    "policy": "every number in the report comes from a committed script that was actually run; every command is recorded in results/run_commands.txt with its exact form",
+    "form": "timeout <seconds> prlimit --as=8589934592 -- /home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python audit/cosmic_vorticity/scripts/<script>.py <args>"
+  }
+}

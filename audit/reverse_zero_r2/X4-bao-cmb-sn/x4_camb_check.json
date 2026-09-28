@@ -1,0 +1,123 @@
+{
+ "rd_spline_vs_camb": {
+  "seed": 9100000,
+  "n": 40,
+  "max_abs_rel_err": 1.3786268012294656e-05,
+  "grid": {
+   "wb": [
+    0.0185,
+    0.0275,
+    10
+   ],
+   "wm": [
+    0.04000000000000001,
+    0.42,
+    60
+   ]
+  }
+ },
+ "table_implied_point": {
+  "Omega_m": 0.316253911052831,
+  "h": 0.6744228296348402,
+  "omega_m": 0.1438468748555401,
+  "omega_b": 0.02235976,
+  "paper_formulas": {
+   "R": 1.7502349999999998,
+   "lA": 301.4707,
+   "zstar": 1091.9944644243146,
+   "Or": 9.128507551383034e-05
+  },
+  "camb_theta_star": {
+   "R": 1.7505945165889085,
+   "lA": 301.41636371071644,
+   "zstar": 1089.9949241874292,
+   "rd": 146.88235655386276,
+   "rstar": 144.22416363877596,
+   "DMstar": 13837.415526658342
+  },
+  "table_means": {
+   "R": 1.750235,
+   "lA": 301.4707
+  },
+  "camb_minus_table_R_over_sigmaR": 0.07815578019750809,
+  "camb_minus_table_lA_over_sigmalA": -0.6071093774702014,
+  "chi2_cmb_paper_formulas": 4.653904488892951e-27,
+  "chi2_cmb_camb": 0.5419798850936283,
+  "note": "paper-formula lA reproduces the table mean by construction of the solve; the CAMB theta*-based lA at the same parameters is offset, which is why the primary fit uses the paper's own definition"
+ },
+ "components_at_camb_zstar": {
+  "zstar_camb": 1089.9949241874292,
+  "zstar_HS_code": 1091.9944644243146,
+  "DM_paper_formula_Mpc": 13834.225876892653,
+  "DM_camb_Mpc": 13837.415526658342,
+  "rs_paper_formula_Mpc": 144.34208941689477,
+  "rs_camb_Mpc": 144.22416363877596
+ },
+ "paper_line78_point": {
+  "H0": 67.36,
+  "omega_m": 0.143,
+  "omega_b": 0.02237,
+  "paper_formulas": {
+   "R": 1.749599876105787,
+   "lA": 301.8075156716134,
+   "zstar": 1091.9068900826396,
+   "Or": 9.15080721218627e-05
+  },
+  "camb_theta_star": {
+   "R": 1.7499616656907553,
+   "lA": 301.7534178701545,
+   "zstar": 1089.9074054634214,
+   "rd": 147.09640795774584,
+   "rstar": 144.4367871220556,
+   "DMstar": 13873.311719920746
+  },
+  "note": "TeX line 78 is commented out and gives the TT,TE,EE+lowE+lensing values; used only as a second reference point"
+ },
+ "covariance_check": {
+  "sigma_from_published_invcov": [
+   0.00462101180588747,
+   0.088864091840637,
+   0.0001491182753474269
+  ],
+  "sigma_table": [
+   0.0046,
+   0.0895,
+   0.00015
+  ],
+  "corr_from_published_invcov": [
+   [
+    1.0,
+    0.4634167761387548,
+    -0.6597600806575934
+   ],
+   [
+    0.4634167761387549,
+    1.0,
+    -0.32729626824417446
+   ],
+   [
+    -0.6597600806575934,
+    -0.32729626824417435,
+    1.0000000000000002
+   ]
+  ],
+  "corr_table": [
+   [
+    1.0,
+    0.46,
+    -0.66
+   ],
+   [
+    0.46,
+    1.0,
+    -0.33
+   ],
+   [
+    -0.66,
+    -0.33,
+    1.0
+   ]
+  ],
+  "chi2_diff_at_1sigma_R_offset_published_vs_table_cov": -0.008392050994806333
+ }
+}
