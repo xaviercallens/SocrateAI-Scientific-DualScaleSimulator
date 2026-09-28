@@ -1,0 +1,4 @@
+# regenerable in ~6 s by `discrete_symmetry_lens.py --stage operators`; ~92 MB each,
+# so not committed (LeanFlow CLAUDE.md section 8: do not commit data or build artifacts)
+operators_*.npz
+__pycache__/

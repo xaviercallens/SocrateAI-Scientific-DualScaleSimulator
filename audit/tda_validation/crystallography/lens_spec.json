@@ -1,0 +1,147 @@
+{
+  "title": "Discrete-symmetry ('crystallinity') lens for the CMB and the cosmic web - design note and pre-registration",
+  "note_on_format": "This is the lens_spec.md-equivalent. It is JSON because the agent writing it cannot create .md files. It was written and committed BEFORE any lens code was run and BEFORE any real map was loaded.",
+  "date": "2026-09-19",
+  "worktree": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-tdaval",
+  "branch": "loop/tda-validation",
+  "directory": "audit/tda_validation/crystallography/",
+  "python": "/home/callensxavier_gmail_com/SocrateAI-Scientific-DualScaleSimulator/.venv-tda/bin/python (3.10.12; gudhi 3.13.0, healpy 1.20.0, numpy 2.2.6, scipy 1.15.3, camb 2.0.4)",
+  "execution_rule": "every python command is run as `prlimit --as=8589934592 -- <python> ...` in the foreground under `timeout`",
+
+  "1_what_this_is_and_is_not": {
+    "tier": "X (numerics), per LeanFlow CLAUDE.md section 5. Nothing here is proved. The only tier-B items are the exact finite-group and representation-theory checks listed in section 6 (exact arithmetic with negative controls).",
+    "honest_statement": [
+      "There is NO derivation from K3 x T^2 to any CMB or galaxy-survey observable. LeanMaster's Stream 8 says so itself, verbatim at docs/STREAM8_WHICH_K3.md:115-116 (v3.28.0, commit 64f905ffc63c07b4d7ec4b3a7a62bc975239f60d): \"(iii) Observables: none -- `N = 4`, non-chiral. Any consequence would be frozen before comparison (paper 11 protocol).\"",
+      "This lens is therefore an EXPLORATORY SEARCH TEMPLATE, not a prediction and not a test of K3 x T^2. It asks a well-posed statistical question -- 'does this sky carry more power in the subspace invariant under a particular finite rotation group than a Gaussian isotropic sky with the same power spectrum and the same mask does?' -- whose answer is meaningful on its own terms and carries no implication about string compactification either way.",
+      "The target groups are taken from LeanMaster's Stream 8 and from this project's D_4 work ONLY as a motivated shortlist of which finite groups to try first, out of the infinitely many one could try. That is a choice of search direction, not a derivation of a signal.",
+      "A DETECTION would mean: this sky has anomalous power in the G-invariant subspace relative to the stated null. It would NOT mean K3 x T^2, a Kummer surface, a D_4 lattice or any compactification is favoured; the same statistic fires for any physical or systematic effect that happens to align power with that subspace (foreground residuals, mask/beam systematics, a preferred axis of any origin).",
+      "A NON-DETECTION would mean: this sky is consistent with the null for these groups, these multipole bands and this orientation search. It would NOT falsify K3 x T^2, because no derivation connects the two. A null result is a perfectly good outcome of this exercise and is reported as such."
+    ]
+  },
+
+  "2_the_target_symmetries_verbatim": {
+    "source_repo": "/home/callensxavier_gmail_com/SocrateAI-Scientific-Agora-LeanMaster",
+    "source_version": "v3.28.0",
+    "source_commit": "64f905ffc63c07b4d7ec4b3a7a62bc975239f60d",
+    "quotes": [
+      {
+        "file_line": "docs/VERIFIED_FOUNDATION.md:194-195",
+        "verbatim": "The 192 elements of `(ℤ₂)⁴ ⋊ A₄` act as distinct automorphisms of `H²(Km A, ℚ)`. Their Frame shapes, from Lefschetz numbers of powers, are `1²⁴, 1⁶2⁸, 1⁶3⁶, 1⁴2²4⁴` (1, 27, 128, 36 elements): classes `1A, 2A, 3A, 4B`, all geometric.",
+        "note": "The group of order 192 is (ℤ₂)⁴ ⋊ A₄. It is NOT A₇ (Taormina-Wendland's order-40320 group) and NOT A₈ (the octad stabiliser). Neither A₇ nor A₈ appears anywhere in this lens."
+      },
+      {
+        "file_line": "docs/STREAM8_WHICH_K3.md:115-117",
+        "verbatim": "(iii) Observables: none -- `N = 4`, non-chiral. Any consequence would be frozen before comparison (paper 11 protocol). (iv) E3 (Kummer) is the next experiment: the Kummer K3s on the `τ = ω` ray are `T = A₂(2)` (`D = 12`, `first_kummer_attractive`)."
+      },
+      {
+        "file_line": "docs/STREAM8_WHICH_K3.md:60-61",
+        "verbatim": "Among attractive K3s, the Kummer ones are those with `a, b, c` even (`kummer_iff_even`); the first are `D = 12, 16`, the doubles of the self-dual points (`first_kummer_attractive`)"
+      }
+    ],
+    "D4_hurwitz": {
+      "statement_used": "The D_4 (Hurwitz) lattice: its 24 units, its 24 norm-2 roots, and its automorphism group of order 1152. This project's Track F computed |Aut(D_4)| = 1152 exhaustively.",
+      "what_this_lens_does_with_it": "The lens does NOT take 1152 on trust. discrete_symmetry_lens.py recomputes |Aut(D_4)| = 1152 exhaustively from the 24 norm-2 roots (tier B, exact integer arithmetic, with a negative control) and recomputes the 24 Hurwitz units. Only the 24 units enter the sphere action (section 3)."
+    }
+  },
+
+  "3_what_group_actually_acts_on_the_sky_and_the_homomorphism": {
+    "problem": "(ℤ₂)⁴ ⋊ A₄ of order 192 does not act on S^2. The (ℤ₂)⁴ factor is 2-torsion translation on the abelian surface A in the Kummer construction; translations have no action on a sphere of directions. Only the A₄ factor can act on S^2, and it does so through SO(3).",
+    "homomorphism_used": "The 24 Hurwitz units form the binary tetrahedral group 2T ⊂ the unit quaternions. The lens uses the standard double cover φ : Sp(1) -> SO(3), φ(q) : v ↦ q v q̄ for v a purely imaginary quaternion, written in the basis (i, j, k). ker φ = {±1}, so φ(2T) has order 24/2 = 12 and is the tetrahedral rotation group T ≅ A₄.",
+    "stated_consequence_1": "The group acting on S^2 has order 12, NOT 24. The lens verifies this by construction (the 24 quaternion units must collapse to exactly 12 distinct SO(3) matrices) rather than asserting it.",
+    "stated_consequence_2": "The control group is therefore C_12 (cyclic of order 12 about a fixed axis), the same order as the target, and not the target.",
+    "motivation_not_derivation": "The A₄ acting here is the same abstract A₄ that appears as the quotient factor in (ℤ₂)⁴ ⋊ A₄ and is realised concretely by the 24 Hurwitz units of D_4. That is the motivation for trying THIS group first. It is not a derivation that the sky should carry it."
+  },
+
+  "4_frame_shape_comparison_where_it_is_meaningful": {
+    "target_frame_shapes": "1²⁴ (1 element, class 1A), 1⁶2⁸ (27, 2A), 1⁶3⁶ (128, 3A), 1⁴2²4⁴ (36, 4B) -- element orders 1, 2, 3, 4 in the order-192 group.",
+    "what_the_SO(3)_image_has": "A₄ = φ(2T) has element orders {1, 2, 3} only: 1 identity, 3 elements of order 2 (rotations by π about the three coordinate axes), 8 elements of order 3 (rotations by 2π/3 about the four body diagonals).",
+    "pre_stated_boundary": "Classes 1A, 2A, 3A have counterparts in the S^2 action (orders 1, 2, 3). Class 4B (36 elements, order 4) has NO counterpart: the order-4 quaternion units ±i, ±j, ±k map under φ to rotations by π, i.e. order 2. The order-4 structure lives in the double cover and in the (ℤ₂)⁴ part, neither of which acts on the sphere. This is the boundary of 'where that comparison is meaningful'; the lens states it and does not fudge a match.",
+    "what_the_lens_checks": "the multiset of element orders of φ(2T) is {1:1, 2:3, 3:8}, and the orbit-size multiset of φ(2T) acting on S^2 (generic orbit 12; special orbits 4, 4, 6 at the fixed axes), reported alongside the Frame-shape cycle types with the mismatch stated."
+  },
+
+  "5_the_observable_what_would_and_would_not_carry_an_imprint": {
+    "would_carry_an_imprint": [
+      "A field on S^2 whose harmonic content is preferentially in the G-invariant subspace of each multipole. Concretely: for each ℓ, the (2ℓ+1)-dimensional representation of SO(3) restricted to G decomposes, and the trivial-isotypic part has dimension d_ℓ(G). A field with a genuine G-symmetric component has more of its ℓ-power inside that d_ℓ-dimensional subspace than an isotropic Gaussian field does.",
+      "Equivalently in real space: a field that is (partly) invariant under the 12 rotations of G, i.e. a field whose value repeats over the 12-point orbits of G.",
+      "A 3-D point set whose two-point structure repeats under a crystallographic group acting on the torus."
+    ],
+    "would_NOT_carry_an_imprint": [
+      "Any statistic that is itself rotation-invariant. The angular power spectrum C_ℓ, the 1-point PDF, and any isotropic 2-point function are blind to this by construction: rotating a map does not change them, and the G-invariant subspace has the same dimension in every orientation. This lens is necessarily a statistic of the a_ℓm PHASES relative to a chosen frame, not of the C_ℓ.",
+      "A continuous symmetry. A field invariant under a continuous subgroup of SO(3) (e.g. azimuthal) is a degenerate, much stronger condition and is not what is searched for here.",
+      "A smooth continuous defect (a cosmic string, a wall). Those are what the earlier searches looked for and did not find; this lens is a DIFFERENT observable and its null result would not be a second null on strings, nor its detection a detection of strings.",
+      "Anything at ℓ where d_ℓ(G) = 0. For A₄ the invariant dimension is 0 at ℓ = 1, 2, 5, so no A₄-symmetric pattern can exist at those multipoles at all. For C_12 there is no invariant beyond the axisymmetric m = 0 mode until ℓ >= 12. This is a hard, exact statement (tier B) and it dictates where the injections are placed."
+    ]
+  },
+
+  "6_exact_checks_to_pass_before_any_data_tier_B": {
+    "B1_group_closure": "the 12 SO(3) matrices are closed under multiplication, contain I, and every product is in the set to 1e-12; the 24 Hurwitz unit quaternions are closed under quaternion multiplication exactly (half-integer arithmetic).",
+    "B2_collapse": "exactly 12 distinct matrices come from 24 quaternions (double cover); each matrix has exactly 2 preimages ±q.",
+    "B3_element_orders": "order multiset of φ(2T) is {1:1, 2:3, 3:8}; of C_12 is {1:1, 2:1, 3:2, 4:2, 6:2, 12:4}.",
+    "B4_Aut_D4": "|Aut(D_4)| = 1152 by exhaustive integer search over maps of the 24 norm-2 roots that preserve the Gram matrix; negative control: the same search on A_3 = D_3 must give 48, and on Z^4 (not D_4) must give 384, so the search is not returning 1152 by construction.",
+    "B5_invariant_dimensions": "d_ℓ(G) computed two independent ways must agree exactly for ℓ = 0..64: (a) the character formula d_ℓ = (1/|G|) Σ_g χ_ℓ(θ_g) with χ_ℓ(θ) = sin((ℓ+1/2)θ)/sin(θ/2), χ_ℓ(0) = 2ℓ+1; (b) the numerical rank / trace of the projector P_G^(ℓ) = (1/|G|) Σ_g D^(ℓ)(g) built from Wigner-D matrices. PRE-STATED expected values for A₄ at ℓ = 0..6: 1, 0, 0, 1, 1, 0, 2. For C_12: d_ℓ = 1 + 2*floor(ℓ/12), i.e. 1 for every ℓ <= 11.",
+    "B6_projector": "P_G^(ℓ) is Hermitian and idempotent (||P^2 - P||_max < 1e-10) and trace(P) = d_ℓ.",
+    "B7_wigner_vs_healpy": "the in-house Wigner-D implementation (exp(-iβ J_y) by eigendecomposition of J_y, times the diagonal phases) must reproduce healpy.rotate_alm on a random seeded map to < 1e-8 relative, for several random Euler triples. This is the known-answer test of the rotation machinery."
+  },
+
+  "7_the_statistics": {
+    "orbit_average": "m_G = P_G T, realised in HARMONIC space as m_G's a_ℓm = P_G^(ℓ) a_ℓm, i.e. the exact orthogonal projector onto the G-invariant subspace. It is NOT computed by averaging hp.get_interp_val over the orbit: pixel-space interpolation is a smoothing operator that suppresses high-ℓ power for reasons unrelated to symmetry and would bias the statistic low in exactly the bands of interest.",
+    "residual": "r_G = T - m_G, whose a_ℓm are (I - P_G^(ℓ)) a_ℓm. By construction the two are orthogonal and ||T||^2 = ||m_G||^2 + ||r_G||^2 exactly (checked numerically).",
+    "crystallinity": "C_B(G, R) = [ Σ_{ℓ in B} || P_G^(ℓ) D^(ℓ)(R^-1) a_ℓ ||^2 ] / [ Σ_{ℓ in B} || a_ℓ ||^2 ], the fraction of band-B power lying in the G-invariant subspace when G is placed in orientation R. Norms use the real-field convention ||a_ℓ||^2 = |a_{ℓ 0}|^2 + 2 Σ_{m>0} |a_{ℓ m}|^2.",
+    "null_level_differs_by_group": "for an isotropic Gaussian field E[C_B] = Σ_{ℓ in B} d_ℓ (2ℓ+1) C_ℓ / Σ_{ℓ in B} (2ℓ+1)^2 C_ℓ approximately, and d_ℓ differs between A₄ and C_12. Raw crystallinity ratios are therefore NEVER compared across groups; each group is compared only against its own null ensemble.",
+    "tda_path": "lower-star persistence of m_G and of r_G on the HEALPix mask graph, giving Betti curves b0(ν) and b1(ν) over a threshold grid. Reported as a secondary, NOT gated."
+  },
+
+  "8_orientation_search": {
+    "why": "G ⊂ SO(3) is only defined up to conjugation; the sky has no preferred tetrahedral axis. Fixing one arbitrary axis would make a real signal at any other orientation invisible.",
+    "grid": "n_orient = 192 rotations, drawn once as uniformly-distributed unit quaternions from numpy.random.default_rng(20260919) and frozen. The identity is included as element 0. The SAME frozen grid is used for the data map and for every null and injected realisation, without exception.",
+    "coverage_note": "the normaliser of A₄ in SO(3) is S₄ (order 24), so SO(3)/N(A₄) has volume 1/24 of SO(3); 192 samples give of order 8 effective independent placements. This is coarse and is stated as a sensitivity limit, not hidden: a real signal at an orientation far from every grid point is attenuated. The injection test (section 9) measures the resulting loss of power directly, because each injection uses a RANDOM orientation not drawn from the grid."
+  },
+
+  "9_known_answer_injection_tests_mandatory_before_any_data": {
+    "construction": "a G-symmetrised pattern is built as a random unit vector (seeded) inside the G-invariant subspace at the injection multipoles, rotated to a random orientation (seeded, NOT on the search grid), scaled so that the injected power is a fraction f of the total band power of the host Gaussian sim.",
+    "injection_multipoles": {
+      "A4_target": "ℓ = 3, 4, 6 (d_ℓ = 1, 1, 2). These are the lowest ℓ where an A₄-invariant, non-axisymmetric pattern exists at all.",
+      "C12_control": "ℓ = 12, 13 (the lowest ℓ with a C_12-invariant mode beyond m = 0)."
+    },
+    "amplitude_ladder": "f in {0.005, 0.01, 0.02, 0.05, 0.10, 0.20} of band power, plus f = 0 (the null check that the test does not fire on unsignalled maps).",
+    "realisations": "100 independent host sims per amplitude, seeds stated in the output.",
+    "criterion": "the smallest f at which POWER >= 0.95 at α = 0.05, where power is the fraction of the 100 realisations whose rank p-value against the null ensemble is <= 0.05. This is the reported sensitivity.",
+    "group_specificity_both_directions": [
+      "inject the C_12 pattern -> the A₄ statistic must NOT fire (power at α = 0.05 consistent with 0.05);",
+      "inject the A₄ pattern -> the C_12 statistic must NOT fire."
+    ]
+  },
+
+  "10_nulls": {
+    "sky": "N_NULL = 200 Gaussian realisations from hp.synfast using the pseudo-C_ℓ/f_sky spectrum estimated by hp.anafast on the SAME masked data map, with ℓ = 0 and ℓ = 1 zeroed before synfast (the mask-induced monopole/dipole residual in a masked-map anafast estimate is not physical CMB anisotropy; this follows the v2 fix already documented in audit/reverse_zero/E5-cmb-tda/cmb_tda.py). Base seed stated in the output. Every sim passes through the IDENTICAL code path as the data: same mask, same map2alm, same ℓ = 0,1 zeroing, same frozen orientation grid.",
+    "mask_decision_pre_stated": "pseudo-alm: the map is multiplied by the binary mask and hp.map2alm is applied. The mask breaks isotropy and will itself create a preferred orientation (the galactic cut); because every null realisation is masked identically and searched over the identical grid, that preference is absorbed into the null distribution. The alternative (restricting to pixels whose whole G-orbit is unmasked) is not used, and this is stated here before running so it cannot be switched after seeing the data.",
+    "cosmic_web": "the CAMB lognormal mocks of audit/reverse_zero/E5-cosmic-web-tda-scaled/ (e5b_lognormal_and_poisson_null.py, mock stack e5b_mock_betti_stacks.npz) are the intended null for the point-set path. Whether that path is RUN on real data in this session depends on the remaining budget; if it is not run, the report says so and the point-set code is delivered with its synthetic known-answer test only.",
+    "p_values": "EMPIRICAL RANK p-values only: p = (1 + #{sims with statistic >= data}) / (N + 1). No chi^2 tail is used. Reason, stated before running: this project's own audit/tda_validation/simple_suite/report.json records that cmb_tda.coarse_stats chi^2 p-values are miscalibrated (KS p = 0.000109 for the sublevel b1 curve, caused by degrees-of-freedom counting over zero-variance coarse bins, with a latent 1e-8-ridge/pinv hazard). That defect is not inherited. With N = 200 the p-value floor is 1/201 = 0.004975."
+  },
+
+  "11_decision_rule_and_multiplicity_pre_stated": {
+    "primary_statistic": "Z = max over the 4 bands b of z_b, where z_b = (C_b^max - mean_null C_b^max) / std_null C_b^max and C_b^max = max over the 192 frozen orientations of the band-b crystallinity. Taking the max over bands INSIDE the statistic and calibrating Z against the null distribution of the same max absorbs the band multiplicity exactly; no separate band correction is applied. Null realisations are standardised leave-one-out.",
+    "bands": "B1 = ℓ in [2, 8], B2 = [9, 16], B3 = [17, 32], B4 = [33, 64]. lmax = 64 throughout; NSIDE_WORK = 128 (so lmax = nside/2, comfortably band-limited).",
+    "number_of_tests": "4. Two groups {A₄ (target), C_12 (control)} x two maps {WMAP 9yr ILC (primary), Planck SMICA (secondary, run only if budget allows)}. Nothing else is tested on real data.",
+    "alpha": "0.05 family-wise, Bonferroni over the 4 tests -> a single test is declared a detection only if its rank p <= 0.0125.",
+    "gate": "the pre-registered primary test is A₄ on the WMAP 9yr ILC map. It is applied ONCE. No re-tuning of bands, lmax, orientation grid, mask treatment or statistic after any real-map number is seen. The secondary TDA (Betti curves of m_G and r_G) and the point-set path are reported, not gated.",
+    "what_is_reported_either_way": "the p-value with its floor, the Bonferroni threshold, the full per-band z, and an explicit statement that a null result is the expected and acceptable outcome given section 1."
+  },
+
+  "12_tda_complex_provenance": {
+    "tda_fixed_not_found": "the task pointed at audit/tda_validation/tda_fixed/ on branch loop/tda-simple. It does not exist. Command run: `git ls-tree -r --name-only loop/tda-simple | grep -i tda_fixed` -> empty output; `ls -R /mnt/disks/disk-socrateai-local-1/dualscale-wt-tdasimple/audit/tda_validation/` -> the only directory is `simple_suite`.",
+    "what_is_used_instead": "cmb_tda.build_topology / betti_curves_from_topology for b0 and b1 ONLY. audit/tda_validation/simple_suite/report.json records its defect precisely: \"the full-sky nside-64 complex (V=49152, E=196596, T=196592) has Betti numbers [1, 0, 49147] instead of (1, 0, 1) for a triangulated S2: every set of 4 mutually 8-adjacent pixels around a pixel corner gives 4 triangles and no tetrahedron (a hollow tetrahedron)\", with the consequence \"b0 and b1 are unaffected\". Accordingly b2 is never used and the curve b0 - b1 is NEVER called an Euler characteristic here (that mislabel is the second half of the same finding).",
+    "cross_check": "gudhi CubicalComplex lower-star persistence on a gnomonic projection of the same field, as an independent b0/b1 cross-check, if budget allows."
+  },
+
+  "13_outputs": {
+    "groups_check.json": "tier-B group and representation checks (section 6)",
+    "operators.npz": "cached Wigner-D / projector operators for the frozen orientation grid",
+    "injection_power.json": "sensitivity ladder and both group-specificity directions (section 9)",
+    "null_ensemble.npz": "null Z statistics",
+    "real_map_result.json": "the single pre-registered application (section 11)",
+    "tda_secondary.json": "Betti curves of m_G and r_G",
+    "pointcloud_kat.json": "point-set path known-answer test",
+    "report.json": "the assembled result with every command, seed and hardware note"
+  }
+}

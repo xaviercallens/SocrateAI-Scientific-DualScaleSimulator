@@ -1,0 +1,121 @@
+{
+ "stage": "probe",
+ "tier": "X",
+ "why": "Fixed-orientation amplitude probe.  This exists so that the numbers cited\n    in report.json for the linear-interference effect and for the uneven pattern\n    draw come from a COMMITTED script and not from an inline `python -c`\n    (LeanFlow CLAUDE.md section 6: no numbers without a script).\n\n    It injects the PRE-REGISTERED pattern (uneven per-l draw, seed\n    INJ_PATTERN_SEED) UNROTATED into one fixed Gaussian host (seed 1) and reads\n    the crystallinity at grid element 0, which is the identity orientation, so\n    the group is exactly where the pattern is.  Any failure to rise is then a\n    property of the statistic, not a misalignment.\n    ",
+ "host_sim_seed": 1,
+ "pattern_seed": 31415,
+ "injection_ells": [
+  3,
+  4,
+  6
+ ],
+ "pattern_power_per_l_preregistered_draw": {
+  "3": 0.007094643561548961,
+  "4": 0.21398222331370675,
+  "6": 0.7789231331247444
+ },
+ "pattern_power_per_l_equal_power_draw": {
+  "3": 0.3333333333333335,
+  "4": 0.3333333333333334,
+  "6": 0.33333333333333337
+ },
+ "amplitude_scan_at_fixed_identity_orientation": [
+  {
+   "f": 0.0,
+   "C_at_identity_orientation": [
+    0.14794730829973554,
+    0.15218832738702773,
+    0.07917548387892252,
+    0.08179657769384693
+   ],
+   "C_b_max_over_grid": [
+    0.15171114935490274,
+    0.18230958378879308,
+    0.1322347583149958,
+    0.10416584521592195
+   ]
+  },
+  {
+   "f": 0.05,
+   "C_at_identity_orientation": [
+    0.09579478821628343,
+    0.15218832738702773,
+    0.07917548387892252,
+    0.08179657769384693
+   ],
+   "C_b_max_over_grid": [
+    0.1582996256704166,
+    0.18230958378879308,
+    0.1322347583149958,
+    0.10416584521592195
+   ]
+  },
+  {
+   "f": 0.2,
+   "C_at_identity_orientation": [
+    0.07077179473937706,
+    0.15218832738702773,
+    0.07917548387892252,
+    0.08179657769384693
+   ],
+   "C_b_max_over_grid": [
+    0.16082714797433825,
+    0.18230958378879308,
+    0.1322347583149958,
+    0.10416584521592195
+   ]
+  },
+  {
+   "f": 1.0,
+   "C_at_identity_orientation": [
+    0.14181034856162944,
+    0.15218832738702773,
+    0.07917548387892252,
+    0.08179657769384693
+   ],
+   "C_b_max_over_grid": [
+    0.16715978683364055,
+    0.18230958378879308,
+    0.1322347583149958,
+    0.10416584521592195
+   ]
+  },
+  {
+   "f": 5.0,
+   "C_at_identity_orientation": [
+    0.546012363593555,
+    0.15218832738702773,
+    0.07917548387892252,
+    0.08179657769384693
+   ],
+   "C_b_max_over_grid": [
+    0.546012363593555,
+    0.18230958378879308,
+    0.1322347583149958,
+    0.10416584521592195
+   ]
+  },
+  {
+   "f": 50.0,
+   "C_at_identity_orientation": [
+    0.9424926018564488,
+    0.15218832738702773,
+    0.07917548387892252,
+    0.08179657769384693
+   ],
+   "C_b_max_over_grid": [
+    0.9424926018564488,
+    0.18230958378879308,
+    0.1322347583149958,
+    0.10416584521592195
+   ]
+  }
+ ],
+ "analytic_null_level_band1": {
+  "sum_d_l_over_band": 6,
+  "sum_2l+1_over_band": 77,
+  "ratio": 0.07792207792207792
+ },
+ "reading": "the machinery is correct -- at large f the crystallinity at the identity orientation tends to 1 -- but at small f it can FALL, because the cross term 2Re<P a, s p> dominates s^2 and is destructive as often as constructive.  That is the sensitivity floor of a power-FRACTION statistic: it is set by the sample variance of the invariant subspace's own random content.",
+ "peak_rss_mb": 219.45703125
+}

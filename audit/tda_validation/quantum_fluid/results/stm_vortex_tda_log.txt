@@ -1,0 +1,11 @@
+H=3 kOe a=89.2nm n=72/65 aTDA/a=1.042 H0 IQR/med=0.158 psi6=0.229 | rand IQR/med=0.755 psi6=0.063
+H=4 kOe a=77.3nm n=123/121 aTDA/a=1.053 H0 IQR/med=0.088 psi6=0.194 | rand IQR/med=0.728 psi6=0.040
+H=5 kOe a=69.1nm n=126/118 aTDA/a=1.039 H0 IQR/med=0.112 psi6=0.375 | rand IQR/med=0.736 psi6=0.043
+H=10 kOe a=48.9nm n=123/121 aTDA/a=1.051 H0 IQR/med=0.087 psi6=0.370 | rand IQR/med=0.732 psi6=0.040
+H=15 kOe a=39.9nm n=127/120 aTDA/a=1.049 H0 IQR/med=0.079 psi6=0.536 | rand IQR/med=0.732 psi6=0.041
+H=20 kOe a=34.6nm n=122/121 aTDA/a=1.043 H0 IQR/med=0.069 psi6=0.637 | rand IQR/med=0.727 psi6=0.041
+H=25 kOe a=30.9nm n=124/121 aTDA/a=1.044 H0 IQR/med=0.105 psi6=0.486 | rand IQR/med=0.729 psi6=0.040
+H=30 kOe a=28.2nm n=125/121 aTDA/a=1.048 H0 IQR/med=0.098 psi6=0.442 | rand IQR/med=0.732 psi6=0.042
+H=40 kOe a=24.4nm n=122/121 aTDA/a=1.052 H0 IQR/med=0.098 psi6=0.509 | rand IQR/med=0.728 psi6=0.040
+H=50 kOe a=21.9nm n=122/121 aTDA/a=1.069 H0 IQR/med=0.091 psi6=0.113 | rand IQR/med=0.724 psi6=0.042
+H=70 kOe a=18.5nm n=124/121 aTDA/a=1.083 H0 IQR/med=0.129 psi6=0.090 | rand IQR/med=0.729 psi6=0.041

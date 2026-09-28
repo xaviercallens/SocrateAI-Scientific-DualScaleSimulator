@@ -14,6 +14,33 @@ classifies clusters into 3 String-Theoretic Equivalence Classes:
 =============================================================================
 """
 
+# =============================================================================
+# TODO (comment only -- no behaviour change; added 2026-09-19)
+#
+# This script classifies clusters as CosmicString / DomainWall / AttractorVacuum,
+# i.e. it looks for SMOOTH CONTINUOUS defects in a simulated point cloud.  The
+# corresponding searches on real data returned nothing.
+#
+# A complementary lens now exists that searches instead for residual DISCRETE
+# symmetry -- the G-orbit average, the G-antisymmetrised residual, the
+# per-band "crystallinity" (fraction of power in the G-invariant subspace),
+# and the orbit-distance residual / G-folded persistence for a point set:
+#
+#     audit/tda_validation/crystallography/discrete_symmetry_lens.py
+#         --stage pointcloud     (the point-set path relevant to this script)
+#     audit/tda_validation/crystallography/lens_spec.json
+#
+# The group it uses on S^2 is A_4, the image of the 24 Hurwitz units (the
+# binary tetrahedral group 2T) under q |-> (v |-> q v qbar); that image has
+# order 12, not 24.  The control is C_12.
+#
+# NOTE for anyone extending this file: the docstring above says "Kummer
+# orbifold K3 x T^2", but no observable in this script is derived from K3 x T^2.
+# LeanMaster Stream 8 states "Observables: none" (docs/STREAM8_WHICH_K3.md:115,
+# v3.28.0).  The crystallography lens is an exploratory search template
+# (tier X), not a prediction.
+# =============================================================================
+
 import os
 import sys
 import json

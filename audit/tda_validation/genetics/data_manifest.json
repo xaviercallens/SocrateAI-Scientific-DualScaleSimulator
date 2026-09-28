@@ -1,0 +1,144 @@
+{
+ "data_root": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/tda_validation/genetics",
+ "files": {
+  "buettner/G1_singlecells_counts.txt": {
+   "source": "https://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/805/E-MTAB-2805/Files/G1_singlecells_counts.txt",
+   "sha256": "ad05fa286b635fbe7952b471f4b0842226ffdd124d99a479cb4bdba5d36a6b18",
+   "size_bytes": 10298280
+  },
+  "buettner/S_singlecells_counts.txt": {
+   "source": "https://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/805/E-MTAB-2805/Files/S_singlecells_counts.txt",
+   "sha256": "724e799c3f45e4044b670795a65836fc978852a0466f06edef23bfbf6b1daab8",
+   "size_bytes": 10374172
+  },
+  "buettner/G2M_singlecells_counts.txt": {
+   "source": "https://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/805/E-MTAB-2805/Files/G2M_singlecells_counts.txt",
+   "sha256": "0f64bfb20e288445d12f95e7fb6605394f642e2d832a7f6cb509aaacf2deea55",
+   "size_bytes": 10384389
+  },
+  "buettner/E-MTAB-2805.sdrf.txt": {
+   "source": "https://ftp.ebi.ac.uk/biostudies/fire/E-MTAB-/805/E-MTAB-2805/Files/E-MTAB-2805.sdrf.txt",
+   "sha256": "3b53d6f801aced9c01bc2c1bb0f283d206cd607d68557c1743990585877b345a",
+   "size_bytes": 384100
+  },
+  "genelists/Mus_musculus.csv": {
+   "source": "https://raw.githubusercontent.com/hbc/tinyatlas/master/cell_cycle/Mus_musculus.csv",
+   "sha256": "48e1c82255c5f7a31a34b7ecb6f0af76795adb63400cf2b26594fd96b14ea96a",
+   "size_bytes": 3093
+  },
+  "genelists/Homo_sapiens.csv": {
+   "source": "https://raw.githubusercontent.com/hbc/tinyatlas/master/cell_cycle/Homo_sapiens.csv",
+   "sha256": "20a0e95601015727d6c8666aeca8c7de3394c500e2273955b14302a5358c4fd8",
+   "size_bytes": 2802
+  },
+  "u2os/GSE146773_Counts.csv.gz": {
+   "source": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE146nnn/GSE146773/suppl/GSE146773_Counts.csv.gz",
+   "sha256": "e2f2e79dba3ae39f3e9528a96f12caf4d240e42f3ccde73a47fe12a9dbc0c563",
+   "size_bytes": 27824191
+  },
+  "u2os/GSE146773_fucci_coords.csv.gz": {
+   "source": "https://ftp.ncbi.nlm.nih.gov/geo/series/GSE146nnn/GSE146773/suppl/GSE146773_fucci_coords.csv.gz",
+   "sha256": "16402c0b6eed500169d22d459be35ad182a0ba1a24ec4a01a0fa85cdc6a7e471",
+   "size_bytes": 42458
+  },
+  "caulobacter/GSM1120445_Laublab_BglII_HiC_NA1000_swarmer_cell_untreated_replicate1_overlap_after_normalization.txt.gz": {
+   "source": "https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM1120nnn/GSM1120445/suppl/GSM1120445_Laublab_BglII_HiC_NA1000_swarmer_cell_untreated_replicate1_overlap_after_normalization.txt.gz",
+   "sha256": "3eeec66d9b5cdeade44419c46bdb861a0965d0de94c09c3f4681abc4ec77e303",
+   "size_bytes": 153834
+  },
+  "ecoli/GSM2870407_mat_BC70_TACT_wt_MM_30C.txt.gz": {
+   "source": "https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM2870nnn/GSM2870407/suppl/GSM2870407_mat_BC70_TACT_wt_MM_30C.txt.gz",
+   "sha256": "955000f0d6232dd13c875f5a5689c0a17b98d1ab98f5cb69c5ca5b194a3db91d",
+   "size_bytes": 534750
+  },
+  "gm12878/gm12878_insitu_combined_chr1_145000000_249250621_250kb_KR_observed.npy": {
+   "source": "DERIVED by fetch_gm12878_chr1q.py: hicstraw.straw('observed','KR','https://hicfiles.s3.amazonaws.com/hiseq/gm12878/in-situ/combined.hic','1:145000000:249250621','1:145000000:249250621','BP',250000) (Rao et al. 2014, GSE63525); the .hic file was read remotely, not downloaded",
+   "sha256": "e38104d38347c11b48617c4fecc1f6e78579fe411f40e28618e93ac6913c47bc",
+   "size_bytes": 1397920
+  },
+  "influenza/genomeset.dat.gz": {
+   "source": "https://ftp.ncbi.nih.gov/genomes/INFLUENZA/genomeset.dat.gz",
+   "sha256": "385a15f99cf83a9380a002fb8bb12630135ab082c246cd7abb6aade1318dfed6",
+   "size_bytes": 4601594
+  },
+  "influenza/influenza_na.dat.gz": {
+   "source": "https://ftp.ncbi.nih.gov/genomes/INFLUENZA/influenza_na.dat.gz",
+   "sha256": "f35ea13ce3e3235bf5ef1b3c4c607fc2a507786a816fa66658fade34e1a4390f",
+   "size_bytes": 7101508
+  },
+  "influenza/influenza.fna.gz": {
+   "source": "https://ftp.ncbi.nih.gov/genomes/INFLUENZA/influenza.fna.gz",
+   "sha256": "1ab671be629a7dff46ea683949bfb1c12337689d695bfeca61db0f014f917a70",
+   "size_bytes": 103949060
+  },
+  "influenza/README": {
+   "source": "https://ftp.ncbi.nih.gov/genomes/INFLUENZA/README",
+   "sha256": "67421eddead7b66ae9ce6798f55922300c0361aa4f9e6d5d1fc826956360e113",
+   "size_bytes": 3590
+  },
+  "rcsb_reference/1CRN.pdb": {
+   "source": "https://files.rcsb.org/download/1CRN.pdb",
+   "sha256": "42199a30a0701864a2a5cc76cd7f35cc544cd0e65fbcf63e03c166543249b811",
+   "size_bytes": 49491
+  },
+  "rcsb_reference/1UBQ.pdb": {
+   "source": "https://files.rcsb.org/download/1UBQ.pdb",
+   "sha256": "d4a6812d8951cf6594e6a0763f089e35f5a80b62acb3c117b2c5565228a7b161",
+   "size_bytes": 78570
+  },
+  "rcsb_reference/4OBE.pdb": {
+   "source": "https://files.rcsb.org/download/4OBE.pdb",
+   "sha256": "a294349c51d3d3218b164f4202fb88263247edc08d7d48b68e89bfd9896e21d2",
+   "size_bytes": 750465
+  },
+  "influenza/work/aln_seg1.npy": {
+   "source": "DERIVED by test3_influenza.py prep (FAMSA via pyfamsa 0.7.0, default parameters, 300 genomes)",
+   "sha256": "2ebe6b0bbd5c667ca7f868d124f3cd26eb99754c417df43a02b529bfacbaa068",
+   "size_bytes": 710828
+  },
+  "influenza/work/aln_seg2.npy": {
+   "source": "DERIVED by test3_influenza.py prep (FAMSA via pyfamsa 0.7.0, default parameters, 300 genomes)",
+   "sha256": "9c10f6e2ae774904e7dcbdf0e51a66813085006a42c743efd4de115b3a223e26",
+   "size_bytes": 702428
+  },
+  "influenza/work/aln_seg3.npy": {
+   "source": "DERIVED by test3_influenza.py prep (FAMSA via pyfamsa 0.7.0, default parameters, 300 genomes)",
+   "sha256": "55af5e960ca9563444f005c17196c62cd1523729d25633ec59fb7be1bcf783c8",
+   "size_bytes": 676628
+  },
+  "influenza/work/aln_seg4.npy": {
+   "source": "DERIVED by test3_influenza.py prep (FAMSA via pyfamsa 0.7.0, default parameters, 300 genomes)",
+   "sha256": "3e8b60adc6d4248dedba2de750b958693b50785ef761acfab2cac44ede0db9a0",
+   "size_bytes": 575528
+  },
+  "influenza/work/aln_seg5.npy": {
+   "source": "DERIVED by test3_influenza.py prep (FAMSA via pyfamsa 0.7.0, default parameters, 300 genomes)",
+   "sha256": "3eb98f5770e7fd02371007bd2211665e6cefd288f8c7c8f543db3a138f597eff",
+   "size_bytes": 475028
+  },
+  "influenza/work/aln_seg6.npy": {
+   "source": "DERIVED by test3_influenza.py prep (FAMSA via pyfamsa 0.7.0, default parameters, 300 genomes)",
+   "sha256": "e2cd9024b6324b9ba0661a877a9430f31dec359940c90e4c5ebd2d3419deb4d9",
+   "size_bytes": 467228
+  },
+  "influenza/work/aln_seg7.npy": {
+   "source": "DERIVED by test3_influenza.py prep (FAMSA via pyfamsa 0.7.0, default parameters, 300 genomes)",
+   "sha256": "830465fd7316c63cdf3092f23ddf052604bd00dba170e2ba7a8257431675ad5b",
+   "size_bytes": 319028
+  },
+  "influenza/work/aln_seg8.npy": {
+   "source": "DERIVED by test3_influenza.py prep (FAMSA via pyfamsa 0.7.0, default parameters, 300 genomes)",
+   "sha256": "e59903e9175abc348957cdd788f32c3dec32c3b17a6265ce7cb6b36f32f17708",
+   "size_bytes": 276728
+  },
+  "influenza/work/prep_info.json": {
+   "source": "DERIVED by test3_influenza.py prep (strain names, accessions, subtypes of the 300 genomes)",
+   "sha256": "08d26f486bd33090852b03725b36da0f6cce595f2c8c1daea0be0bed27f997b3",
+   "size_bytes": 61328
+  }
+ },
+ "failed_or_unused_urls": {
+  "https://raw.githubusercontent.com/scverse/scanpy_usage/master/180209_cell_cycle/data/regev_lab_cell_cycle_genes.txt": "HTTP 404 (1 try); not needed: the tinyatlas lists were used instead",
+  "https://raw.githubusercontent.com/hbc/tinyatlas/master/cell_cycle/README.md": "HTTP 404 (1 try); documentation only"
+ }
+}

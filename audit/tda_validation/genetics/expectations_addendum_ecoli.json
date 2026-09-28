@@ -1,0 +1,21 @@
+{
+  "_meta": {
+    "written": "2026-09-19, AFTER test 2 (Caulobacter) smoke run and post-hoc diagnostics, BEFORE any computation on the E. coli matrix (only its header/shape were read: 928 x 928 raw counts, 5 kb bins, row/column labels bin-2500 ...).",
+    "why": "Test 2 on Caulobacter did not give a dominant H1 (smoke run and posthoc_diagnostics.json: P1/P2 about 1.05 alpha path, 1.36 Rips; 41% negative-eigenvalue mass in classical MDS; mirror-arm contacts C(i, N-1-i) = 0.0038 vs 0.0052 at offset 20, i.e. the two arms are juxtaposed as Le et al. 2013 report). The addendum tests a circular chromosome WITHOUT reported arm juxtaposition. It is a NEW pre-stated test; it does not replace or re-score test 2, whose verdict stands as pre-stated.",
+    "test2_compute_deviation": "Test 2 null sizes reduced for compute (machine load ~26 on 8 cores): alpha-path linear null 1000 -> 500, Rips null 200 -> 50. p-value floors become 1/501 and 1/51. The binding criterion (i) P1/P2 >= 2 does not depend on the null."
+  },
+  "test_2b_circular_chromosome_Ecoli_3Cseq": {
+    "data": {
+      "accession": "GEO GSE107301, sample GSM2870407 (3C-seq of E. coli wt cells in exponential phase 30C, minimal medium; raw contact counts binned at 5 kb)",
+      "file": "https://ftp.ncbi.nlm.nih.gov/geo/samples/GSM2870nnn/GSM2870407/suppl/GSM2870407_mat_BC70_TACT_wt_MM_30C.txt.gz",
+      "citation": "Lioy V.S. et al., Multiscale structuring of the E. coli chromosome by nucleoid-associated and condensin proteins, Cell 172, 771-783 (2018), doi:10.1016/j.cell.2017.12.027"
+    },
+    "published_claim": "E. coli K-12 MG1655 has a single circular chromosome (GenBank U00096.2, 'Escherichia coli str. K-12 substr. MG1655, complete genome', topology=circular, 4,639,675 bp). Lioy et al. 2018: 'Bacterial genetic information is generally carried on a circular chromosome with a single origin of replication from which two replication forks proceed bidirectionally toward the opposite terminus region'; they describe a ter domain and MukBEF/HU-promoted megabase contacts outside ter, and do not report the ori-ter arm colinearity seen in Caulobacter.",
+    "our_topological_operationalization": "Same as test 2: d = C^(-1/3); one dominant H1 class (the ring).",
+    "preprocessing": "Read the 928 x 928 raw count matrix (header row/column dropped); sum 2 x 2 blocks into 10 kb bins (464 bins; the last 5 kb bin, if unpaired, is kept alone); set the main diagonal to 0; drop bins whose row sum is below median - 3*MAD (MAD x 1.4826) of row sums; iterative correction (matrix balancing to equal row sums, at most 200 iterations or until max |row sum / mean - 1| < 1e-6); remaining off-diagonal zeros -> half the smallest positive value; d = C^(-1/3). Alpha path: classical MDS to 3-D -> alpha_persistence. Rips path: RipsComplex on the full distance matrix.",
+    "null": "Same linear-polymer null as test 2 (circular residual reference), n = 500 alpha path (seeds 0..499), 50 Rips (seeds 0..49). No offset-1 imputation (offset-1 is measured in this matrix).",
+    "negative_control_internal": "Cut the ring: delete the 46 consecutive 10 kb bins (10% of the genome) centred on the ter/dif region at about 1.59 Mb (10 kb bins 136-181, indices after binning and before QC drops); the remaining bins are re-ordered as a chain.",
+    "negative_control_external": "Same GM12878 chr1 q-arm matrix as test 2.",
+    "pass_rule": "PASS iff (i) E. coli P1/P2 >= 2.0 on the alpha path; (ii) S p <= 0.01 vs the linear null; (iii) the ter-cut control does NOT satisfy both (i) and (ii); (iv) the GM12878 control does NOT satisfy both. Rips path reported with the same criteria as a cross-check."
+  }
+}

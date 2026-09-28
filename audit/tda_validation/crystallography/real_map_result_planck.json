@@ -1,0 +1,161 @@
+{
+ "stage": "data",
+ "tier": "X",
+ "map": "planck",
+ "meta": {
+  "map_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/planck_maps/COM_CMB_IQU-smica_2048_R3.00_full.fits",
+  "mask_path": "/mnt/disks/disk-socrateai-local-1/dualscale-data-r3/planck_maps/COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits",
+  "native_nside_map": 2048,
+  "native_nside_mask": 2048,
+  "downgrade": "hp.ud_grade to NSIDE_WORK=128; mask ud_graded as float then thresholded at >= 0.5 to a binary mask; no extra smoothing",
+  "fsky_work": 0.7848358154296875,
+  "map_sha256": "60952c645eb33d151905ddf5837477e15ca02a3261feca4ceca3c3feece4f9ac",
+  "mask_sha256": "23f49a3479073408b83a7f1bb2cca490d9be7f934b2e0e891524b6a1d06a5fc4"
+ },
+ "bands": [
+  [
+   2,
+   8
+  ],
+  [
+   9,
+   16
+  ],
+  [
+   17,
+   32
+  ],
+  [
+   33,
+   64
+  ]
+ ],
+ "lmax": 64,
+ "n_orient": 192,
+ "orientation_seed": 20260919,
+ "n_null": 200,
+ "null_base_seed": 900000,
+ "p_floor": 0.004975124378109453,
+ "alpha_family": 0.05,
+ "n_tests": 4,
+ "alpha_bonferroni": 0.0125,
+ "tests": {
+  "A4": {
+   "C_b_max_data": [
+    0.20784535666784798,
+    0.20693027756980545,
+    0.12331972356405493,
+    0.10157044358153096
+   ],
+   "C_b_max_null_mean": [
+    0.22157569786271109,
+    0.18656486825158075,
+    0.12596870702116167,
+    0.10482833299416844
+   ],
+   "C_b_max_null_std": [
+    0.04624657352003427,
+    0.023737133341550504,
+    0.006851726678285252,
+    0.00327110791182589
+   ],
+   "z_per_band": [
+    -0.29689423777342216,
+    0.85795571963933,
+    -0.3866154593559595,
+    -0.9959590146382447
+   ],
+   "Z_max_over_bands": 0.85795571963933,
+   "argmax_band": [
+    9,
+    16
+   ],
+   "best_orientation_index_per_band": [
+    52,
+    15,
+    95,
+    186
+   ],
+   "rank_p": 0.5771144278606966,
+   "detection_at_bonferroni": false,
+   "invariant_dims_l0_to_l16": [
+    1,
+    0,
+    0,
+    1,
+    1,
+    0,
+    2,
+    1,
+    1,
+    2,
+    2,
+    1,
+    3,
+    2,
+    2,
+    3,
+    3
+   ]
+  },
+  "C12": {
+   "C_b_max_data": [
+    0.23318119502759646,
+    0.1815337773290015,
+    0.12498023238813813,
+    0.11026669546620704
+   ],
+   "C_b_max_null_mean": [
+    0.2871042865916473,
+    0.17202409533336416,
+    0.12922080956742768,
+    0.10489830620491702
+   ],
+   "C_b_max_null_std": [
+    0.04458696708286552,
+    0.019345155561248335,
+    0.008449396484707451,
+    0.0032602941449899722
+   ],
+   "z_per_band": [
+    -1.2093913332080644,
+    0.4915795050357138,
+    -0.5018792983575294,
+    1.6465966021929381
+   ],
+   "Z_max_over_bands": 1.6465966021929381,
+   "argmax_band": [
+    33,
+    64
+   ],
+   "best_orientation_index_per_band": [
+    49,
+    106,
+    40,
+    59
+   ],
+   "rank_p": 0.21393034825870647,
+   "detection_at_bonferroni": false,
+   "invariant_dims_l0_to_l16": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    3,
+    3,
+    3,
+    3,
+    3
+   ]
+  }
+ },
+ "peak_rss_mb": 2967.41796875
+}

@@ -1,0 +1,455 @@
+{
+ "stage": "injection_ext",
+ "tier": "X",
+ "why_added": "Extended and broadband injection, ADDED AFTER the pre-registered ladder\n    was run and BEFORE any real map was looked at.  Reason, recorded here:\n\n      (i)  the pre-registered ladder (f <= 0.2, pattern confined to l = 3,4,6)\n           produced no power at all -- power stayed at the alpha = 0.05 level\n           everywhere -- so the required group-specificity demonstration was\n           vacuous: showing that the CONTROL statistic does not fire is\n           meaningless at an amplitude where the MATCHED statistic does not\n           fire either.  Specificity has to be shown at an amplitude where the\n           matched statistic reaches power >= 0.95.\n      (ii) the pre-registered pattern draw put 0.007 / 0.214 / 0.779 of its\n           power at l = 3 / 4 / 6, so a nominally three-multipole pattern was\n           effectively single-multipole.  The extended runs normalise the\n           pattern to EQUAL power per injection multipole.  That is a change to\n           the SIGNAL MODEL, not to the test statistic; the statistic, the\n           bands, the orientation grid, the nulls and the decision rule are\n           exactly as pre-registered and are not touched.\n      (iii) the task's own wording is \"a sum of G-orbit-symmetrised spherical\n           harmonics\", i.e. broadband.  Confining the signal to 3 multipoles was\n           a narrowing introduced here, and is the case where the statistic has\n           least power.\n\n    Nothing here is a data test and N_TESTS stays 4.\n    ",
+ "added_before_any_real_map_was_read": true,
+ "map_spectrum_from": "wmap",
+ "results": [
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "A4",
+   "injection_ells": [
+    3,
+    4,
+    6
+   ],
+   "n_injection_ells": 3,
+   "amplitude_fraction_of_injected_band_power": 0.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.01,
+   "power_C12_statistic": 0.07
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "A4",
+   "injection_ells": [
+    3,
+    4,
+    6
+   ],
+   "n_injection_ells": 3,
+   "amplitude_fraction_of_injected_band_power": 0.1,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.08,
+   "power_C12_statistic": 0.04
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "A4",
+   "injection_ells": [
+    3,
+    4,
+    6
+   ],
+   "n_injection_ells": 3,
+   "amplitude_fraction_of_injected_band_power": 0.2,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.12,
+   "power_C12_statistic": 0.1
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "A4",
+   "injection_ells": [
+    3,
+    4,
+    6
+   ],
+   "n_injection_ells": 3,
+   "amplitude_fraction_of_injected_band_power": 0.5,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.2,
+   "power_C12_statistic": 0.05
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "A4",
+   "injection_ells": [
+    3,
+    4,
+    6
+   ],
+   "n_injection_ells": 3,
+   "amplitude_fraction_of_injected_band_power": 1.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.47,
+   "power_C12_statistic": 0.05
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "A4",
+   "injection_ells": [
+    3,
+    4,
+    6
+   ],
+   "n_injection_ells": 3,
+   "amplitude_fraction_of_injected_band_power": 2.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.9,
+   "power_C12_statistic": 0.05
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "A4",
+   "injection_ells": [
+    3,
+    4,
+    6
+   ],
+   "n_injection_ells": 3,
+   "amplitude_fraction_of_injected_band_power": 5.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 1.0,
+   "power_C12_statistic": 0.05
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "C12",
+   "injection_ells": [
+    12,
+    13
+   ],
+   "n_injection_ells": 2,
+   "amplitude_fraction_of_injected_band_power": 0.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.07,
+   "power_C12_statistic": 0.03
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "C12",
+   "injection_ells": [
+    12,
+    13
+   ],
+   "n_injection_ells": 2,
+   "amplitude_fraction_of_injected_band_power": 0.1,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.05,
+   "power_C12_statistic": 0.03
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "C12",
+   "injection_ells": [
+    12,
+    13
+   ],
+   "n_injection_ells": 2,
+   "amplitude_fraction_of_injected_band_power": 0.2,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.03,
+   "power_C12_statistic": 0.02
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "C12",
+   "injection_ells": [
+    12,
+    13
+   ],
+   "n_injection_ells": 2,
+   "amplitude_fraction_of_injected_band_power": 0.5,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.11,
+   "power_C12_statistic": 0.12
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "C12",
+   "injection_ells": [
+    12,
+    13
+   ],
+   "n_injection_ells": 2,
+   "amplitude_fraction_of_injected_band_power": 1.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.11,
+   "power_C12_statistic": 0.44
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "C12",
+   "injection_ells": [
+    12,
+    13
+   ],
+   "n_injection_ells": 2,
+   "amplitude_fraction_of_injected_band_power": 2.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.14,
+   "power_C12_statistic": 0.77
+  },
+  {
+   "scenario": "narrow_equal_power_per_l",
+   "injected_group": "C12",
+   "injection_ells": [
+    12,
+    13
+   ],
+   "n_injection_ells": 2,
+   "amplitude_fraction_of_injected_band_power": 5.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.37,
+   "power_C12_statistic": 1.0
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "A4",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.06,
+   "power_C12_statistic": 0.02
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "A4",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.002,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.08,
+   "power_C12_statistic": 0.05
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "A4",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.005,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.06,
+   "power_C12_statistic": 0.06
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "A4",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.01,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.07,
+   "power_C12_statistic": 0.04
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "A4",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.02,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.11,
+   "power_C12_statistic": 0.03
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "A4",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.05,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.05,
+   "power_C12_statistic": 0.03
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "A4",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.1,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.12,
+   "power_C12_statistic": 0.04
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "A4",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.2,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.49,
+   "power_C12_statistic": 0.12
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "C12",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.0,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.05,
+   "power_C12_statistic": 0.07
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "C12",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.002,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.04,
+   "power_C12_statistic": 0.05
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "C12",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.005,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.07,
+   "power_C12_statistic": 0.05
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "C12",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.01,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.05,
+   "power_C12_statistic": 0.05
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "C12",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.02,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.06,
+   "power_C12_statistic": 0.08
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "C12",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.05,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.06,
+   "power_C12_statistic": 0.11
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "C12",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.1,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.08,
+   "power_C12_statistic": 0.23
+  },
+  {
+   "scenario": "broadband_l2_to_64",
+   "injected_group": "C12",
+   "injection_ells": [
+    2,
+    64
+   ],
+   "n_injection_ells": 63,
+   "amplitude_fraction_of_injected_band_power": 0.2,
+   "n_realisations": 100,
+   "alpha": 0.05,
+   "power_A4_statistic": 0.18,
+   "power_C12_statistic": 0.4
+  }
+ ],
+ "smallest_amplitude_with_power_0.95_at_alpha_0.05": {
+  "narrow_equal_power_per_l/A4": 5.0,
+  "narrow_equal_power_per_l/C12": 5.0,
+  "broadband_l2_to_64/A4": null,
+  "broadband_l2_to_64/C12": null
+ },
+ "group_specificity_at_a_detectable_amplitude": {
+  "narrow_equal_power_per_l: inject A4 at f=5": {
+   "matched_statistic_A4_power": 1.0,
+   "control_statistic_C12_power": 0.05,
+   "alpha": 0.05
+  },
+  "narrow_equal_power_per_l: inject C12 at f=5": {
+   "matched_statistic_C12_power": 1.0,
+   "control_statistic_A4_power": 0.37,
+   "alpha": 0.05
+  }
+ },
+ "peak_rss_mb": 305.94921875
+}
