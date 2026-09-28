@@ -97,7 +97,13 @@ N = 12*, and none would responsibly be read as favouring one.
   SUSY/ISD, not from a level.
 - **Stream 8, `WHICH_K3.md`**: three criteria (black-hole attractor, enhanced-symmetry/trapping,
   GTVW B-field) disagree with each other; "there is no single preferred K3 — ill-posed until one says
-  which physics is doing the selecting." The `D = 12` is the trapping criterion's answer alone.
+  which physics is doing the selecting." **Corrected by them the same day:** the `D = 12` does *not*
+  come from the enhanced-symmetry K3-factor criterion (P8.4c, §12, a rank-22 reading). It comes from a
+  separate **Tier-C** reading: moduli trapping on the T² factor at τ = ω (E2) combined with the Kummer
+  construction (E3), landing on the D₄ lattice with ω-structure → Kummer `T = A₂(2)`, `D = 12`
+  (`STREAM8_WHICH_K3.md` §G2, `DualScaleDyons/KummerD4.lean`). A candidate reading, not a selection —
+  which is exactly how `audit/K3_SELECTION.md` §3 already describes it (ρ = 20, rank-2 positive
+  definite, a rigid point; a different object from either level).
 
 **From Stream 1 (LeanProposal)**, same day: note received, left untracked for the owner to file.
 Attribution correction accepted: GE-8 is Stream 2's conclusion (as the table above says); Stream 1's
