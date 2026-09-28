@@ -1,0 +1,104 @@
+{
+ "written_before_computing_A5b": true,
+ "tier_of_prediction": "L (Kummer lattice / RM(1,4) code) + exact derivation",
+ "cases": {
+  "J_all16_coned_k0": {
+   "t": 5,
+   "F2": [
+    1,
+    0,
+    11,
+    5,
+    1
+   ],
+   "note": "already seen in A2/A5 (not a new test)"
+  },
+  "J_affine_hyperplane_x0_eq_0_k8": {
+   "t": 1,
+   "F2": [
+    1,
+    0,
+    15,
+    1,
+    1
+   ],
+   "F3": [
+    1,
+    0,
+    14,
+    0,
+    1
+   ]
+  },
+  "J_non_hyperplane_8set_k8": {
+   "t": 0,
+   "F2": [
+    1,
+    0,
+    14,
+    0,
+    1
+   ],
+   "F3": [
+    1,
+    0,
+    14,
+    0,
+    1
+   ]
+  },
+  "resolved_affine_2plane_k4": {
+   "t": 2,
+   "F2": [
+    1,
+    0,
+    12,
+    2,
+    1
+   ],
+   "F3": [
+    1,
+    0,
+    10,
+    0,
+    1
+   ]
+  },
+  "resolved_4_affinely_independent_k4": {
+   "t": 1,
+   "F2": [
+    1,
+    0,
+    11,
+    1,
+    1
+   ],
+   "F3": [
+    1,
+    0,
+    10,
+    0,
+    1
+   ]
+  },
+  "resolved_single_point_k1": {
+   "t": 4,
+   "F2": [
+    1,
+    0,
+    11,
+    4,
+    1
+   ],
+   "F3": [
+    1,
+    0,
+    7,
+    0,
+    1
+   ],
+   "why": "RM(1,4) words vanishing at one point: kernel of evaluation, dim 5-1 = 4"
+  }
+ },
+ "product_rule": "each X_J x T^2(Z_2^2) must equal the F2/F3 Betti vector of X_J tensored with (1,2,1) (field Kunneth, expectation only)"
+}

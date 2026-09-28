@@ -1,0 +1,24 @@
+{
+ "tier": "X",
+ "seed": 20260919,
+ "n_points": 400000,
+ "embedding": "R^14: cos th_i (4), sin th_i sin th_j i<=j (10)",
+ "invariance_max_abs": 0.0,
+ "random_pairs": {
+  "n": 1999995,
+  "min_dF_over_dQ": 0.4397234223202639,
+  "quantiles_dF_over_dQ": [
+   0.6785211910078796,
+   0.7138254262326329,
+   0.9228162346822094
+  ]
+ },
+ "nn_pairs": {
+  "n": 2000000,
+  "max_dQ_among_pairs_with_dF_below_0.05": 0.27627518091658526,
+  "max_dQ_over_all_5NN_pairs": 0.3882094904306994,
+  "max_dF_5NN": 0.42318872735830526
+ },
+ "note": "injective on the quotient by construction argument (cos fixes |th_i|, sin_i sin_j fix relative signs); measured: min dF/dQ over 2e6 random pairs is reported above (bounded away from 0 on this sample); near a singular point the sin_i sin_j block is quadratic in th, so for pairs BOTH within r of that point dF/dQ can shrink like r (not probed below r=0.3 here).",
+ "min_dF_over_dQ_pairs_within_0.3_of_a_singular_point": 0.5437569179708133
+}

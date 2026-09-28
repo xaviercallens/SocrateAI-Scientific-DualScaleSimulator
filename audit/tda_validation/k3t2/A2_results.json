@@ -1,0 +1,1306 @@
+{
+ "tier": "B",
+ "script": "A2_orbifold.py",
+ "runs": [
+  {
+   "N": 2,
+   "cover_fvector": [
+    16,
+    64,
+    96,
+    64,
+    16
+   ],
+   "quotient_fvector": [
+    16,
+    32,
+    48,
+    32,
+    8
+   ],
+   "n_cells": 136,
+   "n_fixed_cells": 16,
+   "fixed_cell_dims": [
+    0
+   ],
+   "fixed_cells": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     1,
+     0
+    ],
+    [
+     0,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     1,
+     0,
+     0,
+     1
+    ],
+    [
+     1,
+     0,
+     1,
+     0
+    ],
+    [
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     0,
+     0
+    ],
+    [
+     1,
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     1,
+     1
+    ]
+   ],
+   "d2_violations": 0,
+   "chi_fvector": 8,
+   "by_field": {
+    "F2": {
+     "betti": [
+      1,
+      0,
+      11,
+      5,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      11,
+      5,
+      1
+     ],
+     "ranks_d_k": [
+      15,
+      17,
+      20,
+      7
+     ],
+     "engines_agree": true,
+     "chi_betti": 8,
+     "expected": "not pre-specified (chi=8 only)",
+     "sec": [
+      0.002,
+      0.0
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      15,
+      17,
+      25,
+      7
+     ],
+     "engines_agree": true,
+     "chi_betti": 8,
+     "expected": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "sec": [
+      0.002,
+      0.0
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      15,
+      17,
+      25,
+      7
+     ],
+     "engines_agree": true,
+     "chi_betti": 8,
+     "expected": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "sec": [
+      0.002,
+      0.0
+     ],
+     "PASS": true
+    }
+   },
+   "seconds": 0.01,
+   "maxrss_MB": 10.2,
+   "PASS": true,
+   "derived_2torsion_summands_per_degree_H_k(Z)": [
+    0,
+    0,
+    5,
+    0,
+    0
+   ],
+   "derived_note": "UCT: b_k(F2) = rank_k + t_k + t_{k-1}; rank_k taken from F3 (F3 = F5 found). t_k = number of cyclic 2-primary summands in H_k(T^4/Z2; Z). Derived, not a separate computation."
+  },
+  {
+   "N": 4,
+   "cover_fvector": [
+    256,
+    1024,
+    1536,
+    1024,
+    256
+   ],
+   "quotient_fvector": [
+    136,
+    512,
+    768,
+    512,
+    128
+   ],
+   "n_cells": 2056,
+   "n_fixed_cells": 16,
+   "fixed_cell_dims": [
+    0
+   ],
+   "fixed_cells": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     2
+    ],
+    [
+     0,
+     0,
+     2,
+     0
+    ],
+    [
+     0,
+     0,
+     2,
+     2
+    ],
+    [
+     0,
+     2,
+     0,
+     0
+    ],
+    [
+     0,
+     2,
+     0,
+     2
+    ],
+    [
+     0,
+     2,
+     2,
+     0
+    ],
+    [
+     0,
+     2,
+     2,
+     2
+    ],
+    [
+     2,
+     0,
+     0,
+     0
+    ],
+    [
+     2,
+     0,
+     0,
+     2
+    ],
+    [
+     2,
+     0,
+     2,
+     0
+    ],
+    [
+     2,
+     0,
+     2,
+     2
+    ],
+    [
+     2,
+     2,
+     0,
+     0
+    ],
+    [
+     2,
+     2,
+     0,
+     2
+    ],
+    [
+     2,
+     2,
+     2,
+     0
+    ],
+    [
+     2,
+     2,
+     2,
+     2
+    ]
+   ],
+   "d2_violations": 0,
+   "chi_fvector": 8,
+   "by_field": {
+    "F2": {
+     "betti": [
+      1,
+      0,
+      11,
+      5,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      11,
+      5,
+      1
+     ],
+     "ranks_d_k": [
+      135,
+      377,
+      380,
+      127
+     ],
+     "engines_agree": true,
+     "chi_betti": 8,
+     "expected": "not pre-specified (chi=8 only)",
+     "sec": [
+      0.07,
+      0.012
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      135,
+      377,
+      385,
+      127
+     ],
+     "engines_agree": true,
+     "chi_betti": 8,
+     "expected": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "sec": [
+      0.077,
+      0.013
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      135,
+      377,
+      385,
+      127
+     ],
+     "engines_agree": true,
+     "chi_betti": 8,
+     "expected": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "sec": [
+      0.062,
+      0.025
+     ],
+     "PASS": true
+    }
+   },
+   "seconds": 0.62,
+   "maxrss_MB": 14.8,
+   "PASS": true,
+   "derived_2torsion_summands_per_degree_H_k(Z)": [
+    0,
+    0,
+    5,
+    0,
+    0
+   ],
+   "derived_note": "UCT: b_k(F2) = rank_k + t_k + t_{k-1}; rank_k taken from F3 (F3 = F5 found). t_k = number of cyclic 2-primary summands in H_k(T^4/Z2; Z). Derived, not a separate computation."
+  },
+  {
+   "N": 6,
+   "cover_fvector": [
+    1296,
+    5184,
+    7776,
+    5184,
+    1296
+   ],
+   "quotient_fvector": [
+    656,
+    2592,
+    3888,
+    2592,
+    648
+   ],
+   "n_cells": 10376,
+   "n_fixed_cells": 16,
+   "fixed_cell_dims": [
+    0
+   ],
+   "fixed_cells": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     3
+    ],
+    [
+     0,
+     0,
+     3,
+     0
+    ],
+    [
+     0,
+     0,
+     3,
+     3
+    ],
+    [
+     0,
+     3,
+     0,
+     0
+    ],
+    [
+     0,
+     3,
+     0,
+     3
+    ],
+    [
+     0,
+     3,
+     3,
+     0
+    ],
+    [
+     0,
+     3,
+     3,
+     3
+    ],
+    [
+     3,
+     0,
+     0,
+     0
+    ],
+    [
+     3,
+     0,
+     0,
+     3
+    ],
+    [
+     3,
+     0,
+     3,
+     0
+    ],
+    [
+     3,
+     0,
+     3,
+     3
+    ],
+    [
+     3,
+     3,
+     0,
+     0
+    ],
+    [
+     3,
+     3,
+     0,
+     3
+    ],
+    [
+     3,
+     3,
+     3,
+     0
+    ],
+    [
+     3,
+     3,
+     3,
+     3
+    ]
+   ],
+   "d2_violations": 0,
+   "chi_fvector": 8,
+   "by_field": {
+    "F2": {
+     "betti": [
+      1,
+      0,
+      11,
+      5,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      11,
+      5,
+      1
+     ],
+     "ranks_d_k": [
+      655,
+      1937,
+      1940,
+      647
+     ],
+     "engines_agree": true,
+     "chi_betti": 8,
+     "expected": "not pre-specified (chi=8 only)",
+     "sec": [
+      0.479,
+      0.098
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      655,
+      1937,
+      1945,
+      647
+     ],
+     "engines_agree": true,
+     "chi_betti": 8,
+     "expected": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "sec": [
+      0.487,
+      0.115
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      655,
+      1937,
+      1945,
+      647
+     ],
+     "engines_agree": true,
+     "chi_betti": 8,
+     "expected": [
+      1,
+      0,
+      6,
+      0,
+      1
+     ],
+     "sec": [
+      0.444,
+      0.08
+     ],
+     "PASS": true
+    }
+   },
+   "seconds": 3.39,
+   "maxrss_MB": 32.5,
+   "PASS": true,
+   "derived_2torsion_summands_per_degree_H_k(Z)": [
+    0,
+    0,
+    5,
+    0,
+    0
+   ],
+   "derived_note": "UCT: b_k(F2) = rank_k + t_k + t_{k-1}; rank_k taken from F3 (F3 = F5 found). t_k = number of cyclic 2-primary summands in H_k(T^4/Z2; Z). Derived, not a separate computation."
+  }
+ ],
+ "transfer": {
+  "N": 4,
+  "p": 3,
+  "chain_traces_sigma_by_dim": [
+   16,
+   0,
+   0,
+   0,
+   0
+  ],
+  "lefschetz_number_chain_level": 16,
+  "degrees": {
+   "0": {
+    "n_cycles_z_I": 1,
+    "all_cycles": true,
+    "independent_mod_boundaries": 1,
+    "sigma_acts_as": 1,
+    "sigma_z_minus_sign_z_is_boundary_all": true,
+    "dim_invariants": 1
+   },
+   "1": {
+    "n_cycles_z_I": 4,
+    "all_cycles": true,
+    "independent_mod_boundaries": 4,
+    "sigma_acts_as": -1,
+    "sigma_z_minus_sign_z_is_boundary_all": true,
+    "dim_invariants": 0
+   },
+   "2": {
+    "n_cycles_z_I": 6,
+    "all_cycles": true,
+    "independent_mod_boundaries": 6,
+    "sigma_acts_as": 1,
+    "sigma_z_minus_sign_z_is_boundary_all": true,
+    "dim_invariants": 6
+   },
+   "3": {
+    "n_cycles_z_I": 4,
+    "all_cycles": true,
+    "independent_mod_boundaries": 4,
+    "sigma_acts_as": -1,
+    "sigma_z_minus_sign_z_is_boundary_all": true,
+    "dim_invariants": 0
+   },
+   "4": {
+    "n_cycles_z_I": 1,
+    "all_cycles": true,
+    "independent_mod_boundaries": 1,
+    "sigma_acts_as": 1,
+    "sigma_z_minus_sign_z_is_boundary_all": true,
+    "dim_invariants": 1
+   }
+  },
+  "invariant_betti_F3": [
+   1,
+   0,
+   6,
+   0,
+   1
+  ],
+  "matches_quotient_F3": true,
+  "lefschetz_expected": 16,
+  "PASS": true
+ },
+ "external_freudenthal_track_file": "/mnt/disks/disk-socrateai-local-1/dualscale-wt-k3t2/audit/k3t2_rigidity_v2/D-tda/02_invariance_and_quotient_results.json",
+ "external_freudenthal_track_excerpt": {
+  "N=6": {
+   "N": 6,
+   "negation_action_invariant_on_top_simplices": true,
+   "num_fixed_vertices_computed": 16,
+   "fixed_vertices": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     3
+    ],
+    [
+     0,
+     0,
+     3,
+     0
+    ],
+    [
+     0,
+     0,
+     3,
+     3
+    ],
+    [
+     0,
+     3,
+     0,
+     0
+    ],
+    [
+     0,
+     3,
+     0,
+     3
+    ],
+    [
+     0,
+     3,
+     3,
+     0
+    ],
+    [
+     0,
+     3,
+     3,
+     3
+    ],
+    [
+     3,
+     0,
+     0,
+     0
+    ],
+    [
+     3,
+     0,
+     0,
+     3
+    ],
+    [
+     3,
+     0,
+     3,
+     0
+    ],
+    [
+     3,
+     0,
+     3,
+     3
+    ],
+    [
+     3,
+     3,
+     0,
+     0
+    ],
+    [
+     3,
+     3,
+     0,
+     3
+    ],
+    [
+     3,
+     3,
+     3,
+     0
+    ],
+    [
+     3,
+     3,
+     3,
+     3
+    ]
+   ],
+   "action_free_on_top_4simplices": true,
+   "runtime_setup_sec": 0.5812373161315918,
+   "quotient_T4_mod_Z2": {
+    "num_top_simplices_input": 31104,
+    "num_degenerate_after_quotient": 0,
+    "num_vertices_quotient": 656,
+    "euler_characteristic_from_simplex_counts": 8,
+    "simplex_counts_by_dim": {
+     "0": 656,
+     "1": 9720,
+     "2": 32400,
+     "3": 38880,
+     "4": 15552
+    },
+    "betti_by_field": {
+     "Z3": {
+      "betti": [
+       1,
+       0,
+       6,
+       0,
+       1
+      ],
+      "euler_characteristic_from_betti": 8
+     },
+     "Z5": {
+      "betti": [
+       1,
+       0,
+       6,
+       0,
+       1
+      ],
+      "euler_characteristic_from_betti": 8
+     }
+    },
+    "runtime_sec": 1.1097753047943115,
+    "exact_halving_check_dims_1_to_4": {
+     "0": {
+      "quotient": 656,
+      "T4": 1296,
+      "note": "vertices: not expected to halve (16 fixed vertices don't pair up)"
+     },
+     "1": {
+      "quotient": 9720,
+      "T4": 19440,
+      "exactly_half": true
+     },
+     "2": {
+      "quotient": 32400,
+      "T4": 64800,
+      "exactly_half": true
+     },
+     "3": {
+      "quotient": 38880,
+      "T4": 77760,
+      "exactly_half": true
+     },
+     "4": {
+      "quotient": 15552,
+      "T4": 31104,
+      "exactly_half": true
+     }
+    },
+    "all_dims_1_to_4_exactly_half": true
+   },
+   "chi_predicted_from_orbit_counting": 8,
+   "chi_predicted_formula": "(chi(T4) - F)/2 + F, F = COMPUTED fixed vertex count",
+   "chi_predicted_matches_simplex_count": true,
+   "negative_control_free_translation_quotient": {
+    "shift": [
+     3,
+     0,
+     0,
+     0
+    ],
+    "translation_invariant_on_top_simplices": true,
+    "num_fixed_vertices_computed": 0,
+    "expected_fixed_vertices": 0,
+    "action_free_on_top_4simplices": true,
+    "quotient_result": {
+     "num_top_simplices_input": 31104,
+     "num_degenerate_after_quotient": 0,
+     "num_vertices_quotient": 648,
+     "euler_characteristic_from_simplex_counts": 0,
+     "simplex_counts_by_dim": {
+      "0": 648,
+      "1": 9720,
+      "2": 32400,
+      "3": 38880,
+      "4": 15552
+     },
+     "betti_by_field": {
+      "Z3": {
+       "betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+       ],
+       "euler_characteristic_from_betti": 0
+      },
+      "Z5": {
+       "betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+       ],
+       "euler_characteristic_from_betti": 0
+      }
+     },
+     "runtime_sec": 1.3318688869476318,
+     "exact_halving_check_all_dims_incl_0": {
+      "0": {
+       "quotient": 648,
+       "T4": 1296,
+       "exactly_half": true
+      },
+      "1": {
+       "quotient": 9720,
+       "T4": 19440,
+       "exactly_half": true
+      },
+      "2": {
+       "quotient": 32400,
+       "T4": 64800,
+       "exactly_half": true
+      },
+      "3": {
+       "quotient": 38880,
+       "T4": 77760,
+       "exactly_half": true
+      },
+      "4": {
+       "quotient": 15552,
+       "T4": 31104,
+       "exactly_half": true
+      }
+     },
+     "all_dims_incl_0_exactly_half": true
+    },
+    "passes_same_halving_check_as_negation_quotient": true,
+    "DROPPED": false,
+    "expected_betti": [
+     1,
+     4,
+     6,
+     4,
+     1
+    ],
+    "expected_source": "free Z2 quotient of T^4 by a translation is again a smaller-period 4-torus",
+    "matches_expected_Z3": true,
+    "matches_expected_Z5": true
+   }
+  },
+  "N=8": {
+   "N": 8,
+   "negation_action_invariant_on_top_simplices": true,
+   "num_fixed_vertices_computed": 16,
+   "fixed_vertices": [
+    [
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     4
+    ],
+    [
+     0,
+     0,
+     4,
+     0
+    ],
+    [
+     0,
+     0,
+     4,
+     4
+    ],
+    [
+     0,
+     4,
+     0,
+     0
+    ],
+    [
+     0,
+     4,
+     0,
+     4
+    ],
+    [
+     0,
+     4,
+     4,
+     0
+    ],
+    [
+     0,
+     4,
+     4,
+     4
+    ],
+    [
+     4,
+     0,
+     0,
+     0
+    ],
+    [
+     4,
+     0,
+     0,
+     4
+    ],
+    [
+     4,
+     0,
+     4,
+     0
+    ],
+    [
+     4,
+     0,
+     4,
+     4
+    ],
+    [
+     4,
+     4,
+     0,
+     0
+    ],
+    [
+     4,
+     4,
+     0,
+     4
+    ],
+    [
+     4,
+     4,
+     4,
+     0
+    ],
+    [
+     4,
+     4,
+     4,
+     4
+    ]
+   ],
+   "action_free_on_top_4simplices": true,
+   "runtime_setup_sec": 1.9459784030914307,
+   "quotient_T4_mod_Z2": {
+    "num_top_simplices_input": 98304,
+    "num_degenerate_after_quotient": 0,
+    "num_vertices_quotient": 2056,
+    "euler_characteristic_from_simplex_counts": 8,
+    "simplex_counts_by_dim": {
+     "0": 2056,
+     "1": 30720,
+     "2": 102400,
+     "3": 122880,
+     "4": 49152
+    },
+    "betti_by_field": {
+     "Z3": {
+      "betti": [
+       1,
+       0,
+       6,
+       0,
+       1
+      ],
+      "euler_characteristic_from_betti": 8
+     },
+     "Z5": {
+      "betti": [
+       1,
+       0,
+       6,
+       0,
+       1
+      ],
+      "euler_characteristic_from_betti": 8
+     }
+    },
+    "runtime_sec": 4.231626987457275,
+    "exact_halving_check_dims_1_to_4": {
+     "0": {
+      "quotient": 2056,
+      "T4": 4096,
+      "note": "vertices: not expected to halve (16 fixed vertices don't pair up)"
+     },
+     "1": {
+      "quotient": 30720,
+      "T4": 61440,
+      "exactly_half": true
+     },
+     "2": {
+      "quotient": 102400,
+      "T4": 204800,
+      "exactly_half": true
+     },
+     "3": {
+      "quotient": 122880,
+      "T4": 245760,
+      "exactly_half": true
+     },
+     "4": {
+      "quotient": 49152,
+      "T4": 98304,
+      "exactly_half": true
+     }
+    },
+    "all_dims_1_to_4_exactly_half": true
+   },
+   "chi_predicted_from_orbit_counting": 8,
+   "chi_predicted_formula": "(chi(T4) - F)/2 + F, F = COMPUTED fixed vertex count",
+   "chi_predicted_matches_simplex_count": true,
+   "negative_control_free_translation_quotient": {
+    "shift": [
+     4,
+     0,
+     0,
+     0
+    ],
+    "translation_invariant_on_top_simplices": true,
+    "num_fixed_vertices_computed": 0,
+    "expected_fixed_vertices": 0,
+    "action_free_on_top_4simplices": true,
+    "quotient_result": {
+     "num_top_simplices_input": 98304,
+     "num_degenerate_after_quotient": 0,
+     "num_vertices_quotient": 2048,
+     "euler_characteristic_from_simplex_counts": 0,
+     "simplex_counts_by_dim": {
+      "0": 2048,
+      "1": 30720,
+      "2": 102400,
+      "3": 122880,
+      "4": 49152
+     },
+     "betti_by_field": {
+      "Z3": {
+       "betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+       ],
+       "euler_characteristic_from_betti": 0
+      },
+      "Z5": {
+       "betti": [
+        1,
+        4,
+        6,
+        4,
+        1
+       ],
+       "euler_characteristic_from_betti": 0
+      }
+     },
+     "runtime_sec": 4.28133749961853,
+     "exact_halving_check_all_dims_incl_0": {
+      "0": {
+       "quotient": 2048,
+       "T4": 4096,
+       "exactly_half": true
+      },
+      "1": {
+       "quotient": 30720,
+       "T4": 61440,
+       "exactly_half": true
+      },
+      "2": {
+       "quotient": 102400,
+       "T4": 204800,
+       "exactly_half": true
+      },
+      "3": {
+       "quotient": 122880,
+       "T4": 245760,
+       "exactly_half": true
+      },
+      "4": {
+       "quotient": 49152,
+       "T4": 98304,
+       "exactly_half": true
+      }
+     },
+     "all_dims_incl_0_exactly_half": true
+    },
+    "passes_same_halving_check_as_negation_quotient": true,
+    "DROPPED": false,
+    "expected_betti": [
+     1,
+     4,
+     6,
+     4,
+     1
+    ],
+    "expected_source": "free Z2 quotient of T^4 by a translation is again a smaller-period 4-torus",
+    "matches_expected_Z3": true,
+    "matches_expected_Z5": true
+   }
+  }
+ },
+ "all_PASS": true,
+ "maxrss_MB": 32.5
+}

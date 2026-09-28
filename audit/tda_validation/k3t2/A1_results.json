@@ -1,0 +1,2004 @@
+{
+ "tier": "B",
+ "script": "A1_tori_and_engine_controls.py",
+ "tori": [
+  {
+   "name": "T^2 cubical Z_2^2",
+   "fvector": [
+    4,
+    8,
+    4
+   ],
+   "n_cells": 16,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      3,
+      3
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      3,
+      3
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      3,
+      3
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 30.4,
+   "gudhi_periodic_cubical_betti": {
+    "F2": [
+     1,
+     2,
+     1
+    ],
+    "F3": [
+     1,
+     2,
+     1
+    ]
+   },
+   "gudhi_agrees": true,
+   "seconds_total": 0.005
+  },
+  {
+   "name": "T^2 cubical Z_3^2",
+   "fvector": [
+    9,
+    18,
+    9
+   ],
+   "n_cells": 36,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      8,
+      8
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      8,
+      8
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      8,
+      8
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 30.5,
+   "gudhi_periodic_cubical_betti": {
+    "F2": [
+     1,
+     2,
+     1
+    ],
+    "F3": [
+     1,
+     2,
+     1
+    ]
+   },
+   "gudhi_agrees": true,
+   "seconds_total": 0.007
+  },
+  {
+   "name": "T^2 cubical Z_4^2",
+   "fvector": [
+    16,
+    32,
+    16
+   ],
+   "n_cells": 64,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      15,
+      15
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      15,
+      15
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      15,
+      15
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 30.5,
+   "gudhi_periodic_cubical_betti": {
+    "F2": [
+     1,
+     2,
+     1
+    ],
+    "F3": [
+     1,
+     2,
+     1
+    ]
+   },
+   "gudhi_agrees": true,
+   "seconds_total": 0.011
+  },
+  {
+   "name": "T^4 cubical Z_2^4",
+   "fvector": [
+    16,
+    64,
+    96,
+    64,
+    16
+   ],
+   "n_cells": 256,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "ranks_d_k": [
+      15,
+      45,
+      45,
+      15
+     ],
+     "sec_engine1": 0.005,
+     "sec_engine2": 0.001,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_dense": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "ranks_d_k": [
+      15,
+      45,
+      45,
+      15
+     ],
+     "sec_engine1": 0.003,
+     "sec_engine2": 0.001,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_dense": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "ranks_d_k": [
+      15,
+      45,
+      45,
+      15
+     ],
+     "sec_engine1": 0.006,
+     "sec_engine2": 0.001,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_dense": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 31.0,
+   "gudhi_periodic_cubical_betti": {
+    "F2": [
+     1,
+     4,
+     6,
+     4,
+     1
+    ],
+    "F3": [
+     1,
+     4,
+     6,
+     4,
+     1
+    ]
+   },
+   "gudhi_agrees": true,
+   "seconds_total": 0.122
+  },
+  {
+   "name": "T^4 cubical Z_3^4",
+   "fvector": [
+    81,
+    324,
+    486,
+    324,
+    81
+   ],
+   "n_cells": 1296,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "ranks_d_k": [
+      80,
+      240,
+      240,
+      80
+     ],
+     "sec_engine1": 0.021,
+     "sec_engine2": 0.004,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "ranks_d_k": [
+      80,
+      240,
+      240,
+      80
+     ],
+     "sec_engine1": 0.016,
+     "sec_engine2": 0.003,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "ranks_d_k": [
+      80,
+      240,
+      240,
+      80
+     ],
+     "sec_engine1": 0.015,
+     "sec_engine2": 0.004,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 32.4,
+   "gudhi_periodic_cubical_betti": {
+    "F2": [
+     1,
+     4,
+     6,
+     4,
+     1
+    ],
+    "F3": [
+     1,
+     4,
+     6,
+     4,
+     1
+    ]
+   },
+   "gudhi_agrees": true,
+   "seconds_total": 0.113
+  },
+  {
+   "name": "T^4 cubical Z_4^4",
+   "fvector": [
+    256,
+    1024,
+    1536,
+    1024,
+    256
+   ],
+   "n_cells": 4096,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "ranks_d_k": [
+      255,
+      765,
+      765,
+      255
+     ],
+     "sec_engine1": 0.115,
+     "sec_engine2": 0.024,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "ranks_d_k": [
+      255,
+      765,
+      765,
+      255
+     ],
+     "sec_engine1": 0.14,
+     "sec_engine2": 0.032,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "ranks_d_k": [
+      255,
+      765,
+      765,
+      255
+     ],
+     "sec_engine1": 0.096,
+     "sec_engine2": 0.017,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      4,
+      6,
+      4,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 36.1,
+   "gudhi_periodic_cubical_betti": {
+    "F2": [
+     1,
+     4,
+     6,
+     4,
+     1
+    ],
+    "F3": [
+     1,
+     4,
+     6,
+     4,
+     1
+    ]
+   },
+   "gudhi_agrees": true,
+   "seconds_total": 0.55
+  },
+  {
+   "name": "T^6 cubical Z_2^6",
+   "fvector": [
+    64,
+    384,
+    960,
+    1280,
+    960,
+    384,
+    64
+   ],
+   "n_cells": 4096,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "ranks_d_k": [
+      63,
+      315,
+      630,
+      630,
+      315,
+      63
+     ],
+     "sec_engine1": 0.116,
+     "sec_engine2": 0.036,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "ranks_d_k": [
+      63,
+      315,
+      630,
+      630,
+      315,
+      63
+     ],
+     "sec_engine1": 0.173,
+     "sec_engine2": 0.02,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "ranks_d_k": [
+      63,
+      315,
+      630,
+      630,
+      315,
+      63
+     ],
+     "sec_engine1": 0.083,
+     "sec_engine2": 0.015,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 37.4,
+   "gudhi_periodic_cubical_betti": {
+    "F2": [
+     1,
+     6,
+     15,
+     20,
+     15,
+     6,
+     1
+    ],
+    "F3": [
+     1,
+     6,
+     15,
+     20,
+     15,
+     6,
+     1
+    ]
+   },
+   "gudhi_agrees": true,
+   "seconds_total": 0.767
+  },
+  {
+   "name": "T^6 cubical Z_3^6",
+   "fvector": [
+    729,
+    4374,
+    10935,
+    14580,
+    10935,
+    4374,
+    729
+   ],
+   "n_cells": 46656,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "ranks_d_k": [
+      728,
+      3640,
+      7280,
+      7280,
+      3640,
+      728
+     ],
+     "sec_engine1": 2.205,
+     "sec_engine2": 0.292,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "ranks_d_k": [
+      728,
+      3640,
+      7280,
+      7280,
+      3640,
+      728
+     ],
+     "sec_engine1": 2.087,
+     "sec_engine2": 0.283,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "ranks_d_k": [
+      728,
+      3640,
+      7280,
+      7280,
+      3640,
+      728
+     ],
+     "sec_engine1": 1.95,
+     "sec_engine2": 0.235,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 98.6,
+   "gudhi_periodic_cubical_betti": {
+    "F2": [
+     1,
+     6,
+     15,
+     20,
+     15,
+     6,
+     1
+    ],
+    "F3": [
+     1,
+     6,
+     15,
+     20,
+     15,
+     6,
+     1
+    ]
+   },
+   "gudhi_agrees": true,
+   "seconds_total": 10.53
+  }
+ ],
+ "controls": {
+  "product_T4xT2": {
+   "name": "T^4(Z_2) x T^2(Z_3) via product()",
+   "fvector": [
+    144,
+    864,
+    2160,
+    2880,
+    2160,
+    864,
+    144
+   ],
+   "n_cells": 9216,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "ranks_d_k": [
+      143,
+      715,
+      1430,
+      1430,
+      715,
+      143
+     ],
+     "sec_engine1": 0.381,
+     "sec_engine2": 0.082,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "ranks_d_k": [
+      143,
+      715,
+      1430,
+      1430,
+      715,
+      143
+     ],
+     "sec_engine1": 0.351,
+     "sec_engine2": 0.103,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "ranks_d_k": [
+      143,
+      715,
+      1430,
+      1430,
+      715,
+      143
+     ],
+     "sec_engine1": 0.415,
+     "sec_engine2": 0.099,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      6,
+      15,
+      20,
+      15,
+      6,
+      1
+     ],
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 98.6
+  },
+  "S2": {
+   "name": "S^2 = boundary [-1,1]^3",
+   "fvector": [
+    26,
+    48,
+    24
+   ],
+   "n_cells": 98,
+   "chi_fvector": 2,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      25,
+      23
+     ],
+     "sec_engine1": 0.001,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 2,
+     "expected": [
+      1,
+      0,
+      1
+     ],
+     "betti_dense": [
+      1,
+      0,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      25,
+      23
+     ],
+     "sec_engine1": 0.007,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 2,
+     "expected": [
+      1,
+      0,
+      1
+     ],
+     "betti_dense": [
+      1,
+      0,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      25,
+      23
+     ],
+     "sec_engine1": 0.007,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 2,
+     "expected": [
+      1,
+      0,
+      1
+     ],
+     "betti_dense": [
+      1,
+      0,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 98.6
+  },
+  "S3": {
+   "name": "S^3 = boundary [-1,1]^4",
+   "fvector": [
+    80,
+    208,
+    192,
+    64
+   ],
+   "n_cells": 544,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      79,
+      129,
+      63
+     ],
+     "sec_engine1": 0.01,
+     "sec_engine2": 0.001,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_dense": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      79,
+      129,
+      63
+     ],
+     "sec_engine1": 0.008,
+     "sec_engine2": 0.001,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_dense": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      79,
+      129,
+      63
+     ],
+     "sec_engine1": 0.012,
+     "sec_engine2": 0.001,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_dense": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 98.6
+  },
+  "RP2": {
+   "name": "RP^2 = S^2/antipodal (cubical)",
+   "fvector": [
+    13,
+    24,
+    12
+   ],
+   "n_cells": 49,
+   "chi_fvector": 1,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      1,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      1,
+      1
+     ],
+     "ranks_d_k": [
+      12,
+      11
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 1,
+     "expected": [
+      1,
+      1,
+      1
+     ],
+     "betti_dense": [
+      1,
+      1,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      0,
+      0
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      0
+     ],
+     "ranks_d_k": [
+      12,
+      12
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 1,
+     "expected": [
+      1,
+      0,
+      0
+     ],
+     "betti_dense": [
+      1,
+      0,
+      0
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      0,
+      0
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      0
+     ],
+     "ranks_d_k": [
+      12,
+      12
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 1,
+     "expected": [
+      1,
+      0,
+      0
+     ],
+     "betti_dense": [
+      1,
+      0,
+      0
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 98.6,
+   "n_fixed_cells": 0
+  },
+  "RP3": {
+   "name": "RP^3 = S^3/antipodal (cubical)",
+   "fvector": [
+    40,
+    104,
+    96,
+    32
+   ],
+   "n_cells": 272,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "ranks_d_k": [
+      39,
+      64,
+      31
+     ],
+     "sec_engine1": 0.006,
+     "sec_engine2": 0.001,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "betti_dense": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      39,
+      65,
+      31
+     ],
+     "sec_engine1": 0.003,
+     "sec_engine2": 0.001,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_dense": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "ranks_d_k": [
+      39,
+      65,
+      31
+     ],
+     "sec_engine1": 0.006,
+     "sec_engine2": 0.001,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "betti_dense": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 98.6,
+   "n_fixed_cells": 0
+  },
+  "Klein_1_2": {
+   "name": "Klein = T^2(Z_2 x Z_2)/tau",
+   "fvector": [
+    2,
+    4,
+    2
+   ],
+   "n_cells": 8,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      1,
+      1
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      1,
+      0
+     ],
+     "betti_engine2": [
+      1,
+      1,
+      0
+     ],
+     "ranks_d_k": [
+      1,
+      2
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      1,
+      0
+     ],
+     "betti_dense": [
+      1,
+      1,
+      0
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      1,
+      0
+     ],
+     "betti_engine2": [
+      1,
+      1,
+      0
+     ],
+     "ranks_d_k": [
+      1,
+      2
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      1,
+      0
+     ],
+     "betti_dense": [
+      1,
+      1,
+      0
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 98.6
+  },
+  "Klein_2_3": {
+   "name": "Klein = T^2(Z_4 x Z_3)/tau",
+   "fvector": [
+    6,
+    12,
+    6
+   ],
+   "n_cells": 24,
+   "chi_fvector": 0,
+   "d2_violations": 0,
+   "by_field": {
+    "F2": {
+     "betti_engine1": [
+      1,
+      2,
+      1
+     ],
+     "betti_engine2": [
+      1,
+      2,
+      1
+     ],
+     "ranks_d_k": [
+      5,
+      5
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      2,
+      1
+     ],
+     "betti_dense": [
+      1,
+      2,
+      1
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F3": {
+     "betti_engine1": [
+      1,
+      1,
+      0
+     ],
+     "betti_engine2": [
+      1,
+      1,
+      0
+     ],
+     "ranks_d_k": [
+      5,
+      6
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      1,
+      0
+     ],
+     "betti_dense": [
+      1,
+      1,
+      0
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    },
+    "F5": {
+     "betti_engine1": [
+      1,
+      1,
+      0
+     ],
+     "betti_engine2": [
+      1,
+      1,
+      0
+     ],
+     "ranks_d_k": [
+      5,
+      6
+     ],
+     "sec_engine1": 0.0,
+     "sec_engine2": 0.0,
+     "engines_agree": true,
+     "chi_betti": 0,
+     "expected": [
+      1,
+      1,
+      0
+     ],
+     "betti_dense": [
+      1,
+      1,
+      0
+     ],
+     "dense_agrees": true,
+     "PASS": true
+    }
+   },
+   "PASS": true,
+   "maxrss_MB": 98.6
+  }
+ },
+ "all_PASS": true,
+ "seconds_total": 15.5,
+ "maxrss_MB": 98.6,
+ "hardware": {
+  "nproc": 8,
+  "note": "GCP VM, 29 GB RAM, 8 vCPU; single-threaded pure Python"
+ }
+}
