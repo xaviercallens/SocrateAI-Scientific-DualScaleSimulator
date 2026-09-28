@@ -4,9 +4,10 @@ Kept short on purpose; the reasoning is in `ROADMAP.md` and the decisions note. 
 
 ## Now (M1, M2)
 
-- [ ] **Run `level-explicit-parameter`** — `Workflow({name: "level-explicit-parameter"})`. Branch
-      `loop/level-explicit`. Produces `level=` / `potential=` arguments in `workshopcosmo.py`, a
-      derived `FRICKE_Y`, a level-sensitivity test, byte-identical default telemetry.
+- [x] **Run `level-explicit-parameter`** — done 2026-09-28, merged as `52d5907`. Verifier 9/9;
+      the anti-rigging review rejected one tautological test, rewritten by hand with a negative
+      control. Launch note: a workflow file written mid-session is not found by name — use
+      `Workflow({scriptPath: ".claude/workflows/<file>.js"})`.
 - [ ] **Write and commit A10** (the L5 registration) — the workflow's first phase does this and
       refuses to run data if the commit is missing. Review the addendum text before the run phase.
 - [ ] **Run `l5-level-observable`** — `Workflow({name: "l5-level-observable"})`. Needs ≥ 12 GB free
