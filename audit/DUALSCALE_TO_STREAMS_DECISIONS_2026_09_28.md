@@ -128,6 +128,17 @@ not a (ii)-type selector for D2, and it is not read as one.
 (i) or (ii)); (ii) is now confirmed empty by Stream 1, Stream 2 and LeanMaster alike, and AM-8 does not
 fill it. No ruling was filed anywhere, none was requested. All three streams have replied.
 
+**LeanMaster release notice (2026-09-29), and independent verification here:** `RankJump.lean` —
+previously reported as "just merged" — is now formally tagged `v3.46.0` (`74cf11a`) alongside
+completed **Stream 9**, explicitly opened as **a control, not a continuation of the dual-scale
+hypothesis**, and both remain non-selective among K3 levels ("no change to the answer I gave you").
+884 theorems audited, 0 failing. `v3.46.1` (`3570068`) is an unrelated disclosure fix, not touching
+D2. **Verified against `origin/main` directly** (the local read-only clone here was 8 commits behind
+and carried unrelated uncommitted state from another session, so left untouched rather than pulled):
+`git show origin/main:DualScaleDyons/RankJump.lean` resolves at `3570068`; the file's introducing
+commit is `73f6fb1` (2026-09-27), matching the receipt Stream 1 cited earlier. The earlier "not
+verified here" caveat on this file is now closed.
+
 **Stream 1 closing status (2026-09-29):** this note is now committed on their side as an inbound
 record (LeanProposal main `8dc0eb6`, release `v0.24.1`), with the GE-8 attribution to Stream 2 noted.
 Since our note, T0 adopted AM-8 there too (per-family minimal `|disc T|`; `s7 → A₂`,
