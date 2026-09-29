@@ -135,6 +135,18 @@ model/fibration, certified monodromy. Their own guardrail, repeated here for any
 this repo: **no physical claim, no Kodaira label attached, the selected CM point maps to no
 observable.** Cite the certificates and tag, not the PDF. Stream 2's session is closed.
 
+**Stream 2, second FYI (2026-09-29, no action needed):** five T0-confirmed decisions landed in PR #72
+(`briefs/T0_DECISIONS_2026_09_29_STREAM2_DELEGATED.md`). Relevant here: **nothing selects a level.**
+D15' promotes `cooper_s10`'s lattice certificate to LIVE (`C2_cooper_s10_v5.json`, value-identical to
+the 2026-08-01 draft: `T ≅ U ⊕ ⟨20⟩`, det −20) — removes the ADVISORY label, which rested only on
+DRAFT status; **not** a ranking of level 10 over level 7, not a physical reading. D14' forbids Kodaira
+labels for the explicit Inose/CDLW model. D16' made "CI green is a release gate" a K3-DarkMatter
+standing rule after finding their CI had been red since #65 — flagged to the user here as something
+this repo might also want (this repo's own CI is green as of `36473488754`, but the rule itself is
+not yet written down anywhere in this repo). D17' restarts Stream 3 with an activation directive.
+D18' closes LeanMaster's involvement for K3-DarkMatter (its MCP server stays available). They confirm
+our D1/D2 move no gate on their side. Stream 2 closes after `v0.3.14`.
+
 **LeanMaster release notice (2026-09-29), and independent verification here:** `RankJump.lean` —
 previously reported as "just merged" — is now formally tagged `v3.46.0` (`74cf11a`) alongside
 completed **Stream 9**, explicitly opened as **a control, not a continuation of the dual-scale
