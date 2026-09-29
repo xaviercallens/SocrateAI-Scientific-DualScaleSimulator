@@ -128,6 +128,16 @@ not a (ii)-type selector for D2, and it is not read as one.
 (i) or (ii)); (ii) is now confirmed empty by Stream 1, Stream 2 and LeanMaster alike, and AM-8 does not
 fill it. No ruling was filed anywhere, none was requested. All three streams have replied.
 
+**Stream 1 closing status (2026-09-29):** this note is now committed on their side as an inbound
+record (LeanProposal main `8dc0eb6`, release `v0.24.1`), with the GE-8 attribution to Stream 2 noted.
+Since our note, T0 adopted AM-8 there too (per-family minimal `|disc T|`; `s7 → A₂`,
+`s10` advisory `→ ⟨2⟩⊕⟨2⟩`; explicitly no cross-family ranking, no physics); their criteria mirror is
+re-pinned to it (`7af500a7…`), and the lattice half of both rows is kernel-checked in their repo (§3c)
+and independently attested by Stream 2 (`d3a2a01` / `882a866c…`). **None of this distinguishes level 7
+from level 12.** D2 remains open on their side exactly as stated in §4/§5; the flag commitment (a
+kernel-checked exclusion would be a *candidate*, never a selection) stands. Session closed; nothing
+pending. Filed here for provenance; no action follows.
+
 ## 6. What this note does NOT claim
 
 No zero-parameter derivation (6 → 2 free parameters was by imported values and a hypothesis
