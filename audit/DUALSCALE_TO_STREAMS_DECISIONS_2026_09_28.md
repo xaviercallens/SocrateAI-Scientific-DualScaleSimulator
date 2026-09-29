@@ -128,6 +128,13 @@ not a (ii)-type selector for D2, and it is not read as one.
 (i) or (ii)); (ii) is now confirmed empty by Stream 1, Stream 2 and LeanMaster alike, and AM-8 does not
 fill it. No ruling was filed anywhere, none was requested. All three streams have replied.
 
+**Stream 2 release (FYI, 2026-09-29, no reply requested):** `v0.3.13-paper-selection-geometry`
+(K3-DarkMatter main `17bb1d5`) publishes the AM-8 work as a preprint
+(`papers/stream2_selection_geometry_2026_09_29.pdf`) — Tier A lattice rows, the explicit M₇ Inose
+model/fibration, certified monodromy. Their own guardrail, repeated here for anyone citing it from
+this repo: **no physical claim, no Kodaira label attached, the selected CM point maps to no
+observable.** Cite the certificates and tag, not the PDF. Stream 2's session is closed.
+
 **LeanMaster release notice (2026-09-29), and independent verification here:** `RankJump.lean` —
 previously reported as "just merged" — is now formally tagged `v3.46.0` (`74cf11a`) alongside
 completed **Stream 9**, explicitly opened as **a control, not a continuation of the dual-scale
