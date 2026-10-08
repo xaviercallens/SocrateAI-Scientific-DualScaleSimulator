@@ -18,8 +18,19 @@ tags:
 
 [![PyPI version](https://img.shields.io/badge/pypi-v2.0.0-blue.svg)](https://pypi.org/project/leanflow/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Lean 4](https://img.shields.io/badge/Lean_4-Certified_Zero_Sorry-purple.svg)](https://leanprover.github.io/)
+[![Lean 4](https://img.shields.io/badge/Lean_4-review--only_(see_as--built_table)-lightgrey.svg)](../../specs/LEANFLOW_ARCHITECTURE.md)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x_Interoperable-orange.svg)](https://pytorch.org/)
+
+> **Dated correction (2026-10-08).** The badge "Certified Zero Sorry" and the diagram's "12-18 ns AOT SIMD Invariant
+> Guards", "Non-blocking Socket IPC" and "Kernel Verification (Zero Sorry)" describe the **design proposal of 2026-09-18,
+> not the code**. The repository's own as-built inventory (`specs/LEANFLOW_ARCHITECTURE.md` §1, findings S1-F10, S1-F13,
+> S1-F14 in `audit/STREAM1_BRIDGE.md`) records the following:
+> - **Guards:** there are no AOT or SIMD guards; all 41 Rust `assert`s are under `#[cfg(test)]`.
+> - **Lean bridge:** it is a blocking `subprocess.run` call.
+> - **Integrator:** it is SciPy Radau, not BDF/SUNDIALS.
+>
+> The diagram below is kept as the design, and the badge now points to that inventory. Nothing else in this file was
+> re-verified in this edit.
 
 This repository hosts the official preprint manuscript, computational engine specifications, and benchmarking suites for **LeanFlow** (Phase 2), an open-source framework coupling Scientific Machine Learning (SciML) and stiff ordinary differential equation solvers with the **Lean 4 interactive theorem prover**.
 

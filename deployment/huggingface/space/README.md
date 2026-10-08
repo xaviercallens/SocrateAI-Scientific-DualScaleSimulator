@@ -12,7 +12,11 @@ short_description: Guaranteed-invariant SciML & Lean 4 verification in string th
 
 # 🌌 LeanFlow 2.0: Neuro-Symbolic String Theory & SciML Interactive Engine
 
-[![Lean 4 Verified](https://img.shields.io/badge/Lean_4-Certified_Zero_Sorry-purple.svg)](https://leanprover.github.io/)
+[![Lean 4](https://img.shields.io/badge/Lean_4-review--only-lightgrey.svg)](https://github.com/xaviercallens/SocrateAI-Scientific-DualScaleSimulator/blob/main/specs/LEANFLOW_ARCHITECTURE.md)
+
+> **Dated correction (2026-10-08).** The former "Certified Zero Sorry" badge and the claim of mathematically guaranteed
+> invariants below were withdrawn by the repository's 2026-09-21 audit. See `specs/LEANFLOW_ARCHITECTURE.md` §1 for what
+> is built.
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x_Compatible-orange.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
