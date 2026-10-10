@@ -320,3 +320,25 @@ me. This note asserts nothing further about it.
 `W(n) ≅ O(q_A)`: **Stream 2's Tier E**, `PASS(30)`, not re-derived here. The `Q = N` multiplier:
 **Tier A**, Lean, Stream 1. That any of it selects a K3, or says anything about our universe:
 **Tier C**, and nothing here supports it.
+
+## 9. Addendum 2026-10-08 — Stream 2's latest results, recorded as mathematics (written by the Stream 2 session on T0's instruction)
+
+Four Stream 2 results (K3-DarkMatter, main ≥ 5fe0f98; AM-9 in PR #97) bear on this note. None changes D2.
+
+1. **The selected points are named.** The AM-8 picks are the singular K3 surfaces **X₃** (s7, `T = A₂`) and **X₄** (s10,
+   `T = ⟨2⟩⊕⟨2⟩`), named via Shioda–Inose and Takatsu's table (`SELECTED_K3_IDENTIFICATION.json`; their Tier B/L).
+2. **Reading S (D29′).** In Stream 2's selection criteria, "K3×T²" means the Shioda–Inose pairing of a family member with E×E′,
+   with E and E′ cyclically n-isogenous. Stream 2 computed T(E×E′) ≅ U⊕⟨2n⟩ exactly for n = 7 and n = 10
+   (`K3xT2_READING_S.json`). `tests/test_stream2_reading_s_crosscheck.py` checks that our `gram_U_plus_2N(n)` is integrally
+   isometric to the Gram that certificate stores, that wrong n are not, and that `gram_G0N` is not. The test skips when the
+   certificate is absent.
+3. **T3 is a hard gate in Stream 2 (AM-9, D30′)**: lattice level = modular level. Both families agree at their own levels, 7 and 10.
+4. **Scoring was considered and not adopted** in Stream 2 (D31′).
+
+**Why D2 is unchanged.** Each statement is relative to a family's own level: the family fixes n, and none of these results
+picks one. None is a (ii)-type structural criterion that "provably selects" a level. In particular X₃, Reading S and T3 give no
+reason to set N = 7 here. Reading S is a convention for selection criteria only. No torus of any model in this repository is E or
+E′, and no parameter is taken from it (ledger item 4; Tier C).
+
+Tiers: the isometry check in item 2 is Tier B here (an integer basis change, numerically exact over ℤ, not kernel-checked).
+Everything else in this section is quoted from Stream 2 at their tiers.

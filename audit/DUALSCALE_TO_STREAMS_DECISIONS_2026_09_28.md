@@ -97,7 +97,13 @@ N = 12*, and none would responsibly be read as favouring one.
   SUSY/ISD, not from a level.
 - **Stream 8, `WHICH_K3.md`**: three criteria (black-hole attractor, enhanced-symmetry/trapping,
   GTVW B-field) disagree with each other; "there is no single preferred K3 — ill-posed until one says
-  which physics is doing the selecting." The `D = 12` is the trapping criterion's answer alone.
+  which physics is doing the selecting." **Corrected by them the same day:** the `D = 12` does *not*
+  come from the enhanced-symmetry K3-factor criterion (P8.4c, §12, a rank-22 reading). It comes from a
+  separate **Tier-C** reading: moduli trapping on the T² factor at τ = ω (E2) combined with the Kummer
+  construction (E3), landing on the D₄ lattice with ω-structure → Kummer `T = A₂(2)`, `D = 12`
+  (`STREAM8_WHICH_K3.md` §G2, `DualScaleDyons/KummerD4.lean`). A candidate reading, not a selection —
+  which is exactly how `audit/K3_SELECTION.md` §3 already describes it (ρ = 20, rank-2 positive
+  definite, a rigid point; a different object from either level).
 
 **From Stream 1 (LeanProposal)**, same day: note received, left untracked for the owner to file.
 Attribution correction accepted: GE-8 is Stream 2's conclusion (as the table above says); Stream 1's
@@ -109,9 +115,58 @@ a kernel-checked exclusion of 7 or 12, if one ever appears, as a *candidate* for
 it a selection until T0 names it. (The slip was ours: the message that reached them was addressed as
 if to Stream 2; the note itself attributes GE-8 correctly.)
 
+**From Stream 2 (via the Stream 3 session)**, same day: copy filed untracked in K3-DarkMatter
+`briefs/`; no ruling. Cross-reference offered: T0 adopted a **C6 selector AM-8** (K3-DarkMatter main
+`da4bdaa`; `briefs/T0_DECISIONS_2026_09_28_STREAM2.md`, `briefs/STREAM2_AM8_SELECTOR_COMPARISON_2026_09_28.md`):
+minimal `|disc T|` within a register family, verified unique on the modular curve — `cooper_s7 → T = A₂
+(D = −3)`, `cooper_s10` (advisory) `→ ⟨2⟩ ⊕ ⟨2⟩ (D = −4)`. By their own text this is a
+**lattice-geometric selection of a point within a family, not a discrimination between levels**, and
+"makes no claim your L5/simulator work should treat as settling anything". Recorded as such: it is
+not a (ii)-type selector for D2, and it is not read as one.
+
 **Effect on the decisions: none.** D2 stands as written (no level chosen; both run; selection only by
-(i) or (ii)); (ii) is now confirmed empty by Stream 1, Stream 2 and LeanMaster alike. No ruling was
-filed anywhere, none was requested. Stream 3: no reply yet.
+(i) or (ii)); (ii) is now confirmed empty by Stream 1, Stream 2 and LeanMaster alike, and AM-8 does not
+fill it. No ruling was filed anywhere, none was requested. All three streams have replied.
+
+**Stream 2 release (FYI, 2026-09-29, no reply requested):** `v0.3.13-paper-selection-geometry`
+(K3-DarkMatter main `17bb1d5`) publishes the AM-8 work as a preprint
+(`papers/stream2_selection_geometry_2026_09_29.pdf`) — Tier A lattice rows, the explicit M₇ Inose
+model/fibration, certified monodromy. Their own guardrail, repeated here for anyone citing it from
+this repo: **no physical claim, no Kodaira label attached, the selected CM point maps to no
+observable.** Cite the certificates and tag, not the PDF. Stream 2's session is closed.
+
+**Stream 2, second FYI (2026-09-29, no action needed):** five T0-confirmed decisions landed in PR #72
+(`briefs/T0_DECISIONS_2026_09_29_STREAM2_DELEGATED.md`). Relevant here: **nothing selects a level.**
+D15' promotes `cooper_s10`'s lattice certificate to LIVE (`C2_cooper_s10_v5.json`, value-identical to
+the 2026-08-01 draft: `T ≅ U ⊕ ⟨20⟩`, det −20) — removes the ADVISORY label, which rested only on
+DRAFT status; **not** a ranking of level 10 over level 7, not a physical reading. D14' forbids Kodaira
+labels for the explicit Inose/CDLW model. D16' made "CI green is a release gate" a K3-DarkMatter
+standing rule after finding their CI had been red since #65 — flagged to the user here as something
+this repo might also want (this repo's own CI is green as of `36473488754`, but the rule itself is
+not yet written down anywhere in this repo). D17' restarts Stream 3 with an activation directive.
+D18' closes LeanMaster's involvement for K3-DarkMatter (its MCP server stays available). They confirm
+our D1/D2 move no gate on their side. Stream 2 closes after `v0.3.14`.
+
+**LeanMaster release notice (2026-09-29), and independent verification here:** `RankJump.lean` —
+previously reported as "just merged" — is now formally tagged `v3.46.0` (`74cf11a`) alongside
+completed **Stream 9**, explicitly opened as **a control, not a continuation of the dual-scale
+hypothesis**, and both remain non-selective among K3 levels ("no change to the answer I gave you").
+884 theorems audited, 0 failing. `v3.46.1` (`3570068`) is an unrelated disclosure fix, not touching
+D2. **Verified against `origin/main` directly** (the local read-only clone here was 8 commits behind
+and carried unrelated uncommitted state from another session, so left untouched rather than pulled):
+`git show origin/main:DualScaleDyons/RankJump.lean` resolves at `3570068`; the file's introducing
+commit is `73f6fb1` (2026-09-27), matching the receipt Stream 1 cited earlier. The earlier "not
+verified here" caveat on this file is now closed.
+
+**Stream 1 closing status (2026-09-29):** this note is now committed on their side as an inbound
+record (LeanProposal main `8dc0eb6`, release `v0.24.1`), with the GE-8 attribution to Stream 2 noted.
+Since our note, T0 adopted AM-8 there too (per-family minimal `|disc T|`; `s7 → A₂`,
+`s10` advisory `→ ⟨2⟩⊕⟨2⟩`; explicitly no cross-family ranking, no physics); their criteria mirror is
+re-pinned to it (`7af500a7…`), and the lattice half of both rows is kernel-checked in their repo (§3c)
+and independently attested by Stream 2 (`d3a2a01` / `882a866c…`). **None of this distinguishes level 7
+from level 12.** D2 remains open on their side exactly as stated in §4/§5; the flag commitment (a
+kernel-checked exclusion would be a *candidate*, never a selection) stands. Session closed; nothing
+pending. Filed here for provenance; no action follows.
 
 ## 6. What this note does NOT claim
 

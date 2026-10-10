@@ -205,12 +205,26 @@ def test_level_changes_the_landscape_unlike_the_old_potential():
     rng = random.Random(11)
     pts = [complex(rng.uniform(-0.5, 0.5), 10 ** rng.uniform(-0.5, 0.5)) for _ in range(8)]
 
-    # Old: it cannot depend on the level, because it has no level parameter.
-    # (Asserting that two calls agree would only test determinism.)
+    # Old (double_well): since M1 (47e1cc6, D2) compute_potential takes an explicit `level`,
+    # so the original "no level parameter" assertion went stale on 2026-09-28 (updated
+    # 2026-10-08). What the guard protects is unchanged: the old potential reads the
+    # level ONLY through the saddle constant fricke_y(level). Freeze that constant and
+    # the values must be bit-identical across levels; leave it free and they must differ
+    # (control, so this cannot pass vacuously).
     import inspect
     params = inspect.signature(wc.compute_potential).parameters
-    assert "N" not in params and "level" not in params, \
-        f"compute_potential grew a level argument: {list(params)}"
+    assert "level" in params, f"expected the explicit level parameter of M1: {list(params)}"
+    probes = [(0.1, 0.9), (0.3, 1.4), (-0.2, 0.6)]
+    free = [wc.compute_potential(x, y, level=7) != wc.compute_potential(x, y, level=12) for x, y in probes]
+    assert any(free), "control: the level no longer reaches the double well at all"
+    frozen_value = wc.fricke_y(7)
+    orig = wc.fricke_y
+    try:
+        wc.fricke_y = lambda _N: frozen_value
+        same = [wc.compute_potential(x, y, level=7) == wc.compute_potential(x, y, level=12) for x, y in probes]
+    finally:
+        wc.fricke_y = orig
+    assert all(same), "the double well now depends on the level beyond fricke_y(level)"
 
     # New: the level moves the landscape at every probe.
     devs = [abs(modular_potential(t, 7, mode="log") - modular_potential(t, 12, mode="log"))
